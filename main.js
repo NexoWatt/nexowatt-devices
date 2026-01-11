@@ -33,7 +33,7 @@ class NexowattDevicesAdapter extends utils.Adapter {
   constructor(options = {}) {
     super({
       ...options,
-      name: 'nexowatt.devices',
+      name: 'nexowatt-devices',
     });
 
     this.on('ready', this.onReady.bind(this));
