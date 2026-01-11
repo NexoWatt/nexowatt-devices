@@ -1,11 +1,15 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
         "de": "Adapter auf gültige ID umbenannt (keine Punkte) und externe Template-Referenzen entfernt. Generische Built-in-Templates für Modbus/MQTT/HTTP ergänzt."
+      },
+      "0.3.0": {
+        "en": "Added built-in device templates for many EV chargers (EVCS) and energy meters (Modbus). Improved Modbus driver: separate read/write mappings, byteOrder support, and value transforms.",
+        "de": "Integrierte Geräte-Templates für viele Ladestationen (EVCS) und Energiezähler (Modbus) hinzugefügt. Modbus-Treiber verbessert: getrennte Read/Write-Mappings, ByteOrder-Unterstützung und Wert-Transformationen."
       }
     },
     "title": "NexoWatt Devices",

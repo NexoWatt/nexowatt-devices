@@ -193,9 +193,18 @@ function renderDatapoints(templateId) {
     let srcKind = src.kind || '';
     let addr = '';
     let scale = '';
+    let dataType = src.dataType || dp.type || '';
     if (srcKind === 'modbus') {
-      addr = `FC${src.fc} @ ${src.address} (+${src.length} reg)`;
+      const rs = src.read || (([1, 3, 4].includes(src.fc)) ? src : null);
+      const ws = src.write || (([5, 6, 16].includes(src.fc)) ? src : null);
+      const s = rs || ws || {};
+      if (s.fc != null && s.address != null) {
+        addr = `FC${s.fc} @ ${s.address} (+${s.length || 1} reg)`;
+      } else {
+        addr = '';
+      }
       scale = src.scaleFactor ?? 0;
+      dataType = s.dataType || src.dataType || dp.type || '';
     } else if (srcKind === 'mqtt') {
       addr = src.topic || '';
     } else if (srcKind === 'http') {
@@ -207,7 +216,7 @@ function renderDatapoints(templateId) {
         <td>${escapeHtml(dp.rw || 'ro')}</td>
         <td>${escapeHtml(srcKind)}</td>
         <td>${escapeHtml(addr)}</td>
-        <td>${escapeHtml(src.dataType || dp.type || '')}</td>
+        <td>${escapeHtml(dataType || '')}</td>
         <td>${escapeHtml(scale.toString())}</td>
       </tr>
     `);
