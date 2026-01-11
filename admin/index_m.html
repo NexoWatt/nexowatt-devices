@@ -1,0 +1,303 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title class="translate">nexowatt.devices</title>
+
+  <link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
+  <link rel="stylesheet" type="text/css" href="../../lib/css/adapter.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="../../socket.io/socket.io.js"></script>
+  <script type="text/javascript" src="../../lib/js/translate.js"></script>
+  <script type="text/javascript" src="../../lib/js/materialize.js"></script>
+  <script type="text/javascript" src="../../lib/js/adapter-settings.js"></script>
+  <script type="text/javascript" src="words.js"></script>
+
+  <script type="text/javascript" src="index_m.js"></script>
+</head>
+
+<body>
+<div class="m adapter-container">
+  <div class="row">
+    <div class="col s12">
+      <h5 class="translate">Nexowatt Devices</h5>
+      <p class="translate">Standalone multi-protocol device adapter with categories and driver templates (Modbus TCP/RTU, MQTT, HTTP).</p>
+      <p class="note">
+        <b>Hinweis:</b> Der Adaptername enthält einen Punkt (<code>nexowatt.devices</code>). Falls deine ioBroker-Umgebung damit Probleme hat, benenne den Adapter in <code>nexowatt_devices</code> um.
+      </p>
+    </div>
+  </div>
+
+  <!-- Global settings -->
+  <div class="row">
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title translate">Globale Einstellungen</span>
+
+          <div class="row">
+            <div class="input-field col s12 m4">
+              <input class="value" id="pollIntervalMs" type="number" min="250" step="50"/>
+              <label for="pollIntervalMs" class="translate">Polling Intervall (ms)</label>
+            </div>
+
+            <div class="input-field col s12 m4">
+              <input class="value" id="modbusTimeoutMs" type="number" min="250" step="50"/>
+              <label for="modbusTimeoutMs" class="translate">Modbus Timeout (ms)</label>
+            </div>
+
+            <div class="input-field col s12 m4">
+              <input class="value" id="registerAddressOffset" type="number" step="1"/>
+              <label for="registerAddressOffset" class="translate">Register Address Offset (z.B. -1 für 1-basierte Geräte)</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col s12">
+              <textarea class="value" id="devicesJson" style="display:none;"></textarea>
+              <p class="grey-text text-darken-1">
+                <span class="translate">Die Geräte-Konfiguration wird intern als JSON gespeichert.</span>
+                <a href="#!" id="btnShowJson" class="translate">JSON anzeigen</a>
+              </p>
+              <pre id="jsonPreview" style="display:none; max-height: 240px; overflow:auto; background:#fafafa; border:1px solid #eee; padding:10px;"></pre>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Devices -->
+  <div class="row">
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title translate">Geräte</span>
+
+          <div class="row">
+            <div class="col s12">
+              <a class="waves-effect waves-light btn" id="btnAddDevice"><i class="material-icons left">add</i><span class="translate">Gerät hinzufügen</span></a>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col s12">
+              <table class="highlight responsive-table" id="devicesTable">
+                <thead>
+                  <tr>
+                    <th class="translate">Aktiv</th>
+                    <th class="translate">ID</th>
+                    <th class="translate">Name</th>
+                    <th class="translate">Kategorie</th>
+                    <th class="translate">Treiber</th>
+                    <th class="translate">Protokoll</th>
+                    <th class="translate">Verbindung</th>
+                    <th class="translate">Aktionen</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+              <p class="grey-text text-darken-1" id="noDevicesHint" style="display:none;">
+                <span class="translate">Noch keine Geräte konfiguriert.</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Add/Edit device -->
+  <div id="modalDevice" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h5 id="modalTitle" class="translate">Gerät</h5>
+
+      <div class="row">
+        <div class="input-field col s12 m4">
+          <input id="dev_id" type="text">
+          <label for="dev_id" class="translate">Geräte-ID (eindeutig, z.B. evcs_garage)</label>
+        </div>
+        <div class="input-field col s12 m6">
+          <input id="dev_name" type="text">
+          <label for="dev_name" class="translate">Name</label>
+        </div>
+        <div class="input-field col s12 m2" style="padding-top: 18px;">
+          <label>
+            <input type="checkbox" id="dev_enabled"/>
+            <span class="translate">Aktiv</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12 m4">
+          <select id="dev_category"></select>
+          <label class="translate">Kategorie</label>
+        </div>
+        <div class="input-field col s12 m4">
+          <select id="dev_manufacturer"></select>
+          <label class="translate">Hersteller</label>
+        </div>
+        <div class="input-field col s12 m4">
+          <select id="dev_template"></select>
+          <label class="translate">Treiber / Template</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12 m4">
+          <select id="dev_protocol"></select>
+          <label class="translate">Protokoll</label>
+        </div>
+        <div class="input-field col s12 m4">
+          <input id="dev_poll" type="number" min="250" step="50">
+          <label for="dev_poll" class="translate">Polling (ms, optional)</label>
+        </div>
+        <div class="input-field col s12 m4">
+          <input id="dev_notes" type="text">
+          <label for="dev_notes" class="translate">Notizen (optional)</label>
+        </div>
+      </div>
+
+      <!-- Connection: Modbus TCP -->
+      <div id="conn_modbusTcp" class="connBlock">
+        <h6 class="translate">Modbus TCP</h6>
+        <div class="row">
+          <div class="input-field col s12 m4">
+            <input id="mb_host" type="text">
+            <label for="mb_host" class="translate">Host / IP</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="mb_port" type="number" min="1" max="65535">
+            <label for="mb_port" class="translate">Port</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="mb_unitId" type="number" min="0" max="247">
+            <label for="mb_unitId" class="translate">Unit-ID</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="mb_timeout" type="number" min="250" step="50">
+            <label for="mb_timeout" class="translate">Timeout (ms)</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="mb_addrOffset" type="number" step="1">
+            <label for="mb_addrOffset" class="translate">Addr-Offset</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Connection: Modbus RTU -->
+      <div id="conn_modbusRtu" class="connBlock" style="display:none;">
+        <h6 class="translate">Modbus RTU</h6>
+        <div class="row">
+          <div class="input-field col s12 m4">
+            <input id="rtu_path" type="text" placeholder="/dev/ttyUSB0">
+            <label for="rtu_path" class="translate">Serial Port</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="rtu_baud" type="number" min="1200" step="300">
+            <label for="rtu_baud" class="translate">Baud</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <select id="rtu_parity">
+              <option value="none">none</option>
+              <option value="even">even</option>
+              <option value="odd">odd</option>
+            </select>
+            <label class="translate">Parity</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="rtu_unitId" type="number" min="0" max="247">
+            <label for="rtu_unitId" class="translate">Unit-ID</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="rtu_timeout" type="number" min="250" step="50">
+            <label for="rtu_timeout" class="translate">Timeout (ms)</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 m2">
+            <input id="rtu_addrOffset" type="number" step="1">
+            <label for="rtu_addrOffset" class="translate">Addr-Offset</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="rtu_dataBits" type="number" min="7" max="8">
+            <label for="rtu_dataBits" class="translate">Data bits</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="rtu_stopBits" type="number" min="1" max="2">
+            <label for="rtu_stopBits" class="translate">Stop bits</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Connection: MQTT -->
+      <div id="conn_mqtt" class="connBlock" style="display:none;">
+        <h6 class="translate">MQTT</h6>
+        <div class="row">
+          <div class="input-field col s12 m6">
+            <input id="mqtt_url" type="text" placeholder="mqtt://broker:1883">
+            <label for="mqtt_url" class="translate">Broker URL</label>
+          </div>
+          <div class="input-field col s12 m3">
+            <input id="mqtt_user" type="text">
+            <label for="mqtt_user" class="translate">Username (optional)</label>
+          </div>
+          <div class="input-field col s12 m3">
+            <input id="mqtt_pass" type="password">
+            <label for="mqtt_pass" class="translate">Password (optional)</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Connection: HTTP -->
+      <div id="conn_http" class="connBlock" style="display:none;">
+        <h6 class="translate">HTTP / JSON</h6>
+        <div class="row">
+          <div class="input-field col s12 m6">
+            <input id="http_baseUrl" type="text" placeholder="http://device.local">
+            <label for="http_baseUrl" class="translate">Base URL</label>
+          </div>
+          <div class="input-field col s12 m3">
+            <input id="http_user" type="text">
+            <label for="http_user" class="translate">Username (optional)</label>
+          </div>
+          <div class="input-field col s12 m3">
+            <input id="http_pass" type="password">
+            <label for="http_pass" class="translate">Password (optional)</label>
+          </div>
+        </div>
+      </div>
+
+      <h6 class="translate">Datenpunkte (aus Template)</h6>
+      <div style="max-height: 260px; overflow:auto; border:1px solid #eee;">
+        <table class="striped compact-table" id="dpTable">
+          <thead>
+            <tr>
+              <th class="translate">ID</th>
+              <th class="translate">RW</th>
+              <th class="translate">Quelle</th>
+              <th class="translate">Adresse/Topic/Path</th>
+              <th class="translate">Typ</th>
+              <th class="translate">Scale</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-light btn-flat translate" id="btnCancel">Abbrechen</a>
+      <a href="#!" class="waves-effect waves-light btn translate" id="btnSaveDevice">Speichern</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
