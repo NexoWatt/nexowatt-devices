@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
@@ -10,6 +10,10 @@
       "0.3.0": {
         "en": "Added built-in device templates for many EV chargers (EVCS) and energy meters (Modbus). Improved Modbus driver: separate read/write mappings, byteOrder support, and value transforms.",
         "de": "Integrierte Geräte-Templates für viele Ladestationen (EVCS) und Energiezähler (Modbus) hinzugefügt. Modbus-Treiber verbessert: getrennte Read/Write-Mappings, ByteOrder-Unterstützung und Wert-Transformationen."
+      },
+      "0.3.1": {
+        "en": "Fix adminUI definition to prevent Admin crash (adminUI must be an object with config).",
+        "de": "adminUI-Definition korrigiert, damit Admin nicht abstürzt (adminUI muss ein Objekt mit config sein)."
       }
     },
     "title": "NexoWatt Devices",
@@ -29,7 +33,9 @@
     "mode": "daemon",
     "loglevel": "info",
     "icon": "nexowatt-devices.svg",
-    "adminUI": "materialize",
+    "adminUI": {
+      "config": "materialize"
+    },
     "keywords": [
       "nexowatt",
       "devices",
