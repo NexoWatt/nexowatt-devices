@@ -10,6 +10,7 @@ Unterstützte Protokolle:
 - **Modbus RTU (Serial)**
 - **MQTT** (event‑basiert)
 - **HTTP/JSON** (Polling)
+- **UDP** (Text-Command/JSON, z.B. KEBA KeContact)
 
 ---
 
@@ -60,6 +61,11 @@ Im Admin kannst du Geräte hinzufügen:
 - Verbindungseinstellungen je Protokoll (z.B. IP/Port/Unit‑ID)
 
 Die Datenpunkte des Templates werden im Modal unten als Tabelle angezeigt.
+
+### RS485 / Modbus RTU auf ED-IPC3020
+
+Auf der ED-IPC3020-Hardware ist die RS485-Schnittstelle typischerweise als **/dev/com2** verfügbar (COM2).
+Trage diesen Pfad bei **Modbus RTU → Serial Port** ein und achte darauf, dass der ioBroker-User Zugriff auf das Gerät hat (z.B. Gruppe `dialout`).
 
 ---
 

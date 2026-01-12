@@ -226,6 +226,9 @@ function summarizeConnection(d) {
   if (d.protocol === 'http') {
     return `${c.baseUrl || ''}`;
   }
+  if (d.protocol === 'udp') {
+    return `${c.host || ''}:${c.port || 7090}`;
+  }
   return '';
 }
 
@@ -315,6 +318,7 @@ function showConnBlock(protocol) {
   if (protocol === 'modbusRtu') $('#conn_modbusRtu').show();
   if (protocol === 'mqtt') $('#conn_mqtt').show();
   if (protocol === 'http') $('#conn_http').show();
+  if (protocol === 'udp') $('#conn_udp').show();
 }
 
 function summarizeDatapoint(dp) {
@@ -334,6 +338,13 @@ function summarizeDatapoint(dp) {
   }
   if (kind === 'http') {
     return `${(src.method || 'GET').toUpperCase()} ${src.path || ''} ${src.jsonPath ? ('-> ' + src.jsonPath) : ''}`.trim();
+  }
+  if (kind === 'udp') {
+    const r = src.read || {};
+    const w = src.write || {};
+    const rTxt = r.cmd ? `cmd: ${r.cmd}${r.jsonPath ? (' -> ' + r.jsonPath) : ''}` : '';
+    const wTxt = w.cmdTemplate ? ` set: ${w.cmdTemplate}` : (w.cmd ? ` set: ${w.cmd}` : '');
+    return `${rTxt}${wTxt}`.trim();
   }
   return kind;
 }
@@ -429,7 +440,8 @@ function openDeviceModal(device, idx) {
   refreshSelect($('#mb_byteOrder'));
 
   // RTU
-  $('#mb_path').val(c.path || '');
+  // Default for ED-IPC3020 RS485: /dev/com2
+  $('#mb_path').val(c.path || '/dev/com2');
   $('#mb_baud').val(c.baudRate ?? 9600);
   $('#mb_parity').val(c.parity || 'none');
   $('#mb_databits').val(c.dataBits ?? 8);
@@ -452,6 +464,13 @@ function openDeviceModal(device, idx) {
   $('#http_baseUrl').val(c.baseUrl || '');
   $('#http_user').val(c.username || '');
   $('#http_pass').val(c.password || '');
+
+
+  // UDP
+  $('#udp_host').val(c.host || '');
+  $('#udp_port').val(c.port ?? 7090);
+  $('#udp_timeout').val(c.timeoutMs ?? '');
+  $('#udp_pause').val(c.commandPauseMs ?? 0);
 
   updateTextFields();
   openModal();
@@ -516,6 +535,13 @@ function collectDeviceFromModal() {
     d.connection.baseUrl = ($('#http_baseUrl').val() || '').trim();
     d.connection.username = ($('#http_user').val() || '').trim() || undefined;
     d.connection.password = ($('#http_pass').val() || '').trim() || undefined;
+  } else if (d.protocol === 'udp') {
+    d.connection.host = ($('#udp_host').val() || '').trim();
+    d.connection.port = parseInt($('#udp_port').val(), 10) || 7090;
+    const t = parseInt($('#udp_timeout').val(), 10);
+    if (!isNaN(t)) d.connection.timeoutMs = t;
+    const p = parseInt($('#udp_pause').val(), 10);
+    if (!isNaN(p)) d.connection.commandPauseMs = p;
   }
 
   // minimal validation
@@ -528,6 +554,8 @@ function collectDeviceFromModal() {
   if (d.protocol === 'modbusRtu' && !d.connection.path) throw new Error('Modbus RTU Serial-Port fehlt');
   if (d.protocol === 'mqtt' && !d.connection.url) throw new Error('MQTT Broker-URL fehlt');
   if (d.protocol === 'http' && !d.connection.baseUrl) throw new Error('HTTP Base-URL fehlt');
+
+  if (d.protocol === 'udp' && !d.connection.host) throw new Error('UDP Host/IP fehlt');
 
   return d;
 }

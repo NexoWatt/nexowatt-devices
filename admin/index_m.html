@@ -229,7 +229,7 @@
         <div class="row">
           <div class="input-field col s12 m4">
             <input id="mb_path" type="text" />
-            <label for="mb_path" class="translate">Serial Port (z.B. /dev/ttyUSB0)</label>
+            <label for="mb_path" class="translate">Serial Port (z.B. /dev/com2)</label>
           </div>
           <div class="input-field col s12 m2">
             <input id="mb_baud" type="number" min="1200" step="300" />
@@ -315,6 +315,28 @@
           <div class="input-field col s12 m3">
             <input id="http_pass" type="password" />
             <label for="http_pass" class="translate">Password</label>
+          </div>
+        </div>
+      </div>
+
+      <div id="conn_udp" class="nexo-conn-block" style="display:none;">
+        <h6 class="translate">UDP Verbindung</h6>
+        <div class="row">
+          <div class="input-field col s12 m6">
+            <input id="udp_host" type="text" />
+            <label for="udp_host" class="translate">Host/IP</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="udp_port" type="number" min="1" max="65535" />
+            <label for="udp_port" class="translate">Port</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="udp_timeout" type="number" min="100" step="50" />
+            <label for="udp_timeout" class="translate">Timeout (ms)</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="udp_pause" type="number" min="0" step="10" />
+            <label for="udp_pause" class="translate">Cmd Pause (ms)</label>
           </div>
         </div>
       </div>
