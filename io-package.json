@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
@@ -22,6 +22,10 @@
       "0.4.1": {
         "en": "Admin UI: set light-gray page background and switch configuration selects to native selects for maximum compatibility. Add driver count indicator and cache-busting template load.",
         "de": "Admin-UI: hellgrauen Hintergrund gesetzt und Auswahlfelder auf native Selects umgestellt (maximale Kompatibilität). Treiber-Zähler ergänzt und Template-Load mit Cache-Busting verbessert."
+      },
+      "0.4.2": {
+        "en": "Fix Admin config page scripts (adapter-settings.js/translate.js paths) so device selection works. Add automatic migration for invalid adminUI strings on host adapter objects.",
+        "de": "Fix für Admin-Konfigseite (korrekte Pfade zu adapter-settings.js/translate.js), damit Geräteauswahl funktioniert. Automatische Migration für ungültige adminUI-Strings in Host-Adapter-Objekten."
       }
     },
     "title": "NexoWatt Devices",

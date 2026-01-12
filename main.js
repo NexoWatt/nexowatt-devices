@@ -29,6 +29,41 @@ function safeJsonParse(str, fallback) {
   }
 }
 
+
+async function autoFixAdminUI(adapter) {
+  // Some environments contain legacy adapter objects with common.adminUI stored as a STRING (e.g. "materialize").
+  // Newer Admin versions expect common.adminUI to be an OBJECT. If it is a string, Admin can throw:
+  // "Cannot create property 'config' on string 'materialize'".
+  //
+  // This migration is safe: it only converts string -> { config: <string> } and does not change any other fields.
+  const patterns = ['system.host.*.adapter.*', 'system.adapter.*'];
+
+  for (const pattern of patterns) {
+    let objs;
+    try {
+      objs = await adapter.getForeignObjectsAsync(pattern);
+    } catch (e) {
+      adapter.log.debug(`adminUI auto-fix: cannot read ${pattern}: ${e && e.message ? e.message : e}`);
+      continue;
+    }
+
+    const map = objs || {};
+    for (const [id, obj] of Object.entries(map)) {
+      if (!obj || obj.type !== 'adapter' || !obj.common) continue;
+      const adminUI = obj.common.adminUI;
+      if (typeof adminUI === 'string' && adminUI.trim()) {
+        const cfg = adminUI.trim();
+        try {
+          await adapter.extendForeignObjectAsync(id, { common: { adminUI: { config: cfg } } });
+          adapter.log.info(`adminUI migrated for ${id}: "${cfg}" -> {config:"${cfg}"}`);
+        } catch (e) {
+          adapter.log.debug(`adminUI auto-fix failed for ${id}: ${e && e.message ? e.message : e}`);
+        }
+      }
+    }
+  }
+}
+
 class NexowattDevicesAdapter extends utils.Adapter {
   constructor(options = {}) {
     super({
@@ -46,6 +81,9 @@ class NexowattDevicesAdapter extends utils.Adapter {
   }
 
   async onReady() {
+    // Automatic environment migration (no manual user steps)
+    await autoFixAdminUI(this);
+
     // init info
     await this.setObjectNotExistsAsync('info.connection', {
       type: 'state',

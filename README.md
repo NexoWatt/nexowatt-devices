@@ -1,50 +1,69 @@
 # nexowatt-devices (ioBroker Adapter)
 
+**nexowatt-devices** ist ein eigenständiger Multi‑Protokoll‑Geräteadapter für ioBroker.
+Er bietet eine **Kategorien → Hersteller → Treiber/Template**‑Konfiguration und erzeugt die
+zugehörigen Datenpunkte automatisch in ioBroker.
 
-Unterstützte Protokolle (Stand Prototyp 0.1.0):
+Unterstützte Protokolle:
 
 - **Modbus TCP**
 - **Modbus RTU (Serial)**
 - **MQTT** (event‑basiert)
 - **HTTP/JSON** (Polling)
 
+---
 
+## 1) Installation aus GitHub (empfohlen)
+
+Dieser Adapter ist **nicht** im offiziellen ioBroker‑Repository. Daher funktioniert `iobroker add ...` nicht.
+
+Installiere ihn aus GitHub per `iobroker url` (Tarball):
+
+```bash
+# Beispiel (ersetze USER/REPO/BRANCH):
+iobroker url https://github.com/USER/ioBroker.nexowatt-devices/tarball/main
+```
+
+Danach kannst du im Admin wie gewohnt eine Instanz anlegen.
+
+### Hinweis: Admin‑Fehler „adminUI ist string“
+Falls in deiner Installation alte Adapter‑Objekte existieren, bei denen `common.adminUI` fälschlich als String gespeichert ist (z.B. `"materialize"`),
+kann der Admin beim Laden eine Exception werfen. Der Adapter enthält eine **automatische Migration**,
+die solche Objekte beim Start in das neue Format konvertiert (`{ config: "materialize" }`).
 
 ---
 
-## 1) Installation (lokal)
+## 2) Installation lokal (Alternative)
 
-1. Ordner `iobroker.nexowatt-devices` nach `.../iobroker/node_modules/` kopieren
-2. In den Adapter‑Ordner wechseln und Dependencies installieren:
+1. Repository/Ordner nach `/opt/iobroker/node_modules/iobroker.nexowatt-devices` kopieren
+2. Dependencies installieren:
    ```bash
    cd /opt/iobroker/node_modules/iobroker.nexowatt-devices
-   npm install
+   npm install --omit=dev
    ```
-3. Adapter hochladen:
+3. Admin‑Dateien hochladen:
    ```bash
    iobroker upload nexowatt-devices
    ```
-4. In ioBroker Admin eine Instanz anlegen und konfigurieren.
-
-### Modbus RTU Hinweis
-`modbus-serial` nutzt unter Linux i.d.R. `serialport` (native build). Auf Raspberry Pi & Co. brauchst du ggf. Build‑Tools (`build-essential`, `python3`, etc.).
+4. Instanz im Admin anlegen.
 
 ---
 
-## 2) Admin‑Konzept (Kategorien → Hersteller → Treiber)
+## 3) Admin‑Konzept (Kategorien → Hersteller → Treiber)
 
 Im Admin kannst du Geräte hinzufügen:
 
 - **Kategorie** (z.B. EVCS, METER, BATTERY, HEAT …)
 - **Hersteller**
+- **Treiber/Template** (liefert Datenpunkte + Default‑Protokolle)
 - **Protokoll** (Modbus TCP / Modbus RTU / MQTT / HTTP)
-- Verbindungseinstellungen je Protokoll
+- Verbindungseinstellungen je Protokoll (z.B. IP/Port/Unit‑ID)
 
 Die Datenpunkte des Templates werden im Modal unten als Tabelle angezeigt.
 
 ---
 
-## 3) Objektstruktur in ioBroker
+## 4) Objektstruktur in ioBroker
 
 Für jedes Gerät `<id>`:
 
@@ -52,11 +71,12 @@ Für jedes Gerät `<id>`:
 - `nexowatt-devices.0.devices.<id>.info.lastError`
 - `nexowatt-devices.0.devices.<id>.<datapointId>`
 
-Schreibbare Datenpunkte werden als `write=true` angelegt. Wenn du einen State änderst (ack=false), schreibt der Adapter über das passende Protokoll.
+Schreibbare Datenpunkte werden als `write=true` angelegt. Wenn du einen State änderst (`ack=false`),
+schreibt der Adapter über das passende Protokoll.
 
 ---
 
-## 4) Geräte‑Konfiguration (devicesJson)
+## 5) Geräte‑Konfiguration (devicesJson)
 
 Die Geräte werden intern als JSON gespeichert. Beispiel:
 
@@ -67,7 +87,8 @@ Die Geräte werden intern als JSON gespeichert. Beispiel:
     "name": "Wallbox Garage",
     "enabled": true,
     "category": "EVCS",
-    "manufacturer": "goe",
+    "manufacturer": "go-e",
+    "templateId": "evcs.goe.EvcsGoeModbusImpl",
     "protocol": "modbusTcp",
     "pollIntervalMs": 1000,
     "connection": {
@@ -87,20 +108,5 @@ Die Geräte werden intern als JSON gespeichert. Beispiel:
 
 ---
 
-## 5) Grenzen / Erwartungsmanagement
-
-- Für 64‑bit Werte (uint64/int64) kann es bei sehr großen Zählern zu **Precision‑Limits** kommen. Der Adapter gibt dann ggf. Strings zurück.
-
----
-
-## 6) Weiterer Ausbau (Roadmap‑fähig)
-
-Wenn du willst, kann ich im nächsten Schritt:
-
-1. **Treiber‑UI** weiter ausbauen (echte Hersteller‑Reiter, Filter, Suchfeld, Datenpunkt‑Override im UI)
-3. Optimierung: Modbus‑Batching, Retry‑Strategien, per‑Datapoint Quality‑Flags
-
----
-
 ## Lizenz
-MIT (Prototyp).
+MIT
