@@ -1,4 +1,10 @@
-/* global $, M, systemDictionary, translateAll */
+/* global $, M, translateAll */
+/**
+ * nexowatt-devices - admin (materialize) UI
+ * This UI is intentionally robust: it works even if Materialize-JS plugins are not available.
+ */
+
+'use strict';
 
 let templatesData = null;
 let templatesById = {};
@@ -8,18 +14,91 @@ let templatesByCatManu = {}; // cat -> manu -> [template]
 let devices = [];
 let editIndex = -1;
 let onChangeGlobal = null;
+let uiInitialized = false;
+
+function hasMaterialize() {
+  return typeof M !== 'undefined' && M && typeof M.Modal !== 'undefined';
+}
+
+function hasFormSelect() {
+  return !!($.fn && $.fn.formSelect);
+}
+
+function updateTextFields() {
+  if (hasMaterialize() && typeof M.updateTextFields === 'function') {
+    try { M.updateTextFields(); } catch (e) { /* ignore */ }
+  }
+}
+
+function toast(msg) {
+  const safe = (msg || '').toString();
+  if (hasMaterialize() && typeof M.toast === 'function') {
+    try { M.toast({ html: escapeHtml(safe) }); return; } catch (e) { /* ignore */ }
+  }
+  // fallback
+  try { alert(safe); } catch (e) { /* ignore */ }
+}
+
+function escapeHtml(str) {
+  return (str || '').toString()
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
 
 function safeJsonParse(str, fallback) {
   try {
-    const v = JSON.parse(str);
-    return v;
+    return JSON.parse(str);
   } catch (e) {
     return fallback;
   }
 }
 
 function setChanged(changed) {
-  if (typeof onChangeGlobal === 'function') onChangeGlobal(changed);
+  if (typeof onChangeGlobal === 'function') {
+    onChangeGlobal(changed);
+  }
+}
+
+function refreshSelect($sel) {
+  if (!$sel || !$sel.length) return;
+  if (hasFormSelect()) {
+    try { $sel.formSelect(); } catch (e) { /* ignore */ }
+  }
+}
+
+function openModal() {
+  const el = document.getElementById('modalDevice');
+  if (hasMaterialize()) {
+    try {
+      const inst = M.Modal.getInstance(el) || M.Modal.init(el, { dismissible: false });
+      inst.open();
+      return;
+    } catch (e) {
+      console.warn('Materialize modal open failed, falling back:', e);
+    }
+  }
+
+  // fallback
+  $('#modalDevice').addClass('nexo-fallback nexo-open');
+  $('#nexoBackdrop').addClass('nexo-open').show();
+}
+
+function closeModal() {
+  const el = document.getElementById('modalDevice');
+  if (hasMaterialize()) {
+    try {
+      const inst = M.Modal.getInstance(el);
+      if (inst) inst.close();
+      return;
+    } catch (e) {
+      // ignore and fall back
+    }
+  }
+  $('#modalDevice').removeClass('nexo-open');
+  $('#nexoBackdrop').removeClass('nexo-open').hide();
 }
 
 function loadTemplates() {
@@ -28,13 +107,14 @@ function loadTemplates() {
 
     $.getJSON('templates.json')
       .done((data) => {
-        templatesData = data;
+        templatesData = data || {};
         templatesById = {};
         manufacturersByCategory = {};
         templatesByCatManu = {};
 
-        const tpls = (data && data.templates) ? data.templates : [];
+        const tpls = Array.isArray(templatesData.templates) ? templatesData.templates : [];
         tpls.forEach((t) => {
+          if (!t || !t.id) return;
           templatesById[t.id] = t;
           const cat = t.category || 'OTHER';
           const manu = t.manufacturer || 'Unknown';
@@ -51,60 +131,16 @@ function loadTemplates() {
 
         // Convert Sets to arrays
         Object.keys(manufacturersByCategory).forEach((cat) => {
-          manufacturersByCategory[cat] = Array.from(manufacturersByCategory[cat]).sort();
+          manufacturersByCategory[cat] = Array.from(manufacturersByCategory[cat]).sort((a, b) => (a || '').localeCompare(b || ''));
         });
 
         resolve(templatesData);
       })
       .fail((xhr, status, err) => {
         console.error('Failed to load templates.json', status, err);
-        reject(err);
+        reject(err || new Error('Failed to load templates.json'));
       });
   });
-}
-
-function renderDevicesTable() {
-  const tbody = $('#devicesTable tbody');
-  tbody.empty();
-
-  if (!devices || !devices.length) {
-    $('#noDevicesHint').show();
-    return;
-  }
-  $('#noDevicesHint').hide();
-
-  devices.forEach((d, idx) => {
-    const tpl = templatesById[d.templateId];
-    const tplName = tpl ? tpl.name : d.templateId;
-    const connInfo = summarizeConnection(d);
-
-    const row = $(`
-      <tr>
-        <td>${d.enabled ? '✓' : ''}</td>
-        <td><code>${escapeHtml(d.id)}</code></td>
-        <td>${escapeHtml(d.name || '')}</td>
-        <td>${escapeHtml(d.category || '')}</td>
-        <td>${escapeHtml(tplName || '')}</td>
-        <td>${escapeHtml(d.protocol || '')}</td>
-        <td>${escapeHtml(connInfo)}</td>
-        <td>
-          <a href="#!" class="btn-small waves-effect" data-action="edit" data-idx="${idx}"><i class="material-icons">edit</i></a>
-          <a href="#!" class="btn-small red waves-effect" data-action="delete" data-idx="${idx}"><i class="material-icons">delete</i></a>
-        </td>
-      </tr>
-    `);
-
-    tbody.append(row);
-  });
-}
-
-function escapeHtml(str) {
-  return (str || '').toString()
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
 }
 
 function summarizeConnection(d) {
@@ -124,100 +160,130 @@ function summarizeConnection(d) {
   return '';
 }
 
+function renderDevicesTable() {
+  const tbody = $('#devicesTable tbody');
+  tbody.empty();
+
+  if (!devices || !devices.length) {
+    $('#noDevicesHint').show();
+    return;
+  }
+  $('#noDevicesHint').hide();
+
+  devices.forEach((d, idx) => {
+    const tpl = templatesById[d.templateId];
+    const tplName = tpl ? (tpl.name || tpl.id) : (d.templateId || '');
+
+    const connInfo = summarizeConnection(d);
+
+    const row = $(`
+      <tr>
+        <td>${d.enabled ? '✓' : ''}</td>
+        <td><code>${escapeHtml(d.id)}</code></td>
+        <td>${escapeHtml(d.name || '')}</td>
+        <td>${escapeHtml(d.category || '')}</td>
+        <td>${escapeHtml(tplName)}</td>
+        <td>${escapeHtml(d.protocol || '')}</td>
+        <td>${escapeHtml(connInfo)}</td>
+        <td class="actions">
+          <a href="#!" class="btn-small waves-effect" data-action="edit" data-idx="${idx}">${escapeHtml('Bearbeiten')}</a>
+          <a href="#!" class="btn-small red waves-effect" data-action="delete" data-idx="${idx}">${escapeHtml('Löschen')}</a>
+        </td>
+      </tr>
+    `);
+
+    tbody.append(row);
+  });
+}
+
 function fillCategorySelect() {
   const sel = $('#dev_category');
   sel.empty();
-  categories.forEach((cat) => {
-    sel.append(`<option value="${escapeHtml(cat)}">${escapeHtml(cat)}</option>`);
-  });
-  sel.formSelect();
+  categories.forEach((cat) => sel.append(`<option value="${escapeHtml(cat)}">${escapeHtml(cat)}</option>`));
+  refreshSelect(sel);
 }
 
 function fillManufacturerSelect(cat) {
   const sel = $('#dev_manufacturer');
   sel.empty();
   const manus = manufacturersByCategory[cat] || [];
-  manus.forEach((m) => {
-    sel.append(`<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`);
-  });
-  sel.formSelect();
+  manus.forEach((m) => sel.append(`<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`));
+  refreshSelect(sel);
 }
 
 function fillTemplateSelect(cat, manu) {
   const sel = $('#dev_template');
   sel.empty();
   const tpls = (templatesByCatManu[cat] && templatesByCatManu[cat][manu]) ? templatesByCatManu[cat][manu] : [];
-  tpls.sort((a,b) => (a.name||a.id).localeCompare(b.name||b.id));
-  tpls.forEach((t) => {
-    sel.append(`<option value="${escapeHtml(t.id)}">${escapeHtml(t.name || t.id)}</option>`);
-  });
-  sel.formSelect();
+  tpls
+    .slice()
+    .sort((a, b) => (a.name || a.id).localeCompare(b.name || b.id))
+    .forEach((t) => sel.append(`<option value="${escapeHtml(t.id)}">${escapeHtml(t.name || t.id)}</option>`));
+  refreshSelect(sel);
 }
 
 function fillProtocolSelect(templateId, currentProtocol) {
   const sel = $('#dev_protocol');
   sel.empty();
+
   const tpl = templatesById[templateId];
-  const protos = (tpl && tpl.protocols) ? tpl.protocols : [];
-  protos.forEach((p) => {
-    sel.append(`<option value="${escapeHtml(p)}">${escapeHtml(p)}</option>`);
-  });
-  sel.formSelect();
+  const protos = (tpl && Array.isArray(tpl.protocols)) ? tpl.protocols : [];
+
+  protos.forEach((p) => sel.append(`<option value="${escapeHtml(p)}">${escapeHtml(p)}</option>`));
+  refreshSelect(sel);
 
   if (currentProtocol && protos.includes(currentProtocol)) {
     sel.val(currentProtocol);
-    sel.formSelect();
   } else if (protos.length) {
     sel.val(protos[0]);
-    sel.formSelect();
   }
+  refreshSelect(sel);
 }
 
 function showConnBlock(protocol) {
-  $('.connBlock').hide();
+  $('.nexo-conn-block').hide();
   if (protocol === 'modbusTcp') $('#conn_modbusTcp').show();
   if (protocol === 'modbusRtu') $('#conn_modbusRtu').show();
   if (protocol === 'mqtt') $('#conn_mqtt').show();
   if (protocol === 'http') $('#conn_http').show();
 }
 
+function summarizeDatapoint(dp) {
+  const src = dp.source || {};
+  const kind = src.kind || '';
+  if (kind === 'modbus') {
+    const r = src.read || {};
+    const w = src.write || {};
+    const dt = (r.dataType || w.dataType || src.dataType || dp.type || '').toString();
+    const sf = (src.scaleFactor !== undefined && src.scaleFactor !== null) ? ` sf=${src.scaleFactor}` : '';
+    const rTxt = (r.fc != null && r.address != null) ? `R:FC${r.fc}@${r.address}(${r.length || 1})` : '';
+    const wTxt = (w.fc != null && w.address != null) ? ` W:FC${w.fc}@${w.address}(${w.length || 1})` : '';
+    return `${rTxt}${wTxt} ${dt}${sf}`.trim();
+  }
+  if (kind === 'mqtt') {
+    return `topic: ${src.topic || ''}`.trim();
+  }
+  if (kind === 'http') {
+    return `${(src.method || 'GET').toUpperCase()} ${src.path || ''} ${src.jsonPath ? ('-> ' + src.jsonPath) : ''}`.trim();
+  }
+  return kind;
+}
+
 function renderDatapoints(templateId) {
   const tpl = templatesById[templateId];
-  const tbody = $('#dpTable tbody');
+  const tbody = $('#dpBody');
   tbody.empty();
 
-  if (!tpl || !tpl.datapoints) return;
+  if (!tpl || !Array.isArray(tpl.datapoints)) return;
 
   tpl.datapoints.forEach((dp) => {
-    const src = dp.source || {};
-    let srcKind = src.kind || '';
-    let addr = '';
-    let scale = '';
-    let dataType = src.dataType || dp.type || '';
-    if (srcKind === 'modbus') {
-      const rs = src.read || (([1, 3, 4].includes(src.fc)) ? src : null);
-      const ws = src.write || (([5, 6, 16].includes(src.fc)) ? src : null);
-      const s = rs || ws || {};
-      if (s.fc != null && s.address != null) {
-        addr = `FC${s.fc} @ ${s.address} (+${s.length || 1} reg)`;
-      } else {
-        addr = '';
-      }
-      scale = src.scaleFactor ?? 0;
-      dataType = s.dataType || src.dataType || dp.type || '';
-    } else if (srcKind === 'mqtt') {
-      addr = src.topic || '';
-    } else if (srcKind === 'http') {
-      addr = `${src.method || 'GET'} ${src.path || ''} -> ${src.jsonPath || ''}`;
-    }
     const row = $(`
       <tr>
         <td><code>${escapeHtml(dp.id)}</code></td>
+        <td>${escapeHtml(dp.name || '')}</td>
+        <td>${escapeHtml(dp.type || '')}</td>
         <td>${escapeHtml(dp.rw || 'ro')}</td>
-        <td>${escapeHtml(srcKind)}</td>
-        <td>${escapeHtml(addr)}</td>
-        <td>${escapeHtml(dataType || '')}</td>
-        <td>${escapeHtml(scale.toString())}</td>
+        <td>${escapeHtml(summarizeDatapoint(dp))}</td>
       </tr>
     `);
     tbody.append(row);
@@ -226,65 +292,76 @@ function renderDatapoints(templateId) {
 
 function openDeviceModal(device, idx) {
   editIndex = (typeof idx === 'number') ? idx : -1;
-
   $('#modalTitle').text(editIndex >= 0 ? 'Gerät bearbeiten' : 'Gerät hinzufügen');
 
   $('#dev_id').val(device.id || '');
   $('#dev_name').val(device.name || '');
   $('#dev_enabled').prop('checked', device.enabled !== false);
   $('#dev_poll').val(device.pollIntervalMs || '');
-  $('#dev_notes').val(device.notes || '');
 
   // category/manufacturer/template
   const cat = device.category || categories[0] || 'GENERIC';
   $('#dev_category').val(cat);
-  $('#dev_category').formSelect();
+  refreshSelect($('#dev_category'));
 
   fillManufacturerSelect(cat);
   const manuList = manufacturersByCategory[cat] || [];
   const manu = device.manufacturer || (manuList[0] || '');
   $('#dev_manufacturer').val(manu);
-  $('#dev_manufacturer').formSelect();
+  refreshSelect($('#dev_manufacturer'));
 
   fillTemplateSelect(cat, manu);
   const tplId = device.templateId || ($('#dev_template option:first').val() || '');
   $('#dev_template').val(tplId);
-  $('#dev_template').formSelect();
+  refreshSelect($('#dev_template'));
 
   fillProtocolSelect(tplId, device.protocol);
+
   const proto = $('#dev_protocol').val();
   showConnBlock(proto);
   renderDatapoints(tplId);
 
   // connection defaults
   const c = device.connection || {};
+
+  // TCP
   $('#mb_host').val(c.host || '');
   $('#mb_port').val(c.port ?? 502);
   $('#mb_unitId').val(c.unitId ?? 1);
   $('#mb_timeout').val(c.timeoutMs ?? '');
-  $('#mb_addrOffset').val(c.addressOffset ?? '');
+  $('#mb_addrOffset').val(c.addressOffset ?? 0);
+  $('#mb_wordOrder').val(c.wordOrder || 'be');
+  $('#mb_byteOrder').val(c.byteOrder || 'be');
+  refreshSelect($('#mb_wordOrder'));
+  refreshSelect($('#mb_byteOrder'));
 
-  $('#rtu_path').val(c.path || '');
-  $('#rtu_baud').val(c.baudRate ?? 9600);
-  $('#rtu_parity').val(c.parity || 'none');
-  $('#rtu_unitId').val(c.unitId ?? 1);
-  $('#rtu_timeout').val(c.timeoutMs ?? '');
-  $('#rtu_addrOffset').val(c.addressOffset ?? '');
-  $('#rtu_dataBits').val(c.dataBits ?? 8);
-  $('#rtu_stopBits').val(c.stopBits ?? 1);
-  $('#rtu_parity').formSelect();
+  // RTU
+  $('#mb_path').val(c.path || '');
+  $('#mb_baud').val(c.baudRate ?? 9600);
+  $('#mb_parity').val(c.parity || 'none');
+  $('#mb_databits').val(c.dataBits ?? 8);
+  $('#mb_stopbits').val(c.stopBits ?? 1);
+  $('#mb_unitId_rtu').val(c.unitId ?? 1);
+  $('#mb_timeout_rtu').val(c.timeoutMs ?? '');
+  $('#mb_addrOffset_rtu').val(c.addressOffset ?? 0);
+  $('#mb_wordOrder_rtu').val(c.wordOrder || 'be');
+  $('#mb_byteOrder_rtu').val(c.byteOrder || 'be');
+  refreshSelect($('#mb_parity'));
+  refreshSelect($('#mb_wordOrder_rtu'));
+  refreshSelect($('#mb_byteOrder_rtu'));
 
+  // MQTT
   $('#mqtt_url').val(c.url || '');
   $('#mqtt_user').val(c.username || '');
   $('#mqtt_pass').val(c.password || '');
 
+  // HTTP
   $('#http_baseUrl').val(c.baseUrl || '');
   $('#http_user').val(c.username || '');
   $('#http_pass').val(c.password || '');
 
-  M.updateTextFields();
-  const modal = M.Modal.getInstance(document.getElementById('modalDevice'));
-  modal.open();
+  updateTextFields();
+  openModal();
 }
 
 function collectDeviceFromModal() {
@@ -300,12 +377,11 @@ function collectDeviceFromModal() {
     templateId: tplId,
     protocol: $('#dev_protocol').val(),
     pollIntervalMs: ($('#dev_poll').val() || '').trim() ? parseInt($('#dev_poll').val(), 10) : undefined,
-    notes: ($('#dev_notes').val() || '').trim() || undefined,
     connection: {}
   };
 
-  if (tpl && tpl.protocols && !tpl.protocols.includes(d.protocol)) {
-    throw new Error('Protocol not supported by template');
+  if (tpl && Array.isArray(tpl.protocols) && d.protocol && !tpl.protocols.includes(d.protocol)) {
+    throw new Error('Protokoll wird vom Template nicht unterstützt');
   }
 
   // Connection fields
@@ -313,21 +389,32 @@ function collectDeviceFromModal() {
     d.connection.host = ($('#mb_host').val() || '').trim();
     d.connection.port = parseInt($('#mb_port').val(), 10) || 502;
     d.connection.unitId = parseInt($('#mb_unitId').val(), 10) || 1;
+
     const t = parseInt($('#mb_timeout').val(), 10);
     if (!isNaN(t)) d.connection.timeoutMs = t;
+
     const o = parseInt($('#mb_addrOffset').val(), 10);
     if (!isNaN(o)) d.connection.addressOffset = o;
+
+    d.connection.wordOrder = $('#mb_wordOrder').val() || 'be';
+    d.connection.byteOrder = $('#mb_byteOrder').val() || 'be';
   } else if (d.protocol === 'modbusRtu') {
-    d.connection.path = ($('#rtu_path').val() || '').trim();
-    d.connection.baudRate = parseInt($('#rtu_baud').val(), 10) || 9600;
-    d.connection.parity = $('#rtu_parity').val() || 'none';
-    d.connection.unitId = parseInt($('#rtu_unitId').val(), 10) || 1;
-    const t = parseInt($('#rtu_timeout').val(), 10);
+    d.connection.path = ($('#mb_path').val() || '').trim();
+    d.connection.baudRate = parseInt($('#mb_baud').val(), 10) || 9600;
+    d.connection.parity = $('#mb_parity').val() || 'none';
+    d.connection.dataBits = parseInt($('#mb_databits').val(), 10) || 8;
+    d.connection.stopBits = parseInt($('#mb_stopbits').val(), 10) || 1;
+
+    d.connection.unitId = parseInt($('#mb_unitId_rtu').val(), 10) || 1;
+
+    const t = parseInt($('#mb_timeout_rtu').val(), 10);
     if (!isNaN(t)) d.connection.timeoutMs = t;
-    const o = parseInt($('#rtu_addrOffset').val(), 10);
+
+    const o = parseInt($('#mb_addrOffset_rtu').val(), 10);
     if (!isNaN(o)) d.connection.addressOffset = o;
-    d.connection.dataBits = parseInt($('#rtu_dataBits').val(), 10) || 8;
-    d.connection.stopBits = parseInt($('#rtu_stopBits').val(), 10) || 1;
+
+    d.connection.wordOrder = $('#mb_wordOrder_rtu').val() || 'be';
+    d.connection.byteOrder = $('#mb_byteOrder_rtu').val() || 'be';
   } else if (d.protocol === 'mqtt') {
     d.connection.url = ($('#mqtt_url').val() || '').trim();
     d.connection.username = ($('#mqtt_user').val() || '').trim() || undefined;
@@ -339,26 +426,27 @@ function collectDeviceFromModal() {
   }
 
   // minimal validation
-  if (!d.id) throw new Error('Missing device id');
-  if (!/^[a-zA-Z0-9_\-]+$/.test(d.id)) throw new Error('Invalid device id. Use letters, numbers, underscore, dash.');
-  if (!d.templateId) throw new Error('Missing template');
-  if (!d.protocol) throw new Error('Missing protocol');
+  if (!d.id) throw new Error('Geräte-ID fehlt');
+  if (!/^[a-zA-Z0-9_\-]+$/.test(d.id)) throw new Error('Ungültige Geräte-ID. Erlaubt: Buchstaben, Zahlen, _ und -');
+  if (!d.templateId) throw new Error('Template fehlt');
+  if (!d.protocol) throw new Error('Protokoll fehlt');
 
-  if (d.protocol === 'modbusTcp' && !d.connection.host) throw new Error('Missing Modbus TCP host');
-  if (d.protocol === 'modbusRtu' && !d.connection.path) throw new Error('Missing Modbus RTU serial port');
-  if (d.protocol === 'mqtt' && !d.connection.url) throw new Error('Missing MQTT broker URL');
-  if (d.protocol === 'http' && !d.connection.baseUrl) throw new Error('Missing HTTP base URL');
+  if (d.protocol === 'modbusTcp' && !d.connection.host) throw new Error('Modbus TCP Host/IP fehlt');
+  if (d.protocol === 'modbusRtu' && !d.connection.path) throw new Error('Modbus RTU Serial-Port fehlt');
+  if (d.protocol === 'mqtt' && !d.connection.url) throw new Error('MQTT Broker-URL fehlt');
+  if (d.protocol === 'http' && !d.connection.baseUrl) throw new Error('HTTP Base-URL fehlt');
 
   return d;
 }
 
 function updateJsonPreview() {
-  const jsonStr = JSON.stringify(devices, null, 2);
+  const jsonStr = JSON.stringify(devices || [], null, 2);
   $('#devicesJson').val(jsonStr);
   $('#jsonPreview').text(jsonStr);
 }
 
 function initEventHandlers() {
+  // JSON preview toggle
   $('#btnShowJson').on('click', () => {
     const shown = $('#jsonPreview').is(':visible');
     if (shown) {
@@ -369,11 +457,12 @@ function initEventHandlers() {
     }
   });
 
+  // Add
   $('#btnAddDevice').on('click', () => {
     openDeviceModal({ enabled: true }, -1);
   });
 
-  // table actions
+  // Table actions
   $('#devicesTable').on('click', 'a[data-action]', (ev) => {
     const action = $(ev.currentTarget).data('action');
     const idx = parseInt($(ev.currentTarget).data('idx'), 10);
@@ -391,42 +480,58 @@ function initEventHandlers() {
     }
   });
 
-  // modal dependent selects
+  // Cancel
+  $('#btnCancelDevice').on('click', () => closeModal());
+
+  // Backdrop click (fallback)
+  $('#nexoBackdrop').on('click', () => closeModal());
+
+  // Modal dependent selects
   $('#dev_category').on('change', () => {
     const cat = $('#dev_category').val();
     fillManufacturerSelect(cat);
+
     const manu = $('#dev_manufacturer').val();
     fillTemplateSelect(cat, manu);
+
     const tplId = $('#dev_template').val();
     fillProtocolSelect(tplId);
+
     showConnBlock($('#dev_protocol').val());
     renderDatapoints(tplId);
-    M.updateTextFields();
+
+    updateTextFields();
   });
 
   $('#dev_manufacturer').on('change', () => {
     const cat = $('#dev_category').val();
     const manu = $('#dev_manufacturer').val();
     fillTemplateSelect(cat, manu);
+
     const tplId = $('#dev_template').val();
     fillProtocolSelect(tplId);
+
     showConnBlock($('#dev_protocol').val());
     renderDatapoints(tplId);
-    M.updateTextFields();
+
+    updateTextFields();
   });
 
   $('#dev_template').on('change', () => {
     const tplId = $('#dev_template').val();
     fillProtocolSelect(tplId);
+
     showConnBlock($('#dev_protocol').val());
     renderDatapoints(tplId);
-    M.updateTextFields();
+
+    updateTextFields();
   });
 
   $('#dev_protocol').on('change', () => {
     showConnBlock($('#dev_protocol').val());
   });
 
+  // Save device
   $('#btnSaveDevice').on('click', () => {
     try {
       const d = collectDeviceFromModal();
@@ -434,7 +539,7 @@ function initEventHandlers() {
       // uniqueness check
       const existsIdx = devices.findIndex((x, i) => x.id === d.id && i !== editIndex);
       if (existsIdx >= 0) {
-        throw new Error('Device id already exists');
+        throw new Error('Geräte-ID existiert bereits');
       }
 
       if (editIndex >= 0) {
@@ -443,27 +548,39 @@ function initEventHandlers() {
         devices.push(d);
       }
 
-      devices.sort((a,b) => (a.id||'').localeCompare(b.id||''));
+      devices.sort((a, b) => (a.id || '').localeCompare(b.id || ''));
 
       renderDevicesTable();
       updateJsonPreview();
       setChanged(true);
 
-      const modal = M.Modal.getInstance(document.getElementById('modalDevice'));
-      modal.close();
+      closeModal();
     } catch (e) {
-      M.toast({ html: 'Fehler: ' + escapeHtml(e.message || e.toString()) });
+      toast('Fehler: ' + (e.message || e.toString()));
     }
   });
 }
 
 function initUIOnce() {
-  // modal init
-  const elems = document.querySelectorAll('.modal');
-  M.Modal.init(elems, { dismissible: false });
+  if (uiInitialized) return;
+  uiInitialized = true;
 
-  // init selects
-  $('select').formSelect();
+  // Init modals/selects if available, but never block UI if not.
+  if (hasMaterialize()) {
+    try {
+      const elems = document.querySelectorAll('.modal');
+      M.Modal.init(elems, { dismissible: false });
+    } catch (e) {
+      console.warn('Materialize modal init failed:', e);
+      $('#modalDevice').addClass('nexo-fallback');
+    }
+  } else {
+    $('#modalDevice').addClass('nexo-fallback');
+  }
+
+  if (hasFormSelect()) {
+    try { $('select').formSelect(); } catch (e) { /* ignore */ }
+  }
 
   initEventHandlers();
 }
@@ -478,13 +595,12 @@ function applySettingsToUI(settings) {
 
   updateJsonPreview();
   renderDevicesTable();
-  M.updateTextFields();
+  updateTextFields();
 }
 
-// ioBroker admin hooks
+/* ioBroker admin hooks */
 function load(settings, onChange) {
   onChangeGlobal = onChange;
-
   if (!settings) settings = {};
 
   loadTemplates()
@@ -496,9 +612,10 @@ function load(settings, onChange) {
       onChange(false);
     })
     .catch((e) => {
+      console.error(e);
       initUIOnce();
       applySettingsToUI(settings);
-      console.error(e);
+      toast('Warnung: Templates konnten nicht geladen werden. Bitte Browser-Cache leeren und erneut öffnen.');
       onChange(false);
     });
 }

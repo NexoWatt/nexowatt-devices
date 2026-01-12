@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.3.1",
+    "version": "0.4.0",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
@@ -14,6 +14,10 @@
       "0.3.1": {
         "en": "Fix adminUI definition to prevent Admin crash (adminUI must be an object with config).",
         "de": "adminUI-Definition korrigiert, damit Admin nicht abstürzt (adminUI muss ein Objekt mit config sein)."
+      },
+      "0.4.0": {
+        "en": "Improved admin UI (theme readable, robust without Materialize JS), fixed device add/edit modal, expanded built-in templates (Wallboxes/EVCS + meters + more) and cleaned up legacy naming references.",
+        "de": "Admin-UI verbessert (theme-lesbar, robust auch ohne Materialize-JS), Gerät hinzufügen/bearbeiten gefixt, integrierte Templates erweitert (Wallboxen/EVCS + Zähler + mehr) und alte Namensreferenzen bereinigt."
       }
     },
     "title": "NexoWatt Devices",

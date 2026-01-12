@@ -1,16 +1,117 @@
+/* Nexowatt Devices - Admin UI styling */
+
 .note {
-  background: #fff8e1;
-  border: 1px solid #ffe0b2;
   padding: 10px;
+  background: #fff9c4;
+  border: 1px solid #f0e68c;
+  border-radius: 6px;
 }
 
-.compact-table td, .compact-table th {
-  padding: 6px 10px;
+.nexo-header .card-content {
+  padding: 16px 20px;
+}
+
+.nexo-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.nexo-title {
+  font-weight: 600;
+}
+
+.nexo-badge {
+  display: inline-block;
   font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.15);
+  opacity: 0.8;
 }
 
-.connBlock {
-  margin-top: 12px;
-  padding-top: 8px;
-  border-top: 1px dashed #ddd;
+.nexo-subtitle {
+  margin-top: 6px;
+  margin-bottom: 8px;
+}
+
+.nexo-hint {
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.nexo-json-preview {
+  max-height: 240px;
+  overflow: auto;
+  background: #fafafa;
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.nexo-devices-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.nexo-icon {
+  display: inline-block;
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+.actions .btn-small {
+  margin-right: 6px;
+}
+
+.dp-table td,
+.dp-table th {
+  font-size: 0.85rem;
+}
+
+.dp-table {
+  margin-top: 10px;
+}
+
+/* Fallback modal (only used if Materialize JS is missing) */
+.nexo-backdrop.nexo-open {
+  display: block !important;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+}
+
+.nexo-modal.nexo-fallback {
+  display: none;
+}
+
+.nexo-modal.nexo-fallback.nexo-open {
+  display: block !important;
+  position: fixed;
+  z-index: 1001;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  max-height: 90%;
+  overflow: auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+}
+
+.nexo-modal.nexo-fallback .modal-footer {
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  border-top: 1px solid #eee;
 }

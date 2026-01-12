@@ -6,7 +6,7 @@
   <title class="translate">nexowatt-devices</title>
 
   <link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
-  <link rel="stylesheet" type="text/css" href="../../lib/css/adapter.css">
+  <link rel="stylesheet" type="text/css" href="../../css/adapter.css">
   <link rel="stylesheet" type="text/css" href="style.css">
 
   <script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
@@ -21,13 +21,22 @@
 
 <body>
 <div class="m adapter-container">
+
+  <!-- Header -->
   <div class="row">
     <div class="col s12">
-      <h5 class="translate">Nexowatt Devices</h5>
-      <p class="translate">Standalone multi-protocol device adapter with categories and driver templates (Modbus TCP/RTU, MQTT, HTTP).</p>
-      <p class="note">
-        <b>Hinweis:</b> Der Adaptername enthält einen Punkt (<code>nexowatt-devices</code>). Falls deine ioBroker-Umgebung damit Probleme hat, benenne den Adapter in <code>nexowatt_devices</code> um.
-      </p>
+      <div class="card nexo-header">
+        <div class="card-content">
+          <div class="nexo-header-row">
+            <span class="card-title nexo-title translate">Nexowatt Devices</span>
+            <span class="nexo-badge">nexowatt-devices</span>
+          </div>
+          <p class="nexo-subtitle translate">Standalone multi-protocol device adapter with categories and driver templates (Modbus TCP/RTU, MQTT, HTTP).</p>
+          <p class="nexo-hint">
+            <span class="translate">Hinweis: Änderungen an Geräten werden erst nach dem Speichern (oben) und anschließendem Neustart der Instanz aktiv.</span>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -62,7 +71,7 @@
                 <span class="translate">Die Geräte-Konfiguration wird intern als JSON gespeichert.</span>
                 <a href="#!" id="btnShowJson" class="translate">JSON anzeigen</a>
               </p>
-              <pre id="jsonPreview" style="display:none; max-height: 240px; overflow:auto; background:#fafafa; border:1px solid #eee; padding:10px;"></pre>
+              <pre id="jsonPreview" class="nexo-json-preview" style="display:none;"></pre>
             </div>
           </div>
 
@@ -76,17 +85,17 @@
     <div class="col s12">
       <div class="card">
         <div class="card-content">
-          <span class="card-title translate">Geräte</span>
-
-          <div class="row">
-            <div class="col s12">
-              <a class="waves-effect waves-light btn" id="btnAddDevice"><i class="material-icons left">add</i><span class="translate">Gerät hinzufügen</span></a>
-            </div>
+          <div class="nexo-devices-header">
+            <span class="card-title translate">Geräte</span>
+            <a class="waves-effect waves-light btn" id="btnAddDevice">
+              <span class="nexo-icon">+</span>
+              <span class="translate">Gerät hinzufügen</span>
+            </a>
           </div>
 
           <div class="row">
             <div class="col s12">
-              <table class="highlight responsive-table" id="devicesTable">
+              <table class="highlight responsive-table nexo-table" id="devicesTable">
                 <thead>
                   <tr>
                     <th class="translate">Aktiv</th>
@@ -112,25 +121,22 @@
     </div>
   </div>
 
+  <!-- Modal backdrop for fallback mode (only used if Materialize JS is not available) -->
+  <div id="nexoBackdrop" class="nexo-backdrop" style="display:none;"></div>
+
   <!-- Modal: Add/Edit device -->
-  <div id="modalDevice" class="modal modal-fixed-footer">
+  <div id="modalDevice" class="modal modal-fixed-footer nexo-modal">
     <div class="modal-content">
       <h5 id="modalTitle" class="translate">Gerät</h5>
 
       <div class="row">
         <div class="input-field col s12 m4">
-          <input id="dev_id" type="text">
-          <label for="dev_id" class="translate">Geräte-ID (eindeutig, z.B. evcs_garage)</label>
+          <input id="dev_id" type="text" />
+          <label for="dev_id" class="translate">Geräte-ID (eindeutig, z.B. evcs1)</label>
         </div>
-        <div class="input-field col s12 m6">
-          <input id="dev_name" type="text">
-          <label for="dev_name" class="translate">Name</label>
-        </div>
-        <div class="input-field col s12 m2" style="padding-top: 18px;">
-          <label>
-            <input type="checkbox" id="dev_enabled"/>
-            <span class="translate">Aktiv</span>
-          </label>
+        <div class="input-field col s12 m8">
+          <input id="dev_name" type="text" />
+          <label for="dev_name" class="translate">Name (frei wählbar)</label>
         </div>
       </div>
 
@@ -145,7 +151,7 @@
         </div>
         <div class="input-field col s12 m4">
           <select id="dev_template"></select>
-          <label class="translate">Treiber / Template</label>
+          <label class="translate">Treiber/Template</label>
         </div>
       </div>
 
@@ -155,56 +161,78 @@
           <label class="translate">Protokoll</label>
         </div>
         <div class="input-field col s12 m4">
-          <input id="dev_poll" type="number" min="250" step="50">
-          <label for="dev_poll" class="translate">Polling (ms, optional)</label>
+          <input id="dev_poll" type="number" min="250" step="50" />
+          <label for="dev_poll" class="translate">Polling Intervall (ms, optional)</label>
         </div>
         <div class="input-field col s12 m4">
-          <input id="dev_notes" type="text">
-          <label for="dev_notes" class="translate">Notizen (optional)</label>
+          <div class="switch">
+            <label>
+              <span class="translate">Inaktiv</span>
+              <input id="dev_enabled" type="checkbox" checked>
+              <span class="lever"></span>
+              <span class="translate">Aktiv</span>
+            </label>
+          </div>
         </div>
       </div>
 
-      <!-- Connection: Modbus TCP -->
-      <div id="conn_modbusTcp" class="connBlock">
-        <h6 class="translate">Modbus TCP</h6>
+      <!-- Connection blocks -->
+      <div id="conn_modbusTcp" class="nexo-conn-block" style="display:none;">
+        <h6 class="translate">Modbus TCP Verbindung</h6>
         <div class="row">
           <div class="input-field col s12 m4">
-            <input id="mb_host" type="text">
-            <label for="mb_host" class="translate">Host / IP</label>
+            <input id="mb_host" type="text" />
+            <label for="mb_host" class="translate">Host/IP</label>
           </div>
           <div class="input-field col s12 m2">
-            <input id="mb_port" type="number" min="1" max="65535">
+            <input id="mb_port" type="number" min="1" max="65535" />
             <label for="mb_port" class="translate">Port</label>
           </div>
           <div class="input-field col s12 m2">
-            <input id="mb_unitId" type="number" min="0" max="247">
+            <input id="mb_unitId" type="number" min="1" max="247" />
             <label for="mb_unitId" class="translate">Unit-ID</label>
           </div>
           <div class="input-field col s12 m2">
-            <input id="mb_timeout" type="number" min="250" step="50">
+            <input id="mb_timeout" type="number" min="250" step="50" />
             <label for="mb_timeout" class="translate">Timeout (ms)</label>
           </div>
           <div class="input-field col s12 m2">
-            <input id="mb_addrOffset" type="number" step="1">
+            <input id="mb_addrOffset" type="number" step="1" />
             <label for="mb_addrOffset" class="translate">Addr-Offset</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12 m3">
+            <select id="mb_wordOrder">
+              <option value="be">BE</option>
+              <option value="le">LE</option>
+            </select>
+            <label class="translate">Word Order</label>
+          </div>
+          <div class="input-field col s12 m3">
+            <select id="mb_byteOrder">
+              <option value="be">BE</option>
+              <option value="le">LE</option>
+            </select>
+            <label class="translate">Byte Order</label>
           </div>
         </div>
       </div>
 
-      <!-- Connection: Modbus RTU -->
-      <div id="conn_modbusRtu" class="connBlock" style="display:none;">
-        <h6 class="translate">Modbus RTU</h6>
+      <div id="conn_modbusRtu" class="nexo-conn-block" style="display:none;">
+        <h6 class="translate">Modbus RTU Verbindung</h6>
         <div class="row">
           <div class="input-field col s12 m4">
-            <input id="rtu_path" type="text" placeholder="/dev/ttyUSB0">
-            <label for="rtu_path" class="translate">Serial Port</label>
+            <input id="mb_path" type="text" />
+            <label for="mb_path" class="translate">Serial Port (z.B. /dev/ttyUSB0)</label>
           </div>
           <div class="input-field col s12 m2">
-            <input id="rtu_baud" type="number" min="1200" step="300">
-            <label for="rtu_baud" class="translate">Baud</label>
+            <input id="mb_baud" type="number" min="1200" step="300" />
+            <label for="mb_baud" class="translate">Baudrate</label>
           </div>
           <div class="input-field col s12 m2">
-            <select id="rtu_parity">
+            <select id="mb_parity">
               <option value="none">none</option>
               <option value="even">even</option>
               <option value="odd">odd</option>
@@ -212,89 +240,104 @@
             <label class="translate">Parity</label>
           </div>
           <div class="input-field col s12 m2">
-            <input id="rtu_unitId" type="number" min="0" max="247">
-            <label for="rtu_unitId" class="translate">Unit-ID</label>
+            <input id="mb_databits" type="number" min="5" max="8" />
+            <label for="mb_databits" class="translate">DataBits</label>
           </div>
           <div class="input-field col s12 m2">
-            <input id="rtu_timeout" type="number" min="250" step="50">
-            <label for="rtu_timeout" class="translate">Timeout (ms)</label>
+            <input id="mb_stopbits" type="number" min="1" max="2" />
+            <label for="mb_stopbits" class="translate">StopBits</label>
           </div>
         </div>
+
         <div class="row">
           <div class="input-field col s12 m2">
-            <input id="rtu_addrOffset" type="number" step="1">
-            <label for="rtu_addrOffset" class="translate">Addr-Offset</label>
+            <input id="mb_unitId_rtu" type="number" min="1" max="247" />
+            <label for="mb_unitId_rtu" class="translate">Unit-ID</label>
           </div>
           <div class="input-field col s12 m2">
-            <input id="rtu_dataBits" type="number" min="7" max="8">
-            <label for="rtu_dataBits" class="translate">Data bits</label>
+            <input id="mb_timeout_rtu" type="number" min="250" step="50" />
+            <label for="mb_timeout_rtu" class="translate">Timeout (ms)</label>
           </div>
           <div class="input-field col s12 m2">
-            <input id="rtu_stopBits" type="number" min="1" max="2">
-            <label for="rtu_stopBits" class="translate">Stop bits</label>
+            <input id="mb_addrOffset_rtu" type="number" step="1" />
+            <label for="mb_addrOffset_rtu" class="translate">Addr-Offset</label>
+          </div>
+          <div class="input-field col s12 m3">
+            <select id="mb_wordOrder_rtu">
+              <option value="be">BE</option>
+              <option value="le">LE</option>
+            </select>
+            <label class="translate">Word Order</label>
+          </div>
+          <div class="input-field col s12 m3">
+            <select id="mb_byteOrder_rtu">
+              <option value="be">BE</option>
+              <option value="le">LE</option>
+            </select>
+            <label class="translate">Byte Order</label>
           </div>
         </div>
       </div>
 
-      <!-- Connection: MQTT -->
-      <div id="conn_mqtt" class="connBlock" style="display:none;">
-        <h6 class="translate">MQTT</h6>
-        <div class="row">
-          <div class="input-field col s12 m6">
-            <input id="mqtt_url" type="text" placeholder="mqtt://broker:1883">
-            <label for="mqtt_url" class="translate">Broker URL</label>
-          </div>
-          <div class="input-field col s12 m3">
-            <input id="mqtt_user" type="text">
-            <label for="mqtt_user" class="translate">Username (optional)</label>
-          </div>
-          <div class="input-field col s12 m3">
-            <input id="mqtt_pass" type="password">
-            <label for="mqtt_pass" class="translate">Password (optional)</label>
-          </div>
-        </div>
-      </div>
-
-      <!-- Connection: HTTP -->
-      <div id="conn_http" class="connBlock" style="display:none;">
-        <h6 class="translate">HTTP / JSON</h6>
+      <div id="conn_mqtt" class="nexo-conn-block" style="display:none;">
+        <h6 class="translate">MQTT Verbindung</h6>
         <div class="row">
           <div class="input-field col s12 m6">
-            <input id="http_baseUrl" type="text" placeholder="http://device.local">
-            <label for="http_baseUrl" class="translate">Base URL</label>
+            <input id="mqtt_url" type="text" />
+            <label for="mqtt_url" class="translate">Broker URL (mqtt://host:1883)</label>
           </div>
           <div class="input-field col s12 m3">
-            <input id="http_user" type="text">
-            <label for="http_user" class="translate">Username (optional)</label>
+            <input id="mqtt_user" type="text" />
+            <label for="mqtt_user" class="translate">Username</label>
           </div>
           <div class="input-field col s12 m3">
-            <input id="http_pass" type="password">
-            <label for="http_pass" class="translate">Password (optional)</label>
+            <input id="mqtt_pass" type="password" />
+            <label for="mqtt_pass" class="translate">Password</label>
           </div>
         </div>
       </div>
 
-      <h6 class="translate">Datenpunkte (aus Template)</h6>
-      <div style="max-height: 260px; overflow:auto; border:1px solid #eee;">
-        <table class="striped compact-table" id="dpTable">
-          <thead>
-            <tr>
-              <th class="translate">ID</th>
-              <th class="translate">RW</th>
-              <th class="translate">Quelle</th>
-              <th class="translate">Adresse/Topic/Path</th>
-              <th class="translate">Typ</th>
-              <th class="translate">Scale</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+      <div id="conn_http" class="nexo-conn-block" style="display:none;">
+        <h6 class="translate">HTTP/JSON Verbindung</h6>
+        <div class="row">
+          <div class="input-field col s12 m6">
+            <input id="http_baseUrl" type="text" />
+            <label for="http_baseUrl" class="translate">Base URL (http://host)</label>
+          </div>
+          <div class="input-field col s12 m3">
+            <input id="http_user" type="text" />
+            <label for="http_user" class="translate">Username</label>
+          </div>
+          <div class="input-field col s12 m3">
+            <input id="http_pass" type="password" />
+            <label for="http_pass" class="translate">Password</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Datapoints preview -->
+      <div class="row">
+        <div class="col s12">
+          <h6 class="translate">Datenpunkte</h6>
+          <table class="striped dp-table">
+            <thead>
+              <tr>
+                <th class="translate">ID</th>
+                <th class="translate">Name</th>
+                <th class="translate">Typ</th>
+                <th class="translate">R/W</th>
+                <th class="translate">Quelle</th>
+              </tr>
+            </thead>
+            <tbody id="dpBody"></tbody>
+          </table>
+        </div>
       </div>
 
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-light btn-flat translate" id="btnCancel">Abbrechen</a>
-      <a href="#!" class="waves-effect waves-light btn translate" id="btnSaveDevice">Speichern</a>
+      <a href="#!" class="waves-effect waves-light btn-flat" id="btnCancelDevice"><span class="translate">Abbrechen</span></a>
+      <a href="#!" class="waves-effect waves-light btn" id="btnSaveDevice"><span class="translate">Speichern</span></a>
     </div>
   </div>
 
