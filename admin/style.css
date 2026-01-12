@@ -1,5 +1,14 @@
 /* Nexowatt Devices - Admin UI styling */
 
+/* Page background (requested: light gray) */
+body {
+  background: #f2f2f2;
+}
+
+.m.adapter-container {
+  background: transparent;
+}
+
 .note {
   padding: 10px;
   background: #fff9c4;
@@ -34,6 +43,12 @@
 .nexo-subtitle {
   margin-top: 6px;
   margin-bottom: 8px;
+}
+
+.nexo-meta {
+  margin: 0 0 10px 0;
+  font-size: 0.9rem;
+  opacity: 0.85;
 }
 
 .nexo-hint {
@@ -77,6 +92,27 @@
 
 .dp-table {
   margin-top: 10px;
+}
+
+/* Native select styling (browser-default) */
+.nexo-select-row {
+  margin-top: 4px;
+}
+
+.nexo-select-group label {
+  display: block;
+  font-size: 0.85rem;
+  color: #616161;
+  margin: 0 0 6px 0;
+}
+
+.nexo-select-group select.browser-default {
+  width: 100%;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #fff;
+  height: auto;
 }
 
 /* Fallback modal (only used if Materialize JS is missing) */

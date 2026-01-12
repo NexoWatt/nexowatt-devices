@@ -15,6 +15,58 @@ let devices = [];
 let editIndex = -1;
 let onChangeGlobal = null;
 let uiInitialized = false;
+let lastSuggestedId = '';
+let lastSuggestedName = '';
+
+function categoryLabel(cat) {
+  const c = (cat || '').toString();
+  switch (c) {
+    case 'EVCS': return 'Wallbox / Ladestation (EVCS)';
+    case 'METER': return 'Zähler / Meter (METER)';
+    case 'ESS': return 'Energiespeicher (ESS)';
+    case 'PV_INVERTER': return 'PV-Wechselrichter (PV_INVERTER)';
+    case 'BATTERY': return 'Batterie (BATTERY)';
+    case 'BATTERY_INVERTER': return 'Batteriewechselrichter (BATTERY_INVERTER)';
+    case 'HEAT': return 'Heizung / Heizstab (HEAT)';
+    case 'EVSE': return 'EVSE / EVSE Controller (EVSE)';
+    case 'IO': return 'I/O (IO)';
+    case 'GENERIC': return 'Allgemein (GENERIC)';
+    default: return c;
+  }
+}
+
+function idPrefixForCategory(cat) {
+  switch ((cat || '').toString()) {
+    case 'EVCS': return 'evcs';
+    case 'METER': return 'meter';
+    case 'ESS': return 'ess';
+    case 'PV_INVERTER': return 'pv';
+    case 'BATTERY': return 'battery';
+    case 'BATTERY_INVERTER': return 'batinv';
+    case 'HEAT': return 'heat';
+    case 'EVSE': return 'evse';
+    case 'IO': return 'io';
+    default:
+      return (cat || 'dev').toString().toLowerCase().replace(/[^a-z0-9]+/g, '').substring(0, 6) || 'dev';
+  }
+}
+
+function suggestDeviceId(cat) {
+  const prefix = idPrefixForCategory(cat);
+  const used = new Set((devices || []).map(d => (d && d.id ? String(d.id) : '')));
+  for (let i = 1; i < 1000; i++) {
+    const id = `${prefix}${i}`;
+    if (!used.has(id)) return id;
+  }
+  return `${prefix}${Date.now()}`;
+}
+
+function suggestDeviceName(templateId) {
+  const tpl = templatesById[templateId];
+  if (!tpl) return '';
+  const parts = [tpl.manufacturer, tpl.model, tpl.name].filter(Boolean);
+  return parts.join(' ').trim() || tpl.id || '';
+}
 
 function hasMaterialize() {
   return typeof M !== 'undefined' && M && typeof M.Modal !== 'undefined';
@@ -64,6 +116,9 @@ function setChanged(changed) {
 
 function refreshSelect($sel) {
   if (!$sel || !$sel.length) return;
+  // We use native selects (browser-default) for maximum compatibility.
+  // Never initialize Materialize formSelect on those, otherwise it hides the element.
+  if ($sel.hasClass('browser-default')) return;
   if (hasFormSelect()) {
     try { $sel.formSelect(); } catch (e) { /* ignore */ }
   }
@@ -105,7 +160,8 @@ function loadTemplates() {
   return new Promise((resolve, reject) => {
     if (templatesData) return resolve(templatesData);
 
-    $.getJSON('templates.json')
+    // Cache-busting is important because Admin often keeps old adapter assets in browser cache.
+    $.getJSON(`templates.json?_=${Date.now()}`)
       .done((data) => {
         templatesData = data || {};
         templatesById = {};
@@ -127,17 +183,30 @@ function loadTemplates() {
           templatesByCatManu[cat][manu].push(t);
         });
 
-        categories = Object.keys(manufacturersByCategory).sort();
+        // Prefer the most common categories first for usability.
+        const preferredOrder = ['EVCS', 'METER', 'ESS', 'PV_INVERTER', 'BATTERY', 'BATTERY_INVERTER', 'HEAT', 'IO', 'EVSE', 'GENERIC'];
+        categories = Object.keys(manufacturersByCategory).sort((a, b) => {
+          const ia = preferredOrder.indexOf(a);
+          const ib = preferredOrder.indexOf(b);
+          const wa = ia >= 0 ? ia : 999;
+          const wb = ib >= 0 ? ib : 999;
+          if (wa !== wb) return wa - wb;
+          return (a || '').localeCompare(b || '');
+        });
 
         // Convert Sets to arrays
         Object.keys(manufacturersByCategory).forEach((cat) => {
           manufacturersByCategory[cat] = Array.from(manufacturersByCategory[cat]).sort((a, b) => (a || '').localeCompare(b || ''));
         });
 
+        // UI hint: show how many driver templates were loaded.
+        try { $('#tplCount').text(String(tpls.length)); } catch (e) { /* ignore */ }
+
         resolve(templatesData);
       })
       .fail((xhr, status, err) => {
         console.error('Failed to load templates.json', status, err);
+        try { $('#tplCount').text('0'); } catch (e) { /* ignore */ }
         reject(err || new Error('Failed to load templates.json'));
       });
   });
@@ -199,7 +268,7 @@ function renderDevicesTable() {
 function fillCategorySelect() {
   const sel = $('#dev_category');
   sel.empty();
-  categories.forEach((cat) => sel.append(`<option value="${escapeHtml(cat)}">${escapeHtml(cat)}</option>`));
+  categories.forEach((cat) => sel.append(`<option value="${escapeHtml(cat)}">${escapeHtml(categoryLabel(cat))}</option>`));
   refreshSelect(sel);
 }
 
@@ -320,6 +389,30 @@ function openDeviceModal(device, idx) {
   const proto = $('#dev_protocol').val();
   showConnBlock(proto);
   renderDatapoints(tplId);
+
+  // Auto-fill convenience for new devices: ID + default name
+  if (editIndex < 0) {
+    const curId = ($('#dev_id').val() || '').trim();
+    if (!curId) {
+      lastSuggestedId = suggestDeviceId(cat);
+      $('#dev_id').val(lastSuggestedId);
+    } else {
+      lastSuggestedId = curId;
+    }
+    const curName = ($('#dev_name').val() || '').trim();
+    if (!curName) {
+      const suggested = suggestDeviceName(tplId);
+      if (suggested) {
+        lastSuggestedName = suggested;
+        $('#dev_name').val(suggested);
+      }
+    } else {
+      lastSuggestedName = curName;
+    }
+  } else {
+    lastSuggestedId = ($('#dev_id').val() || '').trim();
+    lastSuggestedName = ($('#dev_name').val() || '').trim();
+  }
 
   // connection defaults
   const c = device.connection || {};
@@ -500,6 +593,20 @@ function initEventHandlers() {
     showConnBlock($('#dev_protocol').val());
     renderDatapoints(tplId);
 
+    // Keep ID/Name suggestions in sync for new devices
+    if (editIndex < 0) {
+      const curId = ($('#dev_id').val() || '').trim();
+      if (!curId || curId === lastSuggestedId) {
+        lastSuggestedId = suggestDeviceId(cat);
+        $('#dev_id').val(lastSuggestedId);
+      }
+      const curName = ($('#dev_name').val() || '').trim();
+      if (!curName || curName === lastSuggestedName) {
+        lastSuggestedName = suggestDeviceName(tplId);
+        if (lastSuggestedName) $('#dev_name').val(lastSuggestedName);
+      }
+    }
+
     updateTextFields();
   });
 
@@ -514,6 +621,14 @@ function initEventHandlers() {
     showConnBlock($('#dev_protocol').val());
     renderDatapoints(tplId);
 
+    if (editIndex < 0) {
+      const curName = ($('#dev_name').val() || '').trim();
+      if (!curName || curName === lastSuggestedName) {
+        lastSuggestedName = suggestDeviceName(tplId);
+        if (lastSuggestedName) $('#dev_name').val(lastSuggestedName);
+      }
+    }
+
     updateTextFields();
   });
 
@@ -523,6 +638,14 @@ function initEventHandlers() {
 
     showConnBlock($('#dev_protocol').val());
     renderDatapoints(tplId);
+
+    if (editIndex < 0) {
+      const curName = ($('#dev_name').val() || '').trim();
+      if (!curName || curName === lastSuggestedName) {
+        lastSuggestedName = suggestDeviceName(tplId);
+        if (lastSuggestedName) $('#dev_name').val(lastSuggestedName);
+      }
+    }
 
     updateTextFields();
   });
@@ -578,8 +701,10 @@ function initUIOnce() {
     $('#modalDevice').addClass('nexo-fallback');
   }
 
+  // We intentionally do NOT initialize Materialize "formSelect" for browser-default selects.
+  // This avoids invisible/empty selects in some Admin setups.
   if (hasFormSelect()) {
-    try { $('select').formSelect(); } catch (e) { /* ignore */ }
+    try { $('select').not('.browser-default').formSelect(); } catch (e) { /* ignore */ }
   }
 
   initEventHandlers();

@@ -32,6 +32,10 @@
             <span class="nexo-badge">nexowatt-devices</span>
           </div>
           <p class="nexo-subtitle translate">Standalone multi-protocol device adapter with categories and driver templates (Modbus TCP/RTU, MQTT, HTTP).</p>
+          <p class="nexo-meta">
+            <span class="translate">Treiber geladen:</span>
+            <span id="tplCount">…</span>
+          </p>
           <p class="nexo-hint">
             <span class="translate">Hinweis: Änderungen an Geräten werden erst nach dem Speichern (oben) und anschließendem Neustart der Instanz aktiv.</span>
           </p>
@@ -87,7 +91,7 @@
         <div class="card-content">
           <div class="nexo-devices-header">
             <span class="card-title translate">Geräte</span>
-            <a class="waves-effect waves-light btn" id="btnAddDevice">
+            <a class="waves-effect waves-light btn" id="btnAddDevice" href="#!">
               <span class="nexo-icon">+</span>
               <span class="translate">Gerät hinzufügen</span>
             </a>
@@ -140,25 +144,25 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="input-field col s12 m4">
-          <select id="dev_category"></select>
-          <label class="translate">Kategorie</label>
+      <div class="row nexo-select-row">
+        <div class="col s12 m4 nexo-select-group">
+          <label for="dev_category" class="translate">Kategorie</label>
+          <select id="dev_category" class="browser-default"></select>
         </div>
-        <div class="input-field col s12 m4">
-          <select id="dev_manufacturer"></select>
-          <label class="translate">Hersteller</label>
+        <div class="col s12 m4 nexo-select-group">
+          <label for="dev_manufacturer" class="translate">Hersteller</label>
+          <select id="dev_manufacturer" class="browser-default"></select>
         </div>
-        <div class="input-field col s12 m4">
-          <select id="dev_template"></select>
-          <label class="translate">Treiber/Template</label>
+        <div class="col s12 m4 nexo-select-group">
+          <label for="dev_template" class="translate">Treiber/Template</label>
+          <select id="dev_template" class="browser-default"></select>
         </div>
       </div>
 
-      <div class="row">
-        <div class="input-field col s12 m4">
-          <select id="dev_protocol"></select>
-          <label class="translate">Protokoll</label>
+      <div class="row nexo-select-row">
+        <div class="col s12 m4 nexo-select-group">
+          <label for="dev_protocol" class="translate">Protokoll</label>
+          <select id="dev_protocol" class="browser-default"></select>
         </div>
         <div class="input-field col s12 m4">
           <input id="dev_poll" type="number" min="250" step="50" />
@@ -203,19 +207,19 @@
         </div>
 
         <div class="row">
-          <div class="input-field col s12 m3">
-            <select id="mb_wordOrder">
+          <div class="col s12 m3 nexo-select-group">
+            <label for="mb_wordOrder" class="translate">Word Order</label>
+            <select id="mb_wordOrder" class="browser-default">
               <option value="be">BE</option>
               <option value="le">LE</option>
             </select>
-            <label class="translate">Word Order</label>
           </div>
-          <div class="input-field col s12 m3">
-            <select id="mb_byteOrder">
+          <div class="col s12 m3 nexo-select-group">
+            <label for="mb_byteOrder" class="translate">Byte Order</label>
+            <select id="mb_byteOrder" class="browser-default">
               <option value="be">BE</option>
               <option value="le">LE</option>
             </select>
-            <label class="translate">Byte Order</label>
           </div>
         </div>
       </div>
@@ -231,13 +235,13 @@
             <input id="mb_baud" type="number" min="1200" step="300" />
             <label for="mb_baud" class="translate">Baudrate</label>
           </div>
-          <div class="input-field col s12 m2">
-            <select id="mb_parity">
+          <div class="col s12 m2 nexo-select-group">
+            <label for="mb_parity" class="translate">Parity</label>
+            <select id="mb_parity" class="browser-default">
               <option value="none">none</option>
               <option value="even">even</option>
               <option value="odd">odd</option>
             </select>
-            <label class="translate">Parity</label>
           </div>
           <div class="input-field col s12 m2">
             <input id="mb_databits" type="number" min="5" max="8" />
@@ -262,19 +266,19 @@
             <input id="mb_addrOffset_rtu" type="number" step="1" />
             <label for="mb_addrOffset_rtu" class="translate">Addr-Offset</label>
           </div>
-          <div class="input-field col s12 m3">
-            <select id="mb_wordOrder_rtu">
+          <div class="col s12 m3 nexo-select-group">
+            <label for="mb_wordOrder_rtu" class="translate">Word Order</label>
+            <select id="mb_wordOrder_rtu" class="browser-default">
               <option value="be">BE</option>
               <option value="le">LE</option>
             </select>
-            <label class="translate">Word Order</label>
           </div>
-          <div class="input-field col s12 m3">
-            <select id="mb_byteOrder_rtu">
+          <div class="col s12 m3 nexo-select-group">
+            <label for="mb_byteOrder_rtu" class="translate">Byte Order</label>
+            <select id="mb_byteOrder_rtu" class="browser-default">
               <option value="be">BE</option>
               <option value="le">LE</option>
             </select>
-            <label class="translate">Byte Order</label>
           </div>
         </div>
       </div>

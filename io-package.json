@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
@@ -18,6 +18,10 @@
       "0.4.0": {
         "en": "Improved admin UI (theme readable, robust without Materialize JS), fixed device add/edit modal, expanded built-in templates (Wallboxes/EVCS + meters + more) and cleaned up legacy naming references.",
         "de": "Admin-UI verbessert (theme-lesbar, robust auch ohne Materialize-JS), Gerät hinzufügen/bearbeiten gefixt, integrierte Templates erweitert (Wallboxen/EVCS + Zähler + mehr) und alte Namensreferenzen bereinigt."
+      },
+      "0.4.1": {
+        "en": "Admin UI: set light-gray page background and switch configuration selects to native selects for maximum compatibility. Add driver count indicator and cache-busting template load.",
+        "de": "Admin-UI: hellgrauen Hintergrund gesetzt und Auswahlfelder auf native Selects umgestellt (maximale Kompatibilität). Treiber-Zähler ergänzt und Template-Load mit Cache-Busting verbessert."
       }
     },
     "title": "NexoWatt Devices",
