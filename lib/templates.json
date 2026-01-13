@@ -42071,7 +42071,7 @@
             "address": 1317,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42086,7 +42086,7 @@
             "address": 1319,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42101,7 +42101,7 @@
             "address": 1321,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42116,7 +42116,7 @@
             "address": 1325,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42131,7 +42131,7 @@
             "address": 1327,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42146,7 +42146,7 @@
             "address": 1329,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42161,7 +42161,7 @@
             "address": 1439,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42176,7 +42176,7 @@
             "address": 1449,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42191,7 +42191,7 @@
             "address": 1461,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42282,7 +42282,7 @@
             "address": 3845,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42297,7 +42297,7 @@
             "address": 3847,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42312,7 +42312,7 @@
             "address": 3849,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42327,7 +42327,7 @@
             "address": 3853,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42342,7 +42342,7 @@
             "address": 3855,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42357,7 +42357,7 @@
             "address": 3857,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42372,7 +42372,7 @@
             "address": 3995,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42463,7 +42463,7 @@
             "address": 1317,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42478,7 +42478,7 @@
             "address": 1319,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42493,7 +42493,7 @@
             "address": 1321,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42508,7 +42508,7 @@
             "address": 1325,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42523,7 +42523,7 @@
             "address": 1327,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42538,7 +42538,7 @@
             "address": 1329,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42553,7 +42553,7 @@
             "address": 1439,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42644,7 +42644,7 @@
             "address": 19000,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42659,7 +42659,7 @@
             "address": 19002,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42674,7 +42674,7 @@
             "address": 19004,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         }
       ]
@@ -42705,7 +42705,7 @@
             "address": 19000,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42720,7 +42720,7 @@
             "address": 19002,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42735,7 +42735,7 @@
             "address": 19004,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42750,7 +42750,7 @@
             "address": 19012,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42765,7 +42765,7 @@
             "address": 19014,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42780,7 +42780,7 @@
             "address": 19016,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42795,7 +42795,7 @@
             "address": 19050,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42886,7 +42886,7 @@
             "address": 19000,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42901,7 +42901,7 @@
             "address": 19002,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42916,7 +42916,7 @@
             "address": 19004,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42931,7 +42931,7 @@
             "address": 19012,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42946,7 +42946,7 @@
             "address": 19014,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42961,7 +42961,7 @@
             "address": 19016,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42976,7 +42976,7 @@
             "address": 19018,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
@@ -42991,7 +42991,7 @@
             "address": 19050,
             "length": 2,
             "dataType": "float32",
-            "scaleFactor": 3
+            "scaleFactor": 0
           }
         },
         {
