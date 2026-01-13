@@ -57896,6 +57896,416 @@
           }
         }
       ]
+    },
+    {
+      "id": "ess.solax.SolaXHybridX1X3Ess",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "ESS",
+      "manufacturer": "SolaX",
+      "model": "Hybrid X1/X3 ESS",
+      "name": "SolaX Hybrid X1/X3 ESS (Modbus)",
+      "protocols": [
+        "modbusTcp",
+        "modbusRtu"
+      ],
+      "driverHints": {
+        "modbus": {
+          "writeUnlock": {
+            "fc": 6,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "passwordField": "writePassword",
+            "defaultPassword": 6868,
+            "cacheMs": 5000
+          },
+          "preWrites": [
+            {
+              "triggerDpId": "sET_ACTIVE_POWER",
+              "writes": [
+                {
+                  "dpId": "sET_CONTROL_MODE",
+                  "value": 4
+                }
+              ]
+            }
+          }
+        }
+      },
+      "datapoints": [
+        {
+          "id": "InverterSN",
+          "name": "Serial Number",
+          "role": "info.serial",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 7,
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "InverterName",
+          "name": "Inverter Name",
+          "role": "info.name",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 14,
+            "length": 7,
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "pV_POWER",
+          "name": "PV Power (sum)",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 50,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "gRID_POWER",
+          "name": "On-grid Power (sum)",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 52,
+            "length": 2,
+            "dataType": "int32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "bATTERY_POWER",
+          "name": "Battery Power (sum)",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 56,
+            "length": 2,
+            "dataType": "int32",
+            "wordOrder": "le",
+            "invert": true
+          }
+        },
+        {
+          "id": "bATTERY_CAPACITY",
+          "name": "Battery Installed Capacity",
+          "role": "value.energy",
+          "type": "number",
+          "unit": "Wh",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 58,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "sOC",
+          "name": "Battery SoC",
+          "role": "value.battery",
+          "type": "number",
+          "unit": "%",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 60,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "sOH",
+          "name": "Battery SoH",
+          "role": "value",
+          "type": "number",
+          "unit": "%",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 61,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "bATTERY_VOLTAGE",
+          "name": "Battery Voltage (BMS1)",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 20,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "bATTERY_CURRENT",
+          "name": "Battery Current (BMS1)",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 21,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "bATTERY_TEMPERATURE",
+          "name": "Battery Temperature (BMS1)",
+          "role": "value.temperature",
+          "type": "number",
+          "unit": "°C",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 24,
+            "length": 1,
+            "dataType": "int16"
+          }
+        },
+        {
+          "id": "bMS1_CONNECTED",
+          "name": "BMS1 Connected State",
+          "role": "indicator.connected",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 23,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "bMS1_SOC",
+          "name": "BMS1 SoC",
+          "role": "value.battery",
+          "type": "number",
+          "unit": "%",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 28,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "bDC_STATUS",
+          "name": "BMS Charge/Discharge Status",
+          "role": "state",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 25,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "aLLOWED_CHARGE_POWER",
+          "name": "Max allowed charge power",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 162,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aLLOWED_DISCHARGE_POWER",
+          "name": "Max allowed discharge power",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 164,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pV_ENERGY_TOTAL",
+          "name": "PV energy total",
+          "role": "value.energy",
+          "type": "number",
+          "unit": "Wh",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 148,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le",
+            "scaleFactor": 2
+          }
+        },
+        {
+          "id": "pV_ENERGY_TODAY",
+          "name": "PV energy today",
+          "role": "value.energy",
+          "type": "number",
+          "unit": "Wh",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 150,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 2
+          }
+        },
+        {
+          "id": "sET_CONTROL_MODE",
+          "name": "VPP mode number (write 4 for battery power target mode)",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 416,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 160,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "sET_ACTIVE_POWER",
+          "name": "Battery power target (VPP Mode 4) (+ discharge / - charge)",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 417,
+              "length": 2,
+              "dataType": "int32",
+              "wordOrder": "le"
+            },
+            "write": {
+              "fc": 16,
+              "address": 161,
+              "length": 2,
+              "dataType": "int32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "vPP_WAIT_TIMEOUT",
+          "name": "VPP WaitTimeOut (VPP Mode 4) [s]",
+          "role": "value.interval",
+          "type": "number",
+          "unit": "s",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 419,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 163,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "vPP_NEXT_MOTION",
+          "name": "VPP NextMotion (VPP Mode 4)",
+          "role": "state",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 420,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 164,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        }
+      ]
     }
   ]
 }

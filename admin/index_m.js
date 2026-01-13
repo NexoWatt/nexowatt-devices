@@ -436,6 +436,7 @@ function openDeviceModal(device, idx) {
   $('#mb_addrOffset').val(c.addressOffset ?? 0);
   $('#mb_wordOrder').val(c.wordOrder || 'be');
   $('#mb_byteOrder').val(c.byteOrder || 'be');
+  $('#mb_writePass').val(c.writePassword || '');
   refreshSelect($('#mb_wordOrder'));
   refreshSelect($('#mb_byteOrder'));
 
@@ -451,6 +452,7 @@ function openDeviceModal(device, idx) {
   $('#mb_addrOffset_rtu').val(c.addressOffset ?? 0);
   $('#mb_wordOrder_rtu').val(c.wordOrder || 'be');
   $('#mb_byteOrder_rtu').val(c.byteOrder || 'be');
+  $('#mb_writePass_rtu').val(c.writePassword || '');
   refreshSelect($('#mb_parity'));
   refreshSelect($('#mb_wordOrder_rtu'));
   refreshSelect($('#mb_byteOrder_rtu'));
@@ -510,6 +512,7 @@ function collectDeviceFromModal() {
 
     d.connection.wordOrder = $('#mb_wordOrder').val() || 'be';
     d.connection.byteOrder = $('#mb_byteOrder').val() || 'be';
+    d.connection.writePassword = ($('#mb_writePass').val() || '').trim() || undefined;
   } else if (d.protocol === 'modbusRtu') {
     d.connection.path = ($('#mb_path').val() || '').trim();
     d.connection.baudRate = parseInt($('#mb_baud').val(), 10) || 9600;
@@ -527,6 +530,7 @@ function collectDeviceFromModal() {
 
     d.connection.wordOrder = $('#mb_wordOrder_rtu').val() || 'be';
     d.connection.byteOrder = $('#mb_byteOrder_rtu').val() || 'be';
+    d.connection.writePassword = ($('#mb_writePass_rtu').val() || '').trim() || undefined;
   } else if (d.protocol === 'mqtt') {
     d.connection.url = ($('#mqtt_url').val() || '').trim();
     d.connection.username = ($('#mqtt_user').val() || '').trim() || undefined;
