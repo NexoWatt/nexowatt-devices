@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.4",
+    "version": "0.5.5",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
@@ -42,6 +42,14 @@
       "0.5.3": {
         "en": "Add stable alias datapoints under devices.<id>.aliases.* so downstream logic can work across manufacturers (e.g., aliases.r.power, aliases.ctrl.powerLimitPct, aliases.alarm.fault/offline). Alias writes are forwarded to the correct vendor registers; computed alarm states are provided best-effort.",
         "de": "Stabile Alias-Datenpunkte unter devices.<id>.aliases.* erg\u00e4nzt, damit nachgelagerte Logik hersteller\u00fcbergreifend arbeiten kann (z.B. aliases.r.power, aliases.ctrl.powerLimitPct, aliases.alarm.fault/offline). Alias-Schreibzugriffe werden auf die passenden Herstellerregister umgesetzt; Alarm-States werden best-effort berechnet."
+      },
+      "0.5.4": {
+        "en": "Extend alias mapping for meters and charging stations (import/export power & energy for meters; current/power limits and unlock for chargers) and improve best-effort derived values.",
+        "de": "Alias-Mapping f\u00fcr Z\u00e4hler und Ladestationen erweitert (Import/Export-Leistung & -Energie bei Z\u00e4hlern; Strom-/Leistungsgrenzen und Unlock bei Ladestationen) und best-effort abgeleitete Werte verbessert."
+      },
+      "0.5.5": {
+        "en": "Extend stable aliases to batteries/ESS (SoC/SoH, battery power, charge/discharge split, allowed power, setpoints, and conservative fault/warning detection).",
+        "de": "Stabile Aliases auf Batteriesysteme/ESS erweitert (SoC/SoH, Batterieleistung, Charge/Discharge-Split, erlaubte Leistung, Setpoints sowie konservative Fault/Warning-Erkennung)."
       }
     },
     "title": "NexoWatt Devices",

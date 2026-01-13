@@ -161,6 +161,37 @@ Alarme/Benachrichtigungen (best‑effort):
 
 - `aliases.alarm.fault` (bool) – Fehler aktiv (z.B. `errorCode != 0`)
 
+### BATTERY / ESS / BATTERY_INVERTER (Batteriesysteme)
+
+Lesen (best‑effort, je nach Template verfügbar):
+
+- `aliases.r.soc` (%) – State of Charge
+- `aliases.r.soh` (%) – State of Health (falls vorhanden)
+- `aliases.r.voltage` (V) – Batteriespannung
+- `aliases.r.current` (A) – Batteriestrom
+- `aliases.r.temperature` (°C) – Batterietemperatur (falls vorhanden)
+- `aliases.r.power` (W) – Batterieleistung netto (**Konvention:** Entladen positiv, Laden negativ; best‑effort)
+- `aliases.r.powerCharge` (W) – Ladeleistung (absolut, ≥0)
+- `aliases.r.powerDischarge` (W) – Entladeleistung (absolut, ≥0)
+- `aliases.r.energyCharge` (Wh) – Ladeenergie gesamt (falls vorhanden)
+- `aliases.r.energyDischarge` (Wh) – Entladeenergie gesamt (falls vorhanden)
+- `aliases.r.allowCharge` (bool) – BMS erlaubt Laden (falls vorhanden)
+- `aliases.r.allowDischarge` (bool) – BMS erlaubt Entladen (falls vorhanden)
+- `aliases.r.allowedChargePower` (W) – erlaubte Ladeleistung (falls vorhanden)
+- `aliases.r.allowedDischargePower` (W) – erlaubte Entladeleistung (falls vorhanden)
+
+Steuern (falls Template/Batteriesystem unterstützt):
+
+- `aliases.ctrl.powerSetpointW` (W) – Wirkleistungs-Setpoint (batterieseitig/ESS, herstellerabhängige Semantik)
+- `aliases.ctrl.powerSetpointL1/L2/L3` (W) – Setpoints je Phase (falls vorhanden)
+- `aliases.ctrl.controlMode` (number) – Control Mode (vendor-spezifisch; stabiler Ort)
+- `aliases.ctrl.chargeEnable` (bool) – Laden erlauben/sperren (falls vorhanden; z.B. Victron → DISABLE-Flag invertiert)
+
+Alarme/Benachrichtigungen (best‑effort, konservativ):
+
+- `aliases.alarm.fault` (bool) – Fehler aktiv (z.B. Error-Codes oder Alarm/Protect-Flag-Register ≠ 0)
+- `aliases.alarm.warning` (bool) – Warnung aktiv (falls passende Warn-Register vorhanden)
+
 ---
 
 ## 4b) SMA PV‑Wechselrichter (Modbus) – Templates & wichtige Datenpunkte
