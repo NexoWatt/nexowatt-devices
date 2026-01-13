@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.9",
+    "version": "0.5.10",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
@@ -66,6 +66,10 @@
       "0.5.9": {
         "en": "Improve meter alias resolution (prefer canonical import/export IDs) and enhance Janitza UMG604 template (add active power; remove misleading duplicate energy IDs).",
         "de": "Alias-Auflösung für Zähler verbessert (kanonische Import/Export-IDs werden bevorzugt) und Janitza UMG604 Template erweitert (Wirkleistung ergänzt; irreführende doppelte Energie-IDs entfernt)."
+      },
+      "0.5.10": {
+        "en": "Improve Modbus error diagnostics (transport vs Modbus-layer hints) and treat timeoutMs=0 as \"use default\".",
+        "de": "Modbus-Fehlerdiagnose verbessert (Transport- vs. Modbus-Ebene mit Hinweisen) und timeoutMs=0 wird als \"Default verwenden\" interpretiert."
       }
     },
     "title": "NexoWatt Devices",
