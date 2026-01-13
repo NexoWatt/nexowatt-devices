@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.6",
+    "version": "0.5.7",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
@@ -54,6 +54,10 @@
       "0.5.6": {
         "en": "Improve SMA SunSpec interoperability: add optional SunSpec auto-discovery (detect SunS signature to auto-adjust base/offset and unitId).",
         "de": "SMA SunSpec-Interoperabilit\u00e4t verbessert: optionales SunSpec Auto-Discovery (SunS-Signatur erkennen, Base/Offset und UnitId automatisch anpassen)."
+      },
+      "0.5.7": {
+        "en": "Add SMA PV inverter minimal templates for STPxx-US-41 and STPxx-50 (SMA Modbus). Improve PV inverter run control alias (support SMA Fast shut-down / FstStop). Improve SunSpec auto-discovery by also probing unitId=(configured unitId + 123).",
+        "de": "Minimale SMA-PV-Wechselrichter-Templates f\u00fcr STPxx-US-41 und STPxx-50 (SMA Modbus) hinzugef\u00fcgt. PV-Inverter Run-Control Alias verbessert (SMA Fast shut-down / FstStop unterst\u00fctzt). SunSpec Auto-Discovery verbessert (zus\u00e4tzlich unitId=(konfigurierte UnitId + 123) pr\u00fcfen)."
       }
     },
     "title": "NexoWatt Devices",

@@ -57558,6 +57558,314 @@
           }
         }
       ]
+    },
+    {
+      "id": "pv_inverter.sma.SmaStpxxUs41Minimal",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "PV_INVERTER",
+      "manufacturer": "SMA",
+      "model": "STPxx-US-41 (SMA Modbus)",
+      "name": "SMA STPxx-US-41 (Modbus) - Minimal",
+      "protocols": [
+        "modbusTcp",
+        "modbusRtu"
+      ],
+      "datapoints": [
+        {
+          "id": "SN",
+          "name": "Serial Number",
+          "role": "info.serial",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 30057,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "Health",
+          "name": "Health (35=Fault,303=Off,307=OK,455=Warning)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 30201,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "GriSwStt",
+          "name": "Grid relay/contactor status (51=Closed,311=Open)",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 30217,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "PvGriConn",
+          "name": "PV plant grid connection (1779=Disconnected,1780=Public grid)",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 30881,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "W",
+          "name": "Active Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 30775,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "TotWhOut",
+          "name": "Total Energy Output",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 30513,
+            "length": 4,
+            "dataType": "uint64",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "FstStop",
+          "name": "Fast shut-down (381=Stop,1467=Start,1749=Full stop)",
+          "role": "state",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 41253,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 41253,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "WLimPct",
+          "name": "Active Power Limit (%)",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "unit": "%",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -2,
+            "read": {
+              "fc": 3,
+              "address": 41255,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 41255,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "pv_inverter.sma.SmaStpxx50Minimal",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "PV_INVERTER",
+      "manufacturer": "SMA",
+      "model": "STPxx-50 (SMA Modbus)",
+      "name": "SMA STPxx-50 (Modbus) - Minimal",
+      "protocols": [
+        "modbusTcp",
+        "modbusRtu"
+      ],
+      "datapoints": [
+        {
+          "id": "SN",
+          "name": "Serial Number",
+          "role": "info.serial",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 30057,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "Health",
+          "name": "Health (35=Fault,303=Off,307=OK,455=Warning)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 30201,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "GriSwStt",
+          "name": "Grid relay/contactor status (51=Closed,311=Open)",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 30217,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "PvGriConn",
+          "name": "PV plant grid connection (1779=Disconnected,1780=Public grid)",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 30881,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "W",
+          "name": "Active Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 30775,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "TotWhOut",
+          "name": "Total Energy Output",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 30513,
+            "length": 4,
+            "dataType": "uint64",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "OpMod",
+          "name": "Operation Mode (381=Stop,1467=Start)",
+          "role": "state",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40009,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 40009,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "WLimPct",
+          "name": "Active Power Limit (%)",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "unit": "%",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -2,
+            "read": {
+              "fc": 3,
+              "address": 44505,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 44505,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        }
+      ]
     }
   ]
 }
