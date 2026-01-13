@@ -77,12 +77,58 @@ Für jedes Gerät `<id>`:
 - `nexowatt-devices.0.devices.<id>.info.lastError`
 - `nexowatt-devices.0.devices.<id>.<datapointId>`
 
+Zusätzlich erzeugt der Adapter (best‑effort) eine **stabile Alias‑API** unter:
+
+- `nexowatt-devices.0.devices.<id>.aliases.*`
+
 Schreibbare Datenpunkte werden als `write=true` angelegt. Wenn du einen State änderst (`ack=false`),
 schreibt der Adapter über das passende Protokoll.
 
 ---
 
-## 4a) SMA PV‑Wechselrichter (Modbus) – Templates & wichtige Datenpunkte
+## 4a) Aliases (stabile Namen für andere Adapter)
+
+Damit nachgelagerte Adapter/Logiken (z.B. Steuer‑ oder Benachrichtigungsadapter) **nicht**
+für jeden Hersteller unterschiedliche Datenpunkt‑IDs kennen müssen, legt der Adapter
+pro Gerät eine Alias‑Struktur unter `devices.<id>.aliases` an.
+
+Diese Alias‑States sind bewusst **kategorienübergreifend ähnlich** und werden – sofern ein
+passender Datenpunkt im Template vorhanden ist – automatisch erstellt.
+
+### Standard (alle Geräte)
+
+- `aliases.comm.connected` (bool) – Kommunikationsstatus zum Gerät
+- `aliases.comm.lastError` (string) – letzter Kommunikationsfehler
+- `aliases.alarm.offline` (bool) – `true`, wenn das Gerät nicht erreichbar ist
+
+### PV_INVERTER (Wechselrichter)
+
+Lesen:
+
+- `aliases.r.power` (W) – aktuelle Wirkleistung
+- `aliases.r.energyTotal` (Wh) – Gesamtertrag/Energiezähler
+- `aliases.r.statusCode` (number) – Statuscode (vendor‑spezifisch, aber stabiler Ort)
+- `aliases.r.gridConnectionState` (number) – Netzstatus roh (falls verfügbar)
+- `aliases.r.gridConnected` (bool) – Netz verbunden (best‑effort Berechnung)
+
+Steuern (falls Template/WR unterstützt):
+
+- `aliases.ctrl.run` (bool) – Start/Stop bzw. Connect/Disconnect (Template‑abhängig)
+- `aliases.ctrl.powerLimitPct` (number, %) – Wirkleistungsbegrenzung in %
+- `aliases.ctrl.powerLimitEnable` (bool) – Begrenzung aktivieren (falls vorhanden)
+
+Alarme/Benachrichtigungen (best‑effort):
+
+- `aliases.alarm.fault` (bool) – Fehler aktiv
+- `aliases.alarm.warning` (bool) – Warnung aktiv
+
+> Hinweis: Einige Geräte liefern Setpoints nur **write‑only**. In diesem Fall bleibt
+> `aliases.ctrl.powerLimitPct` auf dem **zuletzt geschriebenen Wert**, bis das Gerät
+> einen lesbaren Feedback‑Registerwert bereitstellt.
+
+---
+
+## 4b) SMA PV‑Wechselrichter (Modbus) – Templates & wichtige Datenpunkte
 
 Im Adapter sind (u.a.) folgende **PV_INVERTER**‑Templates integriert:
 
@@ -99,8 +145,10 @@ Im Adapter sind (u.a.) folgende **PV_INVERTER**‑Templates integriert:
     - `WMaxLim_Ena` (Leistungsbegrenzung aktiv, bool)
     - `WMaxLimPct` (Leistungsbegrenzung in %, 0…100)
   - **Wechselrichter‑Ausfall / Benachrichtigungen:**
-    - Kommunikationsausfall: `...info.connection=false`
-    - Betriebs-/Fehlerzustand: `St` und `Evt1` (z.B. `St==7` → Fault; `Evt1!=0` → Ereignis)
+    - Alias (empfohlen):
+      - Offline: `...aliases.alarm.offline=true`
+      - Fault: `...aliases.alarm.fault=true`
+    - Rohdaten (optional): `St` und `Evt1` (z.B. `St==7` → Fault; `Evt1!=0` → Ereignis)
 
 - **SMA Sunny Tripower X (SMA Modbus) – Minimal**
   - `templateId`: `pv_inverter.sma.SmaSunnyTripowerXMinimal`
@@ -113,8 +161,11 @@ Im Adapter sind (u.a.) folgende **PV_INVERTER**‑Templates integriert:
     - `OpMod` (Allgemeine Betriebsart: `381=Stopp`, `1467=Start`)
     - `WLimPct` (Wirkleistungsbegrenzung über Anlagensteuerung in %, write‑only)
   - **Wechselrichter‑Ausfall / Benachrichtigungen:**
-    - Kommunikationsausfall: `...info.connection=false`
-    - Zustand/Fault: `Health==35` (Fehler) bzw. `Health==455` (Warnung)
+    - Alias (empfohlen):
+      - Offline: `...aliases.alarm.offline=true`
+      - Fault: `...aliases.alarm.fault=true`
+      - Warning: `...aliases.alarm.warning=true`
+    - Rohdaten (optional): `Health==35` (Fehler) bzw. `Health==455` (Warnung)
 
 ### Hinweis zu Register‑Offsets
 Viele Herstellerdokumentationen verwenden 1‑basierte Registeradressen (z.B. `40001`).

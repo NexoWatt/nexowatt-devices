@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.2",
+    "version": "0.5.3",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
@@ -38,6 +38,10 @@
       "0.5.2": {
         "en": "Add minimal SMA PV inverter templates (SunSpec STP125-70 and Sunny Tripower X Modbus) with key read/control points and health/fault registers. Improve Modbus driver: BigInt values are converted to Number when safe (e.g., U64 energy counters).",
         "de": "Minimale SMA-PV-Wechselrichter-Templates ergänzt (SunSpec STP125-70 und Sunny Tripower X Modbus) mit wichtigen Lese-/Steuerpunkten sowie Health/Fault-Registern. Modbus-Treiber verbessert: BigInt-Werte werden – wenn sicher – als Number ausgegeben (z.B. U64-Energiezähler)."
+    },
+    "0.5.3": {
+      "en": "Add stable alias datapoints under devices.<id>.aliases.* so downstream logic can work across manufacturers (e.g., aliases.r.power, aliases.ctrl.powerLimitPct, aliases.alarm.fault/offline). Alias writes are forwarded to the correct vendor registers; computed alarm states are provided best-effort.",
+      "de": "Stabile Alias-Datenpunkte unter devices.<id>.aliases.* ergänzt, damit nachgelagerte Logik herstellerübergreifend arbeiten kann (z.B. aliases.r.power, aliases.ctrl.powerLimitPct, aliases.alarm.fault/offline). Alias-Schreibzugriffe werden auf die passenden Herstellerregister umgesetzt; Alarm-States werden best-effort berechnet."
       }
     },
     "title": "NexoWatt Devices",
