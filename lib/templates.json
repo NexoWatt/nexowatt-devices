@@ -42572,36 +42572,6 @@
           }
         },
         {
-          "id": "aCTIVE_PRODUCTION_ENERGY_3_9851",
-          "name": "aCTIVE_PRODUCTION_ENERGY_3_9851",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "fc": 3,
-            "address": 9851,
-            "length": 2,
-            "dataType": "float32",
-            "scaleFactor": 0
-          }
-        },
-        {
-          "id": "aCTIVE_CONSUMPTION_ENERGY_3_9863",
-          "name": "aCTIVE_CONSUMPTION_ENERGY_3_9863",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "fc": 3,
-            "address": 9863,
-            "length": 2,
-            "dataType": "float32",
-            "scaleFactor": 0
-          }
-        },
-        {
           "id": "aCTIVE_PRODUCTION_ENERGY",
           "name": "aCTIVE_PRODUCTION_ENERGY",
           "role": "value",
@@ -42611,6 +42581,66 @@
             "kind": "modbus",
             "fc": 3,
             "address": 9863,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L1",
+          "name": "aCTIVE_POWER_L1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 1333,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L2",
+          "name": "aCTIVE_POWER_L2",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 1335,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L3",
+          "name": "aCTIVE_POWER_L3",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 1337,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "aCTIVE_POWER",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 1369,
             "length": 2,
             "dataType": "float32",
             "scaleFactor": 0

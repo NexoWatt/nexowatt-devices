@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.8",
+    "version": "0.5.9",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
@@ -62,6 +62,10 @@
       "0.5.8": {
         "en": "Fix Admin template list (sync admin/templates.json) so new built-in templates appear in the UI. Fix Janitza meter scaling (remove unintended x1000 multiplier on float values).",
         "de": "Admin-Template-Liste korrigiert (admin/templates.json synchronisiert), damit neue Built-in-Templates in der UI erscheinen. Janitza-Zähler-Skalierung korrigiert (unbeabsichtigten x1000-Faktor bei Float-Werten entfernt)."
+      },
+      "0.5.9": {
+        "en": "Improve meter alias resolution (prefer canonical import/export IDs) and enhance Janitza UMG604 template (add active power; remove misleading duplicate energy IDs).",
+        "de": "Alias-Auflösung für Zähler verbessert (kanonische Import/Export-IDs werden bevorzugt) und Janitza UMG604 Template erweitert (Wirkleistung ergänzt; irreführende doppelte Energie-IDs entfernt)."
       }
     },
     "title": "NexoWatt Devices",
