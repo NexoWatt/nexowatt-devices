@@ -57931,7 +57931,7 @@
                 }
               ]
             }
-          }
+          ]
         }
       },
       "datapoints": [
@@ -58302,6 +58302,78 @@
               "address": 164,
               "length": 1,
               "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "iNVERTER_RUN_MODE",
+          "name": "Inverter Run Mode",
+          "role": "info.status",
+          "type": "number",
+          "unit": "",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 9,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "iNVERTER_LOCK_STATE",
+          "name": "Inverter Lock State",
+          "role": "indicator",
+          "type": "number",
+          "unit": "",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 84,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "eXPORT_POWER_PERCENTAGE",
+          "name": "Export Power Percentage",
+          "role": "level",
+          "type": "number",
+          "unit": "%",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "length": 1,
+            "dataType": "uint16",
+            "read": {
+              "fc": 3,
+              "address": 37
+            },
+            "write": {
+              "fc": 6,
+              "address": 17
+            }
+          }
+        },
+        {
+          "id": "eXPORT_POWER_LIMIT",
+          "name": "Export Power Limit",
+          "role": "level.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "length": 1,
+            "dataType": "uint16",
+            "read": {
+              "fc": 3,
+              "address": 182
+            },
+            "write": {
+              "fc": 6,
+              "address": 66
             }
           }
         }
