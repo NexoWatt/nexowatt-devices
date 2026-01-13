@@ -126,6 +126,41 @@ Alarme/Benachrichtigungen (best‑effort):
 > `aliases.ctrl.powerLimitPct` auf dem **zuletzt geschriebenen Wert**, bis das Gerät
 > einen lesbaren Feedback‑Registerwert bereitstellt.
 
+
+### METER (Zähler)
+
+Lesen (best‑effort, je nach Template verfügbar):
+
+- `aliases.r.power` (W) – Netto‑Wirkleistung (Import positiv / Export negativ oder berechnet)
+- `aliases.r.powerImport` (W) – Importleistung (Bezug)
+- `aliases.r.powerExport` (W) – Exportleistung (Einspeisung)
+- `aliases.r.energyImport` (Wh) – Importenergie (Bezug)
+- `aliases.r.energyExport` (Wh) – Exportenergie (Einspeisung)
+- `aliases.r.voltageL1/L2/L3` (V) – Spannung je Phase (bei 1‑phasigen Zählern i.d.R. nur L1)
+- `aliases.r.currentL1/L2/L3` (A) – Strom je Phase (bei 1‑phasigen Zählern i.d.R. nur L1)
+- `aliases.r.frequency` (Hz) – Netzfrequenz
+
+### EVCS / EVSE / CHARGER (Ladestationen / Wallboxen)
+
+Lesen (best‑effort, je nach Template verfügbar):
+
+- `aliases.r.power` (W) – aktuelle Ladeleistung
+- `aliases.r.energySession` (Wh/kWh) – Energie in der aktuellen Sitzung
+- `aliases.r.energyTotal` (Wh/kWh) – Gesamtenergie (falls verfügbar)
+- `aliases.r.statusCode` (number) – Statuscode (herstellerabhängig, aber stabiler Ort)
+- `aliases.r.errorCode` (number) – Fehlercode (falls verfügbar)
+
+Steuern (falls Template/Ladestation unterstützt):
+
+- `aliases.ctrl.run` (bool) – Laden aktivieren/stoppen (Enable/Start)
+- `aliases.ctrl.currentLimitA` (A) – Stromlimit (A; bei Geräten mit mA‑Registern erfolgt die Umrechnung automatisch)
+- `aliases.ctrl.powerLimitW` (W) – Leistungsbegrenzung (W; sofern unterstützt)
+- `aliases.ctrl.unlockPlug` (bool) – Stecker entriegeln (sofern unterstützt)
+
+Alarme/Benachrichtigungen (best‑effort):
+
+- `aliases.alarm.fault` (bool) – Fehler aktiv (z.B. `errorCode != 0`)
+
 ---
 
 ## 4b) SMA PV‑Wechselrichter (Modbus) – Templates & wichtige Datenpunkte
