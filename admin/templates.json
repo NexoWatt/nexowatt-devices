@@ -55937,6 +55937,857 @@
           }
         }
       ]
+    },
+    {
+      "id": "pv_inverter.sma.SmaStp12570SunSpecImpl",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "PV_INVERTER",
+      "manufacturer": "SMA",
+      "model": "STP125-70 (SunSpec)",
+      "name": "SMA STP125-70 (SunSpec Modbus)",
+      "protocols": [
+        "modbusTcp",
+        "modbusRtu"
+      ],
+      "datapoints": [
+        {
+          "id": "Mn",
+          "name": "Manufacturer",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40004,
+              "length": 16,
+              "dataType": "string"
+            }
+          }
+        },
+        {
+          "id": "Md",
+          "name": "Model",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40020,
+              "length": 16,
+              "dataType": "string"
+            }
+          }
+        },
+        {
+          "id": "Vr",
+          "name": "Firmware Version",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40044,
+              "length": 8,
+              "dataType": "string"
+            }
+          }
+        },
+        {
+          "id": "SN",
+          "name": "Serial Number",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40052,
+              "length": 16,
+              "dataType": "string"
+            }
+          }
+        },
+        {
+          "id": "A_SF",
+          "name": "A_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40191,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "V_SF",
+          "name": "V_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40198,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "W_SF",
+          "name": "W_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40200,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "Hz_SF",
+          "name": "Hz_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40202,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "VA_SF",
+          "name": "VA_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40204,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "VAr_SF",
+          "name": "VAr_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40206,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "PF_SF",
+          "name": "PF_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40208,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "WH_SF",
+          "name": "WH_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40211,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "Tmp_SF",
+          "name": "Tmp_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40222,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "A",
+          "name": "AC Current (Total)",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "A_SF",
+            "read": {
+              "fc": 3,
+              "address": 40187,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "AphA",
+          "name": "AC Current Phase A",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "A_SF",
+            "read": {
+              "fc": 3,
+              "address": 40188,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "AphB",
+          "name": "AC Current Phase B",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "A_SF",
+            "read": {
+              "fc": 3,
+              "address": 40189,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "AphC",
+          "name": "AC Current Phase C",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "A_SF",
+            "read": {
+              "fc": 3,
+              "address": 40190,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "PPVphAB",
+          "name": "AC Voltage (L-L) AB",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "V_SF",
+            "read": {
+              "fc": 3,
+              "address": 40192,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "PPVphBC",
+          "name": "AC Voltage (L-L) BC",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "V_SF",
+            "read": {
+              "fc": 3,
+              "address": 40193,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "PPVphCA",
+          "name": "AC Voltage (L-L) CA",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "V_SF",
+            "read": {
+              "fc": 3,
+              "address": 40194,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "PhVphA",
+          "name": "AC Voltage (L-N) A",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "V_SF",
+            "read": {
+              "fc": 3,
+              "address": 40195,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "PhVphB",
+          "name": "AC Voltage (L-N) B",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "V_SF",
+            "read": {
+              "fc": 3,
+              "address": 40196,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "PhVphC",
+          "name": "AC Voltage (L-N) C",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "V_SF",
+            "read": {
+              "fc": 3,
+              "address": 40197,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "W",
+          "name": "AC Power",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "W_SF",
+            "read": {
+              "fc": 3,
+              "address": 40199,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "Hz",
+          "name": "Grid Frequency",
+          "role": "value.frequency",
+          "type": "number",
+          "unit": "Hz",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "Hz_SF",
+            "read": {
+              "fc": 3,
+              "address": 40201,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "VA",
+          "name": "Apparent Power",
+          "role": "value.power",
+          "type": "number",
+          "unit": "VA",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "VA_SF",
+            "read": {
+              "fc": 3,
+              "address": 40203,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "VAr",
+          "name": "Reactive Power",
+          "role": "value.power",
+          "type": "number",
+          "unit": "var",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "VAr_SF",
+            "read": {
+              "fc": 3,
+              "address": 40205,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "PF",
+          "name": "Power Factor",
+          "role": "value",
+          "type": "number",
+          "unit": "",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "PF_SF",
+            "read": {
+              "fc": 3,
+              "address": 40207,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "WH",
+          "name": "Energy (lifetime)",
+          "role": "value.energy",
+          "type": "number",
+          "unit": "Wh",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "WH_SF",
+            "read": {
+              "fc": 3,
+              "address": 40209,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "TmpCab",
+          "name": "Cabinet Temperature",
+          "role": "value.temperature",
+          "type": "number",
+          "unit": "°C",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "Tmp_SF",
+            "read": {
+              "fc": 3,
+              "address": 40218,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "St",
+          "name": "Operating State",
+          "role": "value",
+          "type": "number",
+          "unit": "",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40223,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "Evt1",
+          "name": "Event Flags 1",
+          "role": "value",
+          "type": "number",
+          "unit": "",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40225,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "WMax_SF",
+          "name": "WMax_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40287,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "WMax",
+          "name": "WMax (Maximum Active Power)",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "WMax_SF",
+            "read": {
+              "fc": 3,
+              "address": 40267,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "PVConn",
+          "name": "PV Connection State",
+          "role": "value",
+          "type": "number",
+          "unit": "",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40299,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "WMaxLimPct_SF",
+          "name": "WMaxLimPct_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40366,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "Conn",
+          "name": "Connect/Disconnect (command)",
+          "role": "switch",
+          "type": "boolean",
+          "unit": "",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40347,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 6,
+              "address": 40347,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "WMaxLim_Ena",
+          "name": "WMax Limit Enable",
+          "role": "switch",
+          "type": "boolean",
+          "unit": "",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40352,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 6,
+              "address": 40352,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "WMaxLimPct",
+          "name": "WMax Limit",
+          "role": "value",
+          "type": "number",
+          "unit": "%",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "WMaxLimPct_SF",
+            "read": {
+              "fc": 3,
+              "address": 40348,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 40348,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "OutPFSet_SF",
+          "name": "OutPFSet_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40367,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "OutPFSet_Ena",
+          "name": "Power Factor Control Enable",
+          "role": "switch",
+          "type": "boolean",
+          "unit": "",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40357,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 6,
+              "address": 40357,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "OutPFSet",
+          "name": "Power Factor Setpoint",
+          "role": "value",
+          "type": "number",
+          "unit": "",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "OutPFSet_SF",
+            "read": {
+              "fc": 3,
+              "address": 40353,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 40353,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "VArPct_SF",
+          "name": "VArPct_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40368,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "VArPct_Ena",
+          "name": "Reactive Power Control Enable",
+          "role": "switch",
+          "type": "boolean",
+          "unit": "",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40365,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 6,
+              "address": 40365,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "VArWMaxPct",
+          "name": "Reactive Power (Pct of WMax)",
+          "role": "value",
+          "type": "number",
+          "unit": "%",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "VArPct_SF",
+            "read": {
+              "fc": 3,
+              "address": 40358,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 40358,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "VArMaxPct",
+          "name": "Reactive Power (Pct of VArMax)",
+          "role": "value",
+          "type": "number",
+          "unit": "%",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "VArPct_SF",
+            "read": {
+              "fc": 3,
+              "address": 40359,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 40359,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        }
+      ]
     }
   ]
 }
