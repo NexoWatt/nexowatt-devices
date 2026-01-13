@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.14",
+    "version": "0.5.15",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
@@ -78,6 +78,10 @@
       "0.5.12": {
         "en": "Add optional Modbus write password field and template-defined write-unlock sequence (used for SolaX VPP write commands).",
         "de": "Optionales Modbus-Schreibpasswort ergänzt und template-definierte Write-Unlock-Sequenz implementiert (für SolaX VPP-Schreibbefehle)."
+      },
+      "0.5.15": {
+        "en": "Add TESVOLT Energy Manager (Vermarkter-Schnittstelle) Modbus TCP template with PV limit, grid/NAP setpoint and battery power control (incl. stable aliases).",
+        "de": "TESVOLT Energy Manager (Vermarkter-Schnittstelle) Modbus-TCP-Template ergänzt: PV-Abregelung, Netzanschlusspunkt/NAP-Sollwert und Batterie-Leistungssteuerung (inkl. stabiler Aliases)."
       }
     },
     "title": "NexoWatt Devices",

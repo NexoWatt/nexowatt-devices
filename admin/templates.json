@@ -58378,6 +58378,511 @@
           }
         }
       ]
+    },
+    {
+      "id": "ess.tesvolt.TesvoltEnergyManagerVermarkter",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "ESS",
+      "manufacturer": "TESVOLT",
+      "model": "Energy Manager",
+      "name": "TESVOLT Energy Manager (Vermarkter-Schnittstelle Modbus TCP)",
+      "protocols": [
+        "modbusTcp"
+      ],
+      "driverHints": {
+        "modbus": {
+          "preWrites": [
+            {
+              "triggerDpId": "sET_ACTIVE_POWER",
+              "writes": [
+                {
+                  "dpId": "vK_CONTROL_ENABLE",
+                  "value": 1
+                },
+                {
+                  "dpId": "vK_CONTROL_TARGET",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "triggerDpId": "nAP_POWER_SETPOINT",
+              "writes": [
+                {
+                  "dpId": "vK_CONTROL_ENABLE",
+                  "value": 1
+                },
+                {
+                  "dpId": "vK_CONTROL_TARGET",
+                  "value": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "datapoints": [
+        {
+          "id": "gRID_POWER",
+          "name": "Momentanleistung NAP",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 0,
+              "length": 2,
+              "dataType": "int32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "eISMAN_PV_MAX_POWER",
+          "name": "Maximalwert Leistung Netzbetreiber (EISMAN)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 3,
+              "length": 2,
+              "dataType": "int32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "pV_POWER",
+          "name": "Momentanleistung PV",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 5,
+              "length": 2,
+              "dataType": "int32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "lOAD_POWER",
+          "name": "Momentanleistung Eigenverbrauch",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 7,
+              "length": 2,
+              "dataType": "int32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "bATTERY_SOC",
+          "name": "State of Charge (SOC)",
+          "role": "value.battery",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 9,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "bATTERY_POWER",
+          "name": "Lade-/Entladeleistung Batteriespeicher",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 11,
+              "length": 2,
+              "dataType": "int32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "mIRROR_PV_SETPOINT",
+          "name": "Gespiegelter Sollwert PV (VK)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20,
+              "length": 2,
+              "dataType": "int32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "mIRROR_NAP_SETPOINT",
+          "name": "Gespiegelter Sollwert Leistung NAP (VK)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 22,
+              "length": 2,
+              "dataType": "int32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "mIRROR_CONTROL_SOURCE",
+          "name": "Gespiegelter Wert Leistungsregelung NAP (0=lokal,1=VK)",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 24,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "mIRROR_BATTERY_SETPOINT",
+          "name": "Gespiegelter Sollwert Batterie (VK)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 25,
+              "length": 2,
+              "dataType": "int32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "pV_PLANT_POWER",
+          "name": "Anlagenleistung PV",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 30,
+              "length": 2,
+              "dataType": "int32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "aLLOWED_CHARGE_POWER",
+          "name": "Maximal mögliche Ladeleistung",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 32,
+              "length": 2,
+              "dataType": "uint32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "aLLOWED_DISCHARGE_POWER",
+          "name": "Maximal mögliche Entladeleistung",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 34,
+              "length": 2,
+              "dataType": "uint32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "bATTERY_CAPACITY_WH",
+          "name": "Speicherkapazität Batteriespeicher",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 36,
+              "length": 2,
+              "dataType": "uint32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "sYSTEM_ERROR_CODE",
+          "name": "Status-Codes (Fehlerbitfeld)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 100,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "eXPORT_POWER_LIMIT",
+          "name": "Maximalwert Leistung PV (Soll-Leistung) vom Virtuellen Kraftwerk",
+          "role": "level.power",
+          "type": "number",
+          "rw": "rw",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 0,
+              "length": 2,
+              "dataType": "int32",
+              "wordOrder": "le"
+            },
+            "write": {
+              "fc": 16,
+              "address": 0,
+              "length": 2,
+              "dataType": "int32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "pV_WATCHDOG",
+          "name": "Watchdog PV-Abregelung (VK)",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "unit": "",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 2,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "nAP_POWER_SETPOINT",
+          "name": "Sollleistung am Netzanschlusspunkt (NAP) vom Virtuellen Kraftwerk",
+          "role": "level.power",
+          "type": "number",
+          "rw": "rw",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 5,
+              "length": 2,
+              "dataType": "int32",
+              "wordOrder": "le"
+            },
+            "write": {
+              "fc": 16,
+              "address": 5,
+              "length": 2,
+              "dataType": "int32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "nAP_WATCHDOG",
+          "name": "Watchdog Leistungsregelung NAP (VK)",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "unit": "",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 7,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 7,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "sET_ACTIVE_POWER",
+          "name": "Sollleistung Batteriespeicher vom Virtuellen Kraftwerk",
+          "role": "level.power",
+          "type": "number",
+          "rw": "rw",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 10,
+              "length": 2,
+              "dataType": "int32",
+              "wordOrder": "le"
+            },
+            "write": {
+              "fc": 16,
+              "address": 10,
+              "length": 2,
+              "dataType": "int32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "bATTERY_WATCHDOG",
+          "name": "Watchdog Leistungsregelung Batterie (VK)",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "unit": "",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 12,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 12,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "vK_CONTROL_ENABLE",
+          "name": "VK-Leistungsregelung aktiv (0=lokal,1=VK)",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "unit": "",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 15,
+              "length": 1,
+              "dataType": "boolean"
+            },
+            "write": {
+              "fc": 6,
+              "address": 15,
+              "length": 1,
+              "dataType": "boolean"
+            }
+          }
+        },
+        {
+          "id": "vK_CONTROL_TARGET",
+          "name": "VK-Leistungsregelung aktiv für (1=NAP,2=Batterie)",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "unit": "",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 16,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 16,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        }
+      ]
     }
   ]
 }
