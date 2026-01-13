@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.15",
+    "version": "0.5.16",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
@@ -82,6 +82,10 @@
       "0.5.15": {
         "en": "Add TESVOLT Energy Manager (Vermarkter-Schnittstelle) Modbus TCP template with PV limit, grid/NAP setpoint and battery power control (incl. stable aliases).",
         "de": "TESVOLT Energy Manager (Vermarkter-Schnittstelle) Modbus-TCP-Template ergänzt: PV-Abregelung, Netzanschlusspunkt/NAP-Sollwert und Batterie-Leistungssteuerung (inkl. stabiler Aliases)."
+      },
+      "0.5.16": {
+        "en": "Add template-defined Modbus auto-watchdog writer (periodic watchdog register updates) and enable it for TESVOLT Energy Manager VK interface.",
+        "de": "Template-definierten Modbus Auto-Watchdog-Writer ergänzt (periodisches Beschreiben der Watchdog-Register) und für TESVOLT Energy Manager Vermarkter-Schnittstelle aktiviert."
       }
     },
     "title": "NexoWatt Devices",

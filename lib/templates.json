@@ -58420,7 +58420,19 @@
                 }
               ]
             }
-          ]
+          ],
+          "autoWatchdog": {
+            "enabled": true,
+            "dpIds": [
+              "pV_WATCHDOG",
+              "nAP_WATCHDOG",
+              "bATTERY_WATCHDOG"
+            ],
+            "periodMs": 60000,
+            "startDelayMs": 2000,
+            "sequenceMin": 1,
+            "sequenceMax": 1000
+          }
         }
       },
       "datapoints": [
