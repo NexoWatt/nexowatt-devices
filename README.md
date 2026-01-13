@@ -239,6 +239,18 @@ Wenn dein Gerät mit den im Template hinterlegten Adressen „um 1 daneben“ li
 
 - `addressOffset: -1`
 
+### SunSpec Auto-Discovery (ab v0.5.6)
+
+Bei **SunSpec-Modbus** Templates (z.B. **SMA STP125‑70**) versucht der Adapter beim Connect **automatisch** die
+SunSpec-Signatur **`SunS`** zu finden und setzt intern einen passenden **Offset** (und bei Bedarf auch die **Unit-ID**).
+
+Das hilft insbesondere bei Installationen, bei denen der SunSpec-Block nicht exakt bei `40000` beginnt (z.B. `39999` oder `0`).
+
+Wenn du die Auto-Erkennung deaktivieren oder übersteuern willst, kannst du im Device-Connection-Block (best-effort) setzen:
+
+- `autoSunSpec: false`
+- `sunSpecTemplateBase: 40000` (nur wenn du ein anderes Template-Base-Layout verwendest)
+
 ---
 
 ## 5) Geräte‑Konfiguration (devicesJson)

@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.5",
+    "version": "0.5.6",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
@@ -50,6 +50,10 @@
       "0.5.5": {
         "en": "Extend stable aliases to batteries/ESS (SoC/SoH, battery power, charge/discharge split, allowed power, setpoints, and conservative fault/warning detection).",
         "de": "Stabile Aliases auf Batteriesysteme/ESS erweitert (SoC/SoH, Batterieleistung, Charge/Discharge-Split, erlaubte Leistung, Setpoints sowie konservative Fault/Warning-Erkennung)."
+      },
+      "0.5.6": {
+        "en": "Improve SMA SunSpec interoperability: add optional SunSpec auto-discovery (detect SunS signature to auto-adjust base/offset and unitId).",
+        "de": "SMA SunSpec-Interoperabilit\u00e4t verbessert: optionales SunSpec Auto-Discovery (SunS-Signatur erkennen, Base/Offset und UnitId automatisch anpassen)."
       }
     },
     "title": "NexoWatt Devices",

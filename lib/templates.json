@@ -56243,6 +56243,12 @@
         "modbusTcp",
         "modbusRtu"
       ],
+      "driverHints": {
+        "modbus": {
+          "autoSunSpec": true,
+          "sunSpecTemplateBase": 40000
+        }
+      },
       "datapoints": [
         {
           "id": "Mn",
@@ -57094,6 +57100,12 @@
         "modbusTcp",
         "modbusRtu"
       ],
+      "driverHints": {
+        "modbus": {
+          "autoSunSpec": true,
+          "sunSpecTemplateBase": 40000
+        }
+      },
       "datapoints": [
         {
           "id": "Mn",
