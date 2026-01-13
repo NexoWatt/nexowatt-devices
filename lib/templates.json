@@ -57080,6 +57080,472 @@
           }
         }
       ]
+    },
+    {
+      "id": "pv_inverter.sma.SmaStp12570SunSpecMinimal",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "PV_INVERTER",
+      "manufacturer": "SMA",
+      "model": "STP125-70 (SunSpec)",
+      "name": "SMA STP125-70 (SunSpec Modbus) - Minimal",
+      "protocols": [
+        "modbusTcp",
+        "modbusRtu"
+      ],
+      "datapoints": [
+        {
+          "id": "Mn",
+          "name": "Manufacturer",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40004,
+              "length": 16,
+              "dataType": "string"
+            }
+          }
+        },
+        {
+          "id": "Md",
+          "name": "Model",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40020,
+              "length": 16,
+              "dataType": "string"
+            }
+          }
+        },
+        {
+          "id": "Vr",
+          "name": "Firmware Version",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40044,
+              "length": 8,
+              "dataType": "string"
+            }
+          }
+        },
+        {
+          "id": "SN",
+          "name": "Serial Number",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40052,
+              "length": 16,
+              "dataType": "string"
+            }
+          }
+        },
+        {
+          "id": "St",
+          "name": "Operating State",
+          "role": "value",
+          "type": "number",
+          "unit": "",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40223,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "PVConn",
+          "name": "PV Connection State",
+          "role": "value",
+          "type": "number",
+          "unit": "",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40299,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "Evt1",
+          "name": "Event Flags 1",
+          "role": "value",
+          "type": "number",
+          "unit": "",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40225,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "W_SF",
+          "name": "W_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40200,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "W",
+          "name": "AC Power",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "W_SF",
+            "read": {
+              "fc": 3,
+              "address": 40199,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "WMax_SF",
+          "name": "WMax_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40287,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "WMax",
+          "name": "WMax (Maximum Active Power)",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "WMax_SF",
+            "read": {
+              "fc": 3,
+              "address": 40267,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "WH_SF",
+          "name": "WH_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40211,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "WH",
+          "name": "Energy (lifetime)",
+          "role": "value.energy",
+          "type": "number",
+          "unit": "Wh",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "WH_SF",
+            "read": {
+              "fc": 3,
+              "address": 40209,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "WMaxLimPct_SF",
+          "name": "WMaxLimPct_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40366,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "Conn",
+          "name": "Connect/Disconnect (command)",
+          "role": "switch",
+          "type": "boolean",
+          "unit": "",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40347,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 6,
+              "address": 40347,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "WMaxLim_Ena",
+          "name": "WMax Limit Enable",
+          "role": "switch",
+          "type": "boolean",
+          "unit": "",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40352,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 6,
+              "address": 40352,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "WMaxLimPct",
+          "name": "WMax Limit",
+          "role": "value",
+          "type": "number",
+          "unit": "%",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "scaleFactorRef": "WMaxLimPct_SF",
+            "read": {
+              "fc": 3,
+              "address": 40348,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 40348,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "pv_inverter.sma.SmaSunnyTripowerXMinimal",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "PV_INVERTER",
+      "manufacturer": "SMA",
+      "model": "Sunny Tripower X (SMA Modbus)",
+      "name": "SMA Sunny Tripower X (Modbus) - Minimal",
+      "protocols": [
+        "modbusTcp",
+        "modbusRtu"
+      ],
+      "datapoints": [
+        {
+          "id": "SN",
+          "name": "Serial Number",
+          "role": "info.serial",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 30057,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "Health",
+          "name": "Health (35=Fault,303=Off,307=OK,455=Warning)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 30201,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "GriSwStt",
+          "name": "Grid relay/contactor status (51=Closed,311=Open)",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 30217,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "PvGriConn",
+          "name": "PV plant grid connection (1779=Disconnected,1780=Public grid)",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 30881,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "W",
+          "name": "Active Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 30775,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "TotWhOut",
+          "name": "Total Energy Output",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 30513,
+            "length": 4,
+            "dataType": "uint64",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "OpMod",
+          "name": "Operation Mode (381=Stop,1467=Start)",
+          "role": "state",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40009,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 40009,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "WLimPct",
+          "name": "Active Power Limit (Plant control) %",
+          "role": "level",
+          "type": "number",
+          "rw": "wo",
+          "unit": "%",
+          "source": {
+            "kind": "modbus",
+            "write": {
+              "fc": 6,
+              "address": 40016,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        }
+      ]
     }
   ]
 }

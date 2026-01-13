@@ -82,6 +82,48 @@ schreibt der Adapter über das passende Protokoll.
 
 ---
 
+## 4a) SMA PV‑Wechselrichter (Modbus) – Templates & wichtige Datenpunkte
+
+Im Adapter sind (u.a.) folgende **PV_INVERTER**‑Templates integriert:
+
+- **SMA STP125‑70 (SunSpec Modbus) – Minimal**
+  - `templateId`: `pv_inverter.sma.SmaStp12570SunSpecMinimal`
+  - **Lesen (wichtig):**
+    - `W` (aktuelle Wirkleistung, W)
+    - `WH` (Energiezähler, Wh)
+    - `St` (Betriebszustand / Operating State)
+    - `PVConn` (PV‑Netzverbindung)
+    - `Evt1` (Event‑Flags – für Fehler/Warnungen)
+  - **Steuern (wichtig):**
+    - `Conn` (Verbinden/Trennen, bool)
+    - `WMaxLim_Ena` (Leistungsbegrenzung aktiv, bool)
+    - `WMaxLimPct` (Leistungsbegrenzung in %, 0…100)
+  - **Wechselrichter‑Ausfall / Benachrichtigungen:**
+    - Kommunikationsausfall: `...info.connection=false`
+    - Betriebs-/Fehlerzustand: `St` und `Evt1` (z.B. `St==7` → Fault; `Evt1!=0` → Ereignis)
+
+- **SMA Sunny Tripower X (SMA Modbus) – Minimal**
+  - `templateId`: `pv_inverter.sma.SmaSunnyTripowerXMinimal`
+  - **Lesen (wichtig):**
+    - `W` (aktuelle Wirkleistung, W)
+    - `TotWhOut` (Gesamtertrag, Wh)
+    - `Health` (Zustand: `35=Fehler`, `303=Aus`, `307=Ok`, `455=Warnung`)
+    - `PvGriConn` (Netzanbindung der Anlage)
+  - **Steuern (wichtig):**
+    - `OpMod` (Allgemeine Betriebsart: `381=Stopp`, `1467=Start`)
+    - `WLimPct` (Wirkleistungsbegrenzung über Anlagensteuerung in %, write‑only)
+  - **Wechselrichter‑Ausfall / Benachrichtigungen:**
+    - Kommunikationsausfall: `...info.connection=false`
+    - Zustand/Fault: `Health==35` (Fehler) bzw. `Health==455` (Warnung)
+
+### Hinweis zu Register‑Offsets
+Viele Herstellerdokumentationen verwenden 1‑basierte Registeradressen (z.B. `40001`).
+Wenn dein Gerät mit den im Template hinterlegten Adressen „um 1 daneben“ liegt, setze im Gerät:
+
+- `addressOffset: -1`
+
+---
+
 ## 5) Geräte‑Konfiguration (devicesJson)
 
 Die Geräte werden intern als JSON gespeichert. Beispiel:
