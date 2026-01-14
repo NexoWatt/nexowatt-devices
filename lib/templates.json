@@ -59490,6 +59490,714 @@
           }
         }
       ]
+    },
+    {
+      "id": "ess.solax.Ems1000ModbusTcp",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "ESS",
+      "manufacturer": "SolaX",
+      "model": "EMS1000",
+      "name": "SolaX EMS1000 (ModbusTCP)",
+      "protocols": [
+        "modbusTcp"
+      ],
+      "driverHints": {
+        "modbus": {
+          "preWrites": [
+            {
+              "triggerDpId": "sET_ACTIVE_POWER",
+              "writes": [
+                {
+                  "dpId": "sYSTEM_CONTROL",
+                  "value": 0
+                },
+                {
+                  "dpId": "sET_CONTROL_MODE",
+                  "value": 8
+                },
+                {
+                  "dpId": "tARGET_SET_TYPE",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "triggerDpId": "eXPORT_POWER_LIMIT",
+              "writes": [
+                {
+                  "dpId": "sYSTEM_CONTROL",
+                  "value": 0
+                },
+                {
+                  "dpId": "sET_CONTROL_MODE",
+                  "value": 8
+                },
+                {
+                  "dpId": "tARGET_SET_TYPE",
+                  "value": 2
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "datapoints": [
+        {
+          "id": "pV_ENERGY_TODAY",
+          "name": "Daily PV Yield",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 73,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "pV_ENERGY_TOTAL",
+          "name": "Total PV Yield",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 75,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "bATTERY_CHARGE_ENERGY_TODAY",
+          "name": "Daily charge",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 77,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "bATTERY_CHARGE_ENERGY_TOTAL",
+          "name": "Total charge",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 79,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "bATTERY_DISCHARGE_ENERGY_TODAY",
+          "name": "Daily discharge",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 81,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "bATTERY_DISCHARGE_ENERGY_TOTAL",
+          "name": "Total discharge",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 83,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "lOAD_ENERGY_TODAY",
+          "name": "Daily Loads Consumed",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 85,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "lOAD_ENERGY_TOTAL",
+          "name": "Total Loads Consumed",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 87,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "pV_POWER",
+          "name": "PV Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 91,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "gRID_POWER",
+          "name": "Grid Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 93,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "bATTERY_POWER",
+          "name": "Battery Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 95,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "lOAD_POWER",
+          "name": "Loads Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 97,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "sOC",
+          "name": "Battery SOC",
+          "role": "value.battery",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 99,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "bATTERY_REMAINING_ENERGY",
+          "name": "Battery remaining",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 100,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "eNERGY_CONTROL_STATE",
+          "name": "Energy control state",
+          "role": "state",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 101,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "aLLOWED_CHARGE_POWER",
+          "name": "System Max Charging Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 104,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "aLLOWED_DISCHARGE_POWER",
+          "name": "System Max Discharging Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 105,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_TOTAL",
+          "name": "System total active power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 106,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "sYSTEM_OPERATING_STATUS",
+          "name": "System operating status",
+          "role": "state",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 108,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "mETER_COMMUNICATION_STATUS",
+          "name": "Meter communication status",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 202,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "mETER_ACTIVE_POWER",
+          "name": "Meter active power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 208,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "mANUAL_CHARGE_DISCHARGE_POWER",
+          "name": "System manual charge/discharge power",
+          "role": "level.power",
+          "type": "number",
+          "rw": "rw",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 0,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 0,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "mANUAL_CHARGE_SOC_TARGET",
+          "name": "Manual charging SOC target",
+          "role": "level.battery",
+          "type": "number",
+          "rw": "rw",
+          "unit": "%",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            },
+            "write": {
+              "fc": 6,
+              "address": 1,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "mANUAL_DISCHARGE_SOC_TARGET",
+          "name": "Manual discharge SOC target",
+          "role": "level.battery",
+          "type": "number",
+          "rw": "rw",
+          "unit": "%",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            },
+            "write": {
+              "fc": 6,
+              "address": 2,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "sYSTEM_CONTROL",
+          "name": "System control (0=Remote, 1=Local)",
+          "role": "state",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 5,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 5,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "sYSTEM_WORK_MODE",
+          "name": "System work mode",
+          "role": "state",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 7,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 7,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "sET_CONTROL_MODE",
+          "name": "Control mode",
+          "role": "state",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 50,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 50,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "tARGET_SET_TYPE",
+          "name": "TargetSetType",
+          "role": "state",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 149,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 149,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "eXPORT_POWER_LIMIT",
+          "name": "PV power limit",
+          "role": "level.power",
+          "type": "number",
+          "rw": "rw",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 150,
+              "length": 2,
+              "dataType": "uint32",
+              "scaleFactor": -3
+            },
+            "write": {
+              "fc": 16,
+              "address": 150,
+              "length": 2,
+              "dataType": "uint32",
+              "scaleFactor": -3
+            }
+          }
+        },
+        {
+          "id": "sET_ACTIVE_POWER",
+          "name": "Battery power target",
+          "role": "level.power",
+          "type": "number",
+          "rw": "rw",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 152,
+              "length": 2,
+              "dataType": "int32",
+              "scaleFactor": -3
+            },
+            "write": {
+              "fc": 16,
+              "address": 152,
+              "length": 2,
+              "dataType": "int32",
+              "scaleFactor": -3
+            }
+          }
+        },
+        {
+          "id": "rEMOTE_CONTROL_TIMEOUT",
+          "name": "Remote control timeout",
+          "role": "value.interval",
+          "type": "number",
+          "rw": "rw",
+          "unit": "s",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 154,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 154,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "nEXT_MOTION",
+          "name": "Next_Motion",
+          "role": "state",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 155,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 155,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "cOMM_TIMEOUT_ENABLE",
+          "name": "Communication timeout standby enable",
+          "role": "switch.enable",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 177,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 6,
+              "address": 177,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "cOMM_TIMEOUT_DURATION",
+          "name": "Communication timeout duration",
+          "role": "value.interval",
+          "type": "number",
+          "rw": "rw",
+          "unit": "s",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 178,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 178,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        }
+      ],
+      "notes": "Power values are normalized to kW (2 decimals) and energy to kWh (2 decimals). For PV power limit / battery power target writes the adapter pre-writes system control=remote, control mode=8 and TargetSetType=update."
     }
   ]
 }
