@@ -60784,6 +60784,449 @@
         }
       ],
       "notes": "Registers from SolaX Power three phase inverter X3-MEGA G2/X3-FORTH Modbus-RTU protocol v1.1 (2023-05-16). Addresses in this template are decimal equivalents of the hex addresses in the PDF. Active power is exposed in kW (scaled from W), energies in kWh."
+    },
+    {
+      "id": "evcs.solax.SolaXHacG2",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "EVCS",
+      "manufacturer": "SolaX",
+      "model": "X1/X3-HAC EV Charger G2",
+      "name": "SolaX X1/X3-HAC EV-Charger G2 (Modbus)",
+      "protocols": [
+        "modbusTcp",
+        "modbusRtu"
+      ],
+      "datapoints": [
+        {
+          "id": "vOLTAGE_L1",
+          "name": "Voltage L1",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "vOLTAGE_L2",
+          "name": "Voltage L2",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 1,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "vOLTAGE_L3",
+          "name": "Voltage L3",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 2,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "cURRENT_L1",
+          "name": "Current L1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 4,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "cURRENT_L2",
+          "name": "Current L2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 5,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "cURRENT_L3",
+          "name": "Current L3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 6,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L1",
+          "name": "Charging power L1",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 8,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L2",
+          "name": "Charging power L2",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 9,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L3",
+          "name": "Charging power L3",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Total charging power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 11,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "fREQUENCY",
+          "name": "Frequency (phase 1)",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Hz",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 12,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "eNERGY_SESSION",
+          "name": "Energy (session)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 15,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "tOTAL_CHARGED_ENERGY",
+          "name": "Energy (total)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 16,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "eVSE_STATE",
+          "name": "EVSE state",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 29,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "eVSE_ERROR_CODE",
+          "name": "Fault code",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 30,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "cHARGING_TIME",
+          "name": "Charging duration",
+          "role": "value.interval",
+          "type": "number",
+          "rw": "ro",
+          "unit": "s",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 43,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "lOCK_STATUS",
+          "name": "Lock status (0=unlocked,1=locked)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 45,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "nETWORK",
+          "name": "Network (0=offline,1=online)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 38,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "rSSI",
+          "name": "Signal strength",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 39,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "cONTROL_COMMAND",
+          "name": "Control command (1=Available,2=Unavailable,3=Stop,4=Start,5=Reserve,6=Cancel)",
+          "role": "state",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1575,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1575,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "sET_CHARGING_CURRENT",
+          "name": "Set charging current",
+          "role": "level.current",
+          "type": "number",
+          "rw": "rw",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -2,
+            "read": {
+              "fc": 3,
+              "address": 1576,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1576,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "mAX_CHARGE_CURRENT",
+          "name": "Max charge current",
+          "role": "level.current",
+          "type": "number",
+          "rw": "rw",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -2,
+            "read": {
+              "fc": 3,
+              "address": 1640,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1640,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "eVSE_MODE",
+          "name": "EVSE mode (0=FAST,1=ECO,2=GREEN)",
+          "role": "state",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1641,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1641,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "eVSE_SCENE",
+          "name": "EVSE scene (0=PV,1=Standard,2=OCPP)",
+          "role": "state",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1564,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1564,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        }
+      ],
+      "notes": "Based on SolaX X1/X3-HAC EV charger Modbus RTU/TCP protocol v1.0.0 (2024-06-25). Input registers (FC=04) and holding registers (FC=03/06). Power values are exposed in kW (scaled from W), energies in kWh. 32-bit values are read with little-endian word order. Device docs recommend a minimum interval of 1s between Modbus commands."
     }
   ]
 }

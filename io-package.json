@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.21",
+    "version": "0.5.22",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
@@ -102,6 +102,10 @@
       "0.5.21": {
         "en": "Add built-in PV inverter template for SolaX X3-MEGA G2 / X3-FORTH (Modbus RTU) with key read/control points and kW/kWh scaling. Extend PV inverter alias mapping: ctrl.run also supports vendor command registers (0xAF start / 0xAE stop).",
         "de": "PV-Wechselrichter-Template f\u00fcr SolaX X3-MEGA G2 / X3-FORTH (Modbus RTU) erg\u00e4nzt (wichtige Lese-/Steuerpunkte, Skalierung kW/kWh). PV-Inverter-Alias-Mapping erweitert: ctrl.run unterst\u00fctzt nun auch herstellerspezifische Command-Register (0xAF Start / 0xAE Stop)."
+      },
+      "0.5.22": {
+        "en": "Add built-in EV charger template for SolaX X1/X3-HAC EV-Charger G2 (Modbus RTU/TCP) with key read/control points and kW/kWh scaling. Improve EVCS alias mapping: ctrl.run supports command-style control registers (start=4/stop=3) when paired with an EVSE state register.",
+        "de": "EV-Ladestations-Template f\u00fcr SolaX X1/X3-HAC EV-Charger G2 (Modbus RTU/TCP) erg\u00e4nzt (wichtige Lese-/Steuerpunkte, Skalierung kW/kWh). EVCS-Alias-Mapping verbessert: ctrl.run unterst\u00fctzt nun auch Command-Register (Start=4/Stop=3) in Kombination mit EVSE-State."
       }
     },
     "title": "NexoWatt Devices",
