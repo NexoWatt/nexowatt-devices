@@ -59611,6 +59611,592 @@
         }
       ],
       "notes": "Power values are scaled to kW/kWh and rounded to 2 decimals. Writing PVPowerLimit or Battery power target triggers auto-writes: System control -> Remote, Control mode -> 8, TargetSetType -> 2."
+    },
+    {
+      "id": "pv_inverter.solax.SolaXX3MegaForthMinimal",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "PV_INVERTER",
+      "manufacturer": "SolaX",
+      "model": "X3-MEGA G2/X3-FORTH (Modbus-RTU)",
+      "name": "SolaX X3-MEGA G2/X3-FORTH (Modbus RTU) - Minimal",
+      "protocols": [
+        "modbusRtu",
+        "modbusTcp"
+      ],
+      "datapoints": [
+        {
+          "id": "ProtocolId",
+          "name": "Protocol Identifier",
+          "role": "info",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 0,
+              "length": 2,
+              "dataType": "string"
+            }
+          }
+        },
+        {
+          "id": "Model",
+          "name": "Model Type",
+          "role": "info.name",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 18,
+              "length": 16,
+              "dataType": "string"
+            }
+          }
+        },
+        {
+          "id": "SWVer",
+          "name": "Software Version",
+          "role": "info.firmware",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 34,
+              "length": 16,
+              "dataType": "string"
+            }
+          }
+        },
+        {
+          "id": "SN",
+          "name": "Serial Number",
+          "role": "info.serial",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 50,
+              "length": 16,
+              "dataType": "string"
+            }
+          }
+        },
+        {
+          "id": "ProtoVer",
+          "name": "Protocol Version",
+          "role": "info",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 86,
+              "length": 10,
+              "dataType": "string"
+            }
+          }
+        },
+        {
+          "id": "Uab",
+          "name": "Line voltage AB",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 256,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "Ubc",
+          "name": "Line voltage BC",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 257,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "Uca",
+          "name": "Line voltage AC",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 258,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "Ua",
+          "name": "Phase-A voltage",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 259,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "Ub",
+          "name": "Phase-B voltage",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 260,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "Uc",
+          "name": "Phase-C voltage",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 261,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "Hz",
+          "name": "Grid frequency",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Hz",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 262,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -2
+            }
+          }
+        },
+        {
+          "id": "Ia",
+          "name": "Phase-A current",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 384,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "Ib",
+          "name": "Phase-B current",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 385,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "Ic",
+          "name": "Phase-C current",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 386,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "W",
+          "name": "Active power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 387,
+              "length": 2,
+              "dataType": "int32",
+              "scaleFactor": -3
+            }
+          }
+        },
+        {
+          "id": "Var",
+          "name": "Reactive power",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kVAr",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 389,
+              "length": 2,
+              "dataType": "int32",
+              "scaleFactor": -3
+            }
+          }
+        },
+        {
+          "id": "VA",
+          "name": "Apparent power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kVA",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 391,
+              "length": 2,
+              "dataType": "uint32",
+              "scaleFactor": -3
+            }
+          }
+        },
+        {
+          "id": "EToday",
+          "name": "Today energy",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 393,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "TotWhOut",
+          "name": "Total energy",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 394,
+              "length": 2,
+              "dataType": "uint32",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "PF",
+          "name": "Power factor",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 399,
+              "length": 1,
+              "dataType": "int16",
+              "scaleFactor": -3
+            }
+          }
+        },
+        {
+          "id": "St",
+          "name": "Major operation-mode",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 512,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "StMinor",
+          "name": "Minor operation-mode",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 513,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "Temp",
+          "name": "Internal temperature",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 514,
+              "length": 1,
+              "dataType": "int16",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "IsoR",
+          "name": "Insulation resistance",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kΩ",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 528,
+              "length": 1,
+              "dataType": "int16",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "FaultType",
+          "name": "Fault type",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 534,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "Evt1",
+          "name": "Fault code",
+          "role": "indicator.alarm",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 535,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "WarnCode",
+          "name": "Warning code",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 536,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "ExportLimPct",
+          "name": "Backflow prevention percent",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "unit": "%",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 8962,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            },
+            "write": {
+              "fc": 6,
+              "address": 8962,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "WLimPct",
+          "name": "Maximum power output percent",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "unit": "%",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 8963,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            },
+            "write": {
+              "fc": 6,
+              "address": 8963,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "CmdOnOff",
+          "name": "Command ON/OFF (0xAF=start, 0xAE=stop)",
+          "role": "state",
+          "type": "number",
+          "rw": "wo",
+          "source": {
+            "kind": "modbus",
+            "write": {
+              "fc": 6,
+              "address": 8839,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        }
+      ],
+      "notes": "Registers from SolaX Power three phase inverter X3-MEGA G2/X3-FORTH Modbus-RTU protocol v1.1 (2023-05-16). Addresses in this template are decimal equivalents of the hex addresses in the PDF. Active power is exposed in kW (scaled from W), energies in kWh."
     }
   ]
 }
