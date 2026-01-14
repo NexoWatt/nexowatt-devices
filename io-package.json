@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.16",
+    "version": "0.5.17",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
@@ -86,6 +86,10 @@
       "0.5.16": {
         "en": "Add template-defined Modbus auto-watchdog writer (periodic watchdog register updates) and enable it for TESVOLT Energy Manager VK interface.",
         "de": "Template-definierten Modbus Auto-Watchdog-Writer ergänzt (periodisches Beschreiben der Watchdog-Register) und für TESVOLT Energy Manager Vermarkter-Schnittstelle aktiviert."
+      },
+      "0.5.17": {
+        "en": "Auto-watchdog fail-safe: watchdog registers are only refreshed while control setpoints are actively updated. Optional automatic disable of VK control when setpoints are stale (TESVOLT).",
+        "de": "Auto-Watchdog Fail-Safe: Watchdog-Register werden nur noch beschrieben, solange Steuer-Sollwerte aktiv aktualisiert werden. Optionales automatisches Deaktivieren der VK-Regelung bei inaktiven Sollwerten (TESVOLT)."
       }
     },
     "title": "NexoWatt Devices",

@@ -58423,15 +58423,23 @@
           ],
           "autoWatchdog": {
             "enabled": true,
-            "dpIds": [
-              "pV_WATCHDOG",
-              "nAP_WATCHDOG",
-              "bATTERY_WATCHDOG"
-            ],
             "periodMs": 60000,
             "startDelayMs": 2000,
             "sequenceMin": 1,
-            "sequenceMax": 1000
+            "sequenceMax": 1000,
+
+            "activeForMs": 180000,
+            "targets": [
+              { "dpId": "pV_WATCHDOG", "activateOnWriteDpIds": ["eXPORT_POWER_LIMIT"] },
+              { "dpId": "nAP_WATCHDOG", "activateOnWriteDpIds": ["nAP_POWER_SETPOINT"] },
+              { "dpId": "bATTERY_WATCHDOG", "activateOnWriteDpIds": ["sET_ACTIVE_POWER"] }
+            ],
+
+            "disableWhenInactive": true,
+            "disableDpId": "vK_CONTROL_ENABLE",
+            "disableValue": 0,
+            "disableAfterMs": 180000,
+            "disableActivationDpIds": ["nAP_POWER_SETPOINT", "sET_ACTIVE_POWER"]
           }
         }
       },
