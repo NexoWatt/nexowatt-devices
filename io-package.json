@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.17",
+    "version": "0.5.18",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
@@ -90,6 +90,10 @@
       "0.5.17": {
         "en": "Auto-watchdog fail-safe: watchdog registers are only refreshed while control setpoints are actively updated. Optional automatic disable of VK control when setpoints are stale (TESVOLT).",
         "de": "Auto-Watchdog Fail-Safe: Watchdog-Register werden nur noch beschrieben, solange Steuer-Sollwerte aktiv aktualisiert werden. Optionales automatisches Deaktivieren der VK-Regelung bei inaktiven Sollwerten (TESVOLT)."
+      },
+      "0.5.18": {
+        "en": "Improve Janitza meter templates (UMG604/604-PRO and new UMG96-PA): scale power/energy to kW/kWh, add proper units/roles, and support per-datapoint rounding. Existing objects are extended so unit/role updates apply without manual deletion.",
+        "de": "Janitza-Zähler-Templates verbessert (UMG604/604-PRO sowie neu UMG96-PA): Leistung/Energie auf kW/kWh skaliert, korrekte Units/Rollen ergänzt und Rundung pro Datenpunkt unterstützt. Vorhandene Objekte werden per extend aktualisiert, sodass Unit/Role-Updates ohne manuelles Löschen greifen."
       }
     },
     "title": "NexoWatt Devices",
