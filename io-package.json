@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-  "version": "0.5.24",
+  "version": "0.5.25",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
@@ -110,6 +110,14 @@
       "0.5.23": {
         "en": "Fix Modbus reconnect on dropped sockets (\"Port Not Open\"), enable TCP keepalive (best-effort), and throttle repetitive error logs. Improve error hints for closed ports and proactively disconnect on transport errors.",
         "de": "Fix für Modbus-Reconnect bei abgerissenen Verbindungen (\"Port Not Open\"), TCP-Keepalive (best-effort) und Drosselung wiederholter Fehlermeldungen. Verbesserte Hinweise bei geschlossenen Ports und proaktives Disconnect bei Transport-Fehlern."
+      },
+      "0.5.24": {
+        "en": "Add SMA Speedwire (UDP multicast) protocol driver and templates (e.g., SMA Energy Meter).",
+        "de": "SMA Speedwire (UDP Multicast) Protokolltreiber und Templates ergänzt (z.B. SMA Energy Meter)."
+      },
+      "0.5.25": {
+        "en": "Stability: treat Modbus timeouts (\"Timed out\" without error code) as transport failures and force a clean reconnect automatically.",
+        "de": "Stabilität: Modbus-Timeouts (\"Timed out\" ohne Error-Code) werden als Transportfehler behandelt und lösen automatisch einen sauberen Reconnect aus."
       }
     },
     "title": "NexoWatt Devices",
