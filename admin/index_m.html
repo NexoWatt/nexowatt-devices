@@ -355,6 +355,37 @@
         </div>
       </div>
 
+      <div id="conn_speedwire" class="nexo-conn-block" style="display:none;">
+        <h6 class="translate">Speedwire (UDP Multicast)</h6>
+        <div class="row">
+          <div class="input-field col s12 m4">
+            <input id="sw_filterHost" type="text" />
+            <label for="sw_filterHost" class="translate">Gerät-IP (Filter, optional)</label>
+          </div>
+          <div class="input-field col s12 m4">
+            <input id="sw_multicastGroup" type="text" />
+            <label for="sw_multicastGroup" class="translate">Multicast Gruppe</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="sw_port" type="number" min="1" max="65535" />
+            <label for="sw_port" class="translate">Port</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="sw_stale" type="number" min="0" step="100" />
+            <label for="sw_stale" class="translate">Stale Timeout (ms)</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 m4">
+            <input id="sw_interface" type="text" />
+            <label for="sw_interface" class="translate">Interface IP (optional)</label>
+          </div>
+          <div class="col s12 m8" style="margin-top: 12px; font-size: 0.9em; color: #666;">
+            <span class="translate">Hinweis</span>: <span class="translate">Speedwire nutzt UDP Multicast. In VLAN/WiFi/Virtualisierung muss Multicast (IGMP) durchgelassen werden.</span>
+          </div>
+        </div>
+      </div>
+
       <!-- Datapoints preview -->
       <div class="row">
         <div class="col s12">

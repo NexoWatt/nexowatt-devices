@@ -319,6 +319,7 @@ function showConnBlock(protocol) {
   if (protocol === 'mqtt') $('#conn_mqtt').show();
   if (protocol === 'http') $('#conn_http').show();
   if (protocol === 'udp') $('#conn_udp').show();
+  if (protocol === 'speedwire') $('#conn_speedwire').show();
 }
 
 function summarizeDatapoint(dp) {
@@ -345,6 +346,17 @@ function summarizeDatapoint(dp) {
     const rTxt = r.cmd ? `cmd: ${r.cmd}${r.jsonPath ? (' -> ' + r.jsonPath) : ''}` : '';
     const wTxt = w.cmdTemplate ? ` set: ${w.cmdTemplate}` : (w.cmd ? ` set: ${w.cmd}` : '');
     return `${rTxt}${wTxt}`.trim();
+  }
+  if (kind === 'speedwire') {
+    if (src.field) return `field: ${src.field}`;
+    if (src.computed) return `computed: ${src.computed}`;
+    const o = src.obis || {};
+    const parts = [];
+    if (o.b !== undefined && o.b !== null) parts.push(`b=${o.b}`);
+    if (o.c !== undefined && o.c !== null) parts.push(`c=${o.c}`);
+    if (o.d !== undefined && o.d !== null) parts.push(`d=${o.d}`);
+    if (o.e !== undefined && o.e !== null) parts.push(`e=${o.e}`);
+    return parts.length ? `OBIS ${parts.join(', ')}` : 'speedwire';
   }
   return kind;
 }
@@ -474,6 +486,13 @@ function openDeviceModal(device, idx) {
   $('#udp_timeout').val(c.timeoutMs ?? '');
   $('#udp_pause').val(c.commandPauseMs ?? 0);
 
+  // Speedwire (UDP multicast)
+  $('#sw_filterHost').val(c.filterHost || c.host || '');
+  $('#sw_multicastGroup').val(c.multicastGroup || '239.12.255.254');
+  $('#sw_port').val(c.port ?? 9522);
+  $('#sw_interface').val(c.interfaceAddress || '');
+  $('#sw_stale').val(c.staleTimeoutMs ?? 8000);
+
   updateTextFields();
   openModal();
 }
@@ -546,6 +565,21 @@ function collectDeviceFromModal() {
     if (!isNaN(t)) d.connection.timeoutMs = t;
     const p = parseInt($('#udp_pause').val(), 10);
     if (!isNaN(p)) d.connection.commandPauseMs = p;
+  } else if (d.protocol === 'speedwire') {
+    const filterHost = ($('#sw_filterHost').val() || '').trim();
+    if (filterHost) {
+      d.connection.filterHost = filterHost;
+      // Backwards/compat: also expose under host, as many UIs use this field.
+      d.connection.host = filterHost;
+    }
+
+    d.connection.multicastGroup = ($('#sw_multicastGroup').val() || '').trim() || '239.12.255.254';
+    d.connection.port = parseInt($('#sw_port').val(), 10) || 9522;
+    const iface = ($('#sw_interface').val() || '').trim();
+    if (iface) d.connection.interfaceAddress = iface;
+
+    const st = parseInt($('#sw_stale').val(), 10);
+    if (!isNaN(st)) d.connection.staleTimeoutMs = st;
   }
 
   // minimal validation
@@ -560,6 +594,8 @@ function collectDeviceFromModal() {
   if (d.protocol === 'http' && !d.connection.baseUrl) throw new Error('HTTP Base-URL fehlt');
 
   if (d.protocol === 'udp' && !d.connection.host) throw new Error('UDP Host/IP fehlt');
+
+  // Speedwire has sensible defaults; filterHost is optional.
 
   return d;
 }

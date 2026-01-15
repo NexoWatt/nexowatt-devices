@@ -44509,7 +44509,7 @@
       "category": "METER",
       "manufacturer": "SMA",
       "model": "meter.shm20",
-      "name": "SMA meter.shm20",
+      "name": "SMA Sunny Home Manager 2.0 (Modbus)",
       "protocols": [
         "modbusTcp",
         "modbusRtu"
@@ -58427,19 +58427,35 @@
             "startDelayMs": 2000,
             "sequenceMin": 1,
             "sequenceMax": 1000,
-
             "activeForMs": 180000,
             "targets": [
-              { "dpId": "pV_WATCHDOG", "activateOnWriteDpIds": ["eXPORT_POWER_LIMIT"] },
-              { "dpId": "nAP_WATCHDOG", "activateOnWriteDpIds": ["nAP_POWER_SETPOINT"] },
-              { "dpId": "bATTERY_WATCHDOG", "activateOnWriteDpIds": ["sET_ACTIVE_POWER"] }
+              {
+                "dpId": "pV_WATCHDOG",
+                "activateOnWriteDpIds": [
+                  "eXPORT_POWER_LIMIT"
+                ]
+              },
+              {
+                "dpId": "nAP_WATCHDOG",
+                "activateOnWriteDpIds": [
+                  "nAP_POWER_SETPOINT"
+                ]
+              },
+              {
+                "dpId": "bATTERY_WATCHDOG",
+                "activateOnWriteDpIds": [
+                  "sET_ACTIVE_POWER"
+                ]
+              }
             ],
-
             "disableWhenInactive": true,
             "disableDpId": "vK_CONTROL_ENABLE",
             "disableValue": 0,
             "disableAfterMs": 180000,
-            "disableActivationDpIds": ["nAP_POWER_SETPOINT", "sET_ACTIVE_POWER"]
+            "disableActivationDpIds": [
+              "nAP_POWER_SETPOINT",
+              "sET_ACTIVE_POWER"
+            ]
           }
         }
       },
@@ -60640,6 +60656,340 @@
         }
       ],
       "notes": "Based on SolaX X1/X3-HAC EV charger Modbus RTU/TCP protocol v1.0.0 (2024-06-25). Input registers (FC=04) and holding registers (FC=03/06). Power values are exposed in kW (scaled from W), energies in kWh. 32-bit values are read with little-endian word order. Device docs recommend a minimum interval of 1s between Modbus commands."
+    },
+    {
+      "id": "meter.sma.SmaEnergyMeterSpeedwireImpl",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "METER",
+      "manufacturer": "SMA",
+      "model": "SmaEnergyMeterSpeedwireImpl",
+      "name": "SMA Energy Meter / SHM (Speedwire)",
+      "protocols": [
+        "speedwire"
+      ],
+      "datapoints": [
+        {
+          "id": "sUSY_ID",
+          "name": "SUSy-ID",
+          "role": "info.serial",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "speedwire",
+            "field": "susyId"
+          }
+        },
+        {
+          "id": "sERIAL_NUMBER",
+          "name": "Serial Number",
+          "role": "info.serial",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "speedwire",
+            "field": "serialNumber"
+          }
+        },
+        {
+          "id": "tIMESTAMP_MS",
+          "name": "Timestamp (ms)",
+          "role": "value.time",
+          "type": "number",
+          "rw": "ro",
+          "unit": "ms",
+          "source": {
+            "kind": "speedwire",
+            "field": "timestampMs"
+          }
+        },
+        {
+          "id": "aCTIVE_CONSUMPTION_POWER",
+          "name": "Active power import (+)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "speedwire",
+            "obis": {
+              "c": 1,
+              "d": 4,
+              "e": 0
+            }
+          }
+        },
+        {
+          "id": "aCTIVE_PRODUCTION_POWER",
+          "name": "Active power export (-)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "speedwire",
+            "obis": {
+              "c": 2,
+              "d": 4,
+              "e": 0
+            }
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active power (net)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "speedwire",
+            "computed": "netActivePower"
+          }
+        },
+        {
+          "id": "aCTIVE_CONSUMPTION_ENERGY",
+          "name": "Active energy import (+)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 2,
+          "source": {
+            "kind": "speedwire",
+            "obis": {
+              "c": 1,
+              "d": 8,
+              "e": 0
+            }
+          }
+        },
+        {
+          "id": "aCTIVE_PRODUCTION_ENERGY",
+          "name": "Active energy export (-)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 2,
+          "source": {
+            "kind": "speedwire",
+            "obis": {
+              "c": 2,
+              "d": 8,
+              "e": 0
+            }
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER_POS",
+          "name": "Reactive power (+)",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kvar",
+          "decimals": 2,
+          "source": {
+            "kind": "speedwire",
+            "obis": {
+              "c": 3,
+              "d": 4,
+              "e": 0
+            }
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER_NEG",
+          "name": "Reactive power (-)",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kvar",
+          "decimals": 2,
+          "source": {
+            "kind": "speedwire",
+            "obis": {
+              "c": 4,
+              "d": 4,
+              "e": 0
+            }
+          }
+        },
+        {
+          "id": "aPPARENT_POWER_POS",
+          "name": "Apparent power (+)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kVA",
+          "decimals": 2,
+          "source": {
+            "kind": "speedwire",
+            "obis": {
+              "c": 9,
+              "d": 4,
+              "e": 0
+            }
+          }
+        },
+        {
+          "id": "aPPARENT_POWER_NEG",
+          "name": "Apparent power (-)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kVA",
+          "decimals": 2,
+          "source": {
+            "kind": "speedwire",
+            "obis": {
+              "c": 10,
+              "d": 4,
+              "e": 0
+            }
+          }
+        },
+        {
+          "id": "vOLTAGE_L1",
+          "name": "Voltage L1",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 2,
+          "source": {
+            "kind": "speedwire",
+            "obis": {
+              "c": 32,
+              "d": 4,
+              "e": 0
+            }
+          }
+        },
+        {
+          "id": "vOLTAGE_L2",
+          "name": "Voltage L2",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 2,
+          "source": {
+            "kind": "speedwire",
+            "obis": {
+              "c": 52,
+              "d": 4,
+              "e": 0
+            }
+          }
+        },
+        {
+          "id": "vOLTAGE_L3",
+          "name": "Voltage L3",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 2,
+          "source": {
+            "kind": "speedwire",
+            "obis": {
+              "c": 72,
+              "d": 4,
+              "e": 0
+            }
+          }
+        },
+        {
+          "id": "cURRENT_L1",
+          "name": "Current L1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "speedwire",
+            "obis": {
+              "c": 31,
+              "d": 4,
+              "e": 0
+            }
+          }
+        },
+        {
+          "id": "cURRENT_L2",
+          "name": "Current L2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "speedwire",
+            "obis": {
+              "c": 51,
+              "d": 4,
+              "e": 0
+            }
+          }
+        },
+        {
+          "id": "cURRENT_L3",
+          "name": "Current L3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "speedwire",
+            "obis": {
+              "c": 71,
+              "d": 4,
+              "e": 0
+            }
+          }
+        },
+        {
+          "id": "pOWER_FACTOR",
+          "name": "Power factor (cos φ)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "decimals": 3,
+          "source": {
+            "kind": "speedwire",
+            "obis": {
+              "c": 13,
+              "d": 4,
+              "e": 0
+            }
+          }
+        },
+        {
+          "id": "fREQUENCY",
+          "name": "Frequency",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Hz",
+          "decimals": 2,
+          "source": {
+            "kind": "speedwire",
+            "obis": {
+              "c": 14,
+              "d": 4,
+              "e": 0
+            }
+          }
+        }
+      ]
     }
   ]
 }
