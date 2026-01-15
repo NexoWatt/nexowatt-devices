@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-  "version": "0.5.25",
+    "version": "0.5.26",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
@@ -118,6 +118,10 @@
       "0.5.25": {
         "en": "Stability: treat Modbus timeouts (\"Timed out\" without error code) as transport failures and force a clean reconnect automatically.",
         "de": "Stabilität: Modbus-Timeouts (\"Timed out\" ohne Error-Code) werden als Transportfehler behandelt und lösen automatisch einen sauberen Reconnect aus."
+      },
+      "0.5.26": {
+        "en": "Add FENECON Home ESS Modbus template (read: SoC, PV/grid/load power, energy counters; write: active power setpoint and max charge/discharge limits). Improve BATTERY/ESS alias mapping: battery power alias now uses the underlying datapoint unit and new aliases ctrl.maxChargePowerW/ctrl.maxDischargePowerW are generated when supported.",
+        "de": "FENECON Home ESS Modbus-Template hinzugefügt (Read: SoC, PV-/Netz-/Last-Leistung, Energiezähler; Write: Be-/Entlade-Sollwert sowie max. Be-/Entladeleistung). BATTERY/ESS-Alias-Mapping verbessert: r.power nutzt jetzt die Unit des zugrundeliegenden Datenpunkts; zusätzlich werden bei Unterstützung ctrl.maxChargePowerW/ctrl.maxDischargePowerW-Aliases angelegt."
       }
     },
     "title": "NexoWatt Devices",
