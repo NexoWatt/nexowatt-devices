@@ -61570,8 +61570,8 @@
       },
       "category": "ESS",
       "manufacturer": "FENECON",
-      "model": "home",
-      "name": "FENECON Home Speicher (Modbus)",
+      "model": "home.ess",
+      "name": "FENECON home.ess",
       "protocols": [
         "modbusTcp",
         "modbusRtu"
@@ -61579,7 +61579,7 @@
       "datapoints": [
         {
           "id": "State",
-          "name": "State (0=Ok,1=Info,2=Warning,3=Fault)",
+          "name": "FENECON home.ess",
           "role": "indicator.status",
           "type": "number",
           "rw": "ro",
@@ -61595,7 +61595,7 @@
         },
         {
           "id": "eSS_SOC_IN",
-          "name": "SOC Speicher (Input)",
+          "name": "FENECON home.ess",
           "role": "value.battery",
           "type": "number",
           "rw": "ro",
@@ -61613,7 +61613,7 @@
         },
         {
           "id": "bATTERY_POWER",
-          "name": "Speicher Wirkleistung (AC)",
+          "name": "FENECON home.ess",
           "role": "value.power",
           "type": "number",
           "rw": "ro",
