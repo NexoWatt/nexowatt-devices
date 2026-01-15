@@ -1,51 +1,51 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.22",
+    "version": "0.5.23",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
-        "de": "Adapter auf g\u00fcltige ID umbenannt (keine Punkte) und externe Template-Referenzen entfernt. Generische Built-in-Templates f\u00fcr Modbus/MQTT/HTTP erg\u00e4nzt."
+        "de": "Adapter auf gültige ID umbenannt (keine Punkte) und externe Template-Referenzen entfernt. Generische Built-in-Templates für Modbus/MQTT/HTTP ergänzt."
       },
       "0.3.0": {
         "en": "Added built-in device templates for many EV chargers (EVCS) and energy meters (Modbus). Improved Modbus driver: separate read/write mappings, byteOrder support, and value transforms.",
-        "de": "Integrierte Ger\u00e4te-Templates f\u00fcr viele Ladestationen (EVCS) und Energiez\u00e4hler (Modbus) hinzugef\u00fcgt. Modbus-Treiber verbessert: getrennte Read/Write-Mappings, ByteOrder-Unterst\u00fctzung und Wert-Transformationen."
+        "de": "Integrierte Geräte-Templates für viele Ladestationen (EVCS) und Energiezähler (Modbus) hinzugefügt. Modbus-Treiber verbessert: getrennte Read/Write-Mappings, ByteOrder-Unterstützung und Wert-Transformationen."
       },
       "0.3.1": {
         "en": "Fix adminUI definition to prevent Admin crash (adminUI must be an object with config).",
-        "de": "adminUI-Definition korrigiert, damit Admin nicht abst\u00fcrzt (adminUI muss ein Objekt mit config sein)."
+        "de": "adminUI-Definition korrigiert, damit Admin nicht abstürzt (adminUI muss ein Objekt mit config sein)."
       },
       "0.4.0": {
         "en": "Improved admin UI (theme readable, robust without Materialize JS), fixed device add/edit modal, expanded built-in templates (Wallboxes/EVCS + meters + more) and cleaned up legacy naming references.",
-        "de": "Admin-UI verbessert (theme-lesbar, robust auch ohne Materialize-JS), Ger\u00e4t hinzuf\u00fcgen/bearbeiten gefixt, integrierte Templates erweitert (Wallboxen/EVCS + Z\u00e4hler + mehr) und alte Namensreferenzen bereinigt."
+        "de": "Admin-UI verbessert (theme-lesbar, robust auch ohne Materialize-JS), Gerät hinzufügen/bearbeiten gefixt, integrierte Templates erweitert (Wallboxen/EVCS + Zähler + mehr) und alte Namensreferenzen bereinigt."
       },
       "0.4.1": {
         "en": "Admin UI: set light-gray page background and switch configuration selects to native selects for maximum compatibility. Add driver count indicator and cache-busting template load.",
-        "de": "Admin-UI: hellgrauen Hintergrund gesetzt und Auswahlfelder auf native Selects umgestellt (maximale Kompatibilit\u00e4t). Treiber-Z\u00e4hler erg\u00e4nzt und Template-Load mit Cache-Busting verbessert."
+        "de": "Admin-UI: hellgrauen Hintergrund gesetzt und Auswahlfelder auf native Selects umgestellt (maximale Kompatibilität). Treiber-Zähler ergänzt und Template-Load mit Cache-Busting verbessert."
       },
       "0.4.2": {
         "en": "Fix Admin config page scripts (adapter-settings.js/translate.js paths) so device selection works. Add automatic migration for invalid adminUI strings on host adapter objects.",
-        "de": "Fix f\u00fcr Admin-Konfigseite (korrekte Pfade zu adapter-settings.js/translate.js), damit Ger\u00e4teauswahl funktioniert. Automatische Migration f\u00fcr ung\u00fcltige adminUI-Strings in Host-Adapter-Objekten."
+        "de": "Fix für Admin-Konfigseite (korrekte Pfade zu adapter-settings.js/translate.js), damit Geräteauswahl funktioniert. Automatische Migration für ungültige adminUI-Strings in Host-Adapter-Objekten."
       },
       "0.5.0": {
         "en": "Added Modbus RTU bus sharing (RS485), UDP protocol support (e.g. KEBA), expanded built-in device library; improved serial defaults for ED-IPC3020 (/dev/com2).",
-        "de": "Modbus RTU Bus-Sharing (RS485) erg\u00e4nzt, UDP-Protokoll (z.B. KEBA) hinzugef\u00fcgt, Ger\u00e4tebibliothek erweitert; bessere RS485-Defaults f\u00fcr ED-IPC3020 (/dev/com2)."
+        "de": "Modbus RTU Bus-Sharing (RS485) ergänzt, UDP-Protokoll (z.B. KEBA) hinzugefügt, Gerätebibliothek erweitert; bessere RS485-Defaults für ED-IPC3020 (/dev/com2)."
       },
       "0.5.1": {
         "en": "Add SMA STP125-70 SunSpec Modbus PV inverter template and support dynamic scale factors via scaleFactorRef.",
-        "de": "SMA STP125-70 SunSpec-Modbus PV-Wechselrichter-Template hinzugef\u00fcgt und dynamische Skalierungsfaktoren via scaleFactorRef unterst\u00fctzt."
+        "de": "SMA STP125-70 SunSpec-Modbus PV-Wechselrichter-Template hinzugefügt und dynamische Skalierungsfaktoren via scaleFactorRef unterstützt."
       },
       "0.5.2": {
         "en": "Add minimal SMA PV inverter templates (SunSpec STP125-70 and Sunny Tripower X Modbus) with key read/control points and health/fault registers. Improve Modbus driver: BigInt values are converted to Number when safe (e.g., U64 energy counters).",
-        "de": "Minimale SMA-PV-Wechselrichter-Templates erg\u00e4nzt (SunSpec STP125-70 und Sunny Tripower X Modbus) mit wichtigen Lese-/Steuerpunkten sowie Health/Fault-Registern. Modbus-Treiber verbessert: BigInt-Werte werden \u2013 wenn sicher \u2013 als Number ausgegeben (z.B. U64-Energiez\u00e4hler)."
+        "de": "Minimale SMA-PV-Wechselrichter-Templates ergänzt (SunSpec STP125-70 und Sunny Tripower X Modbus) mit wichtigen Lese-/Steuerpunkten sowie Health/Fault-Registern. Modbus-Treiber verbessert: BigInt-Werte werden – wenn sicher – als Number ausgegeben (z.B. U64-Energiezähler)."
       },
       "0.5.3": {
         "en": "Add stable alias datapoints under devices.<id>.aliases.* so downstream logic can work across manufacturers (e.g., aliases.r.power, aliases.ctrl.powerLimitPct, aliases.alarm.fault/offline). Alias writes are forwarded to the correct vendor registers; computed alarm states are provided best-effort.",
-        "de": "Stabile Alias-Datenpunkte unter devices.<id>.aliases.* erg\u00e4nzt, damit nachgelagerte Logik hersteller\u00fcbergreifend arbeiten kann (z.B. aliases.r.power, aliases.ctrl.powerLimitPct, aliases.alarm.fault/offline). Alias-Schreibzugriffe werden auf die passenden Herstellerregister umgesetzt; Alarm-States werden best-effort berechnet."
+        "de": "Stabile Alias-Datenpunkte unter devices.<id>.aliases.* ergänzt, damit nachgelagerte Logik herstellerübergreifend arbeiten kann (z.B. aliases.r.power, aliases.ctrl.powerLimitPct, aliases.alarm.fault/offline). Alias-Schreibzugriffe werden auf die passenden Herstellerregister umgesetzt; Alarm-States werden best-effort berechnet."
       },
       "0.5.4": {
         "en": "Extend alias mapping for meters and charging stations (import/export power & energy for meters; current/power limits and unlock for chargers) and improve best-effort derived values.",
-        "de": "Alias-Mapping f\u00fcr Z\u00e4hler und Ladestationen erweitert (Import/Export-Leistung & -Energie bei Z\u00e4hlern; Strom-/Leistungsgrenzen und Unlock bei Ladestationen) und best-effort abgeleitete Werte verbessert."
+        "de": "Alias-Mapping für Zähler und Ladestationen erweitert (Import/Export-Leistung & -Energie bei Zählern; Strom-/Leistungsgrenzen und Unlock bei Ladestationen) und best-effort abgeleitete Werte verbessert."
       },
       "0.5.5": {
         "en": "Extend stable aliases to batteries/ESS (SoC/SoH, battery power, charge/discharge split, allowed power, setpoints, and conservative fault/warning detection).",
@@ -53,19 +53,19 @@
       },
       "0.5.6": {
         "en": "Improve SMA SunSpec interoperability: add optional SunSpec auto-discovery (detect SunS signature to auto-adjust base/offset and unitId).",
-        "de": "SMA SunSpec-Interoperabilit\u00e4t verbessert: optionales SunSpec Auto-Discovery (SunS-Signatur erkennen, Base/Offset und UnitId automatisch anpassen)."
+        "de": "SMA SunSpec-Interoperabilität verbessert: optionales SunSpec Auto-Discovery (SunS-Signatur erkennen, Base/Offset und UnitId automatisch anpassen)."
       },
       "0.5.7": {
         "en": "Add SMA PV inverter minimal templates for STPxx-US-41 and STPxx-50 (SMA Modbus). Improve PV inverter run control alias (support SMA Fast shut-down / FstStop). Improve SunSpec auto-discovery by also probing unitId=(configured unitId + 123).",
-        "de": "Minimale SMA-PV-Wechselrichter-Templates f\u00fcr STPxx-US-41 und STPxx-50 (SMA Modbus) hinzugef\u00fcgt. PV-Inverter Run-Control Alias verbessert (SMA Fast shut-down / FstStop unterst\u00fctzt). SunSpec Auto-Discovery verbessert (zus\u00e4tzlich unitId=(konfigurierte UnitId + 123) pr\u00fcfen)."
+        "de": "Minimale SMA-PV-Wechselrichter-Templates für STPxx-US-41 und STPxx-50 (SMA Modbus) hinzugefügt. PV-Inverter Run-Control Alias verbessert (SMA Fast shut-down / FstStop unterstützt). SunSpec Auto-Discovery verbessert (zusätzlich unitId=(konfigurierte UnitId + 123) prüfen)."
       },
       "0.5.8": {
         "en": "Fix Admin template list (sync admin/templates.json) so new built-in templates appear in the UI. Fix Janitza meter scaling (remove unintended x1000 multiplier on float values).",
-        "de": "Admin-Template-Liste korrigiert (admin/templates.json synchronisiert), damit neue Built-in-Templates in der UI erscheinen. Janitza-Z\u00e4hler-Skalierung korrigiert (unbeabsichtigten x1000-Faktor bei Float-Werten entfernt)."
+        "de": "Admin-Template-Liste korrigiert (admin/templates.json synchronisiert), damit neue Built-in-Templates in der UI erscheinen. Janitza-Zähler-Skalierung korrigiert (unbeabsichtigten x1000-Faktor bei Float-Werten entfernt)."
       },
       "0.5.9": {
         "en": "Improve meter alias resolution (prefer canonical import/export IDs) and enhance Janitza UMG604 template (add active power; remove misleading duplicate energy IDs).",
-        "de": "Alias-Aufl\u00f6sung f\u00fcr Z\u00e4hler verbessert (kanonische Import/Export-IDs werden bevorzugt) und Janitza UMG604 Template erweitert (Wirkleistung erg\u00e4nzt; irref\u00fchrende doppelte Energie-IDs entfernt)."
+        "de": "Alias-Auflösung für Zähler verbessert (kanonische Import/Export-IDs werden bevorzugt) und Janitza UMG604 Template erweitert (Wirkleistung ergänzt; irreführende doppelte Energie-IDs entfernt)."
       },
       "0.5.10": {
         "en": "Improve Modbus error diagnostics (transport vs Modbus-layer hints) and treat timeoutMs=0 as \"use default\".",
@@ -73,19 +73,19 @@
       },
       "0.5.11": {
         "en": "Add SolaX Hybrid X1/X3 ESS Modbus template (PV power, SoC, battery power and VPP battery power target control) and expose PV power via aliases for ESS devices.",
-        "de": "SolaX Hybrid X1/X3 ESS Modbus-Template hinzugef\u00fcgt (PV-Leistung, SoC, Batterieleistung sowie VPP-Batterie-Leistungs-Sollwert) und PV-Leistung als Alias f\u00fcr ESS-Ger\u00e4te verf\u00fcgbar gemacht."
+        "de": "SolaX Hybrid X1/X3 ESS Modbus-Template hinzugefügt (PV-Leistung, SoC, Batterieleistung sowie VPP-Batterie-Leistungs-Sollwert) und PV-Leistung als Alias für ESS-Geräte verfügbar gemacht."
       },
       "0.5.12": {
         "en": "Add optional Modbus write password field and template-defined write-unlock sequence (used for SolaX VPP write commands).",
-        "de": "Optionales Modbus-Schreibpasswort erg\u00e4nzt und template-definierte Write-Unlock-Sequenz implementiert (f\u00fcr SolaX VPP-Schreibbefehle)."
+        "de": "Optionales Modbus-Schreibpasswort ergänzt und template-definierte Write-Unlock-Sequenz implementiert (für SolaX VPP-Schreibbefehle)."
       },
       "0.5.15": {
         "en": "Add TESVOLT Energy Manager (Vermarkter-Schnittstelle) Modbus TCP template with PV limit, grid/NAP setpoint and battery power control (incl. stable aliases).",
-        "de": "TESVOLT Energy Manager (Vermarkter-Schnittstelle) Modbus-TCP-Template erg\u00e4nzt: PV-Abregelung, Netzanschlusspunkt/NAP-Sollwert und Batterie-Leistungssteuerung (inkl. stabiler Aliases)."
+        "de": "TESVOLT Energy Manager (Vermarkter-Schnittstelle) Modbus-TCP-Template ergänzt: PV-Abregelung, Netzanschlusspunkt/NAP-Sollwert und Batterie-Leistungssteuerung (inkl. stabiler Aliases)."
       },
       "0.5.16": {
         "en": "Add template-defined Modbus auto-watchdog writer (periodic watchdog register updates) and enable it for TESVOLT Energy Manager VK interface.",
-        "de": "Template-definierten Modbus Auto-Watchdog-Writer erg\u00e4nzt (periodisches Beschreiben der Watchdog-Register) und f\u00fcr TESVOLT Energy Manager Vermarkter-Schnittstelle aktiviert."
+        "de": "Template-definierten Modbus Auto-Watchdog-Writer ergänzt (periodisches Beschreiben der Watchdog-Register) und für TESVOLT Energy Manager Vermarkter-Schnittstelle aktiviert."
       },
       "0.5.17": {
         "en": "Auto-watchdog fail-safe: watchdog registers are only refreshed while control setpoints are actively updated. Optional automatic disable of VK control when setpoints are stale (TESVOLT).",
@@ -93,19 +93,23 @@
       },
       "0.5.18": {
         "en": "Improve Janitza meter templates (UMG604/604-PRO and new UMG96-PA): scale power/energy to kW/kWh, add proper units/roles, and support per-datapoint rounding. Existing objects are extended so unit/role updates apply without manual deletion.",
-        "de": "Janitza-Z\u00e4hler-Templates verbessert (UMG604/604-PRO sowie neu UMG96-PA): Leistung/Energie auf kW/kWh skaliert, korrekte Units/Rollen erg\u00e4nzt und Rundung pro Datenpunkt unterst\u00fctzt. Vorhandene Objekte werden per extend aktualisiert, sodass Unit/Role-Updates ohne manuelles L\u00f6schen greifen."
+        "de": "Janitza-Zähler-Templates verbessert (UMG604/604-PRO sowie neu UMG96-PA): Leistung/Energie auf kW/kWh skaliert, korrekte Units/Rollen ergänzt und Rundung pro Datenpunkt unterstützt. Vorhandene Objekte werden per extend aktualisiert, sodass Unit/Role-Updates ohne manuelles Löschen greifen."
       },
       "0.5.19": {
         "en": "Keep alias objects in sync across updates (extendObject). This ensures consistent alias units/roles (e.g. kW) without having to delete alias states manually.",
-        "de": "Alias-Objekte werden bei Updates ebenfalls per extend aktualisiert. Dadurch bleiben Units/Rollen der Aliases (z.B. kW) konsistent, ohne dass Alias-States manuell gel\u00f6scht werden m\u00fcssen."
+        "de": "Alias-Objekte werden bei Updates ebenfalls per extend aktualisiert. Dadurch bleiben Units/Rollen der Aliases (z.B. kW) konsistent, ohne dass Alias-States manuell gelöscht werden müssen."
       },
       "0.5.21": {
         "en": "Add built-in PV inverter template for SolaX X3-MEGA G2 / X3-FORTH (Modbus RTU) with key read/control points and kW/kWh scaling. Extend PV inverter alias mapping: ctrl.run also supports vendor command registers (0xAF start / 0xAE stop).",
-        "de": "PV-Wechselrichter-Template f\u00fcr SolaX X3-MEGA G2 / X3-FORTH (Modbus RTU) erg\u00e4nzt (wichtige Lese-/Steuerpunkte, Skalierung kW/kWh). PV-Inverter-Alias-Mapping erweitert: ctrl.run unterst\u00fctzt nun auch herstellerspezifische Command-Register (0xAF Start / 0xAE Stop)."
+        "de": "PV-Wechselrichter-Template für SolaX X3-MEGA G2 / X3-FORTH (Modbus RTU) ergänzt (wichtige Lese-/Steuerpunkte, Skalierung kW/kWh). PV-Inverter-Alias-Mapping erweitert: ctrl.run unterstützt nun auch herstellerspezifische Command-Register (0xAF Start / 0xAE Stop)."
       },
       "0.5.22": {
         "en": "Add built-in EV charger template for SolaX X1/X3-HAC EV-Charger G2 (Modbus RTU/TCP) with key read/control points and kW/kWh scaling. Improve EVCS alias mapping: ctrl.run supports command-style control registers (start=4/stop=3) when paired with an EVSE state register.",
-        "de": "EV-Ladestations-Template f\u00fcr SolaX X1/X3-HAC EV-Charger G2 (Modbus RTU/TCP) erg\u00e4nzt (wichtige Lese-/Steuerpunkte, Skalierung kW/kWh). EVCS-Alias-Mapping verbessert: ctrl.run unterst\u00fctzt nun auch Command-Register (Start=4/Stop=3) in Kombination mit EVSE-State."
+        "de": "EV-Ladestations-Template für SolaX X1/X3-HAC EV-Charger G2 (Modbus RTU/TCP) ergänzt (wichtige Lese-/Steuerpunkte, Skalierung kW/kWh). EVCS-Alias-Mapping verbessert: ctrl.run unterstützt nun auch Command-Register (Start=4/Stop=3) in Kombination mit EVSE-State."
+      },
+      "0.5.23": {
+        "en": "Fix Modbus reconnect on dropped sockets (\"Port Not Open\"), enable TCP keepalive (best-effort), and throttle repetitive error logs. Improve error hints for closed ports and proactively disconnect on transport errors.",
+        "de": "Fix für Modbus-Reconnect bei abgerissenen Verbindungen (\"Port Not Open\"), TCP-Keepalive (best-effort) und Drosselung wiederholter Fehlermeldungen. Verbesserte Hinweise bei geschlossenen Ports und proaktives Disconnect bei Transport-Fehlern."
       }
     },
     "title": "NexoWatt Devices",
@@ -115,7 +119,7 @@
     },
     "desc": {
       "en": "Multi-protocol device adapter (Modbus TCP/RTU, MQTT, HTTP/JSON) with category-based configuration.",
-      "de": "Multi-Protokoll Ger\u00e4teadapter (Modbus TCP/RTU, MQTT, HTTP/JSON) mit kategoriebasierter Konfiguration."
+      "de": "Multi-Protokoll Geräteadapter (Modbus TCP/RTU, MQTT, HTTP/JSON) mit kategoriebasierter Konfiguration."
     },
     "authors": [
       "Nexowatt"
