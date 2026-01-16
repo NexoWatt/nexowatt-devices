@@ -58502,7 +58502,9 @@
                 }
               ]
             }
-          ]
+          ],
+          "minCommandIntervalMs": 1000,
+          "reconnectBackoffMs": 2000
         }
       },
       "datapoints": [
@@ -59540,7 +59542,9 @@
                 }
               ]
             }
-          ]
+          ],
+          "minCommandIntervalMs": 1000,
+          "reconnectBackoffMs": 2000
         }
       },
       "datapoints": [
@@ -61226,7 +61230,13 @@
           }
         }
       ],
-      "notes": "Based on SolaX X1/X3-HAC EV charger Modbus RTU/TCP protocol v1.0.0 (2024-06-25). Input registers (FC=04) and holding registers (FC=03/06). Power values are exposed in kW (scaled from W), energies in kWh. 32-bit values are read with little-endian word order. Device docs recommend a minimum interval of 1s between Modbus commands."
+      "notes": "Based on SolaX X1/X3-HAC EV charger Modbus RTU/TCP protocol v1.0.0 (2024-06-25). Input registers (FC=04) and holding registers (FC=03/06). Power values are exposed in kW (scaled from W), energies in kWh. 32-bit values are read with little-endian word order. Device docs recommend a minimum interval of 1s between Modbus commands.",
+      "driverHints": {
+        "modbus": {
+          "minCommandIntervalMs": 1000,
+          "reconnectBackoffMs": 2000
+        }
+      }
     },
     {
       "id": "meter.sma.SmaEnergyMeterSpeedwireImpl",
@@ -61561,8 +61571,7 @@
           }
         }
       ]
-    }
-    ,
+    },
     {
       "id": "ess.fenecon.FeneconHomeEssImpl",
       "source": {
@@ -62140,6 +62149,5 @@
         }
       ]
     }
-
   ]
 }
