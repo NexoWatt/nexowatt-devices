@@ -58502,6 +58502,28 @@
                 }
               ]
             }
+          ],
+          "minCommandIntervalMs": 1000,
+          "reconnectBackoffMs": 2000
+        },
+        "polling": {
+          "fastIntervalMs": 5000,
+          "slowIntervalMs": 60000,
+          "fastDpIds": [
+            "iNVERTER_RUN_MODE",
+            "bATTERY_VOLTAGE",
+            "bATTERY_CURRENT",
+            "bMS1_CONNECTED",
+            "bATTERY_TEMPERATURE",
+            "bDC_STATUS",
+            "bMS1_SOC",
+            "pV_POWER",
+            "gRID_POWER",
+            "bATTERY_POWER",
+            "bATTERY_CAPACITY",
+            "sOC",
+            "sOH",
+            "iNVERTER_LOCK_STATE"
           ]
         }
       },
@@ -59540,6 +59562,24 @@
                 }
               ]
             }
+          ],
+          "minCommandIntervalMs": 1000,
+          "reconnectBackoffMs": 2000
+        },
+        "polling": {
+          "fastIntervalMs": 5000,
+          "slowIntervalMs": 60000,
+          "fastDpIds": [
+            "pV_POWER",
+            "gRID_POWER",
+            "bATTERY_POWER",
+            "lOAD_POWER",
+            "sOC",
+            "aLLOWED_CHARGE_POWER",
+            "aLLOWED_DISCHARGE_POWER",
+            "eNERGY_CONTROL_STATE",
+            "aCTIVE_POWER_TOTAL",
+            "sYSTEM_OPERATING_STATUS"
           ]
         }
       },
@@ -60783,7 +60823,16 @@
           }
         }
       ],
-      "notes": "Registers from SolaX Power three phase inverter X3-MEGA G2/X3-FORTH Modbus-RTU protocol v1.1 (2023-05-16). Addresses in this template are decimal equivalents of the hex addresses in the PDF. Active power is exposed in kW (scaled from W), energies in kWh."
+      "notes": "Registers from SolaX Power three phase inverter X3-MEGA G2/X3-FORTH Modbus-RTU protocol v1.1 (2023-05-16). Addresses in this template are decimal equivalents of the hex addresses in the PDF. Active power is exposed in kW (scaled from W), energies in kWh.",
+      "driverHints": {
+        "polling": {
+          "fastIntervalMs": 5000
+        },
+        "modbus": {
+          "minCommandIntervalMs": 1000,
+          "reconnectBackoffMs": 2000
+        }
+      }
     },
     {
       "id": "evcs.solax.SolaXHacG2",
@@ -61226,7 +61275,16 @@
           }
         }
       ],
-      "notes": "Based on SolaX X1/X3-HAC EV charger Modbus RTU/TCP protocol v1.0.0 (2024-06-25). Input registers (FC=04) and holding registers (FC=03/06). Power values are exposed in kW (scaled from W), energies in kWh. 32-bit values are read with little-endian word order. Device docs recommend a minimum interval of 1s between Modbus commands."
+      "notes": "Based on SolaX X1/X3-HAC EV charger Modbus RTU/TCP protocol v1.0.0 (2024-06-25). Input registers (FC=04) and holding registers (FC=03/06). Power values are exposed in kW (scaled from W), energies in kWh. 32-bit values are read with little-endian word order. Device docs recommend a minimum interval of 1s between Modbus commands.",
+      "driverHints": {
+        "polling": {
+          "fastIntervalMs": 5000
+        },
+        "modbus": {
+          "minCommandIntervalMs": 1000,
+          "reconnectBackoffMs": 2000
+        }
+      }
     },
     {
       "id": "meter.sma.SmaEnergyMeterSpeedwireImpl",
