@@ -61561,8 +61561,7 @@
           }
         }
       ]
-    }
-    ,
+    },
     {
       "id": "ess.fenecon.FeneconHomeEssImpl",
       "source": {
@@ -62139,7 +62138,1180 @@
           }
         }
       ]
+    },
+    {
+      "id": "pv_inverter.solarlog.SolarLogDpmDirectMarketing",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "PV_INVERTER",
+      "manufacturer": "Solar-Log",
+      "model": "DPM (Direktvermarkter)",
+      "name": "Solar-Log DPM (Direktvermarktung Modbus TCP)",
+      "protocols": [
+        "modbusTcp"
+      ],
+      "driverHints": {
+        "modbus": {
+          "autoWatchdog": {
+            "enabled": true,
+            "periodMs": 60000,
+            "startDelayMs": 3000,
+            "sequenceMin": 1,
+            "sequenceMax": 1000,
+            "targets": [
+              {
+                "dpId": "WatchDog_Tag"
+              }
+            ]
+          }
+        }
+      },
+      "datapoints": [
+        {
+          "id": "Status",
+          "name": "Status",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10900,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "ProdW",
+          "name": "Production Power",
+          "role": "value.power",
+          "type": "number",
+          "unit": "kW",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10904,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le",
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "PossibleProdW",
+          "name": "Possible Production Power",
+          "role": "value.power",
+          "type": "number",
+          "unit": "kW",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10906,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le",
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "ConsW",
+          "name": "Consumption Power",
+          "role": "value.power",
+          "type": "number",
+          "unit": "kW",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10908,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le",
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "GridfeedW",
+          "name": "Grid Feed-In (+) / Purchase (-)",
+          "role": "value.power",
+          "type": "number",
+          "unit": "kW",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10910,
+            "length": 2,
+            "dataType": "int32",
+            "wordOrder": "le",
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "Charge",
+          "name": "Battery Charge Power",
+          "role": "value.power",
+          "type": "number",
+          "unit": "kW",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10912,
+            "length": 2,
+            "dataType": "int32",
+            "wordOrder": "le",
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "Discharge",
+          "name": "Battery Discharge Power",
+          "role": "value.power",
+          "type": "number",
+          "unit": "kW",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10914,
+            "length": 2,
+            "dataType": "int32",
+            "wordOrder": "le",
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "PLimitPercN",
+          "name": "Utility Limit Stage (%)",
+          "role": "value",
+          "type": "number",
+          "unit": "%",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10901,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "PLimitN",
+          "name": "Utility Limit Stage (kW)",
+          "role": "value.power",
+          "type": "number",
+          "unit": "kW",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10902,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "PLimit_Type",
+          "name": "Active Power Limit Type",
+          "role": "value",
+          "type": "number",
+          "rw": "wo",
+          "source": {
+            "kind": "modbus",
+            "write": {
+              "fc": 6,
+              "address": 10400,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "PLimitPerc",
+          "name": "Active Power Limit (%)",
+          "role": "level",
+          "type": "number",
+          "unit": "%",
+          "decimals": 0,
+          "rw": "wo",
+          "source": {
+            "kind": "modbus",
+            "write": {
+              "fc": 6,
+              "address": 10401,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "WatchDog_Tag",
+          "name": "WatchDog Tag",
+          "role": "value",
+          "type": "number",
+          "rw": "wo",
+          "source": {
+            "kind": "modbus",
+            "write": {
+              "fc": 16,
+              "address": 10404,
+              "length": 2,
+              "dataType": "uint32",
+              "wordOrder": "le"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "pv_inverter.solarlog.SolarLogPmV2PowerManagement",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "PV_INVERTER",
+      "manufacturer": "Solar-Log",
+      "model": "PM V2 (Power Management)",
+      "name": "Solar-Log PM V2 (Power Management Modbus TCP)",
+      "protocols": [
+        "modbusTcp"
+      ],
+      "driverHints": {
+        "modbus": {
+          "autoWatchdog": {
+            "enabled": true,
+            "periodMs": 60000,
+            "startDelayMs": 3000,
+            "sequenceMin": 1,
+            "sequenceMax": 1000,
+            "targets": [
+              {
+                "dpId": "WatchDog_Tag"
+              }
+            ]
+          }
+        }
+      },
+      "datapoints": [
+        {
+          "id": "PLimit_Type",
+          "name": "Active Power Limit Type",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 10200,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 10200,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "PLimitPerc",
+          "name": "Active Power Limit (%)",
+          "role": "level",
+          "type": "number",
+          "unit": "%",
+          "decimals": 0,
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 10201,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 10201,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "Reactive_Type",
+          "name": "Reactive Power Control Type",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 10204,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 10204,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "CosPhi_Fix",
+          "name": "CosPhi Fix",
+          "role": "value",
+          "type": "number",
+          "decimals": 3,
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 10205,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            },
+            "write": {
+              "fc": 16,
+              "address": 10205,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "QPerc",
+          "name": "Reactive Power Q (%) of Pn",
+          "role": "value",
+          "type": "number",
+          "unit": "%",
+          "decimals": 1,
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -1,
+            "read": {
+              "fc": 4,
+              "address": 10209,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 10209,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "WatchDog_Tag",
+          "name": "WatchDog Tag",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 10211,
+              "length": 2,
+              "dataType": "uint32",
+              "wordOrder": "le"
+            },
+            "write": {
+              "fc": 16,
+              "address": 10211,
+              "length": 2,
+              "dataType": "uint32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "WatchDog_Time",
+          "name": "WatchDog Timeout",
+          "role": "value.interval",
+          "type": "number",
+          "unit": "s",
+          "decimals": 0,
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 10213,
+              "length": 2,
+              "dataType": "uint32",
+              "wordOrder": "le"
+            },
+            "write": {
+              "fc": 16,
+              "address": 10213,
+              "length": 2,
+              "dataType": "uint32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "WatchDog_Limit",
+          "name": "WatchDog Fallback Active Power Limit (%)",
+          "role": "level",
+          "type": "number",
+          "unit": "%",
+          "decimals": 0,
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 10215,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 10215,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "Utility_connect_good",
+          "name": "Utility Data Valid",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 10216,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 6,
+              "address": 10216,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Utility_fUacRS",
+          "name": "Utility Voltage UacRS",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "decimals": 1,
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 10218,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            },
+            "write": {
+              "fc": 16,
+              "address": 10218,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "Utility_fUacST",
+          "name": "Utility Voltage UacST",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "decimals": 1,
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 10220,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            },
+            "write": {
+              "fc": 16,
+              "address": 10220,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "Utility_fUacTR",
+          "name": "Utility Voltage UacTR",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "decimals": 1,
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 10222,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            },
+            "write": {
+              "fc": 16,
+              "address": 10222,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "Utility_fPacR",
+          "name": "Utility Active Power Phase R",
+          "role": "value.power",
+          "type": "number",
+          "unit": "kW",
+          "decimals": 2,
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -3,
+            "read": {
+              "fc": 4,
+              "address": 10224,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            },
+            "write": {
+              "fc": 16,
+              "address": 10224,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "Utility_fPacS",
+          "name": "Utility Active Power Phase S",
+          "role": "value.power",
+          "type": "number",
+          "unit": "kW",
+          "decimals": 2,
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -3,
+            "read": {
+              "fc": 4,
+              "address": 10226,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            },
+            "write": {
+              "fc": 16,
+              "address": 10226,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "Utility_fPacT",
+          "name": "Utility Active Power Phase T",
+          "role": "value.power",
+          "type": "number",
+          "unit": "kW",
+          "decimals": 2,
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -3,
+            "read": {
+              "fc": 4,
+              "address": 10228,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            },
+            "write": {
+              "fc": 16,
+              "address": 10228,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "Utility_fQacR",
+          "name": "Utility Reactive Power Phase R",
+          "role": "value",
+          "type": "number",
+          "unit": "kVar",
+          "decimals": 2,
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -3,
+            "read": {
+              "fc": 4,
+              "address": 10230,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            },
+            "write": {
+              "fc": 16,
+              "address": 10230,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "Utility_fQacS",
+          "name": "Utility Reactive Power Phase S",
+          "role": "value",
+          "type": "number",
+          "unit": "kVar",
+          "decimals": 2,
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -3,
+            "read": {
+              "fc": 4,
+              "address": 10232,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            },
+            "write": {
+              "fc": 16,
+              "address": 10232,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "Utility_fQacT",
+          "name": "Utility Reactive Power Phase T",
+          "role": "value",
+          "type": "number",
+          "unit": "kVar",
+          "decimals": 2,
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -3,
+            "read": {
+              "fc": 4,
+              "address": 10234,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            },
+            "write": {
+              "fc": 16,
+              "address": 10234,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "Uq0_Uc",
+          "name": "Reference Voltage Uq0/Uc",
+          "role": "value",
+          "type": "number",
+          "decimals": 3,
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 10242,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            },
+            "write": {
+              "fc": 16,
+              "address": 10242,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "Qref_Pbinst",
+          "name": "Qref/Pbinst",
+          "role": "value",
+          "type": "number",
+          "unit": "%",
+          "decimals": 1,
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 10244,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            },
+            "write": {
+              "fc": 16,
+              "address": 10244,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "Qref_total",
+          "name": "Qref_total",
+          "role": "value",
+          "type": "number",
+          "unit": "kVar",
+          "decimals": 2,
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -3,
+            "read": {
+              "fc": 4,
+              "address": 10246,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            },
+            "write": {
+              "fc": 16,
+              "address": 10246,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "Qref_type",
+          "name": "Qref_type",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 10248,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 10248,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "lastUpdateTime",
+          "name": "Last Update Time (Unix)",
+          "role": "value.time",
+          "type": "number",
+          "unit": "s",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10500,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "PLimit_Confirm",
+          "name": "Active Power Limit Confirm (%)",
+          "role": "value",
+          "type": "number",
+          "unit": "%",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10502,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "Pac",
+          "name": "Active Power (Grid)",
+          "role": "value.power",
+          "type": "number",
+          "unit": "kW",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -3,
+            "fc": 4,
+            "address": 10503,
+            "length": 2,
+            "dataType": "int32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "Iac",
+          "name": "Current Iac",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -2,
+            "fc": 4,
+            "address": 10505,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "Uac",
+          "name": "Voltage Uac",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10507,
+            "length": 1,
+            "dataType": "int16"
+          }
+        },
+        {
+          "id": "Fac",
+          "name": "Frequency",
+          "role": "value.frequency",
+          "type": "number",
+          "unit": "Hz",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -2,
+            "fc": 4,
+            "address": 10508,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "CosPhi",
+          "name": "Power Factor (CosPhi)",
+          "role": "value",
+          "type": "number",
+          "decimals": 3,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -3,
+            "fc": 4,
+            "address": 10509,
+            "length": 1,
+            "dataType": "int16"
+          }
+        },
+        {
+          "id": "QPerc_confirm",
+          "name": "Reactive Power Q (%) confirm",
+          "role": "value",
+          "type": "number",
+          "unit": "%",
+          "decimals": 1,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -1,
+            "fc": 4,
+            "address": 10510,
+            "length": 1,
+            "dataType": "int16"
+          }
+        },
+        {
+          "id": "Q",
+          "name": "Reactive Power Q",
+          "role": "value",
+          "type": "number",
+          "unit": "kVar",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -3,
+            "fc": 4,
+            "address": 10511,
+            "length": 2,
+            "dataType": "int32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "SolarIrradiation",
+          "name": "Solar Irradiation",
+          "role": "value",
+          "type": "number",
+          "unit": "W/m2",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10513,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "ModuleTemp",
+          "name": "Module Temperature",
+          "role": "value.temperature",
+          "type": "number",
+          "unit": "°C",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10514,
+            "length": 1,
+            "dataType": "int16"
+          }
+        },
+        {
+          "id": "AmbientTemp",
+          "name": "Ambient Temperature",
+          "role": "value.temperature",
+          "type": "number",
+          "unit": "°C",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10515,
+            "length": 1,
+            "dataType": "int16"
+          }
+        },
+        {
+          "id": "WindSpeed",
+          "name": "Wind Speed",
+          "role": "value.speed",
+          "type": "number",
+          "unit": "m/s",
+          "decimals": 1,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -1,
+            "fc": 4,
+            "address": 10516,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "UacRS",
+          "name": "Voltage Uac (Phase 1-2)",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10518,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "UacST",
+          "name": "Voltage Uac (Phase 2-3)",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10519,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "UacTR",
+          "name": "Voltage Uac (Phase 3-1)",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10520,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "IacL1",
+          "name": "Current Iac (L1)",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -2,
+            "fc": 4,
+            "address": 10521,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "IacL2",
+          "name": "Current Iac (L2)",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -2,
+            "fc": 4,
+            "address": 10523,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "IacL3",
+          "name": "Current Iac (L3)",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -2,
+            "fc": 4,
+            "address": 10525,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "Uac_inverter",
+          "name": "Voltage Uac (Inverters)",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10527,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "Iac_inverter",
+          "name": "Current Iac (Inverters)",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "scaleFactor": -2,
+            "fc": 4,
+            "address": 10528,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        }
+      ]
     }
-
   ]
 }

@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.28",
+    "version": "0.5.29",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
@@ -126,6 +126,10 @@
       "0.5.27": {
         "en": "Fix admin UI driver list: sync admin/templates.json with runtime templates. Add FENECON home.ess ESS Modbus template to the selection list (read SoC/PV/grid/load/energy; write signed active power setpoint and max charge/discharge limits).",
         "de": "Fix für die Admin-UI Treiberliste: admin/templates.json wird wieder mit den Runtime-Templates synchronisiert. FENECON home.ess ESS Modbus-Template ist nun in der Auswahl sichtbar (Read: SoC/PV/Netz/Last/Energie; Write: vorzeichenbehafteter Wirkleistungs-Sollwert sowie max. Be-/Entladeleistung)."
+      },
+      "0.5.29": {
+        "en": "Add Solar-Log Modbus TCP templates: DPM (direct marketing) + PM V2 (power management). Includes auto-watchdog and unit scaling (kW/kVar, 2 decimals).",
+        "de": "Solar-Log Modbus-TCP-Templates ergänzt: DPM (Direktvermarktung) + PM V2 (Power Management). Inkl. Auto-Watchdog und einheitlicher Skalierung (kW/kVar, 2 Dezimalstellen)."
       }
     },
     "title": "NexoWatt Devices",
