@@ -63370,6 +63370,2460 @@
           }
         }
       ]
+    },
+    {
+      "id": "io.wut.WebIoDigital4_57733_4xInOutImpl",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "IO",
+      "manufacturer": "W&T",
+      "model": "#57733 4xIn/Out",
+      "name": "Web-IO Digital 4.0 (ModbusTCP)",
+      "protocols": [
+        "modbusTcp"
+      ],
+      "datapoints": [
+        {
+          "id": "Input0",
+          "name": "Input 0",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4096,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input1",
+          "name": "Input 1",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4097,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input2",
+          "name": "Input 2",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4098,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input3",
+          "name": "Input 3",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4099,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output0",
+          "name": "Output 0",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4128,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4128,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output1",
+          "name": "Output 1",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4129,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4129,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output2",
+          "name": "Output 2",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4130,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4130,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output3",
+          "name": "Output 3",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4131,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4131,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Counter0",
+          "name": "Counter 0",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20486,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20486,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter1",
+          "name": "Counter 1",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20488,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20488,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter2",
+          "name": "Counter 2",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20490,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20490,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter3",
+          "name": "Counter 3",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20492,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20492,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "DiagErrorCount",
+          "name": "Diagnostic error count",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20554,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20554,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "ExceptConfState",
+          "name": "Exception/Config state (low/high byte)",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 8205,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "SerialNumber",
+          "name": "Serial number",
+          "type": "string",
+          "role": "info.serial",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 24576,
+              "length": 4,
+              "dataType": "uint64"
+            }
+          }
+        },
+        {
+          "id": "EthernetAddress",
+          "name": "Ethernet address (raw)",
+          "type": "string",
+          "role": "info.mac",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 24580,
+              "length": 4,
+              "dataType": "uint64"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "io.wut.WebIoDigital4_57736_16xInOutImpl",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "IO",
+      "manufacturer": "W&T",
+      "model": "#57736 16xIn/Out",
+      "name": "Web-IO Digital 4.0 (ModbusTCP)",
+      "protocols": [
+        "modbusTcp"
+      ],
+      "datapoints": [
+        {
+          "id": "Input0",
+          "name": "Input 0",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4096,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input1",
+          "name": "Input 1",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4097,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input2",
+          "name": "Input 2",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4098,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input3",
+          "name": "Input 3",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4099,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input4",
+          "name": "Input 4",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4100,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input5",
+          "name": "Input 5",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4101,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input6",
+          "name": "Input 6",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4102,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input7",
+          "name": "Input 7",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4103,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input8",
+          "name": "Input 8",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4104,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input9",
+          "name": "Input 9",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4105,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input10",
+          "name": "Input 10",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4106,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input11",
+          "name": "Input 11",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4107,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input12",
+          "name": "Input 12",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4108,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input13",
+          "name": "Input 13",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4109,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input14",
+          "name": "Input 14",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4110,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input15",
+          "name": "Input 15",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4111,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output0",
+          "name": "Output 0",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4128,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4128,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output1",
+          "name": "Output 1",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4129,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4129,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output2",
+          "name": "Output 2",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4130,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4130,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output3",
+          "name": "Output 3",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4131,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4131,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output4",
+          "name": "Output 4",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4132,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4132,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output5",
+          "name": "Output 5",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4133,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4133,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output6",
+          "name": "Output 6",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4134,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4134,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output7",
+          "name": "Output 7",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4135,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4135,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output8",
+          "name": "Output 8",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4136,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4136,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output9",
+          "name": "Output 9",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4137,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4137,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output10",
+          "name": "Output 10",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4138,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4138,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output11",
+          "name": "Output 11",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4139,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4139,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output12",
+          "name": "Output 12",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4140,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4140,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output13",
+          "name": "Output 13",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4141,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4141,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output14",
+          "name": "Output 14",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4142,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4142,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output15",
+          "name": "Output 15",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4143,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4143,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Counter0",
+          "name": "Counter 0",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20486,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20486,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter1",
+          "name": "Counter 1",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20488,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20488,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter2",
+          "name": "Counter 2",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20490,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20490,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter3",
+          "name": "Counter 3",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20492,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20492,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter4",
+          "name": "Counter 4",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20494,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20494,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter5",
+          "name": "Counter 5",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20496,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20496,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter6",
+          "name": "Counter 6",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20498,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20498,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter7",
+          "name": "Counter 7",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20500,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20500,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter8",
+          "name": "Counter 8",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20502,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20502,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter9",
+          "name": "Counter 9",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20504,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20504,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter10",
+          "name": "Counter 10",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20506,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20506,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter11",
+          "name": "Counter 11",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20508,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20508,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter12",
+          "name": "Counter 12",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20510,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20510,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter13",
+          "name": "Counter 13",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20512,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20512,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter14",
+          "name": "Counter 14",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20514,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20514,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter15",
+          "name": "Counter 15",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20516,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20516,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "DiagErrorCount",
+          "name": "Diagnostic error count",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20554,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20554,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "ExceptConfState",
+          "name": "Exception/Config state (low/high byte)",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 8205,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "SerialNumber",
+          "name": "Serial number",
+          "type": "string",
+          "role": "info.serial",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 24576,
+              "length": 4,
+              "dataType": "uint64"
+            }
+          }
+        },
+        {
+          "id": "EthernetAddress",
+          "name": "Ethernet address (raw)",
+          "type": "string",
+          "role": "info.mac",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 24580,
+              "length": 4,
+              "dataType": "uint64"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "io.wut.WebIoDigital4_57756_Logger16xInOutImpl",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "IO",
+      "manufacturer": "W&T",
+      "model": "#57756 Digital Logger 16xIn/Out",
+      "name": "Web-IO Digital 4.0 Logger (ModbusTCP)",
+      "protocols": [
+        "modbusTcp"
+      ],
+      "datapoints": [
+        {
+          "id": "Input0",
+          "name": "Input 0",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4096,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input1",
+          "name": "Input 1",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4097,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input2",
+          "name": "Input 2",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4098,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input3",
+          "name": "Input 3",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4099,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input4",
+          "name": "Input 4",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4100,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input5",
+          "name": "Input 5",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4101,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input6",
+          "name": "Input 6",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4102,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input7",
+          "name": "Input 7",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4103,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input8",
+          "name": "Input 8",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4104,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input9",
+          "name": "Input 9",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4105,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input10",
+          "name": "Input 10",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4106,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input11",
+          "name": "Input 11",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4107,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input12",
+          "name": "Input 12",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4108,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input13",
+          "name": "Input 13",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4109,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input14",
+          "name": "Input 14",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4110,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Input15",
+          "name": "Input 15",
+          "type": "boolean",
+          "role": "sensor",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 2,
+              "address": 4111,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output0",
+          "name": "Output 0",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4128,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4128,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output1",
+          "name": "Output 1",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4129,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4129,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output2",
+          "name": "Output 2",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4130,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4130,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output3",
+          "name": "Output 3",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4131,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4131,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output4",
+          "name": "Output 4",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4132,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4132,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output5",
+          "name": "Output 5",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4133,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4133,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output6",
+          "name": "Output 6",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4134,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4134,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output7",
+          "name": "Output 7",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4135,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4135,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output8",
+          "name": "Output 8",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4136,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4136,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output9",
+          "name": "Output 9",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4137,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4137,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output10",
+          "name": "Output 10",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4138,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4138,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output11",
+          "name": "Output 11",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4139,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4139,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output12",
+          "name": "Output 12",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4140,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4140,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output13",
+          "name": "Output 13",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4141,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4141,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output14",
+          "name": "Output 14",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4142,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4142,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Output15",
+          "name": "Output 15",
+          "type": "boolean",
+          "role": "switch",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4143,
+              "length": 1,
+              "dataType": "bool"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4143,
+              "length": 1,
+              "dataType": "bool"
+            }
+          }
+        },
+        {
+          "id": "Counter0",
+          "name": "Counter 0",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20486,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20486,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter1",
+          "name": "Counter 1",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20488,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20488,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter2",
+          "name": "Counter 2",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20490,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20490,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter3",
+          "name": "Counter 3",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20492,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20492,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter4",
+          "name": "Counter 4",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20494,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20494,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter5",
+          "name": "Counter 5",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20496,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20496,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter6",
+          "name": "Counter 6",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20498,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20498,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter7",
+          "name": "Counter 7",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20500,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20500,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter8",
+          "name": "Counter 8",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20502,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20502,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter9",
+          "name": "Counter 9",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20504,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20504,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter10",
+          "name": "Counter 10",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20506,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20506,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter11",
+          "name": "Counter 11",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20508,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20508,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter12",
+          "name": "Counter 12",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20510,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20510,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter13",
+          "name": "Counter 13",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20512,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20512,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter14",
+          "name": "Counter 14",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20514,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20514,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "Counter15",
+          "name": "Counter 15",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20516,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20516,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "DiagErrorCount",
+          "name": "Diagnostic error count",
+          "type": "number",
+          "role": "value",
+          "unit": "count",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 20554,
+              "length": 2,
+              "dataType": "uint32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 20554,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "ExceptConfState",
+          "name": "Exception/Config state (low/high byte)",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 8205,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "SerialNumber",
+          "name": "Serial number",
+          "type": "string",
+          "role": "info.serial",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 24576,
+              "length": 4,
+              "dataType": "uint64"
+            }
+          }
+        },
+        {
+          "id": "EthernetAddress",
+          "name": "Ethernet address (raw)",
+          "type": "string",
+          "role": "info.mac",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 24580,
+              "length": 4,
+              "dataType": "uint64"
+            }
+          }
+        }
+      ]
     }
   ]
 }
