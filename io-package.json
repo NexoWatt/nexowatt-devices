@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-  "version": "0.5.31",
+  "version": "0.5.32",
     "news": {
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
@@ -130,6 +130,18 @@
       "0.5.29": {
         "en": "Add Solar-Log Modbus TCP templates: DPM (direct marketing) + PM V2 (power management). Includes auto-watchdog and unit scaling (kW/kVar, 2 decimals).",
         "de": "Solar-Log Modbus-TCP-Templates ergänzt: DPM (Direktvermarktung) + PM V2 (Power Management). Inkl. Auto-Watchdog und einheitlicher Skalierung (kW/kVar, 2 Dezimalstellen)."
+      },
+      "0.5.30": {
+        "en": "Improve SolaX templates: enable split polling (fast subset + slow full refresh) so key power values can update every few seconds without spamming the device.",
+        "de": "SolaX-Templates verbessert: Split-Polling (schnelle Teilmenge + langsames Full-Refresh) aktiviert, damit wichtige Leistungswerte alle paar Sekunden aktualisieren ohne das Gerät zu fluten."
+      },
+      "0.5.31": {
+        "en": "Add W&T Web-IO relay modules templates (5773) with read inputs and controllable relay outputs incl. aliases.",
+        "de": "W&T Web-IO Relais-Module (5773) als Templates ergänzt (Inputs lesen, Relais schalten inkl. Aliases)."
+      },
+      "0.5.32": {
+        "en": "Speedwire stability: join UDP multicast group on all non-internal IPv4 interfaces by default (helps in Docker/LXC/VM and multi-homed hosts).",
+        "de": "Speedwire-Stabilität: UDP-Multicast-Gruppe wird standardmäßig auf allen nicht-internen IPv4-Interfaces gejoint (hilft in Docker/LXC/VM und bei Multi-Homing)."
       }
     },
     "title": "NexoWatt Devices",
