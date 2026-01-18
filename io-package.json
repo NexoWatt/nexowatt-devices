@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-  "version": "0.5.34",
+  "version": "0.5.35",
     "news": {
+      "0.5.35": {
+        "en": "SolaX: 1Hz command scheduler (max. 1 Modbus command/s) with 3s polling and 1s write coalescing; improved Modbus TCP socket-open detection; fixed poll scheduling to avoid catch-up under latency; pre-write cooldown.",
+        "de": "SolaX: 1Hz-Command-Scheduler (max. 1 Modbus-Befehl/s) mit 3s Polling und 1s Write-Coalescing; verbesserte Modbus-TCP Socket-Open-Erkennung; Poll-Scheduling gegen Catch-up bei Latenz; PreWrite-Cooldown."
+      },
       "0.5.34": {
         "en": "Stability fix for Modbus (SolaX etc.): guard against null client (writeRegister), retry write once after reconnect; allow template hints to set Modbus timeout (cfg > template > global).",
         "de": "Stabilitaets-Fix fuer Modbus (u.a. SolaX): Schutz gegen null-Client (writeRegister), Write einmal nach Reconnect erneut versuchen; Template-Hints koennen Modbus-Timeout setzen (Config > Template > Global)."
