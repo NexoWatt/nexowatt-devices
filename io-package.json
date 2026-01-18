@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-  "version": "0.5.35",
+    "version": "0.5.36",
     "news": {
+      "0.5.36": {
+        "en": "Add LAMBDA heat pump (Modbus TCP) template and HEAT aliases.",
+        "de": "LAMBDA Wärmepumpe (Modbus TCP) Vorlage + HEAT-Aliases hinzugefügt."
+      },
       "0.5.35": {
         "en": "SolaX: 1Hz command scheduler (max. 1 Modbus command/s) with 3s polling and 1s write coalescing; improved Modbus TCP socket-open detection; fixed poll scheduling to avoid catch-up under latency; pre-write cooldown.",
         "de": "SolaX: 1Hz-Command-Scheduler (max. 1 Modbus-Befehl/s) mit 3s Polling und 1s Write-Coalescing; verbesserte Modbus-TCP Socket-Open-Erkennung; Poll-Scheduling gegen Catch-up bei Latenz; PreWrite-Cooldown."
