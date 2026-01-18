@@ -39035,6 +39035,1479 @@
       ]
     },
     {
+      "id": "heat.lambda.LambdaWpModbus",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "HEAT",
+      "manufacturer": "LAMBDA",
+      "model": "wp",
+      "name": "LAMBDA Wärmepumpe (Modbus)",
+      "protocols": [
+        "modbusTcp"
+      ],
+      "datapoints": [
+        {
+          "id": "ambient.errorNumber",
+          "name": "General (Ambient): Fehlernummer",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 0,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "ambient.operatingState",
+          "name": "General (Ambient): Betriebszustand",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "ambient.actualAmbientTemp",
+          "name": "Außentemperatur (aktuell)",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 2,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "ambient.avgAmbientTemp1h",
+          "name": "Außentemperatur (Mittelwert 1h)",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 3,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "ambient.calculatedAmbientTemp",
+          "name": "Außentemperatur (berechnet)",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 4,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "emanager.errorNumber",
+          "name": "General (E-Manager): Fehlernummer",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 100,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "emanager.operatingState",
+          "name": "General (E-Manager): Betriebszustand",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 101,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "emanager.actualPowerInputOrExcess",
+          "name": "E-Manager: Leistung (Bezug oder Überschuss)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "rw",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 102,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 102,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "emanager.actualPowerConsumption",
+          "name": "E-Manager: Leistung (Verbrauch)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 103,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "emanager.powerConsumptionSetpoint",
+          "name": "E-Manager: Leistungs-Sollwert (Verbrauch)",
+          "role": "level.power",
+          "type": "number",
+          "rw": "rw",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 104,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 104,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "hp.errorState",
+          "name": "Wärmepumpe: Fehlerstatus (1=Message,2=Warning,3=Alarm,4=Fault)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1000,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "hp.errorNumber",
+          "name": "Wärmepumpe: Fehlernummer",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1001,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "hp.operatingState",
+          "name": "Wärmepumpe: Betriebszustand",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1002,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "hp.oilPumpRpm",
+          "name": "Wärmepumpe: Ölpumpe Drehzahl",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "RPM",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1003,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "hp.operatingMode",
+          "name": "Wärmepumpe: Betriebsmodus (0=Off,2=Auto,3=Manuell,4=Defrost)",
+          "role": "level",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1004,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "hp.sourceLineTemp",
+          "name": "Wärmepumpe: Quelle Vorlauf",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1005,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hp.sourceReturnLineTemp",
+          "name": "Wärmepumpe: Quelle Rücklauf",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1006,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hp.sinkLineTemp",
+          "name": "Wärmepumpe: Senke Vorlauf",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1007,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hp.sinkReturnLineTemp",
+          "name": "Wärmepumpe: Senke Rücklauf",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1008,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hp.sourceVolumeFlow",
+          "name": "Wärmepumpe: Quelle Volumenstrom",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "l/min",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1009,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "hp.sinkVolumeFlow",
+          "name": "Wärmepumpe: Senke Volumenstrom",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "l/min",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1010,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "hp.compressorFrequency",
+          "name": "Wärmepumpe: Kompressorfrequenz",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Hz",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1011,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "hp.output",
+          "name": "Wärmepumpe: Leistung (Abgabe)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1012,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "hp.powerConsumption",
+          "name": "Wärmepumpe: Leistung (elektrisch)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1013,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "hp.requestPassword",
+          "name": "Wärmepumpe: Freigabe-Passwort (Modbus Request)",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "unit": "",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1014,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 1014,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "hp.requestType",
+          "name": "Wärmepumpe: Request Typ (0=Off,1=Flow pump,2=Heizen+WW,3=Heizen)",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "unit": "",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1015,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 1015,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "hp.requestFlowLineTemp",
+          "name": "Wärmepumpe: Request Vorlauf-Temperatur",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1016,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 1016,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hp.requestReturnLineTemp",
+          "name": "Wärmepumpe: Request Rücklauf-Temperatur",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1017,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 1017,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hp.requestTempDiff",
+          "name": "Wärmepumpe: Request Temperatur-Differenz",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1018,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 1018,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hp.warningKey",
+          "name": "Wärmepumpe: Warning Key",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1019,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "hp.statVdaEnergyE",
+          "name": "Wärmepumpe: Statistik VdA E (seit Reset)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1020,
+              "length": 2,
+              "dataType": "int32"
+            },
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "hp.statVdaEnergyQ",
+          "name": "Wärmepumpe: Statistik VdA Q (seit Reset)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1022,
+              "length": 2,
+              "dataType": "int32"
+            },
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "boiler.errorNumber",
+          "name": "Boiler: Fehlernummer",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2000,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "boiler.operatingState",
+          "name": "Boiler: Betriebszustand",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2001,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "boiler.temperature",
+          "name": "Boiler: Temperatur",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2002,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "boiler.setpoint",
+          "name": "Boiler: Sollwert",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2003,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "boiler.setMaxTemperature",
+          "name": "Boiler: Max. Temperatur",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2050,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 2050,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "boiler.tolerance",
+          "name": "Boiler: Toleranz",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2051,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 2051,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "buffer.errorNumber",
+          "name": "Puffer: Fehlernummer",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 3000,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "buffer.operatingState",
+          "name": "Puffer: Betriebszustand",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 3001,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "buffer.tempLow",
+          "name": "Puffer: Temperatur unten",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 3002,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "buffer.tempMedium",
+          "name": "Puffer: Temperatur Mitte",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 3003,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "buffer.tempHigh",
+          "name": "Puffer: Temperatur oben",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 3004,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "buffer.tempAverage",
+          "name": "Puffer: Temperatur (Ø)",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 3005,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "buffer.setpoint",
+          "name": "Puffer: Sollwert",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 3006,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "buffer.tolerance",
+          "name": "Puffer: Toleranz",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 3007,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "buffer.requestType",
+          "name": "Puffer: Request Typ (0=Off,1=Flow,2=Return,3=Diff)",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "unit": "",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 3008,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 3008,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "buffer.requestFlowLineTemp",
+          "name": "Puffer: Request Vorlauf-Temperatur",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 3009,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 3009,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "buffer.requestReturnLineTemp",
+          "name": "Puffer: Request Rücklauf-Temperatur",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 3010,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 3010,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "buffer.requestTempDiff",
+          "name": "Puffer: Request Temperatur-Differenz",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 3011,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 3011,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "buffer.requestHeatingCapacity",
+          "name": "Puffer: Request Heizleistung",
+          "role": "level.power",
+          "type": "number",
+          "rw": "rw",
+          "unit": "kW",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 3012,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 3012,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "buffer.setMaxTemperature",
+          "name": "Puffer: Max. Temperatur",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 3050,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 3050,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "solar.errorNumber",
+          "name": "Solar: Fehlernummer",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 4000,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "solar.operatingState",
+          "name": "Solar: Betriebszustand",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 4001,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "solar.temperature",
+          "name": "Solar: Temperatur",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 4002,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "solar.setMaxBufferTemp",
+          "name": "Solar: Max. Puffer-Temperatur",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 4050,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 4050,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "solar.bufferChangeoverTemp",
+          "name": "Solar: Puffer-Umschalt-Temperatur",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 4051,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 4051,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hc.errorNumber",
+          "name": "Heizkreis: Fehlernummer",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 5000,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "hc.operatingState",
+          "name": "Heizkreis: Betriebszustand",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 5001,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "hc.roomSetpoint",
+          "name": "Heizkreis: Raum-Sollwert",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 5002,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hc.flowTemp",
+          "name": "Heizkreis: Vorlauf-Temperatur",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 5003,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hc.returnTemp",
+          "name": "Heizkreis: Rücklauf-Temperatur",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 5004,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hc.roomTemp",
+          "name": "Heizkreis: Raum-Temperatur",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 5005,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hc.avgRoomTemp",
+          "name": "Heizkreis: Raum-Temperatur (Ø)",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 5006,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "hc.roomDeviceTemp",
+          "name": "Heizkreis: Raumgerät-Temperatur",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 5007,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "hc.flowTempSetpoint",
+          "name": "Heizkreis: Vorlauf-Sollwert",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 5008,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hc.roomDeviceTempInput",
+          "name": "Heizkreis: Raumgerät-Temperatur (Input/Write)",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 5050,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 5050,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "hc.setFlowTempRequest",
+          "name": "Heizkreis: Request Vorlauf-Temperatur",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 5051,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 5051,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hc.operatingMode",
+          "name": "Heizkreis: Betriebsmodus (0=Off,2=Auto,3=Manuell)",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "unit": "",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 5052,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 5052,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "hc.setpointOffset",
+          "name": "Heizkreis: Sollwert-Offset",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 5053,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 5053,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hc.roomSetpointHeating",
+          "name": "Heizkreis: Raum-Sollwert Heizen",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 5054,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 5054,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hc.roomSetpointCooling",
+          "name": "Heizkreis: Raum-Sollwert Kühlen",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 5055,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 16,
+              "address": 5055,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        }
+      ]
+    },
+    {
       "id": "heat.mypv.HeatMyPvAcThor9sImpl",
       "source": {
         "type": "builtin"

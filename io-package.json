@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.36",
+    "version": "0.5.37",
     "news": {
+      "0.5.37": {
+        "en": "Fix: LAMBDA heat pump template now appears in Admin UI (templates.json sync).",
+        "de": "Fix: LAMBDA Wärmepumpe-Vorlage erscheint jetzt auch im Admin-UI (templates.json synchronisiert)."
+      },
       "0.5.36": {
         "en": "Add LAMBDA heat pump (Modbus TCP) template and HEAT aliases.",
         "de": "LAMBDA Wärmepumpe (Modbus TCP) Vorlage + HEAT-Aliases hinzugefügt."
