@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-  "version": "0.5.33",
+  "version": "0.5.34",
     "news": {
+      "0.5.34": {
+        "en": "Stability fix for Modbus (SolaX etc.): guard against null client (writeRegister), retry write once after reconnect; allow template hints to set Modbus timeout (cfg > template > global).",
+        "de": "Stabilitaets-Fix fuer Modbus (u.a. SolaX): Schutz gegen null-Client (writeRegister), Write einmal nach Reconnect erneut versuchen; Template-Hints koennen Modbus-Timeout setzen (Config > Template > Global)."
+      },
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
         "de": "Adapter auf gültige ID umbenannt (keine Punkte) und externe Template-Referenzen entfernt. Generische Built-in-Templates für Modbus/MQTT/HTTP ergänzt."

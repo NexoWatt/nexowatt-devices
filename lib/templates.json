@@ -58504,7 +58504,8 @@
             }
           ],
           "minCommandIntervalMs": 1000,
-          "reconnectBackoffMs": 2000
+          "reconnectBackoffMs": 2000,
+          "timeoutMs": 5000
         },
         "polling": {
           "fastIntervalMs": 5000,
@@ -59564,7 +59565,8 @@
             }
           ],
           "minCommandIntervalMs": 1000,
-          "reconnectBackoffMs": 2000
+          "reconnectBackoffMs": 2000,
+          "timeoutMs": 5000
         },
         "polling": {
           "fastIntervalMs": 5000,
@@ -60830,7 +60832,8 @@
         },
         "modbus": {
           "minCommandIntervalMs": 1000,
-          "reconnectBackoffMs": 2000
+          "reconnectBackoffMs": 2000,
+          "timeoutMs": 5000
         }
       }
     },
@@ -61279,7 +61282,8 @@
       "driverHints": {
         "modbus": {
           "minCommandIntervalMs": 1000,
-          "reconnectBackoffMs": 2000
+          "reconnectBackoffMs": 2000,
+          "timeoutMs": 5000
         },
         "polling": {
           "fastIntervalMs": 5000
