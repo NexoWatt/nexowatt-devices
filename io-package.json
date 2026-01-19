@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.37",
+    "version": "0.5.38",
     "news": {
+      "0.5.38": {
+        "en": "Add TECALOR (ISG Modbus) heat pump templates (WPM 3(i), LWZ/LWA).",
+        "de": "TECALOR (ISG Modbus) Wärmepumpen-Vorlagen hinzugefügt (WPM 3(i), LWZ/LWA)."
+      },
       "0.5.37": {
         "en": "Fix: LAMBDA heat pump template now appears in Admin UI (templates.json sync).",
         "de": "Fix: LAMBDA Wärmepumpe-Vorlage erscheint jetzt auch im Admin-UI (templates.json synchronisiert)."

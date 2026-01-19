@@ -67305,7 +67305,1372 @@
           }
         }
       ]
+    },
+    {
+      "id": "heat.tecalor.TecalorWpm3iModbus",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "HEAT",
+      "manufacturer": "TECALOR",
+      "model": "wpm3i",
+      "name": "TECALOR Wärmepumpe (WPM 3(i) / ISG Modbus)",
+      "protocols": [
+        "modbusTcp"
+      ],
+      "datapoints": [
+        {
+          "id": "ambient.actualAmbientTemp",
+          "name": "Außentemperatur",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 507,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hc.flowTemp",
+          "name": "Vorlauf Isttemperatur",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 515,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hc.returnTemp",
+          "name": "Rücklauf Isttemperatur",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 516,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "buffer.actualTemp",
+          "name": "Puffertemperatur Ist",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 518,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "system.pressure",
+          "name": "Heizungsdruck",
+          "role": "value.pressure",
+          "type": "number",
+          "rw": "ro",
+          "unit": "bar",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 520,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "system.volumeFlow",
+          "name": "Wasservolumenstrom",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "l/min",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 521,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "dhw.actualTemp",
+          "name": "Warmwasser Isttemperatur",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 522,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "dhw.setpoint",
+          "name": "Warmwasser Solltemperatur",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 523,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "source.temp",
+          "name": "Quellentemperatur",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 536,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "source.pressure",
+          "name": "Quelldruck (Sole)",
+          "role": "value.pressure",
+          "type": "number",
+          "rw": "ro",
+          "unit": "bar",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 538,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "hp1.hotGasTemp",
+          "name": "WP1 Heißgastemperatur",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 544,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hp1.pressureLow",
+          "name": "WP1 Druck Niederdruck",
+          "role": "value.pressure",
+          "type": "number",
+          "rw": "ro",
+          "unit": "bar",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 545,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "hp1.pressureMid",
+          "name": "WP1 Druck Mitteldruck",
+          "role": "value.pressure",
+          "type": "number",
+          "rw": "ro",
+          "unit": "bar",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 546,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "hp1.pressureHigh",
+          "name": "WP1 Druck Hochdruck",
+          "role": "value.pressure",
+          "type": "number",
+          "rw": "ro",
+          "unit": "bar",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 547,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "hp1.volumeFlow",
+          "name": "WP1 Wasservolumenstrom",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "l/min",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 548,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "status.operatingStatusBits",
+          "name": "Betriebsstatus (bitcodiert)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 2501,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "status.evuReleaseBits",
+          "name": "EVU-Freigabe (bitcodiert)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 2502,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "status.compressorBits",
+          "name": "Betriebsstatus Verdichter (bitcodiert)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 2503,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "status.errorStatus",
+          "name": "Fehlerstatus (0=Kein Fehler, 1=Fehler)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 2504,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "status.busStatus",
+          "name": "CAN-BUS Status",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 2505,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "energy.heatHeatingDayKwh",
+          "name": "Heizen: Energie Tag",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 3501,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "energy.heatHeatingTotalKwh",
+          "name": "Heizen: Energie Summe",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 3502,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "energy.heatHeatingTotalMwh",
+          "name": "Heizen: Energie Summe",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "MWh",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 3503,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "energy.heatDhwDayKwh",
+          "name": "Warmwasser: Energie Tag",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 3504,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "energy.heatDhwTotalKwh",
+          "name": "Warmwasser: Energie Summe",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 3505,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "energy.heatDhwTotalMwh",
+          "name": "Warmwasser: Energie Summe",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "MWh",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 3506,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "energy.electricHeatingDayKwh",
+          "name": "Stromverbrauch Heizen: Tag",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 3511,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "energy.electricHeatingTotalKwh",
+          "name": "Stromverbrauch Heizen: Summe",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 3512,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "energy.electricHeatingTotalMwh",
+          "name": "Stromverbrauch Heizen: Summe",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "MWh",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 3513,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "runtime.heatingHours",
+          "name": "Verdichter Laufzeit Heizen",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "h",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 3517,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "runtime.dhwHours",
+          "name": "Verdichter Laufzeit Warmwasser",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "h",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 3518,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "hc.operatingMode",
+          "name": "Betriebsart",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1501,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1501,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "hc1.roomSetpointDay",
+          "name": "Komfort Temperatur Heizkreis 1",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1502,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1502,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hc1.roomSetpointNight",
+          "name": "Eco Temperatur Heizkreis 1",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1503,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1503,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hc1.heatingCurveSlope",
+          "name": "Steigung Heizkurve Heizkreis 1",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1504,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1504,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "hc2.roomSetpointDay",
+          "name": "Komfort Temperatur Heizkreis 2",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1505,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1505,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hc2.roomSetpointNight",
+          "name": "Eco Temperatur Heizkreis 2",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1506,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1506,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hc2.heatingCurveSlope",
+          "name": "Steigung Heizkurve Heizkreis 2",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1507,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1507,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "hc.bivalentTempLimit",
+          "name": "Bivalenztemperatur (Heizgrenze)",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1509,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1509,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "dhw.setpointDay",
+          "name": "Warmwasser Komforttemperatur",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1510,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1510,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "dhw.setpointNight",
+          "name": "Warmwasser Ecotemperatur",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1511,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1511,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "dhw.operatingMode",
+          "name": "Warmwasserstufe (0=AUS,1=NORMAL,2=KOMFORT)",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1512,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1512,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "dhw.bivalentTempLimit",
+          "name": "Bivalenztemperatur Warmwasser",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1513,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1513,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "cooling.surfaceFlowSetpoint",
+          "name": "Kühlen Oberfläche: Vorlauf-Solltemperatur",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1514,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1514,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "cooling.surfaceHysteresis",
+          "name": "Kühlen Oberfläche: Hysterese",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "unit": "K",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1515,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1515,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "cooling.surfaceRoomSetpoint",
+          "name": "Kühlen Oberfläche: Raum-Solltemperatur",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1516,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1516,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "cooling.blowerFlowSetpoint",
+          "name": "Kühlen Gebläsekonvektor: Vorlauf-Solltemperatur",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1517,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1517,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "cooling.blowerHysteresis",
+          "name": "Kühlen Gebläsekonvektor: Hysterese",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "unit": "K",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1518,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1518,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "cooling.blowerRoomSetpoint",
+          "name": "Kühlen Gebläsekonvektor: Raum-Solltemperatur",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1519,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1519,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "ctrl.restartIsg",
+          "name": "ISG: Restart / Service-Taste (1=Restart, 2=Service)",
+          "role": "button",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1521,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1521,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "heat.tecalor.TecalorLwzModbus",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "HEAT",
+      "manufacturer": "TECALOR",
+      "model": "lwz",
+      "name": "TECALOR Lüftungsintegralgerät (LWZ/LWA / ISG Modbus)",
+      "protocols": [
+        "modbusTcp"
+      ],
+      "datapoints": [
+        {
+          "id": "ambient.actualAmbientTemp",
+          "name": "Ist Temp. Außen",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 7,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hc.flowTemp",
+          "name": "Vorlauf Isttemperatur",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 12,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hc.returnTemp",
+          "name": "Rücklauf Isttemperatur",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 13,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "dhw.actualTemp",
+          "name": "Warmwasser Isttemperatur",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 16,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "dhw.setpoint",
+          "name": "Warmwasser Solltemperatur",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 17,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "status.operatingStatusBits",
+          "name": "Betriebsstatus (bitcodiert)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 2001,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "status.errorStatus",
+          "name": "Fehlerstatus (0=Kein Fehler, 1=Fehler)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 2002,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "status.busStatus",
+          "name": "CAN-BUS Status",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 2003,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "hc.operatingMode",
+          "name": "Betriebsart",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1001,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1001,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "hc1.roomSetpointDay",
+          "name": "Komfort Temperatur Heizkreis 1",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1002,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1002,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hc1.roomSetpointNight",
+          "name": "Eco Temperatur Heizkreis 1",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1003,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1003,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "dhw.setpointDay",
+          "name": "Warmwasser Komforttemperatur",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1012,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1012,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "dhw.setpointNight",
+          "name": "Warmwasser Ecotemperatur",
+          "role": "level.temperature",
+          "type": "number",
+          "rw": "rw",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1013,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1013,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "vent.stage",
+          "name": "Lüfterstufe (0=AUS,1=NORMAL,2=ECO,3=PARTY)",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1018,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1018,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "ctrl.restartIsg",
+          "name": "ISG: Restart / Service-Taste (1=Restart, 2=Service)",
+          "role": "button",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1021,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1021,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        }
+      ]
     }
-
   ]
 }
