@@ -59826,8 +59826,8 @@
             "kind": "modbus",
             "fc": 3,
             "address": 30201,
-            "length": 2,
-            "dataType": "uint32",
+            "length": 1,
+            "dataType": "uint16",
             "scaleFactor": 0
           }
         },
@@ -59841,8 +59841,8 @@
             "kind": "modbus",
             "fc": 3,
             "address": 30217,
-            "length": 2,
-            "dataType": "uint32",
+            "length": 1,
+            "dataType": "uint16",
             "scaleFactor": 0
           }
         },
@@ -59856,8 +59856,8 @@
             "kind": "modbus",
             "fc": 3,
             "address": 30881,
-            "length": 2,
-            "dataType": "uint32",
+            "length": 1,
+            "dataType": "uint16",
             "scaleFactor": 0
           }
         },
@@ -59888,8 +59888,8 @@
             "kind": "modbus",
             "fc": 3,
             "address": 30513,
-            "length": 4,
-            "dataType": "uint64",
+            "length": 2,
+            "dataType": "uint32",
             "scaleFactor": 0
           }
         },
@@ -59903,13 +59903,13 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 40009,
+              "address": 41253,
               "length": 2,
               "dataType": "uint32"
             },
             "write": {
               "fc": 16,
-              "address": 40009,
+              "address": 41253,
               "length": 2,
               "dataType": "uint32"
             }
@@ -59927,15 +59927,15 @@
             "scaleFactor": -2,
             "read": {
               "fc": 3,
-              "address": 44505,
-              "length": 2,
-              "dataType": "uint32"
+              "address": 41255,
+              "length": 1,
+              "dataType": "int16"
             },
             "write": {
-              "fc": 16,
-              "address": 44505,
-              "length": 2,
-              "dataType": "uint32"
+              "fc": 6,
+              "address": 41255,
+              "length": 1,
+              "dataType": "int16"
             }
           }
         }
