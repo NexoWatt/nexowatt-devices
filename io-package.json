@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.39",
+    "version": "0.5.40",
     "news": {
       "0.5.38": {
         "en": "Add TECALOR (ISG Modbus) heat pump templates (WPM 3(i), LWZ/LWA).",

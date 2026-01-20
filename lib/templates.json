@@ -58322,7 +58322,7 @@
       "category": "PV_INVERTER",
       "manufacturer": "SMA",
       "model": "STPxx-50 (SMA Modbus)",
-      "name": "SMA STPxx-50 (Modbus) - Minimal",
+      "name": "SMA STPxx-50 (Modbus) - Minimal (Fixed)",
       "protocols": [
         "modbusTcp",
         "modbusRtu"
@@ -58331,11 +58331,14 @@
         {
           "id": "SN",
           "name": "Serial Number",
+          "unit": "",
           "role": "info.serial",
-          "type": "number",
           "rw": "ro",
+          "type": "number",
           "source": {
             "kind": "modbus",
+            "wordOrder": "be",
+            "byteOrder": "be",
             "fc": 3,
             "address": 30057,
             "length": 2,
@@ -58346,57 +58349,68 @@
         {
           "id": "Health",
           "name": "Health (35=Fault,303=Off,307=OK,455=Warning)",
+          "unit": "",
           "role": "indicator.status",
-          "type": "number",
           "rw": "ro",
+          "type": "number",
           "source": {
             "kind": "modbus",
+            "wordOrder": "be",
+            "byteOrder": "be",
             "fc": 3,
             "address": 30201,
-            "length": 1,
-            "dataType": "uint16",
+            "length": 2,
+            "dataType": "uint32",
             "scaleFactor": 0
           }
         },
         {
           "id": "GriSwStt",
           "name": "Grid relay/contactor status (51=Closed,311=Open)",
+          "unit": "",
           "role": "indicator",
-          "type": "number",
           "rw": "ro",
+          "type": "number",
           "source": {
             "kind": "modbus",
+            "wordOrder": "be",
+            "byteOrder": "be",
             "fc": 3,
             "address": 30217,
-            "length": 1,
-            "dataType": "uint16",
+            "length": 2,
+            "dataType": "uint32",
             "scaleFactor": 0
           }
         },
         {
           "id": "PvGriConn",
           "name": "PV plant grid connection (1779=Disconnected,1780=Public grid)",
+          "unit": "",
           "role": "indicator",
-          "type": "number",
           "rw": "ro",
+          "type": "number",
           "source": {
             "kind": "modbus",
+            "wordOrder": "be",
+            "byteOrder": "be",
             "fc": 3,
             "address": 30881,
-            "length": 1,
-            "dataType": "uint16",
+            "length": 2,
+            "dataType": "uint32",
             "scaleFactor": 0
           }
         },
         {
           "id": "W",
           "name": "Active Power",
-          "role": "value.power",
-          "type": "number",
-          "rw": "ro",
           "unit": "W",
+          "role": "value.power",
+          "rw": "ro",
+          "type": "number",
           "source": {
             "kind": "modbus",
+            "wordOrder": "be",
+            "byteOrder": "be",
             "fc": 3,
             "address": 30775,
             "length": 2,
@@ -58407,51 +58421,58 @@
         {
           "id": "TotWhOut",
           "name": "Total Energy Output",
-          "role": "value.energy",
-          "type": "number",
-          "rw": "ro",
           "unit": "Wh",
+          "role": "value.energy",
+          "rw": "ro",
+          "type": "number",
           "source": {
             "kind": "modbus",
+            "wordOrder": "be",
+            "byteOrder": "be",
             "fc": 3,
             "address": 30513,
-            "length": 2,
-            "dataType": "uint32",
+            "length": 4,
+            "dataType": "uint64",
             "scaleFactor": 0
           }
         },
         {
           "id": "OpMod",
           "name": "Operation Mode (381=Stop,1467=Start)",
+          "unit": "",
           "role": "state",
-          "type": "number",
           "rw": "rw",
+          "type": "number",
           "source": {
             "kind": "modbus",
+            "wordOrder": "be",
+            "byteOrder": "be",
             "read": {
               "fc": 3,
-              "address": 41253,
+              "address": 40009,
               "length": 2,
               "dataType": "uint32"
             },
             "write": {
               "fc": 16,
-              "address": 41253,
+              "address": 40009,
               "length": 2,
               "dataType": "uint32"
-            }
+            },
+            "scaleFactor": 0
           }
         },
         {
           "id": "WLimPct",
           "name": "Active Power Limit (%)",
-          "role": "level",
-          "type": "number",
-          "rw": "rw",
           "unit": "%",
+          "role": "level",
+          "rw": "rw",
+          "type": "number",
           "source": {
             "kind": "modbus",
-            "scaleFactor": -2,
+            "wordOrder": "be",
+            "byteOrder": "be",
             "read": {
               "fc": 3,
               "address": 41255,
@@ -58463,7 +58484,8 @@
               "address": 41255,
               "length": 1,
               "dataType": "int16"
-            }
+            },
+            "scaleFactor": -2
           }
         }
       ]
