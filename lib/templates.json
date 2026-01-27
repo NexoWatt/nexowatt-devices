@@ -58511,27 +58511,26 @@
             "length": 1,
             "dataType": "uint16",
             "passwordField": "writePassword",
-            "defaultPassword": 6868,
+            "defaultPassword": 2014,
             "cacheMs": 5000
           },
-          "preWrites": [
-            {
-              "triggerDpId": "sET_ACTIVE_POWER",
-              "cooldownMs": 60000,
-              "writes": [
-                {
-                  "dpId": "sET_CONTROL_MODE",
-                  "value": 4
-                }
-              ]
-            }
-          ],
+          "preWrites": [],
           "minCommandIntervalMs": 1000,
           "reconnectBackoffMs": 2000,
           "timeoutMs": 5000,
           "writeThrottleMs": 1000,
           "commandCadenceMs": 1000,
-          "writeMaxPerTick": 1
+          "writeMaxPerTick": 1,
+          "solaxVppMode4": {
+            "enabled": true,
+            "triggerDpId": "sET_ACTIVE_POWER",
+            "startAddress": 160,
+            "modeNum": 4,
+            "execDurationDpId": "vPP_WAIT_TIMEOUT",
+            "nextMotionDpId": "vPP_NEXT_MOTION",
+            "defaultExecDuration": 600,
+            "defaultNextMotion": 160
+          }
         },
         "polling": {
           "fastIntervalMs": 3000,
@@ -58882,7 +58881,7 @@
         },
         {
           "id": "vPP_WAIT_TIMEOUT",
-          "name": "VPP WaitTimeOut (VPP Mode 4) [s]",
+          "name": "VPP ExecDuration (VPP Mode 4) [s]",
           "role": "value.interval",
           "type": "number",
           "unit": "s",
