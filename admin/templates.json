@@ -58649,7 +58649,7 @@
         },
         {
           "id": "sOC",
-          "name": "Battery SoC",
+          "name": "Battery SoC (BMS1)",
           "role": "value.battery",
           "type": "number",
           "unit": "%",
@@ -58657,7 +58657,7 @@
           "source": {
             "kind": "modbus",
             "fc": 4,
-            "address": 60,
+            "address": 28,
             "length": 1,
             "dataType": "uint16"
           }
