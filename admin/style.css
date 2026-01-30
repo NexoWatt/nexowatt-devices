@@ -1,19 +1,85 @@
-/* Nexowatt Devices - Admin UI styling */
+/* Nexowatt Devices - Admin UI styling (Dark UI)
+ *
+ * Motivation:
+ * The ioBroker Admin navigation is often dark while legacy Materialize pages
+ * stay light. This stylesheet provides a consistent dark look & feel for this
+ * adapter page.
+ */
 
-/* Page background (requested: light gray) */
+:root {
+  /* Base palette */
+  --nexo-bg: #0f1419;
+  --nexo-surface: #151b23;
+  --nexo-surface-2: #1b2330;
+  --nexo-border: rgba(255, 255, 255, 0.08);
+  --nexo-border-strong: rgba(255, 255, 255, 0.14);
+  --nexo-text: #e6edf3;
+  --nexo-text-muted: rgba(230, 237, 243, 0.72);
+  --nexo-text-dim: rgba(230, 237, 243, 0.55);
+
+  /* Brand accent (matches nexowatt-devices.svg: #0b4) */
+  --nexo-accent: #00bb44;
+  --nexo-accent-hover: #00a63d;
+
+  /* Status */
+  --nexo-danger: #e53935;
+  --nexo-danger-hover: #c62828;
+  --nexo-warning-bg: rgba(255, 200, 0, 0.12);
+  --nexo-warning-border: rgba(255, 200, 0, 0.35);
+}
+
+/* Page background */
 body {
-  background: #f2f2f2;
+  background: var(--nexo-bg);
+  color: var(--nexo-text);
 }
 
 .m.adapter-container {
-  background: #f2f2f2 !important;
+  background: var(--nexo-bg) !important;
+  color: var(--nexo-text);
 }
 
+/* Links */
+a {
+  color: var(--nexo-accent);
+}
+a:hover {
+  color: var(--nexo-accent-hover);
+}
+
+/* Cards */
+.card {
+  background: var(--nexo-surface) !important;
+  color: var(--nexo-text) !important;
+  border: 1px solid var(--nexo-border);
+}
+
+.card .card-title,
+.card h5,
+.card h6 {
+  color: var(--nexo-text) !important;
+}
+
+/* Materialize helper classes (grey-text, etc.) */
+.grey-text,
+.grey-text.text-darken-1,
+.grey-text.text-darken-2,
+.grey-text.text-darken-3,
+.grey-text.text-darken-4 {
+  color: var(--nexo-text-muted) !important;
+}
+
+.nexo-muted {
+  color: var(--nexo-text-muted) !important;
+}
+
+/* Hint/Note */
 .note {
   padding: 10px;
-  background: #fff9c4;
-  border: 1px solid #f0e68c;
+  background: var(--nexo-warning-bg);
+  border: 1px solid var(--nexo-warning-border);
   border-radius: 6px;
+  color: var(--nexo-text);
 }
 
 .nexo-header .card-content {
@@ -36,8 +102,9 @@ body {
   font-size: 12px;
   padding: 2px 8px;
   border-radius: 999px;
-  border: 1px solid rgba(0,0,0,0.15);
-  opacity: 0.8;
+  border: 1px solid var(--nexo-border-strong);
+  color: var(--nexo-text-muted);
+  opacity: 1;
 }
 
 .nexo-subtitle {
@@ -48,23 +115,26 @@ body {
 .nexo-meta {
   margin: 0 0 10px 0;
   font-size: 0.9rem;
-  opacity: 0.85;
+  color: var(--nexo-text-muted);
 }
 
 .nexo-hint {
   margin: 0;
   padding: 8px 10px;
   border-radius: 8px;
-  background: rgba(0, 0, 0, 0.04);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--nexo-border);
+  color: var(--nexo-text-muted);
 }
 
 .nexo-json-preview {
   max-height: 240px;
   overflow: auto;
-  background: #fafafa;
-  border: 1px solid #eee;
+  background: var(--nexo-surface-2);
+  border: 1px solid var(--nexo-border);
   padding: 10px;
   border-radius: 8px;
+  color: var(--nexo-text);
 }
 
 .nexo-devices-header {
@@ -81,8 +151,53 @@ body {
   margin-right: 6px;
 }
 
+/* Buttons */
+.btn,
+.btn-small {
+  background-color: var(--nexo-accent) !important;
+}
+
+.btn:hover,
+.btn-small:hover {
+  background-color: var(--nexo-accent-hover) !important;
+}
+
+.btn-flat {
+  color: var(--nexo-text) !important;
+}
+
 .actions .btn-small {
   margin-right: 6px;
+}
+
+.actions .btn-small.red {
+  background-color: var(--nexo-danger) !important;
+}
+
+.actions .btn-small.red:hover {
+  background-color: var(--nexo-danger-hover) !important;
+}
+
+/* Tables */
+table {
+  color: var(--nexo-text);
+}
+
+table th {
+  color: var(--nexo-text-muted);
+}
+
+table.striped > tbody > tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+table.highlight > tbody > tr:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+table td,
+table th {
+  border-bottom: 1px solid var(--nexo-border);
 }
 
 .dp-table td,
@@ -94,6 +209,37 @@ body {
   margin-top: 10px;
 }
 
+code {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--nexo-border);
+  padding: 1px 4px;
+  border-radius: 6px;
+  color: var(--nexo-text);
+}
+
+/* Inputs */
+.input-field input[type='text'],
+.input-field input[type='password'],
+.input-field input[type='number'],
+.input-field textarea {
+  color: var(--nexo-text) !important;
+  border-bottom: 1px solid var(--nexo-border-strong) !important;
+}
+
+.input-field input:focus,
+.input-field textarea:focus {
+  border-bottom: 1px solid var(--nexo-accent) !important;
+  box-shadow: 0 1px 0 0 var(--nexo-accent) !important;
+}
+
+.input-field label {
+  color: var(--nexo-text-dim) !important;
+}
+
+.input-field label.active {
+  color: var(--nexo-accent) !important;
+}
+
 /* Native select styling (browser-default) */
 .nexo-select-row {
   margin-top: 4px;
@@ -102,17 +248,34 @@ body {
 .nexo-select-group label {
   display: block;
   font-size: 0.85rem;
-  color: #616161;
+  color: var(--nexo-text-dim);
   margin: 0 0 6px 0;
 }
 
 .nexo-select-group select.browser-default {
   width: 100%;
-  border: 1px solid rgba(0,0,0,0.12);
+  border: 1px solid var(--nexo-border-strong);
   border-radius: 8px;
   padding: 8px 10px;
-  background: #fff;
+  background: var(--nexo-surface-2);
+  color: var(--nexo-text);
   height: auto;
+}
+
+/* Modal */
+.modal {
+  background: var(--nexo-surface) !important;
+  color: var(--nexo-text) !important;
+  border: 1px solid var(--nexo-border);
+}
+
+.modal .modal-footer {
+  background: var(--nexo-surface) !important;
+  border-top: 1px solid var(--nexo-border) !important;
+}
+
+.modal .modal-footer .btn-flat {
+  color: var(--nexo-text-muted) !important;
 }
 
 /* Fallback modal (only used if Materialize JS is missing) */
@@ -124,7 +287,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.65);
 }
 
 .nexo-modal.nexo-fallback {
@@ -140,14 +303,16 @@ body {
   width: 90%;
   max-height: 90%;
   overflow: auto;
-  background: #fff;
+  background: var(--nexo-surface);
+  color: var(--nexo-text);
+  border: 1px solid var(--nexo-border);
   border-radius: 12px;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
 }
 
 .nexo-modal.nexo-fallback .modal-footer {
   position: sticky;
   bottom: 0;
-  background: #fff;
-  border-top: 1px solid #eee;
+  background: var(--nexo-surface);
+  border-top: 1px solid var(--nexo-border);
 }
