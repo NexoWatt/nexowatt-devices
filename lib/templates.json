@@ -36024,8 +36024,8 @@
       },
       "category": "EVCS",
       "manufacturer": "KEBA",
-      "model": "modbus",
-      "name": "KEBA modbus",
+      "model": "KeContact P40 (Modbus TCP/RTU)",
+      "name": "KEBA KeContact P40 (Modbus)",
       "protocols": [
         "modbusTcp",
         "modbusRtu"
@@ -36048,8 +36048,8 @@
         },
         {
           "id": "currentL1",
-          "name": "currentL1",
-          "role": "value",
+          "name": "Current L1",
+          "role": "value.current",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -36058,13 +36058,14 @@
             "address": 1008,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 0
-          }
+            "scaleFactor": -3
+          },
+          "unit": "A"
         },
         {
           "id": "currentL2",
-          "name": "currentL2",
-          "role": "value",
+          "name": "Current L2",
+          "role": "value.current",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -36073,13 +36074,14 @@
             "address": 1010,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 0
-          }
+            "scaleFactor": -3
+          },
+          "unit": "A"
         },
         {
           "id": "currentL3",
-          "name": "currentL3",
-          "role": "value",
+          "name": "Current L3",
+          "role": "value.current",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -36088,8 +36090,9 @@
             "address": 1012,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 0
-          }
+            "scaleFactor": -3
+          },
+          "unit": "A"
         },
         {
           "id": "sERIAL_NUMBER",
@@ -36123,8 +36126,8 @@
         },
         {
           "id": "aCTIVE_POWER",
-          "name": "aCTIVE_POWER",
-          "role": "value",
+          "name": "Active power (import)",
+          "role": "value.power",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -36134,12 +36137,13 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": -3
-          }
+          },
+          "unit": "W"
         },
         {
           "id": "aCTIVE_PRODUCTION_ENERGY",
-          "name": "aCTIVE_PRODUCTION_ENERGY",
-          "role": "value",
+          "name": "Energy total (import)",
+          "role": "value.energy",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -36148,13 +36152,14 @@
             "address": 1036,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 0
-          }
+            "scaleFactor": -3
+          },
+          "unit": "kWh"
         },
         {
           "id": "voltageL1",
-          "name": "voltageL1",
-          "role": "value",
+          "name": "Voltage L1",
+          "role": "value.voltage",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -36163,13 +36168,14 @@
             "address": 1040,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 3
-          }
+            "scaleFactor": 0
+          },
+          "unit": "V"
         },
         {
           "id": "voltageL2",
-          "name": "voltageL2",
-          "role": "value",
+          "name": "Voltage L2",
+          "role": "value.voltage",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -36178,13 +36184,14 @@
             "address": 1042,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 3
-          }
+            "scaleFactor": 0
+          },
+          "unit": "V"
         },
         {
           "id": "voltageL3",
-          "name": "voltageL3",
-          "role": "value",
+          "name": "Voltage L3",
+          "role": "value.voltage",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -36193,12 +36200,13 @@
             "address": 1044,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 3
-          }
+            "scaleFactor": 0
+          },
+          "unit": "V"
         },
         {
           "id": "pOWER_FACTOR",
-          "name": "pOWER_FACTOR",
+          "name": "Power factor",
           "role": "value",
           "type": "number",
           "rw": "ro",
@@ -36209,12 +36217,13 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": -1
-          }
+          },
+          "unit": "%"
         },
         {
           "id": "mAX_CHARGING_CURRENT",
-          "name": "mAX_CHARGING_CURRENT",
-          "role": "value",
+          "name": "Charge limit",
+          "role": "value.current",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -36224,7 +36233,8 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": 0
-          }
+          },
+          "unit": "A"
         },
         {
           "id": "mAX_SUPPORTED_CURRENT",
@@ -36242,9 +36252,24 @@
           }
         },
         {
-          "id": "eNERGY_SESSION",
-          "name": "eNERGY_SESSION",
+          "id": "idTag",
+          "name": "idTag",
           "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 1500,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "eNERGY_SESSION",
+          "name": "Energy session",
+          "role": "value.energy",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -36253,12 +36278,13 @@
             "address": 1502,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 0
-          }
+            "scaleFactor": -3
+          },
+          "unit": "kWh"
         },
         {
           "id": "pHASE_SWITCH_SOURCE",
-          "name": "pHASE_SWITCH_SOURCE",
+          "name": "Number of phases",
           "role": "value",
           "type": "number",
           "rw": "ro",
@@ -36269,7 +36295,8 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": 0
-          }
+          },
+          "unit": ""
         },
         {
           "id": "pHASE_SWITCH_STATE",
@@ -36318,8 +36345,8 @@
         },
         {
           "id": "sET_CHARGING_CURRENT",
-          "name": "sET_CHARGING_CURRENT",
-          "role": "value",
+          "name": "Charging current limit",
+          "role": "level.current",
           "type": "number",
           "rw": "rw",
           "source": {
@@ -36329,11 +36356,12 @@
             "length": 1,
             "dataType": "uint16",
             "scaleFactor": 0
-          }
+          },
+          "unit": "mA"
         },
         {
           "id": "sET_ENERGY_LIMIT",
-          "name": "sET_ENERGY_LIMIT",
+          "name": "Energy limit (stop after)",
           "role": "value",
           "type": "number",
           "rw": "rw",
@@ -36344,13 +36372,14 @@
             "length": 1,
             "dataType": "uint16",
             "scaleFactor": 0
-          }
+          },
+          "unit": "Wh"
         },
         {
           "id": "sET_UNLOCK_PLUG",
-          "name": "sET_UNLOCK_PLUG",
-          "role": "value",
-          "type": "number",
+          "name": "Unlock plug",
+          "role": "switch",
+          "type": "boolean",
           "rw": "rw",
           "source": {
             "kind": "modbus",
@@ -36359,13 +36388,14 @@
             "length": 1,
             "dataType": "uint16",
             "scaleFactor": 0
-          }
+          },
+          "unit": ""
         },
         {
           "id": "sET_ENABLE",
-          "name": "sET_ENABLE",
-          "role": "value",
-          "type": "number",
+          "name": "Station enable",
+          "role": "switch",
+          "type": "boolean",
           "rw": "rw",
           "source": {
             "kind": "modbus",
@@ -36374,11 +36404,12 @@
             "length": 1,
             "dataType": "uint16",
             "scaleFactor": 0
-          }
+          },
+          "unit": ""
         },
         {
           "id": "sET_PHASE_SWITCH_SOURCE",
-          "name": "sET_PHASE_SWITCH_SOURCE",
+          "name": "Phase switching source",
           "role": "value",
           "type": "number",
           "rw": "rw",
@@ -36393,9 +36424,9 @@
         },
         {
           "id": "sET_TRIGGER_PHASE_SWITCH",
-          "name": "sET_TRIGGER_PHASE_SWITCH",
-          "role": "value",
-          "type": "number",
+          "name": "Trigger phase switch (0=1ph,1=3ph)",
+          "role": "switch",
+          "type": "boolean",
           "rw": "rw",
           "source": {
             "kind": "modbus",
@@ -36406,7 +36437,8 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "description": "KEBA KeContact P40 via Modbus TCP/RTU (holding registers)."
     },
     {
       "id": "evcs.mennekes.EvcsMennekesImpl",
