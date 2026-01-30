@@ -70711,6 +70711,662 @@
           }
         }
       ]
+    },
+    {
+      "id": "ess.foxess.FoxESSH3Ess",
+      "category": "ESS",
+      "manufacturer": "FoxESS",
+      "model": "H3",
+      "name": "FoxESS H3 Hybrid (Modbus)",
+      "protocols": [
+        "modbusTcp",
+        "modbusRtu"
+      ],
+      "driverHints": {
+        "modbus": {
+          "timeoutMs": 5000,
+          "minCommandIntervalMs": 200,
+          "foxessRemoteControl": {
+            "enabled": true,
+            "triggerDpId": "sET_ACTIVE_POWER",
+            "startAddress": 46001,
+            "timeoutDpId": "rEMOTE_TIMEOUT_SET",
+            "defaultTimeout": 600,
+            "positiveDirection": 0,
+            "target": 1,
+            "enable": 1
+          }
+        }
+      },
+      "pollIntervalMs": 10000,
+      "fastPollingIntervalMs": 2500,
+      "fastDpIds": [
+        "pV_POWER",
+        "gRID_POWER",
+        "bATTERY_POWER",
+        "sOC",
+        "lOAD_POWER",
+        "sET_ACTIVE_POWER"
+      ],
+      "datapoints": [
+        {
+          "id": "mODEL_NAME",
+          "name": "Model name",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 39002,
+            "length": 16,
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "sERIAL_NUMBER",
+          "name": "Serial number",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 39018,
+            "length": 16,
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "sTATUS_1",
+          "name": "Status 1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 39063,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "aLARM_1",
+          "name": "Alarm 1 (bitfield)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 39067,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "aLARM_2",
+          "name": "Alarm 2 (bitfield)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 39068,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "aLARM_3",
+          "name": "Alarm 3 (bitfield)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 39069,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "pV_POWER",
+          "name": "Total PV input power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 39118,
+            "length": 2,
+            "dataType": "int32"
+          }
+        },
+        {
+          "id": "pV_ENERGY_TOTAL",
+          "name": "Cumulative power generation",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 39149,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 1
+          }
+        },
+        {
+          "id": "pV_ENERGY_TODAY",
+          "name": "Power generation on the day",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 39151,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 1
+          }
+        },
+        {
+          "id": "lOAD_POWER",
+          "name": "Load combined power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 39225,
+            "length": 2,
+            "dataType": "int32"
+          }
+        },
+        {
+          "id": "gRID_POWER",
+          "name": "Meter/CT combined active power (grid)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "invert": true,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 39168,
+            "length": 2,
+            "dataType": "int32"
+          }
+        },
+        {
+          "id": "bATTERY_VOLTAGE",
+          "name": "Battery voltage (BMS1)",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 37609,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "bATTERY_CURRENT",
+          "name": "Battery current (BMS1)",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 37610,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "bATTERY_TEMPERATURE",
+          "name": "Battery temperature (BMS1)",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 37611,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "sOC",
+          "name": "Battery SoC (BMS1)",
+          "role": "value.battery",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "decimals": 0,
+          "min": 0,
+          "max": 100,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 37612,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "sOH",
+          "name": "Battery SoH (BMS1)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "decimals": 0,
+          "min": 0,
+          "max": 100,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 37613,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "bATTERY_POWER",
+          "name": "[Energy storage module 1] Charge/discharge power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "invert": true,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 39162,
+            "length": 2,
+            "dataType": "int32"
+          }
+        },
+        {
+          "id": "rEMOTE_CONTROL",
+          "name": "Remote control (bitfield16)",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "unit": "",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 46001,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 46001,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "rEMOTE_TIMEOUT_SET",
+          "name": "Remote timeout set",
+          "role": "value.interval",
+          "type": "number",
+          "rw": "rw",
+          "unit": "s",
+          "decimals": 0,
+          "min": 0,
+          "max": 65535,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 46002,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 46002,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "rEMOTE_TIMEOUT_COUNTDOWN",
+          "name": "Remote timeout countdown",
+          "role": "value.interval",
+          "type": "number",
+          "rw": "ro",
+          "unit": "s",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 46007,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "aLLOWED_DISCHARGE_POWER",
+          "name": "Pwr_limit Bat_Up (assumed discharge)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 46018,
+            "length": 2,
+            "dataType": "int32"
+          }
+        },
+        {
+          "id": "aLLOWED_CHARGE_POWER",
+          "name": "Pwr_limit Bat_Dn (assumed charge)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 46020,
+            "length": 2,
+            "dataType": "int32"
+          }
+        },
+        {
+          "id": "sET_ACTIVE_POWER",
+          "name": "Battery power target (remote control)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "rw",
+          "unit": "W",
+          "decimals": 0,
+          "min": -30000,
+          "max": 30000,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 46003,
+              "length": 2,
+              "dataType": "int32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 46003,
+              "length": 2,
+              "dataType": "int32"
+            }
+          }
+        },
+        {
+          "id": "iMPORT_POWER_LIMIT",
+          "name": "Import Power Limit",
+          "role": "level.power",
+          "type": "number",
+          "rw": "rw",
+          "unit": "W",
+          "decimals": 0,
+          "min": 0,
+          "max": 100000,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 46501,
+              "length": 2,
+              "dataType": "int32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 46501,
+              "length": 2,
+              "dataType": "int32"
+            }
+          }
+        },
+        {
+          "id": "eXPORT_PEAK_LIMIT",
+          "name": "Export Peak Limit",
+          "role": "level.power",
+          "type": "number",
+          "rw": "rw",
+          "unit": "W",
+          "decimals": 0,
+          "min": 0,
+          "max": 100000,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 46504,
+              "length": 2,
+              "dataType": "int32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 46504,
+              "length": 2,
+              "dataType": "int32"
+            }
+          }
+        },
+        {
+          "id": "eXPORT_POWER_LIMIT",
+          "name": "Export Power Limit",
+          "role": "level.power",
+          "type": "number",
+          "rw": "rw",
+          "unit": "W",
+          "decimals": 0,
+          "min": 0,
+          "max": 100000,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 46616,
+              "length": 2,
+              "dataType": "int32"
+            },
+            "write": {
+              "fc": 16,
+              "address": 46616,
+              "length": 2,
+              "dataType": "int32"
+            }
+          }
+        },
+        {
+          "id": "eXPORT_POWER_PERCENTAGE",
+          "name": "Active power percentage derating",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "unit": "%",
+          "decimals": 1,
+          "min": 0,
+          "max": 100,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 49007,
+              "length": 1,
+              "dataType": "int16",
+              "scaleFactor": -1
+            },
+            "write": {
+              "fc": 6,
+              "address": 49007,
+              "length": 1,
+              "dataType": "int16",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "bATTERY_MAX_CHARGE_CURRENT",
+          "name": "Battery max charging current",
+          "role": "level.current",
+          "type": "number",
+          "rw": "rw",
+          "unit": "A",
+          "decimals": 1,
+          "min": 0,
+          "max": 1000,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 46607,
+              "length": 1,
+              "dataType": "int16",
+              "scaleFactor": -1
+            },
+            "write": {
+              "fc": 6,
+              "address": 46607,
+              "length": 1,
+              "dataType": "int16",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "bATTERY_MAX_DISCHARGE_CURRENT",
+          "name": "Battery max discharging current",
+          "role": "level.current",
+          "type": "number",
+          "rw": "rw",
+          "unit": "A",
+          "decimals": 1,
+          "min": 0,
+          "max": 1000,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 46608,
+              "length": 1,
+              "dataType": "int16",
+              "scaleFactor": -1
+            },
+            "write": {
+              "fc": 6,
+              "address": 46608,
+              "length": 1,
+              "dataType": "int16",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "bATTERY_MIN_SOC",
+          "name": "Battery min SoC",
+          "role": "level.battery",
+          "type": "number",
+          "rw": "rw",
+          "unit": "%",
+          "decimals": 0,
+          "min": 0,
+          "max": 100,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 46609,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 46609,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "bATTERY_MAX_SOC",
+          "name": "Battery max SoC",
+          "role": "level.battery",
+          "type": "number",
+          "rw": "rw",
+          "unit": "%",
+          "decimals": 0,
+          "min": 0,
+          "max": 100,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 46610,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 46610,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        }
+      ]
     }
   ]
 }
