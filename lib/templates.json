@@ -33903,6 +33903,322 @@
       "datapoints": []
     },
     {
+      "id": "evcs.abl.emh1.evcc2_3.modbusAscii",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "EVCS",
+      "manufacturer": "ABL",
+      "model": "eMH1 (EVCC2/3)",
+      "name": "ABL eMH1 (EVCC2/3) (Modbus ASCII)",
+      "protocols": [
+        "modbusAscii"
+      ],
+      "driverHints": {
+        "modbus": {
+          "maxReadRegs": 6
+        }
+      },
+      "datapoints": [
+        {
+          "id": "dEVICE_ID",
+          "name": "Device ID",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 1,
+            "length": 2,
+            "dataType": "uint32",
+            "bitShift": 16,
+            "bitMask": 63
+          }
+        },
+        {
+          "id": "fIRMWARE_MAJOR",
+          "name": "Firmware major",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 1,
+            "length": 2,
+            "dataType": "uint32",
+            "bitShift": 12,
+            "bitMask": 15
+          }
+        },
+        {
+          "id": "fIRMWARE_MINOR",
+          "name": "Firmware minor",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 1,
+            "length": 2,
+            "dataType": "uint32",
+            "bitShift": 8,
+            "bitMask": 15
+          }
+        },
+        {
+          "id": "hARDWARE_VARIANT",
+          "name": "Hardware variant",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 1,
+            "length": 2,
+            "dataType": "uint32",
+            "bitShift": 22,
+            "bitMask": 3
+          }
+        },
+        {
+          "id": "sTATE_MACHINE_PTR",
+          "name": "State machine pointer",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 6,
+            "length": 2,
+            "dataType": "uint32",
+            "bitShift": 16,
+            "bitMask": 255
+          }
+        },
+        {
+          "id": "uPSTREAM_COMM_ESTABLISHED",
+          "name": "Upstream communication established",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 6,
+            "length": 2,
+            "dataType": "uint32",
+            "bitShift": 9,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "lOAD_IMBALANCE_DETECTED",
+          "name": "Load imbalance detected",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 6,
+            "length": 2,
+            "dataType": "uint32",
+            "bitShift": 8,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "eVSE_STATE",
+          "name": "EVSE state code",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 46,
+            "length": 1,
+            "dataType": "uint16",
+            "bitMask": 255
+          }
+        },
+        {
+          "id": "uCP_EV_CONNECTED",
+          "name": "EV connected (UCP ≤ 10V)",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 47,
+            "length": 1,
+            "dataType": "uint16",
+            "bitShift": 15,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "dUTY_CYCLE_REDUCED",
+          "name": "Duty cycle reduced (BC3..BC6)",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 47,
+            "length": 1,
+            "dataType": "uint16",
+            "bitShift": 14,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "eN1_ACTIVE",
+          "name": "EN1 output active",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 47,
+            "length": 1,
+            "dataType": "uint16",
+            "bitShift": 12,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "eN2_ACTIVE",
+          "name": "EN2 output active",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 47,
+            "length": 1,
+            "dataType": "uint16",
+            "bitShift": 11,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "iCMAX_DUTY_CYCLE_PCT",
+          "name": "Icmax duty cycle (%)",
+          "role": "value",
+          "type": "number",
+          "unit": "%",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 47,
+            "length": 1,
+            "dataType": "uint16",
+            "bitMask": 4095,
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "cURRENT_L1",
+          "name": "Current L1",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 48,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "cURRENT_L2",
+          "name": "Current L2",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 49,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "cURRENT_L3",
+          "name": "Current L3",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 50,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "sET_ICMAX_DUTY_CYCLE_PCT",
+          "name": "Set Icmax duty cycle (%)",
+          "role": "level",
+          "type": "number",
+          "unit": "%",
+          "rw": "wo",
+          "source": {
+            "kind": "modbus",
+            "write": {
+              "fc": 16,
+              "address": 20,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            }
+          }
+        },
+        {
+          "id": "mODIFY_STATE",
+          "name": "Modify state (jump A1/E0/E2)",
+          "role": "value",
+          "type": "number",
+          "rw": "wo",
+          "source": {
+            "kind": "modbus",
+            "write": {
+              "fc": 16,
+              "address": 5,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        }
+      ]
+    },
+    {
       "id": "evcs.alpitronic.hypercharger.connector1",
       "source": {
         "type": "builtin"

@@ -235,8 +235,18 @@
         <h6 class="translate">Modbus RTU Verbindung</h6>
         <div class="row">
           <div class="input-field col s12 m4">
-            <input id="mb_path" type="text" />
+            <input id="mb_path" type="text" list="serialPortsList" />
             <label for="mb_path" class="translate">Serial Port (z.B. /dev/com2)</label>
+            <datalist id="serialPortsList">
+              <option value="/dev/ttyUSB0"></option>
+              <option value="/dev/ttyUSB1"></option>
+              <option value="/dev/ttyACM0"></option>
+              <option value="/dev/ttyS0"></option>
+              <option value="/dev/ttyAMA0"></option>
+              <option value="/dev/com2"></option>
+              <option value="COM3"></option>
+              <option value="COM4"></option>
+            </datalist>
           </div>
           <div class="input-field col s12 m2">
             <input id="mb_baud" type="number" min="1200" step="300" />

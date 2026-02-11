@@ -217,7 +217,7 @@ function summarizeConnection(d) {
   if (d.protocol === 'modbusTcp') {
     return `${c.host || ''}:${c.port || 502} (unit ${c.unitId ?? 1})`;
   }
-  if (d.protocol === 'modbusRtu') {
+  if (d.protocol === 'modbusRtu' || d.protocol === 'modbusAscii') {
     return `${c.path || ''} @${c.baudRate || 9600} (unit ${c.unitId ?? 1})`;
   }
   if (d.protocol === 'mqtt') {
@@ -315,7 +315,7 @@ function fillProtocolSelect(templateId, currentProtocol) {
 function showConnBlock(protocol) {
   $('.nexo-conn-block').hide();
   if (protocol === 'modbusTcp') $('#conn_modbusTcp').show();
-  if (protocol === 'modbusRtu') $('#conn_modbusRtu').show();
+  if (protocol === 'modbusRtu' || protocol === 'modbusAscii') $('#conn_modbusRtu').show();
   if (protocol === 'mqtt') $('#conn_mqtt').show();
   if (protocol === 'http') $('#conn_http').show();
   if (protocol === 'udp') $('#conn_udp').show();
@@ -532,7 +532,7 @@ function collectDeviceFromModal() {
     d.connection.wordOrder = $('#mb_wordOrder').val() || 'be';
     d.connection.byteOrder = $('#mb_byteOrder').val() || 'be';
     d.connection.writePassword = ($('#mb_writePass').val() || '').trim() || undefined;
-  } else if (d.protocol === 'modbusRtu') {
+  } else if (d.protocol === 'modbusRtu' || d.protocol === 'modbusAscii') {
     d.connection.path = ($('#mb_path').val() || '').trim();
     d.connection.baudRate = parseInt($('#mb_baud').val(), 10) || 9600;
     d.connection.parity = $('#mb_parity').val() || 'none';
@@ -589,7 +589,7 @@ function collectDeviceFromModal() {
   if (!d.protocol) throw new Error('Protokoll fehlt');
 
   if (d.protocol === 'modbusTcp' && !d.connection.host) throw new Error('Modbus TCP Host/IP fehlt');
-  if (d.protocol === 'modbusRtu' && !d.connection.path) throw new Error('Modbus RTU Serial-Port fehlt');
+  if ((d.protocol === 'modbusRtu' || d.protocol === 'modbusAscii') && !d.connection.path) throw new Error('Modbus Serial-Port fehlt');
   if (d.protocol === 'mqtt' && !d.connection.url) throw new Error('MQTT Broker-URL fehlt');
   if (d.protocol === 'http' && !d.connection.baseUrl) throw new Error('HTTP Base-URL fehlt');
 
