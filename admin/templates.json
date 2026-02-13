@@ -59061,11 +59061,12 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30057,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 0
+            "scaleFactor": 0,
+            "nanToNull": true
           }
         },
         {
@@ -59076,11 +59077,12 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30201,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 0
+            "scaleFactor": 0,
+            "nanToNull": true
           }
         },
         {
@@ -59091,11 +59093,12 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30217,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 0
+            "scaleFactor": 0,
+            "nanToNull": true
           }
         },
         {
@@ -59106,11 +59109,12 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30881,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 0
+            "scaleFactor": 0,
+            "nanToNull": true
           }
         },
         {
@@ -59122,11 +59126,12 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30775,
             "length": 2,
             "dataType": "int32",
-            "scaleFactor": 0
+            "scaleFactor": 0,
+            "nanToNull": true
           }
         },
         {
@@ -59138,11 +59143,12 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30513,
             "length": 4,
             "dataType": "uint64",
-            "scaleFactor": 0
+            "scaleFactor": 0,
+            "nanToNull": true
           }
         },
         {
@@ -59223,10 +59229,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31061,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -59237,10 +59244,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 34669,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -59252,10 +59260,11 @@
           "unit": "Wh",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31397,
             "length": 4,
-            "dataType": "uint64"
+            "dataType": "uint64",
+            "nanToNull": true
           }
         },
         {
@@ -59267,10 +59276,11 @@
           "unit": "Wh",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31401,
             "length": 4,
-            "dataType": "uint64"
+            "dataType": "uint64",
+            "nanToNull": true
           }
         },
         {
@@ -59328,10 +59338,11 @@
           "unit": "Wh",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 32201,
             "length": 4,
-            "dataType": "uint64"
+            "dataType": "uint64",
+            "nanToNull": true
           }
         },
         {
@@ -59343,10 +59354,11 @@
           "unit": "Wh",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 32205,
             "length": 4,
-            "dataType": "uint64"
+            "dataType": "uint64",
+            "nanToNull": true
           }
         },
         {
@@ -59424,10 +59436,11 @@
           "unit": "W/m²",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 34623,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -59440,10 +59453,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 34615,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -59456,10 +59470,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 34633,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -59472,10 +59487,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 34635,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -59488,10 +59504,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -1,
-            "fc": 3,
+            "fc": 4,
             "address": 34609,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -59504,10 +59521,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -1,
-            "fc": 3,
+            "fc": 4,
             "address": 34625,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -59520,10 +59538,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -1,
-            "fc": 3,
+            "fc": 4,
             "address": 34627,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -59536,10 +59555,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -1,
-            "fc": 3,
+            "fc": 4,
             "address": 34611,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -59773,10 +59793,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -1,
-            "fc": 3,
+            "fc": 4,
             "address": 34621,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -59789,10 +59810,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -1,
-            "fc": 3,
+            "fc": 4,
             "address": 34629,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -59805,10 +59827,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -1,
-            "fc": 3,
+            "fc": 4,
             "address": 34631,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -59820,10 +59843,11 @@
           "unit": "Wh",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30517,
             "length": 4,
-            "dataType": "uint64"
+            "dataType": "uint64",
+            "nanToNull": true
           }
         },
         {
@@ -59835,10 +59859,11 @@
           "unit": "Wh",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30535,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -59850,10 +59875,11 @@
           "unit": "kWh",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30537,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -59865,10 +59891,11 @@
           "unit": "MWh",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30539,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -59881,10 +59908,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31435,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -59897,10 +59925,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31437,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -59913,10 +59942,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31439,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -59929,10 +59959,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 31447,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -59945,10 +59976,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 31253,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -59961,10 +59993,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 31451,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -59977,10 +60010,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 31255,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -59993,10 +60027,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 31453,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60009,10 +60044,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 31257,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60025,10 +60061,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 31449,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60040,10 +60077,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 31433,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60055,10 +60093,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31499,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -60070,10 +60109,11 @@
           "unit": "VA",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31455,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -60085,10 +60125,11 @@
           "unit": "VAr",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31277,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -60100,10 +60141,11 @@
           "unit": "Wh",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30581,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60115,10 +60157,11 @@
           "unit": "Wh",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30583,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60130,10 +60173,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30865,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -60145,10 +60189,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30867,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -60160,10 +60205,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 32341,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -60175,10 +60221,11 @@
           "unit": "VA",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31441,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -60190,10 +60237,11 @@
           "unit": "VA",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31443,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -60205,10 +60253,11 @@
           "unit": "VA",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31445,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -60220,10 +60269,11 @@
           "unit": "VAr",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31271,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -60235,10 +60285,11 @@
           "unit": "VAr",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31273,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -60250,10 +60301,11 @@
           "unit": "VAr",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31275,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -60265,10 +60317,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31259,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60280,10 +60333,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31261,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60295,10 +60349,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31263,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60310,10 +60365,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31265,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60325,10 +60381,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31267,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60340,10 +60397,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31269,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60355,10 +60413,11 @@
           "unit": "Wh",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30513,
             "length": 4,
-            "dataType": "uint64"
+            "dataType": "uint64",
+            "nanToNull": true
           }
         },
         {
@@ -60370,10 +60429,11 @@
           "unit": "Wh",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30529,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60385,10 +60445,11 @@
           "unit": "kWh",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30531,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60400,10 +60461,11 @@
           "unit": "MWh",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30533,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60458,10 +60520,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30875,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60486,10 +60549,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30059,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60500,10 +60564,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30055,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60515,10 +60580,11 @@
           "unit": "s",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 32405,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60529,10 +60595,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30215,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60543,10 +60610,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30247,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60557,10 +60625,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30213,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60571,10 +60640,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30211,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60585,10 +60655,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30561,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60599,10 +60670,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 35381,
             "length": 4,
-            "dataType": "uint64"
+            "dataType": "uint64",
+            "nanToNull": true
           }
         },
         {
@@ -60613,10 +60685,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30563,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60627,10 +60700,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 35385,
             "length": 4,
-            "dataType": "uint64"
+            "dataType": "uint64",
+            "nanToNull": true
           }
         },
         {
@@ -60641,10 +60715,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30559,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60655,10 +60730,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 35377,
             "length": 4,
-            "dataType": "uint64"
+            "dataType": "uint64",
+            "nanToNull": true
           }
         },
         {
@@ -60669,10 +60745,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30201,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60684,10 +60761,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30207,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60699,10 +60777,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30203,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60714,10 +60793,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31085,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60729,10 +60809,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30205,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60743,10 +60824,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 32385,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60758,10 +60840,11 @@
           "unit": "s",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30199,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60772,10 +60855,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31041,
             "length": 8,
-            "dataType": "string"
+            "dataType": "string",
+            "nanToNull": true
           }
         },
         {
@@ -60786,10 +60870,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31033,
             "length": 8,
-            "dataType": "string"
+            "dataType": "string",
+            "nanToNull": true
           }
         },
         {
@@ -60800,10 +60885,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31017,
             "length": 8,
-            "dataType": "string"
+            "dataType": "string",
+            "nanToNull": true
           }
         },
         {
@@ -60814,10 +60900,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31025,
             "length": 8,
-            "dataType": "string"
+            "dataType": "string",
+            "nanToNull": true
           }
         },
         {
@@ -60850,10 +60937,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30925,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60864,10 +60952,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30927,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60878,10 +60967,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30929,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60892,10 +60982,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30931,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60906,10 +60997,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30933,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -60920,10 +61012,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30935,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -61059,28 +61152,6 @@
           }
         },
         {
-          "id": "raw.DtTm.TmZn_40003",
-          "name": "Zeitzone (Gerät > Zeiteinstellungen > Zeitzone) [Reg 40003]",
-          "role": "value",
-          "type": "number",
-          "rw": "rw",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 40003,
-              "length": 2,
-              "dataType": "uint32"
-            },
-            "write": {
-              "fc": 16,
-              "address": 40003,
-              "length": 2,
-              "dataType": "uint32"
-            }
-          }
-        },
-        {
           "id": "raw.Coolsys.Cab.TmpVal_30953",
           "name": "Innentemperatur (Gerät > Kühlsystem > Innenraum > Temperatur) [Reg 30953]",
           "role": "value.temperature",
@@ -61090,10 +61161,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -1,
-            "fc": 3,
+            "fc": 4,
             "address": 30953,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61106,10 +61178,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -1,
-            "fc": 3,
+            "fc": 4,
             "address": 34113,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61122,10 +61195,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 30769,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61138,10 +61212,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 30957,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61154,10 +61229,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 30963,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61170,10 +61246,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 30969,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61186,10 +61263,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31209,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61202,10 +61280,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31215,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61218,10 +61297,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31549,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61234,10 +61314,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31555,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61250,10 +61331,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31561,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61266,10 +61348,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31567,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61282,10 +61365,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31573,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61298,10 +61382,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31579,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61314,26 +61399,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31793,
             "length": 2,
-            "dataType": "int32"
-          }
-        },
-        {
-          "id": "raw.DcMs.Amp_31793",
-          "name": "DC Strom Eingang (DC-Seite > DC Messungen > Strom) [Reg 31793]",
-          "role": "value.current",
-          "type": "number",
-          "rw": "ro",
-          "unit": "A",
-          "source": {
-            "kind": "modbus",
-            "scaleFactor": -3,
-            "fc": 3,
-            "address": 31793,
-            "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61346,26 +61416,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31795,
             "length": 2,
-            "dataType": "int32"
-          }
-        },
-        {
-          "id": "raw.DcMs.Amp_31795",
-          "name": "DC Strom Eingang (DC-Seite > DC Messungen > Strom) [Reg 31795]",
-          "role": "value.current",
-          "type": "number",
-          "rw": "ro",
-          "unit": "A",
-          "source": {
-            "kind": "modbus",
-            "scaleFactor": -3,
-            "fc": 3,
-            "address": 31795,
-            "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61378,26 +61433,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31797,
             "length": 2,
-            "dataType": "int32"
-          }
-        },
-        {
-          "id": "raw.DcMs.Amp_31797",
-          "name": "DC Strom Eingang (DC-Seite > DC Messungen > Strom) [Reg 31797]",
-          "role": "value.current",
-          "type": "number",
-          "rw": "ro",
-          "unit": "A",
-          "source": {
-            "kind": "modbus",
-            "scaleFactor": -3,
-            "fc": 3,
-            "address": 31797,
-            "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61410,26 +61450,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31799,
             "length": 2,
-            "dataType": "int32"
-          }
-        },
-        {
-          "id": "raw.DcMs.Amp_31799",
-          "name": "DC Strom Eingang (DC-Seite > DC Messungen > Strom) [Reg 31799]",
-          "role": "value.current",
-          "type": "number",
-          "rw": "ro",
-          "unit": "A",
-          "source": {
-            "kind": "modbus",
-            "scaleFactor": -3,
-            "fc": 3,
-            "address": 31799,
-            "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61442,26 +61467,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31801,
             "length": 2,
-            "dataType": "int32"
-          }
-        },
-        {
-          "id": "raw.DcMs.Amp_31801",
-          "name": "DC Strom Eingang (DC-Seite > DC Messungen > Strom) [Reg 31801]",
-          "role": "value.current",
-          "type": "number",
-          "rw": "ro",
-          "unit": "A",
-          "source": {
-            "kind": "modbus",
-            "scaleFactor": -3,
-            "fc": 3,
-            "address": 31801,
-            "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61474,26 +61484,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31803,
             "length": 2,
-            "dataType": "int32"
-          }
-        },
-        {
-          "id": "raw.DcMs.Amp_31803",
-          "name": "DC Strom Eingang (DC-Seite > DC Messungen > Strom) [Reg 31803]",
-          "role": "value.current",
-          "type": "number",
-          "rw": "ro",
-          "unit": "A",
-          "source": {
-            "kind": "modbus",
-            "scaleFactor": -3,
-            "fc": 3,
-            "address": 31803,
-            "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61506,26 +61501,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31805,
             "length": 2,
-            "dataType": "int32"
-          }
-        },
-        {
-          "id": "raw.DcMs.Amp_31805",
-          "name": "DC Strom Eingang (DC-Seite > DC Messungen > Strom) [Reg 31805]",
-          "role": "value.current",
-          "type": "number",
-          "rw": "ro",
-          "unit": "A",
-          "source": {
-            "kind": "modbus",
-            "scaleFactor": -3,
-            "fc": 3,
-            "address": 31805,
-            "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61538,26 +61518,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31807,
             "length": 2,
-            "dataType": "int32"
-          }
-        },
-        {
-          "id": "raw.DcMs.Amp_31807",
-          "name": "DC Strom Eingang (DC-Seite > DC Messungen > Strom) [Reg 31807]",
-          "role": "value.current",
-          "type": "number",
-          "rw": "ro",
-          "unit": "A",
-          "source": {
-            "kind": "modbus",
-            "scaleFactor": -3,
-            "fc": 3,
-            "address": 31807,
-            "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61570,26 +61535,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31809,
             "length": 2,
-            "dataType": "int32"
-          }
-        },
-        {
-          "id": "raw.DcMs.Amp_31809",
-          "name": "DC Strom Eingang (DC-Seite > DC Messungen > Strom) [Reg 31809]",
-          "role": "value.current",
-          "type": "number",
-          "rw": "ro",
-          "unit": "A",
-          "source": {
-            "kind": "modbus",
-            "scaleFactor": -3,
-            "fc": 3,
-            "address": 31809,
-            "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61602,26 +61552,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31811,
             "length": 2,
-            "dataType": "int32"
-          }
-        },
-        {
-          "id": "raw.DcMs.Amp_31811",
-          "name": "DC Strom Eingang (DC-Seite > DC Messungen > Strom) [Reg 31811]",
-          "role": "value.current",
-          "type": "number",
-          "rw": "ro",
-          "unit": "A",
-          "source": {
-            "kind": "modbus",
-            "scaleFactor": -3,
-            "fc": 3,
-            "address": 31811,
-            "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61634,26 +61569,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31813,
             "length": 2,
-            "dataType": "int32"
-          }
-        },
-        {
-          "id": "raw.DcMs.Amp_31813",
-          "name": "DC Strom Eingang (DC-Seite > DC Messungen > Strom) [Reg 31813]",
-          "role": "value.current",
-          "type": "number",
-          "rw": "ro",
-          "unit": "A",
-          "source": {
-            "kind": "modbus",
-            "scaleFactor": -3,
-            "fc": 3,
-            "address": 31813,
-            "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61666,26 +61586,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31815,
             "length": 2,
-            "dataType": "int32"
-          }
-        },
-        {
-          "id": "raw.DcMs.Amp_31815",
-          "name": "DC Strom Eingang (DC-Seite > DC Messungen > Strom) [Reg 31815]",
-          "role": "value.current",
-          "type": "number",
-          "rw": "ro",
-          "unit": "A",
-          "source": {
-            "kind": "modbus",
-            "scaleFactor": -3,
-            "fc": 3,
-            "address": 31815,
-            "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61698,10 +61603,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 30771,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61714,10 +61620,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 30959,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61730,10 +61637,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 30965,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61746,10 +61654,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 30971,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61762,10 +61671,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 31211,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61778,10 +61688,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 31217,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61794,10 +61705,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 31551,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61810,10 +61722,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 31557,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61826,10 +61739,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 31563,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61842,10 +61756,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 31569,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61858,10 +61773,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 31575,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61874,10 +61790,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 31581,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61889,10 +61806,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30773,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61904,10 +61822,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30961,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61919,10 +61838,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30967,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61934,10 +61854,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30973,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61949,10 +61870,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31213,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61964,10 +61886,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31219,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61979,10 +61902,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31553,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -61994,10 +61918,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31559,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -62009,10 +61934,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31565,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -62024,10 +61950,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31571,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -62039,10 +61966,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31577,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -62054,10 +61982,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31583,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -63162,10 +63091,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 30977,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -63178,10 +63108,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 30979,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -63194,10 +63125,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 30981,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -63210,10 +63142,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 30803,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -63226,10 +63159,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 30783,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -63242,10 +63176,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 30789,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -63258,10 +63193,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 30785,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -63274,10 +63210,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 30791,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -63290,10 +63227,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 30787,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -63306,10 +63244,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -2,
-            "fc": 3,
+            "fc": 4,
             "address": 30793,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -63322,10 +63261,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 30795,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -63337,10 +63277,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31221,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -63352,10 +63293,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 30949,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -63367,10 +63309,11 @@
           "unit": "VA",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30813,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -63382,10 +63325,11 @@
           "unit": "VAr",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 31497,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -63397,10 +63341,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30775,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -63412,10 +63357,11 @@
           "unit": "VA",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30815,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -63427,10 +63373,11 @@
           "unit": "VA",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30817,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -63442,10 +63389,11 @@
           "unit": "VA",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30819,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -63457,10 +63405,11 @@
           "unit": "VAr",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30807,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -63472,10 +63421,11 @@
           "unit": "VAr",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30809,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -63487,10 +63437,11 @@
           "unit": "VAr",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30811,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -63502,10 +63453,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30777,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -63517,10 +63469,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30779,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -63532,10 +63485,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30781,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -64772,10 +64726,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 33015,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -65330,10 +65285,11 @@
           "unit": "VAr",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30827,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -65369,10 +65325,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -1,
-            "fc": 3,
+            "fc": 4,
             "address": 30829,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -65511,10 +65468,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 33013,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -65956,10 +65914,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30231,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -65971,10 +65930,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30233,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -66009,10 +65969,11 @@
           "unit": "W",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30837,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -66047,10 +66008,11 @@
           "unit": "%",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30839,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -66236,10 +66198,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30835,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -66589,10 +66552,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 33047,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -67280,10 +67244,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 33045,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -67364,10 +67329,11 @@
           "unit": "VAr",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 33029,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -67379,10 +67345,11 @@
           "unit": "VAr",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 33035,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -67417,10 +67384,11 @@
           "unit": "VA",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 33027,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -67455,10 +67423,11 @@
           "unit": "VA",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 33025,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -67471,10 +67440,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -3,
-            "fc": 3,
+            "fc": 4,
             "address": 31247,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -67486,10 +67456,11 @@
           "unit": "Ohm",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30225,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -67566,10 +67537,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30051,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -67580,10 +67552,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30053,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -67594,10 +67567,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30057,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -67615,20 +67589,6 @@
           }
         },
         {
-          "id": "raw.Operation.Evt.EvtNo_30247",
-          "name": "Aktuelle Ereignisnummer für Hersteller (Status > Betrieb > Aktuelles Ereignis > Ereignisnr. Hersteller) [Reg 30247]",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "fc": 3,
-            "address": 30247,
-            "length": 2,
-            "dataType": "uint32"
-          }
-        },
-        {
           "id": "raw.Operation.GriSwStt",
           "name": "Netzrelais/-schütz (Status > Betrieb > Status des Netzrelais)",
           "role": "indicator.status",
@@ -67636,10 +67596,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30217,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -67686,10 +67647,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30881,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -67700,10 +67662,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 33003,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -67714,10 +67677,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30251,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -67750,10 +67714,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30599,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -68202,10 +68167,11 @@
           "unit": "VAr",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30921,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -68218,10 +68184,11 @@
           "source": {
             "kind": "modbus",
             "scaleFactor": -1,
-            "fc": 3,
+            "fc": 4,
             "address": 30923,
             "length": 2,
-            "dataType": "int32"
+            "dataType": "int32",
+            "nanToNull": true
           }
         },
         {
@@ -68392,10 +68359,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30001,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -68406,10 +68374,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30003,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -68420,10 +68389,11 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30005,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
           }
         },
         {
@@ -68471,20 +68441,6 @@
           }
         },
         {
-          "id": "raw.Nameplate.Vendor_30055",
-          "name": "Hersteller [Reg 30055]",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "fc": 3,
-            "address": 30055,
-            "length": 2,
-            "dataType": "uint32"
-          }
-        },
-        {
           "id": "raw.DtTm.Tm",
           "name": "Systemzeit",
           "role": "value",
@@ -68492,10 +68448,659 @@
           "rw": "ro",
           "source": {
             "kind": "modbus",
-            "fc": 3,
+            "fc": 4,
             "address": 30193,
             "length": 2,
-            "dataType": "uint32"
+            "dataType": "uint32",
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT01.current",
+          "name": "MPPT01 DC Strom",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "decimals": 3,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 30769,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -3,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT01.voltage",
+          "name": "MPPT01 DC Spannung",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 30771,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -2,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT01.power",
+          "name": "MPPT01 DC Leistung",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 30773,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": 0,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT02.current",
+          "name": "MPPT02 DC Strom",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "decimals": 3,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 30957,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -3,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT02.voltage",
+          "name": "MPPT02 DC Spannung",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 30959,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -2,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT02.power",
+          "name": "MPPT02 DC Leistung",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 30961,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": 0,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT03.current",
+          "name": "MPPT03 DC Strom",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "decimals": 3,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 30963,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -3,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT03.voltage",
+          "name": "MPPT03 DC Spannung",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 30965,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -2,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT03.power",
+          "name": "MPPT03 DC Leistung",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 30967,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": 0,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT04.current",
+          "name": "MPPT04 DC Strom",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "decimals": 3,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 30969,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -3,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT04.voltage",
+          "name": "MPPT04 DC Spannung",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 30971,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -2,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT04.power",
+          "name": "MPPT04 DC Leistung",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 30973,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": 0,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT05.current",
+          "name": "MPPT05 DC Strom",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "decimals": 3,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31209,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -3,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT05.voltage",
+          "name": "MPPT05 DC Spannung",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31211,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -2,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT05.power",
+          "name": "MPPT05 DC Leistung",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31213,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": 0,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT06.current",
+          "name": "MPPT06 DC Strom",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "decimals": 3,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31215,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -3,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT06.voltage",
+          "name": "MPPT06 DC Spannung",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31217,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -2,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT06.power",
+          "name": "MPPT06 DC Leistung",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31219,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": 0,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT07.current",
+          "name": "MPPT07 DC Strom",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "decimals": 3,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31549,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -3,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT07.voltage",
+          "name": "MPPT07 DC Spannung",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31551,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -2,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT07.power",
+          "name": "MPPT07 DC Leistung",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31553,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": 0,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT08.current",
+          "name": "MPPT08 DC Strom",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "decimals": 3,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31555,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -3,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT08.voltage",
+          "name": "MPPT08 DC Spannung",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31557,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -2,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT08.power",
+          "name": "MPPT08 DC Leistung",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31559,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": 0,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT09.current",
+          "name": "MPPT09 DC Strom",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "decimals": 3,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31561,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -3,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT09.voltage",
+          "name": "MPPT09 DC Spannung",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31563,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -2,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT09.power",
+          "name": "MPPT09 DC Leistung",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31565,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": 0,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT10.current",
+          "name": "MPPT10 DC Strom",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "decimals": 3,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31567,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -3,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT10.voltage",
+          "name": "MPPT10 DC Spannung",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31569,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -2,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT10.power",
+          "name": "MPPT10 DC Leistung",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31571,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": 0,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT11.current",
+          "name": "MPPT11 DC Strom",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "decimals": 3,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31573,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -3,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT11.voltage",
+          "name": "MPPT11 DC Spannung",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31575,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -2,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT11.power",
+          "name": "MPPT11 DC Leistung",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31577,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": 0,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT12.current",
+          "name": "MPPT12 DC Strom",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "decimals": 3,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31579,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -3,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT12.voltage",
+          "name": "MPPT12 DC Spannung",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "decimals": 2,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31581,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": -2,
+            "nanToNull": true
+          }
+        },
+        {
+          "id": "mppt.MPPT12.power",
+          "name": "MPPT12 DC Leistung",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "decimals": 0,
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 31583,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": 0,
+            "nanToNull": true
           }
         }
       ]

@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.44",
+  "version": "0.5.45",
     "news": {
+      "0.5.45": {
+        "en": "SMA STP125-70: add explicit MPPT1..12 datapoints (U/I/P) and Modbus improvements (FC4 for input registers, NaN->null).",
+        "de": "SMA STP125-70: explizite MPPT1..12 Werte (U/I/P) hinzugefügt sowie Modbus-Verbesserungen (FC4 für Input-Register, NaN->null)."
+      },
       "0.5.42": {
         "en": "Add Modbus ASCII protocol support and ABL eMH1 (EVCC2/3) device template.",
         "de": "Modbus-ASCII Protokoll-Unterstützung sowie ABL eMH1 (EVCC2/3) Geräte-Template hinzugefügt."
