@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-  "version": "0.5.46",
+    "version": "0.5.47",
     "news": {
+      "0.5.47": {
+        "en": "Add wired M-Bus serial protocol (generic template + admin UI connection block).",
+        "de": "Wired M-Bus (seriell) Protokoll hinzugefügt (Generic-Template + Admin-UI Verbindungseinstellungen)."
+      },
       "0.5.46": {
         "en": "Add 1-Wire (Linux sysfs) protocol driver and implement Modbus meter templates for Eastron SDM120/SDM630 and Carlo Gavazzi EM100/EM300.",
         "de": "1-Wire (Linux sysfs) Protokoll-Treiber hinzugefügt sowie Modbus-Zähler-Templates für Eastron SDM120/SDM630 und Carlo Gavazzi EM100/EM300 implementiert."

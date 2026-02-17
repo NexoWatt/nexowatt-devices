@@ -220,6 +220,9 @@ function summarizeConnection(d) {
   if (d.protocol === 'modbusRtu' || d.protocol === 'modbusAscii') {
     return `${c.path || ''} @${c.baudRate || 9600} (unit ${c.unitId ?? 1})`;
   }
+  if (d.protocol === 'mbus') {
+    return `${c.path || ''} @${c.baudRate || 2400} (addr ${c.unitId ?? 1})`;
+  }
   if (d.protocol === 'mqtt') {
     return `${c.url || ''}`;
   }
@@ -316,6 +319,7 @@ function showConnBlock(protocol) {
   $('.nexo-conn-block').hide();
   if (protocol === 'modbusTcp') $('#conn_modbusTcp').show();
   if (protocol === 'modbusRtu' || protocol === 'modbusAscii') $('#conn_modbusRtu').show();
+  if (protocol === 'mbus') $('#conn_mbus').show();
   if (protocol === 'mqtt') $('#conn_mqtt').show();
   if (protocol === 'onewire') $('#conn_onewire').show();
   if (protocol === 'http') $('#conn_http').show();
@@ -343,6 +347,9 @@ function summarizeDatapoint(dp) {
     const f = src.file || 'w1_slave';
     const p = src.parser || 'ds18b20';
     return `sensor: ${sid || '(cfg)'} file: ${f} parser: ${p}`.trim();
+  }
+  if (kind === 'mbus') {
+    return `field: ${src.field || ''}`.trim();
   }
   if (kind === 'http') {
     return `${(src.method || 'GET').toUpperCase()} ${src.path || ''} ${src.jsonPath ? ('-> ' + src.jsonPath) : ''}`.trim();
@@ -476,6 +483,17 @@ function openDeviceModal(device, idx) {
   refreshSelect($('#mb_wordOrder_rtu'));
   refreshSelect($('#mb_byteOrder_rtu'));
 
+  // M-Bus (wired)
+  $('#mbus_path').val(c.path || '/dev/ttyUSB0');
+  $('#mbus_baud').val(c.baudRate ?? 2400);
+  $('#mbus_parity').val(c.parity || 'even');
+  $('#mbus_databits').val(c.dataBits ?? 8);
+  $('#mbus_stopbits').val(c.stopBits ?? 1);
+  $('#mbus_unitId').val(c.unitId ?? 1);
+  $('#mbus_timeout').val(c.timeoutMs ?? '');
+  $('#mbus_sendNke').prop('checked', c.sendNke !== false);
+  refreshSelect($('#mbus_parity'));
+
   // MQTT
   $('#mqtt_url').val(c.url || '');
   $('#mqtt_user').val(c.username || '');
@@ -563,6 +581,20 @@ function collectDeviceFromModal() {
     d.connection.wordOrder = $('#mb_wordOrder_rtu').val() || 'be';
     d.connection.byteOrder = $('#mb_byteOrder_rtu').val() || 'be';
     d.connection.writePassword = ($('#mb_writePass_rtu').val() || '').trim() || undefined;
+  } else if (d.protocol === 'mbus') {
+    d.connection.path = ($('#mbus_path').val() || '').trim();
+    d.connection.baudRate = parseInt($('#mbus_baud').val(), 10) || 2400;
+    d.connection.parity = $('#mbus_parity').val() || 'even';
+    d.connection.dataBits = parseInt($('#mbus_databits').val(), 10) || 8;
+    d.connection.stopBits = parseInt($('#mbus_stopbits').val(), 10) || 1;
+
+    const a = parseInt($('#mbus_unitId').val(), 10);
+    d.connection.unitId = isNaN(a) ? 1 : a;
+
+    const t = parseInt($('#mbus_timeout').val(), 10);
+    if (!isNaN(t)) d.connection.timeoutMs = t;
+
+    d.connection.sendNke = $('#mbus_sendNke').is(':checked');
   } else if (d.protocol === 'mqtt') {
     d.connection.url = ($('#mqtt_url').val() || '').trim();
     d.connection.username = ($('#mqtt_user').val() || '').trim() || undefined;
@@ -608,6 +640,7 @@ function collectDeviceFromModal() {
 
   if (d.protocol === 'modbusTcp' && !d.connection.host) throw new Error('Modbus TCP Host/IP fehlt');
   if ((d.protocol === 'modbusRtu' || d.protocol === 'modbusAscii') && !d.connection.path) throw new Error('Modbus Serial-Port fehlt');
+  if (d.protocol === 'mbus' && !d.connection.path) throw new Error('M-Bus Serial-Port fehlt');
   if (d.protocol === 'mqtt' && !d.connection.url) throw new Error('MQTT Broker-URL fehlt');
   if (d.protocol === 'onewire' && !d.connection.sensorId) throw new Error('1-Wire Sensor-ID fehlt');
   if (d.protocol === 'http' && !d.connection.baseUrl) throw new Error('HTTP Base-URL fehlt');

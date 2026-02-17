@@ -83857,6 +83857,200 @@
           }
         }
       ]
+    },
+    {
+      "id": "meter.mbus.GenericWiredMbusDevice.V1",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "METER",
+      "manufacturer": "M-Bus",
+      "model": "Generic",
+      "name": "M-Bus (wired) Generic Meter",
+      "protocols": [
+        "mbus"
+      ],
+      "datapoints": [
+        {
+          "id": "telegramHex",
+          "name": "Raw Telegram (hex)",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "mbus",
+            "field": "telegramHexPretty"
+          }
+        },
+        {
+          "id": "checksumOk",
+          "name": "Checksum OK",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "mbus",
+            "field": "checksumOk"
+          }
+        },
+        {
+          "id": "manufacturer",
+          "name": "Manufacturer",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "mbus",
+            "field": "manufacturer"
+          }
+        },
+        {
+          "id": "identification",
+          "name": "Identification",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "mbus",
+            "field": "identification"
+          }
+        },
+        {
+          "id": "medium",
+          "name": "Medium",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "mbus",
+            "field": "medium"
+          }
+        },
+        {
+          "id": "version",
+          "name": "Version",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "mbus",
+            "field": "version"
+          }
+        },
+        {
+          "id": "accessNumber",
+          "name": "Access Number",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "mbus",
+            "field": "accessNumber"
+          }
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "mbus",
+            "field": "status"
+          }
+        },
+        {
+          "id": "signature",
+          "name": "Signature",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "mbus",
+            "field": "signature"
+          }
+        },
+        {
+          "id": "recordsJson",
+          "name": "Records (JSON)",
+          "role": "json",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "mbus",
+            "field": "recordsJson"
+          }
+        },
+        {
+          "id": "energyWh",
+          "name": "Energy (best-effort)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "decimals": 0,
+          "source": {
+            "kind": "mbus",
+            "field": "energyWh"
+          }
+        },
+        {
+          "id": "volumeM3",
+          "name": "Volume (best-effort)",
+          "role": "value.volume",
+          "type": "number",
+          "rw": "ro",
+          "unit": "m³",
+          "decimals": 3,
+          "source": {
+            "kind": "mbus",
+            "field": "volumeM3"
+          }
+        },
+        {
+          "id": "powerW",
+          "name": "Power (best-effort)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "mbus",
+            "field": "powerW"
+          }
+        },
+        {
+          "id": "flowM3h",
+          "name": "Flow (best-effort)",
+          "role": "value.flow",
+          "type": "number",
+          "rw": "ro",
+          "unit": "m³/h",
+          "decimals": 3,
+          "source": {
+            "kind": "mbus",
+            "field": "flowM3h"
+          }
+        },
+        {
+          "id": "temperatureC",
+          "name": "Temperature (best-effort)",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 2,
+          "source": {
+            "kind": "mbus",
+            "field": "temperatureC"
+          }
+        }
+      ]
     }
   ]
 }

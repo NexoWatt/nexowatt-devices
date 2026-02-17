@@ -31,7 +31,7 @@
             <span class="card-title nexo-title translate">Nexowatt Devices</span>
             <span class="nexo-badge">nexowatt-devices</span>
           </div>
-          <p class="nexo-subtitle translate">Standalone multi-protocol device adapter with categories and driver templates (Modbus TCP/RTU, MQTT, HTTP).</p>
+          <p class="nexo-subtitle translate">Standalone multi-protocol device adapter with categories and driver templates (Modbus TCP/RTU/ASCII, M-Bus, MQTT, HTTP, UDP, Speedwire, 1-Wire).</p>
           <p class="nexo-meta">
             <span class="translate">Treiber geladen:</span>
             <span id="tplCount">…</span>
@@ -303,6 +303,59 @@
           <div class="input-field col s12 m4">
             <input id="mb_writePass_rtu" type="password" />
             <label for="mb_writePass_rtu" class="translate">Schreibpasswort (optional)</label>
+          </div>
+        </div>
+      </div>
+
+      <div id="conn_mbus" class="nexo-conn-block" style="display:none;">
+        <h6 class="translate">M-Bus (wired) Verbindung</h6>
+        <div class="row">
+          <div class="input-field col s12 m4">
+            <input id="mbus_path" type="text" list="serialPortsList" />
+            <label for="mbus_path" class="translate">Serial Port (z.B. /dev/ttyUSB0)</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="mbus_baud" type="number" min="300" step="300" />
+            <label for="mbus_baud" class="translate">Baudrate</label>
+          </div>
+          <div class="col s12 m2 nexo-select-group">
+            <label for="mbus_parity" class="translate">Parity</label>
+            <select id="mbus_parity" class="browser-default">
+              <option value="even">even</option>
+              <option value="none">none</option>
+              <option value="odd">odd</option>
+            </select>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="mbus_databits" type="number" min="5" max="8" />
+            <label for="mbus_databits" class="translate">DataBits</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="mbus_stopbits" type="number" min="1" max="2" />
+            <label for="mbus_stopbits" class="translate">StopBits</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12 m3">
+            <input id="mbus_unitId" type="number" min="0" max="250" />
+            <label for="mbus_unitId" class="translate">Primary Address (0..250)</label>
+          </div>
+          <div class="input-field col s12 m3">
+            <input id="mbus_timeout" type="number" min="250" step="50" />
+            <label for="mbus_timeout" class="translate">Timeout (ms)</label>
+          </div>
+          <div class="input-field col s12 m6" style="margin-top: 12px;">
+            <label>
+              <input type="checkbox" id="mbus_sendNke" />
+              <span class="translate">SND_NKE (Link reset) vor jedem Poll senden</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12 nexo-muted" style="margin-top: 2px; font-size: 0.9em;">
+            <span class="translate">Hinweis</span>: <span class="translate">Typische Einstellungen sind 2400 Baud, 8E1. Primary Address entspricht der M-Bus Primäradresse.</span>
           </div>
         </div>
       </div>
