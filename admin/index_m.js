@@ -317,6 +317,7 @@ function showConnBlock(protocol) {
   if (protocol === 'modbusTcp') $('#conn_modbusTcp').show();
   if (protocol === 'modbusRtu' || protocol === 'modbusAscii') $('#conn_modbusRtu').show();
   if (protocol === 'mqtt') $('#conn_mqtt').show();
+  if (protocol === 'onewire') $('#conn_onewire').show();
   if (protocol === 'http') $('#conn_http').show();
   if (protocol === 'udp') $('#conn_udp').show();
   if (protocol === 'speedwire') $('#conn_speedwire').show();
@@ -336,6 +337,12 @@ function summarizeDatapoint(dp) {
   }
   if (kind === 'mqtt') {
     return `topic: ${src.topic || ''}`.trim();
+  }
+  if (kind === 'onewire') {
+    const sid = src.sensorId || '';
+    const f = src.file || 'w1_slave';
+    const p = src.parser || 'ds18b20';
+    return `sensor: ${sid || '(cfg)'} file: ${f} parser: ${p}`.trim();
   }
   if (kind === 'http') {
     return `${(src.method || 'GET').toUpperCase()} ${src.path || ''} ${src.jsonPath ? ('-> ' + src.jsonPath) : ''}`.trim();
@@ -474,6 +481,12 @@ function openDeviceModal(device, idx) {
   $('#mqtt_user').val(c.username || '');
   $('#mqtt_pass').val(c.password || '');
 
+  // 1-Wire
+  $('#ow_basePath').val(c.basePath || '/sys/bus/w1/devices');
+  $('#ow_sensorId').val(c.sensorId || '');
+  $('#ow_file').val(c.file || 'w1_slave');
+  $('#ow_parser').val(c.parser || 'ds18b20');
+
   // HTTP
   $('#http_baseUrl').val(c.baseUrl || '');
   $('#http_user').val(c.username || '');
@@ -554,6 +567,11 @@ function collectDeviceFromModal() {
     d.connection.url = ($('#mqtt_url').val() || '').trim();
     d.connection.username = ($('#mqtt_user').val() || '').trim() || undefined;
     d.connection.password = ($('#mqtt_pass').val() || '').trim() || undefined;
+  } else if (d.protocol === 'onewire') {
+    d.connection.basePath = ($('#ow_basePath').val() || '').trim() || '/sys/bus/w1/devices';
+    d.connection.sensorId = ($('#ow_sensorId').val() || '').trim();
+    d.connection.file = ($('#ow_file').val() || '').trim() || 'w1_slave';
+    d.connection.parser = ($('#ow_parser').val() || 'ds18b20').trim() || 'ds18b20';
   } else if (d.protocol === 'http') {
     d.connection.baseUrl = ($('#http_baseUrl').val() || '').trim();
     d.connection.username = ($('#http_user').val() || '').trim() || undefined;
@@ -591,6 +609,7 @@ function collectDeviceFromModal() {
   if (d.protocol === 'modbusTcp' && !d.connection.host) throw new Error('Modbus TCP Host/IP fehlt');
   if ((d.protocol === 'modbusRtu' || d.protocol === 'modbusAscii') && !d.connection.path) throw new Error('Modbus Serial-Port fehlt');
   if (d.protocol === 'mqtt' && !d.connection.url) throw new Error('MQTT Broker-URL fehlt');
+  if (d.protocol === 'onewire' && !d.connection.sensorId) throw new Error('1-Wire Sensor-ID fehlt');
   if (d.protocol === 'http' && !d.connection.baseUrl) throw new Error('HTTP Base-URL fehlt');
 
   if (d.protocol === 'udp' && !d.connection.host) throw new Error('UDP Host/IP fehlt');

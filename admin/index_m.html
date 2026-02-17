@@ -325,6 +325,34 @@
         </div>
       </div>
 
+      <div id="conn_onewire" class="nexo-conn-block" style="display:none;">
+        <h6 class="translate">1-Wire Verbindung</h6>
+        <div class="row">
+          <div class="input-field col s12 m6">
+            <input id="ow_basePath" type="text" value="/sys/bus/w1/devices" />
+            <label for="ow_basePath" class="translate">1-Wire Base-Path</label>
+          </div>
+          <div class="input-field col s12 m6">
+            <input id="ow_sensorId" type="text" placeholder="28-00000abcdef" />
+            <label for="ow_sensorId" class="translate">Sensor-ID (z.B. 28-...)</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 m6">
+            <input id="ow_file" type="text" value="w1_slave" />
+            <label for="ow_file" class="translate">Datei (default: w1_slave)</label>
+          </div>
+          <div class="input-field col s12 m6">
+            <label for="ow_parser" class="translate">Parser</label>
+            <select id="ow_parser" class="browser-default">
+              <option value="ds18b20">ds18b20 (w1_slave t=...)</option>
+              <option value="float">float (Plain number)</option>
+              <option value="raw">raw (Text)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
       <div id="conn_http" class="nexo-conn-block" style="display:none;">
         <h6 class="translate">HTTP/JSON Verbindung</h6>
         <div class="row">

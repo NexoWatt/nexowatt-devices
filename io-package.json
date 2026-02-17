@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-  "version": "0.5.45",
+  "version": "0.5.46",
     "news": {
+      "0.5.46": {
+        "en": "Add 1-Wire (Linux sysfs) protocol driver and implement Modbus meter templates for Eastron SDM120/SDM630 and Carlo Gavazzi EM100/EM300.",
+        "de": "1-Wire (Linux sysfs) Protokoll-Treiber hinzugefügt sowie Modbus-Zähler-Templates für Eastron SDM120/SDM630 und Carlo Gavazzi EM100/EM300 implementiert."
+      },
       "0.5.45": {
         "en": "SMA STP125-70: add explicit MPPT1..12 datapoints (U/I/P) and Modbus improvements (FC4 for input registers, NaN->null).",
         "de": "SMA STP125-70: explizite MPPT1..12 Werte (U/I/P) hinzugefügt sowie Modbus-Verbesserungen (FC4 für Input-Register, NaN->null)."
