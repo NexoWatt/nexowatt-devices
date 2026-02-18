@@ -29,3 +29,13 @@ systemDictionary['Gerät hinzufügen'] = { 'en': 'Add device', 'de': 'Gerät hin
 systemDictionary['Gerät bearbeiten'] = { 'en': 'Edit device', 'de': 'Gerät bearbeiten' };
 systemDictionary['Speichern'] = { 'en': 'Save', 'de': 'Speichern' };
 systemDictionary['Abbrechen'] = { 'en': 'Cancel', 'de': 'Abbrechen' };
+
+systemDictionary['http_meterId'] = { 
+  'en': 'Meter-ID (optional)',
+  'de': 'Meter-ID (optional)',
+};
+
+systemDictionary['http_insecureTls'] = { 
+  'en': 'Allow insecure TLS (self-signed certificates)',
+  'de': 'Unsicheres TLS erlauben (self-signed Zertifikate)',
+};

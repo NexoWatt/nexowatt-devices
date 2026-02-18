@@ -90522,6 +90522,871 @@
           "unit": "A"
         }
       ]
+    },
+    {
+      "id": "ess.tesla.powerwall2.gateway.http.v1",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "ESS",
+      "manufacturer": "Tesla",
+      "model": "Powerwall 2 / Gateway (Local API)",
+      "name": "Tesla Powerwall 2 / Gateway (Local API)",
+      "protocols": [
+        "http"
+      ],
+      "datapoints": [
+        {
+          "id": "sOC",
+          "name": "SoC",
+          "role": "value.percent",
+          "type": "number",
+          "unit": "%",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/api/system_status/soe",
+            "jsonPath": "$.percentage",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Battery Power",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/api/meters/aggregates",
+            "jsonPath": "$.battery.instant_power",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "gRID_POWER",
+          "name": "Grid Power (site)",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/api/meters/aggregates",
+            "jsonPath": "$.site.instant_power",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "lOAD_POWER",
+          "name": "Load Power",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/api/meters/aggregates",
+            "jsonPath": "$.load.instant_power",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "pV_POWER",
+          "name": "Solar Power",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/api/meters/aggregates",
+            "jsonPath": "$.solar.instant_power",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "fREQUENCY",
+          "name": "Frequency",
+          "role": "value.frequency",
+          "type": "number",
+          "unit": "Hz",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/api/meters/aggregates",
+            "jsonPath": "$.site.frequency",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "vOLTAGE",
+          "name": "Voltage (site avg)",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/api/meters/aggregates",
+            "jsonPath": "$.site.instant_average_voltage",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "gRID_ENERGY_IMPORTED",
+          "name": "Grid Energy Imported",
+          "role": "value.energy",
+          "type": "number",
+          "unit": "Wh",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/api/meters/aggregates",
+            "jsonPath": "$.site.energy_imported",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "gRID_ENERGY_EXPORTED",
+          "name": "Grid Energy Exported",
+          "role": "value.energy",
+          "type": "number",
+          "unit": "Wh",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/api/meters/aggregates",
+            "jsonPath": "$.site.energy_exported",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "bATTERY_ENERGY_IMPORTED",
+          "name": "Battery Energy Imported",
+          "role": "value.energy",
+          "type": "number",
+          "unit": "Wh",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/api/meters/aggregates",
+            "jsonPath": "$.battery.energy_imported",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "bATTERY_ENERGY_EXPORTED",
+          "name": "Battery Energy Exported",
+          "role": "value.energy",
+          "type": "number",
+          "unit": "Wh",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/api/meters/aggregates",
+            "jsonPath": "$.battery.energy_exported",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "rAW_AGGREGATES",
+          "name": "Raw aggregates JSON",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/api/meters/aggregates",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "rAW_SOE",
+          "name": "Raw SoE JSON",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/api/system_status/soe",
+            "scaleFactor": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "meter.discovergy.inexogy.http.v1",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "METER",
+      "manufacturer": "Discovergy",
+      "model": "Smart Meter (Inexogy API)",
+      "name": "Discovergy/Inexogy Smart Meter (HTTP API last_reading)",
+      "protocols": [
+        "http"
+      ],
+      "datapoints": [
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active Power",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/last_reading?meterId={meterId}&fields=power,power1,power2,power3,voltage1,voltage2,voltage3,energy,energyOut",
+            "jsonPath": "$.values.power",
+            "divisor": 1000
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L1",
+          "name": "Active Power L1",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/last_reading?meterId={meterId}&fields=power,power1,power2,power3,voltage1,voltage2,voltage3,energy,energyOut",
+            "jsonPath": "$.values.power1",
+            "divisor": 1000
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L2",
+          "name": "Active Power L2",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/last_reading?meterId={meterId}&fields=power,power1,power2,power3,voltage1,voltage2,voltage3,energy,energyOut",
+            "jsonPath": "$.values.power2",
+            "divisor": 1000
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L3",
+          "name": "Active Power L3",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/last_reading?meterId={meterId}&fields=power,power1,power2,power3,voltage1,voltage2,voltage3,energy,energyOut",
+            "jsonPath": "$.values.power3",
+            "divisor": 1000
+          }
+        },
+        {
+          "id": "vOLTAGE_L1",
+          "name": "Voltage L1",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/last_reading?meterId={meterId}&fields=power,power1,power2,power3,voltage1,voltage2,voltage3,energy,energyOut",
+            "jsonPath": "$.values.voltage1",
+            "divisor": 1000
+          }
+        },
+        {
+          "id": "vOLTAGE_L2",
+          "name": "Voltage L2",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/last_reading?meterId={meterId}&fields=power,power1,power2,power3,voltage1,voltage2,voltage3,energy,energyOut",
+            "jsonPath": "$.values.voltage2",
+            "divisor": 1000
+          }
+        },
+        {
+          "id": "vOLTAGE_L3",
+          "name": "Voltage L3",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/last_reading?meterId={meterId}&fields=power,power1,power2,power3,voltage1,voltage2,voltage3,energy,energyOut",
+            "jsonPath": "$.values.voltage3",
+            "divisor": 1000
+          }
+        },
+        {
+          "id": "aCTIVE_ENERGY_IMPORT",
+          "name": "Energy Import",
+          "role": "value.energy",
+          "type": "number",
+          "unit": "Wh",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/last_reading?meterId={meterId}&fields=power,power1,power2,power3,voltage1,voltage2,voltage3,energy,energyOut",
+            "jsonPath": "$.values.energy",
+            "divisor": 1000000
+          }
+        },
+        {
+          "id": "aCTIVE_ENERGY_EXPORT",
+          "name": "Energy Export",
+          "role": "value.energy",
+          "type": "number",
+          "unit": "Wh",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/last_reading?meterId={meterId}&fields=power,power1,power2,power3,voltage1,voltage2,voltage3,energy,energyOut",
+            "jsonPath": "$.values.energyOut",
+            "divisor": 1000000
+          }
+        },
+        {
+          "id": "tIMESTAMP",
+          "name": "Timestamp",
+          "role": "value.time",
+          "type": "number",
+          "unit": "ms",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/last_reading?meterId={meterId}&fields=power,power1,power2,power3,voltage1,voltage2,voltage3,energy,energyOut",
+            "jsonPath": "$.time",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "rAW_JSON",
+          "name": "Raw JSON",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/last_reading?meterId={meterId}&fields=power,power1,power2,power3,voltage1,voltage2,voltage3,energy,energyOut",
+            "scaleFactor": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "meter.abb.b23.mbus.v1",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "METER",
+      "manufacturer": "ABB",
+      "model": "B23/B32 (M-Bus)",
+      "name": "ABB B23/B32 (M-Bus)",
+      "protocols": [
+        "mbus"
+      ],
+      "datapoints": [
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active Power",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "mbus",
+            "field": "powerW"
+          }
+        },
+        {
+          "id": "aCTIVE_ENERGY",
+          "name": "Energy",
+          "role": "value.energy",
+          "type": "number",
+          "unit": "Wh",
+          "rw": "ro",
+          "source": {
+            "kind": "mbus",
+            "field": "energyWh"
+          }
+        },
+        {
+          "id": "rECORDS_JSON",
+          "name": "Records JSON",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "mbus",
+            "field": "recordsJson"
+          }
+        },
+        {
+          "id": "tELEGRAM_HEX",
+          "name": "Telegram HEX",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "mbus",
+            "field": "telegramHex"
+          }
+        }
+      ]
+    },
+    {
+      "id": "evcs.openwb.lp1.mqtt.v1",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "EVCS",
+      "manufacturer": "openWB",
+      "model": "openWB (MQTT)",
+      "name": "openWB (MQTT) Chargepoint 0 (lp1)",
+      "protocols": [
+        "mqtt"
+      ],
+      "datapoints": [
+        {
+          "id": "vOLTAGE_L1",
+          "name": "Voltage L1",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp1/get/voltages",
+            "jsonPath": "$[0]"
+          }
+        },
+        {
+          "id": "vOLTAGE_L2",
+          "name": "Voltage L2",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp1/get/voltages",
+            "jsonPath": "$[1]"
+          }
+        },
+        {
+          "id": "vOLTAGE_L3",
+          "name": "Voltage L3",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp1/get/voltages",
+            "jsonPath": "$[2]"
+          }
+        },
+        {
+          "id": "cURRENT_L1",
+          "name": "Current L1",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp1/get/currents",
+            "jsonPath": "$[0]"
+          }
+        },
+        {
+          "id": "cURRENT_L2",
+          "name": "Current L2",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp1/get/currents",
+            "jsonPath": "$[1]"
+          }
+        },
+        {
+          "id": "cURRENT_L3",
+          "name": "Current L3",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp1/get/currents",
+            "jsonPath": "$[2]"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active Power",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp1/get/power",
+            "format": "number"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L1",
+          "name": "Active Power L1",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp1/get/powers",
+            "jsonPath": "$[0]"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L2",
+          "name": "Active Power L2",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp1/get/powers",
+            "jsonPath": "$[1]"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L3",
+          "name": "Active Power L3",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp1/get/powers",
+            "jsonPath": "$[2]"
+          }
+        },
+        {
+          "id": "aCTIVE_ENERGY_IMPORT",
+          "name": "Imported Energy",
+          "role": "value.energy",
+          "type": "number",
+          "unit": "Wh",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp1/get/imported",
+            "format": "number"
+          }
+        },
+        {
+          "id": "pLUGGED",
+          "name": "Plugged",
+          "role": "indicator",
+          "type": "boolean",
+          "unit": "",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp1/get/plug_state",
+            "format": "number"
+          }
+        },
+        {
+          "id": "cHARGING",
+          "name": "Charging",
+          "role": "indicator",
+          "type": "boolean",
+          "unit": "",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp1/get/charge_state",
+            "format": "number"
+          }
+        },
+        {
+          "id": "pHASES_IN_USE",
+          "name": "Phases in use",
+          "role": "value",
+          "type": "number",
+          "unit": "",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp1/get/phases_in_use",
+            "format": "number"
+          }
+        },
+        {
+          "id": "fAULT_STATE",
+          "name": "Fault State",
+          "role": "value",
+          "type": "number",
+          "unit": "",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp1/get/fault_state",
+            "format": "number"
+          }
+        }
+      ]
+    },
+    {
+      "id": "evcs.openwb.lp2.mqtt.v1",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "EVCS",
+      "manufacturer": "openWB",
+      "model": "openWB (MQTT)",
+      "name": "openWB (MQTT) Chargepoint 1 (lp2)",
+      "protocols": [
+        "mqtt"
+      ],
+      "datapoints": [
+        {
+          "id": "vOLTAGE_L1",
+          "name": "Voltage L1",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp2/get/voltages",
+            "jsonPath": "$[0]"
+          }
+        },
+        {
+          "id": "vOLTAGE_L2",
+          "name": "Voltage L2",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp2/get/voltages",
+            "jsonPath": "$[1]"
+          }
+        },
+        {
+          "id": "vOLTAGE_L3",
+          "name": "Voltage L3",
+          "role": "value.voltage",
+          "type": "number",
+          "unit": "V",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp2/get/voltages",
+            "jsonPath": "$[2]"
+          }
+        },
+        {
+          "id": "cURRENT_L1",
+          "name": "Current L1",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp2/get/currents",
+            "jsonPath": "$[0]"
+          }
+        },
+        {
+          "id": "cURRENT_L2",
+          "name": "Current L2",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp2/get/currents",
+            "jsonPath": "$[1]"
+          }
+        },
+        {
+          "id": "cURRENT_L3",
+          "name": "Current L3",
+          "role": "value.current",
+          "type": "number",
+          "unit": "A",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp2/get/currents",
+            "jsonPath": "$[2]"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active Power",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp2/get/power",
+            "format": "number"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L1",
+          "name": "Active Power L1",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp2/get/powers",
+            "jsonPath": "$[0]"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L2",
+          "name": "Active Power L2",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp2/get/powers",
+            "jsonPath": "$[1]"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L3",
+          "name": "Active Power L3",
+          "role": "value.power",
+          "type": "number",
+          "unit": "W",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp2/get/powers",
+            "jsonPath": "$[2]"
+          }
+        },
+        {
+          "id": "aCTIVE_ENERGY_IMPORT",
+          "name": "Imported Energy",
+          "role": "value.energy",
+          "type": "number",
+          "unit": "Wh",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp2/get/imported",
+            "format": "number"
+          }
+        },
+        {
+          "id": "pLUGGED",
+          "name": "Plugged",
+          "role": "indicator",
+          "type": "boolean",
+          "unit": "",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp2/get/plug_state",
+            "format": "number"
+          }
+        },
+        {
+          "id": "cHARGING",
+          "name": "Charging",
+          "role": "indicator",
+          "type": "boolean",
+          "unit": "",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp2/get/charge_state",
+            "format": "number"
+          }
+        },
+        {
+          "id": "pHASES_IN_USE",
+          "name": "Phases in use",
+          "role": "value",
+          "type": "number",
+          "unit": "",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp2/get/phases_in_use",
+            "format": "number"
+          }
+        },
+        {
+          "id": "fAULT_STATE",
+          "name": "Fault State",
+          "role": "value",
+          "type": "number",
+          "unit": "",
+          "rw": "ro",
+          "source": {
+            "kind": "mqtt",
+            "topic": "openWB/internal_chargepoint/lp2/get/fault_state",
+            "format": "number"
+          }
+        }
+      ]
     }
   ]
 }

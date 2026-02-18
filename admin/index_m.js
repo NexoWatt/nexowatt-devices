@@ -509,6 +509,8 @@ function openDeviceModal(device, idx) {
   $('#http_baseUrl').val(c.baseUrl || '');
   $('#http_user').val(c.username || '');
   $('#http_pass').val(c.password || '');
+  $('#http_meterId').val(c.meterId || '');
+  $('#http_insecureTls').prop('checked', !!c.insecureTls);
 
 
   // UDP
@@ -608,6 +610,8 @@ function collectDeviceFromModal() {
     d.connection.baseUrl = ($('#http_baseUrl').val() || '').trim();
     d.connection.username = ($('#http_user').val() || '').trim() || undefined;
     d.connection.password = ($('#http_pass').val() || '').trim() || undefined;
+    d.connection.meterId = ($('#http_meterId').val() || '').trim() || undefined;
+    if ($('#http_insecureTls').is(':checked')) d.connection.insecureTls = true;
   } else if (d.protocol === 'udp') {
     d.connection.host = ($('#udp_host').val() || '').trim();
     d.connection.port = parseInt($('#udp_port').val(), 10) || 7090;
