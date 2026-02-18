@@ -1,8 +1,16 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.52",
+    "version": "0.5.54",
     "news": {
+      "0.5.54": {
+        "en": "Speedwire stability improvements: larger UDP receive buffer, on-stale multicast rejoin attempt, and increased default stale timeout to 30s (configurable).",
+        "de": "Speedwire Stabilitäts-Verbesserungen: größerer UDP Receive-Buffer, bei Stale automatisch Multicast-Rejoin versuchen, und Default Stale-Timeout auf 30s erhöht (konfigurierbar)."
+      },
+      "0.5.53": {
+        "en": "Add Samsung SDI ESS (HTTP) templates and go-e Charger HTTP templates (v1 /status+/mqtt and v2 /api/status+/api/set); HTTP driver now supports sign mapping from status codes; minor EVCS alias fix.",
+        "de": "Samsung SDI ESS (HTTP) Templates sowie go-e Charger HTTP Templates (v1 /status+/mqtt und v2 /api/status+/api/set) hinzugefügt; HTTP-Treiber unterstützt nun Vorzeichen-Mapping über Statuscodes; kleiner EVCS-Alias-Fix."
+      },
       "0.5.47": {
         "en": "Add wired M-Bus serial protocol (generic template + admin UI connection block).",
         "de": "Wired M-Bus (seriell) Protokoll hinzugefügt (Generic-Template + Admin-UI Verbindungseinstellungen)."

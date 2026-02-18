@@ -542,7 +542,9 @@ function openDeviceModal(device, idx) {
   $('#sw_multicastGroup').val(c.multicastGroup || '239.12.255.254');
   $('#sw_port').val(c.port ?? 9522);
   $('#sw_interface').val(c.interfaceAddress || '');
-  $('#sw_stale').val(c.staleTimeoutMs ?? 8000);
+  // Default increased to 30000ms to reduce false positives on networks where multicast
+  // forwarding can be bursty (IGMP snooping/querier, WiFi multicast filtering, VMs).
+  $('#sw_stale').val(c.staleTimeoutMs ?? 30000);
 
   updateTextFields();
   openModal();
