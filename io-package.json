@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.50",
+    "version": "0.5.51",
     "news": {
       "0.5.47": {
         "en": "Add wired M-Bus serial protocol (generic template + admin UI connection block).",
@@ -182,6 +182,10 @@
       "0.5.39": {
         "en": "Fix: SMA STPxx-50 (Modbus) template corrected (status registers, energy counter, start/stop and power limit addresses).",
         "de": "Fix: SMA STPxx-50 (Modbus) Vorlage korrigiert (Status-Register, Energiezaehler, Start/Stop- und Leistungsbegrenzungs-Adressen)."
+      },
+      "0.5.51": {
+        "en": "Added SunSpec model scanning + KACO (blueplanet NX3 / GridSave / Hybrid10) templates; updated adapter logo.",
+        "de": "SunSpec Modell-Scan + KACO Templates (blueplanet NX3 / GridSave / Hybrid10) hinzugefügt; modernes Adapter-Logo aktualisiert."
       }
     },
     "title": "NexoWatt Devices",

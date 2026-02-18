@@ -91387,6 +91387,6985 @@
           }
         }
       ]
+    },
+    {
+      "id": "pv_inverter.kaco.blueplanet.nx3.sunspec.v1",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "PV_INVERTER",
+      "manufacturer": "KACO",
+      "model": "blueplanet NX3 / 100-125",
+      "name": "KACO blueplanet NX3 (SunSpec Modbus)",
+      "protocols": [
+        "modbusTcp",
+        "modbusRtu"
+      ],
+      "driverHints": {
+        "modbus": {
+          "autoSunSpec": true,
+          "sunSpecTemplateBase": 40001
+        }
+      },
+      "datapoints": [
+        {
+          "id": "Mn",
+          "name": "Mn",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 16,
+            "dataType": "string",
+            "scaleFactor": 0,
+            "sunspecModel": 1,
+            "sunspecOffset": 2
+          }
+        },
+        {
+          "id": "Md",
+          "name": "Md",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 16,
+            "dataType": "string",
+            "scaleFactor": 0,
+            "sunspecModel": 1,
+            "sunspecOffset": 18
+          }
+        },
+        {
+          "id": "Opt",
+          "name": "Opt",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 8,
+            "dataType": "string",
+            "scaleFactor": 0,
+            "sunspecModel": 1,
+            "sunspecOffset": 34
+          }
+        },
+        {
+          "id": "Vr",
+          "name": "Vr",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 8,
+            "dataType": "string",
+            "scaleFactor": 0,
+            "sunspecModel": 1,
+            "sunspecOffset": 42
+          }
+        },
+        {
+          "id": "SN",
+          "name": "SN",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 16,
+            "dataType": "string",
+            "scaleFactor": 0,
+            "sunspecModel": 1,
+            "sunspecOffset": 50
+          }
+        },
+        {
+          "id": "DA",
+          "name": "DA",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 1,
+            "sunspecOffset": 66
+          }
+        },
+        {
+          "id": "A",
+          "name": "A",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 2,
+            "scaleFactorRef": "A_SF"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "AphA",
+          "name": "AphA",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 3,
+            "scaleFactorRef": "A_SF"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "AphB",
+          "name": "AphB",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 4,
+            "scaleFactorRef": "A_SF"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "AphC",
+          "name": "AphC",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 5,
+            "scaleFactorRef": "A_SF"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "A_SF",
+          "name": "A_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 6
+          }
+        },
+        {
+          "id": "PPVphAB",
+          "name": "PPVphAB",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 7,
+            "scaleFactorRef": "V_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "PPVphBC",
+          "name": "PPVphBC",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 8,
+            "scaleFactorRef": "V_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "PPVphCA",
+          "name": "PPVphCA",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 9,
+            "scaleFactorRef": "V_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "PhVphA",
+          "name": "PhVphA",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 10,
+            "scaleFactorRef": "V_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "PhVphB",
+          "name": "PhVphB",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 11,
+            "scaleFactorRef": "V_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "PhVphC",
+          "name": "PhVphC",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 12,
+            "scaleFactorRef": "V_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "V_SF",
+          "name": "V_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 13
+          }
+        },
+        {
+          "id": "W",
+          "name": "W",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 14,
+            "scaleFactorRef": "W_SF"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "W_SF",
+          "name": "W_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 15
+          }
+        },
+        {
+          "id": "Hz",
+          "name": "Hz",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 16,
+            "scaleFactorRef": "Hz_SF"
+          },
+          "unit": "Hz"
+        },
+        {
+          "id": "Hz_SF",
+          "name": "Hz_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 17
+          }
+        },
+        {
+          "id": "VA",
+          "name": "VA",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 18,
+            "scaleFactorRef": "VA_SF"
+          },
+          "unit": "VA"
+        },
+        {
+          "id": "VA_SF",
+          "name": "VA_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 19
+          }
+        },
+        {
+          "id": "VAr",
+          "name": "VAr",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 20,
+            "scaleFactorRef": "VAr_SF"
+          },
+          "unit": "var"
+        },
+        {
+          "id": "VAr_SF",
+          "name": "VAr_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 21
+          }
+        },
+        {
+          "id": "PF",
+          "name": "PF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 22,
+            "scaleFactorRef": "PF_SF"
+          },
+          "unit": "%"
+        },
+        {
+          "id": "PF_SF",
+          "name": "PF_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 23
+          }
+        },
+        {
+          "id": "WH",
+          "name": "WH",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 24,
+            "scaleFactorRef": "WH_SF"
+          },
+          "unit": "Wh"
+        },
+        {
+          "id": "WH_SF",
+          "name": "WH_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 26
+          }
+        },
+        {
+          "id": "DCA",
+          "name": "DCA",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 27,
+            "scaleFactorRef": "DCA_SF"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "DCA_SF",
+          "name": "DCA_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 28
+          }
+        },
+        {
+          "id": "DCV",
+          "name": "DCV",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 29,
+            "scaleFactorRef": "DCV_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "DCV_SF",
+          "name": "DCV_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 30
+          }
+        },
+        {
+          "id": "DCW",
+          "name": "DCW",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 31,
+            "scaleFactorRef": "DCW_SF"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "DCW_SF",
+          "name": "DCW_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 32
+          }
+        },
+        {
+          "id": "TmpCab",
+          "name": "TmpCab",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 33,
+            "scaleFactorRef": "Tmp_SF"
+          },
+          "unit": "°C"
+        },
+        {
+          "id": "TmpSnk",
+          "name": "TmpSnk",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 34,
+            "scaleFactorRef": "Tmp_SF"
+          },
+          "unit": "°C"
+        },
+        {
+          "id": "TmpTrns",
+          "name": "TmpTrns",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 35,
+            "scaleFactorRef": "Tmp_SF"
+          },
+          "unit": "°C"
+        },
+        {
+          "id": "TmpOt",
+          "name": "TmpOt",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 36,
+            "scaleFactorRef": "Tmp_SF"
+          },
+          "unit": "°C"
+        },
+        {
+          "id": "Tmp_SF",
+          "name": "Tmp_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 37
+          }
+        },
+        {
+          "id": "St",
+          "name": "St",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 38
+          }
+        },
+        {
+          "id": "StVnd",
+          "name": "StVnd",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 39
+          }
+        },
+        {
+          "id": "Evt1",
+          "name": "Evt1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 40
+          }
+        },
+        {
+          "id": "Evt2",
+          "name": "Evt2",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 42
+          }
+        },
+        {
+          "id": "EvtVnd1",
+          "name": "EvtVnd1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 44
+          }
+        },
+        {
+          "id": "EvtVnd2",
+          "name": "EvtVnd2",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 46
+          }
+        },
+        {
+          "id": "EvtVnd3",
+          "name": "EvtVnd3",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 48
+          }
+        },
+        {
+          "id": "EvtVnd4",
+          "name": "EvtVnd4",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 50
+          }
+        },
+        {
+          "id": "Conn_WinTms",
+          "name": "Conn_WinTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 2,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "Conn_RvrtTms",
+          "name": "Conn_RvrtTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 3,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "Conn",
+          "name": "Conn",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 4,
+            "toBoolean": true,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "WMaxLimPct",
+          "name": "WMaxLimPct",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 5,
+            "scaleFactorRef": "WMaxLimPct_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "WMaxLimPct_WinTms",
+          "name": "WMaxLimPct_WinTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 6,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "WMaxLimPct_RvrtTms",
+          "name": "WMaxLimPct_RvrtTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 7,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "WMaxLimPct_RmpTms",
+          "name": "WMaxLimPct_RmpTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 8,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "WMaxLim_Ena",
+          "name": "WMaxLim_Ena",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 9,
+            "toBoolean": true,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "OutPFSet",
+          "name": "OutPFSet",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 10,
+            "scaleFactorRef": "OutPFSet_SF",
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "OutPFSet_WinTms",
+          "name": "OutPFSet_WinTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 11,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "OutPFSet_RvrtTms",
+          "name": "OutPFSet_RvrtTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 12,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "OutPFSet_RmpTms",
+          "name": "OutPFSet_RmpTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 13,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "OutPFSet_Ena",
+          "name": "OutPFSet_Ena",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 14,
+            "toBoolean": true,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "VArWMaxPct",
+          "name": "VArWMaxPct",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 15,
+            "scaleFactorRef": "VArPct_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "VArMaxPct",
+          "name": "VArMaxPct",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 16,
+            "scaleFactorRef": "VArPct_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "VArAvalPct",
+          "name": "VArAvalPct",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 17,
+            "scaleFactorRef": "VArPct_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "VArPct_WinTms",
+          "name": "VArPct_WinTms",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 18,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "VArPct_RvrtTms",
+          "name": "VArPct_RvrtTms",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 19,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "VArPct_RmpTms",
+          "name": "VArPct_RmpTms",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 20,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "VArPct_Mod",
+          "name": "VArPct_Mod",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 21,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "VArPct_Ena",
+          "name": "VArPct_Ena",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 22,
+            "toBoolean": true,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "WMaxLimPct_SF",
+          "name": "WMaxLimPct_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 23
+          }
+        },
+        {
+          "id": "OutPFSet_SF",
+          "name": "OutPFSet_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 24
+          }
+        },
+        {
+          "id": "VArPct_SF",
+          "name": "VArPct_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 25
+          }
+        },
+        {
+          "id": "VerMajor",
+          "name": "VerMajor",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 2
+          }
+        },
+        {
+          "id": "VerMinor",
+          "name": "VerMinor",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 3
+          }
+        },
+        {
+          "id": "VOffPct",
+          "name": "VOffPct",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 4,
+            "scaleFactorRef": "VOffPct_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "VArOffPct",
+          "name": "VArOffPct",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 5,
+            "scaleFactorRef": "VArOffPct_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "RvrtTms",
+          "name": "RvrtTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 6,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "OffsetEna",
+          "name": "OffsetEna",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 7,
+            "toBoolean": true,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "VOffPct_SF",
+          "name": "VOffPct_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 8
+          }
+        },
+        {
+          "id": "VArOffPct_SF",
+          "name": "VArOffPct_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 9
+          }
+        },
+        {
+          "id": "DERTyp",
+          "name": "DERTyp",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 2
+          }
+        },
+        {
+          "id": "WRtg",
+          "name": "WRtg",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 3,
+            "scaleFactorRef": "WRtg_SF"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "WRtg_SF",
+          "name": "WRtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 4
+          }
+        },
+        {
+          "id": "VARtg",
+          "name": "VARtg",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 5,
+            "scaleFactorRef": "VARtg_SF"
+          },
+          "unit": "VA"
+        },
+        {
+          "id": "VARtg_SF",
+          "name": "VARtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 6
+          }
+        },
+        {
+          "id": "VArRtgQ1",
+          "name": "VArRtgQ1",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 7,
+            "scaleFactorRef": "VArRtg_SF"
+          },
+          "unit": "var"
+        },
+        {
+          "id": "VArRtgQ2",
+          "name": "VArRtgQ2",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 8,
+            "scaleFactorRef": "VArRtg_SF"
+          },
+          "unit": "var"
+        },
+        {
+          "id": "VArRtgQ3",
+          "name": "VArRtgQ3",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 9,
+            "scaleFactorRef": "VArRtg_SF"
+          },
+          "unit": "var"
+        },
+        {
+          "id": "VArRtgQ4",
+          "name": "VArRtgQ4",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 10,
+            "scaleFactorRef": "VArRtg_SF"
+          },
+          "unit": "var"
+        },
+        {
+          "id": "VArRtg_SF",
+          "name": "VArRtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 11
+          }
+        },
+        {
+          "id": "ARtg",
+          "name": "ARtg",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 12,
+            "scaleFactorRef": "ARtg_SF"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "ARtg_SF",
+          "name": "ARtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 13
+          }
+        },
+        {
+          "id": "PFRtgQ1",
+          "name": "PFRtgQ1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 14,
+            "scaleFactorRef": "PFRtg_SF"
+          }
+        },
+        {
+          "id": "PFRtgQ2",
+          "name": "PFRtgQ2",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 15,
+            "scaleFactorRef": "PFRtg_SF"
+          }
+        },
+        {
+          "id": "PFRtgQ3",
+          "name": "PFRtgQ3",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 16,
+            "scaleFactorRef": "PFRtg_SF"
+          }
+        },
+        {
+          "id": "PFRtgQ4",
+          "name": "PFRtgQ4",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 17,
+            "scaleFactorRef": "PFRtg_SF"
+          }
+        },
+        {
+          "id": "PFRtg_SF",
+          "name": "PFRtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 18
+          }
+        },
+        {
+          "id": "WHRtg",
+          "name": "WHRtg",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 19,
+            "scaleFactorRef": "WHRtg_SF"
+          },
+          "unit": "Wh"
+        },
+        {
+          "id": "WHRtg_SF",
+          "name": "WHRtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 20
+          }
+        },
+        {
+          "id": "AhrRtg",
+          "name": "AhrRtg",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 21,
+            "scaleFactorRef": "AhrRtg_SF"
+          },
+          "unit": "Ah"
+        },
+        {
+          "id": "AhrRtg_SF",
+          "name": "AhrRtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 22
+          }
+        },
+        {
+          "id": "MaxChaRte",
+          "name": "MaxChaRte",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 23,
+            "scaleFactorRef": "MaxChaRte_SF"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "MaxChaRte_SF",
+          "name": "MaxChaRte_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 24
+          }
+        },
+        {
+          "id": "MaxDisChaRte",
+          "name": "MaxDisChaRte",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 25,
+            "scaleFactorRef": "MaxDisChaRte_SF"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "MaxDisChaRte_SF",
+          "name": "MaxDisChaRte_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 26
+          }
+        }
+      ]
+    },
+    {
+      "id": "ess.kaco.gridsave.sunspec.v1",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "ESS",
+      "manufacturer": "KACO",
+      "model": "GridSave",
+      "name": "KACO GridSave (SunSpec Modbus)",
+      "protocols": [
+        "modbusTcp",
+        "modbusRtu"
+      ],
+      "driverHints": {
+        "modbus": {
+          "autoSunSpec": true,
+          "sunSpecTemplateBase": 40001
+        }
+      },
+      "datapoints": [
+        {
+          "id": "Mn",
+          "name": "Mn",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 16,
+            "dataType": "string",
+            "scaleFactor": 0,
+            "sunspecModel": 1,
+            "sunspecOffset": 2
+          }
+        },
+        {
+          "id": "Md",
+          "name": "Md",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 16,
+            "dataType": "string",
+            "scaleFactor": 0,
+            "sunspecModel": 1,
+            "sunspecOffset": 18
+          }
+        },
+        {
+          "id": "Opt",
+          "name": "Opt",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 8,
+            "dataType": "string",
+            "scaleFactor": 0,
+            "sunspecModel": 1,
+            "sunspecOffset": 34
+          }
+        },
+        {
+          "id": "Vr",
+          "name": "Vr",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 8,
+            "dataType": "string",
+            "scaleFactor": 0,
+            "sunspecModel": 1,
+            "sunspecOffset": 42
+          }
+        },
+        {
+          "id": "SN",
+          "name": "SN",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 16,
+            "dataType": "string",
+            "scaleFactor": 0,
+            "sunspecModel": 1,
+            "sunspecOffset": 50
+          }
+        },
+        {
+          "id": "DERTyp",
+          "name": "DERTyp",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 2
+          }
+        },
+        {
+          "id": "WRtg",
+          "name": "WRtg",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 3,
+            "scaleFactorRef": "WRtg_SF"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "WRtg_SF",
+          "name": "WRtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 4
+          }
+        },
+        {
+          "id": "VARtg",
+          "name": "VARtg",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 5,
+            "scaleFactorRef": "VARtg_SF"
+          },
+          "unit": "VA"
+        },
+        {
+          "id": "VARtg_SF",
+          "name": "VARtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 6
+          }
+        },
+        {
+          "id": "VArRtgQ1",
+          "name": "VArRtgQ1",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 7,
+            "scaleFactorRef": "VArRtg_SF"
+          },
+          "unit": "var"
+        },
+        {
+          "id": "VArRtgQ2",
+          "name": "VArRtgQ2",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 8,
+            "scaleFactorRef": "VArRtg_SF"
+          },
+          "unit": "var"
+        },
+        {
+          "id": "VArRtgQ3",
+          "name": "VArRtgQ3",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 9,
+            "scaleFactorRef": "VArRtg_SF"
+          },
+          "unit": "var"
+        },
+        {
+          "id": "VArRtgQ4",
+          "name": "VArRtgQ4",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 10,
+            "scaleFactorRef": "VArRtg_SF"
+          },
+          "unit": "var"
+        },
+        {
+          "id": "VArRtg_SF",
+          "name": "VArRtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 11
+          }
+        },
+        {
+          "id": "ARtg",
+          "name": "ARtg",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 12,
+            "scaleFactorRef": "ARtg_SF"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "ARtg_SF",
+          "name": "ARtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 13
+          }
+        },
+        {
+          "id": "PFRtgQ1",
+          "name": "PFRtgQ1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 14,
+            "scaleFactorRef": "PFRtg_SF"
+          }
+        },
+        {
+          "id": "PFRtgQ2",
+          "name": "PFRtgQ2",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 15,
+            "scaleFactorRef": "PFRtg_SF"
+          }
+        },
+        {
+          "id": "PFRtgQ3",
+          "name": "PFRtgQ3",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 16,
+            "scaleFactorRef": "PFRtg_SF"
+          }
+        },
+        {
+          "id": "PFRtgQ4",
+          "name": "PFRtgQ4",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 17,
+            "scaleFactorRef": "PFRtg_SF"
+          }
+        },
+        {
+          "id": "PFRtg_SF",
+          "name": "PFRtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 18
+          }
+        },
+        {
+          "id": "WHRtg",
+          "name": "WHRtg",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 19,
+            "scaleFactorRef": "WHRtg_SF"
+          },
+          "unit": "Wh"
+        },
+        {
+          "id": "WHRtg_SF",
+          "name": "WHRtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 20
+          }
+        },
+        {
+          "id": "AhrRtg",
+          "name": "AhrRtg",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 21,
+            "scaleFactorRef": "AhrRtg_SF"
+          },
+          "unit": "Ah"
+        },
+        {
+          "id": "AhrRtg_SF",
+          "name": "AhrRtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 22
+          }
+        },
+        {
+          "id": "MaxChaRte",
+          "name": "MaxChaRte",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 23,
+            "scaleFactorRef": "MaxChaRte_SF"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "MaxChaRte_SF",
+          "name": "MaxChaRte_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 24
+          }
+        },
+        {
+          "id": "MaxDisChaRte",
+          "name": "MaxDisChaRte",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 25,
+            "scaleFactorRef": "MaxDisChaRte_SF"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "MaxDisChaRte_SF",
+          "name": "MaxDisChaRte_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 26
+          }
+        },
+        {
+          "id": "A",
+          "name": "A",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 2,
+            "scaleFactorRef": "A_SF"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "AphA",
+          "name": "AphA",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 3,
+            "scaleFactorRef": "A_SF"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "AphB",
+          "name": "AphB",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 4,
+            "scaleFactorRef": "A_SF"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "AphC",
+          "name": "AphC",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 5,
+            "scaleFactorRef": "A_SF"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "A_SF",
+          "name": "A_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 6
+          }
+        },
+        {
+          "id": "PPVphAB",
+          "name": "PPVphAB",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 7,
+            "scaleFactorRef": "V_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "PPVphBC",
+          "name": "PPVphBC",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 8,
+            "scaleFactorRef": "V_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "PPVphCA",
+          "name": "PPVphCA",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 9,
+            "scaleFactorRef": "V_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "PhVphA",
+          "name": "PhVphA",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 10,
+            "scaleFactorRef": "V_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "PhVphB",
+          "name": "PhVphB",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 11,
+            "scaleFactorRef": "V_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "PhVphC",
+          "name": "PhVphC",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 12,
+            "scaleFactorRef": "V_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "V_SF",
+          "name": "V_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 13
+          }
+        },
+        {
+          "id": "W",
+          "name": "W",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 14,
+            "scaleFactorRef": "W_SF"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "W_SF",
+          "name": "W_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 15
+          }
+        },
+        {
+          "id": "Hz",
+          "name": "Hz",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 16,
+            "scaleFactorRef": "Hz_SF"
+          },
+          "unit": "Hz"
+        },
+        {
+          "id": "Hz_SF",
+          "name": "Hz_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 17
+          }
+        },
+        {
+          "id": "VA",
+          "name": "VA",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 18,
+            "scaleFactorRef": "VA_SF"
+          },
+          "unit": "VA"
+        },
+        {
+          "id": "VA_SF",
+          "name": "VA_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 19
+          }
+        },
+        {
+          "id": "VAr",
+          "name": "VAr",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 20,
+            "scaleFactorRef": "VAr_SF"
+          },
+          "unit": "var"
+        },
+        {
+          "id": "VAr_SF",
+          "name": "VAr_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 21
+          }
+        },
+        {
+          "id": "PF",
+          "name": "PF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 22,
+            "scaleFactorRef": "PF_SF"
+          },
+          "unit": "%"
+        },
+        {
+          "id": "PF_SF",
+          "name": "PF_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 23
+          }
+        },
+        {
+          "id": "WH",
+          "name": "WH",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 24,
+            "scaleFactorRef": "WH_SF"
+          },
+          "unit": "Wh"
+        },
+        {
+          "id": "WH_SF",
+          "name": "WH_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 26
+          }
+        },
+        {
+          "id": "DCA",
+          "name": "DCA",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 27,
+            "scaleFactorRef": "DCA_SF"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "DCA_SF",
+          "name": "DCA_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 28
+          }
+        },
+        {
+          "id": "DCV",
+          "name": "DCV",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 29,
+            "scaleFactorRef": "DCV_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "DCV_SF",
+          "name": "DCV_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 30
+          }
+        },
+        {
+          "id": "DCW",
+          "name": "DCW",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 31,
+            "scaleFactorRef": "DCW_SF"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "DCW_SF",
+          "name": "DCW_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 32
+          }
+        },
+        {
+          "id": "TmpCab",
+          "name": "TmpCab",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 33,
+            "scaleFactorRef": "Tmp_SF"
+          },
+          "unit": "°C"
+        },
+        {
+          "id": "TmpSnk",
+          "name": "TmpSnk",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 34,
+            "scaleFactorRef": "Tmp_SF"
+          },
+          "unit": "°C"
+        },
+        {
+          "id": "TmpTrns",
+          "name": "TmpTrns",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 35,
+            "scaleFactorRef": "Tmp_SF"
+          },
+          "unit": "°C"
+        },
+        {
+          "id": "TmpOt",
+          "name": "TmpOt",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 36,
+            "scaleFactorRef": "Tmp_SF"
+          },
+          "unit": "°C"
+        },
+        {
+          "id": "Tmp_SF",
+          "name": "Tmp_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 37
+          }
+        },
+        {
+          "id": "St",
+          "name": "St",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 38
+          }
+        },
+        {
+          "id": "StVnd",
+          "name": "StVnd",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 39
+          }
+        },
+        {
+          "id": "Evt1",
+          "name": "Evt1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 40
+          }
+        },
+        {
+          "id": "Evt2",
+          "name": "Evt2",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 42
+          }
+        },
+        {
+          "id": "EvtVnd1",
+          "name": "EvtVnd1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 44
+          }
+        },
+        {
+          "id": "EvtVnd2",
+          "name": "EvtVnd2",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 46
+          }
+        },
+        {
+          "id": "EvtVnd3",
+          "name": "EvtVnd3",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 48
+          }
+        },
+        {
+          "id": "EvtVnd4",
+          "name": "EvtVnd4",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 50
+          }
+        },
+        {
+          "id": "WChaMax",
+          "name": "WChaMax",
+          "role": "value.power",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 2,
+            "scaleFactorRef": "WChaMax_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "W"
+        },
+        {
+          "id": "WChaGra",
+          "name": "WChaGra",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 3,
+            "scaleFactorRef": "WChaDisChaGra_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%/s"
+        },
+        {
+          "id": "WDisChaGra",
+          "name": "WDisChaGra",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 4,
+            "scaleFactorRef": "WChaDisChaGra_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%/s"
+        },
+        {
+          "id": "StorCtl_Mod",
+          "name": "StorCtl_Mod",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 5,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "VAChaMax",
+          "name": "VAChaMax",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 6,
+            "scaleFactorRef": "VAChaMax_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "VA"
+        },
+        {
+          "id": "MinRsvPct",
+          "name": "MinRsvPct",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 7,
+            "scaleFactorRef": "MinRsvPct_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "ChaState",
+          "name": "ChaState",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 8,
+            "scaleFactorRef": "ChaState_SF"
+          },
+          "unit": "%"
+        },
+        {
+          "id": "StorAval",
+          "name": "StorAval",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 9,
+            "scaleFactorRef": "StorAval_SF"
+          },
+          "unit": "Ah"
+        },
+        {
+          "id": "InBatV",
+          "name": "InBatV",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 10,
+            "scaleFactorRef": "InBatV_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "ChaSt",
+          "name": "ChaSt",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 11
+          }
+        },
+        {
+          "id": "OutWRte",
+          "name": "OutWRte",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 12,
+            "scaleFactorRef": "InOutWRte_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "InWRte",
+          "name": "InWRte",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 13,
+            "scaleFactorRef": "InOutWRte_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "InOutWRte_WinTms",
+          "name": "InOutWRte_WinTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 14,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "InOutWRte_RvrtTms",
+          "name": "InOutWRte_RvrtTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 15,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "InOutWRte_RmpTms",
+          "name": "InOutWRte_RmpTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 16,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "ChaGriSet",
+          "name": "ChaGriSet",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 17,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "WChaMax_SF",
+          "name": "WChaMax_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 18
+          }
+        },
+        {
+          "id": "WChaDisChaGra_SF",
+          "name": "WChaDisChaGra_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 19
+          }
+        },
+        {
+          "id": "VAChaMax_SF",
+          "name": "VAChaMax_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 20
+          }
+        },
+        {
+          "id": "MinRsvPct_SF",
+          "name": "MinRsvPct_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 21
+          }
+        },
+        {
+          "id": "ChaState_SF",
+          "name": "ChaState_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 22
+          }
+        },
+        {
+          "id": "StorAval_SF",
+          "name": "StorAval_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 23
+          }
+        },
+        {
+          "id": "InBatV_SF",
+          "name": "InBatV_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 24
+          }
+        },
+        {
+          "id": "InOutWRte_SF",
+          "name": "InOutWRte_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 25
+          }
+        },
+        {
+          "id": "sOC",
+          "name": "sOC",
+          "role": "value.battery",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 8,
+            "scaleFactorRef": "ChaState_SF"
+          },
+          "unit": "%"
+        },
+        {
+          "id": "bATTERY_VOLTAGE",
+          "name": "bATTERY_VOLTAGE",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 10,
+            "scaleFactorRef": "InBatV_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "Conn_WinTms",
+          "name": "Conn_WinTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 2,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "Conn_RvrtTms",
+          "name": "Conn_RvrtTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 3,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "Conn",
+          "name": "Conn",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 4,
+            "toBoolean": true,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "WMaxLimPct",
+          "name": "WMaxLimPct",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 5,
+            "scaleFactorRef": "WMaxLimPct_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "WMaxLimPct_WinTms",
+          "name": "WMaxLimPct_WinTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 6,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "WMaxLimPct_RvrtTms",
+          "name": "WMaxLimPct_RvrtTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 7,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "WMaxLimPct_RmpTms",
+          "name": "WMaxLimPct_RmpTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 8,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "WMaxLim_Ena",
+          "name": "WMaxLim_Ena",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 9,
+            "toBoolean": true,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "OutPFSet",
+          "name": "OutPFSet",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 10,
+            "scaleFactorRef": "OutPFSet_SF",
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "OutPFSet_WinTms",
+          "name": "OutPFSet_WinTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 11,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "OutPFSet_RvrtTms",
+          "name": "OutPFSet_RvrtTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 12,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "OutPFSet_RmpTms",
+          "name": "OutPFSet_RmpTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 13,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "OutPFSet_Ena",
+          "name": "OutPFSet_Ena",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 14,
+            "toBoolean": true,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "VArWMaxPct",
+          "name": "VArWMaxPct",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 15,
+            "scaleFactorRef": "VArPct_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "VArMaxPct",
+          "name": "VArMaxPct",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 16,
+            "scaleFactorRef": "VArPct_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "VArAvalPct",
+          "name": "VArAvalPct",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 17,
+            "scaleFactorRef": "VArPct_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "VArPct_WinTms",
+          "name": "VArPct_WinTms",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 18,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "VArPct_RvrtTms",
+          "name": "VArPct_RvrtTms",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 19,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "VArPct_RmpTms",
+          "name": "VArPct_RmpTms",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 20,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "VArPct_Mod",
+          "name": "VArPct_Mod",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 21,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "VArPct_Ena",
+          "name": "VArPct_Ena",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 22,
+            "toBoolean": true,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "WMaxLimPct_SF",
+          "name": "WMaxLimPct_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 23
+          }
+        },
+        {
+          "id": "OutPFSet_SF",
+          "name": "OutPFSet_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 24
+          }
+        },
+        {
+          "id": "VArPct_SF",
+          "name": "VArPct_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 25
+          }
+        },
+        {
+          "id": "VerMajor",
+          "name": "VerMajor",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 2
+          }
+        },
+        {
+          "id": "VerMinor",
+          "name": "VerMinor",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 3
+          }
+        },
+        {
+          "id": "VOffPct",
+          "name": "VOffPct",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 4,
+            "scaleFactorRef": "VOffPct_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "VArOffPct",
+          "name": "VArOffPct",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 5,
+            "scaleFactorRef": "VArOffPct_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "RvrtTms",
+          "name": "RvrtTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 6,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "OffsetEna",
+          "name": "OffsetEna",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 7,
+            "toBoolean": true,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "VOffPct_SF",
+          "name": "VOffPct_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 8
+          }
+        },
+        {
+          "id": "VArOffPct_SF",
+          "name": "VArOffPct_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 9
+          }
+        }
+      ]
+    },
+    {
+      "id": "ess.kaco.hybrid10.sunspec.v1",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "ESS",
+      "manufacturer": "KACO",
+      "model": "Hybrid10",
+      "name": "KACO Hybrid10 (SunSpec Modbus)",
+      "protocols": [
+        "modbusTcp",
+        "modbusRtu"
+      ],
+      "driverHints": {
+        "modbus": {
+          "autoSunSpec": true,
+          "sunSpecTemplateBase": 40001
+        }
+      },
+      "datapoints": [
+        {
+          "id": "Mn",
+          "name": "Mn",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 16,
+            "dataType": "string",
+            "scaleFactor": 0,
+            "sunspecModel": 1,
+            "sunspecOffset": 2
+          }
+        },
+        {
+          "id": "Md",
+          "name": "Md",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 16,
+            "dataType": "string",
+            "scaleFactor": 0,
+            "sunspecModel": 1,
+            "sunspecOffset": 18
+          }
+        },
+        {
+          "id": "Opt",
+          "name": "Opt",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 8,
+            "dataType": "string",
+            "scaleFactor": 0,
+            "sunspecModel": 1,
+            "sunspecOffset": 34
+          }
+        },
+        {
+          "id": "Vr",
+          "name": "Vr",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 8,
+            "dataType": "string",
+            "scaleFactor": 0,
+            "sunspecModel": 1,
+            "sunspecOffset": 42
+          }
+        },
+        {
+          "id": "SN",
+          "name": "SN",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 16,
+            "dataType": "string",
+            "scaleFactor": 0,
+            "sunspecModel": 1,
+            "sunspecOffset": 50
+          }
+        },
+        {
+          "id": "DERTyp",
+          "name": "DERTyp",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 2
+          }
+        },
+        {
+          "id": "WRtg",
+          "name": "WRtg",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 3,
+            "scaleFactorRef": "WRtg_SF"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "WRtg_SF",
+          "name": "WRtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 4
+          }
+        },
+        {
+          "id": "VARtg",
+          "name": "VARtg",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 5,
+            "scaleFactorRef": "VARtg_SF"
+          },
+          "unit": "VA"
+        },
+        {
+          "id": "VARtg_SF",
+          "name": "VARtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 6
+          }
+        },
+        {
+          "id": "VArRtgQ1",
+          "name": "VArRtgQ1",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 7,
+            "scaleFactorRef": "VArRtg_SF"
+          },
+          "unit": "var"
+        },
+        {
+          "id": "VArRtgQ2",
+          "name": "VArRtgQ2",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 8,
+            "scaleFactorRef": "VArRtg_SF"
+          },
+          "unit": "var"
+        },
+        {
+          "id": "VArRtgQ3",
+          "name": "VArRtgQ3",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 9,
+            "scaleFactorRef": "VArRtg_SF"
+          },
+          "unit": "var"
+        },
+        {
+          "id": "VArRtgQ4",
+          "name": "VArRtgQ4",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 10,
+            "scaleFactorRef": "VArRtg_SF"
+          },
+          "unit": "var"
+        },
+        {
+          "id": "VArRtg_SF",
+          "name": "VArRtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 11
+          }
+        },
+        {
+          "id": "ARtg",
+          "name": "ARtg",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 12,
+            "scaleFactorRef": "ARtg_SF"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "ARtg_SF",
+          "name": "ARtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 13
+          }
+        },
+        {
+          "id": "PFRtgQ1",
+          "name": "PFRtgQ1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 14,
+            "scaleFactorRef": "PFRtg_SF"
+          }
+        },
+        {
+          "id": "PFRtgQ2",
+          "name": "PFRtgQ2",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 15,
+            "scaleFactorRef": "PFRtg_SF"
+          }
+        },
+        {
+          "id": "PFRtgQ3",
+          "name": "PFRtgQ3",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 16,
+            "scaleFactorRef": "PFRtg_SF"
+          }
+        },
+        {
+          "id": "PFRtgQ4",
+          "name": "PFRtgQ4",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 17,
+            "scaleFactorRef": "PFRtg_SF"
+          }
+        },
+        {
+          "id": "PFRtg_SF",
+          "name": "PFRtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 18
+          }
+        },
+        {
+          "id": "WHRtg",
+          "name": "WHRtg",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 19,
+            "scaleFactorRef": "WHRtg_SF"
+          },
+          "unit": "Wh"
+        },
+        {
+          "id": "WHRtg_SF",
+          "name": "WHRtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 20
+          }
+        },
+        {
+          "id": "AhrRtg",
+          "name": "AhrRtg",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 21,
+            "scaleFactorRef": "AhrRtg_SF"
+          },
+          "unit": "Ah"
+        },
+        {
+          "id": "AhrRtg_SF",
+          "name": "AhrRtg_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 22
+          }
+        },
+        {
+          "id": "MaxChaRte",
+          "name": "MaxChaRte",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 23,
+            "scaleFactorRef": "MaxChaRte_SF"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "MaxChaRte_SF",
+          "name": "MaxChaRte_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 24
+          }
+        },
+        {
+          "id": "MaxDisChaRte",
+          "name": "MaxDisChaRte",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 25,
+            "scaleFactorRef": "MaxDisChaRte_SF"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "MaxDisChaRte_SF",
+          "name": "MaxDisChaRte_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 120,
+            "sunspecOffset": 26
+          }
+        },
+        {
+          "id": "A",
+          "name": "A",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 2,
+            "scaleFactorRef": "A_SF"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "AphA",
+          "name": "AphA",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 3,
+            "scaleFactorRef": "A_SF"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "AphB",
+          "name": "AphB",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 4,
+            "scaleFactorRef": "A_SF"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "AphC",
+          "name": "AphC",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 5,
+            "scaleFactorRef": "A_SF"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "A_SF",
+          "name": "A_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 6
+          }
+        },
+        {
+          "id": "PPVphAB",
+          "name": "PPVphAB",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 7,
+            "scaleFactorRef": "V_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "PPVphBC",
+          "name": "PPVphBC",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 8,
+            "scaleFactorRef": "V_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "PPVphCA",
+          "name": "PPVphCA",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 9,
+            "scaleFactorRef": "V_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "PhVphA",
+          "name": "PhVphA",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 10,
+            "scaleFactorRef": "V_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "PhVphB",
+          "name": "PhVphB",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 11,
+            "scaleFactorRef": "V_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "PhVphC",
+          "name": "PhVphC",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 12,
+            "scaleFactorRef": "V_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "V_SF",
+          "name": "V_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 13
+          }
+        },
+        {
+          "id": "W",
+          "name": "W",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 14,
+            "scaleFactorRef": "W_SF"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "W_SF",
+          "name": "W_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 15
+          }
+        },
+        {
+          "id": "Hz",
+          "name": "Hz",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 16,
+            "scaleFactorRef": "Hz_SF"
+          },
+          "unit": "Hz"
+        },
+        {
+          "id": "Hz_SF",
+          "name": "Hz_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 17
+          }
+        },
+        {
+          "id": "VA",
+          "name": "VA",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 18,
+            "scaleFactorRef": "VA_SF"
+          },
+          "unit": "VA"
+        },
+        {
+          "id": "VA_SF",
+          "name": "VA_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 19
+          }
+        },
+        {
+          "id": "VAr",
+          "name": "VAr",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 20,
+            "scaleFactorRef": "VAr_SF"
+          },
+          "unit": "var"
+        },
+        {
+          "id": "VAr_SF",
+          "name": "VAr_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 21
+          }
+        },
+        {
+          "id": "PF",
+          "name": "PF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 22,
+            "scaleFactorRef": "PF_SF"
+          },
+          "unit": "%"
+        },
+        {
+          "id": "PF_SF",
+          "name": "PF_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 23
+          }
+        },
+        {
+          "id": "WH",
+          "name": "WH",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 24,
+            "scaleFactorRef": "WH_SF"
+          },
+          "unit": "Wh"
+        },
+        {
+          "id": "WH_SF",
+          "name": "WH_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 26
+          }
+        },
+        {
+          "id": "DCA",
+          "name": "DCA",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 27,
+            "scaleFactorRef": "DCA_SF"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "DCA_SF",
+          "name": "DCA_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 28
+          }
+        },
+        {
+          "id": "DCV",
+          "name": "DCV",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 29,
+            "scaleFactorRef": "DCV_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "DCV_SF",
+          "name": "DCV_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 30
+          }
+        },
+        {
+          "id": "DCW",
+          "name": "DCW",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 31,
+            "scaleFactorRef": "DCW_SF"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "DCW_SF",
+          "name": "DCW_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 32
+          }
+        },
+        {
+          "id": "TmpCab",
+          "name": "TmpCab",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 33,
+            "scaleFactorRef": "Tmp_SF"
+          },
+          "unit": "°C"
+        },
+        {
+          "id": "TmpSnk",
+          "name": "TmpSnk",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 34,
+            "scaleFactorRef": "Tmp_SF"
+          },
+          "unit": "°C"
+        },
+        {
+          "id": "TmpTrns",
+          "name": "TmpTrns",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 35,
+            "scaleFactorRef": "Tmp_SF"
+          },
+          "unit": "°C"
+        },
+        {
+          "id": "TmpOt",
+          "name": "TmpOt",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 36,
+            "scaleFactorRef": "Tmp_SF"
+          },
+          "unit": "°C"
+        },
+        {
+          "id": "Tmp_SF",
+          "name": "Tmp_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 37
+          }
+        },
+        {
+          "id": "St",
+          "name": "St",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 38
+          }
+        },
+        {
+          "id": "StVnd",
+          "name": "StVnd",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 39
+          }
+        },
+        {
+          "id": "Evt1",
+          "name": "Evt1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 40
+          }
+        },
+        {
+          "id": "Evt2",
+          "name": "Evt2",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 42
+          }
+        },
+        {
+          "id": "EvtVnd1",
+          "name": "EvtVnd1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 44
+          }
+        },
+        {
+          "id": "EvtVnd2",
+          "name": "EvtVnd2",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 46
+          }
+        },
+        {
+          "id": "EvtVnd3",
+          "name": "EvtVnd3",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 48
+          }
+        },
+        {
+          "id": "EvtVnd4",
+          "name": "EvtVnd4",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "sunspecModel": 103,
+            "sunspecOffset": 50
+          }
+        },
+        {
+          "id": "WChaMax",
+          "name": "WChaMax",
+          "role": "value.power",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 2,
+            "scaleFactorRef": "WChaMax_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "W"
+        },
+        {
+          "id": "WChaGra",
+          "name": "WChaGra",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 3,
+            "scaleFactorRef": "WChaDisChaGra_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%/s"
+        },
+        {
+          "id": "WDisChaGra",
+          "name": "WDisChaGra",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 4,
+            "scaleFactorRef": "WChaDisChaGra_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%/s"
+        },
+        {
+          "id": "StorCtl_Mod",
+          "name": "StorCtl_Mod",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 5,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "VAChaMax",
+          "name": "VAChaMax",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 6,
+            "scaleFactorRef": "VAChaMax_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "VA"
+        },
+        {
+          "id": "MinRsvPct",
+          "name": "MinRsvPct",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 7,
+            "scaleFactorRef": "MinRsvPct_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "ChaState",
+          "name": "ChaState",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 8,
+            "scaleFactorRef": "ChaState_SF"
+          },
+          "unit": "%"
+        },
+        {
+          "id": "StorAval",
+          "name": "StorAval",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 9,
+            "scaleFactorRef": "StorAval_SF"
+          },
+          "unit": "Ah"
+        },
+        {
+          "id": "InBatV",
+          "name": "InBatV",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 10,
+            "scaleFactorRef": "InBatV_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "ChaSt",
+          "name": "ChaSt",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 11
+          }
+        },
+        {
+          "id": "OutWRte",
+          "name": "OutWRte",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 12,
+            "scaleFactorRef": "InOutWRte_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "InWRte",
+          "name": "InWRte",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 13,
+            "scaleFactorRef": "InOutWRte_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "InOutWRte_WinTms",
+          "name": "InOutWRte_WinTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 14,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "InOutWRte_RvrtTms",
+          "name": "InOutWRte_RvrtTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 15,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "InOutWRte_RmpTms",
+          "name": "InOutWRte_RmpTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 16,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "ChaGriSet",
+          "name": "ChaGriSet",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 17,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "WChaMax_SF",
+          "name": "WChaMax_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 18
+          }
+        },
+        {
+          "id": "WChaDisChaGra_SF",
+          "name": "WChaDisChaGra_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 19
+          }
+        },
+        {
+          "id": "VAChaMax_SF",
+          "name": "VAChaMax_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 20
+          }
+        },
+        {
+          "id": "MinRsvPct_SF",
+          "name": "MinRsvPct_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 21
+          }
+        },
+        {
+          "id": "ChaState_SF",
+          "name": "ChaState_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 22
+          }
+        },
+        {
+          "id": "StorAval_SF",
+          "name": "StorAval_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 23
+          }
+        },
+        {
+          "id": "InBatV_SF",
+          "name": "InBatV_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 24
+          }
+        },
+        {
+          "id": "InOutWRte_SF",
+          "name": "InOutWRte_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 25
+          }
+        },
+        {
+          "id": "sOC",
+          "name": "sOC",
+          "role": "value.battery",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 8,
+            "scaleFactorRef": "ChaState_SF"
+          },
+          "unit": "%"
+        },
+        {
+          "id": "bATTERY_VOLTAGE",
+          "name": "bATTERY_VOLTAGE",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 124,
+            "sunspecOffset": 10,
+            "scaleFactorRef": "InBatV_SF"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "Conn_WinTms",
+          "name": "Conn_WinTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 2,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "Conn_RvrtTms",
+          "name": "Conn_RvrtTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 3,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "Conn",
+          "name": "Conn",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 4,
+            "toBoolean": true,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "WMaxLimPct",
+          "name": "WMaxLimPct",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 5,
+            "scaleFactorRef": "WMaxLimPct_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "WMaxLimPct_WinTms",
+          "name": "WMaxLimPct_WinTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 6,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "WMaxLimPct_RvrtTms",
+          "name": "WMaxLimPct_RvrtTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 7,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "WMaxLimPct_RmpTms",
+          "name": "WMaxLimPct_RmpTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 8,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "WMaxLim_Ena",
+          "name": "WMaxLim_Ena",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 9,
+            "toBoolean": true,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "OutPFSet",
+          "name": "OutPFSet",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 10,
+            "scaleFactorRef": "OutPFSet_SF",
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "OutPFSet_WinTms",
+          "name": "OutPFSet_WinTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 11,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "OutPFSet_RvrtTms",
+          "name": "OutPFSet_RvrtTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 12,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "OutPFSet_RmpTms",
+          "name": "OutPFSet_RmpTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 13,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "OutPFSet_Ena",
+          "name": "OutPFSet_Ena",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 14,
+            "toBoolean": true,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "VArWMaxPct",
+          "name": "VArWMaxPct",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 15,
+            "scaleFactorRef": "VArPct_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "VArMaxPct",
+          "name": "VArMaxPct",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 16,
+            "scaleFactorRef": "VArPct_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "VArAvalPct",
+          "name": "VArAvalPct",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 17,
+            "scaleFactorRef": "VArPct_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "VArPct_WinTms",
+          "name": "VArPct_WinTms",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 18,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "VArPct_RvrtTms",
+          "name": "VArPct_RvrtTms",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 19,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "VArPct_RmpTms",
+          "name": "VArPct_RmpTms",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 20,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "VArPct_Mod",
+          "name": "VArPct_Mod",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 21,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "VArPct_Ena",
+          "name": "VArPct_Ena",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 22,
+            "toBoolean": true,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "WMaxLimPct_SF",
+          "name": "WMaxLimPct_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 23
+          }
+        },
+        {
+          "id": "OutPFSet_SF",
+          "name": "OutPFSet_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 24
+          }
+        },
+        {
+          "id": "VArPct_SF",
+          "name": "VArPct_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 123,
+            "sunspecOffset": 25
+          }
+        },
+        {
+          "id": "VerMajor",
+          "name": "VerMajor",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 2
+          }
+        },
+        {
+          "id": "VerMinor",
+          "name": "VerMinor",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 3
+          }
+        },
+        {
+          "id": "VOffPct",
+          "name": "VOffPct",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 4,
+            "scaleFactorRef": "VOffPct_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "VArOffPct",
+          "name": "VArOffPct",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 5,
+            "scaleFactorRef": "VArOffPct_SF",
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "%"
+        },
+        {
+          "id": "RvrtTms",
+          "name": "RvrtTms",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 6,
+            "write": {
+              "fc": 6
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "OffsetEna",
+          "name": "OffsetEna",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 7,
+            "toBoolean": true,
+            "write": {
+              "fc": 6
+            }
+          }
+        },
+        {
+          "id": "VOffPct_SF",
+          "name": "VOffPct_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 8
+          }
+        },
+        {
+          "id": "VArOffPct_SF",
+          "name": "VArOffPct_SF",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 0,
+            "sunspecModel": 64204,
+            "sunspecOffset": 9
+          }
+        }
+      ]
     }
   ]
 }
