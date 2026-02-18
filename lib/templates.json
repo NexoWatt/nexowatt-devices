@@ -17530,7 +17530,704 @@
         "modbusTcp",
         "modbusRtu"
       ],
-      "datapoints": []
+      "datapoints": [
+        {
+          "id": "a",
+          "name": "AC Current (total)",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40072,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "aPH_A",
+          "name": "AC Current Phase A",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40073,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "aPH_B",
+          "name": "AC Current Phase B",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40074,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "aPH_C",
+          "name": "AC Current Phase C",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40075,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "pH_VPH_A",
+          "name": "AC Voltage Phase A",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40080,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "pH_VPH_B",
+          "name": "AC Voltage Phase B",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40081,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "pH_VPH_C",
+          "name": "AC Voltage Phase C",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40082,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "hZ",
+          "name": "Frequency",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40086,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40084,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 1
+          }
+        },
+        {
+          "id": "aPPARENT_POWER",
+          "name": "Apparent Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40088,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 1
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER",
+          "name": "Reactive Power",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40090,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 1
+          }
+        },
+        {
+          "id": "w_MAX_LIM_PCT",
+          "name": "W Max Limit %",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40091,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 2
+          }
+        },
+        {
+          "id": "wH",
+          "name": "Energy (Wh)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40094,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 2
+          }
+        },
+        {
+          "id": "dCA",
+          "name": "DC Current",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40097,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "dCV",
+          "name": "DC Voltage",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40099,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "dCW",
+          "name": "DC Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40101,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 1
+          }
+        },
+        {
+          "id": "tMP_CAB",
+          "name": "Cabinet Temp",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40103,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "tMP_SNK",
+          "name": "Heatsink Temp",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40104,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": -1
+          }
+        },
+        {
+          "id": "sT",
+          "name": "State",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40108,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "sT_VND",
+          "name": "Vendor State",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40109,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "oTHER_ALARM",
+          "name": "Other Alarm",
+          "role": "indicator.alarm",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40110,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "bitShift": 0,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "oTHER_WARNING",
+          "name": "Other Warning",
+          "role": "indicator.maintenance",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40110,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "bitShift": 1,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "gROUND_FAULT",
+          "name": "Ground Fault",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40111,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "bitShift": 0,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "dC_OVER_VOLTAGE",
+          "name": "DC Over Voltage",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40111,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "bitShift": 1,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "aC_DISCONNECT",
+          "name": "AC Disconnect",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40111,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "bitShift": 2,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "dC_DISCONNECT",
+          "name": "DC Disconnect",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40111,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "bitShift": 3,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "gRID_DISCONNECT",
+          "name": "Grid Disconnect",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40111,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "bitShift": 4,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "cABINET_OPEN",
+          "name": "Cabinet Open",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40111,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "bitShift": 5,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "mANUAL_SHUTDOWN",
+          "name": "Manual Shutdown",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40111,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "bitShift": 6,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "oVER_TEMP",
+          "name": "Over Temp",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40111,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "bitShift": 7,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "oVER_FREQUENCY",
+          "name": "Over Frequency",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40111,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "bitShift": 8,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "uNDER_FREQUENCY",
+          "name": "Under Frequency",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40111,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "bitShift": 9,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "aC_OVER_VOLTAGE",
+          "name": "AC Over Voltage",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40111,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "bitShift": 10,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "aC_UNDER_VOLTAGE",
+          "name": "AC Under Voltage",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40111,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "bitShift": 11,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "mEMORY_LOSS",
+          "name": "Memory Loss",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40111,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "bitShift": 12,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "hW_TEST_FAILURE",
+          "name": "HW Test Failure",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40111,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "bitShift": 13,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "cOMM_ERROR",
+          "name": "Comm Error",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40111,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "bitShift": 14,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "iNTERNAL_BUS_ERROR",
+          "name": "Internal Bus Error",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 40111,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "bitShift": 15,
+            "bitMask": 1,
+            "toBoolean": true
+          }
+        },
+        {
+          "id": "cONN",
+          "name": "Connect/Disconnect",
+          "role": "switch",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40186,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": 0
+            },
+            "write": {
+              "fc": 16,
+              "address": 40186,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": 0
+            }
+          }
+        },
+        {
+          "id": "w_MAX",
+          "name": "W Max",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40152,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": 1
+            },
+            "write": {
+              "fc": 16,
+              "address": 40152,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": 1
+            }
+          }
+        },
+        {
+          "id": "w_MAX_LIM_ENA",
+          "name": "W Max Limit Enable",
+          "role": "switch",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 40191,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": 0
+            },
+            "write": {
+              "fc": 16,
+              "address": 40191,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": 0
+            }
+          }
+        }
+      ]
     },
     {
       "id": "battery_inverter.sinexcel.BatteryInverterSinexcelImpl",
@@ -23307,7 +24004,65 @@
         "modbusTcp",
         "modbusRtu"
       ],
-      "datapoints": []
+      "datapoints": [
+        {
+          "id": "vOLTAGE",
+          "name": "PV Voltage",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 0,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": -1,
+            "addressOffsetSetting": "startAddress"
+          }
+        },
+        {
+          "id": "cURRENT",
+          "name": "PV Current",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 2,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": -1,
+            "addressOffsetSetting": "startAddress"
+          }
+        },
+        {
+          "id": "aCTUAL_POWER",
+          "name": "PV Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 4,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0,
+            "addressOffsetSetting": "startAddress"
+          }
+        }
+      ],
+      "settings": [
+        {
+          "id": "startAddress",
+          "name": "Start Address (Holding Register)",
+          "type": "number",
+          "default": 35103,
+          "hint": "PV1=35103, PV2=35107, PV3=35111"
+        }
+      ]
     },
     {
       "id": "dc_charger.victron.VictronDcChargerImpl",
@@ -23938,7 +24693,158 @@
         "modbusTcp",
         "modbusRtu"
       ],
-      "datapoints": []
+      "datapoints": [
+        {
+          "id": "gRID_MODE",
+          "name": "Grid Mode",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 1,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 2
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER",
+          "name": "Reactive Power",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 2,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 2
+          }
+        },
+        {
+          "id": "mAX_APPARENT_POWER",
+          "name": "Max Apparent Power",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 124,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 2
+          }
+        },
+        {
+          "id": "sOC",
+          "name": "SoC",
+          "role": "value.percent",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 125,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "eNERGY",
+          "name": "Energy",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 131,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 2
+          }
+        },
+        {
+          "id": "cELL_VOLTAGE",
+          "name": "Cell Voltage",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 132,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 1
+          }
+        },
+        {
+          "id": "cELL_TEMPERATURE",
+          "name": "Cell Temperature",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 133,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 1
+          }
+        },
+        {
+          "id": "bATTERY_TEMPERATURE",
+          "name": "Battery Temperature",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 134,
+            "length": 1,
+            "dataType": "int16",
+            "scaleFactor": 1
+          }
+        },
+        {
+          "id": "sTATE",
+          "name": "State",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 135,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0
+          }
+        }
+      ]
     },
     {
       "id": "ess.fenecon.EssFeneconCommercial40Impl",
@@ -28860,7 +29766,48 @@
         "modbusTcp",
         "modbusRtu"
       ],
-      "datapoints": []
+      "datapoints": [
+        {
+          "id": "aCTUAL_POWER",
+          "name": "Actual Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 2,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "addressOffsetSetting": "baseAddress"
+          }
+        },
+        {
+          "id": "oRIGINAL_ACTUAL_ENERGY",
+          "name": "Original Actual Energy",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 5,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 2,
+            "addressOffsetSetting": "baseAddress"
+          }
+        }
+      ],
+      "settings": [
+        {
+          "id": "baseAddress",
+          "name": "Base Address (Holding Register)",
+          "type": "number",
+          "default": 11230
+        }
+      ]
     },
     {
       "id": "ess.fenecon.FeneconDessEssImpl",
@@ -33900,7 +34847,122 @@
         "modbusTcp",
         "modbusRtu"
       ],
-      "datapoints": []
+      "datapoints": [
+        {
+          "id": "cURRENT_L1",
+          "name": "Current L1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 12289,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 2
+          }
+        },
+        {
+          "id": "cURRENT_L2",
+          "name": "Current L2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 12291,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 2
+          }
+        },
+        {
+          "id": "cURRENT_L3",
+          "name": "Current L3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 12293,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 2
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 12303,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "aCTIVE_PRODUCTION_ENERGY",
+          "name": "Active Energy",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 12335,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 1
+          }
+        },
+        {
+          "id": "cHARGE_POINT_STATE",
+          "name": "Charge Point State",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 12337,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "cURRENT_LIMIT",
+          "name": "Current Limit",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 12338,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            },
+            "write": {
+              "fc": 16,
+              "address": 12338,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            }
+          }
+        }
+      ]
     },
     {
       "id": "evcs.abl.emh1.evcc2_3.modbusAscii",
@@ -36423,7 +37485,224 @@
         "modbusTcp",
         "modbusRtu"
       ],
-      "datapoints": []
+      "datapoints": [
+        {
+          "id": "hEIDELBERG_STATE",
+          "name": "State",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 5,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "cURRENT_L1",
+          "name": "Current L1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 6,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 2
+          }
+        },
+        {
+          "id": "cURRENT_L2",
+          "name": "Current L2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 7,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 2
+          }
+        },
+        {
+          "id": "cURRENT_L3",
+          "name": "Current L3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 8,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 2
+          }
+        },
+        {
+          "id": "vOLTAGE_L1",
+          "name": "Voltage L1",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "vOLTAGE_L2",
+          "name": "Voltage L2",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 11,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "vOLTAGE_L3",
+          "name": "Voltage L3",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 12,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 14,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "wATCHDOG_TIME",
+          "name": "Watchdog Time",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 257,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": 0
+            },
+            "write": {
+              "fc": 6,
+              "address": 257,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": 0
+            }
+          }
+        },
+        {
+          "id": "sTANDBY",
+          "name": "Standby",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 258,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": 0
+            },
+            "write": {
+              "fc": 6,
+              "address": 258,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": 0
+            }
+          }
+        },
+        {
+          "id": "mAX_CURRENT",
+          "name": "Max Current",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 261,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": 0
+            },
+            "write": {
+              "fc": 6,
+              "address": 261,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": 0
+            }
+          }
+        },
+        {
+          "id": "fAILSAFE_CURRENT",
+          "name": "Failsafe Current",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 262,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": 0
+            },
+            "write": {
+              "fc": 6,
+              "address": 262,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": 0
+            }
+          }
+        }
+      ]
     },
     {
       "id": "evcs.keba.udp.KeContactP20P30",
@@ -38808,7 +40087,236 @@
         "modbusTcp",
         "modbusRtu"
       ],
-      "datapoints": []
+      "datapoints": [
+        {
+          "id": "rAW_CHARGE_POWER_SET",
+          "name": "Charge Power Setpoint",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 0,
+              "length": 2,
+              "dataType": "int32",
+              "scaleFactor": 0
+            },
+            "write": {
+              "fc": 16,
+              "address": 0,
+              "length": 2,
+              "dataType": "int32",
+              "scaleFactor": 0
+            }
+          }
+        },
+        {
+          "id": "sETPOINT_REACTIVE_POWER",
+          "name": "Reactive Power Setpoint",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2,
+              "length": 2,
+              "dataType": "int32",
+              "scaleFactor": 0
+            },
+            "write": {
+              "fc": 16,
+              "address": 2,
+              "length": 2,
+              "dataType": "int32",
+              "scaleFactor": 0
+            }
+          }
+        },
+        {
+          "id": "aVAILABLE_STATE",
+          "name": "Available State",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 0,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "vOLTAGE",
+          "name": "Voltage",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 1,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "cURRENT",
+          "name": "Current",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 3,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "rAW_CHARGE_POWER",
+          "name": "Charge Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 4,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "cHARGED_TIME",
+          "name": "Charged Time",
+          "role": "value.interval",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 6,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "cHARGED_ENERGY",
+          "name": "Charged Energy",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 7,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "eV_SOC",
+          "name": "EV SoC",
+          "role": "value.percent",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 8,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -2
+          }
+        },
+        {
+          "id": "cONNECTOR_TYPE",
+          "name": "Connector Type",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 9,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "eV_MAX_CHARGING_POWER",
+          "name": "EV Max Charging Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 10,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "eV_MIN_CHARGING_POWER",
+          "name": "EV Min Charging Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 12,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "vAR_REACTIVE_POWER_MAX",
+          "name": "Reactive Max",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 14,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "vAR_REACTIVE_POWER_MIN",
+          "name": "Reactive Min",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 16,
+            "length": 2,
+            "dataType": "int32",
+            "scaleFactor": 0
+          }
+        }
+      ]
     },
     {
       "id": "evse.chargepoint.EvseChargePointHeidelbergConnectImpl",
@@ -39975,7 +41483,42 @@
         "modbusTcp",
         "modbusRtu"
       ],
-      "datapoints": []
+      "datapoints": [
+        {
+          "id": "sET_OUTPUT_VOLTAGE",
+          "name": "Set Output Voltage",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 0,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": 2,
+              "addressOffsetSetting": "startAddress"
+            },
+            "write": {
+              "fc": 6,
+              "address": 0,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": 2,
+              "addressOffsetSetting": "startAddress"
+            }
+          }
+        }
+      ],
+      "settings": [
+        {
+          "id": "startAddress",
+          "name": "Start Address (Holding Register)",
+          "type": "number",
+          "default": 0
+        }
+      ]
     },
     {
       "id": "io.kmtronic.IoKmtronicRelay8PortImpl",
@@ -40382,7 +41925,254 @@
         "modbusTcp",
         "modbusRtu"
       ],
-      "datapoints": []
+      "datapoints": [
+        {
+          "id": "iNPUT_1",
+          "name": "Input 1",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 1,
+            "address": 0,
+            "length": 1,
+            "addressOffsetSetting": "coilReadOffset"
+          }
+        },
+        {
+          "id": "iNPUT_2",
+          "name": "Input 2",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 1,
+            "address": 1,
+            "length": 1,
+            "addressOffsetSetting": "coilReadOffset"
+          }
+        },
+        {
+          "id": "iNPUT_3",
+          "name": "Input 3",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 1,
+            "address": 2,
+            "length": 1,
+            "addressOffsetSetting": "coilReadOffset"
+          }
+        },
+        {
+          "id": "iNPUT_4",
+          "name": "Input 4",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 1,
+            "address": 3,
+            "length": 1,
+            "addressOffsetSetting": "coilReadOffset"
+          }
+        },
+        {
+          "id": "rELAY_1",
+          "name": "Relay 1",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 0,
+              "length": 1,
+              "addressOffsetSetting": "coilWriteOffset"
+            },
+            "write": {
+              "fc": 5,
+              "address": 0,
+              "length": 1,
+              "addressOffsetSetting": "coilWriteOffset"
+            }
+          }
+        },
+        {
+          "id": "rELAY_2",
+          "name": "Relay 2",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 1,
+              "length": 1,
+              "addressOffsetSetting": "coilWriteOffset"
+            },
+            "write": {
+              "fc": 5,
+              "address": 1,
+              "length": 1,
+              "addressOffsetSetting": "coilWriteOffset"
+            }
+          }
+        },
+        {
+          "id": "rELAY_3",
+          "name": "Relay 3",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 2,
+              "length": 1,
+              "addressOffsetSetting": "coilWriteOffset"
+            },
+            "write": {
+              "fc": 5,
+              "address": 2,
+              "length": 1,
+              "addressOffsetSetting": "coilWriteOffset"
+            }
+          }
+        },
+        {
+          "id": "rELAY_4",
+          "name": "Relay 4",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 3,
+              "length": 1,
+              "addressOffsetSetting": "coilWriteOffset"
+            },
+            "write": {
+              "fc": 5,
+              "address": 3,
+              "length": 1,
+              "addressOffsetSetting": "coilWriteOffset"
+            }
+          }
+        },
+        {
+          "id": "rELAY_5",
+          "name": "Relay 5",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 4,
+              "length": 1,
+              "addressOffsetSetting": "coilWriteOffset"
+            },
+            "write": {
+              "fc": 5,
+              "address": 4,
+              "length": 1,
+              "addressOffsetSetting": "coilWriteOffset"
+            }
+          }
+        },
+        {
+          "id": "rELAY_6",
+          "name": "Relay 6",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 5,
+              "length": 1,
+              "addressOffsetSetting": "coilWriteOffset"
+            },
+            "write": {
+              "fc": 5,
+              "address": 5,
+              "length": 1,
+              "addressOffsetSetting": "coilWriteOffset"
+            }
+          }
+        },
+        {
+          "id": "rELAY_7",
+          "name": "Relay 7",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 6,
+              "length": 1,
+              "addressOffsetSetting": "coilWriteOffset"
+            },
+            "write": {
+              "fc": 5,
+              "address": 6,
+              "length": 1,
+              "addressOffsetSetting": "coilWriteOffset"
+            }
+          }
+        },
+        {
+          "id": "rELAY_8",
+          "name": "Relay 8",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 1,
+              "address": 7,
+              "length": 1,
+              "addressOffsetSetting": "coilWriteOffset"
+            },
+            "write": {
+              "fc": 5,
+              "address": 7,
+              "length": 1,
+              "addressOffsetSetting": "coilWriteOffset"
+            }
+          }
+        }
+      ],
+      "settings": [
+        {
+          "id": "coilReadOffset",
+          "name": "Coil Read Offset",
+          "type": "number",
+          "default": 0
+        },
+        {
+          "id": "coilWriteOffset",
+          "name": "Coil Write Offset",
+          "type": "number",
+          "default": 0
+        }
+      ]
     },
     {
       "id": "meter.artemes.MeterArtemesAM2Impl",
@@ -42290,7 +44080,288 @@
         "modbusTcp",
         "modbusRtu"
       ],
-      "datapoints": []
+      "datapoints": [
+        {
+          "id": "vOLTAGE",
+          "name": "Voltage",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 99,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "vOLTAGE_L1",
+          "name": "Voltage L1",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 101,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "vOLTAGE_L2",
+          "name": "Voltage L2",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 103,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "vOLTAGE_L3",
+          "name": "Voltage L3",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 105,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "cURRENT",
+          "name": "Current",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 115,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "cURRENT_L1",
+          "name": "Current L1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 117,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "cURRENT_L2",
+          "name": "Current L2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 119,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "cURRENT_L3",
+          "name": "Current L3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 121,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 133,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L1",
+          "name": "Active Power L1",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 135,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L2",
+          "name": "Active Power L2",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 137,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L3",
+          "name": "Active Power L3",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 139,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER",
+          "name": "Reactive Power",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 141,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER_L1",
+          "name": "Reactive Power L1",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 143,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER_L2",
+          "name": "Reactive Power L2",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 145,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER_L3",
+          "name": "Reactive Power L3",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 147,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "fREQUENCY",
+          "name": "Frequency",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 157,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        }
+      ]
     },
     {
       "id": "meter.carlo.MeterCarloGavazziEm100Impl",
@@ -46269,7 +48340,288 @@
         "modbusTcp",
         "modbusRtu"
       ],
-      "datapoints": []
+      "datapoints": [
+        {
+          "id": "vOLTAGE_L1",
+          "name": "Voltage L1",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 32774,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "vOLTAGE_L2",
+          "name": "Voltage L2",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 32776,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "vOLTAGE_L3",
+          "name": "Voltage L3",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 32778,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "cURRENT_L1",
+          "name": "Current L1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 32808,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "cURRENT_L2",
+          "name": "Current L2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 32810,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "cURRENT_L3",
+          "name": "Current L3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 32812,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "fREQUENCY",
+          "name": "Frequency",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 33024,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 32844,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L1",
+          "name": "Active Power L1",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 32846,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L2",
+          "name": "Active Power L2",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 32848,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L3",
+          "name": "Active Power L3",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 32850,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER",
+          "name": "Reactive Power",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 32858,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER_L1",
+          "name": "Reactive Power L1",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 32860,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER_L2",
+          "name": "Reactive Power L2",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 32862,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER_L3",
+          "name": "Reactive Power L3",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 32864,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "eNERGY",
+          "name": "Energy Total",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 33040,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "eNERGY_RESET",
+          "name": "Energy Reset",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 33048,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        }
+      ]
     },
     {
       "id": "meter.plexlog.MeterPlexlogDataloggerImpl",
@@ -46841,7 +49193,301 @@
         "modbusTcp",
         "modbusRtu"
       ],
-      "datapoints": []
+      "datapoints": [
+        {
+          "id": "cURRENT_L1",
+          "name": "Current L1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 2999,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3
+          }
+        },
+        {
+          "id": "cURRENT_L2",
+          "name": "Current L2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 3001,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3
+          }
+        },
+        {
+          "id": "cURRENT_L3",
+          "name": "Current L3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 3003,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3
+          }
+        },
+        {
+          "id": "vOLTAGE_L1",
+          "name": "Voltage L1",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 3015,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3
+          }
+        },
+        {
+          "id": "vOLTAGE_L2",
+          "name": "Voltage L2",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 3017,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3
+          }
+        },
+        {
+          "id": "vOLTAGE_L3",
+          "name": "Voltage L3",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 3019,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3
+          }
+        },
+        {
+          "id": "fREQUENCY",
+          "name": "Frequency",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 3035,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L1",
+          "name": "Active Power L1",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 3053,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L2",
+          "name": "Active Power L2",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 3055,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L3",
+          "name": "Active Power L3",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 3057,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 3059,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER_L1",
+          "name": "Reactive Power L1",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 3061,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER_L2",
+          "name": "Reactive Power L2",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 3063,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER_L3",
+          "name": "Reactive Power L3",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 3065,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER",
+          "name": "Reactive Power",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 3067,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "aCTIVE_PRODUCTION_ENERGY",
+          "name": "Active Production Energy",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 4502,
+            "length": 4,
+            "dataType": "uint64",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "aCTIVE_CONSUMPTION_ENERGY",
+          "name": "Active Consumption Energy",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 4518,
+            "length": 4,
+            "dataType": "uint64",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "rEACTIVE_PRODUCTION_ENERGY",
+          "name": "Reactive Production Energy",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 4546,
+            "length": 4,
+            "dataType": "uint64",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "rEACTIVE_CONSUMPTION_ENERGY",
+          "name": "Reactive Consumption Energy",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 4562,
+            "length": 4,
+            "dataType": "uint64",
+            "scaleFactor": 0
+          }
+        }
+      ]
     },
     {
       "id": "meter.siemens.MeterSiemensPac1600Impl",
@@ -47713,7 +50359,440 @@
         "modbusTcp",
         "modbusRtu"
       ],
-      "datapoints": []
+      "datapoints": [
+        {
+          "id": "vOLTAGE_L1",
+          "name": "Voltage L1",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 200,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "vOLTAGE_L2",
+          "name": "Voltage L2",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 202,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "vOLTAGE_L3",
+          "name": "Voltage L3",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 204,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "cURRENT_L1",
+          "name": "Current L1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 210,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "cURRENT_L2",
+          "name": "Current L2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 212,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "cURRENT_L3",
+          "name": "Current L3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 214,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "fREQUENCY",
+          "name": "Frequency",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 218,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 224,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER",
+          "name": "Reactive Power",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 226,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aPPARENT_POWER",
+          "name": "Apparent Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 242,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L1",
+          "name": "Active Power L1",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 230,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L2",
+          "name": "Active Power L2",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 232,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L3",
+          "name": "Active Power L3",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 234,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER_L1",
+          "name": "Reactive Power L1",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 236,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER_L2",
+          "name": "Reactive Power L2",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 238,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER_L3",
+          "name": "Reactive Power L3",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 240,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aPPARENT_POWER_L1",
+          "name": "Apparent Power L1",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 244,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aPPARENT_POWER_L2",
+          "name": "Apparent Power L2",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 246,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aPPARENT_POWER_L3",
+          "name": "Apparent Power L3",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 248,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pOWER_FACTOR",
+          "name": "Power Factor",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 250,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": -3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pOWER_FACTOR_L1",
+          "name": "Power Factor L1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 252,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": -3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pOWER_FACTOR_L2",
+          "name": "Power Factor L2",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 254,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": -3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pOWER_FACTOR_L3",
+          "name": "Power Factor L3",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 256,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": -3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aCTIVE_PRODUCTION_ENERGY",
+          "name": "Active Production Energy",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 300,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aCTIVE_CONSUMPTION_ENERGY",
+          "name": "Active Consumption Energy",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 302,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "rEACTIVE_PRODUCTION_ENERGY",
+          "name": "Reactive Production Energy",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 304,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "rEACTIVE_CONSUMPTION_ENERGY",
+          "name": "Reactive Consumption Energy",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 306,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        }
+      ]
     },
     {
       "id": "meter.victron.VictronAcInPowerMeterImpl",
@@ -49097,7 +52176,640 @@
         "modbusTcp",
         "modbusRtu"
       ],
-      "datapoints": []
+      "datapoints": [
+        {
+          "id": "fREQUENCY",
+          "name": "Frequency",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 176,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "vOLTAGE_L1",
+          "name": "Voltage L1",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 178,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "vOLTAGE_L2",
+          "name": "Voltage L2",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 180,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "vOLTAGE_L3",
+          "name": "Voltage L3",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 182,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "cURRENT_L1",
+          "name": "Current L1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 184,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "cURRENT_L2",
+          "name": "Current L2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 186,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "cURRENT_L3",
+          "name": "Current L3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 188,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 190,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L1",
+          "name": "Active Power L1",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 192,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L2",
+          "name": "Active Power L2",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 194,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L3",
+          "name": "Active Power L3",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 196,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER",
+          "name": "Reactive Power",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 198,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER_L1",
+          "name": "Reactive Power L1",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 200,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER_L2",
+          "name": "Reactive Power L2",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 202,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER_L3",
+          "name": "Reactive Power L3",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 204,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le",
+            "invertIfSetting": "invert"
+          }
+        },
+        {
+          "id": "aPPARENT_POWER",
+          "name": "Apparent Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 206,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aPPARENT_POWER_L1",
+          "name": "Apparent Power L1",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 208,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aPPARENT_POWER_L2",
+          "name": "Apparent Power L2",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 210,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aPPARENT_POWER_L3",
+          "name": "Apparent Power L3",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 212,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pOWER_FACTOR",
+          "name": "Power Factor",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 214,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pOWER_FACTOR_L1",
+          "name": "Power Factor L1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 216,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pOWER_FACTOR_L2",
+          "name": "Power Factor L2",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 218,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pOWER_FACTOR_L3",
+          "name": "Power Factor L3",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 220,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 0,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aCTIVE_PRODUCTION_ENERGY_L1",
+          "name": "Active Production Energy L1",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 342,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aCTIVE_PRODUCTION_ENERGY_L2",
+          "name": "Active Production Energy L2",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 344,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aCTIVE_PRODUCTION_ENERGY_L3",
+          "name": "Active Production Energy L3",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 346,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aCTIVE_PRODUCTION_ENERGY",
+          "name": "Active Production Energy",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 348,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aCTIVE_CONSUMPTION_ENERGY_L1",
+          "name": "Active Consumption Energy L1",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 350,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aCTIVE_CONSUMPTION_ENERGY_L2",
+          "name": "Active Consumption Energy L2",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 352,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aCTIVE_CONSUMPTION_ENERGY_L3",
+          "name": "Active Consumption Energy L3",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 354,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aCTIVE_CONSUMPTION_ENERGY",
+          "name": "Active Consumption Energy",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 356,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "rEACTIVE_PRODUCTION_ENERGY_L1",
+          "name": "Reactive Production Energy L1",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 358,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "rEACTIVE_PRODUCTION_ENERGY_L2",
+          "name": "Reactive Production Energy L2",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 360,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "rEACTIVE_PRODUCTION_ENERGY_L3",
+          "name": "Reactive Production Energy L3",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 362,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "rEACTIVE_PRODUCTION_ENERGY",
+          "name": "Reactive Production Energy",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 364,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "rEACTIVE_CONSUMPTION_ENERGY_L1",
+          "name": "Reactive Consumption Energy L1",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 366,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "rEACTIVE_CONSUMPTION_ENERGY_L2",
+          "name": "Reactive Consumption Energy L2",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 368,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "rEACTIVE_CONSUMPTION_ENERGY_L3",
+          "name": "Reactive Consumption Energy L3",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 370,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "rEACTIVE_CONSUMPTION_ENERGY",
+          "name": "Reactive Consumption Energy",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 372,
+            "length": 2,
+            "dataType": "float32",
+            "scaleFactor": 3,
+            "wordOrder": "le"
+          }
+        }
+      ]
     },
     {
       "id": "pv_inverter.goodwe.AbstractGoodWe",

@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.47",
+    "version": "0.5.48",
     "news": {
       "0.5.47": {
         "en": "Add wired M-Bus serial protocol (generic template + admin UI connection block).",
