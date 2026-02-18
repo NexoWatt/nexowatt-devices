@@ -226,6 +226,9 @@ function summarizeConnection(d) {
   if (d.protocol === 'mqtt') {
     return `${c.url || ''}`;
   }
+  if (d.protocol === 'canbus') {
+    return `${c.interface || c.iface || c.canInterface || 'can0'}`;
+  }
   if (d.protocol === 'http') {
     return `${c.baseUrl || ''}`;
   }
@@ -321,6 +324,7 @@ function showConnBlock(protocol) {
   if (protocol === 'modbusRtu' || protocol === 'modbusAscii') $('#conn_modbusRtu').show();
   if (protocol === 'mbus') $('#conn_mbus').show();
   if (protocol === 'mqtt') $('#conn_mqtt').show();
+  if (protocol === 'canbus') $('#conn_canbus').show();
   if (protocol === 'onewire') $('#conn_onewire').show();
   if (protocol === 'http') $('#conn_http').show();
   if (protocol === 'udp') $('#conn_udp').show();
@@ -341,6 +345,14 @@ function summarizeDatapoint(dp) {
   }
   if (kind === 'mqtt') {
     return `topic: ${src.topic || ''}`.trim();
+  }
+  if (kind === 'canbus') {
+    if (src.computed) return `computed: ${src.computed}`;
+    const id = (src.canId !== undefined && src.canId !== null) ? src.canId : '';
+    const off = (src.byteOffset !== undefined && src.byteOffset !== null) ? ` off=${src.byteOffset}` : '';
+    const len = (src.byteLength !== undefined && src.byteLength !== null) ? ` len=${src.byteLength}` : '';
+    const dt = (src.dataType || '').toString();
+    return `id: ${id}${off}${len} ${dt}`.trim();
   }
   if (kind === 'onewire') {
     const sid = src.sensorId || '';
@@ -499,6 +511,12 @@ function openDeviceModal(device, idx) {
   $('#mqtt_user').val(c.username || '');
   $('#mqtt_pass').val(c.password || '');
 
+  // CANbus
+  $('#can_iface').val(c.interface || c.iface || c.canInterface || 'can0');
+  $('#can_candumpArgs').val(c.candumpArgs || '');
+  $('#can_candumpPath').val(c.candumpPath || 'candump');
+  $('#can_cansendPath').val(c.cansendPath || 'cansend');
+
   // 1-Wire
   $('#ow_basePath').val(c.basePath || '/sys/bus/w1/devices');
   $('#ow_sensorId').val(c.sensorId || '');
@@ -601,6 +619,11 @@ function collectDeviceFromModal() {
     d.connection.url = ($('#mqtt_url').val() || '').trim();
     d.connection.username = ($('#mqtt_user').val() || '').trim() || undefined;
     d.connection.password = ($('#mqtt_pass').val() || '').trim() || undefined;
+  } else if (d.protocol === 'canbus') {
+    d.connection.interface = ($('#can_iface').val() || '').trim() || 'can0';
+    d.connection.candumpArgs = ($('#can_candumpArgs').val() || '').trim() || undefined;
+    d.connection.candumpPath = ($('#can_candumpPath').val() || '').trim() || 'candump';
+    d.connection.cansendPath = ($('#can_cansendPath').val() || '').trim() || 'cansend';
   } else if (d.protocol === 'onewire') {
     d.connection.basePath = ($('#ow_basePath').val() || '').trim() || '/sys/bus/w1/devices';
     d.connection.sensorId = ($('#ow_sensorId').val() || '').trim();
@@ -646,6 +669,7 @@ function collectDeviceFromModal() {
   if ((d.protocol === 'modbusRtu' || d.protocol === 'modbusAscii') && !d.connection.path) throw new Error('Modbus Serial-Port fehlt');
   if (d.protocol === 'mbus' && !d.connection.path) throw new Error('M-Bus Serial-Port fehlt');
   if (d.protocol === 'mqtt' && !d.connection.url) throw new Error('MQTT Broker-URL fehlt');
+  if (d.protocol === 'canbus' && !d.connection.interface) throw new Error('CAN Interface fehlt (z.B. can0)');
   if (d.protocol === 'onewire' && !d.connection.sensorId) throw new Error('1-Wire Sensor-ID fehlt');
   if (d.protocol === 'http' && !d.connection.baseUrl) throw new Error('HTTP Base-URL fehlt');
 

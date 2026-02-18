@@ -378,6 +378,33 @@
         </div>
       </div>
 
+      <div id="conn_canbus" class="nexo-conn-block" style="display:none;">
+        <h6 class="translate">CANbus Verbindung (SocketCAN / can-utils)</h6>
+        <div class="row">
+          <div class="input-field col s12 m4">
+            <input id="can_iface" type="text" value="can0" />
+            <label for="can_iface" class="translate">Interface (z.B. can0)</label>
+          </div>
+          <div class="input-field col s12 m4">
+            <input id="can_candumpArgs" type="text" />
+            <label for="can_candumpArgs" class="translate">candump Args (optional)</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="can_candumpPath" type="text" value="candump" />
+            <label for="can_candumpPath" class="translate">candump Pfad</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="can_cansendPath" type="text" value="cansend" />
+            <label for="can_cansendPath" class="translate">cansend Pfad</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 nexo-muted" style="margin-top: 2px; font-size: 0.9em;">
+            <span class="translate">Hinweis</span>: <span class="translate">Benötigt Linux SocketCAN + can-utils (candump/cansend). Beispiel: sudo apt install can-utils</span>
+          </div>
+        </div>
+      </div>
+
       <div id="conn_onewire" class="nexo-conn-block" style="display:none;">
         <h6 class="translate">1-Wire Verbindung</h6>
         <div class="row">
