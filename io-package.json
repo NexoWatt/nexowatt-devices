@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.55",
+    "version": "0.5.56",
     "news": {
+      "0.5.56": {
+        "en": "Speedwire: add soft-stale mode (keep cached values flowing on telegram gaps), add freshness datapoints (ageMs/stale/lastSeen), and set SMA Energy Meter Speedwire template to 1s update cadence via driverHints.",
+        "de": "Speedwire: Soft-Stale Modus (bei Telegram-Lücken letzte Werte weiter ausgeben), Freshness-Datenpunkte (ageMs/stale/lastSeen) sowie SMA Energy Meter Speedwire Template mit 1s Update-Cadence (driverHints)."
+      },
       "0.5.54": {
         "en": "Speedwire stability improvements: larger UDP receive buffer, on-stale multicast rejoin attempt, and increased default stale timeout to 30s (configurable).",
         "de": "Speedwire Stabilitäts-Verbesserungen: größerer UDP Receive-Buffer, bei Stale automatisch Multicast-Rejoin versuchen, und Default Stale-Timeout auf 30s erhöht (konfigurierbar)."

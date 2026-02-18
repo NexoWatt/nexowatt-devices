@@ -70527,6 +70527,9 @@
       "protocols": [
         "speedwire"
       ],
+      "driverHints": {
+        "pollIntervalMs": 1000
+      },
       "datapoints": [
         {
           "id": "sUSY_ID",
@@ -70560,6 +70563,41 @@
           "source": {
             "kind": "speedwire",
             "field": "timestampMs"
+          }
+        },
+        {
+          "id": "lAST_SEEN_UNIX_MS",
+          "name": "Last telegram seen (unix ms)",
+          "role": "value.time",
+          "type": "number",
+          "rw": "ro",
+          "unit": "ms",
+          "source": {
+            "kind": "speedwire",
+            "field": "lastSeenUnixMs"
+          }
+        },
+        {
+          "id": "aGE_MS",
+          "name": "Telegram age (ms)",
+          "role": "value.time",
+          "type": "number",
+          "rw": "ro",
+          "unit": "ms",
+          "source": {
+            "kind": "speedwire",
+            "field": "ageMs"
+          }
+        },
+        {
+          "id": "sTALE",
+          "name": "Stale (age > staleTimeout)",
+          "role": "indicator.maintenance",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "speedwire",
+            "field": "stale"
           }
         },
         {
