@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.56",
+    "version": "0.5.57",
     "news": {
+      "0.5.57": {
+        "en": "Add per-device heartbeat alias states for safety logic: aliases.r.heartbeat (counter), aliases.r.lastSeenMs, aliases.r.online. Heartbeat ticks only on real incoming data (poll success / new Speedwire telegram / MQTT message / CAN frame) and includes an automatic online/offline timeout.",
+        "de": "Pro Gerät Heartbeat-Alias-Datenpunkte für Sicherheits-Logik hinzugefügt: aliases.r.heartbeat (Counter), aliases.r.lastSeenMs, aliases.r.online. Heartbeat wird nur bei echten eingehenden Daten aktualisiert (Poll erfolgreich / neues Speedwire-Telegramm / MQTT Message / CAN Frame) inkl. automatischem Online/Offline Timeout."
+      },
       "0.5.56": {
         "en": "Speedwire: add soft-stale mode (keep cached values flowing on telegram gaps), add freshness datapoints (ageMs/stale/lastSeen), and set SMA Energy Meter Speedwire template to 1s update cadence via driverHints.",
         "de": "Speedwire: Soft-Stale Modus (bei Telegram-Lücken letzte Werte weiter ausgeben), Freshness-Datenpunkte (ageMs/stale/lastSeen) sowie SMA Energy Meter Speedwire Template mit 1s Update-Cadence (driverHints)."
