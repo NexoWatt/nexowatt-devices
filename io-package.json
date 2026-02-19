@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.57",
+    "version": "0.5.58",
     "news": {
+      "0.5.58": {
+        "en": "Admin UI: add per-device Heartbeat Timeout (ms) field (writes to devicesJson as heartbeatTimeoutMs). This controls when aliases.r.online flips to false if no fresh data is received.",
+        "de": "Admin UI: Feld für per-Device Heartbeat Timeout (ms) hinzugefügt (wird in devicesJson als heartbeatTimeoutMs gespeichert). Steuert, wann aliases.r.online bei fehlenden frischen Daten auf false gesetzt wird."
+      },
       "0.5.57": {
         "en": "Add per-device heartbeat alias states for safety logic: aliases.r.heartbeat (counter), aliases.r.lastSeenMs, aliases.r.online. Heartbeat ticks only on real incoming data (poll success / new Speedwire telegram / MQTT message / CAN frame) and includes an automatic online/offline timeout.",
         "de": "Pro Gerät Heartbeat-Alias-Datenpunkte für Sicherheits-Logik hinzugefügt: aliases.r.heartbeat (Counter), aliases.r.lastSeenMs, aliases.r.online. Heartbeat wird nur bei echten eingehenden Daten aktualisiert (Poll erfolgreich / neues Speedwire-Telegramm / MQTT Message / CAN Frame) inkl. automatischem Online/Offline Timeout."

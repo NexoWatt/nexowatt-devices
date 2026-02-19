@@ -214,26 +214,28 @@ function loadTemplates() {
 
 function summarizeConnection(d) {
   const c = d.connection || {};
+  const hb = (d && d.heartbeatTimeoutMs !== undefined && d.heartbeatTimeoutMs !== null) ? Number(d.heartbeatTimeoutMs) : NaN;
+  const hbTxt = (Number.isFinite(hb) && hb > 0) ? `, hb ${Math.trunc(hb)}ms` : '';
   if (d.protocol === 'modbusTcp') {
-    return `${c.host || ''}:${c.port || 502} (unit ${c.unitId ?? 1})`;
+    return `${c.host || ''}:${c.port || 502} (unit ${c.unitId ?? 1}${hbTxt})`;
   }
   if (d.protocol === 'modbusRtu' || d.protocol === 'modbusAscii') {
-    return `${c.path || ''} @${c.baudRate || 9600} (unit ${c.unitId ?? 1})`;
+    return `${c.path || ''} @${c.baudRate || 9600} (unit ${c.unitId ?? 1}${hbTxt})`;
   }
   if (d.protocol === 'mbus') {
-    return `${c.path || ''} @${c.baudRate || 2400} (addr ${c.unitId ?? 1})`;
+    return `${c.path || ''} @${c.baudRate || 2400} (addr ${c.unitId ?? 1}${hbTxt})`;
   }
   if (d.protocol === 'mqtt') {
-    return `${c.url || ''}`;
+    return `${c.url || ''}${hbTxt ? (' (' + hbTxt.slice(2) + ')') : ''}`;
   }
   if (d.protocol === 'canbus') {
-    return `${c.interface || c.iface || c.canInterface || 'can0'}`;
+    return `${c.interface || c.iface || c.canInterface || 'can0'}${hbTxt ? (' (' + hbTxt.slice(2) + ')') : ''}`;
   }
   if (d.protocol === 'http') {
-    return `${c.baseUrl || ''}`;
+    return `${c.baseUrl || ''}${hbTxt ? (' (' + hbTxt.slice(2) + ')') : ''}`;
   }
   if (d.protocol === 'udp') {
-    return `${c.host || ''}:${c.port || 7090}`;
+    return `${c.host || ''}:${c.port || 7090}${hbTxt ? (' (' + hbTxt.slice(2) + ')') : ''}`;
   }
   return '';
 }
@@ -416,6 +418,7 @@ function openDeviceModal(device, idx) {
   $('#dev_name').val(device.name || '');
   $('#dev_enabled').prop('checked', device.enabled !== false);
   $('#dev_poll').val(device.pollIntervalMs || '');
+  $('#dev_hbTimeout').val(device.heartbeatTimeoutMs || '');
 
   // category/manufacturer/template
   const cat = device.category || categories[0] || 'GENERIC';
@@ -563,8 +566,16 @@ function collectDeviceFromModal() {
     templateId: tplId,
     protocol: $('#dev_protocol').val(),
     pollIntervalMs: ($('#dev_poll').val() || '').trim() ? parseInt($('#dev_poll').val(), 10) : undefined,
+    heartbeatTimeoutMs: ($('#dev_hbTimeout').val() || '').trim() ? parseInt($('#dev_hbTimeout').val(), 10) : undefined,
     connection: {}
   };
+
+  // Normalize heartbeat timeout (optional)
+  if (!Number.isFinite(Number(d.heartbeatTimeoutMs)) || Number(d.heartbeatTimeoutMs) <= 0) {
+    delete d.heartbeatTimeoutMs;
+  } else {
+    d.heartbeatTimeoutMs = Math.trunc(Number(d.heartbeatTimeoutMs));
+  }
 
   if (tpl && Array.isArray(tpl.protocols) && d.protocol && !tpl.protocols.includes(d.protocol)) {
     throw new Error('Protokoll wird vom Template nicht unterstützt');

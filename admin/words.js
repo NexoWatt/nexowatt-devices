@@ -30,6 +30,16 @@ systemDictionary['Gerät bearbeiten'] = { 'en': 'Edit device', 'de': 'Gerät bea
 systemDictionary['Speichern'] = { 'en': 'Save', 'de': 'Speichern' };
 systemDictionary['Abbrechen'] = { 'en': 'Cancel', 'de': 'Abbrechen' };
 
+systemDictionary['Heartbeat Timeout (ms, optional)'] = {
+  'en': 'Heartbeat timeout (ms, optional)',
+  'de': 'Heartbeat Timeout (ms, optional)',
+};
+
+systemDictionary['Wenn innerhalb dieses Zeitfensters keine neuen Daten empfangen werden, wird aliases.r.online automatisch auf false gesetzt (Sicherheits-Logik).'] = {
+  'en': 'If no new data is received within this window, aliases.r.online is automatically set to false (safety logic).',
+  'de': 'Wenn innerhalb dieses Zeitfensters keine neuen Daten empfangen werden, wird aliases.r.online automatisch auf false gesetzt (Sicherheits-Logik).',
+};
+
 systemDictionary['http_meterId'] = { 
   'en': 'Meter-ID (optional)',
   'de': 'Meter-ID (optional)',

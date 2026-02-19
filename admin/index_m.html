@@ -180,6 +180,16 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="input-field col s12 m4">
+          <input id="dev_hbTimeout" type="number" min="1000" step="500" />
+          <label for="dev_hbTimeout" class="translate">Heartbeat Timeout (ms, optional)</label>
+        </div>
+        <div class="col s12 m8 nexo-muted" style="margin-top: 16px; font-size: 0.9em;">
+          <span class="translate">Wenn innerhalb dieses Zeitfensters keine neuen Daten empfangen werden, wird aliases.r.online automatisch auf false gesetzt (Sicherheits-Logik).</span>
+        </div>
+      </div>
+
       <!-- Connection blocks -->
       <div id="conn_modbusTcp" class="nexo-conn-block" style="display:none;">
         <h6 class="translate">Modbus TCP Verbindung</h6>
