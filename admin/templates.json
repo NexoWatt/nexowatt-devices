@@ -41611,6 +41611,25 @@
             "nextMotionDpId": "vPP_NEXT_MOTION",
             "defaultExecDuration": 600,
             "defaultNextMotion": 160
+          },
+          "solaxVppMode8": {
+            "enabled": true,
+            "triggerDpId": "sET_PV_POWER",
+            "triggerDpIds": [
+              "sET_PV_POWER",
+              "vPP8_BATTERY_POWER_TARGET"
+            ],
+            "startAddress": 160,
+            "modeNum": 8,
+            "targetSetTypeDpId": "vPP8_TARGET_SET_TYPE",
+            "batTargetDpId": "vPP8_BATTERY_POWER_TARGET",
+            "execDurationDpId": "vPP8_EXEC_DURATION",
+            "nextMotionDpId": "vPP8_NEXT_MOTION",
+            "defaultTargetSetType": 1,
+            "defaultPvTarget": 999999,
+            "defaultBatTarget": 0,
+            "defaultExecDuration": 1800,
+            "defaultNextMotion": 160
           }
         },
         "polling": {
@@ -41915,7 +41934,7 @@
         },
         {
           "id": "sET_CONTROL_MODE",
-          "name": "VPP mode number (write 4 for battery power target mode)",
+          "name": "VPP mode number (e.g. 4=battery target, 8=PV&BAT duration)",
           "role": "level",
           "type": "number",
           "rw": "rw",
@@ -42000,6 +42019,91 @@
             "write": {
               "fc": 16,
               "address": 164,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "vPP8_TARGET_SET_TYPE",
+          "name": "VPP Mode 8 TargetSetType (1=Reset, 2=Update)",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "write": {
+              "fc": 16,
+              "address": 161,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "sET_PV_POWER",
+          "name": "PV power target/limit (VPP Mode 8)",
+          "role": "level.power",
+          "type": "number",
+          "rw": "rw",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "write": {
+              "fc": 16,
+              "address": 162,
+              "length": 2,
+              "dataType": "uint32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "vPP8_BATTERY_POWER_TARGET",
+          "name": "Battery power target (VPP Mode 8) (+ discharge / - charge)",
+          "role": "level.power",
+          "type": "number",
+          "rw": "rw",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "write": {
+              "fc": 16,
+              "address": 164,
+              "length": 2,
+              "dataType": "int32",
+              "wordOrder": "le"
+            }
+          }
+        },
+        {
+          "id": "vPP8_EXEC_DURATION",
+          "name": "VPP Mode 8 ExecDuration",
+          "role": "value.interval",
+          "type": "number",
+          "rw": "rw",
+          "unit": "s",
+          "source": {
+            "kind": "modbus",
+            "write": {
+              "fc": 16,
+              "address": 166,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "vPP8_NEXT_MOTION",
+          "name": "VPP Mode 8 NextMotion (0x00A0 exit, 0x00A1 switch to Mode 6)",
+          "role": "state",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "write": {
+              "fc": 16,
+              "address": 167,
               "length": 1,
               "dataType": "uint16"
             }

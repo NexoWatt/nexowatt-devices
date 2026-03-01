@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.58",
+    "version": "0.5.60",
     "news": {
+      "0.5.60": {
+        "en": "SolaX ESS: VPP Mode 8 now behaves like VPP4: writing PV power target OR battery power target triggers one single FC16 block write (0xA0..0xA7) incl. all required parameters (TargetSetType, ExecDuration, NextMotion) with unlock password handling.",
+        "de": "SolaX ESS: VPP Mode 8 verhält sich jetzt wie VPP4: Schreiben von PV-Leistungsziel ODER Batterie-Leistungsziel triggert einen einzelnen FC16 Block-Write (0xA0..0xA7) inkl. aller benötigten Parameter (TargetSetType, ExecDuration, NextMotion) inkl. Unlock/Passwort-Handling."
+      },
       "0.5.58": {
         "en": "Admin UI: add per-device Heartbeat Timeout (ms) field (writes to devicesJson as heartbeatTimeoutMs). This controls when aliases.r.online flips to false if no fresh data is received.",
         "de": "Admin UI: Feld für per-Device Heartbeat Timeout (ms) hinzugefügt (wird in devicesJson als heartbeatTimeoutMs gespeichert). Steuert, wann aliases.r.online bei fehlenden frischen Daten auf false gesetzt wird."
@@ -206,6 +210,10 @@
       "0.5.51": {
         "en": "Added SunSpec model scanning + KACO (blueplanet NX3 / GridSave / Hybrid10) templates; updated adapter logo.",
         "de": "SunSpec Modell-Scan + KACO Templates (blueplanet NX3 / GridSave / Hybrid10) hinzugefügt; modernes Adapter-Logo aktualisiert."
+      },
+      "0.5.59": {
+        "en": "SolaX ESS: add VPP Mode 8 (PV&BAT Individual Setting - Duration) control datapoints incl. PV power target/limit, with proper VPP multi-write block (FC16 @ 0x00A0) and Modbus write-unlock (password). Add ESS alias ctrl.pvPowerLimitW if supported by template.",
+        "de": "SolaX ESS: VPP Mode 8 (PV&BAT Individual Setting - Duration) Steuerung ergänzt inkl. PV Power Target/Limit, mit korrektem VPP Multi-Write Block (FC16 @ 0x00A0) und Modbus Write-Unlock (Passwort). Zusätzlich ESS-Alias ctrl.pvPowerLimitW falls vom Template unterstützt."
       }
     },
     "title": "NexoWatt Devices",
