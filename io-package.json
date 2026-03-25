@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.62",
+    "version": "0.5.63",
     "news": {
       "0.5.60": {
         "en": "SolaX ESS: VPP Mode 8 now behaves like VPP4: writing PV power target OR battery power target triggers one single FC16 block write (0xA0..0xA7) incl. all required parameters (TargetSetType, ExecDuration, NextMotion) with unlock password handling.",
@@ -218,6 +218,10 @@
       "0.5.62": {
         "en": "Admin UI migrated to JSON config (modern ioBroker admin) + legacy devicesJson auto-migration",
         "de": "Admin UI auf JSON-Config (modernes ioBroker Admin) migriert + Auto-Migration von legacy devicesJson"
+      },
+      "0.5.63": {
+        "en": "Fix Admin JSON-Config: use string translation keys (i18n files) instead of {en,de} objects to prevent Admin React crash (TypeError: replace is not a function).",
+        "de": "Fix Admin JSON-Config: String-Keys + i18n-Dateien statt {en,de} Objekte, um Admin-React Crash zu verhindern (TypeError: replace is not a function)."
       }
     },
     "title": "NexoWatt Devices",
