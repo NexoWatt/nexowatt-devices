@@ -1,0 +1,1159 @@
+{
+  "type": "tabs",
+  "items": {
+    "general": {
+      "type": "panel",
+      "label": {
+        "en": "General",
+        "de": "Allgemein"
+      },
+      "items": {
+        "_alive": {
+          "type": "alive",
+          "label": {
+            "en": "Instance status",
+            "de": "Instanz-Status"
+          },
+          "textAlive": {
+            "en": "Instance %s is alive",
+            "de": "Instanz %s läuft"
+          },
+          "textNotAlive": {
+            "en": "Instance %s is not alive",
+            "de": "Instanz %s läuft nicht"
+          },
+          "newLine": true
+        },
+        "_headline_poll": {
+          "type": "staticText",
+          "text": {
+            "en": "Global polling settings (applies to polling drivers like Modbus/HTTP/UDP; event-driven drivers ignore it).",
+            "de": "Globale Polling-Einstellungen (für Polling-Treiber wie Modbus/HTTP/UDP; Event-basierte Treiber ignorieren es)."
+          },
+          "newLine": true
+        },
+        "pollIntervalMs": {
+          "type": "number",
+          "label": {
+            "en": "Global polling interval (ms)",
+            "de": "Globales Polling-Intervall (ms)"
+          },
+          "min": 250,
+          "max": 600000,
+          "sm": 6,
+          "md": 4,
+          "newLine": true
+        },
+        "modbusTimeoutMs": {
+          "type": "number",
+          "label": {
+            "en": "Default Modbus timeout (ms)",
+            "de": "Standard Modbus-Timeout (ms)"
+          },
+          "min": 100,
+          "max": 60000,
+          "sm": 6,
+          "md": 4
+        },
+        "registerAddressOffset": {
+          "type": "number",
+          "label": {
+            "en": "Default register address offset",
+            "de": "Standard Register-Adress-Offset"
+          },
+          "min": -100000,
+          "max": 100000,
+          "sm": 6,
+          "md": 4,
+          "newLine": true
+        },
+        "_hint_poll": {
+          "type": "staticText",
+          "text": {
+            "en": "Tip: You can override polling interval and protocol timeouts per device in the Devices tab.",
+            "de": "Tipp: Du kannst Polling-Intervall und Protokoll-Timeouts pro Gerät im Tab „Geräte“ überschreiben."
+          },
+          "newLine": true
+        }
+      }
+    },
+    "devicesTab": {
+      "type": "panel",
+      "label": {
+        "en": "Devices",
+        "de": "Geräte"
+      },
+      "items": {
+        "_help0": {
+          "type": "staticText",
+          "text": {
+            "en": "Add one or more devices below. If dropdown lists stay empty, ensure the adapter instance is running (Instance status in General tab).",
+            "de": "Füge unten ein oder mehrere Geräte hinzu. Wenn Dropdown-Listen leer bleiben, stelle sicher, dass die Adapter-Instanz läuft (Status im Tab „Allgemein“)."
+          },
+          "newLine": true
+        },
+        "devices": {
+          "type": "accordion",
+          "label": {
+            "en": "Configured devices",
+            "de": "Konfigurierte Geräte"
+          },
+          "titleAttr": "id",
+          "clone": "id",
+          "items": [
+            {
+              "type": "checkbox",
+              "attr": "enabled",
+              "label": {
+                "en": "Active",
+                "de": "Aktiv"
+              },
+              "default": true,
+              "sm": 3,
+              "md": 2
+            },
+            {
+              "type": "text",
+              "attr": "id",
+              "label": {
+                "en": "Device ID (unique)",
+                "de": "Geräte-ID (eindeutig)"
+              },
+              "sm": 5,
+              "md": 3,
+              "validator": "(() => { try { if (!data.id) return false; if (!globalData || !Array.isArray(globalData.devices)) return true; const id = String(data.id); const cnt = globalData.devices.filter(d => d && String(d.id) === id).length; return cnt <= 1; } catch (e) { return !!data.id; } })()"
+            },
+            {
+              "type": "text",
+              "attr": "name",
+              "label": {
+                "en": "Name (optional)",
+                "de": "Name (optional)"
+              },
+              "sm": 4,
+              "md": 4,
+              "newLine": true
+            },
+            {
+              "type": "selectSendTo",
+              "attr": "category",
+              "label": {
+                "en": "Category",
+                "de": "Kategorie"
+              },
+              "command": "getCategories",
+              "manual": true,
+              "noTranslation": true,
+              "sm": 6,
+              "md": 4,
+              "validator": "!!data.category",
+              "newLine": true
+            },
+            {
+              "type": "selectSendTo",
+              "attr": "manufacturer",
+              "label": {
+                "en": "Manufacturer",
+                "de": "Hersteller"
+              },
+              "command": "getManufacturers",
+              "jsonData": "{\"category\":\"${data.category}\"}",
+              "alsoDependsOn": [
+                "category"
+              ],
+              "manual": true,
+              "noTranslation": true,
+              "sm": 6,
+              "md": 4,
+              "validator": "!!data.manufacturer"
+            },
+            {
+              "type": "autocompleteSendTo",
+              "attr": "templateId",
+              "label": {
+                "en": "Driver / Template",
+                "de": "Treiber / Template"
+              },
+              "command": "getTemplates",
+              "jsonData": "{\"category\":\"${data.category}\",\"manufacturer\":\"${data.manufacturer}\"}",
+              "alsoDependsOn": [
+                "category",
+                "manufacturer"
+              ],
+              "freeSolo": false,
+              "noTranslation": true,
+              "sm": 12,
+              "validator": "!!data.templateId",
+              "newLine": true
+            },
+            {
+              "type": "selectSendTo",
+              "attr": "protocol",
+              "label": {
+                "en": "Protocol",
+                "de": "Protokoll"
+              },
+              "command": "getProtocols",
+              "jsonData": "{\"templateId\":\"${data.templateId}\"}",
+              "alsoDependsOn": [
+                "templateId"
+              ],
+              "manual": true,
+              "noTranslation": true,
+              "sm": 6,
+              "md": 4,
+              "validator": "!!data.protocol",
+              "newLine": true
+            },
+            {
+              "type": "number",
+              "attr": "pollIntervalMs",
+              "label": {
+                "en": "Polling interval (ms, optional)",
+                "de": "Polling-Intervall (ms, optional)"
+              },
+              "min": 0,
+              "max": 600000,
+              "sm": 6,
+              "md": 4,
+              "helperText": {
+                "en": "0 = use global/template default",
+                "de": "0 = global/Template verwenden"
+              }
+            },
+            {
+              "type": "number",
+              "attr": "heartbeatTimeoutMs",
+              "label": {
+                "en": "Heartbeat timeout (ms)",
+                "de": "Heartbeat-Timeout (ms)"
+              },
+              "min": 1000,
+              "max": 600000,
+              "sm": 6,
+              "md": 4,
+              "helperText": {
+                "en": "Used to mark device stale (0 = disabled).",
+                "de": "Wird genutzt um „stale“ zu erkennen (0 = deaktiviert)."
+              },
+              "newLine": true
+            },
+            {
+              "type": "divider",
+              "newLine": true
+            },
+            {
+              "type": "staticText",
+              "text": {
+                "en": "Modbus TCP connection",
+                "de": "Modbus TCP Verbindung"
+              },
+              "hidden": "data.protocol !== 'modbusTcp'",
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.host",
+              "label": {
+                "en": "Host / IP",
+                "de": "Host / IP"
+              },
+              "hidden": "data.protocol !== 'modbusTcp'",
+              "sm": 6,
+              "md": 4,
+              "newLine": true
+            },
+            {
+              "type": "port",
+              "attr": "connection.port",
+              "label": {
+                "en": "Port",
+                "de": "Port"
+              },
+              "hidden": "data.protocol !== 'modbusTcp'",
+              "default": 502,
+              "sm": 3,
+              "md": 2
+            },
+            {
+              "type": "number",
+              "attr": "connection.unitId",
+              "label": {
+                "en": "Unit-ID",
+                "de": "Unit-ID"
+              },
+              "hidden": "data.protocol !== 'modbusTcp'",
+              "default": 1,
+              "min": 0,
+              "max": 247,
+              "sm": 3,
+              "md": 2
+            },
+            {
+              "type": "number",
+              "attr": "connection.timeoutMs",
+              "label": {
+                "en": "Timeout (ms)",
+                "de": "Timeout (ms)"
+              },
+              "hidden": "data.protocol !== 'modbusTcp'",
+              "min": 100,
+              "max": 60000,
+              "sm": 6,
+              "md": 3,
+              "newLine": true
+            },
+            {
+              "type": "number",
+              "attr": "connection.addressOffset",
+              "label": {
+                "en": "Addr-Offset",
+                "de": "Addr-Offset"
+              },
+              "hidden": "data.protocol !== 'modbusTcp'",
+              "min": -100000,
+              "max": 100000,
+              "sm": 6,
+              "md": 3
+            },
+            {
+              "type": "select",
+              "attr": "connection.wordOrder",
+              "label": {
+                "en": "Word Order",
+                "de": "Word Order"
+              },
+              "hidden": "data.protocol !== 'modbusTcp'",
+              "default": "be",
+              "options": [
+                {
+                  "label": "BE",
+                  "value": "be"
+                },
+                {
+                  "label": "LE",
+                  "value": "le"
+                }
+              ],
+              "sm": 6,
+              "md": 3,
+              "newLine": true
+            },
+            {
+              "type": "select",
+              "attr": "connection.byteOrder",
+              "label": {
+                "en": "Byte Order",
+                "de": "Byte Order"
+              },
+              "hidden": "data.protocol !== 'modbusTcp'",
+              "default": "be",
+              "options": [
+                {
+                  "label": "BE",
+                  "value": "be"
+                },
+                {
+                  "label": "LE",
+                  "value": "le"
+                }
+              ],
+              "sm": 6,
+              "md": 3
+            },
+            {
+              "type": "text",
+              "attr": "connection.writePassword",
+              "label": {
+                "en": "Write password (optional)",
+                "de": "Schreib-Passwort (optional)"
+              },
+              "hidden": "data.protocol !== 'modbusTcp'",
+              "sm": 12,
+              "newLine": true
+            },
+            {
+              "type": "divider",
+              "hidden": "data.protocol !== 'modbusTcp'",
+              "newLine": true
+            },
+            {
+              "type": "staticText",
+              "text": {
+                "en": "Modbus Serial connection (RTU/ASCII)",
+                "de": "Modbus Seriell Verbindung (RTU/ASCII)"
+              },
+              "hidden": "data.protocol !== 'modbusRtu' && data.protocol !== 'modbusAscii'",
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.path",
+              "label": {
+                "en": "Serial device (e.g. /dev/ttyUSB0)",
+                "de": "Serielles Gerät (z.B. /dev/ttyUSB0)"
+              },
+              "hidden": "data.protocol !== 'modbusRtu' && data.protocol !== 'modbusAscii'",
+              "sm": 8,
+              "md": 6,
+              "newLine": true
+            },
+            {
+              "type": "number",
+              "attr": "connection.baudRate",
+              "label": {
+                "en": "Baudrate",
+                "de": "Baudrate"
+              },
+              "hidden": "data.protocol !== 'modbusRtu' && data.protocol !== 'modbusAscii'",
+              "default": 9600,
+              "sm": 4,
+              "md": 3
+            },
+            {
+              "type": "select",
+              "attr": "connection.parity",
+              "label": {
+                "en": "Parity",
+                "de": "Parity"
+              },
+              "hidden": "data.protocol !== 'modbusRtu' && data.protocol !== 'modbusAscii'",
+              "default": "none",
+              "options": [
+                {
+                  "label": "none",
+                  "value": "none"
+                },
+                {
+                  "label": "even",
+                  "value": "even"
+                },
+                {
+                  "label": "odd",
+                  "value": "odd"
+                }
+              ],
+              "sm": 4,
+              "md": 3,
+              "newLine": true
+            },
+            {
+              "type": "number",
+              "attr": "connection.dataBits",
+              "label": {
+                "en": "Data bits",
+                "de": "Data bits"
+              },
+              "hidden": "data.protocol !== 'modbusRtu' && data.protocol !== 'modbusAscii'",
+              "default": 8,
+              "min": 5,
+              "max": 8,
+              "sm": 4,
+              "md": 3
+            },
+            {
+              "type": "number",
+              "attr": "connection.stopBits",
+              "label": {
+                "en": "Stop bits",
+                "de": "Stop bits"
+              },
+              "hidden": "data.protocol !== 'modbusRtu' && data.protocol !== 'modbusAscii'",
+              "default": 1,
+              "min": 1,
+              "max": 2,
+              "sm": 4,
+              "md": 3
+            },
+            {
+              "type": "number",
+              "attr": "connection.unitId",
+              "label": {
+                "en": "Unit-ID",
+                "de": "Unit-ID"
+              },
+              "hidden": "data.protocol !== 'modbusRtu' && data.protocol !== 'modbusAscii'",
+              "default": 1,
+              "min": 0,
+              "max": 247,
+              "sm": 4,
+              "md": 3,
+              "newLine": true
+            },
+            {
+              "type": "number",
+              "attr": "connection.timeoutMs",
+              "label": {
+                "en": "Timeout (ms)",
+                "de": "Timeout (ms)"
+              },
+              "hidden": "data.protocol !== 'modbusRtu' && data.protocol !== 'modbusAscii'",
+              "min": 100,
+              "max": 60000,
+              "sm": 4,
+              "md": 3
+            },
+            {
+              "type": "number",
+              "attr": "connection.addressOffset",
+              "label": {
+                "en": "Addr-Offset",
+                "de": "Addr-Offset"
+              },
+              "hidden": "data.protocol !== 'modbusRtu' && data.protocol !== 'modbusAscii'",
+              "min": -100000,
+              "max": 100000,
+              "sm": 4,
+              "md": 3
+            },
+            {
+              "type": "select",
+              "attr": "connection.wordOrder",
+              "label": {
+                "en": "Word Order",
+                "de": "Word Order"
+              },
+              "hidden": "data.protocol !== 'modbusRtu' && data.protocol !== 'modbusAscii'",
+              "default": "be",
+              "options": [
+                {
+                  "label": "BE",
+                  "value": "be"
+                },
+                {
+                  "label": "LE",
+                  "value": "le"
+                }
+              ],
+              "sm": 4,
+              "md": 3,
+              "newLine": true
+            },
+            {
+              "type": "select",
+              "attr": "connection.byteOrder",
+              "label": {
+                "en": "Byte Order",
+                "de": "Byte Order"
+              },
+              "hidden": "data.protocol !== 'modbusRtu' && data.protocol !== 'modbusAscii'",
+              "default": "be",
+              "options": [
+                {
+                  "label": "BE",
+                  "value": "be"
+                },
+                {
+                  "label": "LE",
+                  "value": "le"
+                }
+              ],
+              "sm": 4,
+              "md": 3
+            },
+            {
+              "type": "text",
+              "attr": "connection.writePassword",
+              "label": {
+                "en": "Write password (optional)",
+                "de": "Schreib-Passwort (optional)"
+              },
+              "hidden": "data.protocol !== 'modbusRtu' && data.protocol !== 'modbusAscii'",
+              "sm": 12,
+              "newLine": true
+            },
+            {
+              "type": "divider",
+              "hidden": "data.protocol !== 'modbusRtu' && data.protocol !== 'modbusAscii'",
+              "newLine": true
+            },
+            {
+              "type": "staticText",
+              "text": {
+                "en": "M-Bus (wired) connection",
+                "de": "M-Bus (wired) Verbindung"
+              },
+              "hidden": "data.protocol !== 'mbus'",
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.path",
+              "label": {
+                "en": "Serial device (e.g. /dev/ttyUSB0)",
+                "de": "Serielles Gerät (z.B. /dev/ttyUSB0)"
+              },
+              "hidden": "data.protocol !== 'mbus'",
+              "sm": 8,
+              "md": 6,
+              "newLine": true
+            },
+            {
+              "type": "number",
+              "attr": "connection.baudRate",
+              "label": {
+                "en": "Baudrate",
+                "de": "Baudrate"
+              },
+              "hidden": "data.protocol !== 'mbus'",
+              "default": 2400,
+              "sm": 4,
+              "md": 3
+            },
+            {
+              "type": "select",
+              "attr": "connection.parity",
+              "label": {
+                "en": "Parity",
+                "de": "Parity"
+              },
+              "hidden": "data.protocol !== 'mbus'",
+              "default": "even",
+              "options": [
+                {
+                  "label": "even",
+                  "value": "even"
+                },
+                {
+                  "label": "none",
+                  "value": "none"
+                },
+                {
+                  "label": "odd",
+                  "value": "odd"
+                }
+              ],
+              "sm": 4,
+              "md": 3,
+              "newLine": true
+            },
+            {
+              "type": "number",
+              "attr": "connection.dataBits",
+              "label": {
+                "en": "Data bits",
+                "de": "Data bits"
+              },
+              "hidden": "data.protocol !== 'mbus'",
+              "default": 8,
+              "min": 5,
+              "max": 8,
+              "sm": 4,
+              "md": 3
+            },
+            {
+              "type": "number",
+              "attr": "connection.stopBits",
+              "label": {
+                "en": "Stop bits",
+                "de": "Stop bits"
+              },
+              "hidden": "data.protocol !== 'mbus'",
+              "default": 1,
+              "min": 1,
+              "max": 2,
+              "sm": 4,
+              "md": 3
+            },
+            {
+              "type": "number",
+              "attr": "connection.unitId",
+              "label": {
+                "en": "Address / Unit-ID",
+                "de": "Adresse / Unit-ID"
+              },
+              "hidden": "data.protocol !== 'mbus'",
+              "default": 1,
+              "min": 0,
+              "max": 250,
+              "sm": 4,
+              "md": 3,
+              "newLine": true
+            },
+            {
+              "type": "number",
+              "attr": "connection.timeoutMs",
+              "label": {
+                "en": "Timeout (ms)",
+                "de": "Timeout (ms)"
+              },
+              "hidden": "data.protocol !== 'mbus'",
+              "min": 100,
+              "max": 60000,
+              "sm": 4,
+              "md": 3
+            },
+            {
+              "type": "checkbox",
+              "attr": "connection.sendNke",
+              "label": {
+                "en": "Send SND_NKE before request",
+                "de": "SND_NKE vor Request senden"
+              },
+              "hidden": "data.protocol !== 'mbus'",
+              "default": true,
+              "sm": 4,
+              "md": 3
+            },
+            {
+              "type": "divider",
+              "hidden": "data.protocol !== 'mbus'",
+              "newLine": true
+            },
+            {
+              "type": "staticText",
+              "text": {
+                "en": "MQTT connection",
+                "de": "MQTT Verbindung"
+              },
+              "hidden": "data.protocol !== 'mqtt'",
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.url",
+              "label": {
+                "en": "Broker URL (mqtt://...)",
+                "de": "Broker URL (mqtt://...)"
+              },
+              "hidden": "data.protocol !== 'mqtt'",
+              "sm": 12,
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.username",
+              "label": {
+                "en": "Username (optional)",
+                "de": "Username (optional)"
+              },
+              "hidden": "data.protocol !== 'mqtt'",
+              "sm": 6,
+              "md": 4,
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.password",
+              "label": {
+                "en": "Password (optional)",
+                "de": "Passwort (optional)"
+              },
+              "hidden": "data.protocol !== 'mqtt'",
+              "sm": 6,
+              "md": 4
+            },
+            {
+              "type": "text",
+              "attr": "connection.clientId",
+              "label": {
+                "en": "Client-ID (optional)",
+                "de": "Client-ID (optional)"
+              },
+              "hidden": "data.protocol !== 'mqtt'",
+              "sm": 12,
+              "newLine": true
+            },
+            {
+              "type": "divider",
+              "hidden": "data.protocol !== 'mqtt'",
+              "newLine": true
+            },
+            {
+              "type": "staticText",
+              "text": {
+                "en": "CANbus connection (SocketCAN / can-utils)",
+                "de": "CANbus Verbindung (SocketCAN / can-utils)"
+              },
+              "hidden": "data.protocol !== 'canbus'",
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.interface",
+              "label": {
+                "en": "CAN interface (e.g. can0)",
+                "de": "CAN Interface (z.B. can0)"
+              },
+              "hidden": "data.protocol !== 'canbus'",
+              "default": "can0",
+              "sm": 6,
+              "md": 4,
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.candumpPath",
+              "label": {
+                "en": "candump path",
+                "de": "candump Pfad"
+              },
+              "hidden": "data.protocol !== 'canbus'",
+              "default": "candump",
+              "sm": 6,
+              "md": 4
+            },
+            {
+              "type": "text",
+              "attr": "connection.candumpArgs",
+              "label": {
+                "en": "candump args (optional)",
+                "de": "candump Args (optional)"
+              },
+              "hidden": "data.protocol !== 'canbus'",
+              "sm": 12,
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.cansendPath",
+              "label": {
+                "en": "cansend path",
+                "de": "cansend Pfad"
+              },
+              "hidden": "data.protocol !== 'canbus'",
+              "default": "cansend",
+              "sm": 6,
+              "md": 4,
+              "newLine": true
+            },
+            {
+              "type": "divider",
+              "hidden": "data.protocol !== 'canbus'",
+              "newLine": true
+            },
+            {
+              "type": "staticText",
+              "text": {
+                "en": "1-Wire connection (Linux sysfs)",
+                "de": "1-Wire Verbindung (Linux sysfs)"
+              },
+              "hidden": "data.protocol !== 'onewire'",
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.basePath",
+              "label": {
+                "en": "Base path",
+                "de": "Basis-Pfad"
+              },
+              "hidden": "data.protocol !== 'onewire'",
+              "default": "/sys/bus/w1/devices",
+              "sm": 12,
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.sensorId",
+              "label": {
+                "en": "Sensor ID (e.g. 28-xxxx)",
+                "de": "Sensor-ID (z.B. 28-xxxx)"
+              },
+              "hidden": "data.protocol !== 'onewire'",
+              "sm": 6,
+              "md": 4,
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.file",
+              "label": {
+                "en": "File",
+                "de": "Datei"
+              },
+              "hidden": "data.protocol !== 'onewire'",
+              "default": "w1_slave",
+              "sm": 6,
+              "md": 4
+            },
+            {
+              "type": "select",
+              "attr": "connection.parser",
+              "label": {
+                "en": "Parser",
+                "de": "Parser"
+              },
+              "hidden": "data.protocol !== 'onewire'",
+              "default": "ds18b20",
+              "options": [
+                {
+                  "label": "ds18b20",
+                  "value": "ds18b20"
+                },
+                {
+                  "label": "float",
+                  "value": "float"
+                },
+                {
+                  "label": "raw",
+                  "value": "raw"
+                }
+              ],
+              "sm": 6,
+              "md": 4,
+              "newLine": true
+            },
+            {
+              "type": "divider",
+              "hidden": "data.protocol !== 'onewire'",
+              "newLine": true
+            },
+            {
+              "type": "staticText",
+              "text": {
+                "en": "HTTP/JSON connection",
+                "de": "HTTP/JSON Verbindung"
+              },
+              "hidden": "data.protocol !== 'http'",
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.baseUrl",
+              "label": {
+                "en": "Base URL (e.g. http://host)",
+                "de": "Base URL (z.B. http://host)"
+              },
+              "hidden": "data.protocol !== 'http'",
+              "sm": 12,
+              "newLine": true
+            },
+            {
+              "type": "number",
+              "attr": "connection.timeoutMs",
+              "label": {
+                "en": "Timeout (ms)",
+                "de": "Timeout (ms)"
+              },
+              "hidden": "data.protocol !== 'http'",
+              "default": 8000,
+              "min": 100,
+              "max": 60000,
+              "sm": 6,
+              "md": 3,
+              "newLine": true
+            },
+            {
+              "type": "checkbox",
+              "attr": "connection.insecureTls",
+              "label": {
+                "en": "Allow insecure TLS (self-signed)",
+                "de": "Unsicheres TLS erlauben (self-signed)"
+              },
+              "hidden": "data.protocol !== 'http'",
+              "default": false,
+              "sm": 6,
+              "md": 4
+            },
+            {
+              "type": "text",
+              "attr": "connection.username",
+              "label": {
+                "en": "Username (optional)",
+                "de": "Username (optional)"
+              },
+              "hidden": "data.protocol !== 'http'",
+              "sm": 6,
+              "md": 4,
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.password",
+              "label": {
+                "en": "Password (optional)",
+                "de": "Passwort (optional)"
+              },
+              "hidden": "data.protocol !== 'http'",
+              "sm": 6,
+              "md": 4
+            },
+            {
+              "type": "divider",
+              "hidden": "data.protocol !== 'http'",
+              "newLine": true
+            },
+            {
+              "type": "staticText",
+              "text": {
+                "en": "UDP connection",
+                "de": "UDP Verbindung"
+              },
+              "hidden": "data.protocol !== 'udp'",
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.host",
+              "label": {
+                "en": "Host / IP",
+                "de": "Host / IP"
+              },
+              "hidden": "data.protocol !== 'udp'",
+              "sm": 6,
+              "md": 4,
+              "newLine": true
+            },
+            {
+              "type": "port",
+              "attr": "connection.port",
+              "label": {
+                "en": "Port",
+                "de": "Port"
+              },
+              "hidden": "data.protocol !== 'udp'",
+              "default": 7090,
+              "sm": 3,
+              "md": 2
+            },
+            {
+              "type": "number",
+              "attr": "connection.timeoutMs",
+              "label": {
+                "en": "Timeout (ms)",
+                "de": "Timeout (ms)"
+              },
+              "hidden": "data.protocol !== 'udp'",
+              "default": 1500,
+              "min": 100,
+              "max": 60000,
+              "sm": 3,
+              "md": 2
+            },
+            {
+              "type": "number",
+              "attr": "connection.commandPauseMs",
+              "label": {
+                "en": "Pause between commands (ms)",
+                "de": "Pause zwischen Kommandos (ms)"
+              },
+              "hidden": "data.protocol !== 'udp'",
+              "default": 0,
+              "min": 0,
+              "max": 60000,
+              "sm": 6,
+              "md": 3,
+              "newLine": true
+            },
+            {
+              "type": "divider",
+              "hidden": "data.protocol !== 'udp'",
+              "newLine": true
+            },
+            {
+              "type": "staticText",
+              "text": {
+                "en": "Speedwire (UDP multicast)",
+                "de": "Speedwire (UDP Multicast)"
+              },
+              "hidden": "data.protocol !== 'speedwire'",
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.multicastGroup",
+              "label": {
+                "en": "Multicast group",
+                "de": "Multicast-Gruppe"
+              },
+              "hidden": "data.protocol !== 'speedwire'",
+              "default": "239.12.255.254",
+              "sm": 6,
+              "md": 4,
+              "newLine": true
+            },
+            {
+              "type": "port",
+              "attr": "connection.port",
+              "label": {
+                "en": "Port",
+                "de": "Port"
+              },
+              "hidden": "data.protocol !== 'speedwire'",
+              "default": 9522,
+              "sm": 3,
+              "md": 2
+            },
+            {
+              "type": "text",
+              "attr": "connection.interfaceAddress",
+              "label": {
+                "en": "Interface address (optional)",
+                "de": "Interface-Adresse (optional)"
+              },
+              "hidden": "data.protocol !== 'speedwire'",
+              "sm": 6,
+              "md": 4
+            },
+            {
+              "type": "text",
+              "attr": "connection.host",
+              "label": {
+                "en": "Filter source IP (optional)",
+                "de": "Quelle-IP filtern (optional)"
+              },
+              "hidden": "data.protocol !== 'speedwire'",
+              "sm": 6,
+              "md": 4,
+              "newLine": true
+            },
+            {
+              "type": "number",
+              "attr": "connection.staleTimeoutMs",
+              "label": {
+                "en": "Stale timeout (ms)",
+                "de": "Stale-Timeout (ms)"
+              },
+              "hidden": "data.protocol !== 'speedwire'",
+              "default": 30000,
+              "min": 1000,
+              "max": 600000,
+              "sm": 6,
+              "md": 3,
+              "newLine": true
+            },
+            {
+              "type": "checkbox",
+              "attr": "connection.softStale",
+              "label": {
+                "en": "Soft-stale (keep last values)",
+                "de": "Soft-stale (letzte Werte behalten)"
+              },
+              "hidden": "data.protocol !== 'speedwire'",
+              "default": true,
+              "sm": 6,
+              "md": 4
+            }
+          ]
+        }
+      }
+    },
+    "advanced": {
+      "type": "panel",
+      "label": {
+        "en": "Advanced",
+        "de": "Erweitert"
+      },
+      "items": {
+        "_adv0": {
+          "type": "staticText",
+          "text": {
+            "en": "Legacy settings: devicesJson was used by the old Materialize UI. The adapter will auto-migrate it into the new devices array when possible.",
+            "de": "Legacy-Einstellungen: devicesJson wurde von der alten Materialize-UI genutzt. Der Adapter migriert es automatisch in das neue devices-Array, sofern möglich."
+          },
+          "newLine": true
+        },
+        "devicesJson": {
+          "type": "jsonEditor",
+          "label": {
+            "en": "devicesJson (legacy)",
+            "de": "devicesJson (legacy)"
+          },
+          "newLine": true,
+          "sm": 12
+        }
+      }
+    }
+  }
+}

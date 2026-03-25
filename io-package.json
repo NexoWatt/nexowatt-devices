@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-  "version": "0.5.61",
+    "version": "0.5.62",
     "news": {
       "0.5.60": {
         "en": "SolaX ESS: VPP Mode 8 now behaves like VPP4: writing PV power target OR battery power target triggers one single FC16 block write (0xA0..0xA7) incl. all required parameters (TargetSetType, ExecDuration, NextMotion) with unlock password handling.",
@@ -214,6 +214,10 @@
       "0.5.59": {
         "en": "SolaX ESS: add VPP Mode 8 (PV&BAT Individual Setting - Duration) control datapoints incl. PV power target/limit, with proper VPP multi-write block (FC16 @ 0x00A0) and Modbus write-unlock (password). Add ESS alias ctrl.pvPowerLimitW if supported by template.",
         "de": "SolaX ESS: VPP Mode 8 (PV&BAT Individual Setting - Duration) Steuerung ergänzt inkl. PV Power Target/Limit, mit korrektem VPP Multi-Write Block (FC16 @ 0x00A0) und Modbus Write-Unlock (Passwort). Zusätzlich ESS-Alias ctrl.pvPowerLimitW falls vom Template unterstützt."
+      },
+      "0.5.62": {
+        "en": "Admin UI migrated to JSON config (modern ioBroker admin) + legacy devicesJson auto-migration",
+        "de": "Admin UI auf JSON-Config (modernes ioBroker Admin) migriert + Auto-Migration von legacy devicesJson"
       }
     },
     "title": "NexoWatt Devices",
@@ -234,7 +238,7 @@
     "loglevel": "info",
     "icon": "nexowatt-devices.svg",
     "adminUI": {
-      "config": "materialize"
+      "config": "json"
     },
     "keywords": [
       "nexowatt",
@@ -249,13 +253,15 @@
     "readme": "README.md",
     "compact": true,
     "connectionType": "local",
-    "dataSource": "poll"
+    "dataSource": "poll",
+    "messagebox": true
   },
   "native": {
     "pollIntervalMs": 5000,
     "modbusTimeoutMs": 2000,
     "registerAddressOffset": 0,
-    "devicesJson": "[]"
+    "devicesJson": "[]",
+    "devices": []
   },
   "instanceObjects": [
     {

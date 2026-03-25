@@ -64,6 +64,32 @@ async function autoFixAdminUI(adapter) {
   }
 }
 
+async function autoMigrateLegacyDevicesJson(adapter) {
+  // Migrate legacy config field `devicesJson` (stringified array) into `native.devices` (array)
+  // so modern JSON-config admin UI can show existing devices.
+  try {
+    const hasDevicesArray = Array.isArray(adapter.config.devices) && adapter.config.devices.length > 0;
+    if (hasDevicesArray) return;
+
+    const jsonStr = adapter.config.devicesJson;
+    if (!jsonStr || typeof jsonStr !== 'string') return;
+    const parsed = safeJsonParse(jsonStr, null);
+    if (!Array.isArray(parsed) || !parsed.length) return;
+
+    const id = `system.adapter.${adapter.name}.${adapter.instance}`;
+    const obj = await adapter.getForeignObjectAsync(id);
+    if (!obj || !obj.native) return;
+
+    if (Array.isArray(obj.native.devices) && obj.native.devices.length > 0) return;
+
+    await adapter.extendForeignObjectAsync(id, { native: { devices: parsed } });
+    adapter.log.info(`Migrated legacy devicesJson -> devices array (${parsed.length} devices). Please re-open the instance config.`);
+  } catch (e) {
+    adapter.log.debug(`devicesJson auto-migration failed: ${e && e.message ? e.message : e}`);
+  }
+}
+
+
 class NexowattDevicesAdapter extends utils.Adapter {
   constructor(options = {}) {
     super({
@@ -74,6 +100,7 @@ class NexowattDevicesAdapter extends utils.Adapter {
     this.on('ready', this.onReady.bind(this));
     this.on('stateChange', this.onStateChange.bind(this));
     this.on('unload', this.onUnload.bind(this));
+    this.on('message', this.onMessage.bind(this));
 
     this.templateRegistry = { templates: [], byId: {} };
     this.deviceRuntimes = [];
@@ -83,6 +110,7 @@ class NexowattDevicesAdapter extends utils.Adapter {
   async onReady() {
     // Automatic environment migration (no manual user steps)
     await autoFixAdminUI(this);
+    await autoMigrateLegacyDevicesJson(this);
 
     // init info
     await this.setObjectNotExistsAsync('info.connection', {
@@ -106,8 +134,8 @@ class NexowattDevicesAdapter extends utils.Adapter {
 
     this.templateRegistry = readTemplates(this);
 
-    // parse devices config
-    const devicesCfg = safeJsonParse(this.config.devicesJson || '[]', []);
+    // parse devices config (preferred: native.devices array, fallback: legacy devicesJson)
+    const devicesCfg = Array.isArray(this.config.devices) ? this.config.devices : safeJsonParse(this.config.devicesJson || '[]', []);
     const devices = Array.isArray(devicesCfg) ? devicesCfg : [];
 
     const globalConfig = {
@@ -167,6 +195,140 @@ class NexowattDevicesAdapter extends utils.Adapter {
       }
     }
   }
+
+  _ensureTemplatesLoaded() {
+    try {
+      if (this.templateRegistry && Array.isArray(this.templateRegistry.templates) && this.templateRegistry.templates.length) return;
+      this.templateRegistry = readTemplates(this);
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  _categoryLabel(cat) {
+    const c = (cat || '').toString();
+    switch (c) {
+      case 'EVCS': return 'Wallbox / Ladestation (EVCS)';
+      case 'METER': return 'Zähler / Meter (METER)';
+      case 'ESS': return 'Energiespeicher (ESS)';
+      case 'PV_INVERTER': return 'PV-Wechselrichter (PV_INVERTER)';
+      case 'BATTERY': return 'Batterie (BATTERY)';
+      case 'BATTERY_INVERTER': return 'Batteriewechselrichter (BATTERY_INVERTER)';
+      case 'HEAT': return 'Heizung / Heizstab (HEAT)';
+      case 'EVSE': return 'EVSE / EVSE Controller (EVSE)';
+      case 'IO': return 'I/O (IO)';
+      case 'GENERIC': return 'Allgemein (GENERIC)';
+      default: return c;
+    }
+  }
+
+  _protocolLabel(p) {
+    const s = (p || '').toString();
+    switch (s) {
+      case 'modbusTcp': return 'Modbus TCP';
+      case 'modbusRtu': return 'Modbus RTU';
+      case 'modbusAscii': return 'Modbus ASCII';
+      case 'mqtt': return 'MQTT';
+      case 'http': return 'HTTP/JSON';
+      case 'udp': return 'UDP';
+      case 'speedwire': return 'Speedwire';
+      case 'mbus': return 'M-Bus';
+      case 'onewire': return '1-Wire';
+      case 'canbus': return 'CANbus';
+      default: return s;
+    }
+  }
+
+  async onMessage(obj) {
+    if (!obj || !obj.command) return;
+    if (!obj.callback) return;
+
+    try {
+      this._ensureTemplatesLoaded();
+
+      const templates = (this.templateRegistry && Array.isArray(this.templateRegistry.templates)) ? this.templateRegistry.templates : [];
+      const byId = (this.templateRegistry && this.templateRegistry.byId) ? this.templateRegistry.byId : {};
+
+      const cmd = obj.command;
+      const msg = obj.message || {};
+
+      if (cmd === 'getCategories') {
+        const set = new Set();
+        for (const t of templates) {
+          if (t && t.category) set.add(String(t.category));
+        }
+        const arr = Array.from(set);
+        arr.sort((a, b) => a.localeCompare(b));
+        const res = arr.map(c => ({ value: c, label: this._categoryLabel(c) }));
+        return this.sendTo(obj.from, obj.command, res, obj.callback);
+      }
+
+      if (cmd === 'getManufacturers') {
+        const category = (msg.category || '').toString();
+        const set = new Set();
+        for (const t of templates) {
+          if (!t) continue;
+          if (category && String(t.category) !== category) continue;
+          if (t.manufacturer) set.add(String(t.manufacturer));
+        }
+        const arr = Array.from(set);
+        arr.sort((a, b) => a.localeCompare(b));
+        const res = arr.map(m => ({ value: m, label: m }));
+        return this.sendTo(obj.from, obj.command, res, obj.callback);
+      }
+
+      if (cmd === 'getTemplates') {
+        const category = (msg.category || '').toString();
+        const manufacturer = (msg.manufacturer || '').toString();
+
+        // Avoid returning huge lists; require category+manufacturer.
+        if (!category || !manufacturer) {
+          return this.sendTo(obj.from, obj.command, [], obj.callback);
+        }
+
+        const res = [];
+        for (const t of templates) {
+          if (!t) continue;
+          if (String(t.category) !== category) continue;
+          if (String(t.manufacturer) !== manufacturer) continue;
+
+          const parts = [t.manufacturer, t.model, t.name].filter(Boolean);
+          const label = (parts.join(' ').trim()) || t.id;
+          const protos = Array.isArray(t.protocols) ? t.protocols.join(', ') : '';
+          res.push({
+            value: t.id,
+            label,
+            description: protos ? `${t.id} (${protos})` : t.id,
+          });
+        }
+
+        res.sort((a, b) => (a.label || '').localeCompare(b.label || ''));
+        return this.sendTo(obj.from, obj.command, res, obj.callback);
+      }
+
+      if (cmd === 'getProtocols') {
+        const templateId = (msg.templateId || '').toString();
+        const tpl = templateId ? byId[templateId] : null;
+        const protos = (tpl && Array.isArray(tpl.protocols) && tpl.protocols.length) ? tpl.protocols : [
+          'modbusTcp', 'modbusRtu', 'modbusAscii', 'mqtt', 'http', 'udp', 'speedwire', 'mbus', 'onewire', 'canbus'
+        ];
+        const res = Array.from(new Set(protos.map(p => String(p)))).map(p => ({ value: p, label: this._protocolLabel(p) }));
+        return this.sendTo(obj.from, obj.command, res, obj.callback);
+      }
+
+      // Unknown command
+      return this.sendTo(obj.from, obj.command, [], obj.callback);
+    } catch (e) {
+      // reply with empty list on error to keep admin UI usable
+      try {
+        this.sendTo(obj.from, obj.command, [], obj.callback);
+      } catch (_) {
+        // ignore
+      }
+      this.log.debug(`onMessage(${obj.command}) failed: ${e && e.message ? e.message : e}`);
+    }
+  }
+
 
   async onUnload(callback) {
     try {
