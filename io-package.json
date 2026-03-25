@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.64",
+    "version": "0.5.65",
     "news": {
       "0.5.60": {
         "en": "SolaX ESS: VPP Mode 8 now behaves like VPP4: writing PV power target OR battery power target triggers one single FC16 block write (0xA0..0xA7) incl. all required parameters (TargetSetType, ExecDuration, NextMotion) with unlock password handling.",
@@ -222,6 +222,10 @@
       "0.5.63": {
         "en": "Fix Admin JSON-Config: use string translation keys (i18n files) instead of {en,de} objects to prevent Admin React crash (TypeError: replace is not a function).",
         "de": "Fix Admin JSON-Config: String-Keys + i18n-Dateien statt {en,de} Objekte, um Admin-React Crash zu verhindern (TypeError: replace is not a function)."
+      },
+      "0.5.65": {
+        "en": "Admin UI: back to EnergyBridge-style device configuration page (classic device picker Category -> Manufacturer -> Template -> Protocol) in Nexowatt black/green. Added JSON import/export for devices and ensured compatibility with both native.devices and legacy devicesJson.",
+        "de": "Admin UI: Zurück zur EnergyBridge-ähnlichen Geräte-Konfigurationsseite (klassischer Device-Picker Kategorie -> Hersteller -> Template -> Protokoll) im Nexowatt Schwarz/Grün. Zusätzlich JSON Import/Export für Geräte sowie Kompatibilität zu native.devices und legacy devicesJson."
       }
     },
     "title": "NexoWatt Devices",
@@ -242,7 +246,7 @@
     "loglevel": "info",
     "icon": "nexowatt-devices.svg",
     "adminUI": {
-      "config": "json"
+      "config": "materialize"
     },
     "keywords": [
       "nexowatt",

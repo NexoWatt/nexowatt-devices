@@ -108,6 +108,45 @@ function safeJsonParse(str, fallback) {
   }
 }
 
+function downloadTextFile(filename, text, mime) {
+  const blob = new Blob([text], { type: mime || 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => {
+    try { document.body.removeChild(a); } catch (e) { /* ignore */ }
+    try { URL.revokeObjectURL(url); } catch (e) { /* ignore */ }
+  }, 0);
+}
+
+function exportDevicesJsonToFile() {
+  const text = JSON.stringify(devices || [], null, 2);
+  downloadTextFile('nexowatt-devices.devices.json', text, 'application/json');
+}
+
+function importDevicesJsonFromFile(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    const txt = (reader.result || '').toString();
+    const parsed = safeJsonParse(txt, null);
+    if (!Array.isArray(parsed)) {
+      toast('Ungültige JSON-Datei: erwartet wird ein Array von Geräten.');
+      return;
+    }
+    devices = parsed;
+    renderDevicesTable();
+    updateJsonPreview();
+    setChanged(true);
+    toast(`Import ok: ${devices.length} Geräte übernommen.`);
+  };
+  reader.onerror = () => toast('Fehler beim Lesen der JSON-Datei.');
+  reader.readAsText(file);
+}
+
 function setChanged(changed) {
   if (typeof onChangeGlobal === 'function') {
     onChangeGlobal(changed);
@@ -252,9 +291,8 @@ function renderDevicesTable() {
 
   devices.forEach((d, idx) => {
     const tpl = templatesById[d.templateId];
+    const manufacturer = tpl ? (tpl.manufacturer || '') : '';
     const tplName = tpl ? (tpl.name || tpl.id) : (d.templateId || '');
-
-    const connInfo = summarizeConnection(d);
 
     const row = $(`
       <tr>
@@ -262,11 +300,11 @@ function renderDevicesTable() {
         <td><code>${escapeHtml(d.id)}</code></td>
         <td>${escapeHtml(d.name || '')}</td>
         <td>${escapeHtml(d.category || '')}</td>
+        <td>${escapeHtml(manufacturer)}</td>
         <td>${escapeHtml(tplName)}</td>
         <td>${escapeHtml(d.protocol || '')}</td>
-        <td>${escapeHtml(connInfo)}</td>
         <td class="actions">
-          <a href="#!" class="btn-small waves-effect" data-action="edit" data-idx="${idx}">${escapeHtml('Bearbeiten')}</a>
+          <a href="#!" class="btn-small waves-effect" data-action="edit" data-idx="${idx}">${escapeHtml('Gerät bearbeiten')}</a>
           <a href="#!" class="btn-small red waves-effect" data-action="delete" data-idx="${idx}">${escapeHtml('Löschen')}</a>
         </td>
       </tr>
@@ -716,6 +754,17 @@ function initEventHandlers() {
     openDeviceModal({ enabled: true }, -1);
   });
 
+  // JSON import/export (devices)
+  $('#btnExportDevices').on('click', () => exportDevicesJsonToFile());
+  $('#btnImportDevices').on('click', () => {
+    try { $('#importJsonFile').val(''); } catch (e) { /* ignore */ }
+    $('#importJsonFile').trigger('click');
+  });
+  $('#importJsonFile').on('change', (ev) => {
+    const file = ev && ev.target && ev.target.files ? ev.target.files[0] : null;
+    importDevicesJsonFromFile(file);
+  });
+
   // Table actions
   $('#devicesTable').on('click', 'a[data-action]', (ev) => {
     const action = $(ev.currentTarget).data('action');
@@ -854,6 +903,12 @@ function initUIOnce() {
     try {
       const elems = document.querySelectorAll('.modal');
       M.Modal.init(elems, { dismissible: false });
+      try {
+        const tabs = document.querySelectorAll('.tabs');
+        if (tabs && tabs.length) M.Tabs.init(tabs, {});
+      } catch (e2) {
+        console.warn('Materialize tabs init failed:', e2);
+      }
     } catch (e) {
       console.warn('Materialize modal init failed:', e);
       $('#modalDevice').addClass('nexo-fallback');
@@ -876,7 +931,7 @@ function applySettingsToUI(settings) {
   $('#modbusTimeoutMs').val(settings.modbusTimeoutMs ?? 2000);
   $('#registerAddressOffset').val(settings.registerAddressOffset ?? 0);
 
-  const parsed = safeJsonParse(settings.devicesJson || '[]', []);
+  const parsed = Array.isArray(settings.devices) ? settings.devices : safeJsonParse(settings.devicesJson || '[]', []);
   devices = Array.isArray(parsed) ? parsed : [];
 
   updateJsonPreview();
@@ -911,6 +966,7 @@ function save(callback) {
   obj.pollIntervalMs = parseInt($('#pollIntervalMs').val(), 10) || 5000;
   obj.modbusTimeoutMs = parseInt($('#modbusTimeoutMs').val(), 10) || 2000;
   obj.registerAddressOffset = parseInt($('#registerAddressOffset').val(), 10) || 0;
+  obj.devices = devices || [];
   obj.devicesJson = JSON.stringify(devices || [], null, 2);
 
   callback(obj);

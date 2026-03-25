@@ -44,6 +44,19 @@
     </div>
   </div>
 
+
+  <!-- Tabs -->
+  <div class="row">
+    <div class="col s12">
+      <ul id="nexoTabs" class="tabs nexo-tabs">
+        <li class="tab"><a href="#tabGeneral" class="active translate">Allgemein</a></li>
+        <li class="tab"><a href="#tabDevices" class="translate">Geräte</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="tabGeneral">
+
   <!-- Global settings -->
   <div class="row">
     <div class="col s12">
@@ -83,32 +96,45 @@
       </div>
     </div>
   </div>
+  </div>
 
+  <div id="tabDevices">
   <!-- Devices -->
   <div class="row">
     <div class="col s12">
       <div class="card">
         <div class="card-content">
+          
           <div class="nexo-devices-header">
-            <span class="card-title translate">Geräte</span>
-            <a class="waves-effect waves-light btn" id="btnAddDevice" href="#!">
-              <span class="nexo-icon">+</span>
-              <span class="translate">Gerät hinzufügen</span>
-            </a>
+            <span class="card-title translate">Geräteliste</span>
+            <div class="nexo-devices-actions">
+              <a class="waves-effect waves-light btn" id="btnAddDevice" href="#!">
+                <span class="nexo-icon">+</span>
+                <span class="translate">Gerät hinzufügen</span>
+              </a>
+              <a class="waves-effect waves-light btn nexo-outline" id="btnImportDevices" href="#!">
+                <span class="translate">JSON importieren</span>
+              </a>
+              <a class="waves-effect waves-light btn nexo-outline" id="btnExportDevices" href="#!">
+                <span class="translate">JSON exportieren</span>
+              </a>
+              <input type="file" id="importJsonFile" accept="application/json,.json" style="display:none;" />
+            </div>
           </div>
 
           <div class="row">
+
             <div class="col s12">
               <table class="highlight responsive-table nexo-table" id="devicesTable">
                 <thead>
                   <tr>
                     <th class="translate">Aktiv</th>
-                    <th class="translate">ID</th>
+                    <th class="translate">Geräte-ID</th>
                     <th class="translate">Name</th>
                     <th class="translate">Kategorie</th>
-                    <th class="translate">Treiber</th>
+                    <th class="translate">Hersteller</th>
+                    <th class="translate">Template</th>
                     <th class="translate">Protokoll</th>
-                    <th class="translate">Verbindung</th>
                     <th class="translate">Aktionen</th>
                   </tr>
                 </thead>
@@ -123,6 +149,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 
   <!-- Modal backdrop for fallback mode (only used if Materialize JS is not available) -->

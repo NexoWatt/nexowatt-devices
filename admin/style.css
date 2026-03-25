@@ -316,3 +316,41 @@ code {
   background: var(--nexo-surface);
   border-top: 1px solid var(--nexo-border);
 }
+
+
+/* Tabs (Materialize) */
+.nexo-tabs {
+  background: transparent;
+  border-bottom: 1px solid var(--nexo-border);
+  margin-bottom: 12px;
+}
+.nexo-tabs .tab a {
+  color: var(--nexo-text-muted) !important;
+  text-transform: none;
+  font-weight: 600;
+}
+.nexo-tabs .tab a.active {
+  color: var(--nexo-text) !important;
+}
+.nexo-tabs .indicator {
+  background-color: var(--nexo-accent) !important;
+}
+
+/* Device action buttons row */
+.nexo-devices-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/* Outline button (for JSON import/export) */
+.btn.nexo-outline {
+  background: transparent !important;
+  border: 1px solid var(--nexo-border-strong);
+  color: var(--nexo-text) !important;
+}
+.btn.nexo-outline:hover {
+  border-color: var(--nexo-accent) !important;
+  background: rgba(0, 187, 68, 0.08) !important;
+}
