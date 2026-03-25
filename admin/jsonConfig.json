@@ -56,7 +56,7 @@
       "items": {
         "_help0": {
           "type": "staticText",
-          "text": "Add one or more devices below. If dropdown lists stay empty, ensure the adapter instance is running (Instance status in General tab).",
+          "text": "Geräte hinzufügen und konfigurieren. Auswahl erfolgt lokal aus den integrierten Templates (keine laufende Instanz erforderlich).",
           "newLine": true
         },
         "devices": {
@@ -90,63 +90,1048 @@
               "newLine": true
             },
             {
-              "type": "selectSendTo",
+              "type": "select",
               "attr": "category",
               "label": "Category",
-              "command": "getCategories",
-              "manual": true,
               "noTranslation": true,
               "sm": 6,
               "md": 4,
               "validator": "!!data.category",
-              "newLine": true
+              "newLine": true,
+              "options": [
+                {
+                  "label": "Batterie (BATTERY)",
+                  "value": "BATTERY"
+                },
+                {
+                  "label": "Batteriewechselrichter (BATTERY_INVERTER)",
+                  "value": "BATTERY_INVERTER"
+                },
+                {
+                  "label": "Charger (CHARGER)",
+                  "value": "CHARGER"
+                },
+                {
+                  "label": "DC Charger (DC_CHARGER)",
+                  "value": "DC_CHARGER"
+                },
+                {
+                  "label": "Energiespeicher (ESS)",
+                  "value": "ESS"
+                },
+                {
+                  "label": "Wallbox / Ladestation (EVCS)",
+                  "value": "EVCS"
+                },
+                {
+                  "label": "EVSE / EVSE Controller (EVSE)",
+                  "value": "EVSE"
+                },
+                {
+                  "label": "Allgemein (GENERIC)",
+                  "value": "GENERIC"
+                },
+                {
+                  "label": "Heizung / Heizstab (HEAT)",
+                  "value": "HEAT"
+                },
+                {
+                  "label": "I/O (IO)",
+                  "value": "IO"
+                },
+                {
+                  "label": "Zähler / Meter (METER)",
+                  "value": "METER"
+                },
+                {
+                  "label": "PV-Wechselrichter (PV_INVERTER)",
+                  "value": "PV_INVERTER"
+                }
+              ]
             },
             {
-              "type": "selectSendTo",
+              "type": "autocomplete",
               "attr": "manufacturer",
               "label": "Manufacturer",
-              "command": "getManufacturers",
-              "jsonData": "{\"category\":\"${data.category}\"}",
-              "alsoDependsOn": [
-                "category"
-              ],
-              "manual": true,
               "noTranslation": true,
               "sm": 6,
               "md": 4,
-              "validator": "!!data.manufacturer"
+              "validator": "!!data.manufacturer",
+              "options": [
+                {
+                  "label": "1-Wire",
+                  "value": "1-Wire"
+                },
+                {
+                  "label": "ABB",
+                  "value": "ABB"
+                },
+                {
+                  "label": "ABL",
+                  "value": "ABL"
+                },
+                {
+                  "label": "ADS-TEC",
+                  "value": "ADS-TEC"
+                },
+                {
+                  "label": "Alfen",
+                  "value": "Alfen"
+                },
+                {
+                  "label": "Alpitronic",
+                  "value": "Alpitronic"
+                },
+                {
+                  "label": "Artemes",
+                  "value": "Artemes"
+                },
+                {
+                  "label": "Askoma",
+                  "value": "Askoma"
+                },
+                {
+                  "label": "B-Control",
+                  "value": "B-Control"
+                },
+                {
+                  "label": "BGEtech",
+                  "value": "BGEtech"
+                },
+                {
+                  "label": "BMW",
+                  "value": "BMW"
+                },
+                {
+                  "label": "BYD",
+                  "value": "BYD"
+                },
+                {
+                  "label": "Camille Bauer",
+                  "value": "Camille Bauer"
+                },
+                {
+                  "label": "Carlo Gavazzi",
+                  "value": "Carlo Gavazzi"
+                },
+                {
+                  "label": "ChargePoint",
+                  "value": "ChargePoint"
+                },
+                {
+                  "label": "Discovergy",
+                  "value": "Discovergy"
+                },
+                {
+                  "label": "Eastron",
+                  "value": "Eastron"
+                },
+                {
+                  "label": "FENECON",
+                  "value": "FENECON"
+                },
+                {
+                  "label": "Filipowski",
+                  "value": "Filipowski"
+                },
+                {
+                  "label": "FoxESS",
+                  "value": "FoxESS"
+                },
+                {
+                  "label": "Generic",
+                  "value": "Generic"
+                },
+                {
+                  "label": "Goodwe",
+                  "value": "Goodwe"
+                },
+                {
+                  "label": "Hager",
+                  "value": "Hager"
+                },
+                {
+                  "label": "Heidelberg",
+                  "value": "Heidelberg"
+                },
+                {
+                  "label": "Janitza",
+                  "value": "Janitza"
+                },
+                {
+                  "label": "KACO",
+                  "value": "KACO"
+                },
+                {
+                  "label": "KEBA",
+                  "value": "KEBA"
+                },
+                {
+                  "label": "Kdk",
+                  "value": "Kdk"
+                },
+                {
+                  "label": "Kmtronic",
+                  "value": "Kmtronic"
+                },
+                {
+                  "label": "Kostal",
+                  "value": "Kostal"
+                },
+                {
+                  "label": "LAMBDA",
+                  "value": "LAMBDA"
+                },
+                {
+                  "label": "M-Bus",
+                  "value": "M-Bus"
+                },
+                {
+                  "label": "Mennekes",
+                  "value": "Mennekes"
+                },
+                {
+                  "label": "Mypv",
+                  "value": "Mypv"
+                },
+                {
+                  "label": "PQPlus",
+                  "value": "PQPlus"
+                },
+                {
+                  "label": "Phoenixcontact",
+                  "value": "Phoenixcontact"
+                },
+                {
+                  "label": "Plexlog",
+                  "value": "Plexlog"
+                },
+                {
+                  "label": "Pylontech",
+                  "value": "Pylontech"
+                },
+                {
+                  "label": "REFU",
+                  "value": "REFU"
+                },
+                {
+                  "label": "SMA",
+                  "value": "SMA"
+                },
+                {
+                  "label": "Samsung",
+                  "value": "Samsung"
+                },
+                {
+                  "label": "Schneider",
+                  "value": "Schneider"
+                },
+                {
+                  "label": "Shelly",
+                  "value": "Shelly"
+                },
+                {
+                  "label": "Siemens",
+                  "value": "Siemens"
+                },
+                {
+                  "label": "Siemens LOGO!",
+                  "value": "Siemens LOGO!"
+                },
+                {
+                  "label": "Sinexcel",
+                  "value": "Sinexcel"
+                },
+                {
+                  "label": "Socomec",
+                  "value": "Socomec"
+                },
+                {
+                  "label": "SolaX",
+                  "value": "SolaX"
+                },
+                {
+                  "label": "Solar-Log",
+                  "value": "Solar-Log"
+                },
+                {
+                  "label": "Soltaro",
+                  "value": "Soltaro"
+                },
+                {
+                  "label": "Spelsberg",
+                  "value": "Spelsberg"
+                },
+                {
+                  "label": "SunSpec",
+                  "value": "SunSpec"
+                },
+                {
+                  "label": "TECALOR",
+                  "value": "TECALOR"
+                },
+                {
+                  "label": "TESVOLT",
+                  "value": "TESVOLT"
+                },
+                {
+                  "label": "Tesla",
+                  "value": "Tesla"
+                },
+                {
+                  "label": "Victron",
+                  "value": "Victron"
+                },
+                {
+                  "label": "W&T",
+                  "value": "W&T"
+                },
+                {
+                  "label": "Webasto",
+                  "value": "Webasto"
+                },
+                {
+                  "label": "Weidmüller",
+                  "value": "Weidmüller"
+                },
+                {
+                  "label": "ZIEHL",
+                  "value": "ZIEHL"
+                },
+                {
+                  "label": "go-e",
+                  "value": "go-e"
+                },
+                {
+                  "label": "openWB",
+                  "value": "openWB"
+                }
+              ],
+              "freeSolo": false
             },
             {
-              "type": "autocompleteSendTo",
+              "type": "autocomplete",
               "attr": "templateId",
               "label": "Driver / Template",
-              "command": "getTemplates",
-              "jsonData": "{\"category\":\"${data.category}\",\"manufacturer\":\"${data.manufacturer}\"}",
-              "alsoDependsOn": [
-                "category",
-                "manufacturer"
-              ],
               "freeSolo": false,
               "noTranslation": true,
               "sm": 12,
               "validator": "!!data.templateId",
-              "newLine": true
+              "newLine": true,
+              "options": [
+                {
+                  "value": "battery.bmw.BatteryBmwImpl",
+                  "label": "BATTERY | BMW BatteryBmwImpl BMW BatteryBmwImpl"
+                },
+                {
+                  "value": "battery.bydcommercial.BydBatteryBoxCommercialC130Impl",
+                  "label": "BATTERY | BYD BydBatteryBoxCommercialC130Impl BYD BydBatteryBoxCommercialC130Impl"
+                },
+                {
+                  "value": "battery.fenecon.BatteryFeneconCommercialImpl",
+                  "label": "BATTERY | FENECON commercial FENECON commercial"
+                },
+                {
+                  "value": "battery.fenecon.BatteryFeneconHomeImpl",
+                  "label": "BATTERY | FENECON home FENECON home"
+                },
+                {
+                  "value": "battery.pylontech.PylontechPowercubeM2BatteryImpl",
+                  "label": "BATTERY | Pylontech powercubem2 Pylontech powercubem2"
+                },
+                {
+                  "value": "battery.sma.SmaBatteryImpl",
+                  "label": "BATTERY | SMA ess.stpxx3se.battery SMA ess.stpxx3se.battery"
+                },
+                {
+                  "value": "battery.soltaro.BatterySoltaroClusterVersionBImpl",
+                  "label": "BATTERY | Soltaro cluster.versionb Soltaro cluster.versionb"
+                },
+                {
+                  "value": "battery.soltaro.BatterySoltaroClusterVersionCImpl",
+                  "label": "BATTERY | Soltaro cluster.versionc Soltaro cluster.versionc"
+                },
+                {
+                  "value": "battery.soltaro.BatterySoltaroSingleRackVersionAImpl",
+                  "label": "BATTERY | Soltaro single.versiona Soltaro single.versiona"
+                },
+                {
+                  "value": "battery.soltaro.BatterySoltaroSingleRackVersionBImpl",
+                  "label": "BATTERY | Soltaro single.versionb Soltaro single.versionb"
+                },
+                {
+                  "value": "battery.soltaro.BatterySoltaroSingleRackVersionCImpl",
+                  "label": "BATTERY | Soltaro single.versionc Soltaro single.versionc"
+                },
+                {
+                  "value": "battery.victron.VictronBatteryImpl",
+                  "label": "BATTERY | Victron battery Victron battery"
+                },
+                {
+                  "value": "battery_inverter.refu88k.BatteryInverterRefuStore88kImpl",
+                  "label": "BATTERY_INVERTER | REFU BatteryInverterRefuStore88kImpl REFU BatteryInverterRefuStore88kImpl"
+                },
+                {
+                  "value": "battery_inverter.sinexcel.BatteryInverterSinexcelImpl",
+                  "label": "BATTERY_INVERTER | Sinexcel BatteryInverterSinexcelImpl Sinexcel BatteryInverterSinexcelImpl"
+                },
+                {
+                  "value": "battery_inverter.victron.VictronBatteryInverterImpl",
+                  "label": "BATTERY_INVERTER | Victron batteryinverter Victron batteryinverter"
+                },
+                {
+                  "value": "charger.goodwe.AbstractGoodWeEtCharger",
+                  "label": "CHARGER | Goodwe charger Goodwe charger"
+                },
+                {
+                  "value": "dc_charger.victron.VictronDcChargerImpl",
+                  "label": "DC_CHARGER | Victron dccharger Victron dccharger"
+                },
+                {
+                  "value": "ess.adstec.EssAdstecStoraxeImpl",
+                  "label": "ESS | ADS-TEC storaxe ADS-TEC storaxe"
+                },
+                {
+                  "value": "ess.fenecon.EssFeneconCommercial40Impl",
+                  "label": "ESS | FENECON commercial40 FENECON commercial40"
+                },
+                {
+                  "value": "ess.fenecon.AbstractEssFeneconCommercial40Pv",
+                  "label": "ESS | FENECON commercial40.charger FENECON commercial40.charger"
+                },
+                {
+                  "value": "ess.fenecon.AbstractFeneconDessCharger",
+                  "label": "ESS | FENECON dess.charger FENECON dess.charger"
+                },
+                {
+                  "value": "ess.fenecon.FeneconDessEssImpl",
+                  "label": "ESS | FENECON dess.ess FENECON dess.ess"
+                },
+                {
+                  "value": "ess.fenecon.FeneconHomeEssImpl",
+                  "label": "ESS | FENECON home.ess FENECON home.ess"
+                },
+                {
+                  "value": "ess.fenecon.FeneconMiniEssImpl",
+                  "label": "ESS | FENECON mini.ess FENECON mini.ess"
+                },
+                {
+                  "value": "ess.fenecon.FeneconProEssImpl",
+                  "label": "ESS | FENECON pro.ess FENECON pro.ess"
+                },
+                {
+                  "value": "ess.foxess.FoxESSH3Ess",
+                  "label": "ESS | FoxESS H3 FoxESS H3 Hybrid (Modbus)"
+                },
+                {
+                  "value": "ess.foxess.FoxESSH3ProEss",
+                  "label": "ESS | FoxESS H3Pro FoxESS H3 Pro Hybrid (Modbus)"
+                },
+                {
+                  "value": "ess.kaco.gridsave.sunspec.v1",
+                  "label": "ESS | KACO GridSave KACO GridSave (SunSpec Modbus)"
+                },
+                {
+                  "value": "ess.kaco.hybrid10.sunspec.v1",
+                  "label": "ESS | KACO Hybrid10 KACO Hybrid10 (SunSpec Modbus)"
+                },
+                {
+                  "value": "ess.kostal.KostalManagedEssImpl",
+                  "label": "ESS | Kostal plenticore.ess Kostal plenticore.ess"
+                },
+                {
+                  "value": "ess.kostal.KostalManagedEssBigEndianImpl",
+                  "label": "ESS | Kostal plenticore.ess.abcd Kostal plenticore.ess (ABCD / Sunspec byte order)"
+                },
+                {
+                  "value": "ess.samsung.sdi.http.v1",
+                  "label": "ESS | Samsung SDI ESS Samsung SDI ESS (HTTP R3EMS)"
+                },
+                {
+                  "value": "ess.sma.EssSmaSunnyIslandImpl",
+                  "label": "ESS | SMA ess.sunnyisland SMA ess.sunnyisland"
+                },
+                {
+                  "value": "ess.solax.Ems1000ModbusTcp",
+                  "label": "ESS | SolaX EMS1000 SolaX EMS1000 (ModbusTCP)"
+                },
+                {
+                  "value": "ess.solax.SolaXHybridX1X3Ess",
+                  "label": "ESS | SolaX Hybrid X1/X3 ESS SolaX Hybrid X1/X3 ESS (Modbus)"
+                },
+                {
+                  "value": "ess.sunspec.generic.basic124.v1",
+                  "label": "ESS | SunSpec Generic Storage (Model 124) Generic SunSpec Storage (Model 124 + 123)"
+                },
+                {
+                  "value": "ess.tesla.powerwall2.gateway.http.v1",
+                  "label": "ESS | Tesla Powerwall 2 / Gateway (Local API) Tesla Powerwall 2 / Gateway (Local API)"
+                },
+                {
+                  "value": "ess.tesvolt.TesvoltEnergyManagerVermarkter",
+                  "label": "ESS | TESVOLT Energy Manager TESVOLT Energy Manager (Vermarkter-Schnittstelle Modbus TCP)"
+                },
+                {
+                  "value": "ess.victron.VictronEssImpl",
+                  "label": "ESS | Victron ess Victron ess"
+                },
+                {
+                  "value": "evcs.abl.emh1.evcc2_3.modbusAscii",
+                  "label": "EVCS | ABL eMH1 (EVCC2/3) ABL eMH1 (EVCC2/3) (Modbus ASCII)"
+                },
+                {
+                  "value": "evcs.abl.EvcsAblImpl",
+                  "label": "EVCS | ABL EvcsAblImpl ABL EvcsAblImpl"
+                },
+                {
+                  "value": "evcs.alfen.ng9xx.ace.socket1.modbusTcp",
+                  "label": "EVCS | Alfen NG9xx (ACE Modbus) Socket Alfen NG9xx (ACE) Socket 1 (Modbus TCP)"
+                },
+                {
+                  "value": "evcs.alfen.ng9xx.ace.socket2.modbusTcp",
+                  "label": "EVCS | Alfen NG9xx (ACE Modbus) Socket Alfen NG9xx (ACE) Socket 2 (Modbus TCP)"
+                },
+                {
+                  "value": "evcs.alfen.ng9xx.ace.station.modbusTcp",
+                  "label": "EVCS | Alfen NG9xx (ACE Modbus) Station/SCN Alfen NG9xx (ACE) Station/SCN (Unit-ID 200, Modbus TCP)"
+                },
+                {
+                  "value": "evcs.alpitronic.hypercharger.connector1",
+                  "label": "EVCS | Alpitronic Hypercharger (Connector 1) Alpitronic Hypercharger (Connector 1)"
+                },
+                {
+                  "value": "evcs.alpitronic.hypercharger.connector2",
+                  "label": "EVCS | Alpitronic Hypercharger (Connector 2) Alpitronic Hypercharger (Connector 2)"
+                },
+                {
+                  "value": "evcs.alpitronic.hypercharger.connector3",
+                  "label": "EVCS | Alpitronic Hypercharger (Connector 3) Alpitronic Hypercharger (Connector 3)"
+                },
+                {
+                  "value": "evcs.alpitronic.hypercharger.connector4",
+                  "label": "EVCS | Alpitronic Hypercharger (Connector 4) Alpitronic Hypercharger (Connector 4)"
+                },
+                {
+                  "value": "evcs.alpitronic.hypercharger.station",
+                  "label": "EVCS | Alpitronic Hypercharger (Station) Alpitronic Hypercharger (Station)"
+                },
+                {
+                  "value": "evcs.goe.chargerhome.http.v1",
+                  "label": "EVCS | go-e Charger HOME / HOME+ / HOMEfix go-e Charger HOME (HTTP v1 /status + /mqtt)"
+                },
+                {
+                  "value": "evcs.goe.gemini.http.v2",
+                  "label": "EVCS | go-e Gemini / Gemini flex / Gemini 2.0 / Pro go-e Charger Gemini (HTTP API v2 /api/status + /api/set)"
+                },
+                {
+                  "value": "evcs.goe.gemini.http.v2.legacy",
+                  "label": "EVCS | go-e Gemini / older FW (<= 51.3) go-e Charger Gemini (HTTP API v2 legacy filter)"
+                },
+                {
+                  "value": "evcs.goe.EvcsGoeModbusImpl",
+                  "label": "EVCS | go-e modbus go-e modbus"
+                },
+                {
+                  "value": "evcs.heidelberg.EvcsHeidelbergEnergyImpl",
+                  "label": "EVCS | Heidelberg energy Heidelberg energy"
+                },
+                {
+                  "value": "evcs.keba.udp.KeContactP20P30",
+                  "label": "EVCS | KEBA KeContact P20/P30 (UDP 7090)"
+                },
+                {
+                  "value": "evcs.keba.EvcsKebaModbusImpl",
+                  "label": "EVCS | KEBA KeContact P40 (Modbus TCP/RTU) KEBA KeContact P40 (Modbus)"
+                },
+                {
+                  "value": "evcs.mennekes.EvcsMennekesImpl",
+                  "label": "EVCS | Mennekes EvcsMennekesImpl Mennekes EvcsMennekesImpl"
+                },
+                {
+                  "value": "evcs.openwb.lp1.mqtt.v1",
+                  "label": "EVCS | openWB openWB (MQTT) openWB (MQTT) Chargepoint 0 (lp1)"
+                },
+                {
+                  "value": "evcs.openwb.lp2.mqtt.v1",
+                  "label": "EVCS | openWB openWB (MQTT) openWB (MQTT) Chargepoint 1 (lp2)"
+                },
+                {
+                  "value": "evcs.solax.SolaXHacG2",
+                  "label": "EVCS | SolaX X1/X3-HAC EV Charger G2 SolaX X1/X3-HAC EV-Charger G2 (Modbus)"
+                },
+                {
+                  "value": "evcs.spelsberg.EvcsSpelsbergSmartImpl",
+                  "label": "EVCS | Spelsberg smart Spelsberg smart"
+                },
+                {
+                  "value": "evcs.webasto.EvcsWebastoNextImpl",
+                  "label": "EVCS | Webasto next Webasto next"
+                },
+                {
+                  "value": "evcs.webasto.EvcsWebastoUniteImpl",
+                  "label": "EVCS | Webasto unite Webasto unite"
+                },
+                {
+                  "value": "evse.chargepoint.EvseAlpitronicImpl",
+                  "label": "EVSE | ChargePoint alpitronic ChargePoint alpitronic"
+                },
+                {
+                  "value": "evse.chargepoint.EvseChargePointHeidelbergConnectImpl",
+                  "label": "EVSE | ChargePoint heidelberg.connect ChargePoint heidelberg.connect"
+                },
+                {
+                  "value": "evse.chargepoint.EvseKebaModbusImpl",
+                  "label": "EVSE | ChargePoint keba.modbus ChargePoint keba.modbus"
+                },
+                {
+                  "value": "generic.canbus.raw.v1",
+                  "label": "GENERIC | Generic CANbus CANbus Raw Frames (can-utils)"
+                },
+                {
+                  "value": "generic.http",
+                  "label": "GENERIC | Generic HTTP Generic HTTP"
+                },
+                {
+                  "value": "generic.modbus",
+                  "label": "GENERIC | Generic Modbus Generic Modbus"
+                },
+                {
+                  "value": "generic.mqtt",
+                  "label": "GENERIC | Generic MQTT Generic MQTT"
+                },
+                {
+                  "value": "heat.askoma.HeatAskomaImpl",
+                  "label": "HEAT | Askoma HeatAskomaImpl Askoma HeatAskomaImpl"
+                },
+                {
+                  "value": "heat.lambda.LambdaWpModbus",
+                  "label": "HEAT | LAMBDA wp LAMBDA Wärmepumpe (Modbus)"
+                },
+                {
+                  "value": "heat.mypv.HeatMyPvAcThor9sImpl",
+                  "label": "HEAT | Mypv acthor9s Mypv acthor9s"
+                },
+                {
+                  "value": "heat.tecalor.TecalorLwzModbus",
+                  "label": "HEAT | TECALOR lwz TECALOR Lüftungsintegralgerät (LWZ/LWA / ISG Modbus)"
+                },
+                {
+                  "value": "heat.tecalor.TecalorWpm3iModbus",
+                  "label": "HEAT | TECALOR wpm3i TECALOR Wärmepumpe (WPM 3(i) / ISG Modbus)"
+                },
+                {
+                  "value": "io.onewire.OneWireDs18b20Temperature.V1",
+                  "label": "IO | 1-Wire DS18B20 1-Wire DS18B20 Temperatur"
+                },
+                {
+                  "value": "io.filipowski.IoFilipowskiMrAo1Impl",
+                  "label": "IO | Filipowski analog.mr Filipowski analog.mr"
+                },
+                {
+                  "value": "io.kmtronic.IoKmtronicRelay8PortImpl",
+                  "label": "IO | Kmtronic eight Kmtronic eight"
+                },
+                {
+                  "value": "io.kmtronic.IoKmtronicRelay4PortImpl",
+                  "label": "IO | Kmtronic four Kmtronic four"
+                },
+                {
+                  "value": "io.shelly.shelly1",
+                  "label": "IO | Shelly Shelly 1 Shelly Shelly 1 (Gen1 /status)"
+                },
+                {
+                  "value": "io.shelly.shelly25",
+                  "label": "IO | Shelly Shelly 2.5 Shelly 2.5 (Gen1 /status)"
+                },
+                {
+                  "value": "io.shelly.plug_gen1",
+                  "label": "IO | Shelly Shelly Plug / Plug S (Gen1) Shelly Plug / Plug S (Gen1 /status)"
+                },
+                {
+                  "value": "io.shelly.plugsg3",
+                  "label": "IO | Shelly Shelly Plug S Gen3 Shelly Shelly Plug S Gen3 (Gen3 RPC)"
+                },
+                {
+                  "value": "io.shelly.plus1pm",
+                  "label": "IO | Shelly Shelly Plus 1PM Shelly Shelly Plus 1PM (Gen2 RPC)"
+                },
+                {
+                  "value": "io.siemenslogo.SiemensLogoRelayImpl",
+                  "label": "IO | Siemens LOGO! SiemensLogoRelayImpl Siemens LOGO! SiemensLogoRelayImpl"
+                },
+                {
+                  "value": "io.wut.WebIoDigital4_57733_4xInOutImpl",
+                  "label": "IO | W&T #57733 4xIn/Out Web-IO Digital 4.0 (ModbusTCP)"
+                },
+                {
+                  "value": "io.wut.WebIoDigital4_57736_16xInOutImpl",
+                  "label": "IO | W&T #57736 16xIn/Out Web-IO Digital 4.0 (ModbusTCP)"
+                },
+                {
+                  "value": "io.wut.WebIoDigital4_57756_Logger16xInOutImpl",
+                  "label": "IO | W&T #57756 Digital Logger 16xIn/Out Web-IO Digital 4.0 Logger (ModbusTCP)"
+                },
+                {
+                  "value": "meter.abb.b23.mbus.v1",
+                  "label": "METER | ABB B23/B32 (M-Bus) ABB B23/B32 (M-Bus)"
+                },
+                {
+                  "value": "meter.artemes.MeterArtemesAM2Impl",
+                  "label": "METER | Artemes am2 Artemes am2"
+                },
+                {
+                  "value": "meter.bcontrol.MeterBControlEM300Impl",
+                  "label": "METER | B-Control em300 B-Control em300"
+                },
+                {
+                  "value": "meter.bgetech.MeterBgeTechDrt428M2Impl",
+                  "label": "METER | BGEtech MeterBgeTechDrt428M2Impl BGEtech MeterBgeTechDrt428M2Impl"
+                },
+                {
+                  "value": "meter.camillebauer.MeterCamillebauerAplusImpl",
+                  "label": "METER | Camille Bauer aplus Camille Bauer aplus"
+                },
+                {
+                  "value": "meter.carlo.MeterCarloGavazziEm100Impl",
+                  "label": "METER | Carlo Gavazzi EM100 Carlo Gavazzi EM100 (Modbus)"
+                },
+                {
+                  "value": "meter.carlo.MeterCarloGavazziEm300Impl",
+                  "label": "METER | Carlo Gavazzi EM300 Carlo Gavazzi EM300 (Modbus)"
+                },
+                {
+                  "value": "meter.discovergy.inexogy.http.v1",
+                  "label": "METER | Discovergy Smart Meter (Inexogy API) Discovergy/Inexogy Smart Meter (HTTP API last_reading)"
+                },
+                {
+                  "value": "meter.eastron.MeterEastronSdm120Impl",
+                  "label": "METER | Eastron SDM120 Eastron SDM120 (Modbus)"
+                },
+                {
+                  "value": "meter.eastron.MeterEastronSdm630Impl",
+                  "label": "METER | Eastron SDM630 Eastron SDM630 (Modbus)"
+                },
+                {
+                  "value": "meter.fenecon.FeneconDessGridMeterImpl",
+                  "label": "METER | FENECON dess.gridmeter FENECON dess.gridmeter"
+                },
+                {
+                  "value": "meter.fenecon.FeneconDessPvMeterImpl",
+                  "label": "METER | FENECON dess.pvmeter FENECON dess.pvmeter"
+                },
+                {
+                  "value": "meter.fenecon.FeneconMiniGridMeterImpl",
+                  "label": "METER | FENECON mini.gridmeter FENECON mini.gridmeter"
+                },
+                {
+                  "value": "meter.fenecon.FeneconMiniPvMeterImpl",
+                  "label": "METER | FENECON mini.pvmeter FENECON mini.pvmeter"
+                },
+                {
+                  "value": "meter.fenecon.FeneconProPvMeterImpl",
+                  "label": "METER | FENECON pro.pvmeter FENECON pro.pvmeter"
+                },
+                {
+                  "value": "meter.hager.ecr380d",
+                  "label": "METER | Hager ECR380D Hager ECR380D (Modbus)"
+                },
+                {
+                  "value": "meter.janitza.MeterJanitzaUmg104Impl",
+                  "label": "METER | Janitza umg104 Janitza umg104"
+                },
+                {
+                  "value": "meter.janitza.MeterJanitzaUmg511Impl",
+                  "label": "METER | Janitza umg511 Janitza umg511"
+                },
+                {
+                  "value": "meter.janitza.MeterJanitzaUmg604Impl",
+                  "label": "METER | Janitza umg604 Janitza UMG 604/604-PRO"
+                },
+                {
+                  "value": "meter.janitza.MeterJanitzaUmg604proImpl",
+                  "label": "METER | Janitza umg604pro Janitza UMG 604-PRO"
+                },
+                {
+                  "value": "meter.janitza.MeterJanitzaUmg801Impl",
+                  "label": "METER | Janitza umg801 Janitza umg801"
+                },
+                {
+                  "value": "meter.janitza.MeterJanitzaUmg806Impl",
+                  "label": "METER | Janitza umg806 Janitza umg806"
+                },
+                {
+                  "value": "meter.janitza.MeterJanitzaUmg96paImpl",
+                  "label": "METER | Janitza umg96pa Janitza UMG 96-PA"
+                },
+                {
+                  "value": "meter.janitza.MeterJanitzaUmg96rmeImpl",
+                  "label": "METER | Janitza umg96rme Janitza umg96rme"
+                },
+                {
+                  "value": "meter.kdk.MeterKdk2puctImpl",
+                  "label": "METER | Kdk puct2 Kdk puct2"
+                },
+                {
+                  "value": "meter.kostal.KostalGridMeterImpl",
+                  "label": "METER | Kostal plenticore.gridmeter Kostal plenticore.gridmeter"
+                },
+                {
+                  "value": "meter.kostal.KostalGridMeterBigEndianImpl",
+                  "label": "METER | Kostal plenticore.gridmeter.abcd Kostal plenticore.gridmeter (ABCD / Sunspec byte order)"
+                },
+                {
+                  "value": "meter.mbus.GenericWiredMbusDevice.V1",
+                  "label": "METER | M-Bus Generic M-Bus (wired) Generic Meter"
+                },
+                {
+                  "value": "meter.phoenixcontact.PhoenixContactMeterImpl",
+                  "label": "METER | Phoenixcontact PhoenixContactMeterImpl Phoenixcontact PhoenixContactMeterImpl"
+                },
+                {
+                  "value": "meter.plexlog.MeterPlexlogDataloggerImpl",
+                  "label": "METER | Plexlog MeterPlexlogDataloggerImpl Plexlog MeterPlexlogDataloggerImpl"
+                },
+                {
+                  "value": "meter.pqplus.MeterPqplusUmd96Impl",
+                  "label": "METER | PQPlus umd96 PQPlus umd96"
+                },
+                {
+                  "value": "meter.pqplus.MeterPqplusUmd97Impl",
+                  "label": "METER | PQPlus umd97 PQPlus umd97"
+                },
+                {
+                  "value": "meter.samsung.ess.grid.http.v1",
+                  "label": "METER | Samsung ESS Grid Meter Samsung ESS Grid Meter (HTTP R3EMS)"
+                },
+                {
+                  "value": "meter.schneider.MeterSchneiderActi9SmartlinkImpl",
+                  "label": "METER | Schneider acti9.smartlink Schneider acti9.smartlink"
+                },
+                {
+                  "value": "meter.shelly.3em_gen1",
+                  "label": "METER | Shelly Shelly 3EM (Gen1) Shelly 3EM (Gen1 /status)"
+                },
+                {
+                  "value": "meter.shelly.pro3em",
+                  "label": "METER | Shelly Shelly Pro 3EM Shelly Pro 3EM (RPC EM.GetStatus)"
+                },
+                {
+                  "value": "meter.siemens.MeterSiemensPac1600Impl",
+                  "label": "METER | Siemens pac1600 Siemens pac1600"
+                },
+                {
+                  "value": "meter.siemens.MeterSiemensPac2200Impl",
+                  "label": "METER | Siemens pac2200 Siemens pac2200"
+                },
+                {
+                  "value": "meter.siemens.MeterSiemensSicamt7kg966Impl",
+                  "label": "METER | Siemens sicam Siemens sicam"
+                },
+                {
+                  "value": "meter.sma.MeterSmaShm20Impl",
+                  "label": "METER | SMA meter.shm20 SMA Sunny Home Manager 2.0 (Modbus)"
+                },
+                {
+                  "value": "meter.sma.SmaEnergyMeterSpeedwireImpl",
+                  "label": "METER | SMA SmaEnergyMeterSpeedwireImpl SMA Energy Meter / SHM (Speedwire)"
+                },
+                {
+                  "value": "meter.socomec.countis_e14_singlephase",
+                  "label": "METER | Socomec Countis E14 (1-ph) Socomec Countis E14 (1-ph)"
+                },
+                {
+                  "value": "meter.socomec.countis_e23_e24_e27_e28",
+                  "label": "METER | Socomec Countis E23/E24/E27/E28 (3-ph) Socomec Countis E23/E24/E27/E28 (3-ph)"
+                },
+                {
+                  "value": "meter.socomec.countis_e34_e44",
+                  "label": "METER | Socomec Countis E34/E44 (3-ph) Socomec Countis E34/E44 (3-ph)"
+                },
+                {
+                  "value": "meter.socomec.diris_a10",
+                  "label": "METER | Socomec DIRIS A-10 (3-ph) Socomec DIRIS A-10 (3-ph)"
+                },
+                {
+                  "value": "meter.socomec.diris_a14",
+                  "label": "METER | Socomec DIRIS A-14 (3-ph) Socomec DIRIS A-14 (3-ph)"
+                },
+                {
+                  "value": "meter.socomec.diris_b30",
+                  "label": "METER | Socomec DIRIS B-30 (3-ph) Socomec DIRIS B-30 (3-ph)"
+                },
+                {
+                  "value": "meter.sunspec.generic.model201.v1",
+                  "label": "METER | SunSpec Generic Meter (Model 201) Generic SunSpec Meter (Model 201)"
+                },
+                {
+                  "value": "meter.sunspec.generic.model202.v1",
+                  "label": "METER | SunSpec Generic Meter (Model 202) Generic SunSpec Meter (Model 202)"
+                },
+                {
+                  "value": "meter.sunspec.generic.model203.v1",
+                  "label": "METER | SunSpec Generic Meter (Model 203) Generic SunSpec Meter (Model 203)"
+                },
+                {
+                  "value": "meter.victron.VictronAcInPowerMeterImpl",
+                  "label": "METER | Victron meter.acin Victron meter.acin"
+                },
+                {
+                  "value": "meter.victron.VictronAcOutPowerMeterImpl",
+                  "label": "METER | Victron meter.acout Victron meter.acout"
+                },
+                {
+                  "value": "meter.victron.VictronMeterImpl",
+                  "label": "METER | Victron meter.grid Victron meter.grid"
+                },
+                {
+                  "value": "meter.weidmueller.MeterWeidmueller525Impl",
+                  "label": "METER | Weidmüller MeterWeidmueller525Impl Weidmüller MeterWeidmueller525Impl"
+                },
+                {
+                  "value": "meter.ziehl.MeterZiehlEfr4001IpImpl",
+                  "label": "METER | ZIEHL efr4001ip ZIEHL efr4001ip"
+                },
+                {
+                  "value": "pv_inverter.foxess.FoxESSTG3G3PvInverter",
+                  "label": "PV_INVERTER | FoxESS T/G3 (GD470) FoxESS T/G3 (GD470) PV Inverter (Modbus)"
+                },
+                {
+                  "value": "pv_inverter.goodwe.AbstractGoodWe",
+                  "label": "PV_INVERTER | Goodwe common Goodwe common"
+                },
+                {
+                  "value": "pv_inverter.goodwe.GoodWeEmergencyPowerMeterImpl",
+                  "label": "PV_INVERTER | Goodwe emergencypowermeter Goodwe emergencypowermeter"
+                },
+                {
+                  "value": "pv_inverter.goodwe.GoodWeGridMeterImpl",
+                  "label": "PV_INVERTER | Goodwe gridmeter Goodwe gridmeter"
+                },
+                {
+                  "value": "pv_inverter.kaco.blueplanet.nx3.sunspec.v1",
+                  "label": "PV_INVERTER | KACO blueplanet NX3 / 100-125 KACO blueplanet NX3 (SunSpec Modbus)"
+                },
+                {
+                  "value": "pv_inverter.kostal.KostalPvInverterImpl",
+                  "label": "PV_INVERTER | Kostal plenticore.pvinverter Kostal plenticore.pvinverter"
+                },
+                {
+                  "value": "pv_inverter.kostal.KostalPvInverterBigEndianImpl",
+                  "label": "PV_INVERTER | Kostal plenticore.pvinverter.abcd Kostal plenticore.pvinverter (ABCD / Sunspec byte order)"
+                },
+                {
+                  "value": "pv_inverter.sma.SmaStp12570ModbusAll",
+                  "label": "PV_INVERTER | SMA STP125-70 (SMA Modbus) SMA STP125-70 (SMA Modbus) - Alle Register"
+                },
+                {
+                  "value": "pv_inverter.sma.SmaStp12570SunSpecImpl",
+                  "label": "PV_INVERTER | SMA STP125-70 (SunSpec) SMA STP125-70 (SunSpec Modbus)"
+                },
+                {
+                  "value": "pv_inverter.sma.SmaStp12570SunSpecMinimal",
+                  "label": "PV_INVERTER | SMA STP125-70 (SunSpec) SMA STP125-70 (SunSpec Modbus) - Minimal"
+                },
+                {
+                  "value": "pv_inverter.sma.SmaStpxx50Minimal",
+                  "label": "PV_INVERTER | SMA STPxx-50 (SMA Modbus) SMA STPxx-50 (Modbus) - Minimal (Fixed)"
+                },
+                {
+                  "value": "pv_inverter.sma.SmaStpxxUs41Minimal",
+                  "label": "PV_INVERTER | SMA STPxx-US-41 (SMA Modbus) SMA STPxx-US-41 (Modbus) - Minimal"
+                },
+                {
+                  "value": "pv_inverter.sma.SmaSunnyTripowerXMinimal",
+                  "label": "PV_INVERTER | SMA Sunny Tripower X (SMA Modbus) SMA Sunny Tripower X (Modbus) - Minimal"
+                },
+                {
+                  "value": "pv_inverter.solarlog.SolarLogDpmDirectMarketing",
+                  "label": "PV_INVERTER | Solar-Log DPM (Direktvermarkter) Solar-Log DPM (Direktvermarktung Modbus TCP)"
+                },
+                {
+                  "value": "pv_inverter.solarlog.SolarLogPmV2PowerManagement",
+                  "label": "PV_INVERTER | Solar-Log PM V2 (Power Management) Solar-Log PM V2 (Power Management Modbus TCP)"
+                },
+                {
+                  "value": "pv_inverter.solarlog.PvInverterSolarlogImpl",
+                  "label": "PV_INVERTER | Solar-Log PvInverterSolarlogImpl Solar-Log PvInverterSolarlogImpl"
+                },
+                {
+                  "value": "pv_inverter.solax.SolaXX3MegaForthMinimal",
+                  "label": "PV_INVERTER | SolaX X3-MEGA G2/X3-FORTH (Modbus-RTU) SolaX X3-MEGA G2/X3-FORTH (Modbus RTU) - Minimal"
+                },
+                {
+                  "value": "pv_inverter.sunspec.generic.model101.v1",
+                  "label": "PV_INVERTER | SunSpec Generic Inverter (Model 101) Generic SunSpec Inverter (Model 101)"
+                },
+                {
+                  "value": "pv_inverter.sunspec.generic.model102.v1",
+                  "label": "PV_INVERTER | SunSpec Generic Inverter (Model 102) Generic SunSpec Inverter (Model 102)"
+                },
+                {
+                  "value": "pv_inverter.sunspec.generic.model103.v1",
+                  "label": "PV_INVERTER | SunSpec Generic Inverter (Model 103) Generic SunSpec Inverter (Model 103)"
+                },
+                {
+                  "value": "pv_inverter.victron.VictronPvInverterImpl",
+                  "label": "PV_INVERTER | Victron pvinverter Victron pvinverter"
+                },
+                {
+                  "value": "pv_inverter.victron.VictronPvInverterViaDcChargerImpl",
+                  "label": "PV_INVERTER | Victron pvinverterviadccharger Victron pvinverterviadccharger"
+                }
+              ]
             },
             {
-              "type": "selectSendTo",
+              "type": "select",
               "attr": "protocol",
               "label": "Protocol",
-              "command": "getProtocols",
-              "jsonData": "{\"templateId\":\"${data.templateId}\"}",
-              "alsoDependsOn": [
-                "templateId"
-              ],
-              "manual": true,
               "noTranslation": true,
               "sm": 6,
               "md": 4,
               "validator": "!!data.protocol",
-              "newLine": true
+              "newLine": true,
+              "options": [
+                {
+                  "label": "CANbus",
+                  "value": "canbus"
+                },
+                {
+                  "label": "HTTP/JSON",
+                  "value": "http"
+                },
+                {
+                  "label": "M-Bus",
+                  "value": "mbus"
+                },
+                {
+                  "label": "Modbus ASCII",
+                  "value": "modbusAscii"
+                },
+                {
+                  "label": "Modbus RTU",
+                  "value": "modbusRtu"
+                },
+                {
+                  "label": "Modbus TCP",
+                  "value": "modbusTcp"
+                },
+                {
+                  "label": "MQTT",
+                  "value": "mqtt"
+                },
+                {
+                  "label": "1-Wire",
+                  "value": "onewire"
+                },
+                {
+                  "label": "Speedwire",
+                  "value": "speedwire"
+                },
+                {
+                  "label": "UDP",
+                  "value": "udp"
+                }
+              ]
             },
             {
               "type": "number",
