@@ -1,10 +1,10 @@
 {
   "name": "iobroker.nexowatt-devices",
-  "version": "0.5.65",
+  "version": "0.5.66",
   "description": "NexoWatt Devices - Multi-protocol device adapter for ioBroker (Modbus TCP/RTU/ASCII, M-Bus, MQTT, HTTP/JSON, UDP, Speedwire, 1-Wire).",
   "main": "main.js",
   "author": "Nexowatt",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "keywords": [
     "adapter",
     "devices",

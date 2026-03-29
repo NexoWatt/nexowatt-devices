@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.65",
+    "version": "0.5.66",
     "news": {
       "0.5.60": {
         "en": "SolaX ESS: VPP Mode 8 now behaves like VPP4: writing PV power target OR battery power target triggers one single FC16 block write (0xA0..0xA7) incl. all required parameters (TargetSetType, ExecDuration, NextMotion) with unlock password handling.",
@@ -226,6 +226,10 @@
       "0.5.65": {
         "en": "Admin UI: back to EnergyBridge-style device configuration page (classic device picker Category -> Manufacturer -> Template -> Protocol) in Nexowatt black/green. Added JSON import/export for devices and ensured compatibility with both native.devices and legacy devicesJson.",
         "de": "Admin UI: Zurück zur EnergyBridge-ähnlichen Geräte-Konfigurationsseite (klassischer Device-Picker Kategorie -> Hersteller -> Template -> Protokoll) im Nexowatt Schwarz/Grün. Zusätzlich JSON Import/Export für Geräte sowie Kompatibilität zu native.devices und legacy devicesJson."
+      },
+      "0.5.66": {
+        "en": "Change project license to Nexowatt proprietary (internal use). Added THIRD_PARTY_NOTICES.md and updated metadata.",
+        "de": "Projektlizenz auf Nexowatt proprietär (interne Nutzung) umgestellt. THIRD_PARTY_NOTICES.md hinzugefügt und Metadaten aktualisiert."
       }
     },
     "title": "NexoWatt Devices",
@@ -240,7 +244,7 @@
     "authors": [
       "Nexowatt"
     ],
-    "license": "MIT",
+    "license": "Proprietary",
     "platform": "Javascript/Node.js",
     "mode": "daemon",
     "loglevel": "info",

@@ -14,6 +14,14 @@ Unterstützte Protokolle:
 
 ---
 
+## Lizenz
+
+Dieses Projekt ist **proprietär** lizenziert und darf nur gemäß der Datei `LICENSE`
+verwendet werden. Drittanbieter-Komponenten unterliegen ihren jeweiligen Lizenzen
+(siehe `THIRD_PARTY_NOTICES.md`).
+
+---
+
 ## 1) Installation aus GitHub (empfohlen)
 
 Dieser Adapter ist **nicht** im offiziellen ioBroker‑Repository. Daher funktioniert `iobroker add ...` nicht.
