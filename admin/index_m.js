@@ -258,6 +258,12 @@ function summarizeConnection(d) {
   if (d.protocol === 'modbusTcp') {
     return `${c.host || ''}:${c.port || 502} (unit ${c.unitId ?? 1}${hbTxt})`;
   }
+  if (d.protocol === 'kostalTcp') {
+    return `${c.host || ''}:${c.port || 81} (unit ${c.unitId ?? 1}${hbTxt})`;
+  }
+  if (d.protocol === 'kostalRs485') {
+    return `${c.path || ''} @${c.baudRate || 19200} (addr ${c.unitId ?? 255}${hbTxt})`;
+  }
   if (d.protocol === 'modbusRtu' || d.protocol === 'modbusAscii') {
     return `${c.path || ''} @${c.baudRate || 9600} (unit ${c.unitId ?? 1}${hbTxt})`;
   }
@@ -361,7 +367,8 @@ function fillProtocolSelect(templateId, currentProtocol) {
 function showConnBlock(protocol) {
   $('.nexo-conn-block').hide();
   if (protocol === 'modbusTcp') $('#conn_modbusTcp').show();
-  if (protocol === 'modbusRtu' || protocol === 'modbusAscii') $('#conn_modbusRtu').show();
+  if (protocol === 'kostalTcp') $('#conn_kostalTcp').show();
+  if (protocol === 'modbusRtu' || protocol === 'modbusAscii' || protocol === 'kostalRs485') $('#conn_modbusRtu').show();
   if (protocol === 'mbus') $('#conn_mbus').show();
   if (protocol === 'mqtt') $('#conn_mqtt').show();
   if (protocol === 'canbus') $('#conn_canbus').show();
@@ -514,6 +521,12 @@ function openDeviceModal(device, idx) {
   $('#mb_timeout').val(c.timeoutMs ?? '');
   $('#mb_addrOffset').val(c.addressOffset ?? 0);
   $('#mb_wordOrder').val(c.wordOrder || 'be');
+
+  // Kostal (RJ45/TCP)
+  $('#ko_host').val(c.host || '');
+  $('#ko_port').val(c.port ?? 81);
+  $('#ko_unitId').val(c.unitId ?? 1);
+  $('#ko_timeout').val(c.timeoutMs ?? '');
   $('#mb_byteOrder').val(c.byteOrder || 'be');
   $('#mb_writePass').val(c.writePassword || '');
   refreshSelect($('#mb_wordOrder'));
@@ -535,6 +548,17 @@ function openDeviceModal(device, idx) {
   refreshSelect($('#mb_parity'));
   refreshSelect($('#mb_wordOrder_rtu'));
   refreshSelect($('#mb_byteOrder_rtu'));
+
+  // Kostal RS485 defaults (PIKO): 19200 8N1, default address 255
+  if (proto === 'kostalRs485') {
+    if (c.baudRate === undefined || c.baudRate === null || c.baudRate === '') $('#mb_baud').val(19200);
+    if (c.parity === undefined || c.parity === null || c.parity === '') $('#mb_parity').val('none');
+    if (c.dataBits === undefined || c.dataBits === null || c.dataBits === '') $('#mb_databits').val(8);
+    if (c.stopBits === undefined || c.stopBits === null || c.stopBits === '') $('#mb_stopbits').val(1);
+    if (c.unitId === undefined || c.unitId === null || c.unitId === '') $('#mb_unitId_rtu').val(255);
+    if (c.timeoutMs === undefined || c.timeoutMs === null || c.timeoutMs === '') $('#mb_timeout_rtu').val(2000);
+    refreshSelect($('#mb_parity'));
+  }
 
   // M-Bus (wired)
   $('#mbus_path').val(c.path || '/dev/ttyUSB0');
@@ -634,14 +658,21 @@ function collectDeviceFromModal() {
     d.connection.wordOrder = $('#mb_wordOrder').val() || 'be';
     d.connection.byteOrder = $('#mb_byteOrder').val() || 'be';
     d.connection.writePassword = ($('#mb_writePass').val() || '').trim() || undefined;
-  } else if (d.protocol === 'modbusRtu' || d.protocol === 'modbusAscii') {
+  } else if (d.protocol === 'kostalTcp') {
+    d.connection.host = ($('#ko_host').val() || '').trim();
+    d.connection.port = parseInt($('#ko_port').val(), 10) || 81;
+    d.connection.unitId = parseInt($('#ko_unitId').val(), 10) || 1;
+    d.connection.timeoutMs = parseInt($('#ko_timeout').val(), 10) || 2000;
+  } else if (d.protocol === 'modbusRtu' || d.protocol === 'modbusAscii' || d.protocol === 'kostalRs485') {
     d.connection.path = ($('#mb_path').val() || '').trim();
-    d.connection.baudRate = parseInt($('#mb_baud').val(), 10) || 9600;
+    const br = parseInt($('#mb_baud').val(), 10);
+    d.connection.baudRate = (!isNaN(br) ? br : (d.protocol === 'kostalRs485' ? 19200 : 9600));
     d.connection.parity = $('#mb_parity').val() || 'none';
     d.connection.dataBits = parseInt($('#mb_databits').val(), 10) || 8;
     d.connection.stopBits = parseInt($('#mb_stopbits').val(), 10) || 1;
 
-    d.connection.unitId = parseInt($('#mb_unitId_rtu').val(), 10) || 1;
+    const uid = parseInt($('#mb_unitId_rtu').val(), 10);
+    d.connection.unitId = (!isNaN(uid) ? uid : (d.protocol === 'kostalRs485' ? 255 : 1));
 
     const t = parseInt($('#mb_timeout_rtu').val(), 10);
     if (!isNaN(t)) d.connection.timeoutMs = t;
@@ -649,6 +680,7 @@ function collectDeviceFromModal() {
     const o = parseInt($('#mb_addrOffset_rtu').val(), 10);
     if (!isNaN(o)) d.connection.addressOffset = o;
 
+    // These Modbus-specific fields are ignored by non-Modbus serial protocols.
     d.connection.wordOrder = $('#mb_wordOrder_rtu').val() || 'be';
     d.connection.byteOrder = $('#mb_byteOrder_rtu').val() || 'be';
     d.connection.writePassword = ($('#mb_writePass_rtu').val() || '').trim() || undefined;
@@ -718,6 +750,7 @@ function collectDeviceFromModal() {
 
   if (d.protocol === 'modbusTcp' && !d.connection.host) throw new Error('Modbus TCP Host/IP fehlt');
   if ((d.protocol === 'modbusRtu' || d.protocol === 'modbusAscii') && !d.connection.path) throw new Error('Modbus Serial-Port fehlt');
+  if (d.protocol === 'kostalRs485' && !d.connection.path) throw new Error('RS485 Serial-Port fehlt');
   if (d.protocol === 'mbus' && !d.connection.path) throw new Error('M-Bus Serial-Port fehlt');
   if (d.protocol === 'mqtt' && !d.connection.url) throw new Error('MQTT Broker-URL fehlt');
   if (d.protocol === 'canbus' && !d.connection.interface) throw new Error('CAN Interface fehlt (z.B. can0)');

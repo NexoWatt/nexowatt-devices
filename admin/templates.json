@@ -111477,6 +111477,4180 @@
           }
         }
       ]
+    },
+    {
+      "id": "pv_inverter.kostal.PikoModbusSunSpecBigEndianImpl",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "PV_INVERTER",
+      "manufacturer": "Kostal",
+      "model": "PIKO (Modbus SunSpec)",
+      "name": "Kostal PIKO (Modbus SunSpec) (ABCD / Sunspec byte order)",
+      "protocols": [
+        "modbusTcp",
+        "modbusRtu"
+      ],
+      "datapoints": [
+        {
+          "id": "mAX_APPARENT_POWER_SF",
+          "name": "Inverter Max Power Scale Factor",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 532,
+            "length": 1,
+            "dataType": "int16"
+          }
+        },
+        {
+          "id": "mAX_APPARENT_POWER",
+          "name": "Inverter Max Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 531,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactorRef": "mAX_APPARENT_POWER_SF"
+          }
+        },
+        {
+          "id": "iNVERTER_STATE",
+          "name": "Inverter state",
+          "role": "info.status",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 56,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "pV_POWER_DC_TOTAL",
+          "name": "Total DC power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 100,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "gRID_FREQUENCY",
+          "name": "Grid frequency",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Hz",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 152,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "cOS_PHI",
+          "name": "Actual cos φ",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "decimals": 3,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 150,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "cURRENT_L1",
+          "name": "Current Phase 1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 154,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L1",
+          "name": "Active power Phase 1",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 156,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "vOLTAGE_L1",
+          "name": "Voltage Phase 1",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 158,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "cURRENT_L2",
+          "name": "Current Phase 2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 160,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L2",
+          "name": "Active power Phase 2",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 162,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "vOLTAGE_L2",
+          "name": "Voltage Phase 2",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 164,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "cURRENT_L3",
+          "name": "Current Phase 3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 166,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L3",
+          "name": "Active power Phase 3",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 168,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "vOLTAGE_L3",
+          "name": "Voltage Phase 3",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 170,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "pV_POWER",
+          "name": "Total AC active power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 172,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "pV_REACTIVE_POWER",
+          "name": "Total AC reactive power",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "var",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 174,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "pV_APPARENT_POWER",
+          "name": "Total AC apparent power",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "VA",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 178,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "pV_DC_CURRENT_1",
+          "name": "Current DC1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 258,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "pV_DC_POWER_1",
+          "name": "Power DC1",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 260,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "pV_DC_VOLTAGE_1",
+          "name": "Voltage DC1",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 266,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "pV_DC_CURRENT_2",
+          "name": "Current DC2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 268,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "pV_DC_POWER_2",
+          "name": "Power DC2",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 270,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "pV_DC_VOLTAGE_2",
+          "name": "Voltage DC2",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 276,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "pV_DC_CURRENT_3",
+          "name": "Current DC3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 278,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "pV_DC_POWER_3",
+          "name": "Power DC3",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 280,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "pV_DC_VOLTAGE_3",
+          "name": "Voltage DC3",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 286,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "pV_ENERGY_TOTAL",
+          "name": "Total yield",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 320,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "pV_ENERGY_TODAY",
+          "name": "Daily yield",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 322,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "be"
+          }
+        },
+        {
+          "id": "eXPORT_POWER_PERCENTAGE",
+          "name": "Active power setpoint (%)",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "unit": "%",
+          "min": 1,
+          "max": 100,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 533,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 533,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER_SETPOINT_PERCENTAGE",
+          "name": "Reactive power setpoint (%)",
+          "unit": "%",
+          "role": "level",
+          "rw": "rw",
+          "type": "number",
+          "min": -100,
+          "max": 100,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 583,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 583,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "eXPORT_POWER_LIMIT_SF",
+          "name": "Low-priority active power setpoint scale factor",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 833,
+            "length": 1,
+            "dataType": "int16"
+          }
+        },
+        {
+          "id": "eXPORT_POWER_LIMIT",
+          "name": "Low-priority active power setpoint (W)",
+          "role": "level.power",
+          "type": "number",
+          "rw": "rw",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 832,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactorRef": "eXPORT_POWER_LIMIT_SF"
+            },
+            "write": {
+              "fc": 6,
+              "address": 832,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactorRef": "eXPORT_POWER_LIMIT_SF"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "pv_inverter.kostal.PikoModbusSunSpecImpl",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "PV_INVERTER",
+      "manufacturer": "Kostal",
+      "model": "PIKO (Modbus SunSpec)",
+      "name": "Kostal PIKO (Modbus SunSpec)",
+      "protocols": [
+        "modbusTcp",
+        "modbusRtu"
+      ],
+      "datapoints": [
+        {
+          "id": "mAX_APPARENT_POWER_SF",
+          "name": "Inverter Max Power Scale Factor",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 532,
+            "length": 1,
+            "dataType": "int16"
+          }
+        },
+        {
+          "id": "mAX_APPARENT_POWER",
+          "name": "Inverter Max Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 531,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactorRef": "mAX_APPARENT_POWER_SF"
+          }
+        },
+        {
+          "id": "iNVERTER_STATE",
+          "name": "Inverter state",
+          "role": "info.status",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 56,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pV_POWER_DC_TOTAL",
+          "name": "Total DC power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 100,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "gRID_FREQUENCY",
+          "name": "Grid frequency",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Hz",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 152,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "cOS_PHI",
+          "name": "Actual cos φ",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "decimals": 3,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 150,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "cURRENT_L1",
+          "name": "Current Phase 1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 154,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L1",
+          "name": "Active power Phase 1",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 156,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "vOLTAGE_L1",
+          "name": "Voltage Phase 1",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 158,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "cURRENT_L2",
+          "name": "Current Phase 2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 160,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L2",
+          "name": "Active power Phase 2",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 162,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "vOLTAGE_L2",
+          "name": "Voltage Phase 2",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 164,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "cURRENT_L3",
+          "name": "Current Phase 3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 166,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER_L3",
+          "name": "Active power Phase 3",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 168,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "vOLTAGE_L3",
+          "name": "Voltage Phase 3",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 170,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pV_POWER",
+          "name": "Total AC active power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 172,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pV_REACTIVE_POWER",
+          "name": "Total AC reactive power",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "var",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 174,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pV_APPARENT_POWER",
+          "name": "Total AC apparent power",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "VA",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 178,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pV_DC_CURRENT_1",
+          "name": "Current DC1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 258,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pV_DC_POWER_1",
+          "name": "Power DC1",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 260,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pV_DC_VOLTAGE_1",
+          "name": "Voltage DC1",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 266,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pV_DC_CURRENT_2",
+          "name": "Current DC2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 268,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pV_DC_POWER_2",
+          "name": "Power DC2",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 270,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pV_DC_VOLTAGE_2",
+          "name": "Voltage DC2",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 276,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pV_DC_CURRENT_3",
+          "name": "Current DC3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 278,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pV_DC_POWER_3",
+          "name": "Power DC3",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 280,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pV_DC_VOLTAGE_3",
+          "name": "Voltage DC3",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 286,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pV_ENERGY_TOTAL",
+          "name": "Total yield",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 320,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "pV_ENERGY_TODAY",
+          "name": "Daily yield",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 322,
+            "length": 2,
+            "dataType": "float32",
+            "wordOrder": "le"
+          }
+        },
+        {
+          "id": "eXPORT_POWER_PERCENTAGE",
+          "name": "Active power setpoint (%)",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "unit": "%",
+          "min": 1,
+          "max": 100,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 533,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 533,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER_SETPOINT_PERCENTAGE",
+          "name": "Reactive power setpoint (%)",
+          "unit": "%",
+          "role": "level",
+          "rw": "rw",
+          "type": "number",
+          "min": -100,
+          "max": 100,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 583,
+              "length": 1,
+              "dataType": "int16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 583,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "eXPORT_POWER_LIMIT_SF",
+          "name": "Low-priority active power setpoint scale factor",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 833,
+            "length": 1,
+            "dataType": "int16"
+          }
+        },
+        {
+          "id": "eXPORT_POWER_LIMIT",
+          "name": "Low-priority active power setpoint (W)",
+          "role": "level.power",
+          "type": "number",
+          "rw": "rw",
+          "unit": "W",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 832,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactorRef": "eXPORT_POWER_LIMIT_SF"
+            },
+            "write": {
+              "fc": 6,
+              "address": 832,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactorRef": "eXPORT_POWER_LIMIT_SF"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "pv_inverter.kostal.Piko1pTcp",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "PV_INVERTER",
+      "manufacturer": "Kostal",
+      "model": "PIKO 1P",
+      "name": "Kostal PIKO (1P) (RJ45/TCP Port 81)",
+      "protocols": [
+        "kostalTcp"
+      ],
+      "datapoints": [
+        {
+          "id": "AC_POWER_TOTAL",
+          "name": "AC power total",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000100",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "GRID_FREQUENCY",
+          "name": "Grid frequency",
+          "type": "number",
+          "role": "value.frequency",
+          "unit": "Hz",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000600",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "COS_PHI",
+          "name": "Cos φ",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000700",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L1_CURRENT",
+          "name": "AC current L1",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000201",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L1_VOLTAGE",
+          "name": "AC voltage L1",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000202",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L1_POWER",
+          "name": "AC power L1",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000203",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "INVERTER_SERIAL",
+          "name": "Serial number",
+          "type": "string",
+          "role": "info.serial",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000200",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "INVERTER_NAME",
+          "name": "Inverter name",
+          "type": "string",
+          "role": "info.name",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000300",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "INVERTER_TYPE",
+          "name": "Inverter type name",
+          "type": "string",
+          "role": "info.name",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000D00",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "FW_VERSION",
+          "name": "Firmware version",
+          "type": "string",
+          "role": "info.firmware",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000801",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "UI_VERSION",
+          "name": "UI version",
+          "type": "string",
+          "role": "info.firmware",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000803",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "STATUS_TEXT",
+          "name": "Operating status (text)",
+          "type": "string",
+          "role": "info.status",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x08000105",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "NUMBER_OF_STRINGS",
+          "name": "Number of PV strings",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000500",
+            "dataType": "unsigned char"
+          }
+        },
+        {
+          "id": "NUMBER_OF_PHASES",
+          "name": "Number of phases",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000600",
+            "dataType": "unsigned char"
+          }
+        },
+        {
+          "id": "YIELD_TOTAL",
+          "name": "Yield total",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "kWh",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000201",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "YIELD_DAY",
+          "name": "Yield day",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "Wh",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000202",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "FEEDIN_TIME_H",
+          "name": "Feed-in time",
+          "type": "number",
+          "role": "value",
+          "unit": "h",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000100",
+            "dataType": "unsigned long"
+          }
+        },
+        {
+          "id": "HOME_CONSUMPTION_TOTAL",
+          "name": "Home consumption total",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "kWh",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000301",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "HOME_CONSUMPTION_DAY",
+          "name": "Home consumption day",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "Wh",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000302",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "OWN_CONSUMPTION_TOTAL",
+          "name": "Own consumption total",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "kWh",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000401",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "OWN_CONSUMPTION_DAY",
+          "name": "Own consumption day",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "Wh",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000402",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_CURRENT_TOTAL",
+          "name": "DC current total",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000100",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_POWER_TOTAL",
+          "name": "DC power total",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000200",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING1_CURRENT",
+          "name": "DC current string 1",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000301",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING1_VOLTAGE",
+          "name": "DC voltage string 1",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000302",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING1_POWER",
+          "name": "DC power string 1",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000303",
+            "dataType": "float"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pv_inverter.kostal.Piko3pTcp",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "PV_INVERTER",
+      "manufacturer": "Kostal",
+      "model": "PIKO 3P",
+      "name": "Kostal PIKO (3P) (RJ45/TCP Port 81)",
+      "protocols": [
+        "kostalTcp"
+      ],
+      "datapoints": [
+        {
+          "id": "AC_POWER_TOTAL",
+          "name": "AC power total",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000100",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "GRID_FREQUENCY",
+          "name": "Grid frequency",
+          "type": "number",
+          "role": "value.frequency",
+          "unit": "Hz",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000600",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "COS_PHI",
+          "name": "Cos φ",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000700",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L1_CURRENT",
+          "name": "AC current L1",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000201",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L1_VOLTAGE",
+          "name": "AC voltage L1",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000202",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L1_POWER",
+          "name": "AC power L1",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000203",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L2_CURRENT",
+          "name": "AC current L2",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000301",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L2_VOLTAGE",
+          "name": "AC voltage L2",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000302",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L2_POWER",
+          "name": "AC power L2",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000303",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L3_CURRENT",
+          "name": "AC current L3",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000401",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L3_VOLTAGE",
+          "name": "AC voltage L3",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000402",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L3_POWER",
+          "name": "AC power L3",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000403",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "INVERTER_SERIAL",
+          "name": "Serial number",
+          "type": "string",
+          "role": "info.serial",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000200",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "INVERTER_NAME",
+          "name": "Inverter name",
+          "type": "string",
+          "role": "info.name",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000300",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "INVERTER_TYPE",
+          "name": "Inverter type name",
+          "type": "string",
+          "role": "info.name",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000D00",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "FW_VERSION",
+          "name": "Firmware version",
+          "type": "string",
+          "role": "info.firmware",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000801",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "UI_VERSION",
+          "name": "UI version",
+          "type": "string",
+          "role": "info.firmware",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000803",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "STATUS_TEXT",
+          "name": "Operating status (text)",
+          "type": "string",
+          "role": "info.status",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x08000105",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "NUMBER_OF_STRINGS",
+          "name": "Number of PV strings",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000500",
+            "dataType": "unsigned char"
+          }
+        },
+        {
+          "id": "NUMBER_OF_PHASES",
+          "name": "Number of phases",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000600",
+            "dataType": "unsigned char"
+          }
+        },
+        {
+          "id": "YIELD_TOTAL",
+          "name": "Yield total",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "kWh",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000201",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "YIELD_DAY",
+          "name": "Yield day",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "Wh",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000202",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "FEEDIN_TIME_H",
+          "name": "Feed-in time",
+          "type": "number",
+          "role": "value",
+          "unit": "h",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000100",
+            "dataType": "unsigned long"
+          }
+        },
+        {
+          "id": "HOME_CONSUMPTION_TOTAL",
+          "name": "Home consumption total",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "kWh",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000301",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "HOME_CONSUMPTION_DAY",
+          "name": "Home consumption day",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "Wh",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000302",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "OWN_CONSUMPTION_TOTAL",
+          "name": "Own consumption total",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "kWh",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000401",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "OWN_CONSUMPTION_DAY",
+          "name": "Own consumption day",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "Wh",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000402",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_CURRENT_TOTAL",
+          "name": "DC current total",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000100",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_POWER_TOTAL",
+          "name": "DC power total",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000200",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING1_CURRENT",
+          "name": "DC current string 1",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000301",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING1_VOLTAGE",
+          "name": "DC voltage string 1",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000302",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING1_POWER",
+          "name": "DC power string 1",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000303",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING2_CURRENT",
+          "name": "DC current string 2",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000401",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING2_VOLTAGE",
+          "name": "DC voltage string 2",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000402",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING2_POWER",
+          "name": "DC power string 2",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000403",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING3_CURRENT",
+          "name": "DC current string 3",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000501",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING3_VOLTAGE",
+          "name": "DC voltage string 3",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000502",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING3_POWER",
+          "name": "DC power string 3",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000503",
+            "dataType": "float"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pv_inverter.kostal.PikoBaTcp",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "PV_INVERTER",
+      "manufacturer": "Kostal",
+      "model": "PIKO BA",
+      "name": "Kostal PIKO BA (Hybrid) (RJ45/TCP Port 81)",
+      "protocols": [
+        "kostalTcp"
+      ],
+      "datapoints": [
+        {
+          "id": "AC_POWER_TOTAL",
+          "name": "AC power total",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000100",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "GRID_FREQUENCY",
+          "name": "Grid frequency",
+          "type": "number",
+          "role": "value.frequency",
+          "unit": "Hz",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000600",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "COS_PHI",
+          "name": "Cos φ",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000700",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L1_CURRENT",
+          "name": "AC current L1",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000201",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L1_VOLTAGE",
+          "name": "AC voltage L1",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000202",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L1_POWER",
+          "name": "AC power L1",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000203",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L2_CURRENT",
+          "name": "AC current L2",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000301",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L2_VOLTAGE",
+          "name": "AC voltage L2",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000302",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L2_POWER",
+          "name": "AC power L2",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000303",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L3_CURRENT",
+          "name": "AC current L3",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000401",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L3_VOLTAGE",
+          "name": "AC voltage L3",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000402",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L3_POWER",
+          "name": "AC power L3",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000403",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "INVERTER_SERIAL",
+          "name": "Serial number",
+          "type": "string",
+          "role": "info.serial",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000200",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "INVERTER_NAME",
+          "name": "Inverter name",
+          "type": "string",
+          "role": "info.name",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000300",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "INVERTER_TYPE",
+          "name": "Inverter type name",
+          "type": "string",
+          "role": "info.name",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000D00",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "FW_VERSION",
+          "name": "Firmware version",
+          "type": "string",
+          "role": "info.firmware",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000801",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "UI_VERSION",
+          "name": "UI version",
+          "type": "string",
+          "role": "info.firmware",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000803",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "STATUS_TEXT",
+          "name": "Operating status (text)",
+          "type": "string",
+          "role": "info.status",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x08000105",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "NUMBER_OF_STRINGS",
+          "name": "Number of PV strings",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000500",
+            "dataType": "unsigned char"
+          }
+        },
+        {
+          "id": "NUMBER_OF_PHASES",
+          "name": "Number of phases",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000600",
+            "dataType": "unsigned char"
+          }
+        },
+        {
+          "id": "YIELD_TOTAL",
+          "name": "Yield total",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "kWh",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000201",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "YIELD_DAY",
+          "name": "Yield day",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "Wh",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000202",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "FEEDIN_TIME_H",
+          "name": "Feed-in time",
+          "type": "number",
+          "role": "value",
+          "unit": "h",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000100",
+            "dataType": "unsigned long"
+          }
+        },
+        {
+          "id": "HOME_CONSUMPTION_TOTAL",
+          "name": "Home consumption total",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "kWh",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000301",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "HOME_CONSUMPTION_DAY",
+          "name": "Home consumption day",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "Wh",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000302",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "OWN_CONSUMPTION_TOTAL",
+          "name": "Own consumption total",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "kWh",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000401",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "OWN_CONSUMPTION_DAY",
+          "name": "Own consumption day",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "Wh",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000402",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "BATTERY_CURRENT",
+          "name": "Battery current",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000701",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "BATTERY_VOLTAGE",
+          "name": "Battery voltage",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000702",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "BATTERY_TEMP",
+          "name": "Battery temperature",
+          "type": "number",
+          "role": "value.temperature",
+          "unit": "°C",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000703",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "BATTERY_CYCLES",
+          "name": "Battery cycles",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000704",
+            "dataType": "unsigned long"
+          }
+        },
+        {
+          "id": "BATTERY_SOC",
+          "name": "Battery state of charge",
+          "type": "number",
+          "role": "value.battery",
+          "unit": "%",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000705",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_CURRENT_TOTAL",
+          "name": "DC current total",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000100",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_POWER_TOTAL",
+          "name": "DC power total",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000200",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING1_CURRENT",
+          "name": "DC current string 1",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000301",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING1_VOLTAGE",
+          "name": "DC voltage string 1",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000302",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING1_POWER",
+          "name": "DC power string 1",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000303",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING2_CURRENT",
+          "name": "DC current string 2",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000401",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING2_VOLTAGE",
+          "name": "DC voltage string 2",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000402",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING2_POWER",
+          "name": "DC power string 2",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000403",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING3_CURRENT",
+          "name": "DC current string 3",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000501",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING3_VOLTAGE",
+          "name": "DC voltage string 3",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000502",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING3_POWER",
+          "name": "DC power string 3",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000503",
+            "dataType": "float"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pv_inverter.kostal.Piko1pRs485",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "PV_INVERTER",
+      "manufacturer": "Kostal",
+      "model": "PIKO 1P",
+      "name": "Kostal PIKO (1P) (RS485)",
+      "protocols": [
+        "kostalRs485"
+      ],
+      "datapoints": [
+        {
+          "id": "AC_POWER_TOTAL",
+          "name": "AC power total",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000100",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "GRID_FREQUENCY",
+          "name": "Grid frequency",
+          "type": "number",
+          "role": "value.frequency",
+          "unit": "Hz",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000600",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "COS_PHI",
+          "name": "Cos φ",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000700",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L1_CURRENT",
+          "name": "AC current L1",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000201",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L1_VOLTAGE",
+          "name": "AC voltage L1",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000202",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L1_POWER",
+          "name": "AC power L1",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000203",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "INVERTER_SERIAL",
+          "name": "Serial number",
+          "type": "string",
+          "role": "info.serial",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000200",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "INVERTER_NAME",
+          "name": "Inverter name",
+          "type": "string",
+          "role": "info.name",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000300",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "INVERTER_TYPE",
+          "name": "Inverter type name",
+          "type": "string",
+          "role": "info.name",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000D00",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "FW_VERSION",
+          "name": "Firmware version",
+          "type": "string",
+          "role": "info.firmware",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000801",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "UI_VERSION",
+          "name": "UI version",
+          "type": "string",
+          "role": "info.firmware",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000803",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "STATUS_TEXT",
+          "name": "Operating status (text)",
+          "type": "string",
+          "role": "info.status",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x08000105",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "NUMBER_OF_STRINGS",
+          "name": "Number of PV strings",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000500",
+            "dataType": "unsigned char"
+          }
+        },
+        {
+          "id": "NUMBER_OF_PHASES",
+          "name": "Number of phases",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000600",
+            "dataType": "unsigned char"
+          }
+        },
+        {
+          "id": "YIELD_TOTAL",
+          "name": "Yield total",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "kWh",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000201",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "YIELD_DAY",
+          "name": "Yield day",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "Wh",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000202",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "FEEDIN_TIME_H",
+          "name": "Feed-in time",
+          "type": "number",
+          "role": "value",
+          "unit": "h",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000100",
+            "dataType": "unsigned long"
+          }
+        },
+        {
+          "id": "HOME_CONSUMPTION_TOTAL",
+          "name": "Home consumption total",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "kWh",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000301",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "HOME_CONSUMPTION_DAY",
+          "name": "Home consumption day",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "Wh",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000302",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "OWN_CONSUMPTION_TOTAL",
+          "name": "Own consumption total",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "kWh",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000401",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "OWN_CONSUMPTION_DAY",
+          "name": "Own consumption day",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "Wh",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000402",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_CURRENT_TOTAL",
+          "name": "DC current total",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000100",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_POWER_TOTAL",
+          "name": "DC power total",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000200",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING1_CURRENT",
+          "name": "DC current string 1",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000301",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING1_VOLTAGE",
+          "name": "DC voltage string 1",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000302",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING1_POWER",
+          "name": "DC power string 1",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000303",
+            "dataType": "float"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pv_inverter.kostal.Piko3pRs485",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "PV_INVERTER",
+      "manufacturer": "Kostal",
+      "model": "PIKO 3P",
+      "name": "Kostal PIKO (3P) (RS485)",
+      "protocols": [
+        "kostalRs485"
+      ],
+      "datapoints": [
+        {
+          "id": "AC_POWER_TOTAL",
+          "name": "AC power total",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000100",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "GRID_FREQUENCY",
+          "name": "Grid frequency",
+          "type": "number",
+          "role": "value.frequency",
+          "unit": "Hz",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000600",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "COS_PHI",
+          "name": "Cos φ",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000700",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L1_CURRENT",
+          "name": "AC current L1",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000201",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L1_VOLTAGE",
+          "name": "AC voltage L1",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000202",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L1_POWER",
+          "name": "AC power L1",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000203",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L2_CURRENT",
+          "name": "AC current L2",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000301",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L2_VOLTAGE",
+          "name": "AC voltage L2",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000302",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L2_POWER",
+          "name": "AC power L2",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000303",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L3_CURRENT",
+          "name": "AC current L3",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000401",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L3_VOLTAGE",
+          "name": "AC voltage L3",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000402",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L3_POWER",
+          "name": "AC power L3",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000403",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "INVERTER_SERIAL",
+          "name": "Serial number",
+          "type": "string",
+          "role": "info.serial",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000200",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "INVERTER_NAME",
+          "name": "Inverter name",
+          "type": "string",
+          "role": "info.name",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000300",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "INVERTER_TYPE",
+          "name": "Inverter type name",
+          "type": "string",
+          "role": "info.name",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000D00",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "FW_VERSION",
+          "name": "Firmware version",
+          "type": "string",
+          "role": "info.firmware",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000801",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "UI_VERSION",
+          "name": "UI version",
+          "type": "string",
+          "role": "info.firmware",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000803",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "STATUS_TEXT",
+          "name": "Operating status (text)",
+          "type": "string",
+          "role": "info.status",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x08000105",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "NUMBER_OF_STRINGS",
+          "name": "Number of PV strings",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000500",
+            "dataType": "unsigned char"
+          }
+        },
+        {
+          "id": "NUMBER_OF_PHASES",
+          "name": "Number of phases",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000600",
+            "dataType": "unsigned char"
+          }
+        },
+        {
+          "id": "YIELD_TOTAL",
+          "name": "Yield total",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "kWh",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000201",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "YIELD_DAY",
+          "name": "Yield day",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "Wh",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000202",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "FEEDIN_TIME_H",
+          "name": "Feed-in time",
+          "type": "number",
+          "role": "value",
+          "unit": "h",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000100",
+            "dataType": "unsigned long"
+          }
+        },
+        {
+          "id": "HOME_CONSUMPTION_TOTAL",
+          "name": "Home consumption total",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "kWh",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000301",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "HOME_CONSUMPTION_DAY",
+          "name": "Home consumption day",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "Wh",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000302",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "OWN_CONSUMPTION_TOTAL",
+          "name": "Own consumption total",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "kWh",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000401",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "OWN_CONSUMPTION_DAY",
+          "name": "Own consumption day",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "Wh",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000402",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_CURRENT_TOTAL",
+          "name": "DC current total",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000100",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_POWER_TOTAL",
+          "name": "DC power total",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000200",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING1_CURRENT",
+          "name": "DC current string 1",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000301",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING1_VOLTAGE",
+          "name": "DC voltage string 1",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000302",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING1_POWER",
+          "name": "DC power string 1",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000303",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING2_CURRENT",
+          "name": "DC current string 2",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000401",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING2_VOLTAGE",
+          "name": "DC voltage string 2",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000402",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING2_POWER",
+          "name": "DC power string 2",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000403",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING3_CURRENT",
+          "name": "DC current string 3",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000501",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING3_VOLTAGE",
+          "name": "DC voltage string 3",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000502",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING3_POWER",
+          "name": "DC power string 3",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000503",
+            "dataType": "float"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pv_inverter.kostal.PikoBaRs485",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "PV_INVERTER",
+      "manufacturer": "Kostal",
+      "model": "PIKO BA",
+      "name": "Kostal PIKO BA (Hybrid) (RS485)",
+      "protocols": [
+        "kostalRs485"
+      ],
+      "datapoints": [
+        {
+          "id": "AC_POWER_TOTAL",
+          "name": "AC power total",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000100",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "GRID_FREQUENCY",
+          "name": "Grid frequency",
+          "type": "number",
+          "role": "value.frequency",
+          "unit": "Hz",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000600",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "COS_PHI",
+          "name": "Cos φ",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000700",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L1_CURRENT",
+          "name": "AC current L1",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000201",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L1_VOLTAGE",
+          "name": "AC voltage L1",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000202",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L1_POWER",
+          "name": "AC power L1",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000203",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L2_CURRENT",
+          "name": "AC current L2",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000301",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L2_VOLTAGE",
+          "name": "AC voltage L2",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000302",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L2_POWER",
+          "name": "AC power L2",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000303",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L3_CURRENT",
+          "name": "AC current L3",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000401",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L3_VOLTAGE",
+          "name": "AC voltage L3",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000402",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "AC_L3_POWER",
+          "name": "AC power L3",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x04000403",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "INVERTER_SERIAL",
+          "name": "Serial number",
+          "type": "string",
+          "role": "info.serial",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000200",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "INVERTER_NAME",
+          "name": "Inverter name",
+          "type": "string",
+          "role": "info.name",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000300",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "INVERTER_TYPE",
+          "name": "Inverter type name",
+          "type": "string",
+          "role": "info.name",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000D00",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "FW_VERSION",
+          "name": "Firmware version",
+          "type": "string",
+          "role": "info.firmware",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000801",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "UI_VERSION",
+          "name": "UI version",
+          "type": "string",
+          "role": "info.firmware",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000803",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "STATUS_TEXT",
+          "name": "Operating status (text)",
+          "type": "string",
+          "role": "info.status",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x08000105",
+            "dataType": "string"
+          }
+        },
+        {
+          "id": "NUMBER_OF_STRINGS",
+          "name": "Number of PV strings",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000500",
+            "dataType": "unsigned char"
+          }
+        },
+        {
+          "id": "NUMBER_OF_PHASES",
+          "name": "Number of phases",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "source": {
+            "kind": "kostal",
+            "id": "0x01000600",
+            "dataType": "unsigned char"
+          }
+        },
+        {
+          "id": "YIELD_TOTAL",
+          "name": "Yield total",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "kWh",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000201",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "YIELD_DAY",
+          "name": "Yield day",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "Wh",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000202",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "FEEDIN_TIME_H",
+          "name": "Feed-in time",
+          "type": "number",
+          "role": "value",
+          "unit": "h",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000100",
+            "dataType": "unsigned long"
+          }
+        },
+        {
+          "id": "HOME_CONSUMPTION_TOTAL",
+          "name": "Home consumption total",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "kWh",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000301",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "HOME_CONSUMPTION_DAY",
+          "name": "Home consumption day",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "Wh",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000302",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "OWN_CONSUMPTION_TOTAL",
+          "name": "Own consumption total",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "kWh",
+          "rw": "ro",
+          "decimals": 3,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000401",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "OWN_CONSUMPTION_DAY",
+          "name": "Own consumption day",
+          "type": "number",
+          "role": "value.energy",
+          "unit": "Wh",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x0F000402",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "BATTERY_CURRENT",
+          "name": "Battery current",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000701",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "BATTERY_VOLTAGE",
+          "name": "Battery voltage",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000702",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "BATTERY_TEMP",
+          "name": "Battery temperature",
+          "type": "number",
+          "role": "value.temperature",
+          "unit": "°C",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000703",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "BATTERY_CYCLES",
+          "name": "Battery cycles",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000704",
+            "dataType": "unsigned long"
+          }
+        },
+        {
+          "id": "BATTERY_SOC",
+          "name": "Battery state of charge",
+          "type": "number",
+          "role": "value.battery",
+          "unit": "%",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000705",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_CURRENT_TOTAL",
+          "name": "DC current total",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000100",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_POWER_TOTAL",
+          "name": "DC power total",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000200",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING1_CURRENT",
+          "name": "DC current string 1",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000301",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING1_VOLTAGE",
+          "name": "DC voltage string 1",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000302",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING1_POWER",
+          "name": "DC power string 1",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000303",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING2_CURRENT",
+          "name": "DC current string 2",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000401",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING2_VOLTAGE",
+          "name": "DC voltage string 2",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000402",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING2_POWER",
+          "name": "DC power string 2",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000403",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING3_CURRENT",
+          "name": "DC current string 3",
+          "type": "number",
+          "role": "value.current",
+          "unit": "A",
+          "rw": "ro",
+          "decimals": 2,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000501",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING3_VOLTAGE",
+          "name": "DC voltage string 3",
+          "type": "number",
+          "role": "value.voltage",
+          "unit": "V",
+          "rw": "ro",
+          "decimals": 1,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000502",
+            "dataType": "float"
+          }
+        },
+        {
+          "id": "DC_STRING3_POWER",
+          "name": "DC power string 3",
+          "type": "number",
+          "role": "value.power",
+          "unit": "W",
+          "rw": "ro",
+          "decimals": 0,
+          "source": {
+            "kind": "kostal",
+            "id": "0x02000503",
+            "dataType": "float"
+          }
+        }
+      ]
     }
   ]
 }
