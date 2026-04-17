@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.70",
+    "version": "0.5.71",
     "news": {
       "0.5.60": {
         "en": "SolaX ESS: VPP Mode 8 now behaves like VPP4: writing PV power target OR battery power target triggers one single FC16 block write (0xA0..0xA7) incl. all required parameters (TargetSetType, ExecDuration, NextMotion) with unlock password handling.",
@@ -238,6 +238,10 @@
       "0.5.69": {
         "en": "Kostal PIKO: add Modbus SunSpec templates (TCP/RTU) with writable active power setpoints (percent + W) for inverter power limiting.",
         "de": "Kostal PIKO: Modbus SunSpec Templates (TCP/RTU) hinzugefügt inkl. schreibbarer Wirkleistungs-Sollwerte (Prozent + W) für Leistungsbegrenzung."
+      },
+      "0.5.71": {
+        "en": "Fix FENECON home.ess SoC alias: use input register eSS_SOC_IN for aliases.r.soc (holding SoC sometimes reports 0xFFFF). Map 0xFFFF to null for the holding SoC datapoint.",
+        "de": "Fix FENECON home.ess SoC Alias: aliases.r.soc nutzt jetzt eSS_SOC_IN (Input-Register), da Holding-SoC teilweise 0xFFFF liefert. Holding-SoC 0xFFFF wird auf null gemappt."
       }
     },
     "title": "NexoWatt Devices",

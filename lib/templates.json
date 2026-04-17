@@ -30472,7 +30472,8 @@
               "address": 602,
               "length": 1,
               "dataType": "uint16"
-            }
+            },
+            "nanToNull": true
           }
         },
         {
