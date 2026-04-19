@@ -29990,6 +29990,22 @@
       ],
       "datapoints": [
         {
+          "id": "cOMPONENT_ID_SUM",
+          "name": "Component-ID (_sum)",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 200,
+              "length": 8,
+              "dataType": "string"
+            }
+          }
+        },
+        {
           "id": "State",
           "name": "FENECON home.ess",
           "role": "indicator.status",
@@ -30040,6 +30056,26 @@
               "dataType": "float32"
             },
             "scaleFactor": -3
+          }
+        },
+        {
+          "id": "bATTERY_CHARGE_POWER",
+          "name": "Speicher Beladeleistung (AC)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 303,
+              "length": 2,
+              "dataType": "float32"
+            },
+            "scaleFactor": -3,
+            "keepNegativeAndInvert": true
           }
         },
         {
@@ -30458,6 +30494,221 @@
           }
         },
         {
+          "id": "cOMPONENT_ID_ESS0",
+          "name": "Component-ID (ess0)",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 500,
+              "length": 8,
+              "dataType": "string"
+            }
+          }
+        },
+        {
+          "id": "eSS0_STATE",
+          "name": "Status (ess0)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 522,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "gRID_MODE_ESS0",
+          "name": "Grid Mode (ess0)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 603,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "eSS0_ACTIVE_POWER",
+          "name": "Be-/Entladeleistung (ess0, umgesetzt)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 604,
+              "length": 2,
+              "dataType": "float32"
+            },
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "mIN_CELL_VOLTAGE",
+          "name": "Minimale Zellspannung",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "mV",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 608,
+              "length": 2,
+              "dataType": "float32"
+            }
+          }
+        },
+        {
+          "id": "mAX_CELL_VOLTAGE",
+          "name": "Maximale Zellspannung",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "mV",
+          "decimals": 0,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 610,
+              "length": 2,
+              "dataType": "float32"
+            }
+          }
+        },
+        {
+          "id": "mIN_CELL_TEMPERATURE",
+          "name": "Minimale Zelltemperatur",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 612,
+              "length": 2,
+              "dataType": "float32"
+            }
+          }
+        },
+        {
+          "id": "mAX_CELL_TEMPERATURE",
+          "name": "Maximale Zelltemperatur",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "decimals": 1,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 614,
+              "length": 2,
+              "dataType": "float32"
+            }
+          }
+        },
+        {
+          "id": "bATTERY_CAPACITY",
+          "name": "Installierte Speicherkapazität",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kWh",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 616,
+              "length": 2,
+              "dataType": "float32"
+            },
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "mAX_APPARENT_POWER",
+          "name": "Max. Scheinleistung (ess0)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kVA",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 618,
+              "length": 2,
+              "dataType": "float32"
+            },
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "mIN_POWER_SETPOINT",
+          "name": "Minimaler Leistungssollwert (ess0)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 702,
+              "length": 2,
+              "dataType": "float32"
+            },
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "mAX_POWER_SETPOINT",
+          "name": "Maximaler Leistungssollwert (ess0)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 704,
+              "length": 2,
+              "dataType": "float32"
+            },
+            "scaleFactor": -3
+          }
+        },
+        {
           "id": "sOC",
           "name": "Ladezustand (Holding)",
           "role": "value.battery",
@@ -30473,7 +30724,8 @@
               "length": 1,
               "dataType": "uint16"
             },
-            "nanToNull": true
+            "nanToNull": true,
+            "nanValue": 65535
           }
         },
         {
@@ -30495,6 +30747,25 @@
             "write": {
               "fc": 16,
               "address": 706,
+              "length": 2,
+              "dataType": "float32"
+            },
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "sET_REACTIVE_POWER",
+          "name": "Vorgabe Blindleistung (ess0) (nicht nutzbar Home)",
+          "role": "level",
+          "type": "number",
+          "rw": "wo",
+          "unit": "kVar",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "write": {
+              "fc": 16,
+              "address": 708,
               "length": 2,
               "dataType": "float32"
             },
@@ -30527,6 +30798,25 @@
           }
         },
         {
+          "id": "sET_MAX_REACTIVE_DISCHARGE_POWER",
+          "name": "Vorgabe max. Blindleistung Entladung (ess0) (nicht nutzbar Home)",
+          "role": "level",
+          "type": "number",
+          "rw": "wo",
+          "unit": "kVar",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "write": {
+              "fc": 16,
+              "address": 712,
+              "length": 2,
+              "dataType": "float32"
+            },
+            "scaleFactor": -3
+          }
+        },
+        {
           "id": "sET_MAX_CHARGE_POWER",
           "name": "Vorgabe max. Beladeleistung",
           "role": "level.power",
@@ -30545,6 +30835,25 @@
             "write": {
               "fc": 16,
               "address": 714,
+              "length": 2,
+              "dataType": "float32"
+            },
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "sET_MAX_REACTIVE_CHARGE_POWER",
+          "name": "Vorgabe max. Blindleistung Beladung (ess0) (nicht nutzbar Home)",
+          "role": "level",
+          "type": "number",
+          "rw": "wo",
+          "unit": "kVar",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "write": {
+              "fc": 16,
+              "address": 716,
               "length": 2,
               "dataType": "float32"
             },
