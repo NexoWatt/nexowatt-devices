@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.74",
+    "version": "0.5.75",
     "news": {
       "0.5.73": {
         "en": "Admin UI: serial port selection is now a real dropdown (like ioBroker modbus adapter). Discovered ports are selectable, include /dev/serial/by-id, support hotplug refresh, and provide a manual entry option.",
@@ -254,6 +254,10 @@
       "0.5.74": {
         "en": "FENECON home.ess: added missing charge power datapoint, completed read/write registers (ess0 block) and improved SoC alias fallback.",
         "de": "FENECON home.ess: fehlenden Ladeleistungs-Datenpunkt ergänzt, Lese/Schreib-Register (ess0) vervollständigt und SoC-Alias robuster gemacht."
+      },
+      "0.5.75": {
+        "en": "FENECON Home ESS: fix Battery Charge Power register mapping (FC04/411), improve ESS aliases to prefer charge/discharge power for net power (r.power / r.powerCharge / r.powerDischarge), and add NaN/sentinel-to-null handling for enum/status datapoints.",
+        "de": "FENECON Home ESS: Batterieladeleistung (AC) korrekt auf FC04/411 gemappt, ESS-Aliase verbessern (netto Leistung bevorzugt aus Charge/Discharge-Power → r.power / r.powerCharge / r.powerDischarge), sowie NaN/Sentinel→null Handling für Enum/Status-Datenpunkte."
       }
     },
     "title": "NexoWatt Devices",

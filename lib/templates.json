@@ -30053,7 +30053,8 @@
               "fc": 4,
               "address": 303,
               "length": 2,
-              "dataType": "float32"
+              "dataType": "float32",
+              "nanToNull": true
             },
             "scaleFactor": -3
           }
@@ -30070,12 +30071,13 @@
             "kind": "modbus",
             "read": {
               "fc": 4,
-              "address": 303,
+              "address": 411,
               "length": 2,
-              "dataType": "float32"
+              "dataType": "float32",
+              "keepPositive": true,
+              "nanToNull": true
             },
-            "scaleFactor": -3,
-            "keepNegativeAndInvert": true
+            "scaleFactor": -3
           }
         },
         {
@@ -30472,7 +30474,8 @@
               "fc": 4,
               "address": 415,
               "length": 2,
-              "dataType": "float32"
+              "dataType": "float32",
+              "nanToNull": true
             },
             "scaleFactor": -3
           }
@@ -30489,7 +30492,8 @@
               "fc": 4,
               "address": 417,
               "length": 1,
-              "dataType": "int16"
+              "dataType": "uint16",
+              "nanToNull": true
             }
           }
         },
@@ -30521,7 +30525,8 @@
               "fc": 3,
               "address": 522,
               "length": 1,
-              "dataType": "int16"
+              "dataType": "uint16",
+              "nanToNull": true
             }
           }
         },
@@ -30537,7 +30542,8 @@
               "fc": 3,
               "address": 603,
               "length": 1,
-              "dataType": "int16"
+              "dataType": "uint16",
+              "nanToNull": true
             }
           }
         },
@@ -30555,7 +30561,8 @@
               "fc": 3,
               "address": 604,
               "length": 2,
-              "dataType": "float32"
+              "dataType": "float32",
+              "nanToNull": true
             },
             "scaleFactor": -3
           }
@@ -30574,7 +30581,8 @@
               "fc": 3,
               "address": 608,
               "length": 2,
-              "dataType": "float32"
+              "dataType": "float32",
+              "nanToNull": true
             }
           }
         },
@@ -30592,7 +30600,8 @@
               "fc": 3,
               "address": 610,
               "length": 2,
-              "dataType": "float32"
+              "dataType": "float32",
+              "nanToNull": true
             }
           }
         },
@@ -30610,7 +30619,8 @@
               "fc": 3,
               "address": 612,
               "length": 2,
-              "dataType": "float32"
+              "dataType": "float32",
+              "nanToNull": true
             }
           }
         },
@@ -30628,7 +30638,8 @@
               "fc": 3,
               "address": 614,
               "length": 2,
-              "dataType": "float32"
+              "dataType": "float32",
+              "nanToNull": true
             }
           }
         },
@@ -30646,7 +30657,8 @@
               "fc": 3,
               "address": 616,
               "length": 2,
-              "dataType": "float32"
+              "dataType": "float32",
+              "nanToNull": true
             },
             "scaleFactor": -3
           }
