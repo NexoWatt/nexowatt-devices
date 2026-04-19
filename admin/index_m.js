@@ -18,6 +18,142 @@ let uiInitialized = false;
 let lastSuggestedId = '';
 let lastSuggestedName = '';
 
+// Serial port discovery (Admin UI)
+let serialPortsCache = [];
+let serialPortsLastFetchMs = 0;
+let serialPortsTimer = null;
+let serialPortsFetchInFlight = false;
+
+function normalizeSerialPortsResponse(res) {
+  // Accept both: ["/dev/ttyUSB0", ...] and [{value:"/dev/ttyUSB0"}, ...]
+  const out = [];
+  if (Array.isArray(res)) {
+    for (const x of res) {
+      if (!x) continue;
+      if (typeof x === 'string') out.push(x);
+      else if (typeof x === 'object') {
+        const v = (x.value || x.path || x.comName || '').toString();
+        if (v) out.push(v);
+      }
+    }
+  }
+  // Deduplicate
+  return Array.from(new Set(out.filter(Boolean)));
+}
+
+function setSerialPortsDatalist(paths) {
+  const dl = document.getElementById('serialPortsList');
+  if (!dl) return;
+
+  // Keep current value(s)
+  const curMb = ($('#mb_path').val() || '').trim();
+  const curMbus = ($('#mbus_path').val() || '').trim();
+
+  while (dl.firstChild) dl.removeChild(dl.firstChild);
+
+  // Always include current values so they remain selectable
+  const all = new Set(paths || []);
+  if (curMb) all.add(curMb);
+  if (curMbus) all.add(curMbus);
+
+  // Add common fallbacks
+  ['/dev/ttyUSB0', '/dev/ttyUSB1', '/dev/ttyACM0', '/dev/ttyAMA0', '/dev/ttyAMA10', '/dev/com2', 'COM3', 'COM4'].forEach(p => all.add(p));
+
+  const arr = Array.from(all).filter(Boolean);
+  // Prefer /dev/serial/by-id first
+  arr.sort((a, b) => {
+    const ka = a.startsWith('/dev/serial/by-id/') ? '0_' + a : a.startsWith('/dev/tty') ? '1_' + a : a.startsWith('/dev/com') ? '2_' + a : '9_' + a;
+    const kb = b.startsWith('/dev/serial/by-id/') ? '0_' + b : b.startsWith('/dev/tty') ? '1_' + b : b.startsWith('/dev/com') ? '2_' + b : '9_' + b;
+    return ka.localeCompare(kb);
+  });
+
+  for (const p of arr) {
+    const opt = document.createElement('option');
+    opt.value = p;
+    dl.appendChild(opt);
+  }
+}
+
+function updateSerialPortsStatus(count, ok) {
+  const txt = (typeof count === 'number' && count >= 0)
+    ? `(${count} Ports gefunden)`
+    : (ok ? '(Ports geladen)' : '(Ports nicht verfügbar)');
+
+  $('.serialPortsStatus').text(' ' + txt);
+}
+
+function refreshSerialPorts(force) {
+  const now = Date.now();
+  if (!force && (now - serialPortsLastFetchMs) < 2500) {
+    // Just re-apply cached list
+    setSerialPortsDatalist(serialPortsCache);
+    updateSerialPortsStatus(serialPortsCache.length, true);
+    return;
+  }
+  if (serialPortsFetchInFlight) return;
+  serialPortsFetchInFlight = true;
+
+  // If adapter instance is not running, sendTo may fail -> we keep fallback list.
+  try {
+    if (typeof sendTo !== 'function') {
+      serialPortsFetchInFlight = false;
+      setSerialPortsDatalist(serialPortsCache);
+      updateSerialPortsStatus(null, false);
+      return;
+    }
+
+    sendTo(null, 'listSerialPorts', {}, (res) => {
+      serialPortsFetchInFlight = false;
+      const ports = normalizeSerialPortsResponse(res);
+      serialPortsCache = ports;
+      serialPortsLastFetchMs = Date.now();
+
+      setSerialPortsDatalist(ports);
+      updateSerialPortsStatus(ports.length, true);
+
+      // Auto-select a sensible default for new devices (only if user didn't set anything)
+      const cur = ($('#mb_path').val() || '').trim();
+      if (editIndex < 0 && (!cur || cur === '/dev/com2')) {
+        const preferred = ports.find(p => p.startsWith('/dev/serial/by-id/'))
+          || ports.find(p => p === '/dev/ttyUSB0')
+          || ports.find(p => p.startsWith('/dev/ttyUSB'))
+          || ports.find(p => p.startsWith('/dev/'))
+          || ports[0];
+        if (preferred) $('#mb_path').val(preferred);
+      }
+
+      const curMbus = ($('#mbus_path').val() || '').trim();
+      if (editIndex < 0 && !curMbus) {
+        const preferredMbus = ports.find(p => p.startsWith('/dev/serial/by-id/'))
+          || ports.find(p => p === '/dev/ttyUSB0')
+          || ports.find(p => p.startsWith('/dev/ttyUSB'))
+          || ports.find(p => p.startsWith('/dev/'))
+          || ports[0];
+        if (preferredMbus) $('#mbus_path').val(preferredMbus);
+      }
+
+      updateTextFields();
+    });
+  } catch (e) {
+    serialPortsFetchInFlight = false;
+    setSerialPortsDatalist(serialPortsCache);
+    updateSerialPortsStatus(null, false);
+  }
+}
+
+function startSerialPortsAutoRefresh() {
+  stopSerialPortsAutoRefresh();
+  // Pull-based hotplug detection: refresh list regularly while modal is open.
+  serialPortsTimer = setInterval(() => refreshSerialPorts(false), 5000);
+}
+
+function stopSerialPortsAutoRefresh() {
+  if (serialPortsTimer) {
+    clearInterval(serialPortsTimer);
+    serialPortsTimer = null;
+  }
+}
+
 function categoryLabel(cat) {
   const c = (cat || '').toString();
   switch (c) {
@@ -169,6 +305,7 @@ function openModal() {
     try {
       const inst = M.Modal.getInstance(el) || M.Modal.init(el, { dismissible: false });
       inst.open();
+      startSerialPortsAutoRefresh();
       return;
     } catch (e) {
       console.warn('Materialize modal open failed, falling back:', e);
@@ -178,6 +315,7 @@ function openModal() {
   // fallback
   $('#modalDevice').addClass('nexo-fallback nexo-open');
   $('#nexoBackdrop').addClass('nexo-open').show();
+  startSerialPortsAutoRefresh();
 }
 
 function closeModal() {
@@ -186,6 +324,7 @@ function closeModal() {
     try {
       const inst = M.Modal.getInstance(el);
       if (inst) inst.close();
+      stopSerialPortsAutoRefresh();
       return;
     } catch (e) {
       // ignore and fall back
@@ -193,6 +332,7 @@ function closeModal() {
   }
   $('#modalDevice').removeClass('nexo-open');
   $('#nexoBackdrop').removeClass('nexo-open').hide();
+  stopSerialPortsAutoRefresh();
 }
 
 function loadTemplates() {
@@ -376,6 +516,11 @@ function showConnBlock(protocol) {
   if (protocol === 'http') $('#conn_http').show();
   if (protocol === 'udp') $('#conn_udp').show();
   if (protocol === 'speedwire') $('#conn_speedwire').show();
+
+  // Refresh serial ports list whenever a serial-based protocol is selected.
+  if (protocol === 'modbusRtu' || protocol === 'modbusAscii' || protocol === 'kostalRs485' || protocol === 'mbus') {
+    refreshSerialPorts(false);
+  }
 }
 
 function summarizeDatapoint(dp) {
@@ -533,8 +678,8 @@ function openDeviceModal(device, idx) {
   refreshSelect($('#mb_byteOrder'));
 
   // RTU
-  // Default for ED-IPC3020 RS485: /dev/com2
-  $('#mb_path').val(c.path || '/dev/com2');
+  // Leave empty for new devices; we auto-suggest a real detected port via refreshSerialPorts().
+  $('#mb_path').val(c.path || '');
   $('#mb_baud').val(c.baudRate ?? 9600);
   $('#mb_parity').val(c.parity || 'none');
   $('#mb_databits').val(c.dataBits ?? 8);
@@ -610,6 +755,9 @@ function openDeviceModal(device, idx) {
   // Default increased to 30000ms to reduce false positives on networks where multicast
   // forwarding can be bursty (IGMP snooping/querier, WiFi multicast filtering, VMs).
   $('#sw_stale').val(c.staleTimeoutMs ?? 30000);
+
+  // Populate serial port datalist from the host (supports hotplug).
+  refreshSerialPorts(true);
 
   updateTextFields();
   openModal();
@@ -771,6 +919,9 @@ function updateJsonPreview() {
 }
 
 function initEventHandlers() {
+  // Serial port refresh (hotplug)
+  $(document).on('click', '.btnRefreshSerialPorts', () => refreshSerialPorts(true));
+
   // JSON preview toggle
   $('#btnShowJson').on('click', () => {
     const shown = $('#jsonPreview').is(':visible');

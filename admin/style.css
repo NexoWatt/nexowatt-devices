@@ -60,6 +60,30 @@ a:hover {
   color: var(--nexo-text) !important;
 }
 
+/* Serial port helper row */
+.nexo-port-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: -6px;
+  font-size: 12px;
+  color: var(--nexo-text-dim);
+}
+
+.nexo-port-tools a {
+  color: var(--nexo-accent);
+  text-decoration: none;
+}
+
+.nexo-port-tools a:hover {
+  color: var(--nexo-accent-hover);
+  text-decoration: underline;
+}
+
+.nexo-port-tools .serialPortsStatus {
+  color: var(--nexo-text-dim);
+}
+
 /* Materialize helper classes (grey-text, etc.) */
 .grey-text,
 .grey-text.text-darken-1,

@@ -6,6 +6,94 @@ const utils = require('@iobroker/adapter-core');
 
 const { DeviceRuntime } = require('./lib/deviceRuntime');
 
+async function listSerialPortsForAdmin(adapter) {
+  // Returns a stable list of serial port paths that can be shown in Admin UI.
+  // We combine SerialPort.list() with a /dev scan and /dev/serial/by-id symlinks
+  // to support different environments (Docker/LXC, embedded ED-IPC paths, etc.).
+  const pathsSet = new Set();
+  const details = new Map();
+
+  // 1) serialport (best effort)
+  try {
+    // serialport v12
+    const sp = require('serialport');
+    const SerialPort = sp.SerialPort || sp;
+    if (SerialPort && typeof SerialPort.list === 'function') {
+      const list = await SerialPort.list();
+      if (Array.isArray(list)) {
+        for (const p of list) {
+          if (!p) continue;
+          const pth = (p.path || p.comName || '').toString();
+          if (!pth) continue;
+          pathsSet.add(pth);
+          const labelParts = [
+            p.manufacturer,
+            p.friendlyName,
+            (p.vendorId && p.productId) ? `${p.vendorId}:${p.productId}` : null,
+          ]
+            .filter(Boolean)
+            .map(x => String(x).trim())
+            .filter(Boolean);
+          if (labelParts.length) details.set(pth, labelParts.join(' / '));
+        }
+      }
+    }
+  } catch (e) {
+    adapter && adapter.log && adapter.log.debug && adapter.log.debug(`SerialPort.list() failed: ${e && e.message ? e.message : e}`);
+  }
+
+  // 2) /dev/serial/by-id (stable names)
+  try {
+    const byIdDir = '/dev/serial/by-id';
+    if (fs.existsSync(byIdDir)) {
+      const entries = fs.readdirSync(byIdDir);
+      for (const name of entries) {
+        const full = path.join(byIdDir, name);
+        pathsSet.add(full);
+        if (!details.has(full)) details.set(full, name);
+      }
+    }
+  } catch (e) {
+    // ignore
+  }
+
+  // 3) /dev scan (covers ED-IPC /dev/comX, ttyAMA10, etc.)
+  try {
+    if (process.platform !== 'win32' && fs.existsSync('/dev')) {
+      const entries = fs.readdirSync('/dev');
+      const re = /^(ttyUSB|ttyACM|ttyAMA|ttyS|rfcomm|com)\d+$/;
+      for (const name of entries) {
+        if (!re.test(name)) continue;
+        pathsSet.add('/dev/' + name);
+      }
+    }
+  } catch (e) {
+    // ignore
+  }
+
+  // 4) Windows COM ports (fallback)
+  if (process.platform === 'win32') {
+    for (let i = 1; i <= 32; i++) pathsSet.add('COM' + i);
+  }
+
+  // Ensure some common fallbacks are always present
+  ['/dev/ttyUSB0', '/dev/ttyUSB1', '/dev/ttyACM0', '/dev/ttyAMA0', '/dev/ttyAMA10', '/dev/com2'].forEach(p => pathsSet.add(p));
+
+  // Sort: prefer stable by-id paths first, then tty*, then others
+  const sortKey = (p) => {
+    const s = String(p);
+    if (s.startsWith('/dev/serial/by-id/')) return '0_' + s;
+    if (s.startsWith('/dev/tty')) return '1_' + s;
+    if (s.startsWith('/dev/com')) return '2_' + s;
+    return '9_' + s;
+  };
+
+  const arr = Array.from(pathsSet).filter(Boolean);
+  arr.sort((a, b) => sortKey(a).localeCompare(sortKey(b)));
+
+  return arr.map((p) => ({ value: p, label: p, description: details.get(p) || '' }));
+}
+
 function readTemplates(adapter) {
   try {
     const p = path.join(__dirname, 'lib', 'templates.json');
@@ -313,6 +401,11 @@ class NexowattDevicesAdapter extends utils.Adapter {
           'modbusTcp', 'modbusRtu', 'modbusAscii', 'mqtt', 'http', 'udp', 'speedwire', 'mbus', 'onewire', 'canbus'
         ];
         const res = Array.from(new Set(protos.map(p => String(p)))).map(p => ({ value: p, label: this._protocolLabel(p) }));
+        return this.sendTo(obj.from, obj.command, res, obj.callback);
+      }
+
+      if (cmd === 'listSerialPorts') {
+        const res = await listSerialPortsForAdmin(this);
         return this.sendTo(obj.from, obj.command, res, obj.callback);
       }
 
