@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.72",
+    "version": "0.5.73",
     "news": {
+      "0.5.73": {
+        "en": "Admin UI: serial port selection is now a real dropdown (like ioBroker modbus adapter). Discovered ports are selectable, include /dev/serial/by-id, support hotplug refresh, and provide a manual entry option.",
+        "de": "Admin UI: Serielle Ports sind jetzt als echtes Dropdown auswählbar (wie beim ioBroker Modbus-Adapter). Gefundene Ports inkl. /dev/serial/by-id sind auswählbar, Hotplug-Refresh bleibt aktiv und es gibt eine manuelle Eingabeoption."
+      },
       "0.5.72": {
         "en": "Admin UI: dynamic serial port discovery (USB-RS485 dongles). Serial port datalist is now populated from the host via messagebox, includes /dev/serial/by-id paths, and supports hotplug via periodic refresh while the device dialog is open.",
         "de": "Admin UI: Dynamische Erkennung von seriellen Ports (USB-RS485 Dongles). Die Port-Liste wird jetzt vom Host abgefragt (inkl. /dev/serial/by-id) und unterstützt Hotplug durch periodisches Aktualisieren solange der Gerätedialog offen ist."

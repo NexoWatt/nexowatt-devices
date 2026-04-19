@@ -42,14 +42,11 @@ function normalizeSerialPortsResponse(res) {
 }
 
 function setSerialPortsDatalist(paths) {
-  const dl = document.getElementById('serialPortsList');
-  if (!dl) return;
+  // NOTE: historic name kept. We now populate real <select> dropdowns (like ioBroker modbus adapter),
+  // not a HTML5 datalist, because users expect a selectable list.
 
-  // Keep current value(s)
   const curMb = ($('#mb_path').val() || '').trim();
   const curMbus = ($('#mbus_path').val() || '').trim();
-
-  while (dl.firstChild) dl.removeChild(dl.firstChild);
 
   // Always include current values so they remain selectable
   const all = new Set(paths || []);
@@ -57,7 +54,7 @@ function setSerialPortsDatalist(paths) {
   if (curMbus) all.add(curMbus);
 
   // Add common fallbacks
-  ['/dev/ttyUSB0', '/dev/ttyUSB1', '/dev/ttyACM0', '/dev/ttyAMA0', '/dev/ttyAMA10', '/dev/com2', 'COM3', 'COM4'].forEach(p => all.add(p));
+  ['/dev/serial/by-id/', '/dev/ttyUSB0', '/dev/ttyUSB1', '/dev/ttyACM0', '/dev/ttyAMA0', '/dev/ttyAMA10', '/dev/com2', 'COM3', 'COM4'].forEach(p => all.add(p));
 
   const arr = Array.from(all).filter(Boolean);
   // Prefer /dev/serial/by-id first
@@ -67,11 +64,47 @@ function setSerialPortsDatalist(paths) {
     return ka.localeCompare(kb);
   });
 
-  for (const p of arr) {
-    const opt = document.createElement('option');
-    opt.value = p;
-    dl.appendChild(opt);
+  function fillSelect(id, current) {
+    const sel = document.getElementById(id);
+    if (!sel) return;
+    const prev = (current || '').trim() || (sel.value || '').trim();
+    // Clear options
+    while (sel.firstChild) sel.removeChild(sel.firstChild);
+
+    for (const p of arr) {
+      // Skip the placeholder marker "/dev/serial/by-id/" we added above
+      if (p === '/dev/serial/by-id/') continue;
+      const opt = document.createElement('option');
+      opt.value = p;
+      opt.textContent = p;
+      sel.appendChild(opt);
+    }
+
+    // Manual entry option
+    const manual = document.createElement('option');
+    manual.value = '__manual__';
+    manual.textContent = 'Manuell eingeben…';
+    sel.appendChild(manual);
+
+    // Restore selection
+    if (prev) {
+      // If prev is not in list (e.g. custom), add it and select it
+      if (![...sel.options].some(o => o.value === prev)) {
+        const opt = document.createElement('option');
+        opt.value = prev;
+        opt.textContent = prev;
+        sel.insertBefore(opt, sel.firstChild);
+      }
+      sel.value = prev;
+    } else {
+      // Select first real port if available
+      const first = [...sel.options].find(o => o.value && o.value !== '__manual__');
+      if (first) sel.value = first.value;
+    }
   }
+
+  fillSelect('mb_path', curMb);
+  fillSelect('mbus_path', curMbus);
 }
 
 function updateSerialPortsStatus(count, ok) {
@@ -921,6 +954,40 @@ function updateJsonPreview() {
 function initEventHandlers() {
   // Serial port refresh (hotplug)
   $(document).on('click', '.btnRefreshSerialPorts', () => refreshSerialPorts(true));
+
+  // Remember previous selection (for cancel on manual entry)
+  $(document).on('focus', '#mb_path, #mbus_path', function () {
+    try { this.dataset.prev = this.value; } catch (e) { /* ignore */ }
+  });
+
+  // Manual entry option for serial ports
+  $(document).on('change', '#mb_path, #mbus_path', function () {
+    if (this.value !== '__manual__') return;
+    const prev = (this.dataset && this.dataset.prev) ? this.dataset.prev : '';
+    const hint = (this.id === 'mbus_path')
+      ? 'Serial Port Pfad für M-Bus (z.B. /dev/ttyUSB0 oder /dev/serial/by-id/...)'
+      : 'Serial Port Pfad für Modbus/RS485 (z.B. /dev/ttyUSB0 oder /dev/com2 oder /dev/serial/by-id/...)';
+
+    const entered = (window.prompt(hint, prev && prev !== '__manual__' ? prev : '') || '').trim();
+    if (!entered) {
+      // Cancel -> restore previous
+      this.value = prev && prev !== '__manual__' ? prev : (this.options[0] ? this.options[0].value : '');
+      return;
+    }
+
+    // Add as option if not present
+    const exists = [...this.options].some(o => o.value === entered);
+    if (!exists) {
+      const opt = document.createElement('option');
+      opt.value = entered;
+      opt.textContent = entered;
+      // Insert before manual option
+      const manualOpt = [...this.options].find(o => o.value === '__manual__');
+      if (manualOpt) this.insertBefore(opt, manualOpt);
+      else this.appendChild(opt);
+    }
+    this.value = entered;
+  });
 
   // JSON preview toggle
   $('#btnShowJson').on('click', () => {
