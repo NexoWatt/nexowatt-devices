@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.75",
+    "version": "0.5.76",
     "news": {
+      "0.5.76": {
+        "en": "Hotfix: restore stable alias computation (fix ReferenceError in battery power alias) to prevent devices like SolaX ESS from breaking after update.",
+        "de": "Hotfix: stabile Alias-Berechnung wiederhergestellt (ReferenceError im Battery-Power-Alias behoben), damit Geräte wie SolaX ESS nach Updates nicht ausfallen."
+      },
       "0.5.73": {
         "en": "Admin UI: serial port selection is now a real dropdown (like ioBroker modbus adapter). Discovered ports are selectable, include /dev/serial/by-id, support hotplug refresh, and provide a manual entry option.",
         "de": "Admin UI: Serielle Ports sind jetzt als echtes Dropdown auswählbar (wie beim ioBroker Modbus-Adapter). Gefundene Ports inkl. /dev/serial/by-id sind auswählbar, Hotplug-Refresh bleibt aktiv und es gibt eine manuelle Eingabeoption."
