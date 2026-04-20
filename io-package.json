@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.76",
+    "version": "0.5.77",
     "news": {
       "0.5.76": {
         "en": "Hotfix: restore stable alias computation (fix ReferenceError in battery power alias) to prevent devices like SolaX ESS from breaking after update.",
@@ -262,6 +262,10 @@
       "0.5.75": {
         "en": "FENECON Home ESS: fix Battery Charge Power register mapping (FC04/411), improve ESS aliases to prefer charge/discharge power for net power (r.power / r.powerCharge / r.powerDischarge), and add NaN/sentinel-to-null handling for enum/status datapoints.",
         "de": "FENECON Home ESS: Batterieladeleistung (AC) korrekt auf FC04/411 gemappt, ESS-Aliase verbessern (netto Leistung bevorzugt aus Charge/Discharge-Power → r.power / r.powerCharge / r.powerDischarge), sowie NaN/Sentinel→null Handling für Enum/Status-Datenpunkte."
+      },
+      "0.5.77": {
+        "en": "Hotfix: Fix alias definition build for ESS/Battery devices (undefined findById). This restores working control aliases (e.g. SolaX power setpoint) and prevents templates from losing alias linkage after updates.",
+        "de": "Hotfix: Alias-Definitionen für ESS/Batterie-Geräte repariert (undefiniertes findById). Dadurch funktionieren Control-Aliase (z.B. SolaX Leistungs-Sollwert) wieder und Templates verlieren nach Updates nicht mehr die Alias-Verknüpfung."
       }
     },
     "title": "NexoWatt Devices",
