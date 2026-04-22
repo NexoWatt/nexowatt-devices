@@ -117,6 +117,58 @@ function safeJsonParse(str, fallback) {
   }
 }
 
+function isSerialLikeProtocol(protocol) {
+  return ['modbusRtu', 'modbusAscii', 'kostalRs485', 'mbus'].includes((protocol || '').toString());
+}
+
+function normalizeSerialConnection(device) {
+  const d = device || {};
+  const c = d.connection || {};
+  const proto = (d.protocol || '').toString();
+  return {
+    protocol: proto,
+    path: (c.path || '').toString().trim(),
+    baudRate: Number(c.baudRate || (proto === 'kostalRs485' ? 19200 : (proto === 'mbus' ? 2400 : 9600))),
+    parity: (c.parity || (proto === 'mbus' ? 'even' : 'none')).toString(),
+    dataBits: Number(c.dataBits || 8),
+    stopBits: Number(c.stopBits || 1),
+  };
+}
+
+function findSerialPortConflicts(devices) {
+  const out = [];
+  const list = Array.isArray(devices) ? devices : [];
+  for (let i = 0; i < list.length; i++) {
+    const a = list[i];
+    if (!a || a.enabled === false || !isSerialLikeProtocol(a.protocol)) continue;
+    const ca = normalizeSerialConnection(a);
+    if (!ca.path) continue;
+
+    for (let j = i + 1; j < list.length; j++) {
+      const b = list[j];
+      if (!b || b.enabled === false || !isSerialLikeProtocol(b.protocol)) continue;
+      const cb = normalizeSerialConnection(b);
+      if (!cb.path || cb.path !== ca.path) continue;
+
+      const sameProtocol = ca.protocol === cb.protocol;
+      const sameSerialSettings =
+        ca.baudRate === cb.baudRate &&
+        ca.parity === cb.parity &&
+        ca.dataBits === cb.dataBits &&
+        ca.stopBits === cb.stopBits;
+
+      if (!(sameProtocol && sameSerialSettings)) {
+        out.push({
+          path: ca.path,
+          a: { id: a.id || '', ...ca },
+          b: { id: b.id || '', ...cb },
+        });
+      }
+    }
+  }
+  return out;
+}
+
 
 async function autoFixAdminUI(adapter) {
   // Some environments contain legacy adapter objects with common.adminUI stored as a STRING (e.g. "materialize").
@@ -238,6 +290,17 @@ class NexowattDevicesAdapter extends utils.Adapter {
       return;
     }
 
+    // Helpful startup diagnostics for serial bus collisions.
+    // Opening the same physical serial path with different protocols or line settings will usually fail
+    // with errors like "Cannot lock port". We only share ports when protocol + baud/parity/databits/stopbits match.
+    for (const c of findSerialPortConflicts(devices)) {
+      this.log.warn(
+        `Serial port conflict on ${c.path}: ${c.a.id} (${c.a.protocol} @${c.a.baudRate} ${c.a.parity} ${c.a.dataBits}${c.a.stopBits}) ` +
+        `and ${c.b.id} (${c.b.protocol} @${c.b.baudRate} ${c.b.parity} ${c.b.dataBits}${c.b.stopBits}) use the same port with incompatible settings. ` +
+        `This will likely cause "Cannot lock port" or timeouts.`
+      );
+    }
+
     // create runtimes
     for (const d of devices) {
       try {
@@ -272,7 +335,9 @@ class NexowattDevicesAdapter extends utils.Adapter {
   }
 
   async onStateChange(id, state) {
-    if (!id || !state) return;
+    // Ignore acked states here. Otherwise every internal setState() from the poll loop
+    // re-enters the dispatcher and creates avoidable event churn / RAM pressure.
+    if (!id || !state || state.ack) return;
 
     // dispatch to runtime by prefix match
     for (const rt of this.deviceRuntimes) {

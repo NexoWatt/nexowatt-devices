@@ -30069,10 +30069,11 @@
           "source": {
             "kind": "modbus",
             "read": {
-              "fc": 4,
-              "address": 303,
+              "fc": 3,
+              "address": 604,
               "length": 2,
-              "dataType": "float32"
+              "dataType": "float32",
+              "nanToNull": true
             },
             "scaleFactor": -3,
             "keepNegativeAndInvert": true
@@ -30469,11 +30470,13 @@
           "source": {
             "kind": "modbus",
             "read": {
-              "fc": 4,
-              "address": 415,
+              "fc": 3,
+              "address": 604,
               "length": 2,
-              "dataType": "float32"
+              "dataType": "float32",
+              "nanToNull": true
             },
+            "keepPositive": true,
             "scaleFactor": -3
           }
         },

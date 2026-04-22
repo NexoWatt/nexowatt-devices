@@ -1,8 +1,16 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.77",
+    "version": "0.5.79",
     "news": {
+      "0.5.79": {
+        "en": "Admin UI: keep explicit /dev/com2 serial selections stable (do not auto-switch to a hot-plugged USB dongle). Add serial port conflict diagnostics and validation so incompatible reuse of the same /dev path is flagged before it causes \"Cannot lock port\" or timeouts.",
+        "de": "Admin UI: explizite /dev/com2-Auswahl bleibt stabil (kein automatisches Umschalten auf einen eingesteckten USB-Dongle). Zusätzlich werden Konflikte bei seriellen Ports erkannt und validiert, damit inkompatible Mehrfachnutzung derselben /dev-Pfad-Auswahl vor \"Cannot lock port\" oder Timeouts auffällt."
+      },
+      "0.5.78": {
+        "en": "FENECON home.ess: fix charge/discharge power alias source and sign handling (prefer ess0 ActivePower). Runtime stability: ignore internal ack=true state changes and avoid redundant setState writes to reduce event storms and RAM growth.",
+        "de": "FENECON home.ess: Quelle und Vorzeichen für Lade-/Entladeleistung korrigiert (bevorzugt ess0 ActivePower). Laufzeit-Stabilität: interne ack=true State-Änderungen ignorieren und redundante setState-Schreibvorgänge vermeiden, um Event-Stürme und RAM-Anstieg zu reduzieren."
+      },
       "0.5.76": {
         "en": "Hotfix: restore stable alias computation (fix ReferenceError in battery power alias) to prevent devices like SolaX ESS from breaking after update.",
         "de": "Hotfix: stabile Alias-Berechnung wiederhergestellt (ReferenceError im Battery-Power-Alias behoben), damit Geräte wie SolaX ESS nach Updates nicht ausfallen."

@@ -144,9 +144,12 @@ function refreshSerialPorts(force) {
       setSerialPortsDatalist(ports);
       updateSerialPortsStatus(ports.length, true);
 
-      // Auto-select a sensible default for new devices (only if user didn't set anything)
+      // Auto-select a sensible default for new devices only when the field is truly empty.
+      // Important: do NOT override '/dev/com2' here - on ED-IPC / embedded hosts this is often
+      // the intended internal RS485 port and users reported that hot-plugging an USB dongle could
+      // otherwise silently switch the selection away from the internal bus.
       const cur = ($('#mb_path').val() || '').trim();
-      if (editIndex < 0 && (!cur || cur === '/dev/com2')) {
+      if (editIndex < 0 && !cur) {
         const preferred = ports.find(p => p.startsWith('/dev/serial/by-id/'))
           || ports.find(p => p === '/dev/ttyUSB0')
           || ports.find(p => p.startsWith('/dev/ttyUSB'))
@@ -185,6 +188,65 @@ function stopSerialPortsAutoRefresh() {
     clearInterval(serialPortsTimer);
     serialPortsTimer = null;
   }
+}
+
+function isSerialLikeProtocol(protocol) {
+  return ['modbusRtu', 'modbusAscii', 'kostalRs485', 'mbus'].includes((protocol || '').toString());
+}
+
+function normalizeSerialPath(v) {
+  return (v || '').toString().trim();
+}
+
+function normalizeSerialConnection(conn, protocol) {
+  const c = conn || {};
+  const proto = (protocol || '').toString();
+  return {
+    path: normalizeSerialPath(c.path),
+    baudRate: Number(c.baudRate || (proto === 'kostalRs485' ? 19200 : (proto === 'mbus' ? 2400 : 9600))),
+    parity: (c.parity || (proto === 'mbus' ? 'even' : 'none')).toString(),
+    dataBits: Number(c.dataBits || 8),
+    stopBits: Number(c.stopBits || 1),
+  };
+}
+
+function detectSerialPortConflict(device, excludeIndex) {
+  if (!device || !isSerialLikeProtocol(device.protocol)) return null;
+
+  const own = normalizeSerialConnection(device.connection, device.protocol);
+  if (!own.path) return null;
+
+  for (let i = 0; i < (devices || []).length; i++) {
+    if (i === excludeIndex) continue;
+    const other = devices[i];
+    if (!other || !isSerialLikeProtocol(other.protocol)) continue;
+
+    const otherConn = normalizeSerialConnection(other.connection, other.protocol);
+    if (!otherConn.path) continue;
+    if (otherConn.path !== own.path) continue;
+
+    const sameProtocol = (other.protocol || '') === (device.protocol || '');
+    const sameSerialSettings =
+      otherConn.baudRate === own.baudRate &&
+      otherConn.parity === own.parity &&
+      otherConn.dataBits === own.dataBits &&
+      otherConn.stopBits === own.stopBits;
+
+    // Same physical serial port may only be shared when protocol and line settings match exactly.
+    // Otherwise the second device will usually fail with errors like "Cannot lock port".
+    if (!(sameProtocol && sameSerialSettings)) {
+      return {
+        otherId: other.id || '',
+        path: own.path,
+        otherProtocol: other.protocol || '',
+        ownProtocol: device.protocol || '',
+        otherConn,
+        ownConn,
+      };
+    }
+  }
+
+  return null;
 }
 
 function categoryLabel(cat) {
@@ -1124,6 +1186,16 @@ function initEventHandlers() {
       const existsIdx = devices.findIndex((x, i) => x.id === d.id && i !== editIndex);
       if (existsIdx >= 0) {
         throw new Error('Geräte-ID existiert bereits');
+      }
+
+      const serialConflict = detectSerialPortConflict(d, editIndex);
+      if (serialConflict) {
+        const o = serialConflict.otherConn || {};
+        throw new Error(
+          `Serieller Port bereits belegt: ${serialConflict.path} wird schon von ${serialConflict.otherId} ` +
+          `(${serialConflict.otherProtocol} @${o.baudRate} ${o.parity} ${o.dataBits}${o.stopBits}) genutzt. ` +
+          `Ein gemeinsamer Port ist nur mit identischem Protokoll und identischen seriellen Parametern möglich.`
+        );
       }
 
       if (editIndex >= 0) {
