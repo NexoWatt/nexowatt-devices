@@ -756,6 +756,10 @@
                   "label": "IO | Shelly Shelly Plus 1PM Shelly Shelly Plus 1PM (Gen2 RPC)"
                 },
                 {
+                  "value": "io.shelly.pro4pm",
+                  "label": "IO | Shelly Shelly Pro 4PM Shelly Pro 4PM (Gen2 RPC)"
+                },
+                {
                   "value": "io.siemenslogo.SiemensLogoRelayImpl",
                   "label": "IO | Siemens LOGO! SiemensLogoRelayImpl Siemens LOGO! SiemensLogoRelayImpl"
                 },

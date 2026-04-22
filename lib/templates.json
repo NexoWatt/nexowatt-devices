@@ -57891,6 +57891,590 @@
       ]
     },
     {
+      "id": "io.shelly.pro4pm",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "IO",
+      "manufacturer": "Shelly",
+      "model": "Shelly Pro 4PM",
+      "name": "Shelly Pro 4PM (Gen2 RPC)",
+      "protocols": [
+        "http"
+      ],
+      "datapoints": [
+        {
+          "id": "Input0",
+          "name": "Input 0",
+          "role": "sensor",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "input:0.state"
+          }
+        },
+        {
+          "id": "Input1",
+          "name": "Input 1",
+          "role": "sensor",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "input:1.state"
+          }
+        },
+        {
+          "id": "Input2",
+          "name": "Input 2",
+          "role": "sensor",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "input:2.state"
+          }
+        },
+        {
+          "id": "Input3",
+          "name": "Input 3",
+          "role": "sensor",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "input:3.state"
+          }
+        },
+        {
+          "id": "Output0",
+          "name": "Output 0",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:0.output",
+            "writeMethod": "GET",
+            "writePath": "/rpc/Switch.Set?id=0&on={value}"
+          }
+        },
+        {
+          "id": "ActivePower0",
+          "name": "Active Power 0",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:0.apower"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "Voltage0",
+          "name": "Voltage 0",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:0.voltage"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "Current0",
+          "name": "Current 0",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:0.current"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "PowerFactor0",
+          "name": "Power Factor 0",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:0.pf"
+          }
+        },
+        {
+          "id": "Frequency0",
+          "name": "Frequency 0",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:0.freq"
+          },
+          "unit": "Hz"
+        },
+        {
+          "id": "Energy0",
+          "name": "Energy 0",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:0.aenergy.total"
+          },
+          "unit": "Wh"
+        },
+        {
+          "id": "ReturnedEnergy0",
+          "name": "Returned Energy 0",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:0.ret_aenergy.total"
+          },
+          "unit": "Wh"
+        },
+        {
+          "id": "Temperature0",
+          "name": "Temperature 0",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:0.temperature.tC"
+          },
+          "unit": "°C"
+        },
+        {
+          "id": "Output1",
+          "name": "Output 1",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:1.output",
+            "writeMethod": "GET",
+            "writePath": "/rpc/Switch.Set?id=1&on={value}"
+          }
+        },
+        {
+          "id": "ActivePower1",
+          "name": "Active Power 1",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:1.apower"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "Voltage1",
+          "name": "Voltage 1",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:1.voltage"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "Current1",
+          "name": "Current 1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:1.current"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "PowerFactor1",
+          "name": "Power Factor 1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:1.pf"
+          }
+        },
+        {
+          "id": "Frequency1",
+          "name": "Frequency 1",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:1.freq"
+          },
+          "unit": "Hz"
+        },
+        {
+          "id": "Energy1",
+          "name": "Energy 1",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:1.aenergy.total"
+          },
+          "unit": "Wh"
+        },
+        {
+          "id": "ReturnedEnergy1",
+          "name": "Returned Energy 1",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:1.ret_aenergy.total"
+          },
+          "unit": "Wh"
+        },
+        {
+          "id": "Temperature1",
+          "name": "Temperature 1",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:1.temperature.tC"
+          },
+          "unit": "°C"
+        },
+        {
+          "id": "Output2",
+          "name": "Output 2",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:2.output",
+            "writeMethod": "GET",
+            "writePath": "/rpc/Switch.Set?id=2&on={value}"
+          }
+        },
+        {
+          "id": "ActivePower2",
+          "name": "Active Power 2",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:2.apower"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "Voltage2",
+          "name": "Voltage 2",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:2.voltage"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "Current2",
+          "name": "Current 2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:2.current"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "PowerFactor2",
+          "name": "Power Factor 2",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:2.pf"
+          }
+        },
+        {
+          "id": "Frequency2",
+          "name": "Frequency 2",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:2.freq"
+          },
+          "unit": "Hz"
+        },
+        {
+          "id": "Energy2",
+          "name": "Energy 2",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:2.aenergy.total"
+          },
+          "unit": "Wh"
+        },
+        {
+          "id": "ReturnedEnergy2",
+          "name": "Returned Energy 2",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:2.ret_aenergy.total"
+          },
+          "unit": "Wh"
+        },
+        {
+          "id": "Temperature2",
+          "name": "Temperature 2",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:2.temperature.tC"
+          },
+          "unit": "°C"
+        },
+        {
+          "id": "Output3",
+          "name": "Output 3",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:3.output",
+            "writeMethod": "GET",
+            "writePath": "/rpc/Switch.Set?id=3&on={value}"
+          }
+        },
+        {
+          "id": "ActivePower3",
+          "name": "Active Power 3",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:3.apower"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "Voltage3",
+          "name": "Voltage 3",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:3.voltage"
+          },
+          "unit": "V"
+        },
+        {
+          "id": "Current3",
+          "name": "Current 3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:3.current"
+          },
+          "unit": "A"
+        },
+        {
+          "id": "PowerFactor3",
+          "name": "Power Factor 3",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:3.pf"
+          }
+        },
+        {
+          "id": "Frequency3",
+          "name": "Frequency 3",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:3.freq"
+          },
+          "unit": "Hz"
+        },
+        {
+          "id": "Energy3",
+          "name": "Energy 3",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:3.aenergy.total"
+          },
+          "unit": "Wh"
+        },
+        {
+          "id": "ReturnedEnergy3",
+          "name": "Returned Energy 3",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:3.ret_aenergy.total"
+          },
+          "unit": "Wh"
+        },
+        {
+          "id": "Temperature3",
+          "name": "Temperature 3",
+          "role": "value.temperature",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "switch:3.temperature.tC"
+          },
+          "unit": "°C"
+        },
+        {
+          "id": "uPDATE_STABLE_VERSION",
+          "name": "Update Stable Version",
+          "role": "indicator.maintenance",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "http",
+            "method": "GET",
+            "path": "/rpc/Shelly.GetStatus",
+            "jsonPath": "sys.available_updates.stable.version"
+          }
+        }
+      ]
+    },
+    {
       "id": "io.shelly.shelly1",
       "source": {
         "type": "builtin"

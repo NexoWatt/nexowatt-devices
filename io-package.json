@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.79",
+    "version": "0.5.80",
     "news": {
+      "0.5.80": {
+        "en": "Add Shelly Pro 4PM as an IO template via Shelly Gen2 RPC (4 inputs, 4 outputs, per-channel power/voltage/current/frequency/power factor/energy/temperature).",
+        "de": "Shelly Pro 4PM als IO-Template über Shelly Gen2 RPC hinzugefügt (4 Eingänge, 4 Ausgänge sowie kanalweise Leistung/Spannung/Strom/Frequenz/Leistungsfaktor/Energie/Temperatur)."
+      },
       "0.5.79": {
         "en": "Admin UI: keep explicit /dev/com2 serial selections stable (do not auto-switch to a hot-plugged USB dongle). Add serial port conflict diagnostics and validation so incompatible reuse of the same /dev path is flagged before it causes \"Cannot lock port\" or timeouts.",
         "de": "Admin UI: explizite /dev/com2-Auswahl bleibt stabil (kein automatisches Umschalten auf einen eingesteckten USB-Dongle). Zusätzlich werden Konflikte bei seriellen Ports erkannt und validiert, damit inkompatible Mehrfachnutzung derselben /dev-Pfad-Auswahl vor \"Cannot lock port\" oder Timeouts auffällt."
