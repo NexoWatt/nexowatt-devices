@@ -30041,7 +30041,7 @@
         },
         {
           "id": "bATTERY_POWER",
-          "name": "FENECON home.ess",
+          "name": "Speicherleistung inkl. DC-Überschuss (Hybrid)",
           "role": "value.power",
           "type": "number",
           "rw": "ro",
@@ -30060,8 +30060,28 @@
           }
         },
         {
+          "id": "bATTERY_AC_POWER",
+          "name": "Speicherleistung (AC-seitig, real)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 4,
+              "address": 415,
+              "length": 2,
+              "dataType": "float32",
+              "nanToNull": true
+            },
+            "scaleFactor": -3
+          }
+        },
+        {
           "id": "bATTERY_CHARGE_POWER",
-          "name": "Speicher Beladeleistung (AC)",
+          "name": "Speicher Beladeleistung (berechnet)",
           "role": "value.power",
           "type": "number",
           "rw": "ro",
@@ -30462,7 +30482,7 @@
         },
         {
           "id": "bATTERY_DISCHARGE_POWER",
-          "name": "Speicher Entladeleistung (AC)",
+          "name": "Speicher Entladeleistung (berechnet)",
           "role": "value.power",
           "type": "number",
           "rw": "ro",
@@ -30550,7 +30570,7 @@
         },
         {
           "id": "eSS0_ACTIVE_POWER",
-          "name": "Be-/Entladeleistung (ess0, umgesetzt)",
+          "name": "Be-/Entladeleistung (ess0, berechnet)",
           "role": "value.power",
           "type": "number",
           "rw": "ro",

@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.81",
+    "version": "0.5.82",
     "news": {
+      "0.5.82": {
+        "en": "FENECON home.ess: add dedicated AC-side battery power datapoint at register 415, keep hybrid/DC-inclusive battery power separate, and restore battery aliases to the real AC-side charge/discharge power.",
+        "de": "FENECON home.ess: dedizierten AC-seitigen Batterie-Leistungs-DP auf Register 415 ergänzt, hybride/DC-inklusive Speicherleistung separat belassen und Batterie-Aliase wieder auf die reale AC-seitige Lade-/Entladeleistung umgestellt."
+      },
       "0.5.81": {
         "en": "FENECON home.ess: add signed battery balance power alias (load - grid - PV), expose AC-side ESS power separately, and align battery power aliases with the FENECON balance view.",
         "de": "FENECON home.ess: signierten Batterie-Balance-DP (Verbrauch - Netz - PV) ergänzt, AC-seitige ESS-Leistung separat bereitgestellt und Batterie-Leistungs-Aliase an die FENECON-Balanceansicht angepasst."
