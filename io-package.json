@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.80",
+    "version": "0.5.81",
     "news": {
+      "0.5.81": {
+        "en": "FENECON home.ess: add signed battery balance power alias (load - grid - PV), expose AC-side ESS power separately, and align battery power aliases with the FENECON balance view.",
+        "de": "FENECON home.ess: signierten Batterie-Balance-DP (Verbrauch - Netz - PV) ergänzt, AC-seitige ESS-Leistung separat bereitgestellt und Batterie-Leistungs-Aliase an die FENECON-Balanceansicht angepasst."
+      },
       "0.5.80": {
         "en": "Add Shelly Pro 4PM as an IO template via Shelly Gen2 RPC (4 inputs, 4 outputs, per-channel power/voltage/current/frequency/power factor/energy/temperature).",
         "de": "Shelly Pro 4PM als IO-Template über Shelly Gen2 RPC hinzugefügt (4 Eingänge, 4 Ausgänge sowie kanalweise Leistung/Spannung/Strom/Frequenz/Leistungsfaktor/Energie/Temperatur)."
