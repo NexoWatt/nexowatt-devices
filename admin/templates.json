@@ -46217,7 +46217,17 @@
       ],
       "driverHints": {
         "modbus": {
-          "maxReadRegs": 6
+          "maxReadRegs": 6,
+          "unitIdDefault": 1,
+          "timeoutMs": 2000,
+          "asciiResponseStart": ">",
+          "serialDefaults": {
+            "baudRate": 38400,
+            "parity": "even",
+            "dataBits": 8,
+            "stopBits": 1,
+            "enforce": true
+          }
         }
       },
       "datapoints": [

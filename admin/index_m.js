@@ -210,6 +210,39 @@ function normalizeSerialConnection(conn, protocol) {
   };
 }
 
+
+function getTemplateModbusSerialDefaults(tpl, protocol) {
+  const proto = (protocol || '').toString();
+  if (!(proto === 'modbusRtu' || proto === 'modbusAscii')) return null;
+  const hints = tpl && tpl.driverHints && tpl.driverHints.modbus ? tpl.driverHints.modbus : null;
+  if (!hints) return null;
+  const defs = (hints.serialDefaults && typeof hints.serialDefaults === 'object') ? hints.serialDefaults : {};
+  return {
+    enforce: !!defs.enforce,
+    baudRate: defs.baudRate,
+    parity: defs.parity,
+    dataBits: defs.dataBits,
+    stopBits: defs.stopBits,
+    unitIdDefault: hints.unitIdDefault,
+    timeoutMs: hints.timeoutMs,
+  };
+}
+
+function applyTemplateModbusSerialDefaultsToForm(tpl, protocol, conn) {
+  const defs = getTemplateModbusSerialDefaults(tpl, protocol);
+  if (!defs) return;
+  const c = conn || {};
+  const shouldSet = (v) => defs.enforce || v === undefined || v === null || v === '';
+
+  if (defs.baudRate !== undefined && shouldSet(c.baudRate)) $('#mb_baud').val(defs.baudRate);
+  if (defs.parity !== undefined && shouldSet(c.parity)) $('#mb_parity').val(defs.parity);
+  if (defs.dataBits !== undefined && shouldSet(c.dataBits)) $('#mb_databits').val(defs.dataBits);
+  if (defs.stopBits !== undefined && shouldSet(c.stopBits)) $('#mb_stopbits').val(defs.stopBits);
+  if (defs.unitIdDefault !== undefined && shouldSet(c.unitId)) $('#mb_unitId_rtu').val(defs.unitIdDefault);
+  if (defs.timeoutMs !== undefined && shouldSet(c.timeoutMs)) $('#mb_timeout_rtu').val(defs.timeoutMs);
+  refreshSelect($('#mb_parity'));
+}
+
 function detectSerialPortConflict(device, excludeIndex) {
   if (!device || !isSerialLikeProtocol(device.protocol)) return null;
 
@@ -800,6 +833,8 @@ function openDeviceModal(device, idx) {
     refreshSelect($('#mb_parity'));
   }
 
+  applyTemplateModbusSerialDefaultsToForm(tpl, proto, c);
+
   // M-Bus (wired)
   $('#mbus_path').val(c.path || '/dev/ttyUSB0');
   $('#mbus_baud').val(c.baudRate ?? 2400);
@@ -1113,8 +1148,17 @@ function initEventHandlers() {
     const tplId = $('#dev_template').val();
     fillProtocolSelect(tplId);
 
-    showConnBlock($('#dev_protocol').val());
+    const proto = $('#dev_protocol').val();
+    const tpl = templatesById[tplId] || null;
+    showConnBlock(proto);
     renderDatapoints(tplId);
+    applyTemplateModbusSerialDefaultsToForm(tpl, proto, {});
+    if (proto === 'modbusRtu' || proto === 'modbusAscii' || proto === 'kostalRs485' || proto === 'mbus') {
+      refreshSerialPorts(true);
+      startSerialPortsAutoRefresh();
+    } else {
+      stopSerialPortsAutoRefresh();
+    }
 
     // Keep ID/Name suggestions in sync for new devices
     if (editIndex < 0) {
@@ -1141,8 +1185,17 @@ function initEventHandlers() {
     const tplId = $('#dev_template').val();
     fillProtocolSelect(tplId);
 
-    showConnBlock($('#dev_protocol').val());
+    const proto = $('#dev_protocol').val();
+    const tpl = templatesById[tplId] || null;
+    showConnBlock(proto);
     renderDatapoints(tplId);
+    applyTemplateModbusSerialDefaultsToForm(tpl, proto, {});
+    if (proto === 'modbusRtu' || proto === 'modbusAscii' || proto === 'kostalRs485' || proto === 'mbus') {
+      refreshSerialPorts(true);
+      startSerialPortsAutoRefresh();
+    } else {
+      stopSerialPortsAutoRefresh();
+    }
 
     if (editIndex < 0) {
       const curName = ($('#dev_name').val() || '').trim();
@@ -1159,8 +1212,11 @@ function initEventHandlers() {
     const tplId = $('#dev_template').val();
     fillProtocolSelect(tplId);
 
-    showConnBlock($('#dev_protocol').val());
+    const proto = $('#dev_protocol').val();
+    const tpl = templatesById[tplId] || null;
+    showConnBlock(proto);
     renderDatapoints(tplId);
+    applyTemplateModbusSerialDefaultsToForm(tpl, proto, {});
 
     if (editIndex < 0) {
       const curName = ($('#dev_name').val() || '').trim();
@@ -1174,7 +1230,17 @@ function initEventHandlers() {
   });
 
   $('#dev_protocol').on('change', () => {
-    showConnBlock($('#dev_protocol').val());
+    const proto = $('#dev_protocol').val();
+    showConnBlock(proto);
+    const tpl = templatesById[$('#dev_template').val()] || null;
+    applyTemplateModbusSerialDefaultsToForm(tpl, proto, {});
+
+    if (proto === 'modbusRtu' || proto === 'modbusAscii' || proto === 'kostalRs485' || proto === 'mbus') {
+      refreshSerialPorts(true);
+      startSerialPortsAutoRefresh();
+    } else {
+      stopSerialPortsAutoRefresh();
+    }
   });
 
   // Save device

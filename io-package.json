@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.82",
+    "version": "0.5.83",
     "news": {
+      "0.5.83": {
+        "en": "RS485 fix: lazy-connect Kostal PIKO RS485 polling driver, add ABL eMH1 custom Modbus ASCII serial bus with support for non-standard '>' responses, and enforce ABL serial defaults (38400 8E1).",
+        "de": "RS485-Fix: Lazy-Connect für den Kostal-PIKO-RS485-Polling-Treiber, eigener Modbus-ASCII-Seriell-Bus für ABL eMH1 mit Unterstützung für nicht standardkonforme '>'-Antworten sowie erzwungene ABL-Seriell-Defaults (38400 8E1)."
+      },
       "0.5.82": {
         "en": "FENECON home.ess: add dedicated AC-side battery power datapoint at register 415, keep hybrid/DC-inclusive battery power separate, and restore battery aliases to the real AC-side charge/discharge power.",
         "de": "FENECON home.ess: dedizierten AC-seitigen Batterie-Leistungs-DP auf Register 415 ergänzt, hybride/DC-inklusive Speicherleistung separat belassen und Batterie-Aliase wieder auf die reale AC-seitige Lade-/Entladeleistung umgestellt."
