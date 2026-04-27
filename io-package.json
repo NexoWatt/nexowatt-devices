@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.83",
+    "version": "0.5.84",
     "news": {
+      "0.5.84": {
+        "en": "Fix admin device edit dialog regression in 0.5.83 (tpl reference).",
+        "de": "Fix für Regression im Admin-Geräte-Dialog aus 0.5.83 (tpl-Referenz)."
+      },
       "0.5.83": {
         "en": "RS485 fix: lazy-connect Kostal PIKO RS485 polling driver, add ABL eMH1 custom Modbus ASCII serial bus with support for non-standard '>' responses, and enforce ABL serial defaults (38400 8E1).",
         "de": "RS485-Fix: Lazy-Connect für den Kostal-PIKO-RS485-Polling-Treiber, eigener Modbus-ASCII-Seriell-Bus für ABL eMH1 mit Unterstützung für nicht standardkonforme '>'-Antworten sowie erzwungene ABL-Seriell-Defaults (38400 8E1)."

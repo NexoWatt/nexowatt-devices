@@ -751,6 +751,7 @@ function openDeviceModal(device, idx) {
 
   fillTemplateSelect(cat, manu);
   const tplId = device.templateId || ($('#dev_template option:first').val() || '');
+  const tpl = templatesById[tplId] || null;
   $('#dev_template').val(tplId);
   refreshSelect($('#dev_template'));
 
