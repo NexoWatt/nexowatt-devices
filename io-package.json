@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.87",
+    "version": "0.5.88",
     "news": {
+      "0.5.88": {
+        "en": "ABL eMH1 template audit: fixed EN2 bit mapping, corrected upstream communication boolean semantics, treat 0x03E8 current sentinel as unavailable, and added computed charging power/current aliases from phase currents.",
+        "de": "ABL eMH1 Template-Prüfung: EN2-Bitzuordnung korrigiert, Upstream-Kommunikations-Boolean semantisch korrigiert, 0x03E8-Strom-Sentinel als \"nicht verfügbar\" behandelt und berechnete Ladeleistungs-/Gesamtstrom-Aliase aus den Phasenströmen ergänzt.",
+        "ru": "Проверка шаблона ABL eMH1: исправлено сопоставление бита EN2, скорректирована семантика булевого флага связи Upstream, значение тока 0x03E8 теперь считается \"недоступно\", добавлены вычисляемые алиасы мощности/суммарного тока по фазным токам.",
+        "pt": "Auditoria do template ABL eMH1: corrigido o mapeamento do bit EN2, ajustada a semântica booleana da comunicação upstream, o sentinela de corrente 0x03E8 passa a ser tratado como \"indisponível\" e foram adicionados aliases calculados de potência/corrente total a partir das correntes de fase.",
+        "nl": "ABL eMH1-templatecontrole: EN2-bitmapping gecorrigeerd, semantiek van de upstream-communicatieboolean gecorrigeerd, stroomsentinel 0x03E8 wordt nu als \"niet beschikbaar\" behandeld en berekende laadvermogen-/totale-stroom-aliassen op basis van fasestromen toegevoegd.",
+        "fr": "Audit du modèle ABL eMH1 : correction du mapping du bit EN2, correction de la sémantique booléenne de la communication amont, la valeur sentinelle de courant 0x03E8 est désormais traitée comme « indisponible », et ajout d’alias calculés de puissance/courant total à partir des courants de phase.",
+        "it": "Verifica del template ABL eMH1: corretta la mappatura del bit EN2, corretta la semantica booleana della comunicazione upstream, il valore sentinella di corrente 0x03E8 viene ora trattato come \"non disponibile\" e sono stati aggiunti alias calcolati per potenza/corrente totale a partire dalle correnti di fase.",
+        "es": "Auditoría de la plantilla ABL eMH1: corregido el mapeo del bit EN2, ajustada la semántica booleana de la comunicación upstream, el valor centinela de corriente 0x03E8 ahora se trata como \"no disponible\" y se añadieron alias calculados de potencia/corriente total a partir de las corrientes de fase.",
+        "pl": "Audyt szablonu ABL eMH1: poprawiono mapowanie bitu EN2, skorygowano semantykę boolowską komunikacji upstream, wartość prądu 0x03E8 jest teraz traktowana jako „niedostępna”, a także dodano wyliczane aliasy mocy/prądu całkowitego z prądów fazowych.",
+        "uk": "Аудит шаблону ABL eMH1: виправлено відображення біта EN2, скориговано булеву семантику зв’язку upstream, значення струму 0x03E8 тепер вважається «недоступним», а також додано обчислювані аліаси потужності/загального струму за фазними струмами.",
+        "zh-cn": "ABL eMH1 模板审查：修正了 EN2 位映射，修正了上游通信布尔语义，将 0x03E8 电流哨兵值视为“不可用”，并根据各相电流新增了计算得到的充电功率/总电流别名。"
+      },
       "0.5.87": {
         "en": "Modbus ASCII robustness: accept CR-only line endings, tolerate alternate response starter for ABL (> or :), and include recent TX/RX trace in timeout messages for diagnostics.",
         "de": "Modbus-ASCII robuster gemacht: akzeptiert CR-only-Zeilenenden, toleriert für ABL alternative Antwortstarter (> oder :), und ergänzt Timeout-Meldungen um eine kurze TX/RX-Spur zur Diagnose.",

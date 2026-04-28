@@ -46335,7 +46335,8 @@
             "dataType": "uint32",
             "bitShift": 9,
             "bitMask": 1,
-            "toBoolean": true
+            "toBoolean": true,
+            "trueWhenZero": true
           }
         },
         {
@@ -46433,7 +46434,7 @@
             "address": 47,
             "length": 1,
             "dataType": "uint16",
-            "bitShift": 11,
+            "bitShift": 13,
             "bitMask": 1,
             "toBoolean": true
           }
@@ -46468,7 +46469,8 @@
             "address": 48,
             "length": 1,
             "dataType": "uint16",
-            "scaleFactor": -1
+            "scaleFactor": -1,
+            "nanValue": 1000
           }
         },
         {
@@ -46484,7 +46486,8 @@
             "address": 49,
             "length": 1,
             "dataType": "uint16",
-            "scaleFactor": -1
+            "scaleFactor": -1,
+            "nanValue": 1000
           }
         },
         {
@@ -46500,7 +46503,8 @@
             "address": 50,
             "length": 1,
             "dataType": "uint16",
-            "scaleFactor": -1
+            "scaleFactor": -1,
+            "nanValue": 1000
           }
         },
         {
