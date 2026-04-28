@@ -1,8 +1,25 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.84",
+    "version": "0.5.87",
     "news": {
+      "0.5.87": {
+        "en": "Modbus ASCII robustness: accept CR-only line endings, tolerate alternate response starter for ABL (> or :), and include recent TX/RX trace in timeout messages for diagnostics.",
+        "de": "Modbus-ASCII robuster gemacht: akzeptiert CR-only-Zeilenenden, toleriert für ABL alternative Antwortstarter (> oder :), und ergänzt Timeout-Meldungen um eine kurze TX/RX-Spur zur Diagnose.",
+        "ru": "Повышена устойчивость Modbus ASCII: принимаются окончания строк только CR, допускается альтернативный старт ответа для ABL (> или :), а в сообщения о тайм-ауте добавляется короткая трассировка TX/RX для диагностики.",
+        "pt": "Robustez do Modbus ASCII aprimorada: aceita finais de linha apenas CR, tolera iniciador alternativo de resposta para ABL (> ou :), e adiciona um pequeno rastreio TX/RX às mensagens de timeout para diagnóstico.",
+        "nl": "Modbus ASCII robuuster gemaakt: accepteert CR-only regeleinden, tolereert voor ABL alternatieve antwoordstarters (> of :), en voegt een korte TX/RX-trace toe aan timeoutmeldingen voor diagnose.",
+        "fr": "Robustesse Modbus ASCII améliorée : prise en charge des fins de ligne CR seules, tolérance d’un démarreur de réponse alternatif pour ABL (> ou :), et ajout d’une courte trace TX/RX aux messages de timeout pour le diagnostic.",
+        "it": "Maggiore robustezza per Modbus ASCII: accetta terminatori di riga solo CR, tollera per ABL un carattere iniziale di risposta alternativo (> o :), e aggiunge una breve traccia TX/RX ai messaggi di timeout per la diagnostica.",
+        "es": "Se mejora la robustez de Modbus ASCII: acepta finales de línea solo CR, tolera para ABL un inicio alternativo de respuesta (> o :), y añade una breve traza TX/RX a los mensajes de timeout para diagnóstico.",
+        "pl": "Zwiększono odporność Modbus ASCII: akceptowane są zakończenia linii tylko CR, tolerowany jest alternatywny znak początku odpowiedzi dla ABL (> lub :), a do komunikatów timeout dodawany jest krótki ślad TX/RX do diagnostyki.",
+        "uk": "Покращено стійкість Modbus ASCII: приймаються завершення рядка лише CR, допускається альтернативний початок відповіді для ABL (> або :), а до повідомлень про тайм-аут додається короткий трасувальний слід TX/RX для діагностики.",
+        "zh-cn": "增强了 Modbus ASCII 的健壮性：接受仅 CR 的行结束符，兼容 ABL 的替代响应起始符（> 或 :），并在超时消息中附带简短的 TX/RX 跟踪信息以便诊断。"
+      },
+      "0.5.86": {
+        "en": "Revert 0.5.85 IPC3020 host auto-provisioning and restore the previous stable behavior from 0.5.84. The admin dialog fix and earlier RS485/FENECON improvements remain included.",
+        "de": "Rollback der IPC3020-Host-Autoprovisionierung aus 0.5.85 und Wiederherstellung des vorherigen stabilen Verhaltens aus 0.5.84. Der Admin-Dialog-Fix sowie frühere RS485-/FENECON-Verbesserungen bleiben enthalten."
+      },
       "0.5.84": {
         "en": "Fix admin device edit dialog regression in 0.5.83 (tpl reference).",
         "de": "Fix für Regression im Admin-Geräte-Dialog aus 0.5.83 (tpl-Referenz)."
