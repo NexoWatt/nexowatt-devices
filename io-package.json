@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.88",
+    "version": "0.5.89",
     "news": {
+      "0.5.89": {
+        "en": "ABL eMH1 serial settings are no longer forced by the template. Added diagnostic datapoints for register 0x0003 and readable aliases for the effective Modbus baud/parity/stop-bit settings.",
+        "de": "ABL eMH1 Serienparameter werden vom Template nicht mehr hart erzwungen. Zusätzlich wurden Diagnose-Datenpunkte für Register 0x0003 sowie lesbare Aliase für die effektiven Modbus-Einstellungen (Baud/Parität/Stopbits) ergänzt."
+      },
       "0.5.88": {
         "en": "ABL eMH1 template audit: fixed EN2 bit mapping, corrected upstream communication boolean semantics, treat 0x03E8 current sentinel as unavailable, and added computed charging power/current aliases from phase currents.",
         "de": "ABL eMH1 Template-Prüfung: EN2-Bitzuordnung korrigiert, Upstream-Kommunikations-Boolean semantisch korrigiert, 0x03E8-Strom-Sentinel als \"nicht verfügbar\" behandelt und berechnete Ladeleistungs-/Gesamtstrom-Aliase aus den Phasenströmen ergänzt.",

@@ -46236,7 +46236,7 @@
             "parity": "even",
             "dataBits": 8,
             "stopBits": 1,
-            "enforce": true
+            "enforce": false
           }
         }
       },
@@ -46303,6 +46303,67 @@
             "dataType": "uint32",
             "bitShift": 22,
             "bitMask": 3
+          }
+        },
+        {
+          "id": "mODBUS_SETTINGS_RAW",
+          "name": "Modbus settings raw",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 3,
+            "length": 1,
+            "dataType": "uint16"
+          }
+        },
+        {
+          "id": "mODBUS_STOPBITS_CODE",
+          "name": "Modbus stop bits code",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 3,
+            "length": 1,
+            "dataType": "uint16",
+            "bitShift": 6,
+            "bitMask": 3
+          }
+        },
+        {
+          "id": "mODBUS_PARITY_CODE",
+          "name": "Modbus parity code",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 3,
+            "length": 1,
+            "dataType": "uint16",
+            "bitShift": 4,
+            "bitMask": 3
+          }
+        },
+        {
+          "id": "mODBUS_BAUD_CODE",
+          "name": "Modbus baud code",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 3,
+            "length": 1,
+            "dataType": "uint16",
+            "bitMask": 15
           }
         },
         {
