@@ -241,6 +241,34 @@ Im Adapter sind (u.a.) folgende **PV_INVERTER**‑Templates integriert:
       - Warning: `...aliases.alarm.warning=true`
     - Rohdaten (optional): `Health==35` (Fehler) bzw. `Health==455` (Warnung)
 
+## 4c) Sungrow Modbus – Templates & wichtige Datenpunkte
+
+Der Adapter enthält zusätzliche Sungrow-Templates für direkte Wechselrichter-Kommunikation und für System-Gateways:
+
+- **Sungrow Grid-Connected CX/RS/RT (Modbus)**
+  - `templateId`: `pv_inverter.sungrow.GridConnectedCxRsRtModbus`
+  - Kategorie: `PV_INVERTER`
+  - Wichtig: `W` (Wirkleistung), `pV_POWER` (PV/DC-Leistung), `TotWhOut` (Gesamtertrag), `St` (Betriebszustand), `Evt1` (Fehlercode), `WMaxLim_Ena`, `WMaxLimPct`, `WMaxLim`
+  - Schreiblogik: Beim Schreiben von `WMaxLimPct` oder `WMaxLim` wird der Sungrow-Leistungsbegrenzungs-Schalter automatisch aktiviert.
+
+- **Sungrow Residential Hybrid V1.1.9 (Modbus)**
+  - `templateId`: `ess.sungrow.ResidentialHybridV119`
+  - Kategorie: `ESS`
+  - Wichtig: `pV_POWER`, `W`, `gRID_POWER`, `lOAD_POWER`, `bATTERY_POWER`, `Soc`, Energiewerte, Fehler-Bitfelder, Firmware-Versionen
+  - Steuerung: `aliases.ctrl.powerSetpointW` schreibt als signierter Leistungs-Sollwert: positiv = Entladen, negativ = Laden, `0` = Stop. Der Adapter setzt dabei automatisch EMS-/Betriebsmodus, Lade-/Entlade-Kommando und Leistungsregister.
+
+- **Sungrow Logger1000/3000/4000 (Modbus)**
+  - `templateId`: `ess.sungrow.Logger1000_3000_4000`
+  - Kategorie: `ESS`, Default Unit-ID: `247`
+  - System-/Array-Daten inkl. PV-/Netz-/Last-/Batterie-Leistung sowie Schreibwerte für EMS, Laden/Entladen, Einspeisebegrenzung und PV-Leistungsbegrenzung.
+
+- **Sungrow iHomeManager V1.0.1 (Modbus)**
+  - `templateId`: `ess.sungrow.iHomeManagerV101`
+  - Kategorie: `ESS`, Default Unit-ID: `247`
+  - Systemweite EMS-Daten und Steuerung; keine Einzelwechselrichter-Weiterleitung über iHomeManager.
+
+Hinweis: Die Sungrow-Dokumentation verwendet 1-basierte Registeradressen; die Templates sind bereits mit den tatsächlich zu sendenden Modbus-Adressen (`Register - 1`) hinterlegt.
+
 ### Hinweis zu Register‑Offsets
 Viele Herstellerdokumentationen verwenden 1‑basierte Registeradressen (z.B. `40001`).
 Wenn dein Gerät mit den im Template hinterlegten Adressen „um 1 daneben“ liegt, setze im Gerät:

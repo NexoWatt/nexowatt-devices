@@ -243,6 +243,42 @@ function applyTemplateModbusSerialDefaultsToForm(tpl, protocol, conn) {
   refreshSelect($('#mb_parity'));
 }
 
+function applyTemplateModbusTcpDefaultsToForm(tpl, protocol, conn) {
+  if ((protocol || '').toString() !== 'modbusTcp') return;
+  const hints = tpl && tpl.driverHints && tpl.driverHints.modbus ? tpl.driverHints.modbus : null;
+  if (!hints) return;
+  const c = conn || {};
+  const shouldSet = (v) => v === undefined || v === null || v === '';
+
+  if (hints.unitIdDefault !== undefined && shouldSet(c.unitId)) $('#mb_unitId').val(hints.unitIdDefault);
+  if (hints.timeoutMs !== undefined && shouldSet(c.timeoutMs)) $('#mb_timeout').val(hints.timeoutMs);
+  if (hints.wordOrderDefault !== undefined && shouldSet(c.wordOrder)) $('#mb_wordOrder').val(hints.wordOrderDefault);
+  if (hints.byteOrderDefault !== undefined && shouldSet(c.byteOrder)) $('#mb_byteOrder').val(hints.byteOrderDefault);
+  refreshSelect($('#mb_wordOrder'));
+  refreshSelect($('#mb_byteOrder'));
+}
+
+function getCurrentTcpFormValues() {
+  return {
+    unitId: $('#mb_unitId').val(),
+    timeoutMs: $('#mb_timeout').val(),
+    wordOrder: $('#mb_wordOrder').val(),
+    byteOrder: $('#mb_byteOrder').val(),
+  };
+}
+
+function getCurrentSerialFormValues() {
+  return {
+    path: $('#mb_path').val(),
+    baudRate: $('#mb_baud').val(),
+    parity: $('#mb_parity').val(),
+    dataBits: $('#mb_databits').val(),
+    stopBits: $('#mb_stopbits').val(),
+    unitId: $('#mb_unitId_rtu').val(),
+    timeoutMs: $('#mb_timeout_rtu').val(),
+  };
+}
+
 function detectSerialPortConflict(device, excludeIndex) {
   if (!device || !isSerialLikeProtocol(device.protocol)) return null;
 
@@ -805,6 +841,7 @@ function openDeviceModal(device, idx) {
   $('#mb_writePass').val(c.writePassword || '');
   refreshSelect($('#mb_wordOrder'));
   refreshSelect($('#mb_byteOrder'));
+  applyTemplateModbusTcpDefaultsToForm(tpl, proto, c);
 
   // RTU
   // Leave empty for new devices; we auto-suggest a real detected port via refreshSerialPorts().
@@ -1153,7 +1190,9 @@ function initEventHandlers() {
     const tpl = templatesById[tplId] || null;
     showConnBlock(proto);
     renderDatapoints(tplId);
-    applyTemplateModbusSerialDefaultsToForm(tpl, proto, {});
+    const currentConn = (editIndex >= 0) ? (proto === 'modbusTcp' ? getCurrentTcpFormValues() : getCurrentSerialFormValues()) : {};
+    applyTemplateModbusTcpDefaultsToForm(tpl, proto, currentConn);
+    applyTemplateModbusSerialDefaultsToForm(tpl, proto, currentConn);
     if (proto === 'modbusRtu' || proto === 'modbusAscii' || proto === 'kostalRs485' || proto === 'mbus') {
       refreshSerialPorts(true);
       startSerialPortsAutoRefresh();
@@ -1190,7 +1229,9 @@ function initEventHandlers() {
     const tpl = templatesById[tplId] || null;
     showConnBlock(proto);
     renderDatapoints(tplId);
-    applyTemplateModbusSerialDefaultsToForm(tpl, proto, {});
+    const currentConn = (editIndex >= 0) ? (proto === 'modbusTcp' ? getCurrentTcpFormValues() : getCurrentSerialFormValues()) : {};
+    applyTemplateModbusTcpDefaultsToForm(tpl, proto, currentConn);
+    applyTemplateModbusSerialDefaultsToForm(tpl, proto, currentConn);
     if (proto === 'modbusRtu' || proto === 'modbusAscii' || proto === 'kostalRs485' || proto === 'mbus') {
       refreshSerialPorts(true);
       startSerialPortsAutoRefresh();
@@ -1217,7 +1258,9 @@ function initEventHandlers() {
     const tpl = templatesById[tplId] || null;
     showConnBlock(proto);
     renderDatapoints(tplId);
-    applyTemplateModbusSerialDefaultsToForm(tpl, proto, {});
+    const currentConn = (editIndex >= 0) ? (proto === 'modbusTcp' ? getCurrentTcpFormValues() : getCurrentSerialFormValues()) : {};
+    applyTemplateModbusTcpDefaultsToForm(tpl, proto, currentConn);
+    applyTemplateModbusSerialDefaultsToForm(tpl, proto, currentConn);
 
     if (editIndex < 0) {
       const curName = ($('#dev_name').val() || '').trim();
@@ -1234,7 +1277,9 @@ function initEventHandlers() {
     const proto = $('#dev_protocol').val();
     showConnBlock(proto);
     const tpl = templatesById[$('#dev_template').val()] || null;
-    applyTemplateModbusSerialDefaultsToForm(tpl, proto, {});
+    const currentConn = (editIndex >= 0) ? (proto === 'modbusTcp' ? getCurrentTcpFormValues() : getCurrentSerialFormValues()) : {};
+    applyTemplateModbusTcpDefaultsToForm(tpl, proto, currentConn);
+    applyTemplateModbusSerialDefaultsToForm(tpl, proto, currentConn);
 
     if (proto === 'modbusRtu' || proto === 'modbusAscii' || proto === 'kostalRs485' || proto === 'mbus') {
       refreshSerialPorts(true);
