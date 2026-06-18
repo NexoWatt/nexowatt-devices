@@ -269,6 +269,36 @@ Der Adapter enthält zusätzliche Sungrow-Templates für direkte Wechselrichter-
 
 Hinweis: Die Sungrow-Dokumentation verwendet 1-basierte Registeradressen; die Templates sind bereits mit den tatsächlich zu sendenden Modbus-Adressen (`Register - 1`) hinterlegt.
 
+
+## 4d) MENNEKES AMTRON 4You 500 / 4Business 700 Modbus TCP
+
+Neu integriert ist ein vollständiges Modbus-TCP-Template für die MENNEKES AMTRON 4You 500 / 4Business 700 Serie:
+
+- `templateId`: `evcs.mennekes.amtron4you500.4business700.modbusTcp`
+- Kategorie: `EVCS`
+- Modbus TCP Port: `502`
+- Unit-ID Default: `1`
+- Registertyp: Holding Register / FC03 für Lesen, FC06 bzw. FC16 für Schreiben
+
+Wichtige Lese-Datenpunkte:
+
+- Status: `cHARGE_POINT_STATE`, `vEHICLE_STATE`, `cHARGE_POINT_AVAILABILITY`, `rELAY_STATE`, `pLUG_LOCK_STATUS`
+- Fehler: `eRROR_CODE`, `eRROR_CODE_2`, `eRROR_CODE_3`, `eRROR_CODE_4`
+- Messwerte: `aCTIVE_POWER`, `aCTIVE_PRODUCTION_ENERGY`, `mETER_POWER_L1..L3`, `cURRENT_L1..L3`, `vOLTAGE_L1..L3`
+- Ladesession: `eNERGY_SESSION`, `cHARGING_DURATION`, `cHARGING_START_TIME`, `cHARGING_END_TIME`, `sIGNALED_CURRENT_TO_EV`
+- HEMS/Phasen: `hEMS_CONFIGURATION`, `hEMS_COMMUNICATION_STATUS`, `hEMS_POWER_LIMIT_MINIMUM`, `hEMS_POWER_LIMIT_MAXIMUM`, `pHASE_SWITCH_MODE`, `aSSIGNED_PHASES`
+- Charging-Point-Network: `cHARGING_POINT_NETWORK_*`
+
+Wichtige Schreib-Datenpunkte und Aliases:
+
+- `sET_CHARGING_CURRENT` bzw. Alias `aliases.ctrl.currentLimitA` – HEMS-Stromlimit in A, intern über das 0,1-A-Register
+- `eV_SET_CHARGE_POWER_LIMIT` bzw. Alias `aliases.ctrl.powerLimitW` – HEMS-Leistungslimit in W
+- `sAFE_CURRENT` bzw. Alias `aliases.ctrl.safeCurrentA` – Fallback-Strom bei HEMS-Kommunikationsverlust
+- `cOMMUNICATION_TIMEOUT` bzw. Alias `aliases.ctrl.communicationTimeoutS` – HEMS-Kommunikationstimeout in Sekunden
+- `cHARGING_POINT_NETWORK_EMS_CURRENT_LIMIT` bzw. Alias `aliases.ctrl.networkCurrentLimitA` – schreibt automatisch L1/L2/L3 gemeinsam per FC16
+
+Hinweis: Für HEMS-Steuerung muss die Wallbox-seitige Modbus-TCP-/HEMS-Konfiguration auf Read/Write stehen (`hEMS_CONFIGURATION == 2`).
+
 ### Hinweis zu Register‑Offsets
 Viele Herstellerdokumentationen verwenden 1‑basierte Registeradressen (z.B. `40001`).
 Wenn dein Gerät mit den im Template hinterlegten Adressen „um 1 daneben“ liegt, setze im Gerät:

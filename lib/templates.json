@@ -50685,6 +50685,1435 @@
       ]
     },
     {
+      "id": "evcs.mennekes.amtron4you500.4business700.modbusTcp",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "EVCS",
+      "manufacturer": "MENNEKES",
+      "model": "AMTRON 4You 500 / 4Business 700",
+      "name": "MENNEKES AMTRON 4You 500 / 4Business 700 (Modbus TCP)",
+      "protocols": [
+        "modbusTcp"
+      ],
+      "driverHints": {
+        "pollIntervalMs": 5000,
+        "heartbeatTimeoutMs": 20000,
+        "modbus": {
+          "unitIdDefault": 1,
+          "timeoutMs": 3000,
+          "maxReadRegs": 16,
+          "minCommandIntervalMs": 100,
+          "restoreSetpointsOnStart": {
+            "enabled": true,
+            "delayMs": 1500,
+            "dpIds": [
+              "sET_CHARGING_CURRENT",
+              "eV_SET_CHARGE_POWER_LIMIT",
+              "sAFE_CURRENT",
+              "cOMMUNICATION_TIMEOUT",
+              "cHARGING_POINT_NETWORK_EMS_CURRENT_LIMIT"
+            ],
+            "storeOnWrite": true,
+            "useFallbackFromDpState": true
+          }
+        }
+      },
+      "datapoints": [
+        {
+          "id": "fIRMWARE_VERSION",
+          "name": "Firmware version (short)",
+          "role": "info.firmware",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 100,
+              "length": 2,
+              "dataType": "string"
+            }
+          }
+        },
+        {
+          "id": "cHARGE_POINT_STATE",
+          "name": "OCPP status",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 104,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "eRROR_CODE",
+          "name": "Error code block 1",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 105,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "eRROR_CODE_2",
+          "name": "Error code block 2",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 107,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "eRROR_CODE_3",
+          "name": "Error code block 3",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 109,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "eRROR_CODE_4",
+          "name": "Error code block 4",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 111,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "pROTOCOL_VERSION",
+          "name": "Modbus protocol version",
+          "role": "info",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 120,
+              "length": 2,
+              "dataType": "string"
+            }
+          }
+        },
+        {
+          "id": "vEHICLE_STATE",
+          "name": "Vehicle state / control pilot state",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 122,
+              "length": 1,
+              "dataType": "int16"
+            }
+          }
+        },
+        {
+          "id": "cHARGE_POINT_AVAILABILITY",
+          "name": "Charge point availability",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 124,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "sAFE_CURRENT",
+          "name": "Safe current on HEMS communication loss",
+          "role": "level.current",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 131,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 131,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "cOMMUNICATION_TIMEOUT",
+          "name": "HEMS communication timeout",
+          "role": "level.timer",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 132,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 132,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "oPERATOR_CURRENT_LIMIT",
+          "name": "Operator current limit",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 134,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "rELAY_STATE",
+          "name": "Relay state",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 140,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "dEVICE_ID",
+          "name": "Device ID",
+          "role": "info",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 141,
+              "length": 1,
+              "dataType": "string"
+            }
+          }
+        },
+        {
+          "id": "cHARGE_POINT_MODEL",
+          "name": "Charge point model",
+          "role": "info",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 142,
+              "length": 10,
+              "dataType": "string"
+            }
+          }
+        },
+        {
+          "id": "pLUG_LOCK_STATUS",
+          "name": "Plug lock status",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 152,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "fIRMWARE_MAJOR",
+          "name": "Firmware version major",
+          "role": "info.firmware",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 153,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "fIRMWARE_MINOR",
+          "name": "Firmware version minor",
+          "role": "info.firmware",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 154,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "fIRMWARE_PATCH",
+          "name": "Firmware version patch",
+          "role": "info.firmware",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 155,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "fIRMWARE_BUILD",
+          "name": "Firmware version build",
+          "role": "info.firmware",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 156,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          }
+        },
+        {
+          "id": "dEVICE_NAME_DEPRECATED",
+          "name": "Device name (deprecated register block)",
+          "role": "info.name",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 158,
+              "length": 16,
+              "dataType": "string"
+            }
+          }
+        },
+        {
+          "id": "mETER_ENERGY_L1",
+          "name": "Meter energy L1",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 200,
+              "length": 2,
+              "dataType": "int32"
+            }
+          },
+          "unit": "Wh"
+        },
+        {
+          "id": "mETER_ENERGY_L2",
+          "name": "Meter energy L2",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 202,
+              "length": 2,
+              "dataType": "int32"
+            }
+          },
+          "unit": "Wh"
+        },
+        {
+          "id": "mETER_ENERGY_L3",
+          "name": "Meter energy L3",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 204,
+              "length": 2,
+              "dataType": "int32"
+            }
+          },
+          "unit": "Wh"
+        },
+        {
+          "id": "mETER_POWER_L1",
+          "name": "Meter power L1",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 206,
+              "length": 2,
+              "dataType": "int32"
+            }
+          },
+          "unit": "W"
+        },
+        {
+          "id": "mETER_POWER_L2",
+          "name": "Meter power L2",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 208,
+              "length": 2,
+              "dataType": "int32"
+            }
+          },
+          "unit": "W"
+        },
+        {
+          "id": "mETER_POWER_L3",
+          "name": "Meter power L3",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 210,
+              "length": 2,
+              "dataType": "int32"
+            }
+          },
+          "unit": "W"
+        },
+        {
+          "id": "cURRENT_L1",
+          "name": "Meter current L1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 212,
+              "length": 2,
+              "dataType": "int32",
+              "scaleFactor": -3
+            }
+          },
+          "unit": "A",
+          "decimals": 3
+        },
+        {
+          "id": "cURRENT_L2",
+          "name": "Meter current L2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 214,
+              "length": 2,
+              "dataType": "int32",
+              "scaleFactor": -3
+            }
+          },
+          "unit": "A",
+          "decimals": 3
+        },
+        {
+          "id": "cURRENT_L3",
+          "name": "Meter current L3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 216,
+              "length": 2,
+              "dataType": "int32",
+              "scaleFactor": -3
+            }
+          },
+          "unit": "A",
+          "decimals": 3
+        },
+        {
+          "id": "aCTIVE_PRODUCTION_ENERGY",
+          "name": "Meter total energy",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 218,
+              "length": 2,
+              "dataType": "int32"
+            }
+          },
+          "unit": "Wh"
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Meter total power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 220,
+              "length": 2,
+              "dataType": "int32"
+            }
+          },
+          "unit": "W"
+        },
+        {
+          "id": "vOLTAGE_L1",
+          "name": "Meter voltage L1",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 222,
+              "length": 2,
+              "dataType": "int32"
+            }
+          },
+          "unit": "V"
+        },
+        {
+          "id": "vOLTAGE_L2",
+          "name": "Meter voltage L2",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 224,
+              "length": 2,
+              "dataType": "int32"
+            }
+          },
+          "unit": "V"
+        },
+        {
+          "id": "vOLTAGE_L3",
+          "name": "Meter voltage L3",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 226,
+              "length": 2,
+              "dataType": "int32"
+            }
+          },
+          "unit": "V"
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_MODE",
+          "name": "Charging point network mode",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 600,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_CURRENT_LIMIT_L1",
+          "name": "Charging point network current limit L1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 610,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_CURRENT_LIMIT_L2",
+          "name": "Charging point network current limit L2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 611,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_CURRENT_LIMIT_L3",
+          "name": "Charging point network current limit L3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 612,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_EMS_CURRENT_LIMIT_L1",
+          "name": "Charging point network EMS current limit L1",
+          "role": "level.current",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 613,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 613,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_EMS_CURRENT_LIMIT_L2",
+          "name": "Charging point network EMS current limit L2",
+          "role": "level.current",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 614,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 614,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_EMS_CURRENT_LIMIT_L3",
+          "name": "Charging point network EMS current limit L3",
+          "role": "level.current",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 615,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 615,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_EMS_CURRENT_LIMIT",
+          "name": "Charging point network EMS current limit L1/L2/L3",
+          "role": "level.current",
+          "type": "number",
+          "rw": "wo",
+          "source": {
+            "kind": "modbus",
+            "write": {
+              "fc": 16,
+              "address": 613,
+              "length": 3,
+              "dataType": "uint16",
+              "repeatValue": true
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_SOURCE_OF_LIMITATION",
+          "name": "Charging point network source of limitation",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 620,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_CONNECTED_CHARGING_STATIONS",
+          "name": "Charging point network connected charging stations",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 621,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_OVERALL_CURRENT_APPLIED_L1",
+          "name": "Charging point network overall current applied L1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 630,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_OVERALL_CURRENT_APPLIED_L2",
+          "name": "Charging point network overall current applied L2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 631,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_OVERALL_CURRENT_APPLIED_L3",
+          "name": "Charging point network overall current applied L3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 632,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_OVERALL_CURRENT_AVAILABLE_L1",
+          "name": "Charging point network overall current available L1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 633,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_OVERALL_CURRENT_AVAILABLE_L2",
+          "name": "Charging point network overall current available L2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 634,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_OVERALL_CURRENT_AVAILABLE_L3",
+          "name": "Charging point network overall current available L3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 635,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "sIGNALED_CURRENT_TO_EV",
+          "name": "Signaled current to EV",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 706,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "cHARGING_START_TIME",
+          "name": "Charging start time",
+          "role": "value.time",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 707,
+              "length": 2,
+              "dataType": "bcd_hhmmss"
+            }
+          }
+        },
+        {
+          "id": "cHARGING_END_TIME",
+          "name": "Charging end time",
+          "role": "value.time",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 710,
+              "length": 2,
+              "dataType": "bcd_hhmmss"
+            }
+          }
+        },
+        {
+          "id": "mIN_CHARGING_CURRENT_LIMIT",
+          "name": "Minimum charging current limit",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 712,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "mAX_CHARGING_CURRENT_LIMIT",
+          "name": "Maximum charging current limit",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 715,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "eNERGY_SESSION",
+          "name": "Charged energy in current session",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 716,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          },
+          "unit": "Wh"
+        },
+        {
+          "id": "cHARGING_DURATION",
+          "name": "Charging duration",
+          "role": "value.interval",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 718,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "hEMS_CURRENT_LIMIT_LEGACY_A",
+          "name": "HEMS current limit legacy (register 1000)",
+          "role": "level.current",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1000,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1000,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "hEMS_CURRENT_LIMIT_LEGACY_0_1A",
+          "name": "HEMS current limit legacy 0.1 A (register 1001)",
+          "role": "level.current",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1001,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            },
+            "write": {
+              "fc": 6,
+              "address": 1001,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            }
+          },
+          "unit": "A",
+          "decimals": 1
+        },
+        {
+          "id": "hEMS_POWER_LIMIT_LEGACY",
+          "name": "HEMS power limit legacy (register 1002)",
+          "role": "level.power",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1002,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 1002,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "W"
+        },
+        {
+          "id": "hEMS_CURRENT_LIMIT_A",
+          "name": "HEMS current limit",
+          "role": "level.current",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2000,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 2000,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "sET_CHARGING_CURRENT",
+          "name": "HEMS current limit 0.1 A",
+          "role": "level.current",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2001,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            },
+            "write": {
+              "fc": 6,
+              "address": 2001,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            }
+          },
+          "unit": "A",
+          "decimals": 1
+        },
+        {
+          "id": "eV_SET_CHARGE_POWER_LIMIT",
+          "name": "HEMS power limit",
+          "role": "level.power",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2002,
+              "length": 1,
+              "dataType": "uint16"
+            },
+            "write": {
+              "fc": 6,
+              "address": 2002,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "W"
+        },
+        {
+          "id": "hEMS_CONFIGURATION",
+          "name": "Modbus TCP / HEMS configuration",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2010,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "hEMS_COMMUNICATION_STATUS",
+          "name": "HEMS communication status",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2011,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "hEMS_POWER_LIMIT_MINIMUM",
+          "name": "HEMS power limit minimum",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2012,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "W"
+        },
+        {
+          "id": "hEMS_POWER_LIMIT_MAXIMUM",
+          "name": "HEMS power limit maximum",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2013,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "W"
+        },
+        {
+          "id": "pHASE_SWITCH_MODE",
+          "name": "Phase switch mode",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2020,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "pHASE_SWITCH_PAUSE",
+          "name": "Phase switch pause",
+          "role": "value.interval",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2021,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "s"
+        },
+        {
+          "id": "pHASE_SWITCH_STATUS",
+          "name": "Phase switch status",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2022,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "aSSIGNED_PHASES",
+          "name": "Assigned phases",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2023,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "aUTHORIZATION_STATUS",
+          "name": "Authorization status",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2030,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "dEVICE_NAME",
+          "name": "Device name",
+          "role": "info.name",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2158,
+              "length": 16,
+              "dataType": "string"
+            }
+          }
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_SATELLITES_IN_FALLBACK",
+          "name": "Charging point network satellites in fallback",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2622,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_SATELLITE_FALLBACK_CURRENT",
+          "name": "Charging point network satellite fallback current",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2623,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_OVERALL_CURRENT_CONSUMPTION_L1",
+          "name": "Charging point network overall current consumption L1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2636,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_OVERALL_CURRENT_CONSUMPTION_L2",
+          "name": "Charging point network overall current consumption L2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2637,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        },
+        {
+          "id": "cHARGING_POINT_NETWORK_OVERALL_CURRENT_CONSUMPTION_L3",
+          "name": "Charging point network overall current consumption L3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2638,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          },
+          "unit": "A"
+        }
+      ]
+    },
+    {
       "id": "evcs.openwb.lp1.mqtt.v1",
       "source": {
         "type": "builtin"

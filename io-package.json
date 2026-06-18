@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.90",
+    "version": "0.5.91",
     "news": {
+      "0.5.91": {
+        "en": "Add MENNEKES AMTRON 4You 500 / 4Business 700 Modbus TCP template with full register map, writable HEMS current/power limits, safe-current/timeout control, and charging-point-network EMS current block write support.",
+        "de": "MENNEKES AMTRON 4You 500 / 4Business 700 Modbus-TCP-Template ergänzt: kompletter Registersatz, schreibbare HEMS-Strom-/Leistungsgrenzen, Safe-Current-/Timeout-Steuerung und Block-Schreibzugriff für Charging-Point-Network-EMS-Stromlimit."
+      },
       "0.5.90": {
         "en": "Add Sungrow Modbus templates for grid-connected PV inverters, residential hybrid ESS, Logger1000/3000/4000 and iHomeManager. Includes compound write handling for Sungrow charge/discharge and power-limit setpoints.",
         "de": "Sungrow-Modbus-Templates für netzgekoppelte PV-Wechselrichter, Residential-Hybrid-ESS, Logger1000/3000/4000 und iHomeManager ergänzt. Inklusive zusammengesetzter Schreiblogik für Sungrow Lade-/Entlade- und Leistungsbegrenzungs-Sollwerte."
