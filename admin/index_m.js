@@ -249,8 +249,9 @@ function applyTemplateModbusTcpDefaultsToForm(tpl, protocol, conn) {
   if (!hints) return;
   const c = conn || {};
   const shouldSet = (v) => v === undefined || v === null || v === '';
+  const shouldSetUnitId = (v) => shouldSet(v) || Number(v) <= 0;
 
-  if (hints.unitIdDefault !== undefined && shouldSet(c.unitId)) $('#mb_unitId').val(hints.unitIdDefault);
+  if (hints.unitIdDefault !== undefined && shouldSetUnitId(c.unitId)) $('#mb_unitId').val(hints.unitIdDefault);
   if (hints.timeoutMs !== undefined && shouldSet(c.timeoutMs)) $('#mb_timeout').val(hints.timeoutMs);
   if (hints.wordOrderDefault !== undefined && shouldSet(c.wordOrder)) $('#mb_wordOrder').val(hints.wordOrderDefault);
   if (hints.byteOrderDefault !== undefined && shouldSet(c.byteOrder)) $('#mb_byteOrder').val(hints.byteOrderDefault);

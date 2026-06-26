@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.91",
+    "version": "0.5.92",
     "news": {
+      "0.5.92": {
+        "en": "Mennekes AMTRON Modbus TCP connection fix: enforce Unit-ID fallback to template default 1 when config contains 0/invalid, and split Mennekes reads into strict contiguous register blocks to avoid requests across unmapped gaps.",
+        "de": "Mennekes-AMTRON-Modbus-TCP-Verbindungsfix: Unit-ID fällt bei 0/ungültiger Konfiguration sauber auf Template-Default 1 zurück, und Mennekes-Lesezugriffe werden in strikt zusammenhängende Registerblöcke getrennt, damit keine nicht belegten Registerlücken mitgelesen werden."
+      },
       "0.5.91": {
         "en": "Add MENNEKES AMTRON 4You 500 / 4Business 700 Modbus TCP template with full register map, writable HEMS current/power limits, safe-current/timeout control, and charging-point-network EMS current block write support.",
         "de": "MENNEKES AMTRON 4You 500 / 4Business 700 Modbus-TCP-Template ergänzt: kompletter Registersatz, schreibbare HEMS-Strom-/Leistungsgrenzen, Safe-Current-/Timeout-Steuerung und Block-Schreibzugriff für Charging-Point-Network-EMS-Stromlimit."

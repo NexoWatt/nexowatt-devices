@@ -50703,7 +50703,7 @@
           "unitIdDefault": 1,
           "timeoutMs": 3000,
           "maxReadRegs": 16,
-          "minCommandIntervalMs": 100,
+          "minCommandIntervalMs": 150,
           "restoreSetpointsOnStart": {
             "enabled": true,
             "delayMs": 1500,
@@ -50716,7 +50716,8 @@
             ],
             "storeOnWrite": true,
             "useFallbackFromDpState": true
-          }
+          },
+          "strictContiguousReads": true
         }
       },
       "datapoints": [
