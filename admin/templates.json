@@ -111226,7 +111226,7 @@
           "setpointKeepalive": {
             "checkPeriodMs": 10000,
             "requireEverWritten": true,
-            "unsupportedBackoffMs": 300000,
+            "unsupportedBackoffMs": 3600000,
             "targets": [
               {
                 "setpointDpId": "sET_CHARGING_CURRENT",
@@ -111238,7 +111238,9 @@
                 "disableOnExceptionCodes": [
                   2,
                   3
-                ]
+                ],
+                "unsupportedBackoffMs": 3600000,
+                "writeRejectBackoffMs": 3600000
               },
               {
                 "setpointDpId": "cHARGE_USING_PHASES",
@@ -111250,7 +111252,9 @@
                 "disableOnExceptionCodes": [
                   2,
                   3
-                ]
+                ],
+                "unsupportedBackoffMs": 3600000,
+                "writeRejectBackoffMs": 3600000
               }
             ],
             "requireFreshState": false,
@@ -111258,7 +111262,9 @@
             "disableOnExceptionCodes": [
               2,
               3
-            ]
+            ],
+            "writeRejectBackoffMs": 3600000,
+            "logLevel": "debug"
           },
           "unitIdDefault": 1,
           "enforceUnitIdDefault": true,
@@ -111281,12 +111287,15 @@
             "enabled": false
           },
           "optionalReadErrorLogLevel": "debug",
-          "setpointKeepaliveUnsupportedBackoffMs": 300000,
-          "writeRejectBackoffMs": 300000,
+          "setpointKeepaliveUnsupportedBackoffMs": 3600000,
+          "writeRejectBackoffMs": 3600000,
           "addressing": {
             "documentRegisterOffset": -1,
-            "templateUsesProtocolAddresses": true
-          }
+            "templateUsesProtocolAddresses": true,
+            "fallbackOffsetsDisabled": true
+          },
+          "disableAddressFallbackOffsets": true,
+          "disableOffByOneFallback": true
         },
         "polling": {
           "initialFastOnly": true,
@@ -111305,7 +111314,15 @@
             "vOLTAGE_L2",
             "vOLTAGE_L3",
             "tOTAL_CHARGED_ENERGY",
-            "eNERGY_CONSUMED_SUM"
+            "eNERGY_CONSUMED_SUM",
+            "eVSE_STATE",
+            "mODE3_STATE",
+            "aCTUAL_APPLIED_MAX_CURRENT",
+            "mODBUS_MAX_CURRENT_VALID_TIME",
+            "sET_CHARGING_CURRENT",
+            "aCTIVE_LOAD_BALANCING_SAFE_CURRENT",
+            "sETPOINT_ACCOUNTED_FOR",
+            "cHARGE_USING_PHASES"
           ],
           "slowDpIds": [
             "aCTIVE_POWER",
@@ -111351,7 +111368,15 @@
             "rEACTIVE_ENERGY_L1",
             "rEACTIVE_ENERGY_L2",
             "rEACTIVE_ENERGY_L3",
-            "rEACTIVE_ENERGY_SUM"
+            "rEACTIVE_ENERGY_SUM",
+            "eVSE_STATE",
+            "mODE3_STATE",
+            "aCTUAL_APPLIED_MAX_CURRENT",
+            "mODBUS_MAX_CURRENT_VALID_TIME",
+            "sET_CHARGING_CURRENT",
+            "aCTIVE_LOAD_BALANCING_SAFE_CURRENT",
+            "sETPOINT_ACCOUNTED_FOR",
+            "cHARGE_USING_PHASES"
           ]
         },
         "alfen": {
@@ -112449,10 +112474,7 @@
               "dataType": "uint16",
               "unitId": 1,
               "nanToNull": true,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 1
           }
@@ -112471,10 +112493,7 @@
               "length": 5,
               "dataType": "string",
               "unitId": 1,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 1
           }
@@ -112495,10 +112514,7 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 1,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 1
           },
@@ -112520,10 +112536,7 @@
               "wordOrder": "le",
               "unitId": 1,
               "nanToNull": true,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 1
           },
@@ -112545,10 +112558,7 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 1,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "write": {
               "fc": 16,
@@ -112562,9 +112572,8 @@
               "finite": true,
               "unitId": 1,
               "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "round": true,
+              "integer": true
             },
             "unitId": 1
           },
@@ -112587,10 +112596,7 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 1,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 1
           },
@@ -112612,10 +112618,7 @@
               "toBoolean": true,
               "unitId": 1,
               "nanToNull": true,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 1
           }
@@ -112635,10 +112638,7 @@
               "dataType": "uint16",
               "unitId": 1,
               "nanToNull": true,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "write": {
               "fc": 16,
@@ -112656,10 +112656,7 @@
               "unitId": 1,
               "nanToNull": true,
               "optional": true,
-              "finite": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "finite": true
             },
             "unitId": 1
           },
@@ -112686,7 +112683,7 @@
           "setpointKeepalive": {
             "checkPeriodMs": 10000,
             "requireEverWritten": true,
-            "unsupportedBackoffMs": 300000,
+            "unsupportedBackoffMs": 3600000,
             "targets": [
               {
                 "setpointDpId": "sET_CHARGING_CURRENT",
@@ -112698,7 +112695,9 @@
                 "disableOnExceptionCodes": [
                   2,
                   3
-                ]
+                ],
+                "unsupportedBackoffMs": 3600000,
+                "writeRejectBackoffMs": 3600000
               },
               {
                 "setpointDpId": "cHARGE_USING_PHASES",
@@ -112710,7 +112709,9 @@
                 "disableOnExceptionCodes": [
                   2,
                   3
-                ]
+                ],
+                "unsupportedBackoffMs": 3600000,
+                "writeRejectBackoffMs": 3600000
               }
             ],
             "requireFreshState": false,
@@ -112718,7 +112719,9 @@
             "disableOnExceptionCodes": [
               2,
               3
-            ]
+            ],
+            "writeRejectBackoffMs": 3600000,
+            "logLevel": "debug"
           },
           "unitIdDefault": 2,
           "enforceUnitIdDefault": true,
@@ -112741,12 +112744,15 @@
             "enabled": false
           },
           "optionalReadErrorLogLevel": "debug",
-          "setpointKeepaliveUnsupportedBackoffMs": 300000,
-          "writeRejectBackoffMs": 300000,
+          "setpointKeepaliveUnsupportedBackoffMs": 3600000,
+          "writeRejectBackoffMs": 3600000,
           "addressing": {
             "documentRegisterOffset": -1,
-            "templateUsesProtocolAddresses": true
-          }
+            "templateUsesProtocolAddresses": true,
+            "fallbackOffsetsDisabled": true
+          },
+          "disableAddressFallbackOffsets": true,
+          "disableOffByOneFallback": true
         },
         "polling": {
           "initialFastOnly": true,
@@ -112765,7 +112771,15 @@
             "vOLTAGE_L2",
             "vOLTAGE_L3",
             "tOTAL_CHARGED_ENERGY",
-            "eNERGY_CONSUMED_SUM"
+            "eNERGY_CONSUMED_SUM",
+            "eVSE_STATE",
+            "mODE3_STATE",
+            "aCTUAL_APPLIED_MAX_CURRENT",
+            "mODBUS_MAX_CURRENT_VALID_TIME",
+            "sET_CHARGING_CURRENT",
+            "aCTIVE_LOAD_BALANCING_SAFE_CURRENT",
+            "sETPOINT_ACCOUNTED_FOR",
+            "cHARGE_USING_PHASES"
           ],
           "slowDpIds": [
             "aCTIVE_POWER",
@@ -112811,7 +112825,15 @@
             "rEACTIVE_ENERGY_L1",
             "rEACTIVE_ENERGY_L2",
             "rEACTIVE_ENERGY_L3",
-            "rEACTIVE_ENERGY_SUM"
+            "rEACTIVE_ENERGY_SUM",
+            "eVSE_STATE",
+            "mODE3_STATE",
+            "aCTUAL_APPLIED_MAX_CURRENT",
+            "mODBUS_MAX_CURRENT_VALID_TIME",
+            "sET_CHARGING_CURRENT",
+            "aCTIVE_LOAD_BALANCING_SAFE_CURRENT",
+            "sETPOINT_ACCOUNTED_FOR",
+            "cHARGE_USING_PHASES"
           ]
         },
         "alfen": {
@@ -113909,10 +113931,7 @@
               "dataType": "uint16",
               "unitId": 2,
               "nanToNull": true,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 2
           }
@@ -113931,10 +113950,7 @@
               "length": 5,
               "dataType": "string",
               "unitId": 2,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 2
           }
@@ -113955,10 +113971,7 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 2,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 2
           },
@@ -113980,10 +113993,7 @@
               "wordOrder": "le",
               "unitId": 2,
               "nanToNull": true,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 2
           },
@@ -114005,10 +114015,7 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 2,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "write": {
               "fc": 16,
@@ -114022,9 +114029,8 @@
               "finite": true,
               "unitId": 2,
               "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "round": true,
+              "integer": true
             },
             "unitId": 2
           },
@@ -114047,10 +114053,7 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 2,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 2
           },
@@ -114072,10 +114075,7 @@
               "toBoolean": true,
               "unitId": 2,
               "nanToNull": true,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 2
           }
@@ -114095,10 +114095,7 @@
               "dataType": "uint16",
               "unitId": 2,
               "nanToNull": true,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "write": {
               "fc": 16,
@@ -114116,10 +114113,7 @@
               "unitId": 2,
               "nanToNull": true,
               "optional": true,
-              "finite": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "finite": true
             },
             "unitId": 2
           },
@@ -114146,7 +114140,7 @@
           "setpointKeepalive": {
             "checkPeriodMs": 10000,
             "requireEverWritten": true,
-            "unsupportedBackoffMs": 300000,
+            "unsupportedBackoffMs": 3600000,
             "targets": [
               {
                 "setpointDpId": "sET_CHARGING_CURRENT",
@@ -114158,7 +114152,9 @@
                 "disableOnExceptionCodes": [
                   2,
                   3
-                ]
+                ],
+                "unsupportedBackoffMs": 3600000,
+                "writeRejectBackoffMs": 3600000
               },
               {
                 "setpointDpId": "cHARGE_USING_PHASES",
@@ -114170,7 +114166,9 @@
                 "disableOnExceptionCodes": [
                   2,
                   3
-                ]
+                ],
+                "unsupportedBackoffMs": 3600000,
+                "writeRejectBackoffMs": 3600000
               }
             ],
             "requireFreshState": false,
@@ -114178,7 +114176,9 @@
             "disableOnExceptionCodes": [
               2,
               3
-            ]
+            ],
+            "writeRejectBackoffMs": 3600000,
+            "logLevel": "debug"
           },
           "unitIdDefault": 1,
           "enforceUnitIdDefault": true,
@@ -114201,14 +114201,17 @@
             "enabled": false
           },
           "optionalReadErrorLogLevel": "debug",
-          "setpointKeepaliveUnsupportedBackoffMs": 300000,
-          "writeRejectBackoffMs": 300000,
+          "setpointKeepaliveUnsupportedBackoffMs": 3600000,
+          "writeRejectBackoffMs": 3600000,
           "addressing": {
             "documentRegisterOffset": -1,
-            "templateUsesProtocolAddresses": true
+            "templateUsesProtocolAddresses": true,
+            "fallbackOffsetsDisabled": true
           },
           "alfenScnUnitId": 200,
-          "alfenScnPollingDefault": false
+          "alfenScnPollingDefault": false,
+          "disableAddressFallbackOffsets": true,
+          "disableOffByOneFallback": true
         },
         "polling": {
           "initialFastOnly": true,
@@ -114227,7 +114230,15 @@
             "vOLTAGE_L2",
             "vOLTAGE_L3",
             "tOTAL_CHARGED_ENERGY",
-            "eNERGY_CONSUMED_SUM"
+            "eNERGY_CONSUMED_SUM",
+            "eVSE_STATE",
+            "mODE3_STATE",
+            "aCTUAL_APPLIED_MAX_CURRENT",
+            "mODBUS_MAX_CURRENT_VALID_TIME",
+            "sET_CHARGING_CURRENT",
+            "aCTIVE_LOAD_BALANCING_SAFE_CURRENT",
+            "sETPOINT_ACCOUNTED_FOR",
+            "cHARGE_USING_PHASES"
           ],
           "slowDpIds": [
             "aCTIVE_POWER",
@@ -114273,7 +114284,15 @@
             "rEACTIVE_ENERGY_L1",
             "rEACTIVE_ENERGY_L2",
             "rEACTIVE_ENERGY_L3",
-            "rEACTIVE_ENERGY_SUM"
+            "rEACTIVE_ENERGY_SUM",
+            "eVSE_STATE",
+            "mODE3_STATE",
+            "aCTUAL_APPLIED_MAX_CURRENT",
+            "mODBUS_MAX_CURRENT_VALID_TIME",
+            "sET_CHARGING_CURRENT",
+            "aCTIVE_LOAD_BALANCING_SAFE_CURRENT",
+            "sETPOINT_ACCOUNTED_FOR",
+            "cHARGE_USING_PHASES"
           ]
         },
         "alfen": {
@@ -114643,10 +114662,7 @@
               "length": 4,
               "dataType": "string",
               "unitId": 200,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 200
           }
@@ -114666,10 +114682,7 @@
               "dataType": "uint16",
               "unitId": 200,
               "nanToNull": true,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 200
           }
@@ -114690,10 +114703,7 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 200,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 200
           },
@@ -114715,10 +114725,7 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 200,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 200
           },
@@ -114740,10 +114747,7 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 200,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 200
           },
@@ -114765,10 +114769,7 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 200,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 200
           },
@@ -114790,10 +114791,7 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 200,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 200
           },
@@ -114815,10 +114813,7 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 200,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 200
           },
@@ -114848,9 +114843,10 @@
               "repeatValueWords": 2,
               "nanToNull": true,
               "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "round": true,
+              "integer": true,
+              "minValue": 0,
+              "maxValue": 80
             }
           },
           "desc": "Alfen ACE SCN max current registers 1417..1422, protocol addresses 1416..1421. Requires TCP/IP EMS control mode=SCN and Enable Smart Charging Network."
@@ -114871,10 +114867,7 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 200,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "write": {
               "fc": 16,
@@ -114888,9 +114881,8 @@
               "finite": true,
               "unitId": 200,
               "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "round": true,
+              "integer": true
             },
             "unitId": 200
           },
@@ -114913,10 +114905,7 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 200,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "write": {
               "fc": 16,
@@ -114930,9 +114919,8 @@
               "finite": true,
               "unitId": 200,
               "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "round": true,
+              "integer": true
             },
             "unitId": 200
           },
@@ -114955,10 +114943,7 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 200,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "write": {
               "fc": 16,
@@ -114972,9 +114957,8 @@
               "finite": true,
               "unitId": 200,
               "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "round": true,
+              "integer": true
             },
             "unitId": 200
           },
@@ -114997,10 +114981,7 @@
               "wordOrder": "le",
               "unitId": 200,
               "nanToNull": true,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 200
           },
@@ -115022,10 +115003,7 @@
               "wordOrder": "le",
               "unitId": 200,
               "nanToNull": true,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 200
           },
@@ -115047,10 +115025,7 @@
               "wordOrder": "le",
               "unitId": 200,
               "nanToNull": true,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 200
           },
@@ -115072,10 +115047,7 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 200,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 200
           },
@@ -115096,10 +115068,7 @@
               "dataType": "uint16",
               "unitId": 200,
               "nanToNull": true,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 200
           },
@@ -116185,10 +116154,7 @@
               "dataType": "uint16",
               "unitId": 1,
               "nanToNull": true,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 1
           }
@@ -116207,10 +116173,7 @@
               "length": 5,
               "dataType": "string",
               "unitId": 1,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 1
           }
@@ -116231,10 +116194,7 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 1,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 1
           },
@@ -116256,10 +116216,7 @@
               "wordOrder": "le",
               "unitId": 1,
               "nanToNull": true,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 1
           },
@@ -116281,10 +116238,7 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 1,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "write": {
               "fc": 16,
@@ -116298,9 +116252,8 @@
               "finite": true,
               "unitId": 1,
               "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "round": true,
+              "integer": true
             },
             "unitId": 1
           },
@@ -116323,10 +116276,7 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 1,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 1
           },
@@ -116348,10 +116298,7 @@
               "toBoolean": true,
               "unitId": 1,
               "nanToNull": true,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "unitId": 1
           }
@@ -116371,10 +116318,7 @@
               "dataType": "uint16",
               "unitId": 1,
               "nanToNull": true,
-              "optional": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "optional": true
             },
             "write": {
               "fc": 16,
@@ -116392,10 +116336,7 @@
               "unitId": 1,
               "nanToNull": true,
               "optional": true,
-              "finite": true,
-              "fallbackAddressOffsets": [
-                1
-              ]
+              "finite": true
             },
             "unitId": 1
           },

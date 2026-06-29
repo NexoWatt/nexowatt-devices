@@ -414,3 +414,12 @@ MENNEKES AMTRON HEMS communication timeout is reset by regular Modbus read or wr
 ### Version 0.5.100
 
 - MENNEKES AMTRON HEMS restore/keepalive hardened: the adapter no longer performs cyclic writes for Mennekes setpoints, because regular Modbus reads already reset the HEMS communication timeout. On reconnect it restores only the last explicitly written current/power control setpoint and no longer rewrites safe-current, communication-timeout, deprecated legacy, or network registers automatically.
+
+### Alfen NG9xx / ACE Modbus note
+
+The Alfen ACE template uses the protocol addresses required by the Alfen documentation: document register minus 1, fixed Unit-ID 1 for socket 1, Unit-ID 2 for socket 2, and Unit-ID 200 for station/SCN. The socket EMS control block around document registers 1200..1215 is optional in practice and is only writable when Active Load Balancing / Energy Management System mode, Socket control, Enable sockets, and Allow writing maximum currents are enabled in ACE Service Installer. The adapter does not perform unsafe off-by-one write fallback for these control registers.
+
+### Version 0.5.101
+
+- Alfen NG9xx / ACE Modbus hardening: removed the unsafe off-by-one fallback for Alfen read/write operations. The adapter now keeps the documented protocol addressing only (`documentation register - 1`) and will no longer retry `sET_CHARGING_CURRENT` on the shifted address `1210` when the correct address `1209` is rejected.
+- Alfen maximum-current setpoints are rounded to whole amperes before encoding because the Alfen table specifies a `1 A` step size for `FLOAT32` maximum-current registers. Values such as `13.3 A` are sent as `13 A`, while the 10-second watchdog refresh remains active after a successful write.

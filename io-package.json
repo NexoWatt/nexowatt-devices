@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.100",
+    "version": "0.5.101",
     "news": {
+      "0.5.101": {
+        "en": "Alfen NG9xx/ACE Modbus hardening: remove unsafe off-by-one fallback writes, keep documented protocol addresses (register minus 1), stop automatic retries on unsupported socket-control writes during cooldown, and reduce misleading write spam when the charger exposes meter data but not the EMS control block.",
+        "de": "Alfen NG9xx/ACE Modbus gehärtet: unsichere Off-by-One-Fallback-Schreibzugriffe entfernt, dokumentierte Protokolladressen (Register minus 1) beibehalten, automatische Wiederholungen auf nicht unterstützte Socket-Control-Schreibregister während Cooldown gestoppt und irreführende Schreib-Logflut reduziert, wenn die Wallbox Messwerte liefert, aber den EMS-Control-Block nicht freigibt."
+      },
       "0.5.100": {
         "en": "MENNEKES AMTRON HEMS stability hardening: disable cyclic write keepalive because Mennekes resets its HEMS timeout through regular Modbus reads, restore only the last explicitly written current/power setpoint on reconnect, and stop automatic reconnect rewrites of safe-current, timeout, legacy and network registers.",
         "de": "MENNEKES-AMTRON-HEMS-Stabilisierung: zyklisches Write-Keepalive deaktiviert, weil Mennekes den HEMS-Timeout bereits durch regelmäßige Modbus-Lesezugriffe zurücksetzt; beim Reconnect wird nur noch der zuletzt explizit geschriebene Strom-/Leistungs-Sollwert wiederhergestellt, Safe-Current, Timeout, Legacy- und Netzwerkregister werden nicht mehr automatisch neu geschrieben."
