@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.96",
+    "version": "0.5.98",
     "news": {
+      "0.5.98": {
+        "en": "Alfen NG9xx/ACE diagnostics and watchdog update: keep writable Alfen setpoints on a 10-second refresh, add Alfen-specific hints for missing socket control/status blocks, and map unsupported U64/NaN register values to null to avoid ioBroker type warnings.",
+        "de": "Alfen-NG9xx/ACE Diagnose- und Watchdog-Update: Alfen-Schreibwerte werden im 10-Sekunden-Takt erneuert, Alfen-spezifische Hinweise für nicht freigeschaltete Socket-Control-/Statusblöcke ergänzt und nicht unterstützte U64/NaN-Registerwerte auf null gemappt, damit keine ioBroker-Typwarnungen entstehen."
+      },
       "0.5.96": {
         "en": "Alfen NG9xx/ACE Modbus fix: support per-register Unit-IDs, add Socket-mode fallback values to the Station/SCN template, reduce Alfen polling to stable fast groups and make unsupported station/SCN blocks optional.",
         "de": "Alfen-NG9xx/ACE-Modbus-Fix: Unit-ID pro Registergruppe unterstützt, Socket-Mode-Fallbackwerte im Station/SCN-Template ergänzt, Alfen-Polling auf stabile Fast-Gruppen reduziert und nicht unterstützte Station/SCN-Blöcke optional gemacht."
@@ -352,6 +356,10 @@
       "0.5.77": {
         "en": "Hotfix: Fix alias definition build for ESS/Battery devices (undefined findById). This restores working control aliases (e.g. SolaX power setpoint) and prevents templates from losing alias linkage after updates.",
         "de": "Hotfix: Alias-Definitionen für ESS/Batterie-Geräte repariert (undefiniertes findById). Dadurch funktionieren Control-Aliase (z.B. SolaX Leistungs-Sollwert) wieder und Templates verlieren nach Updates nicht mehr die Alias-Verknüpfung."
+      },
+      "0.5.97": {
+        "en": "Alfen NG9xx/ACE compatibility fix: isolate important socket reads so unsupported optional meter/register values do not hide neighbours; add stable aliases for Mode-3 status, vehicle connected/charging, applied current limit, valid-time, setpoint acknowledgement, phase mode and charging release; refresh Alfen writable setpoints every 10 seconds for the watchdog.",
+        "de": "Alfen-NG9xx/ACE-Kompatibilitätsfix: wichtige Socket-Reads werden einzeln gelesen, damit nicht unterstützte optionale Meter-/Registerwerte keine Nachbarwerte mitreißen; stabile Aliase für Mode-3-Status, Fahrzeug verbunden/Ladevorgang aktiv, angewendetes Stromlimit, Valid-Time, Setpoint-Übernahme, Phasenmodus und Ladefreigabe ergänzt; Alfen-Schreibwerte werden für den Watchdog alle 10 Sekunden erneuert."
       }
     },
     "title": "NexoWatt Devices",

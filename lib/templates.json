@@ -111205,14 +111205,18 @@
         "pollIntervalMs": 5000,
         "modbus": {
           "setpointKeepalive": {
-            "checkPeriodMs": 5000,
-            "refreshBelowS": 15,
+            "checkPeriodMs": 10000,
+            "requireEverWritten": true,
             "targets": [
               {
                 "setpointDpId": "sET_CHARGING_CURRENT",
-                "remainingTimeDpId": "mODBUS_MAX_CURRENT_VALID_TIME",
-                "refreshBelowS": 15,
-                "minWriteIntervalMs": 2000
+                "intervalMs": 10000,
+                "minWriteIntervalMs": 9000
+              },
+              {
+                "setpointDpId": "cHARGE_USING_PHASES",
+                "intervalMs": 10000,
+                "minWriteIntervalMs": 9000
               }
             ]
           },
@@ -111222,11 +111226,12 @@
           "timeoutMs": 5000,
           "operationTimeoutMs": 7000,
           "connectTimeoutMs": 7000,
-          "minCommandIntervalMs": 250,
+          "minCommandIntervalMs": 150,
           "strictContiguousReads": true,
           "continueOnReadError": true,
           "skipFailedReadGroupsMs": 600000,
-          "maxReadRegs": 50
+          "maxReadRegs": 5,
+          "isolateReadDatapoints": true
         },
         "polling": {
           "initialFastOnly": true,
@@ -111234,10 +111239,7 @@
           "slowIntervalMs": 300000,
           "fastDpIds": [
             "mETER_STATE_RAW",
-            "mETER_STATE_01",
-            "mETER_STATE_02",
-            "mETER_STATE_04",
-            "mETER_STATE_08",
+            "mETER_LAST_VALUE_TIMESTAMP_MS",
             "mETER_TYPE",
             "vOLTAGE_L1",
             "vOLTAGE_L2",
@@ -111251,6 +111253,7 @@
             "aCTIVE_POWER_L3",
             "aCTIVE_POWER",
             "tOTAL_CHARGED_ENERGY",
+            "eNERGY_CONSUMED_SUM",
             "eVSE_STATE",
             "mODE3_STATE",
             "aCTUAL_APPLIED_MAX_CURRENT",
@@ -111258,8 +111261,19 @@
             "sET_CHARGING_CURRENT",
             "aCTIVE_LOAD_BALANCING_SAFE_CURRENT",
             "sETPOINT_ACCOUNTED_FOR",
-            "cHARGE_USING_PHASES"
+            "cHARGE_USING_PHASES",
+            "mETER_STATE_01",
+            "mETER_STATE_02",
+            "mETER_STATE_04",
+            "mETER_STATE_08"
           ]
+        },
+        "alfen": {
+          "defaultEnableCurrentA": 16,
+          "runCurrentA": 16,
+          "stopCurrentA": 0,
+          "setpointWatchdogRefreshMs": 10000,
+          "optionalMeterNaNAsNull": true
         }
       },
       "datapoints": [
@@ -111375,7 +111389,9 @@
               "length": 4,
               "dataType": "uint64",
               "wordOrder": "le",
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true,
+              "bigIntToNullOnOverflow": true
             },
             "unitId": 1
           },
@@ -112521,14 +112537,18 @@
         "pollIntervalMs": 5000,
         "modbus": {
           "setpointKeepalive": {
-            "checkPeriodMs": 5000,
-            "refreshBelowS": 15,
+            "checkPeriodMs": 10000,
+            "requireEverWritten": true,
             "targets": [
               {
                 "setpointDpId": "sET_CHARGING_CURRENT",
-                "remainingTimeDpId": "mODBUS_MAX_CURRENT_VALID_TIME",
-                "refreshBelowS": 15,
-                "minWriteIntervalMs": 2000
+                "intervalMs": 10000,
+                "minWriteIntervalMs": 9000
+              },
+              {
+                "setpointDpId": "cHARGE_USING_PHASES",
+                "intervalMs": 10000,
+                "minWriteIntervalMs": 9000
               }
             ]
           },
@@ -112538,11 +112558,12 @@
           "timeoutMs": 5000,
           "operationTimeoutMs": 7000,
           "connectTimeoutMs": 7000,
-          "minCommandIntervalMs": 250,
+          "minCommandIntervalMs": 150,
           "strictContiguousReads": true,
           "continueOnReadError": true,
           "skipFailedReadGroupsMs": 600000,
-          "maxReadRegs": 50
+          "maxReadRegs": 5,
+          "isolateReadDatapoints": true
         },
         "polling": {
           "initialFastOnly": true,
@@ -112550,10 +112571,7 @@
           "slowIntervalMs": 300000,
           "fastDpIds": [
             "mETER_STATE_RAW",
-            "mETER_STATE_01",
-            "mETER_STATE_02",
-            "mETER_STATE_04",
-            "mETER_STATE_08",
+            "mETER_LAST_VALUE_TIMESTAMP_MS",
             "mETER_TYPE",
             "vOLTAGE_L1",
             "vOLTAGE_L2",
@@ -112567,6 +112585,7 @@
             "aCTIVE_POWER_L3",
             "aCTIVE_POWER",
             "tOTAL_CHARGED_ENERGY",
+            "eNERGY_CONSUMED_SUM",
             "eVSE_STATE",
             "mODE3_STATE",
             "aCTUAL_APPLIED_MAX_CURRENT",
@@ -112574,8 +112593,19 @@
             "sET_CHARGING_CURRENT",
             "aCTIVE_LOAD_BALANCING_SAFE_CURRENT",
             "sETPOINT_ACCOUNTED_FOR",
-            "cHARGE_USING_PHASES"
+            "cHARGE_USING_PHASES",
+            "mETER_STATE_01",
+            "mETER_STATE_02",
+            "mETER_STATE_04",
+            "mETER_STATE_08"
           ]
+        },
+        "alfen": {
+          "defaultEnableCurrentA": 16,
+          "runCurrentA": 16,
+          "stopCurrentA": 0,
+          "setpointWatchdogRefreshMs": 10000,
+          "optionalMeterNaNAsNull": true
         }
       },
       "datapoints": [
@@ -112691,7 +112721,9 @@
               "length": 4,
               "dataType": "uint64",
               "wordOrder": "le",
-              "unitId": 2
+              "unitId": 2,
+              "nanToNull": true,
+              "bigIntToNullOnOverflow": true
             },
             "unitId": 2
           },
@@ -113837,32 +113869,33 @@
         "pollIntervalMs": 5000,
         "modbus": {
           "setpointKeepalive": {
-            "checkPeriodMs": 5000,
-            "refreshBelowS": 15,
+            "checkPeriodMs": 10000,
+            "requireEverWritten": true,
             "targets": [
               {
                 "setpointDpId": "sET_CHARGING_CURRENT",
-                "remainingTimeDpId": "mODBUS_MAX_CURRENT_VALID_TIME",
-                "refreshBelowS": 15,
-                "minWriteIntervalMs": 2000
+                "intervalMs": 10000,
+                "minWriteIntervalMs": 9000
+              },
+              {
+                "setpointDpId": "cHARGE_USING_PHASES",
+                "intervalMs": 10000,
+                "minWriteIntervalMs": 9000
               },
               {
                 "setpointDpId": "sCN_MAX_CURRENT_L1",
-                "remainingTimeDpId": "sCN_REMAINING_VALID_TIME_L1",
-                "refreshBelowS": 15,
-                "minWriteIntervalMs": 2000
+                "intervalMs": 10000,
+                "minWriteIntervalMs": 9000
               },
               {
                 "setpointDpId": "sCN_MAX_CURRENT_L2",
-                "remainingTimeDpId": "sCN_REMAINING_VALID_TIME_L2",
-                "refreshBelowS": 15,
-                "minWriteIntervalMs": 2000
+                "intervalMs": 10000,
+                "minWriteIntervalMs": 9000
               },
               {
                 "setpointDpId": "sCN_MAX_CURRENT_L3",
-                "remainingTimeDpId": "sCN_REMAINING_VALID_TIME_L3",
-                "refreshBelowS": 15,
-                "minWriteIntervalMs": 2000
+                "intervalMs": 10000,
+                "minWriteIntervalMs": 9000
               }
             ]
           },
@@ -113872,11 +113905,12 @@
           "timeoutMs": 5000,
           "operationTimeoutMs": 7000,
           "connectTimeoutMs": 7000,
-          "minCommandIntervalMs": 250,
+          "minCommandIntervalMs": 150,
           "strictContiguousReads": true,
           "continueOnReadError": true,
           "skipFailedReadGroupsMs": 600000,
-          "maxReadRegs": 50
+          "maxReadRegs": 5,
+          "isolateReadDatapoints": true
         },
         "polling": {
           "initialFastOnly": true,
@@ -113884,10 +113918,7 @@
           "slowIntervalMs": 300000,
           "fastDpIds": [
             "mETER_STATE_RAW",
-            "mETER_STATE_01",
-            "mETER_STATE_02",
-            "mETER_STATE_04",
-            "mETER_STATE_08",
+            "mETER_LAST_VALUE_TIMESTAMP_MS",
             "mETER_TYPE",
             "vOLTAGE_L1",
             "vOLTAGE_L2",
@@ -113901,6 +113932,7 @@
             "aCTIVE_POWER_L3",
             "aCTIVE_POWER",
             "tOTAL_CHARGED_ENERGY",
+            "eNERGY_CONSUMED_SUM",
             "eVSE_STATE",
             "mODE3_STATE",
             "aCTUAL_APPLIED_MAX_CURRENT",
@@ -113908,8 +113940,25 @@
             "sET_CHARGING_CURRENT",
             "aCTIVE_LOAD_BALANCING_SAFE_CURRENT",
             "sETPOINT_ACCOUNTED_FOR",
-            "cHARGE_USING_PHASES"
+            "cHARGE_USING_PHASES",
+            "mETER_STATE_01",
+            "mETER_STATE_02",
+            "mETER_STATE_04",
+            "mETER_STATE_08",
+            "sCN_MAX_CURRENT_L1",
+            "sCN_MAX_CURRENT_L2",
+            "sCN_MAX_CURRENT_L3",
+            "sCN_REMAINING_VALID_TIME_L1",
+            "sCN_REMAINING_VALID_TIME_L2",
+            "sCN_REMAINING_VALID_TIME_L3"
           ]
+        },
+        "alfen": {
+          "defaultEnableCurrentA": 16,
+          "runCurrentA": 16,
+          "stopCurrentA": 0,
+          "setpointWatchdogRefreshMs": 10000,
+          "optionalMeterNaNAsNull": true
         }
       },
       "datapoints": [
@@ -114143,7 +114192,9 @@
               "length": 4,
               "dataType": "uint64",
               "wordOrder": "le",
-              "unitId": 200
+              "unitId": 200,
+              "nanToNull": true,
+              "bigIntToNullOnOverflow": true
             },
             "unitId": 200
           },
@@ -114718,7 +114769,9 @@
               "length": 4,
               "dataType": "uint64",
               "wordOrder": "le",
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true,
+              "bigIntToNullOnOverflow": true
             },
             "unitId": 1
           },
