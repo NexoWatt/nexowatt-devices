@@ -325,7 +325,9 @@ Wichtige Schreib-Datenpunkte:
 
 Fix ab `0.5.95`: Die Alfen-Templates verwenden jetzt direkt die tatsächlich zu sendenden Modbus-Protokolladressen (`Register - 1`). Zusätzlich erzwingt der Adapter die korrekte Unit-ID je Template und ignoriert alte manuelle Address-Offset-Werte für diese Alfen-Templates. Dadurch werden Schreibzugriffe nicht mehr um ein Register verschoben, was vorher bei Setpoint-Keepalive zu `Modbus exception 3: Illegal data value` führen konnte. Nicht-transportbedingte Write-Fehler markieren das Gerät außerdem nicht mehr fälschlich als offline.
 
-Hinweis: Für Schreibzugriffe muss in ACE/Service Installer die Modbus-/EMS-Konfiguration passend aktiviert sein: Lesen erlauben, Schreiben der Maximalströme erlauben, Active Load Balancing/EMS-Modus aktivieren und die Validity-Time größer als das Poll-/Keepalive-Intervall setzen.
+Stabilitäts-/Kompatibilitätsfix ab `0.5.96`: Der Modbus-Treiber kann jetzt pro Datenpunkt/Registergruppe eine eigene Unit-ID verwenden. Das ist für Alfen wichtig, weil Socket-Werte auf Unit-ID `1`/`2` und Station/SCN-Werte auf Unit-ID `200` liegen. Das Station/SCN-Template enthält zusätzlich Socket-1-Livewerte als Fallback, damit Anlagen, die in ACE auf `TCP/IP EMS Control Mode = Socket` stehen und Unit-ID `200` ablehnen, trotzdem Leistung, Status, Energie und Socket-Stromlimit liefern. Alfen-Station/SCN-Blöcke werden nur noch langsam und optional gelesen; nicht unterstützte Blöcke erzeugen keinen Totalausfall der Socket-Werte.
+
+Hinweis: Für Schreibzugriffe muss in ACE/Service Installer die Modbus-/EMS-Konfiguration passend aktiviert sein: Lesen erlauben, Schreiben der Maximalströme erlauben, Active Load Balancing/EMS-Modus aktivieren und die Validity-Time größer als das Poll-/Keepalive-Intervall setzen. Für normale Einzel-Wallboxen ist meistens das Socket-1-Template bzw. der Socket-Modus richtig; Station/SCN ist nur für die SCN-/Stationssteuerung gedacht.
 
 ### Hinweis zu Register‑Offsets
 Viele Herstellerdokumentationen verwenden 1‑basierte Registeradressen (z.B. `40001`).

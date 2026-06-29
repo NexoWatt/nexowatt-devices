@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.95",
+    "version": "0.5.96",
     "news": {
+      "0.5.96": {
+        "en": "Alfen NG9xx/ACE Modbus fix: support per-register Unit-IDs, add Socket-mode fallback values to the Station/SCN template, reduce Alfen polling to stable fast groups and make unsupported station/SCN blocks optional.",
+        "de": "Alfen-NG9xx/ACE-Modbus-Fix: Unit-ID pro Registergruppe unterstützt, Socket-Mode-Fallbackwerte im Station/SCN-Template ergänzt, Alfen-Polling auf stabile Fast-Gruppen reduziert und nicht unterstützte Station/SCN-Blöcke optional gemacht."
+      },
       "0.5.95": {
         "en": "Alfen NG9xx/ACE Modbus TCP fix: convert all Alfen template registers to protocol addresses (register - 1), enforce the fixed Unit-IDs for socket1/socket2/station-SCN, add write-value validation/diagnostics, and keep connection state online for non-transport write rejections.",
         "de": "Alfen-NG9xx/ACE-Modbus-TCP-Fix: alle Alfen-Template-Register auf echte Protokolladressen (Register - 1) umgestellt, feste Unit-IDs für Socket1/Socket2/Station-SCN erzwungen, Schreibwert-Validierung/Diagnose ergänzt und Verbindungsstatus bei reinen Write-Ablehnungen nicht mehr fälschlich auf offline gesetzt."
