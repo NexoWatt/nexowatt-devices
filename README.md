@@ -423,3 +423,11 @@ The Alfen ACE template uses the protocol addresses required by the Alfen documen
 
 - Alfen NG9xx / ACE Modbus hardening: removed the unsafe off-by-one fallback for Alfen read/write operations. The adapter now keeps the documented protocol addressing only (`documentation register - 1`) and will no longer retry `sET_CHARGING_CURRENT` on the shifted address `1210` when the correct address `1209` is rejected.
 - Alfen maximum-current setpoints are rounded to whole amperes before encoding because the Alfen table specifies a `1 A` step size for `FLOAT32` maximum-current registers. Values such as `13.3 A` are sent as `13 A`, while the 10-second watchdog refresh remains active after a successful write.
+
+### 0.5.102 - Alfen ACE write/address hardening
+
+- Fixes a crash in alias write error handling (`Cannot access dp before initialization`).
+- Forces Alfen ACE templates to use protocol address offset `0` even when stale device/global settings contain an address offset.
+- Disables unsafe off-by-one write retries for Alfen 32-bit control registers.
+- Keeps unexpected state-change errors from terminating the adapter instance.
+

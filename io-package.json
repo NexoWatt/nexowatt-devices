@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.101",
+    "version": "0.5.102",
     "news": {
+      "0.5.102": {
+        "en": "Alfen NG9xx/ACE stability fix: prevent crash on rejected alias writes, enforce template protocol address offset over stale device config, and keep Alfen current setpoint writes rounded/in cooldown after Modbus rejects.",
+        "de": "Alfen-NG9xx/ACE-Stabilitätsfix: kein Absturz mehr bei abgelehnten Alias-Schreibzugriffen, Template-Protokolladressierung überschreibt alte Geräte-Offsets, und Alfen-Stromsollwerte werden gerundet sowie nach Modbus-Ablehnung sauber pausiert."
+      },
       "0.5.101": {
         "en": "Alfen NG9xx/ACE Modbus hardening: remove unsafe off-by-one fallback writes, keep documented protocol addresses (register minus 1), stop automatic retries on unsupported socket-control writes during cooldown, and reduce misleading write spam when the charger exposes meter data but not the EMS control block.",
         "de": "Alfen NG9xx/ACE Modbus gehärtet: unsichere Off-by-One-Fallback-Schreibzugriffe entfernt, dokumentierte Protokolladressen (Register minus 1) beibehalten, automatische Wiederholungen auf nicht unterstützte Socket-Control-Schreibregister während Cooldown gestoppt und irreführende Schreib-Logflut reduziert, wenn die Wallbox Messwerte liefert, aber den EMS-Control-Block nicht freigibt."

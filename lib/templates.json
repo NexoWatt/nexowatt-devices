@@ -111264,7 +111264,8 @@
               3
             ],
             "writeRejectBackoffMs": 3600000,
-            "logLevel": "debug"
+            "logLevel": "debug",
+            "periodMs": 10000
           },
           "unitIdDefault": 1,
           "enforceUnitIdDefault": true,
@@ -111295,7 +111296,10 @@
             "fallbackOffsetsDisabled": true
           },
           "disableAddressFallbackOffsets": true,
-          "disableOffByOneFallback": true
+          "disableOffByOneFallback": true,
+          "addressOffsetDefault": 0,
+          "enforcedAddressOffset": 0,
+          "disableFallbackAddressOffsets": true
         },
         "polling": {
           "initialFastOnly": true,
@@ -111408,9 +111412,13 @@
               "length": 1,
               "dataType": "uint16",
               "unitId": 1,
-              "nanToNull": true
+              "nanToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -111429,9 +111437,13 @@
               "bitMask": 1,
               "toBoolean": true,
               "unitId": 1,
-              "nanToNull": true
+              "nanToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -111450,9 +111462,13 @@
               "bitMask": 2,
               "toBoolean": true,
               "unitId": 1,
-              "nanToNull": true
+              "nanToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -111471,9 +111487,13 @@
               "bitMask": 4,
               "toBoolean": true,
               "unitId": 1,
-              "nanToNull": true
+              "nanToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -111492,9 +111512,13 @@
               "bitMask": 8,
               "toBoolean": true,
               "unitId": 1,
-              "nanToNull": true
+              "nanToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -111514,9 +111538,13 @@
               "unitId": 1,
               "nanToNull": true,
               "bigIntToNullOnOverflow": true,
-              "uint64OverflowToNull": true
+              "uint64OverflowToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "ms"
         },
@@ -111534,9 +111562,13 @@
               "length": 1,
               "dataType": "uint16",
               "unitId": 1,
-              "nanToNull": true
+              "nanToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -111554,9 +111586,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "V"
         },
@@ -111575,9 +111611,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "V"
         },
@@ -111596,9 +111636,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "V"
         },
@@ -111617,9 +111661,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "V"
         },
@@ -111638,9 +111686,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "V"
         },
@@ -111659,9 +111711,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "V"
         },
@@ -111680,9 +111736,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -111701,9 +111761,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -111722,9 +111786,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -111743,9 +111811,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -111764,9 +111836,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -111785,9 +111861,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -111805,9 +111885,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -111825,9 +111909,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -111845,9 +111933,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -111865,9 +111957,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Hz"
         },
@@ -111886,9 +111982,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "W"
         },
@@ -111907,9 +112007,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "W"
         },
@@ -111928,9 +112032,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "W"
         },
@@ -111949,9 +112057,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "W"
         },
@@ -111970,9 +112082,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VA"
         },
@@ -111991,9 +112107,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VA"
         },
@@ -112012,9 +112132,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VA"
         },
@@ -112033,9 +112157,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VA"
         },
@@ -112054,9 +112182,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "var"
         },
@@ -112075,9 +112207,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "var"
         },
@@ -112096,9 +112232,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "var"
         },
@@ -112117,9 +112257,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "var"
         },
@@ -112138,9 +112282,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -112159,9 +112307,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -112180,9 +112332,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -112201,9 +112357,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -112222,9 +112382,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -112243,9 +112407,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -112264,9 +112432,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -112285,9 +112457,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -112306,9 +112482,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VAh"
         },
@@ -112327,9 +112507,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VAh"
         },
@@ -112348,9 +112532,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VAh"
         },
@@ -112369,9 +112557,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VAh"
         },
@@ -112390,9 +112582,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VArh"
         },
@@ -112411,9 +112607,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VArh"
         },
@@ -112432,9 +112632,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VArh"
         },
@@ -112453,9 +112657,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VArh"
         },
@@ -112474,9 +112682,13 @@
               "dataType": "uint16",
               "unitId": 1,
               "nanToNull": true,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -112493,9 +112705,13 @@
               "length": 5,
               "dataType": "string",
               "unitId": 1,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -112514,9 +112730,13 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 1,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -112536,9 +112756,13 @@
               "wordOrder": "le",
               "unitId": 1,
               "nanToNull": true,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "s"
         },
@@ -112558,7 +112782,9 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 1,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
             "write": {
               "fc": 16,
@@ -112573,9 +112799,13 @@
               "unitId": 1,
               "optional": true,
               "round": true,
-              "integer": true
+              "integer": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A",
           "desc": "Alfen ACE register 1210..1211, protocol address 1209. Requires Active Load Balancing, Data Source=Energy Management System, TCP/IP EMS control mode=Socket, Enable sockets and Allow writing maximum currents."
@@ -112596,9 +112826,13 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 1,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -112618,9 +112852,13 @@
               "toBoolean": true,
               "unitId": 1,
               "nanToNull": true,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -112638,7 +112876,9 @@
               "dataType": "uint16",
               "unitId": 1,
               "nanToNull": true,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
             "write": {
               "fc": 16,
@@ -112656,14 +112896,22 @@
               "unitId": 1,
               "nanToNull": true,
               "optional": true,
-              "finite": true
+              "finite": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "phases",
           "desc": "Alfen ACE register 1215, protocol address 1214. Requires Energy Management System mode and Allow 1-/3-phase charging in ACE."
         }
-      ]
+      ],
+      "unitIdDefault": 1,
+      "forceAddressOffset": 0,
+      "addressOffsetDefault": 0,
+      "disableAddressFallbackOffsets": true
     },
     {
       "id": "evcs.alfen.ng9xx.ace.socket2.modbusTcp",
@@ -112721,7 +112969,8 @@
               3
             ],
             "writeRejectBackoffMs": 3600000,
-            "logLevel": "debug"
+            "logLevel": "debug",
+            "periodMs": 10000
           },
           "unitIdDefault": 2,
           "enforceUnitIdDefault": true,
@@ -112752,7 +113001,10 @@
             "fallbackOffsetsDisabled": true
           },
           "disableAddressFallbackOffsets": true,
-          "disableOffByOneFallback": true
+          "disableOffByOneFallback": true,
+          "addressOffsetDefault": 0,
+          "enforcedAddressOffset": 0,
+          "disableFallbackAddressOffsets": true
         },
         "polling": {
           "initialFastOnly": true,
@@ -112865,9 +113117,13 @@
               "length": 1,
               "dataType": "uint16",
               "unitId": 2,
-              "nanToNull": true
+              "nanToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -112886,9 +113142,13 @@
               "bitMask": 1,
               "toBoolean": true,
               "unitId": 2,
-              "nanToNull": true
+              "nanToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -112907,9 +113167,13 @@
               "bitMask": 2,
               "toBoolean": true,
               "unitId": 2,
-              "nanToNull": true
+              "nanToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -112928,9 +113192,13 @@
               "bitMask": 4,
               "toBoolean": true,
               "unitId": 2,
-              "nanToNull": true
+              "nanToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -112949,9 +113217,13 @@
               "bitMask": 8,
               "toBoolean": true,
               "unitId": 2,
-              "nanToNull": true
+              "nanToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -112971,9 +113243,13 @@
               "unitId": 2,
               "nanToNull": true,
               "bigIntToNullOnOverflow": true,
-              "uint64OverflowToNull": true
+              "uint64OverflowToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "ms"
         },
@@ -112991,9 +113267,13 @@
               "length": 1,
               "dataType": "uint16",
               "unitId": 2,
-              "nanToNull": true
+              "nanToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -113011,9 +113291,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "V"
         },
@@ -113032,9 +113316,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "V"
         },
@@ -113053,9 +113341,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "V"
         },
@@ -113074,9 +113366,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "V"
         },
@@ -113095,9 +113391,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "V"
         },
@@ -113116,9 +113416,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "V"
         },
@@ -113137,9 +113441,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -113158,9 +113466,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -113179,9 +113491,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -113200,9 +113516,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -113221,9 +113541,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -113242,9 +113566,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -113262,9 +113590,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -113282,9 +113614,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -113302,9 +113638,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -113322,9 +113662,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Hz"
         },
@@ -113343,9 +113687,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "W"
         },
@@ -113364,9 +113712,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "W"
         },
@@ -113385,9 +113737,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "W"
         },
@@ -113406,9 +113762,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "W"
         },
@@ -113427,9 +113787,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VA"
         },
@@ -113448,9 +113812,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VA"
         },
@@ -113469,9 +113837,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VA"
         },
@@ -113490,9 +113862,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VA"
         },
@@ -113511,9 +113887,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "var"
         },
@@ -113532,9 +113912,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "var"
         },
@@ -113553,9 +113937,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "var"
         },
@@ -113574,9 +113962,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "var"
         },
@@ -113595,9 +113987,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -113616,9 +114012,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -113637,9 +114037,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -113658,9 +114062,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -113679,9 +114087,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -113700,9 +114112,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -113721,9 +114137,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -113742,9 +114162,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -113763,9 +114187,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VAh"
         },
@@ -113784,9 +114212,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VAh"
         },
@@ -113805,9 +114237,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VAh"
         },
@@ -113826,9 +114262,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VAh"
         },
@@ -113847,9 +114287,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VArh"
         },
@@ -113868,9 +114312,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VArh"
         },
@@ -113889,9 +114337,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VArh"
         },
@@ -113910,9 +114362,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VArh"
         },
@@ -113931,9 +114387,13 @@
               "dataType": "uint16",
               "unitId": 2,
               "nanToNull": true,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -113950,9 +114410,13 @@
               "length": 5,
               "dataType": "string",
               "unitId": 2,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -113971,9 +114435,13 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 2,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -113993,9 +114461,13 @@
               "wordOrder": "le",
               "unitId": 2,
               "nanToNull": true,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "s"
         },
@@ -114015,7 +114487,9 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 2,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
             "write": {
               "fc": 16,
@@ -114030,9 +114504,13 @@
               "unitId": 2,
               "optional": true,
               "round": true,
-              "integer": true
+              "integer": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A",
           "desc": "Alfen ACE register 1210..1211, protocol address 1209. Requires Active Load Balancing, Data Source=Energy Management System, TCP/IP EMS control mode=Socket, Enable sockets and Allow writing maximum currents."
@@ -114053,9 +114531,13 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 2,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -114075,9 +114557,13 @@
               "toBoolean": true,
               "unitId": 2,
               "nanToNull": true,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -114095,7 +114581,9 @@
               "dataType": "uint16",
               "unitId": 2,
               "nanToNull": true,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
             "write": {
               "fc": 16,
@@ -114113,14 +114601,22 @@
               "unitId": 2,
               "nanToNull": true,
               "optional": true,
-              "finite": true
+              "finite": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 2
+            "unitId": 2,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "phases",
           "desc": "Alfen ACE register 1215, protocol address 1214. Requires Energy Management System mode and Allow 1-/3-phase charging in ACE."
         }
-      ]
+      ],
+      "unitIdDefault": 2,
+      "forceAddressOffset": 0,
+      "addressOffsetDefault": 0,
+      "disableAddressFallbackOffsets": true
     },
     {
       "id": "evcs.alfen.ng9xx.ace.station.modbusTcp",
@@ -114178,7 +114674,8 @@
               3
             ],
             "writeRejectBackoffMs": 3600000,
-            "logLevel": "debug"
+            "logLevel": "debug",
+            "periodMs": 10000
           },
           "unitIdDefault": 1,
           "enforceUnitIdDefault": true,
@@ -114211,7 +114708,10 @@
           "alfenScnUnitId": 200,
           "alfenScnPollingDefault": false,
           "disableAddressFallbackOffsets": true,
-          "disableOffByOneFallback": true
+          "disableOffByOneFallback": true,
+          "addressOffsetDefault": 0,
+          "enforcedAddressOffset": 0,
+          "disableFallbackAddressOffsets": true
         },
         "polling": {
           "initialFastOnly": true,
@@ -114323,9 +114823,13 @@
               "address": 99,
               "length": 17,
               "dataType": "string",
-              "unitId": 200
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -114341,9 +114845,13 @@
               "address": 116,
               "length": 5,
               "dataType": "string",
-              "unitId": 200
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -114359,9 +114867,13 @@
               "address": 121,
               "length": 1,
               "dataType": "int16",
-              "unitId": 200
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -114377,9 +114889,13 @@
               "address": 122,
               "length": 17,
               "dataType": "string",
-              "unitId": 200
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -114395,9 +114911,13 @@
               "address": 139,
               "length": 17,
               "dataType": "string",
-              "unitId": 200
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -114413,9 +114933,13 @@
               "address": 156,
               "length": 11,
               "dataType": "string",
-              "unitId": 200
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -114431,9 +114955,13 @@
               "address": 167,
               "length": 1,
               "dataType": "int16",
-              "unitId": 200
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -114449,9 +114977,13 @@
               "address": 168,
               "length": 1,
               "dataType": "int16",
-              "unitId": 200
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -114467,9 +114999,13 @@
               "address": 169,
               "length": 1,
               "dataType": "int16",
-              "unitId": 200
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -114485,9 +115021,13 @@
               "address": 170,
               "length": 1,
               "dataType": "int16",
-              "unitId": 200
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -114503,9 +115043,13 @@
               "address": 171,
               "length": 1,
               "dataType": "int16",
-              "unitId": 200
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -114521,9 +115065,13 @@
               "address": 172,
               "length": 1,
               "dataType": "int16",
-              "unitId": 200
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -114543,9 +115091,13 @@
               "unitId": 200,
               "nanToNull": true,
               "bigIntToNullOnOverflow": true,
-              "uint64OverflowToNull": true
+              "uint64OverflowToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "ms"
         },
@@ -114562,9 +115114,13 @@
               "address": 177,
               "length": 1,
               "dataType": "int16",
-              "unitId": 200
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "min"
         },
@@ -114583,9 +115139,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 200
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -114604,9 +115164,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 200
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "°C"
         },
@@ -114624,9 +115188,13 @@
               "length": 1,
               "dataType": "uint16",
               "unitId": 200,
-              "nanToNull": true
+              "nanToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -114643,9 +115211,13 @@
               "length": 1,
               "dataType": "uint16",
               "unitId": 200,
-              "nanToNull": true
+              "nanToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -114662,9 +115234,13 @@
               "length": 4,
               "dataType": "string",
               "unitId": 200,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -114682,9 +115258,13 @@
               "dataType": "uint16",
               "unitId": 200,
               "nanToNull": true,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -114703,9 +115283,13 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 200,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -114725,9 +115309,13 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 200,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -114747,9 +115335,13 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 200,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -114769,9 +115361,13 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 200,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -114791,9 +115387,13 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 200,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -114813,9 +115413,13 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 200,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -114846,8 +115450,12 @@
               "round": true,
               "integer": true,
               "minValue": 0,
-              "maxValue": 80
-            }
+              "maxValue": 80,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
+            },
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "desc": "Alfen ACE SCN max current registers 1417..1422, protocol addresses 1416..1421. Requires TCP/IP EMS control mode=SCN and Enable Smart Charging Network."
         },
@@ -114867,7 +115475,9 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 200,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
             "write": {
               "fc": 16,
@@ -114882,9 +115492,13 @@
               "unitId": 200,
               "optional": true,
               "round": true,
-              "integer": true
+              "integer": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A",
           "desc": "Alfen ACE SCN max current registers 1417..1422, protocol addresses 1416..1421. Requires TCP/IP EMS control mode=SCN and Enable Smart Charging Network."
@@ -114905,7 +115519,9 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 200,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
             "write": {
               "fc": 16,
@@ -114920,9 +115536,13 @@
               "unitId": 200,
               "optional": true,
               "round": true,
-              "integer": true
+              "integer": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A",
           "desc": "Alfen ACE SCN max current registers 1417..1422, protocol addresses 1416..1421. Requires TCP/IP EMS control mode=SCN and Enable Smart Charging Network."
@@ -114943,7 +115563,9 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 200,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
             "write": {
               "fc": 16,
@@ -114958,9 +115580,13 @@
               "unitId": 200,
               "optional": true,
               "round": true,
-              "integer": true
+              "integer": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A",
           "desc": "Alfen ACE SCN max current registers 1417..1422, protocol addresses 1416..1421. Requires TCP/IP EMS control mode=SCN and Enable Smart Charging Network."
@@ -114981,9 +115607,13 @@
               "wordOrder": "le",
               "unitId": 200,
               "nanToNull": true,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "s"
         },
@@ -115003,9 +115633,13 @@
               "wordOrder": "le",
               "unitId": 200,
               "nanToNull": true,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "s"
         },
@@ -115025,9 +115659,13 @@
               "wordOrder": "le",
               "unitId": 200,
               "nanToNull": true,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "s"
         },
@@ -115047,9 +115685,13 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 200,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -115068,9 +115710,13 @@
               "dataType": "uint16",
               "unitId": 200,
               "nanToNull": true,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 200
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "desc": "Alfen ACE SCN max current registers 1417..1422, protocol addresses 1416..1421. Requires TCP/IP EMS control mode=SCN and Enable Smart Charging Network."
         },
@@ -115088,9 +115734,13 @@
               "length": 1,
               "dataType": "uint16",
               "unitId": 1,
-              "nanToNull": true
+              "nanToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -115109,9 +115759,13 @@
               "bitMask": 1,
               "toBoolean": true,
               "unitId": 1,
-              "nanToNull": true
+              "nanToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -115130,9 +115784,13 @@
               "bitMask": 2,
               "toBoolean": true,
               "unitId": 1,
-              "nanToNull": true
+              "nanToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -115151,9 +115809,13 @@
               "bitMask": 4,
               "toBoolean": true,
               "unitId": 1,
-              "nanToNull": true
+              "nanToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -115172,9 +115834,13 @@
               "bitMask": 8,
               "toBoolean": true,
               "unitId": 1,
-              "nanToNull": true
+              "nanToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -115194,9 +115860,13 @@
               "unitId": 1,
               "nanToNull": true,
               "bigIntToNullOnOverflow": true,
-              "uint64OverflowToNull": true
+              "uint64OverflowToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "ms"
         },
@@ -115214,9 +115884,13 @@
               "length": 1,
               "dataType": "uint16",
               "unitId": 1,
-              "nanToNull": true
+              "nanToNull": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -115234,9 +115908,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "V"
         },
@@ -115255,9 +115933,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "V"
         },
@@ -115276,9 +115958,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "V"
         },
@@ -115297,9 +115983,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "V"
         },
@@ -115318,9 +116008,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "V"
         },
@@ -115339,9 +116033,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "V"
         },
@@ -115360,9 +116058,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -115381,9 +116083,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -115402,9 +116108,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -115423,9 +116133,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -115444,9 +116158,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -115465,9 +116183,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -115485,9 +116207,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -115505,9 +116231,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -115525,9 +116255,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -115545,9 +116279,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Hz"
         },
@@ -115566,9 +116304,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "W"
         },
@@ -115587,9 +116329,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "W"
         },
@@ -115608,9 +116354,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "W"
         },
@@ -115629,9 +116379,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "W"
         },
@@ -115650,9 +116404,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VA"
         },
@@ -115671,9 +116429,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VA"
         },
@@ -115692,9 +116454,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VA"
         },
@@ -115713,9 +116479,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VA"
         },
@@ -115734,9 +116504,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "var"
         },
@@ -115755,9 +116529,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "var"
         },
@@ -115776,9 +116554,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "var"
         },
@@ -115797,9 +116579,13 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "var"
         },
@@ -115818,9 +116604,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -115839,9 +116629,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -115860,9 +116654,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -115881,9 +116679,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -115902,9 +116704,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -115923,9 +116729,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -115944,9 +116754,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -115965,9 +116779,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "Wh"
         },
@@ -115986,9 +116804,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VAh"
         },
@@ -116007,9 +116829,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VAh"
         },
@@ -116028,9 +116854,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VAh"
         },
@@ -116049,9 +116879,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VAh"
         },
@@ -116070,9 +116904,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VArh"
         },
@@ -116091,9 +116929,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VArh"
         },
@@ -116112,9 +116954,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VArh"
         },
@@ -116133,9 +116979,13 @@
               "dataType": "float64",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "VArh"
         },
@@ -116154,9 +117004,13 @@
               "dataType": "uint16",
               "unitId": 1,
               "nanToNull": true,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -116173,9 +117027,13 @@
               "length": 5,
               "dataType": "string",
               "unitId": 1,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -116194,9 +117052,13 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 1,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -116216,9 +117078,13 @@
               "wordOrder": "le",
               "unitId": 1,
               "nanToNull": true,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "s"
         },
@@ -116238,7 +117104,9 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 1,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
             "write": {
               "fc": 16,
@@ -116253,9 +117121,13 @@
               "unitId": 1,
               "optional": true,
               "round": true,
-              "integer": true
+              "integer": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A",
           "desc": "Alfen ACE register 1210..1211, protocol address 1209. Requires Active Load Balancing, Data Source=Energy Management System, TCP/IP EMS control mode=Socket, Enable sockets and Allow writing maximum currents."
@@ -116276,9 +117148,13 @@
               "wordOrder": "le",
               "nanToNull": true,
               "unitId": 1,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "A"
         },
@@ -116298,9 +117174,13 @@
               "toBoolean": true,
               "unitId": 1,
               "nanToNull": true,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           }
         },
         {
@@ -116318,7 +117198,9 @@
               "dataType": "uint16",
               "unitId": 1,
               "nanToNull": true,
-              "optional": true
+              "optional": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
             "write": {
               "fc": 16,
@@ -116336,14 +117218,22 @@
               "unitId": 1,
               "nanToNull": true,
               "optional": true,
-              "finite": true
+              "finite": true,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true
             },
-            "unitId": 1
+            "unitId": 1,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
           },
           "unit": "phases",
           "desc": "Alfen ACE register 1215, protocol address 1214. Requires Energy Management System mode and Allow 1-/3-phase charging in ACE."
         }
-      ]
+      ],
+      "unitIdDefault": 1,
+      "forceAddressOffset": 0,
+      "addressOffsetDefault": 0,
+      "disableAddressFallbackOffsets": true
     },
     {
       "id": "pv_inverter.kostal.PikoModbusSunSpecBigEndianImpl",

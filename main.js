@@ -343,7 +343,12 @@ class NexowattDevicesAdapter extends utils.Adapter {
     for (const rt of this.deviceRuntimes) {
       const prefix = this.namespace + '.' + rt.baseId + '.';
       if (id.startsWith(prefix) || id === this.namespace + '.' + rt.baseId) {
-        await rt.handleStateChange(id, state);
+        try {
+          await rt.handleStateChange(id, state);
+        } catch (e) {
+          const msg = e && e.stack ? e.stack : (e && e.message ? e.message : String(e));
+          this.log.error(`State change handling failed for ${id}: ${msg}`);
+        }
         return;
       }
     }
