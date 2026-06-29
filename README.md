@@ -399,3 +399,18 @@ MIT
 - Added derived Alfen charging/status aliases from measured power and connection state when the optional Mode-3/status block is not exposed by the charger.
 - Unsupported Alfen read/write attempts now cool down instead of being retried aggressively.
 
+
+
+## MENNEKES AMTRON safety note (0.5.100)
+
+The AMTRON HEMS watchdog is kept alive by regular Modbus polling. The adapter therefore no longer restores or periodically rewrites all writable MENNEKES HEMS/configuration registers on reconnect. Writable datapoints and aliases remain available.
+
+### 0.5.100 - MENNEKES AMTRON HEMS watchdog/profile cleanup
+
+MENNEKES AMTRON HEMS communication timeout is reset by regular Modbus read or write traffic. The AMTRON template therefore no longer performs a periodic write keepalive for all writable HEMS/network registers. On reconnect, only explicitly stored modern HEMS setpoints (`sET_CHARGING_CURRENT`, `eV_SET_CHARGE_POWER_LIMIT`) are restored. Configuration registers such as safe current, communication timeout and charging-point-network EMS limits are no longer auto-restored by default. Integer-only MENNEKES write registers are rounded before Modbus encoding so values such as `15.9 A` do not get sent to whole-ampere registers.
+
+
+
+### Version 0.5.100
+
+- MENNEKES AMTRON HEMS restore/keepalive hardened: the adapter no longer performs cyclic writes for Mennekes setpoints, because regular Modbus reads already reset the HEMS communication timeout. On reconnect it restores only the last explicitly written current/power control setpoint and no longer rewrites safe-current, communication-timeout, deprecated legacy, or network registers automatically.

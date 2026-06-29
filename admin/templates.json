@@ -50745,7 +50745,10 @@
             "hEMS_POWER_LIMIT_MAXIMUM",
             "pHASE_SWITCH_STATUS",
             "aSSIGNED_PHASES",
-            "aUTHORIZATION_STATUS"
+            "aUTHORIZATION_STATUS",
+            "sAFE_CURRENT",
+            "cOMMUNICATION_TIMEOUT",
+            "pHASE_SWITCH_MODE"
           ],
           "slowDpIds": [
             "fIRMWARE_VERSION",
@@ -50858,56 +50861,36 @@
             "delayMs": 1500,
             "dpIds": [
               "sET_CHARGING_CURRENT",
-              "eV_SET_CHARGE_POWER_LIMIT",
-              "sAFE_CURRENT",
-              "cOMMUNICATION_TIMEOUT",
-              "cHARGING_POINT_NETWORK_EMS_CURRENT_LIMIT"
+              "eV_SET_CHARGE_POWER_LIMIT"
+            ],
+            "exclusiveGroups": [
+              [
+                "sET_CHARGING_CURRENT",
+                "eV_SET_CHARGE_POWER_LIMIT",
+                "hEMS_CURRENT_LIMIT_A",
+                "hEMS_CURRENT_LIMIT_LEGACY_A",
+                "hEMS_CURRENT_LIMIT_LEGACY_0_1A",
+                "hEMS_POWER_LIMIT_LEGACY",
+                "cHARGING_POINT_NETWORK_EMS_CURRENT_LIMIT"
+              ]
             ],
             "storeOnWrite": true,
-            "useFallbackFromDpState": true
+            "useFallbackFromDpState": false,
+            "logLevel": "debug",
+            "reason": "MENNEKES: restore only the last explicitly written HEMS current OR power setpoint; do not restore safe-current, timeout, legacy, or charging-network registers automatically."
           },
           "setpointKeepalive": {
-            "enabled": true,
-            "checkPeriodMs": 5000,
-            "requireEverWritten": true,
-            "targets": [
-              {
-                "setpointDpId": "hEMS_CURRENT_LIMIT_LEGACY_A",
-                "intervalMs": 15000,
-                "minWriteIntervalMs": 5000
-              },
-              {
-                "setpointDpId": "hEMS_CURRENT_LIMIT_LEGACY_0_1A",
-                "intervalMs": 15000,
-                "minWriteIntervalMs": 5000
-              },
-              {
-                "setpointDpId": "hEMS_POWER_LIMIT_LEGACY",
-                "intervalMs": 15000,
-                "minWriteIntervalMs": 5000
-              },
-              {
-                "setpointDpId": "hEMS_CURRENT_LIMIT_A",
-                "intervalMs": 15000,
-                "minWriteIntervalMs": 5000
-              },
-              {
-                "setpointDpId": "sET_CHARGING_CURRENT",
-                "intervalMs": 15000,
-                "minWriteIntervalMs": 5000
-              },
-              {
-                "setpointDpId": "eV_SET_CHARGE_POWER_LIMIT",
-                "intervalMs": 15000,
-                "minWriteIntervalMs": 5000
-              },
-              {
-                "setpointDpId": "cHARGING_POINT_NETWORK_EMS_CURRENT_LIMIT",
-                "intervalMs": 15000,
-                "minWriteIntervalMs": 5000
-              }
-            ]
-          }
+            "enabled": false,
+            "reason": "MENNEKES AMTRON HEMS timeout is reset by regular Modbus reads; periodic write keepalive is not required and must not touch all writable registers."
+          },
+          "permanentWriteErrorRetryAttempts": 1,
+          "unsupportedWriteCooldownMs": 600000,
+          "writeMaxPerTick": 1
+        },
+        "mennekes": {
+          "runCurrentA": 16,
+          "stopCurrentA": 0,
+          "chargingPowerThresholdW": 50
         }
       },
       "datapoints": [
@@ -51073,7 +51056,10 @@
               "fc": 6,
               "address": 131,
               "length": 1,
-              "dataType": "uint16"
+              "dataType": "uint16",
+              "round": true,
+              "minValue": 0,
+              "maxValue": 16
             }
           },
           "unit": "A"
@@ -51096,7 +51082,10 @@
               "fc": 6,
               "address": 132,
               "length": 1,
-              "dataType": "uint16"
+              "dataType": "uint16",
+              "round": true,
+              "minValue": 0,
+              "maxValue": 65535
             }
           },
           "unit": "s"
@@ -51591,7 +51580,10 @@
               "fc": 6,
               "address": 613,
               "length": 1,
-              "dataType": "uint16"
+              "dataType": "uint16",
+              "round": true,
+              "minValue": 0,
+              "maxValue": 16
             }
           },
           "unit": "A"
@@ -51614,7 +51606,10 @@
               "fc": 6,
               "address": 614,
               "length": 1,
-              "dataType": "uint16"
+              "dataType": "uint16",
+              "round": true,
+              "minValue": 0,
+              "maxValue": 16
             }
           },
           "unit": "A"
@@ -51637,7 +51632,10 @@
               "fc": 6,
               "address": 615,
               "length": 1,
-              "dataType": "uint16"
+              "dataType": "uint16",
+              "round": true,
+              "minValue": 0,
+              "maxValue": 16
             }
           },
           "unit": "A"
@@ -51655,7 +51653,10 @@
               "address": 613,
               "length": 3,
               "dataType": "uint16",
-              "repeatValue": true
+              "repeatValue": true,
+              "round": true,
+              "minValue": 0,
+              "maxValue": 16
             }
           },
           "unit": "A"
@@ -51929,7 +51930,10 @@
               "fc": 6,
               "address": 1000,
               "length": 1,
-              "dataType": "uint16"
+              "dataType": "uint16",
+              "round": true,
+              "minValue": 0,
+              "maxValue": 16
             }
           },
           "unit": "A"
@@ -51954,7 +51958,10 @@
               "address": 1001,
               "length": 1,
               "dataType": "uint16",
-              "scaleFactor": -1
+              "scaleFactor": -1,
+              "minValue": 0,
+              "maxValue": 16,
+              "decimals": 1
             }
           },
           "unit": "A",
@@ -51978,7 +51985,10 @@
               "fc": 6,
               "address": 1002,
               "length": 1,
-              "dataType": "uint16"
+              "dataType": "uint16",
+              "round": true,
+              "minValue": 0,
+              "maxValue": 65535
             }
           },
           "unit": "W"
@@ -52001,7 +52011,10 @@
               "fc": 6,
               "address": 2000,
               "length": 1,
-              "dataType": "uint16"
+              "dataType": "uint16",
+              "round": true,
+              "minValue": 0,
+              "maxValue": 16
             }
           },
           "unit": "A"
@@ -52026,7 +52039,10 @@
               "address": 2001,
               "length": 1,
               "dataType": "uint16",
-              "scaleFactor": -1
+              "scaleFactor": -1,
+              "minValue": 0,
+              "maxValue": 16,
+              "decimals": 1
             }
           },
           "unit": "A",
@@ -52050,7 +52066,10 @@
               "fc": 6,
               "address": 2002,
               "length": 1,
-              "dataType": "uint16"
+              "dataType": "uint16",
+              "round": true,
+              "minValue": 0,
+              "maxValue": 65535
             }
           },
           "unit": "W"

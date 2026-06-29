@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.99",
+    "version": "0.5.100",
     "news": {
+      "0.5.100": {
+        "en": "MENNEKES AMTRON HEMS stability hardening: disable cyclic write keepalive because Mennekes resets its HEMS timeout through regular Modbus reads, restore only the last explicitly written current/power setpoint on reconnect, and stop automatic reconnect rewrites of safe-current, timeout, legacy and network registers.",
+        "de": "MENNEKES-AMTRON-HEMS-Stabilisierung: zyklisches Write-Keepalive deaktiviert, weil Mennekes den HEMS-Timeout bereits durch regelmäßige Modbus-Lesezugriffe zurücksetzt; beim Reconnect wird nur noch der zuletzt explizit geschriebene Strom-/Leistungs-Sollwert wiederhergestellt, Safe-Current, Timeout, Legacy- und Netzwerkregister werden nicht mehr automatisch neu geschrieben."
+      },
       "0.5.99": {
         "en": "Alfen NG9xx/ACE socket-mode hardening: safe default polling now focuses on socket live/control registers, Station/SCN UID200 blocks are no longer polled or kept alive by default in the mixed template, and the max-current watchdog runs every 10 seconds only after an actual successful write.",
         "de": "Alfen-NG9xx/ACE-Socket-Mode gehärtet: Safe-Default-Polling fokussiert jetzt Socket-Live-/Control-Register, Station/SCN-UID200-Blöcke werden im gemischten Template standardmäßig nicht mehr gepollt oder per Keepalive beschrieben, und der Max-Current-Watchdog läuft alle 10 Sekunden erst nach einem tatsächlich erfolgreichen Schreibzugriff."
