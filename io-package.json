@@ -1,8 +1,16 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.92",
+    "version": "0.5.95",
     "news": {
+      "0.5.95": {
+        "en": "Alfen NG9xx/ACE Modbus TCP fix: convert all Alfen template registers to protocol addresses (register - 1), enforce the fixed Unit-IDs for socket1/socket2/station-SCN, add write-value validation/diagnostics, and keep connection state online for non-transport write rejections.",
+        "de": "Alfen-NG9xx/ACE-Modbus-TCP-Fix: alle Alfen-Template-Register auf echte Protokolladressen (Register - 1) umgestellt, feste Unit-IDs für Socket1/Socket2/Station-SCN erzwungen, Schreibwert-Validierung/Diagnose ergänzt und Verbindungsstatus bei reinen Write-Ablehnungen nicht mehr fälschlich auf offline gesetzt."
+      },
+      "0.5.94": {
+        "en": "MENNEKES AMTRON Modbus TCP stability fix: add hard operation/connect timeouts, force stale TCP socket cleanup, avoid poisoned Modbus queues after timeouts, reduce AMTRON polling load with fast/slow groups, and add periodic HEMS setpoint refresh.",
+        "de": "MENNEKES-AMTRON-Modbus-TCP-Stabilitätsfix: harte Operation-/Connect-Timeouts ergänzt, hängende TCP-Sockets sauber geschlossen, blockierte Modbus-Queues nach Timeouts verhindert, AMTRON-Polling auf Fast-/Slow-Gruppen reduziert und periodische HEMS-Sollwert-Auffrischung ergänzt."
+      },
       "0.5.92": {
         "en": "Mennekes AMTRON Modbus TCP connection fix: enforce Unit-ID fallback to template default 1 when config contains 0/invalid, and split Mennekes reads into strict contiguous register blocks to avoid requests across unmapped gaps.",
         "de": "Mennekes-AMTRON-Modbus-TCP-Verbindungsfix: Unit-ID fällt bei 0/ungültiger Konfiguration sauber auf Template-Default 1 zurück, und Mennekes-Lesezugriffe werden in strikt zusammenhängende Registerblöcke getrennt, damit keine nicht belegten Registerlücken mitgelesen werden."

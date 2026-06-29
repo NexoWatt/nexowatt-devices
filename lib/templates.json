@@ -50682,7 +50682,20 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "pollIntervalMs": 5000,
+        "heartbeatTimeoutMs": 30000,
+        "modbus": {
+          "unitIdDefault": 1,
+          "timeoutMs": 5000,
+          "connectTimeoutMs": 7000,
+          "operationTimeoutMs": 7000,
+          "minCommandIntervalMs": 250,
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "evcs.mennekes.amtron4you500.4business700.modbusTcp",
@@ -50698,12 +50711,148 @@
       ],
       "driverHints": {
         "pollIntervalMs": 5000,
-        "heartbeatTimeoutMs": 20000,
+        "heartbeatTimeoutMs": 30000,
+        "polling": {
+          "fastIntervalMs": 5000,
+          "slowIntervalMs": 300000,
+          "initialFastOnly": true,
+          "fastDpIds": [
+            "cHARGE_POINT_STATE",
+            "eRROR_CODE",
+            "eRROR_CODE_2",
+            "eRROR_CODE_3",
+            "eRROR_CODE_4",
+            "vEHICLE_STATE",
+            "cHARGE_POINT_AVAILABILITY",
+            "cURRENT_L1",
+            "cURRENT_L2",
+            "cURRENT_L3",
+            "aCTIVE_PRODUCTION_ENERGY",
+            "aCTIVE_POWER",
+            "sIGNALED_CURRENT_TO_EV",
+            "eNERGY_SESSION",
+            "cHARGING_DURATION",
+            "cHARGING_POINT_NETWORK_EMS_CURRENT_LIMIT_L1",
+            "cHARGING_POINT_NETWORK_EMS_CURRENT_LIMIT_L2",
+            "cHARGING_POINT_NETWORK_EMS_CURRENT_LIMIT_L3",
+            "cHARGING_POINT_NETWORK_SOURCE_OF_LIMITATION",
+            "hEMS_CURRENT_LIMIT_A",
+            "sET_CHARGING_CURRENT",
+            "eV_SET_CHARGE_POWER_LIMIT",
+            "hEMS_CONFIGURATION",
+            "hEMS_COMMUNICATION_STATUS",
+            "hEMS_POWER_LIMIT_MINIMUM",
+            "hEMS_POWER_LIMIT_MAXIMUM",
+            "pHASE_SWITCH_STATUS",
+            "aSSIGNED_PHASES",
+            "aUTHORIZATION_STATUS"
+          ],
+          "slowDpIds": [
+            "fIRMWARE_VERSION",
+            "cHARGE_POINT_STATE",
+            "eRROR_CODE",
+            "eRROR_CODE_2",
+            "eRROR_CODE_3",
+            "eRROR_CODE_4",
+            "pROTOCOL_VERSION",
+            "vEHICLE_STATE",
+            "cHARGE_POINT_AVAILABILITY",
+            "sAFE_CURRENT",
+            "cOMMUNICATION_TIMEOUT",
+            "oPERATOR_CURRENT_LIMIT",
+            "rELAY_STATE",
+            "dEVICE_ID",
+            "cHARGE_POINT_MODEL",
+            "pLUG_LOCK_STATUS",
+            "fIRMWARE_MAJOR",
+            "fIRMWARE_MINOR",
+            "fIRMWARE_PATCH",
+            "fIRMWARE_BUILD",
+            "dEVICE_NAME_DEPRECATED",
+            "mETER_ENERGY_L1",
+            "mETER_ENERGY_L2",
+            "mETER_ENERGY_L3",
+            "mETER_POWER_L1",
+            "mETER_POWER_L2",
+            "mETER_POWER_L3",
+            "cURRENT_L1",
+            "cURRENT_L2",
+            "cURRENT_L3",
+            "aCTIVE_PRODUCTION_ENERGY",
+            "aCTIVE_POWER",
+            "vOLTAGE_L1",
+            "vOLTAGE_L2",
+            "vOLTAGE_L3",
+            "cHARGING_POINT_NETWORK_MODE",
+            "cHARGING_POINT_NETWORK_CURRENT_LIMIT_L1",
+            "cHARGING_POINT_NETWORK_CURRENT_LIMIT_L2",
+            "cHARGING_POINT_NETWORK_CURRENT_LIMIT_L3",
+            "cHARGING_POINT_NETWORK_EMS_CURRENT_LIMIT_L1",
+            "cHARGING_POINT_NETWORK_EMS_CURRENT_LIMIT_L2",
+            "cHARGING_POINT_NETWORK_EMS_CURRENT_LIMIT_L3",
+            "cHARGING_POINT_NETWORK_SOURCE_OF_LIMITATION",
+            "cHARGING_POINT_NETWORK_CONNECTED_CHARGING_STATIONS",
+            "cHARGING_POINT_NETWORK_OVERALL_CURRENT_APPLIED_L1",
+            "cHARGING_POINT_NETWORK_OVERALL_CURRENT_APPLIED_L2",
+            "cHARGING_POINT_NETWORK_OVERALL_CURRENT_APPLIED_L3",
+            "cHARGING_POINT_NETWORK_OVERALL_CURRENT_AVAILABLE_L1",
+            "cHARGING_POINT_NETWORK_OVERALL_CURRENT_AVAILABLE_L2",
+            "cHARGING_POINT_NETWORK_OVERALL_CURRENT_AVAILABLE_L3",
+            "sIGNALED_CURRENT_TO_EV",
+            "cHARGING_START_TIME",
+            "cHARGING_END_TIME",
+            "mIN_CHARGING_CURRENT_LIMIT",
+            "mAX_CHARGING_CURRENT_LIMIT",
+            "eNERGY_SESSION",
+            "cHARGING_DURATION",
+            "hEMS_CURRENT_LIMIT_LEGACY_A",
+            "hEMS_CURRENT_LIMIT_LEGACY_0_1A",
+            "hEMS_POWER_LIMIT_LEGACY",
+            "hEMS_CURRENT_LIMIT_A",
+            "sET_CHARGING_CURRENT",
+            "eV_SET_CHARGE_POWER_LIMIT",
+            "hEMS_CONFIGURATION",
+            "hEMS_COMMUNICATION_STATUS",
+            "hEMS_POWER_LIMIT_MINIMUM",
+            "hEMS_POWER_LIMIT_MAXIMUM",
+            "pHASE_SWITCH_MODE",
+            "pHASE_SWITCH_PAUSE",
+            "pHASE_SWITCH_STATUS",
+            "aSSIGNED_PHASES",
+            "aUTHORIZATION_STATUS",
+            "dEVICE_NAME",
+            "cHARGING_POINT_NETWORK_SATELLITES_IN_FALLBACK",
+            "cHARGING_POINT_NETWORK_SATELLITE_FALLBACK_CURRENT",
+            "cHARGING_POINT_NETWORK_OVERALL_CURRENT_CONSUMPTION_L1",
+            "cHARGING_POINT_NETWORK_OVERALL_CURRENT_CONSUMPTION_L2",
+            "cHARGING_POINT_NETWORK_OVERALL_CURRENT_CONSUMPTION_L3"
+          ]
+        },
         "modbus": {
           "unitIdDefault": 1,
-          "timeoutMs": 3000,
-          "maxReadRegs": 16,
-          "minCommandIntervalMs": 150,
+          "timeoutMs": 5000,
+          "connectTimeoutMs": 7000,
+          "operationTimeoutMs": 7000,
+          "maxReadRegs": 12,
+          "minCommandIntervalMs": 250,
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "requiredReadDpIds": [
+            "cHARGE_POINT_STATE",
+            "vEHICLE_STATE",
+            "cURRENT_L1",
+            "cURRENT_L2",
+            "cURRENT_L3",
+            "aCTIVE_POWER",
+            "sIGNALED_CURRENT_TO_EV",
+            "hEMS_CONFIGURATION",
+            "hEMS_COMMUNICATION_STATUS"
+          ],
+          "skipFailedReadGroupsMs": 600000,
+          "writeThrottleMs": 500,
+          "commandCadenceMs": 500,
           "restoreSetpointsOnStart": {
             "enabled": true,
             "delayMs": 1500,
@@ -50717,7 +50866,48 @@
             "storeOnWrite": true,
             "useFallbackFromDpState": true
           },
-          "strictContiguousReads": true
+          "setpointKeepalive": {
+            "enabled": true,
+            "checkPeriodMs": 5000,
+            "requireEverWritten": true,
+            "targets": [
+              {
+                "setpointDpId": "hEMS_CURRENT_LIMIT_LEGACY_A",
+                "intervalMs": 15000,
+                "minWriteIntervalMs": 5000
+              },
+              {
+                "setpointDpId": "hEMS_CURRENT_LIMIT_LEGACY_0_1A",
+                "intervalMs": 15000,
+                "minWriteIntervalMs": 5000
+              },
+              {
+                "setpointDpId": "hEMS_POWER_LIMIT_LEGACY",
+                "intervalMs": 15000,
+                "minWriteIntervalMs": 5000
+              },
+              {
+                "setpointDpId": "hEMS_CURRENT_LIMIT_A",
+                "intervalMs": 15000,
+                "minWriteIntervalMs": 5000
+              },
+              {
+                "setpointDpId": "sET_CHARGING_CURRENT",
+                "intervalMs": 15000,
+                "minWriteIntervalMs": 5000
+              },
+              {
+                "setpointDpId": "eV_SET_CHARGE_POWER_LIMIT",
+                "intervalMs": 15000,
+                "minWriteIntervalMs": 5000
+              },
+              {
+                "setpointDpId": "cHARGING_POINT_NETWORK_EMS_CURRENT_LIMIT",
+                "intervalMs": 15000,
+                "minWriteIntervalMs": 5000
+              }
+            ]
+          }
         }
       },
       "datapoints": [
@@ -111025,7 +111215,17 @@
                 "minWriteIntervalMs": 2000
               }
             ]
-          }
+          },
+          "unitIdDefault": 1,
+          "enforceUnitIdDefault": true,
+          "forceAddressOffset": 0,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "minCommandIntervalMs": 250,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000
         }
       },
       "datapoints": [
@@ -111039,7 +111239,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 300,
+              "address": 299,
               "length": 1,
               "dataType": "uint16"
             }
@@ -111055,7 +111255,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 300,
+              "address": 299,
               "length": 1,
               "dataType": "uint16",
               "bitMask": 1,
@@ -111073,7 +111273,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 300,
+              "address": 299,
               "length": 1,
               "dataType": "uint16",
               "bitMask": 2,
@@ -111091,7 +111291,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 300,
+              "address": 299,
               "length": 1,
               "dataType": "uint16",
               "bitMask": 4,
@@ -111109,7 +111309,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 300,
+              "address": 299,
               "length": 1,
               "dataType": "uint16",
               "bitMask": 8,
@@ -111127,7 +111327,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 301,
+              "address": 300,
               "length": 4,
               "dataType": "uint64",
               "wordOrder": "le"
@@ -111145,7 +111345,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 305,
+              "address": 304,
               "length": 1,
               "dataType": "uint16"
             }
@@ -111161,7 +111361,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 306,
+              "address": 305,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111180,7 +111380,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 308,
+              "address": 307,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111199,7 +111399,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 310,
+              "address": 309,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111218,7 +111418,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 312,
+              "address": 311,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111237,7 +111437,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 314,
+              "address": 313,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111256,7 +111456,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 316,
+              "address": 315,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111275,7 +111475,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 318,
+              "address": 317,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111294,7 +111494,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 320,
+              "address": 319,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111313,7 +111513,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 322,
+              "address": 321,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111332,7 +111532,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 324,
+              "address": 323,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111351,7 +111551,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 326,
+              "address": 325,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111370,7 +111570,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 328,
+              "address": 327,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111388,7 +111588,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 330,
+              "address": 329,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111406,7 +111606,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 332,
+              "address": 331,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111424,7 +111624,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 334,
+              "address": 333,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111442,7 +111642,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 336,
+              "address": 335,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111461,7 +111661,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 338,
+              "address": 337,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111480,7 +111680,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 340,
+              "address": 339,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111499,7 +111699,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 342,
+              "address": 341,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111518,7 +111718,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 344,
+              "address": 343,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111537,7 +111737,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 346,
+              "address": 345,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111556,7 +111756,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 348,
+              "address": 347,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111575,7 +111775,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 350,
+              "address": 349,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111594,7 +111794,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 352,
+              "address": 351,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111613,7 +111813,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 354,
+              "address": 353,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111632,7 +111832,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 356,
+              "address": 355,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111651,7 +111851,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 358,
+              "address": 357,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111670,7 +111870,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 360,
+              "address": 359,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -111689,7 +111889,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 362,
+              "address": 361,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -111708,7 +111908,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 366,
+              "address": 365,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -111727,7 +111927,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 370,
+              "address": 369,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -111746,7 +111946,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 374,
+              "address": 373,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -111765,7 +111965,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 378,
+              "address": 377,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -111784,7 +111984,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 382,
+              "address": 381,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -111803,7 +112003,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 386,
+              "address": 385,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -111822,7 +112022,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 390,
+              "address": 389,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -111841,7 +112041,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 394,
+              "address": 393,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -111860,7 +112060,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 398,
+              "address": 397,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -111879,7 +112079,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 402,
+              "address": 401,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -111898,7 +112098,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 406,
+              "address": 405,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -111917,7 +112117,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 410,
+              "address": 409,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -111936,7 +112136,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 414,
+              "address": 413,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -111955,7 +112155,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 418,
+              "address": 417,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -111974,7 +112174,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 422,
+              "address": 421,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -111993,7 +112193,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1200,
+              "address": 1199,
               "length": 1,
               "dataType": "uint16"
             }
@@ -112009,7 +112209,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1201,
+              "address": 1200,
               "length": 5,
               "dataType": "string"
             }
@@ -112025,7 +112225,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1206,
+              "address": 1205,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112044,7 +112244,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1208,
+              "address": 1207,
               "length": 2,
               "dataType": "uint32",
               "wordOrder": "le"
@@ -112062,7 +112262,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1210,
+              "address": 1209,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112070,11 +112270,14 @@
             },
             "write": {
               "fc": 16,
-              "address": 1210,
+              "address": 1209,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
-              "nanToNull": true
+              "nanToNull": true,
+              "minValue": 0,
+              "maxValue": 80,
+              "finite": true
             }
           },
           "unit": "A"
@@ -112089,7 +112292,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1212,
+              "address": 1211,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112108,7 +112311,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1214,
+              "address": 1213,
               "length": 1,
               "dataType": "uint16",
               "toBoolean": true
@@ -112125,15 +112328,23 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1215,
+              "address": 1214,
               "length": 1,
               "dataType": "uint16"
             },
             "write": {
               "fc": 16,
-              "address": 1215,
+              "address": 1214,
               "length": 1,
-              "dataType": "uint16"
+              "dataType": "uint16",
+              "allowedValues": [
+                1,
+                3
+              ],
+              "valueMap": {
+                "1": 1,
+                "3": 3
+              }
             }
           },
           "unit": "phases"
@@ -112166,7 +112377,17 @@
                 "minWriteIntervalMs": 2000
               }
             ]
-          }
+          },
+          "unitIdDefault": 2,
+          "enforceUnitIdDefault": true,
+          "forceAddressOffset": 0,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "minCommandIntervalMs": 250,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000
         }
       },
       "datapoints": [
@@ -112180,7 +112401,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 300,
+              "address": 299,
               "length": 1,
               "dataType": "uint16"
             }
@@ -112196,7 +112417,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 300,
+              "address": 299,
               "length": 1,
               "dataType": "uint16",
               "bitMask": 1,
@@ -112214,7 +112435,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 300,
+              "address": 299,
               "length": 1,
               "dataType": "uint16",
               "bitMask": 2,
@@ -112232,7 +112453,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 300,
+              "address": 299,
               "length": 1,
               "dataType": "uint16",
               "bitMask": 4,
@@ -112250,7 +112471,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 300,
+              "address": 299,
               "length": 1,
               "dataType": "uint16",
               "bitMask": 8,
@@ -112268,7 +112489,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 301,
+              "address": 300,
               "length": 4,
               "dataType": "uint64",
               "wordOrder": "le"
@@ -112286,7 +112507,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 305,
+              "address": 304,
               "length": 1,
               "dataType": "uint16"
             }
@@ -112302,7 +112523,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 306,
+              "address": 305,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112321,7 +112542,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 308,
+              "address": 307,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112340,7 +112561,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 310,
+              "address": 309,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112359,7 +112580,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 312,
+              "address": 311,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112378,7 +112599,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 314,
+              "address": 313,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112397,7 +112618,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 316,
+              "address": 315,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112416,7 +112637,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 318,
+              "address": 317,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112435,7 +112656,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 320,
+              "address": 319,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112454,7 +112675,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 322,
+              "address": 321,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112473,7 +112694,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 324,
+              "address": 323,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112492,7 +112713,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 326,
+              "address": 325,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112511,7 +112732,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 328,
+              "address": 327,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112529,7 +112750,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 330,
+              "address": 329,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112547,7 +112768,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 332,
+              "address": 331,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112565,7 +112786,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 334,
+              "address": 333,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112583,7 +112804,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 336,
+              "address": 335,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112602,7 +112823,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 338,
+              "address": 337,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112621,7 +112842,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 340,
+              "address": 339,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112640,7 +112861,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 342,
+              "address": 341,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112659,7 +112880,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 344,
+              "address": 343,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112678,7 +112899,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 346,
+              "address": 345,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112697,7 +112918,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 348,
+              "address": 347,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112716,7 +112937,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 350,
+              "address": 349,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112735,7 +112956,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 352,
+              "address": 351,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112754,7 +112975,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 354,
+              "address": 353,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112773,7 +112994,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 356,
+              "address": 355,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112792,7 +113013,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 358,
+              "address": 357,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112811,7 +113032,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 360,
+              "address": 359,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -112830,7 +113051,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 362,
+              "address": 361,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -112849,7 +113070,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 366,
+              "address": 365,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -112868,7 +113089,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 370,
+              "address": 369,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -112887,7 +113108,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 374,
+              "address": 373,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -112906,7 +113127,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 378,
+              "address": 377,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -112925,7 +113146,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 382,
+              "address": 381,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -112944,7 +113165,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 386,
+              "address": 385,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -112963,7 +113184,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 390,
+              "address": 389,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -112982,7 +113203,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 394,
+              "address": 393,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -113001,7 +113222,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 398,
+              "address": 397,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -113020,7 +113241,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 402,
+              "address": 401,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -113039,7 +113260,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 406,
+              "address": 405,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -113058,7 +113279,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 410,
+              "address": 409,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -113077,7 +113298,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 414,
+              "address": 413,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -113096,7 +113317,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 418,
+              "address": 417,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -113115,7 +113336,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 422,
+              "address": 421,
               "length": 4,
               "dataType": "float64",
               "wordOrder": "le",
@@ -113134,7 +113355,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1200,
+              "address": 1199,
               "length": 1,
               "dataType": "uint16"
             }
@@ -113150,7 +113371,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1201,
+              "address": 1200,
               "length": 5,
               "dataType": "string"
             }
@@ -113166,7 +113387,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1206,
+              "address": 1205,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -113185,7 +113406,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1208,
+              "address": 1207,
               "length": 2,
               "dataType": "uint32",
               "wordOrder": "le"
@@ -113203,7 +113424,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1210,
+              "address": 1209,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -113211,11 +113432,14 @@
             },
             "write": {
               "fc": 16,
-              "address": 1210,
+              "address": 1209,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
-              "nanToNull": true
+              "nanToNull": true,
+              "minValue": 0,
+              "maxValue": 80,
+              "finite": true
             }
           },
           "unit": "A"
@@ -113230,7 +113454,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1212,
+              "address": 1211,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -113249,7 +113473,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1214,
+              "address": 1213,
               "length": 1,
               "dataType": "uint16",
               "toBoolean": true
@@ -113266,15 +113490,23 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1215,
+              "address": 1214,
               "length": 1,
               "dataType": "uint16"
             },
             "write": {
               "fc": 16,
-              "address": 1215,
+              "address": 1214,
               "length": 1,
-              "dataType": "uint16"
+              "dataType": "uint16",
+              "allowedValues": [
+                1,
+                3
+              ],
+              "valueMap": {
+                "1": 1,
+                "3": 3
+              }
             }
           },
           "unit": "phases"
@@ -113319,7 +113551,17 @@
                 "minWriteIntervalMs": 2000
               }
             ]
-          }
+          },
+          "unitIdDefault": 200,
+          "enforceUnitIdDefault": true,
+          "forceAddressOffset": 0,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "minCommandIntervalMs": 250,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000
         }
       },
       "datapoints": [
@@ -113333,7 +113575,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 100,
+              "address": 99,
               "length": 17,
               "dataType": "string"
             }
@@ -113349,7 +113591,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 117,
+              "address": 116,
               "length": 5,
               "dataType": "string"
             }
@@ -113365,7 +113607,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 122,
+              "address": 121,
               "length": 1,
               "dataType": "int16"
             }
@@ -113381,7 +113623,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 123,
+              "address": 122,
               "length": 17,
               "dataType": "string"
             }
@@ -113397,7 +113639,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 140,
+              "address": 139,
               "length": 17,
               "dataType": "string"
             }
@@ -113413,7 +113655,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 157,
+              "address": 156,
               "length": 11,
               "dataType": "string"
             }
@@ -113429,7 +113671,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 168,
+              "address": 167,
               "length": 1,
               "dataType": "int16"
             }
@@ -113445,7 +113687,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 169,
+              "address": 168,
               "length": 1,
               "dataType": "int16"
             }
@@ -113461,7 +113703,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 170,
+              "address": 169,
               "length": 1,
               "dataType": "int16"
             }
@@ -113477,7 +113719,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 171,
+              "address": 170,
               "length": 1,
               "dataType": "int16"
             }
@@ -113493,7 +113735,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 172,
+              "address": 171,
               "length": 1,
               "dataType": "int16"
             }
@@ -113509,7 +113751,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 173,
+              "address": 172,
               "length": 1,
               "dataType": "int16"
             }
@@ -113525,7 +113767,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 174,
+              "address": 173,
               "length": 4,
               "dataType": "uint64",
               "wordOrder": "le"
@@ -113543,7 +113785,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 178,
+              "address": 177,
               "length": 1,
               "dataType": "int16"
             }
@@ -113560,7 +113802,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1100,
+              "address": 1099,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -113579,7 +113821,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1102,
+              "address": 1101,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -113598,7 +113840,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1104,
+              "address": 1103,
               "length": 1,
               "dataType": "uint16"
             }
@@ -113614,7 +113856,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1105,
+              "address": 1104,
               "length": 1,
               "dataType": "uint16"
             }
@@ -113630,7 +113872,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1400,
+              "address": 1399,
               "length": 4,
               "dataType": "string"
             }
@@ -113646,7 +113888,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1404,
+              "address": 1403,
               "length": 1,
               "dataType": "uint16"
             }
@@ -113662,7 +113904,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1405,
+              "address": 1404,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -113681,7 +113923,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1407,
+              "address": 1406,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -113700,7 +113942,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1409,
+              "address": 1408,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -113719,7 +113961,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1411,
+              "address": 1410,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -113738,7 +113980,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1413,
+              "address": 1412,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -113757,7 +113999,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1415,
+              "address": 1414,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -113776,7 +114018,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1417,
+              "address": 1416,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -113784,11 +114026,14 @@
             },
             "write": {
               "fc": 16,
-              "address": 1417,
+              "address": 1416,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
-              "nanToNull": true
+              "nanToNull": true,
+              "minValue": 0,
+              "maxValue": 80,
+              "finite": true
             }
           },
           "unit": "A"
@@ -113803,7 +114048,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1419,
+              "address": 1418,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -113811,11 +114056,14 @@
             },
             "write": {
               "fc": 16,
-              "address": 1419,
+              "address": 1418,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
-              "nanToNull": true
+              "nanToNull": true,
+              "minValue": 0,
+              "maxValue": 80,
+              "finite": true
             }
           },
           "unit": "A"
@@ -113830,7 +114078,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1421,
+              "address": 1420,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -113838,11 +114086,14 @@
             },
             "write": {
               "fc": 16,
-              "address": 1421,
+              "address": 1420,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
-              "nanToNull": true
+              "nanToNull": true,
+              "minValue": 0,
+              "maxValue": 80,
+              "finite": true
             }
           },
           "unit": "A"
@@ -113857,7 +114108,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1423,
+              "address": 1422,
               "length": 2,
               "dataType": "uint32",
               "wordOrder": "le"
@@ -113875,7 +114126,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1425,
+              "address": 1424,
               "length": 2,
               "dataType": "uint32",
               "wordOrder": "le"
@@ -113893,7 +114144,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1427,
+              "address": 1426,
               "length": 2,
               "dataType": "uint32",
               "wordOrder": "le"
@@ -113911,7 +114162,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1429,
+              "address": 1428,
               "length": 2,
               "dataType": "float32",
               "wordOrder": "le",
@@ -113930,7 +114181,7 @@
             "kind": "modbus",
             "read": {
               "fc": 3,
-              "address": 1431,
+              "address": 1430,
               "length": 1,
               "dataType": "uint16"
             }
@@ -122639,7 +122890,22 @@
               ],
               "cooldownMs": 30000
             }
-          ]
+          ],
+          "requiredReadDpIds": [
+            "W",
+            "pV_POWER",
+            "EToday",
+            "TotWhOut",
+            "St",
+            "Evt1",
+            "Hz",
+            "PF",
+            "Temp",
+            "MeterPower",
+            "LoadPower"
+          ],
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000
         },
         "polling": {
           "fastIntervalMs": 5000,
@@ -122656,7 +122922,8 @@
             "Temp",
             "MeterPower",
             "LoadPower"
-          ]
+          ],
+          "initialFastOnly": true
         }
       }
     },
@@ -138202,13 +138469,13 @@
       "driverHints": {
         "modbus": {
           "unitIdDefault": 1,
-          "minCommandIntervalMs": 1000,
+          "minCommandIntervalMs": 500,
           "writeThrottleMs": 1000,
-          "commandCadenceMs": 1000,
+          "commandCadenceMs": 500,
           "writeMaxPerTick": 1,
           "reconnectBackoffMs": 2000,
           "timeoutMs": 5000,
-          "maxReadRegs": 120,
+          "maxReadRegs": 20,
           "serialDefaults": {
             "baudRate": 9600,
             "parity": "none",
@@ -138301,11 +138568,32 @@
               ],
               "cooldownMs": 10000
             }
-          ]
+          ],
+          "requiredReadDpIds": [
+            "sYSTEM_STATE",
+            "pOWER_FLOW_STATUS",
+            "pV_POWER",
+            "gRID_POWER",
+            "lOAD_POWER",
+            "bATTERY_POWER",
+            "sOC",
+            "bATTERY_VOLTAGE",
+            "bATTERY_CURRENT",
+            "bATTERY_TEMPERATURE",
+            "aCTIVE_POWER",
+            "HzPrecise",
+            "InverterAlarm",
+            "GridSideFault",
+            "SystemFault1",
+            "SystemFault2"
+          ],
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "strictContiguousReads": true
         },
         "polling": {
           "fastIntervalMs": 5000,
-          "slowIntervalMs": 60000,
+          "slowIntervalMs": 300000,
           "fastDpIds": [
             "sYSTEM_STATE",
             "pOWER_FLOW_STATUS",
@@ -138323,6 +138611,116 @@
             "GridSideFault",
             "SystemFault1",
             "SystemFault2"
+          ],
+          "initialFastOnly": true,
+          "slowDpIds": [
+            "DeviceTypeCode",
+            "NominalOutputPower",
+            "OutputType",
+            "EToday",
+            "TotWhOut",
+            "Temp",
+            "Mppt1Voltage",
+            "Mppt1Current",
+            "Mppt2Voltage",
+            "Mppt2Current",
+            "Mppt3Voltage",
+            "Mppt3Current",
+            "pV_POWER",
+            "UabOrUa",
+            "UbcOrUb",
+            "UcaOrUc",
+            "Var",
+            "PF",
+            "Hz",
+            "Mppt4Voltage",
+            "Mppt4Current",
+            "bATTERY_POWER",
+            "HzPrecise",
+            "gRID_POWER",
+            "MeterPhaseAActivePower",
+            "MeterPhaseBActivePower",
+            "MeterPhaseCActivePower",
+            "FeedInLimitMin",
+            "FeedInLimitMax",
+            "BDCRatedPower",
+            "bATTERY_CURRENT",
+            "MaxChargingCurrentBMS",
+            "MaxDischargingCurrentBMS",
+            "BatteryCapacityHighPrecision",
+            "BackupCurrentA",
+            "BackupCurrentB",
+            "BackupCurrentC",
+            "BackupPowerA",
+            "BackupPowerB",
+            "BackupPowerC",
+            "BackupPowerTotal",
+            "BackupVoltageA",
+            "BackupVoltageB",
+            "BackupVoltageC",
+            "BackupFrequency",
+            "sYSTEM_STATE",
+            "pOWER_FLOW_STATUS",
+            "DailyPVGeneration",
+            "TotalPVGeneration",
+            "DailyExportEnergyFromPVMain",
+            "TotalExportEnergyFromPVMain",
+            "lOAD_POWER",
+            "ExportPower",
+            "DailyBatteryChargeEnergyFromPVMain",
+            "TotalBatteryChargeEnergyFromPVMain",
+            "DailyDirectEnergyConsumption",
+            "TotalDirectEnergyConsumption",
+            "bATTERY_VOLTAGE",
+            "BatteryCurrentLegacy",
+            "BatteryPowerLegacy",
+            "sOC",
+            "sOH",
+            "bATTERY_TEMPERATURE",
+            "dC_DISCHARGE_ENERGY",
+            "aCTIVE_DISCHARGE_ENERGY",
+            "SelfConsumptionToday",
+            "Ia",
+            "Ib",
+            "Ic",
+            "aCTIVE_POWER",
+            "DailyImportEnergy",
+            "TotalImportEnergy",
+            "BatteryCapacity",
+            "DailyChargeEnergy",
+            "aCTIVE_CHARGE_ENERGY",
+            "DRMState",
+            "DailyExportEnergy",
+            "TotalExportEnergy",
+            "InverterAlarm",
+            "GridSideFault",
+            "SystemFault1",
+            "SystemFault2",
+            "DcSideFault",
+            "PermanentFault",
+            "BdcSideFault",
+            "BdcSidePermanentFault",
+            "BatteryFault",
+            "BatteryAlarm",
+            "eMS_MODE_SELECTION",
+            "cHARGE_DISCHARGE_COMMAND",
+            "cHARGE_DISCHARGE_POWER",
+            "sET_MAX_SOC",
+            "sET_MIN_SOC",
+            "eXPORT_POWER_LIMIT",
+            "OffGridOption",
+            "ExternalEMSHeartbeat",
+            "MeterCommDetection",
+            "FeedInLimitationEnable",
+            "eXPORT_POWER_PERCENTAGE",
+            "WMaxLim_Ena",
+            "wMaxLimPct",
+            "ReservedSOCForBackup",
+            "ChargeCutoffVoltageWide",
+            "sET_MAX_CHARGE_POWER",
+            "sET_MAX_DISCHARGE_POWER",
+            "cHARGE_DISCHARGE_POWER_WIDE",
+            "eXPORT_POWER_LIMIT_WIDE"
           ]
         }
       }
@@ -140225,7 +140623,21 @@
               ],
               "cooldownMs": 10000
             }
-          ]
+          ],
+          "requiredReadDpIds": [
+            "pV_POWER",
+            "aCTIVE_POWER",
+            "gRID_POWER",
+            "lOAD_POWER",
+            "bATTERY_POWER",
+            "sOC",
+            "EToday",
+            "TotWhOut",
+            "ArraySwitchStatus",
+            "TotalFaultyDevicesConnected"
+          ],
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000
         },
         "polling": {
           "fastIntervalMs": 5000,
@@ -140241,7 +140653,8 @@
             "TotWhOut",
             "ArraySwitchStatus",
             "TotalFaultyDevicesConnected"
-          ]
+          ],
+          "initialFastOnly": true
         }
       }
     },
@@ -141337,7 +141750,18 @@
               ],
               "cooldownMs": 10000
             }
-          ]
+          ],
+          "requiredReadDpIds": [
+            "aCTIVE_POWER",
+            "gRID_POWER",
+            "lOAD_POWER",
+            "bATTERY_POWER",
+            "sOC",
+            "ChargerChargingStatus",
+            "Hz"
+          ],
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000
         },
         "polling": {
           "fastIntervalMs": 5000,
@@ -141350,7 +141774,8 @@
             "sOC",
             "ChargerChargingStatus",
             "Hz"
-          ]
+          ],
+          "initialFastOnly": true
         }
       }
     }

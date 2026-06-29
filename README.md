@@ -269,6 +269,8 @@ Der Adapter enthält zusätzliche Sungrow-Templates für direkte Wechselrichter-
 
 Hinweis: Die Sungrow-Dokumentation verwendet 1-basierte Registeradressen; die Templates sind bereits mit den tatsächlich zu sendenden Modbus-Adressen (`Register - 1`) hinterlegt.
 
+Stabilitäts-Hinweis ab `0.5.93`: Das Residential-Hybrid-Template pollt standardmäßig nur die stabilen Live-/Kernregister schnell und verschiebt optionale, modell-/Gateway-abhängige Register in einen reduzierten Slow-Poll. Kurze Modbus-Unterbrechungen setzen Daten-Aliase wie `aliases.r.soc` nicht mehr auf `null`; der Verbindungsstatus wird weiterhin über `aliases.comm.connected`, `aliases.comm.lastError` und `aliases.alarm.offline` aktualisiert.
+
 
 ## 4d) MENNEKES AMTRON 4You 500 / 4Business 700 Modbus TCP
 
@@ -298,6 +300,32 @@ Wichtige Schreib-Datenpunkte und Aliases:
 - `cHARGING_POINT_NETWORK_EMS_CURRENT_LIMIT` bzw. Alias `aliases.ctrl.networkCurrentLimitA` – schreibt automatisch L1/L2/L3 gemeinsam per FC16
 
 Hinweis: Für HEMS-Steuerung muss die Wallbox-seitige Modbus-TCP-/HEMS-Konfiguration auf Read/Write stehen (`hEMS_CONFIGURATION == 2`).
+
+Stabilitäts-Hinweis ab `0.5.94`: Das AMTRON-Template pollt Live-/Kernregister schnell und verschiebt Firmware-/Info-/Netzwerk-Zusatzregister in einen langsamen 5-Minuten-Poll. Zusätzlich setzt der Modbus-Treiber harte Operation-/Connect-Timeouts, schließt hängende TCP-Sockets aktiv und baut die Verbindung nach Timeouts sauber neu auf. Bereits geschriebene HEMS-Sollwerte werden periodisch aufgefrischt, damit die Wallbox nicht wegen auslaufender HEMS-Kommunikation in den Safe-Current-Fallback fällt.
+
+
+## 4e) Alfen NG9xx / ACE Modbus TCP
+
+Für Alfen NG9xx / ACE sind drei getrennte Modbus-TCP-Templates enthalten, weil Alfen je Registergruppe feste Modbus-Serveradressen/Unit-IDs verwendet:
+
+- `evcs.alfen.ng9xx.ace.socket1.modbusTcp` – Socket 1, Unit-ID `1`
+- `evcs.alfen.ng9xx.ace.socket2.modbusTcp` – Socket 2, Unit-ID `2`
+- `evcs.alfen.ng9xx.ace.station.modbusTcp` – Station/SCN, Unit-ID `200`
+
+Wichtige Lese-Datenpunkte:
+
+- Socket: Messwerte `vOLTAGE_*`, `cURRENT_*`, `aCTIVE_POWER`, Energiezähler, `eVSE_STATE`, `mODE3_STATE`, `aCTUAL_APPLIED_MAX_CURRENT`, `mODBUS_MAX_CURRENT_VALID_TIME`
+- Station/SCN: Produktdaten, Firmware, aktive Maximalströme, Temperatur, Anzahl Sockets, SCN-Verbrauch, SCN-Maximalströme und Valid-Time
+
+Wichtige Schreib-Datenpunkte:
+
+- Socket: `sET_CHARGING_CURRENT` schreibt den Socket-Maximalstrom als kompletten 32-bit-Float per FC16.
+- Socket: `cHARGE_USING_PHASES` akzeptiert nur `1` oder `3`.
+- Station/SCN: `sCN_MAX_CURRENT_L1`, `sCN_MAX_CURRENT_L2`, `sCN_MAX_CURRENT_L3` schreiben die SCN-Phasenlimits als komplette 32-bit-Floats per FC16.
+
+Fix ab `0.5.95`: Die Alfen-Templates verwenden jetzt direkt die tatsächlich zu sendenden Modbus-Protokolladressen (`Register - 1`). Zusätzlich erzwingt der Adapter die korrekte Unit-ID je Template und ignoriert alte manuelle Address-Offset-Werte für diese Alfen-Templates. Dadurch werden Schreibzugriffe nicht mehr um ein Register verschoben, was vorher bei Setpoint-Keepalive zu `Modbus exception 3: Illegal data value` führen konnte. Nicht-transportbedingte Write-Fehler markieren das Gerät außerdem nicht mehr fälschlich als offline.
+
+Hinweis: Für Schreibzugriffe muss in ACE/Service Installer die Modbus-/EMS-Konfiguration passend aktiviert sein: Lesen erlauben, Schreiben der Maximalströme erlauben, Active Load Balancing/EMS-Modus aktivieren und die Validity-Time größer als das Poll-/Keepalive-Intervall setzen.
 
 ### Hinweis zu Register‑Offsets
 Viele Herstellerdokumentationen verwenden 1‑basierte Registeradressen (z.B. `40001`).
