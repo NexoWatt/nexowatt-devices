@@ -111196,8 +111196,8 @@
       },
       "category": "EVCS",
       "manufacturer": "Alfen",
-      "model": "NG9xx (ACE Modbus) Socket",
-      "name": "Alfen NG9xx (ACE) Socket 1 (Unit-ID 1, Modbus TCP)",
+      "model": "NG9xx ACE Socket 1 EMS",
+      "name": "Alfen NG9xx (ACE) Socket 1 / EMS Socket Mode (Modbus TCP)",
       "protocols": [
         "modbusTcp"
       ],
@@ -111207,17 +111207,38 @@
           "setpointKeepalive": {
             "checkPeriodMs": 10000,
             "requireEverWritten": true,
+            "unsupportedBackoffMs": 300000,
             "targets": [
               {
                 "setpointDpId": "sET_CHARGING_CURRENT",
                 "intervalMs": 10000,
-                "minWriteIntervalMs": 9000
+                "minWriteIntervalMs": 9000,
+                "requireEverWritten": true,
+                "requireFreshState": false,
+                "disableOnErrorMs": 3600000,
+                "disableOnExceptionCodes": [
+                  2,
+                  3
+                ]
               },
               {
                 "setpointDpId": "cHARGE_USING_PHASES",
                 "intervalMs": 10000,
-                "minWriteIntervalMs": 9000
+                "minWriteIntervalMs": 9000,
+                "requireEverWritten": true,
+                "requireFreshState": false,
+                "disableOnErrorMs": 3600000,
+                "disableOnExceptionCodes": [
+                  2,
+                  3
+                ]
               }
+            ],
+            "requireFreshState": false,
+            "disableOnErrorMs": 3600000,
+            "disableOnExceptionCodes": [
+              2,
+              3
             ]
           },
           "unitIdDefault": 1,
@@ -111229,51 +111250,103 @@
           "minCommandIntervalMs": 150,
           "strictContiguousReads": true,
           "continueOnReadError": true,
-          "skipFailedReadGroupsMs": 600000,
+          "skipFailedReadGroupsMs": 3600000,
           "maxReadRegs": 5,
-          "isolateReadDatapoints": true
+          "isolateReadDatapoints": true,
+          "unsupportedWriteCooldownMs": 3600000,
+          "permanentWriteErrorRetryAttempts": 1,
+          "requiredReadDpIds": [
+            "aCTIVE_POWER"
+          ],
+          "restoreSetpointsOnStart": {
+            "enabled": false
+          },
+          "optionalReadErrorLogLevel": "debug",
+          "setpointKeepaliveUnsupportedBackoffMs": 300000,
+          "writeRejectBackoffMs": 300000,
+          "addressing": {
+            "documentRegisterOffset": -1,
+            "templateUsesProtocolAddresses": true
+          }
         },
         "polling": {
           "initialFastOnly": true,
           "fastIntervalMs": 5000,
           "slowIntervalMs": 300000,
           "fastDpIds": [
-            "mETER_STATE_RAW",
-            "mETER_LAST_VALUE_TIMESTAMP_MS",
-            "mETER_TYPE",
-            "vOLTAGE_L1",
-            "vOLTAGE_L2",
-            "vOLTAGE_L3",
+            "aCTIVE_POWER",
+            "aCTIVE_POWER_L1",
+            "aCTIVE_POWER_L2",
+            "aCTIVE_POWER_L3",
             "cURRENT_L1",
             "cURRENT_L2",
             "cURRENT_L3",
             "cURRENT_SUM",
+            "vOLTAGE_L1",
+            "vOLTAGE_L2",
+            "vOLTAGE_L3",
+            "tOTAL_CHARGED_ENERGY",
+            "eNERGY_CONSUMED_SUM"
+          ],
+          "slowDpIds": [
+            "aCTIVE_POWER",
             "aCTIVE_POWER_L1",
             "aCTIVE_POWER_L2",
             "aCTIVE_POWER_L3",
-            "aCTIVE_POWER",
+            "cURRENT_L1",
+            "cURRENT_L2",
+            "cURRENT_L3",
+            "cURRENT_SUM",
+            "vOLTAGE_L1",
+            "vOLTAGE_L2",
+            "vOLTAGE_L3",
             "tOTAL_CHARGED_ENERGY",
             "eNERGY_CONSUMED_SUM",
-            "eVSE_STATE",
-            "mODE3_STATE",
-            "aCTUAL_APPLIED_MAX_CURRENT",
-            "mODBUS_MAX_CURRENT_VALID_TIME",
-            "sET_CHARGING_CURRENT",
-            "aCTIVE_LOAD_BALANCING_SAFE_CURRENT",
-            "sETPOINT_ACCOUNTED_FOR",
-            "cHARGE_USING_PHASES",
-            "mETER_STATE_01",
-            "mETER_STATE_02",
-            "mETER_STATE_04",
-            "mETER_STATE_08"
+            "vOLTAGE_L1_L2",
+            "vOLTAGE_L2_L3",
+            "vOLTAGE_L3_L1",
+            "cURRENT_N",
+            "pOWER_FACTOR_L1",
+            "pOWER_FACTOR_L2",
+            "pOWER_FACTOR_L3",
+            "pOWER_FACTOR_SUM",
+            "fREQUENCY",
+            "aPPARENT_POWER_L1",
+            "aPPARENT_POWER_L2",
+            "aPPARENT_POWER_L3",
+            "aPPARENT_POWER_SUM",
+            "rEACTIVE_POWER_L1",
+            "rEACTIVE_POWER_L2",
+            "rEACTIVE_POWER_L3",
+            "rEACTIVE_POWER_SUM",
+            "eNERGY_DELIVERED_L1",
+            "eNERGY_DELIVERED_L2",
+            "eNERGY_DELIVERED_L3",
+            "eNERGY_CONSUMED_L1",
+            "eNERGY_CONSUMED_L2",
+            "eNERGY_CONSUMED_L3",
+            "aPPARENT_ENERGY_L1",
+            "aPPARENT_ENERGY_L2",
+            "aPPARENT_ENERGY_L3",
+            "aPPARENT_ENERGY_SUM",
+            "rEACTIVE_ENERGY_L1",
+            "rEACTIVE_ENERGY_L2",
+            "rEACTIVE_ENERGY_L3",
+            "rEACTIVE_ENERGY_SUM"
           ]
         },
         "alfen": {
           "defaultEnableCurrentA": 16,
           "runCurrentA": 16,
           "stopCurrentA": 0,
+          "optionalMeterNaNAsNull": true,
+          "safeDefaultMode": "socket",
+          "socketControlRegisterBlock": "1200..1215 document registers / 1199..1214 protocol addresses",
           "setpointWatchdogRefreshMs": 10000,
-          "optionalMeterNaNAsNull": true
+          "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores Modbus protocol address = documentation register - 1; status/control blocks are polled only via aliases/fallback when exposed by the charger profile",
+          "controlMode": "socket",
+          "deriveStatusFromPowerWhenMode3Missing": true,
+          "scnPollingDefault": false
         }
       },
       "datapoints": [
@@ -111290,7 +111363,8 @@
               "address": 299,
               "length": 1,
               "dataType": "uint16",
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true
             },
             "unitId": 1
           }
@@ -111310,7 +111384,8 @@
               "dataType": "uint16",
               "bitMask": 1,
               "toBoolean": true,
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true
             },
             "unitId": 1
           }
@@ -111330,7 +111405,8 @@
               "dataType": "uint16",
               "bitMask": 2,
               "toBoolean": true,
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true
             },
             "unitId": 1
           }
@@ -111350,7 +111426,8 @@
               "dataType": "uint16",
               "bitMask": 4,
               "toBoolean": true,
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true
             },
             "unitId": 1
           }
@@ -111370,7 +111447,8 @@
               "dataType": "uint16",
               "bitMask": 8,
               "toBoolean": true,
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true
             },
             "unitId": 1
           }
@@ -111391,7 +111469,8 @@
               "wordOrder": "le",
               "unitId": 1,
               "nanToNull": true,
-              "bigIntToNullOnOverflow": true
+              "bigIntToNullOnOverflow": true,
+              "uint64OverflowToNull": true
             },
             "unitId": 1
           },
@@ -111410,7 +111489,8 @@
               "address": 304,
               "length": 1,
               "dataType": "uint16",
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true
             },
             "unitId": 1
           }
@@ -112348,7 +112428,12 @@
               "address": 1199,
               "length": 1,
               "dataType": "uint16",
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 1
           }
@@ -112366,7 +112451,11 @@
               "address": 1200,
               "length": 5,
               "dataType": "string",
-              "unitId": 1
+              "unitId": 1,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 1
           }
@@ -112386,7 +112475,11 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 1
           },
@@ -112406,7 +112499,12 @@
               "length": 2,
               "dataType": "uint32",
               "wordOrder": "le",
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 1
           },
@@ -112414,7 +112512,7 @@
         },
         {
           "id": "sET_CHARGING_CURRENT",
-          "name": "Modbus Server Max Current (setpoint)",
+          "name": "Modbus Server Max Current / charging current setpoint",
           "role": "level.current",
           "type": "number",
           "rw": "rw",
@@ -112427,7 +112525,11 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "write": {
               "fc": 16,
@@ -112439,11 +112541,16 @@
               "minValue": 0,
               "maxValue": 80,
               "finite": true,
-              "unitId": 1
+              "unitId": 1,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 1
           },
-          "unit": "A"
+          "unit": "A",
+          "desc": "Alfen ACE register 1210..1211, protocol address 1209. Requires Active Load Balancing, Data Source=Energy Management System, TCP/IP EMS control mode=Socket, Enable sockets and Allow writing maximum currents."
         },
         {
           "id": "aCTIVE_LOAD_BALANCING_SAFE_CURRENT",
@@ -112460,7 +112567,11 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 1
           },
@@ -112480,7 +112591,12 @@
               "length": 1,
               "dataType": "uint16",
               "toBoolean": true,
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 1
           }
@@ -112498,7 +112614,12 @@
               "address": 1214,
               "length": 1,
               "dataType": "uint16",
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "write": {
               "fc": 16,
@@ -112513,11 +112634,18 @@
                 "1": 1,
                 "3": 3
               },
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true,
+              "optional": true,
+              "finite": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 1
           },
-          "unit": "phases"
+          "unit": "phases",
+          "desc": "Alfen ACE register 1215, protocol address 1214. Requires Energy Management System mode and Allow 1-/3-phase charging in ACE."
         }
       ]
     },
@@ -112528,8 +112656,8 @@
       },
       "category": "EVCS",
       "manufacturer": "Alfen",
-      "model": "NG9xx (ACE Modbus) Socket",
-      "name": "Alfen NG9xx (ACE) Socket 2 (Unit-ID 2, Modbus TCP)",
+      "model": "NG9xx ACE Socket 2 EMS",
+      "name": "Alfen NG9xx (ACE) Socket 2 / EMS Socket Mode (Modbus TCP)",
       "protocols": [
         "modbusTcp"
       ],
@@ -112539,17 +112667,38 @@
           "setpointKeepalive": {
             "checkPeriodMs": 10000,
             "requireEverWritten": true,
+            "unsupportedBackoffMs": 300000,
             "targets": [
               {
                 "setpointDpId": "sET_CHARGING_CURRENT",
                 "intervalMs": 10000,
-                "minWriteIntervalMs": 9000
+                "minWriteIntervalMs": 9000,
+                "requireEverWritten": true,
+                "requireFreshState": false,
+                "disableOnErrorMs": 3600000,
+                "disableOnExceptionCodes": [
+                  2,
+                  3
+                ]
               },
               {
                 "setpointDpId": "cHARGE_USING_PHASES",
                 "intervalMs": 10000,
-                "minWriteIntervalMs": 9000
+                "minWriteIntervalMs": 9000,
+                "requireEverWritten": true,
+                "requireFreshState": false,
+                "disableOnErrorMs": 3600000,
+                "disableOnExceptionCodes": [
+                  2,
+                  3
+                ]
               }
+            ],
+            "requireFreshState": false,
+            "disableOnErrorMs": 3600000,
+            "disableOnExceptionCodes": [
+              2,
+              3
             ]
           },
           "unitIdDefault": 2,
@@ -112561,51 +112710,103 @@
           "minCommandIntervalMs": 150,
           "strictContiguousReads": true,
           "continueOnReadError": true,
-          "skipFailedReadGroupsMs": 600000,
+          "skipFailedReadGroupsMs": 3600000,
           "maxReadRegs": 5,
-          "isolateReadDatapoints": true
+          "isolateReadDatapoints": true,
+          "unsupportedWriteCooldownMs": 3600000,
+          "permanentWriteErrorRetryAttempts": 1,
+          "requiredReadDpIds": [
+            "aCTIVE_POWER"
+          ],
+          "restoreSetpointsOnStart": {
+            "enabled": false
+          },
+          "optionalReadErrorLogLevel": "debug",
+          "setpointKeepaliveUnsupportedBackoffMs": 300000,
+          "writeRejectBackoffMs": 300000,
+          "addressing": {
+            "documentRegisterOffset": -1,
+            "templateUsesProtocolAddresses": true
+          }
         },
         "polling": {
           "initialFastOnly": true,
           "fastIntervalMs": 5000,
           "slowIntervalMs": 300000,
           "fastDpIds": [
-            "mETER_STATE_RAW",
-            "mETER_LAST_VALUE_TIMESTAMP_MS",
-            "mETER_TYPE",
-            "vOLTAGE_L1",
-            "vOLTAGE_L2",
-            "vOLTAGE_L3",
+            "aCTIVE_POWER",
+            "aCTIVE_POWER_L1",
+            "aCTIVE_POWER_L2",
+            "aCTIVE_POWER_L3",
             "cURRENT_L1",
             "cURRENT_L2",
             "cURRENT_L3",
             "cURRENT_SUM",
+            "vOLTAGE_L1",
+            "vOLTAGE_L2",
+            "vOLTAGE_L3",
+            "tOTAL_CHARGED_ENERGY",
+            "eNERGY_CONSUMED_SUM"
+          ],
+          "slowDpIds": [
+            "aCTIVE_POWER",
             "aCTIVE_POWER_L1",
             "aCTIVE_POWER_L2",
             "aCTIVE_POWER_L3",
-            "aCTIVE_POWER",
+            "cURRENT_L1",
+            "cURRENT_L2",
+            "cURRENT_L3",
+            "cURRENT_SUM",
+            "vOLTAGE_L1",
+            "vOLTAGE_L2",
+            "vOLTAGE_L3",
             "tOTAL_CHARGED_ENERGY",
             "eNERGY_CONSUMED_SUM",
-            "eVSE_STATE",
-            "mODE3_STATE",
-            "aCTUAL_APPLIED_MAX_CURRENT",
-            "mODBUS_MAX_CURRENT_VALID_TIME",
-            "sET_CHARGING_CURRENT",
-            "aCTIVE_LOAD_BALANCING_SAFE_CURRENT",
-            "sETPOINT_ACCOUNTED_FOR",
-            "cHARGE_USING_PHASES",
-            "mETER_STATE_01",
-            "mETER_STATE_02",
-            "mETER_STATE_04",
-            "mETER_STATE_08"
+            "vOLTAGE_L1_L2",
+            "vOLTAGE_L2_L3",
+            "vOLTAGE_L3_L1",
+            "cURRENT_N",
+            "pOWER_FACTOR_L1",
+            "pOWER_FACTOR_L2",
+            "pOWER_FACTOR_L3",
+            "pOWER_FACTOR_SUM",
+            "fREQUENCY",
+            "aPPARENT_POWER_L1",
+            "aPPARENT_POWER_L2",
+            "aPPARENT_POWER_L3",
+            "aPPARENT_POWER_SUM",
+            "rEACTIVE_POWER_L1",
+            "rEACTIVE_POWER_L2",
+            "rEACTIVE_POWER_L3",
+            "rEACTIVE_POWER_SUM",
+            "eNERGY_DELIVERED_L1",
+            "eNERGY_DELIVERED_L2",
+            "eNERGY_DELIVERED_L3",
+            "eNERGY_CONSUMED_L1",
+            "eNERGY_CONSUMED_L2",
+            "eNERGY_CONSUMED_L3",
+            "aPPARENT_ENERGY_L1",
+            "aPPARENT_ENERGY_L2",
+            "aPPARENT_ENERGY_L3",
+            "aPPARENT_ENERGY_SUM",
+            "rEACTIVE_ENERGY_L1",
+            "rEACTIVE_ENERGY_L2",
+            "rEACTIVE_ENERGY_L3",
+            "rEACTIVE_ENERGY_SUM"
           ]
         },
         "alfen": {
           "defaultEnableCurrentA": 16,
           "runCurrentA": 16,
           "stopCurrentA": 0,
+          "optionalMeterNaNAsNull": true,
+          "safeDefaultMode": "socket",
+          "socketControlRegisterBlock": "1200..1215 document registers / 1199..1214 protocol addresses",
           "setpointWatchdogRefreshMs": 10000,
-          "optionalMeterNaNAsNull": true
+          "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores Modbus protocol address = documentation register - 1; status/control blocks are polled only via aliases/fallback when exposed by the charger profile",
+          "controlMode": "socket",
+          "deriveStatusFromPowerWhenMode3Missing": true,
+          "scnPollingDefault": false
         }
       },
       "datapoints": [
@@ -112622,7 +112823,8 @@
               "address": 299,
               "length": 1,
               "dataType": "uint16",
-              "unitId": 2
+              "unitId": 2,
+              "nanToNull": true
             },
             "unitId": 2
           }
@@ -112642,7 +112844,8 @@
               "dataType": "uint16",
               "bitMask": 1,
               "toBoolean": true,
-              "unitId": 2
+              "unitId": 2,
+              "nanToNull": true
             },
             "unitId": 2
           }
@@ -112662,7 +112865,8 @@
               "dataType": "uint16",
               "bitMask": 2,
               "toBoolean": true,
-              "unitId": 2
+              "unitId": 2,
+              "nanToNull": true
             },
             "unitId": 2
           }
@@ -112682,7 +112886,8 @@
               "dataType": "uint16",
               "bitMask": 4,
               "toBoolean": true,
-              "unitId": 2
+              "unitId": 2,
+              "nanToNull": true
             },
             "unitId": 2
           }
@@ -112702,7 +112907,8 @@
               "dataType": "uint16",
               "bitMask": 8,
               "toBoolean": true,
-              "unitId": 2
+              "unitId": 2,
+              "nanToNull": true
             },
             "unitId": 2
           }
@@ -112723,7 +112929,8 @@
               "wordOrder": "le",
               "unitId": 2,
               "nanToNull": true,
-              "bigIntToNullOnOverflow": true
+              "bigIntToNullOnOverflow": true,
+              "uint64OverflowToNull": true
             },
             "unitId": 2
           },
@@ -112742,7 +112949,8 @@
               "address": 304,
               "length": 1,
               "dataType": "uint16",
-              "unitId": 2
+              "unitId": 2,
+              "nanToNull": true
             },
             "unitId": 2
           }
@@ -113680,7 +113888,12 @@
               "address": 1199,
               "length": 1,
               "dataType": "uint16",
-              "unitId": 2
+              "unitId": 2,
+              "nanToNull": true,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 2
           }
@@ -113698,7 +113911,11 @@
               "address": 1200,
               "length": 5,
               "dataType": "string",
-              "unitId": 2
+              "unitId": 2,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 2
           }
@@ -113718,7 +113935,11 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 2
           },
@@ -113738,7 +113959,12 @@
               "length": 2,
               "dataType": "uint32",
               "wordOrder": "le",
-              "unitId": 2
+              "unitId": 2,
+              "nanToNull": true,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 2
           },
@@ -113746,7 +113972,7 @@
         },
         {
           "id": "sET_CHARGING_CURRENT",
-          "name": "Modbus Server Max Current (setpoint)",
+          "name": "Modbus Server Max Current / charging current setpoint",
           "role": "level.current",
           "type": "number",
           "rw": "rw",
@@ -113759,7 +113985,11 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "write": {
               "fc": 16,
@@ -113771,11 +114001,16 @@
               "minValue": 0,
               "maxValue": 80,
               "finite": true,
-              "unitId": 2
+              "unitId": 2,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 2
           },
-          "unit": "A"
+          "unit": "A",
+          "desc": "Alfen ACE register 1210..1211, protocol address 1209. Requires Active Load Balancing, Data Source=Energy Management System, TCP/IP EMS control mode=Socket, Enable sockets and Allow writing maximum currents."
         },
         {
           "id": "aCTIVE_LOAD_BALANCING_SAFE_CURRENT",
@@ -113792,7 +114027,11 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 2
+              "unitId": 2,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 2
           },
@@ -113812,7 +114051,12 @@
               "length": 1,
               "dataType": "uint16",
               "toBoolean": true,
-              "unitId": 2
+              "unitId": 2,
+              "nanToNull": true,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 2
           }
@@ -113830,7 +114074,12 @@
               "address": 1214,
               "length": 1,
               "dataType": "uint16",
-              "unitId": 2
+              "unitId": 2,
+              "nanToNull": true,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "write": {
               "fc": 16,
@@ -113845,11 +114094,18 @@
                 "1": 1,
                 "3": 3
               },
-              "unitId": 2
+              "unitId": 2,
+              "nanToNull": true,
+              "optional": true,
+              "finite": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 2
           },
-          "unit": "phases"
+          "unit": "phases",
+          "desc": "Alfen ACE register 1215, protocol address 1214. Requires Energy Management System mode and Allow 1-/3-phase charging in ACE."
         }
       ]
     },
@@ -113860,8 +114116,8 @@
       },
       "category": "EVCS",
       "manufacturer": "Alfen",
-      "model": "NG9xx (ACE Modbus) Station/SCN + Socket 1",
-      "name": "Alfen NG9xx (ACE) Station/SCN + Socket 1 live (Modbus TCP)",
+      "model": "NG9xx (ACE Modbus) Station/Socket safe default",
+      "name": "Alfen NG9xx (ACE) Station/Socket 1 safe default (Modbus TCP)",
       "protocols": [
         "modbusTcp"
       ],
@@ -113871,35 +114127,41 @@
           "setpointKeepalive": {
             "checkPeriodMs": 10000,
             "requireEverWritten": true,
+            "unsupportedBackoffMs": 300000,
             "targets": [
               {
                 "setpointDpId": "sET_CHARGING_CURRENT",
                 "intervalMs": 10000,
-                "minWriteIntervalMs": 9000
+                "minWriteIntervalMs": 9000,
+                "requireEverWritten": true,
+                "requireFreshState": false,
+                "disableOnErrorMs": 3600000,
+                "disableOnExceptionCodes": [
+                  2,
+                  3
+                ]
               },
               {
                 "setpointDpId": "cHARGE_USING_PHASES",
                 "intervalMs": 10000,
-                "minWriteIntervalMs": 9000
-              },
-              {
-                "setpointDpId": "sCN_MAX_CURRENT_L1",
-                "intervalMs": 10000,
-                "minWriteIntervalMs": 9000
-              },
-              {
-                "setpointDpId": "sCN_MAX_CURRENT_L2",
-                "intervalMs": 10000,
-                "minWriteIntervalMs": 9000
-              },
-              {
-                "setpointDpId": "sCN_MAX_CURRENT_L3",
-                "intervalMs": 10000,
-                "minWriteIntervalMs": 9000
+                "minWriteIntervalMs": 9000,
+                "requireEverWritten": true,
+                "requireFreshState": false,
+                "disableOnErrorMs": 3600000,
+                "disableOnExceptionCodes": [
+                  2,
+                  3
+                ]
               }
+            ],
+            "requireFreshState": false,
+            "disableOnErrorMs": 3600000,
+            "disableOnExceptionCodes": [
+              2,
+              3
             ]
           },
-          "unitIdDefault": 200,
+          "unitIdDefault": 1,
           "enforceUnitIdDefault": true,
           "forceAddressOffset": 0,
           "timeoutMs": 5000,
@@ -113908,57 +114170,105 @@
           "minCommandIntervalMs": 150,
           "strictContiguousReads": true,
           "continueOnReadError": true,
-          "skipFailedReadGroupsMs": 600000,
+          "skipFailedReadGroupsMs": 3600000,
           "maxReadRegs": 5,
-          "isolateReadDatapoints": true
+          "isolateReadDatapoints": true,
+          "unsupportedWriteCooldownMs": 3600000,
+          "permanentWriteErrorRetryAttempts": 1,
+          "requiredReadDpIds": [
+            "aCTIVE_POWER"
+          ],
+          "restoreSetpointsOnStart": {
+            "enabled": false
+          },
+          "optionalReadErrorLogLevel": "debug",
+          "setpointKeepaliveUnsupportedBackoffMs": 300000,
+          "writeRejectBackoffMs": 300000,
+          "addressing": {
+            "documentRegisterOffset": -1,
+            "templateUsesProtocolAddresses": true
+          },
+          "alfenScnUnitId": 200,
+          "alfenScnPollingDefault": false
         },
         "polling": {
           "initialFastOnly": true,
           "fastIntervalMs": 5000,
           "slowIntervalMs": 300000,
           "fastDpIds": [
-            "mETER_STATE_RAW",
-            "mETER_LAST_VALUE_TIMESTAMP_MS",
-            "mETER_TYPE",
-            "vOLTAGE_L1",
-            "vOLTAGE_L2",
-            "vOLTAGE_L3",
+            "aCTIVE_POWER",
+            "aCTIVE_POWER_L1",
+            "aCTIVE_POWER_L2",
+            "aCTIVE_POWER_L3",
             "cURRENT_L1",
             "cURRENT_L2",
             "cURRENT_L3",
             "cURRENT_SUM",
+            "vOLTAGE_L1",
+            "vOLTAGE_L2",
+            "vOLTAGE_L3",
+            "tOTAL_CHARGED_ENERGY",
+            "eNERGY_CONSUMED_SUM"
+          ],
+          "slowDpIds": [
+            "aCTIVE_POWER",
             "aCTIVE_POWER_L1",
             "aCTIVE_POWER_L2",
             "aCTIVE_POWER_L3",
-            "aCTIVE_POWER",
+            "cURRENT_L1",
+            "cURRENT_L2",
+            "cURRENT_L3",
+            "cURRENT_SUM",
+            "vOLTAGE_L1",
+            "vOLTAGE_L2",
+            "vOLTAGE_L3",
             "tOTAL_CHARGED_ENERGY",
             "eNERGY_CONSUMED_SUM",
-            "eVSE_STATE",
-            "mODE3_STATE",
-            "aCTUAL_APPLIED_MAX_CURRENT",
-            "mODBUS_MAX_CURRENT_VALID_TIME",
-            "sET_CHARGING_CURRENT",
-            "aCTIVE_LOAD_BALANCING_SAFE_CURRENT",
-            "sETPOINT_ACCOUNTED_FOR",
-            "cHARGE_USING_PHASES",
-            "mETER_STATE_01",
-            "mETER_STATE_02",
-            "mETER_STATE_04",
-            "mETER_STATE_08",
-            "sCN_MAX_CURRENT_L1",
-            "sCN_MAX_CURRENT_L2",
-            "sCN_MAX_CURRENT_L3",
-            "sCN_REMAINING_VALID_TIME_L1",
-            "sCN_REMAINING_VALID_TIME_L2",
-            "sCN_REMAINING_VALID_TIME_L3"
+            "vOLTAGE_L1_L2",
+            "vOLTAGE_L2_L3",
+            "vOLTAGE_L3_L1",
+            "cURRENT_N",
+            "pOWER_FACTOR_L1",
+            "pOWER_FACTOR_L2",
+            "pOWER_FACTOR_L3",
+            "pOWER_FACTOR_SUM",
+            "fREQUENCY",
+            "aPPARENT_POWER_L1",
+            "aPPARENT_POWER_L2",
+            "aPPARENT_POWER_L3",
+            "aPPARENT_POWER_SUM",
+            "rEACTIVE_POWER_L1",
+            "rEACTIVE_POWER_L2",
+            "rEACTIVE_POWER_L3",
+            "rEACTIVE_POWER_SUM",
+            "eNERGY_DELIVERED_L1",
+            "eNERGY_DELIVERED_L2",
+            "eNERGY_DELIVERED_L3",
+            "eNERGY_CONSUMED_L1",
+            "eNERGY_CONSUMED_L2",
+            "eNERGY_CONSUMED_L3",
+            "aPPARENT_ENERGY_L1",
+            "aPPARENT_ENERGY_L2",
+            "aPPARENT_ENERGY_L3",
+            "aPPARENT_ENERGY_SUM",
+            "rEACTIVE_ENERGY_L1",
+            "rEACTIVE_ENERGY_L2",
+            "rEACTIVE_ENERGY_L3",
+            "rEACTIVE_ENERGY_SUM"
           ]
         },
         "alfen": {
           "defaultEnableCurrentA": 16,
           "runCurrentA": 16,
           "stopCurrentA": 0,
+          "optionalMeterNaNAsNull": true,
+          "safeDefaultMode": "socket",
+          "socketControlRegisterBlock": "1200..1215 document registers / 1199..1214 protocol addresses",
+          "scnPollingDefault": false,
           "setpointWatchdogRefreshMs": 10000,
-          "optionalMeterNaNAsNull": true
+          "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores Modbus protocol address = documentation register - 1; status/control blocks are polled only via aliases/fallback when exposed by the charger profile",
+          "controlMode": "socket",
+          "deriveStatusFromPowerWhenMode3Missing": true
         }
       },
       "datapoints": [
@@ -114194,7 +114504,8 @@
               "wordOrder": "le",
               "unitId": 200,
               "nanToNull": true,
-              "bigIntToNullOnOverflow": true
+              "bigIntToNullOnOverflow": true,
+              "uint64OverflowToNull": true
             },
             "unitId": 200
           },
@@ -114274,7 +114585,8 @@
               "address": 1103,
               "length": 1,
               "dataType": "uint16",
-              "unitId": 200
+              "unitId": 200,
+              "nanToNull": true
             },
             "unitId": 200
           }
@@ -114292,7 +114604,8 @@
               "address": 1104,
               "length": 1,
               "dataType": "uint16",
-              "unitId": 200
+              "unitId": 200,
+              "nanToNull": true
             },
             "unitId": 200
           }
@@ -114310,7 +114623,11 @@
               "address": 1399,
               "length": 4,
               "dataType": "string",
-              "unitId": 200
+              "unitId": 200,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 200
           }
@@ -114328,7 +114645,12 @@
               "address": 1403,
               "length": 1,
               "dataType": "uint16",
-              "unitId": 200
+              "unitId": 200,
+              "nanToNull": true,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 200
           }
@@ -114348,7 +114670,11 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 200
+              "unitId": 200,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 200
           },
@@ -114369,7 +114695,11 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 200
+              "unitId": 200,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 200
           },
@@ -114390,7 +114720,11 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 200
+              "unitId": 200,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 200
           },
@@ -114411,7 +114745,11 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 200
+              "unitId": 200,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 200
           },
@@ -114432,7 +114770,11 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 200
+              "unitId": 200,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 200
           },
@@ -114453,15 +114795,50 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 200
+              "unitId": 200,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 200
           },
           "unit": "A"
+        },
+        {
+          "id": "sCN_MAX_CURRENT",
+          "name": "SCN Max Current all phases",
+          "role": "level.current",
+          "type": "number",
+          "unit": "A",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "unitId": 200,
+            "write": {
+              "fc": 16,
+              "address": 1416,
+              "length": 6,
+              "dataType": "float32",
+              "wordOrder": "le",
+              "unitId": 200,
+              "min": 0,
+              "max": 80,
+              "finite": true,
+              "repeatEncodedValue": true,
+              "repeatValueWords": 2,
+              "nanToNull": true,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
+            }
+          },
+          "desc": "Alfen ACE SCN max current registers 1417..1422, protocol addresses 1416..1421. Requires TCP/IP EMS control mode=SCN and Enable Smart Charging Network."
         },
         {
           "id": "sCN_MAX_CURRENT_L1",
-          "name": "SCN Max Current setpoint L1",
+          "name": "SCN Max Current setpoint L1 (phase-specific)",
           "role": "level.current",
           "type": "number",
           "rw": "rw",
@@ -114474,7 +114851,11 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 200
+              "unitId": 200,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "write": {
               "fc": 16,
@@ -114486,15 +114867,20 @@
               "minValue": 0,
               "maxValue": 80,
               "finite": true,
-              "unitId": 200
+              "unitId": 200,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 200
           },
-          "unit": "A"
+          "unit": "A",
+          "desc": "Alfen ACE SCN max current registers 1417..1422, protocol addresses 1416..1421. Requires TCP/IP EMS control mode=SCN and Enable Smart Charging Network."
         },
         {
           "id": "sCN_MAX_CURRENT_L2",
-          "name": "SCN Max Current setpoint L2",
+          "name": "SCN Max Current setpoint L2 (phase-specific)",
           "role": "level.current",
           "type": "number",
           "rw": "rw",
@@ -114507,7 +114893,11 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 200
+              "unitId": 200,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "write": {
               "fc": 16,
@@ -114519,15 +114909,20 @@
               "minValue": 0,
               "maxValue": 80,
               "finite": true,
-              "unitId": 200
+              "unitId": 200,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 200
           },
-          "unit": "A"
+          "unit": "A",
+          "desc": "Alfen ACE SCN max current registers 1417..1422, protocol addresses 1416..1421. Requires TCP/IP EMS control mode=SCN and Enable Smart Charging Network."
         },
         {
           "id": "sCN_MAX_CURRENT_L3",
-          "name": "SCN Max Current setpoint L3",
+          "name": "SCN Max Current setpoint L3 (phase-specific)",
           "role": "level.current",
           "type": "number",
           "rw": "rw",
@@ -114540,7 +114935,11 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 200
+              "unitId": 200,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "write": {
               "fc": 16,
@@ -114552,11 +114951,16 @@
               "minValue": 0,
               "maxValue": 80,
               "finite": true,
-              "unitId": 200
+              "unitId": 200,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 200
           },
-          "unit": "A"
+          "unit": "A",
+          "desc": "Alfen ACE SCN max current registers 1417..1422, protocol addresses 1416..1421. Requires TCP/IP EMS control mode=SCN and Enable Smart Charging Network."
         },
         {
           "id": "sCN_REMAINING_VALID_TIME_L1",
@@ -114572,7 +114976,12 @@
               "length": 2,
               "dataType": "uint32",
               "wordOrder": "le",
-              "unitId": 200
+              "unitId": 200,
+              "nanToNull": true,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 200
           },
@@ -114592,7 +115001,12 @@
               "length": 2,
               "dataType": "uint32",
               "wordOrder": "le",
-              "unitId": 200
+              "unitId": 200,
+              "nanToNull": true,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 200
           },
@@ -114612,7 +115026,12 @@
               "length": 2,
               "dataType": "uint32",
               "wordOrder": "le",
-              "unitId": 200
+              "unitId": 200,
+              "nanToNull": true,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 200
           },
@@ -114633,7 +115052,11 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 200
+              "unitId": 200,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 200
           },
@@ -114652,10 +115075,16 @@
               "address": 1430,
               "length": 1,
               "dataType": "uint16",
-              "unitId": 200
+              "unitId": 200,
+              "nanToNull": true,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 200
-          }
+          },
+          "desc": "Alfen ACE SCN max current registers 1417..1422, protocol addresses 1416..1421. Requires TCP/IP EMS control mode=SCN and Enable Smart Charging Network."
         },
         {
           "id": "mETER_STATE_RAW",
@@ -114670,7 +115099,8 @@
               "address": 299,
               "length": 1,
               "dataType": "uint16",
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true
             },
             "unitId": 1
           }
@@ -114690,7 +115120,8 @@
               "dataType": "uint16",
               "bitMask": 1,
               "toBoolean": true,
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true
             },
             "unitId": 1
           }
@@ -114710,7 +115141,8 @@
               "dataType": "uint16",
               "bitMask": 2,
               "toBoolean": true,
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true
             },
             "unitId": 1
           }
@@ -114730,7 +115162,8 @@
               "dataType": "uint16",
               "bitMask": 4,
               "toBoolean": true,
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true
             },
             "unitId": 1
           }
@@ -114750,7 +115183,8 @@
               "dataType": "uint16",
               "bitMask": 8,
               "toBoolean": true,
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true
             },
             "unitId": 1
           }
@@ -114771,7 +115205,8 @@
               "wordOrder": "le",
               "unitId": 1,
               "nanToNull": true,
-              "bigIntToNullOnOverflow": true
+              "bigIntToNullOnOverflow": true,
+              "uint64OverflowToNull": true
             },
             "unitId": 1
           },
@@ -114790,7 +115225,8 @@
               "address": 304,
               "length": 1,
               "dataType": "uint16",
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true
             },
             "unitId": 1
           }
@@ -115728,7 +116164,12 @@
               "address": 1199,
               "length": 1,
               "dataType": "uint16",
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 1
           }
@@ -115746,7 +116187,11 @@
               "address": 1200,
               "length": 5,
               "dataType": "string",
-              "unitId": 1
+              "unitId": 1,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 1
           }
@@ -115766,7 +116211,11 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 1
           },
@@ -115786,7 +116235,12 @@
               "length": 2,
               "dataType": "uint32",
               "wordOrder": "le",
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 1
           },
@@ -115794,7 +116248,7 @@
         },
         {
           "id": "sET_CHARGING_CURRENT",
-          "name": "Modbus Server Max Current (setpoint)",
+          "name": "Modbus Server Max Current / charging current setpoint",
           "role": "level.current",
           "type": "number",
           "rw": "rw",
@@ -115807,7 +116261,11 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "write": {
               "fc": 16,
@@ -115819,11 +116277,16 @@
               "minValue": 0,
               "maxValue": 80,
               "finite": true,
-              "unitId": 1
+              "unitId": 1,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 1
           },
-          "unit": "A"
+          "unit": "A",
+          "desc": "Alfen ACE register 1210..1211, protocol address 1209. Requires Active Load Balancing, Data Source=Energy Management System, TCP/IP EMS control mode=Socket, Enable sockets and Allow writing maximum currents."
         },
         {
           "id": "aCTIVE_LOAD_BALANCING_SAFE_CURRENT",
@@ -115840,7 +116303,11 @@
               "dataType": "float32",
               "wordOrder": "le",
               "nanToNull": true,
-              "unitId": 1
+              "unitId": 1,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 1
           },
@@ -115860,7 +116327,12 @@
               "length": 1,
               "dataType": "uint16",
               "toBoolean": true,
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 1
           }
@@ -115878,7 +116350,12 @@
               "address": 1214,
               "length": 1,
               "dataType": "uint16",
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true,
+              "optional": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "write": {
               "fc": 16,
@@ -115893,11 +116370,18 @@
                 "1": 1,
                 "3": 3
               },
-              "unitId": 1
+              "unitId": 1,
+              "nanToNull": true,
+              "optional": true,
+              "finite": true,
+              "fallbackAddressOffsets": [
+                1
+              ]
             },
             "unitId": 1
           },
-          "unit": "phases"
+          "unit": "phases",
+          "desc": "Alfen ACE register 1215, protocol address 1214. Requires Energy Management System mode and Allow 1-/3-phase charging in ACE."
         }
       ]
     },

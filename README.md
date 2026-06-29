@@ -310,12 +310,12 @@ Für Alfen NG9xx / ACE sind drei getrennte Modbus-TCP-Templates enthalten, weil 
 
 - `evcs.alfen.ng9xx.ace.socket1.modbusTcp` – Socket 1, Unit-ID `1`
 - `evcs.alfen.ng9xx.ace.socket2.modbusTcp` – Socket 2, Unit-ID `2`
-- `evcs.alfen.ng9xx.ace.station.modbusTcp` – Station/SCN, Unit-ID `200`
+- `evcs.alfen.ng9xx.ace.station.modbusTcp` – Safe-Default-Mischtemplate: Socket-1-Livewerte über Unit-ID `1`; Station/SCN-Datenpunkte bleiben vorhanden, werden aber nicht mehr automatisch gepollt/beschrieben, wenn SCN nicht aktiv ist
 
 Wichtige Lese-Datenpunkte:
 
 - Socket: Messwerte `vOLTAGE_*`, `cURRENT_*`, `aCTIVE_POWER`, Energiezähler, `eVSE_STATE`, `mODE3_STATE`, `aCTUAL_APPLIED_MAX_CURRENT`, `mODBUS_MAX_CURRENT_VALID_TIME`
-- Station/SCN: Produktdaten, Firmware, aktive Maximalströme, Temperatur, Anzahl Sockets, SCN-Verbrauch, SCN-Maximalströme und Valid-Time
+- Station/SCN: Produktdaten, Firmware, aktive Maximalströme, Temperatur, Anzahl Sockets, SCN-Verbrauch, SCN-Maximalströme und Valid-Time; diese Blöcke sind optional und bei vielen Einzel-Wallboxen im Socket-Modus nicht freigeschaltet
 
 Wichtige Schreib-Datenpunkte:
 
@@ -330,6 +330,8 @@ Stabilitäts-/Kompatibilitätsfix ab `0.5.96`: Der Modbus-Treiber kann jetzt pro
 Kompatibilitäts-/Watchdog-Fix ab `0.5.97`: Alfen-Socket-Reads werden je Datenpunkt isoliert, damit optionale oder vom eingebauten Zählertyp nicht gelieferte Register keine wichtigen Nachbarwerte wie Leistung, Mode-3-Status oder Stromlimit mitreißen. Zusätzlich gibt es stabile Aliase: `aliases.ctrl.run` / `aliases.ctrl.chargeEnable` geben die Ladung über `sET_CHARGING_CURRENT` frei (`true` = Standardstrom, `false` = `0 A`), `aliases.r.statusText`, `aliases.r.mode3State`, `aliases.r.vehicleConnected`, `aliases.r.charging`, `aliases.r.appliedCurrentLimitA`, `aliases.r.currentLimitValidTimeS`, `aliases.r.setpointAccountedFor` und `aliases.ctrl.phaseMode`. Alfen-Schreibwerte werden nach dem ersten Adapter-Schreibzugriff alle `10 s` erneuert, damit der Alfen-Watchdog/Validity-Timer nicht ausläuft.
 
 Diagnose-Fix ab `0.5.98`: Wenn die Wallbox `sET_CHARGING_CURRENT` / Registerblock `1200..1215` mit `Illegal Data Address` ablehnt, weist der Adapter jetzt gezielt auf die Alfen-ACE-Einstellungen hin: Active Load Balancing/EMS aktivieren, TCP/IP EMS Control Mode auf Socket stellen, Sockets aktivieren und Schreiben der Maximalströme erlauben. Nicht unterstützte U64-Sentinelwerte werden als `null` behandelt, damit keine ioBroker-Typwarnungen bei `uPTIME_MS` entstehen.
+
+Fix ab `0.5.99`: Die Alfen-Templates sind jetzt auf einen sicheren Socket-Default gehärtet. Standardmäßig werden nur stabile Socket-Livewerte über Unit-ID `1` beziehungsweise `2` schnell gepollt. Station-/SCN-Blöcke auf Unit-ID `200` und der optionale Socket-Control-/Statusblock `1200..1215` werden nicht mehr automatisch als Pflichtwerte behandelt, weil viele Einzel-Wallboxen diese Bereiche erst nach passender ACE-/EMS-Konfiguration freigeben. Das gemischte Station-Template verwendet deshalb ebenfalls Socket-1-Livewerte und Socket-1-Steuerung als Safe Default. SCN-Datenpunkte bleiben im Template vorhanden, sind aber optional und werden nicht mehr per Default im Keepalive beschrieben. Der Alfen-Watchdog erneuert Socket-Schreibwerte alle `10 s`, aber erst nachdem dieser Datenpunkt tatsächlich erfolgreich geschrieben wurde. Bei `Illegal Data Address` / `Illegal Data Value` wird der betroffene Schreibpunkt für eine Stunde abgekühlt, damit die Wallbox nicht dauerhaft mit nicht freigegebenen Registern belastet wird.
 
 Hinweis: Für Schreibzugriffe muss in ACE/Service Installer die Modbus-/EMS-Konfiguration passend aktiviert sein: Lesen erlauben, Schreiben der Maximalströme erlauben, Active Load Balancing/EMS-Modus aktivieren und die Validity-Time größer als das Poll-/Keepalive-Intervall setzen. Für normale Einzel-Wallboxen ist meistens das Socket-1-Template bzw. der Socket-Modus richtig; Station/SCN ist nur für die SCN-/Stationssteuerung gedacht.
 
@@ -387,3 +389,13 @@ Die Geräte werden intern als JSON gespeichert. Beispiel:
 
 ## Lizenz
 MIT
+
+### 0.5.99 - Alfen NG9xx/ACE profile hardening
+
+- Alfen addresses re-audited against the ACE Modbus v1.0 table. The adapter keeps protocol addresses as `documentation register - 1`, as required by Alfen.
+- Default Alfen polling now focuses on stable socket live meter values; optional Station/SCN UID200 blocks and the optional Socket control/status block are no longer default-critical.
+- The mixed Station template is a safe Socket-1 default: Socket-1 live/control remains usable even when Station/SCN is not enabled in ACE.
+- Socket write values are refreshed every 10 seconds after a successful user/script write.
+- Added derived Alfen charging/status aliases from measured power and connection state when the optional Mode-3/status block is not exposed by the charger.
+- Unsupported Alfen read/write attempts now cool down instead of being retried aggressively.
+

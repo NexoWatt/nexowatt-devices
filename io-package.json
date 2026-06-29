@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.98",
+    "version": "0.5.99",
     "news": {
+      "0.5.99": {
+        "en": "Alfen NG9xx/ACE socket-mode hardening: safe default polling now focuses on socket live/control registers, Station/SCN UID200 blocks are no longer polled or kept alive by default in the mixed template, and the max-current watchdog runs every 10 seconds only after an actual successful write.",
+        "de": "Alfen-NG9xx/ACE-Socket-Mode gehärtet: Safe-Default-Polling fokussiert jetzt Socket-Live-/Control-Register, Station/SCN-UID200-Blöcke werden im gemischten Template standardmäßig nicht mehr gepollt oder per Keepalive beschrieben, und der Max-Current-Watchdog läuft alle 10 Sekunden erst nach einem tatsächlich erfolgreichen Schreibzugriff."
+      },
       "0.5.98": {
         "en": "Alfen NG9xx/ACE diagnostics and watchdog update: keep writable Alfen setpoints on a 10-second refresh, add Alfen-specific hints for missing socket control/status blocks, and map unsupported U64/NaN register values to null to avoid ioBroker type warnings.",
         "de": "Alfen-NG9xx/ACE Diagnose- und Watchdog-Update: Alfen-Schreibwerte werden im 10-Sekunden-Takt erneuert, Alfen-spezifische Hinweise für nicht freigeschaltete Socket-Control-/Statusblöcke ergänzt und nicht unterstützte U64/NaN-Registerwerte auf null gemappt, damit keine ioBroker-Typwarnungen entstehen."
