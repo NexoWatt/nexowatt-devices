@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.104",
+    "version": "0.5.105",
     "news": {
+      "0.5.105": {
+        "en": "Alfen ACE cleanup: cache the accepted adaptive control address for the whole socket-control readback block, keep control aliases on the last commanded value instead of volatile readback, and refresh only Max Current every 10s for the watchdog.",
+        "de": "Alfen-ACE-Bereinigung: akzeptierte adaptive Control-Adresse wird für den gesamten Socket-Control-Readback-Block gecacht, Steuer-Aliase behalten den zuletzt gesendeten Sollwert statt volatilem Readback, und der Watchdog refreshed nur noch Max Current alle 10 s."
+      },
       "0.5.104": {
         "en": "Alfen ACE Modbus adaptive control-block addressing: probe socket/SCN control registers safely, support chargers exposing the writable EMS block at the table address, cache the working address for reads/writes, and keep watchdog refresh at 10 s without warning spam.",
         "de": "Alfen-ACE-Modbus: adaptive Adressierung für den Control-Block ergänzt. Socket-/SCN-Steuerregister werden sicher geprüft, Wallboxen mit schreibbarem EMS-Block auf Tabellenadresse werden unterstützt, die funktionierende Adresse wird für Lesen/Schreiben gecacht und der 10-s-Watchdog läuft ohne Warnspam."

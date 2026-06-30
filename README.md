@@ -436,3 +436,9 @@ The Alfen ACE template uses the protocol addresses required by the Alfen documen
 ### 0.5.104 Alfen ACE adaptive control addressing
 
 The Alfen ACE socket/SCN EMS control block is now probed safely with both documented protocol addressing and the table-address variant observed on field devices. The adapter caches the accepted address for read/write and refreshes accepted setpoints every 10 seconds for the Alfen watchdog.
+
+### 0.5.105 Alfen ACE command/readback cleanup
+
+- Caches the accepted adaptive Alfen control address not only for the written datapoint, but for the complete socket-control readback block. This avoids decoding adjacent registers as false readback values.
+- Alfen control aliases (`aliases.ctrl.currentLimitA`, `aliases.ctrl.phaseMode`, `aliases.ctrl.run`, `aliases.ctrl.chargeEnable`) now keep the last successfully commanded value instead of being overwritten by volatile readback values such as `0 A` or `1 phase`.
+- The Alfen watchdog refresh repeats only the Max Current command every 10 seconds. Phase switching is a command, not a watchdog current setpoint, and is no longer cyclically rewritten.

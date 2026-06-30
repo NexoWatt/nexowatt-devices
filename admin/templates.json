@@ -111240,21 +111240,8 @@
                   3
                 ],
                 "unsupportedBackoffMs": 86400000,
-                "writeRejectBackoffMs": 86400000
-              },
-              {
-                "setpointDpId": "cHARGE_USING_PHASES",
-                "intervalMs": 10000,
-                "minWriteIntervalMs": 9000,
-                "requireEverWritten": true,
-                "requireFreshState": false,
-                "disableOnErrorMs": 86400000,
-                "disableOnExceptionCodes": [
-                  2,
-                  3
-                ],
-                "unsupportedBackoffMs": 86400000,
-                "writeRejectBackoffMs": 86400000
+                "writeRejectBackoffMs": 86400000,
+                "useLastCommandValue": true
               }
             ],
             "requireFreshState": false,
@@ -111265,7 +111252,8 @@
             ],
             "writeRejectBackoffMs": 86400000,
             "logLevel": "debug",
-            "periodMs": 10000
+            "periodMs": 10000,
+            "useLastCommandValue": true
           },
           "unitIdDefault": 1,
           "enforceUnitIdDefault": true,
@@ -111407,7 +111395,9 @@
           "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores Modbus protocol address = documentation register - 1; status/control blocks are polled only via aliases/fallback when exposed by the charger profile",
           "controlMode": "socket",
           "deriveStatusFromPowerWhenMode3Missing": true,
-          "scnPollingDefault": false
+          "scnPollingDefault": false,
+          "phaseModeKeepalive": false,
+          "commandAliasesHoldLastCommand": true
         }
       },
       "datapoints": [
@@ -112961,21 +112951,8 @@
                   3
                 ],
                 "unsupportedBackoffMs": 86400000,
-                "writeRejectBackoffMs": 86400000
-              },
-              {
-                "setpointDpId": "cHARGE_USING_PHASES",
-                "intervalMs": 10000,
-                "minWriteIntervalMs": 9000,
-                "requireEverWritten": true,
-                "requireFreshState": false,
-                "disableOnErrorMs": 86400000,
-                "disableOnExceptionCodes": [
-                  2,
-                  3
-                ],
-                "unsupportedBackoffMs": 86400000,
-                "writeRejectBackoffMs": 86400000
+                "writeRejectBackoffMs": 86400000,
+                "useLastCommandValue": true
               }
             ],
             "requireFreshState": false,
@@ -112986,7 +112963,8 @@
             ],
             "writeRejectBackoffMs": 86400000,
             "logLevel": "debug",
-            "periodMs": 10000
+            "periodMs": 10000,
+            "useLastCommandValue": true
           },
           "unitIdDefault": 2,
           "enforceUnitIdDefault": true,
@@ -113128,7 +113106,9 @@
           "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores Modbus protocol address = documentation register - 1; status/control blocks are polled only via aliases/fallback when exposed by the charger profile",
           "controlMode": "socket",
           "deriveStatusFromPowerWhenMode3Missing": true,
-          "scnPollingDefault": false
+          "scnPollingDefault": false,
+          "phaseModeKeepalive": false,
+          "commandAliasesHoldLastCommand": true
         }
       },
       "datapoints": [
@@ -114682,21 +114662,8 @@
                   3
                 ],
                 "unsupportedBackoffMs": 86400000,
-                "writeRejectBackoffMs": 86400000
-              },
-              {
-                "setpointDpId": "cHARGE_USING_PHASES",
-                "intervalMs": 10000,
-                "minWriteIntervalMs": 9000,
-                "requireEverWritten": true,
-                "requireFreshState": false,
-                "disableOnErrorMs": 86400000,
-                "disableOnExceptionCodes": [
-                  2,
-                  3
-                ],
-                "unsupportedBackoffMs": 86400000,
-                "writeRejectBackoffMs": 86400000
+                "writeRejectBackoffMs": 86400000,
+                "useLastCommandValue": true
               }
             ],
             "requireFreshState": false,
@@ -114707,7 +114674,8 @@
             ],
             "writeRejectBackoffMs": 86400000,
             "logLevel": "debug",
-            "periodMs": 10000
+            "periodMs": 10000,
+            "useLastCommandValue": true
           },
           "unitIdDefault": 1,
           "enforceUnitIdDefault": true,
@@ -114851,7 +114819,9 @@
           "setpointWatchdogRefreshMs": 10000,
           "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores Modbus protocol address = documentation register - 1; status/control blocks are polled only via aliases/fallback when exposed by the charger profile",
           "controlMode": "socket",
-          "deriveStatusFromPowerWhenMode3Missing": true
+          "deriveStatusFromPowerWhenMode3Missing": true,
+          "phaseModeKeepalive": false,
+          "commandAliasesHoldLastCommand": true
         }
       },
       "datapoints": [
