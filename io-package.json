@@ -1,11 +1,15 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.107",
+    "version": "0.5.108",
     "news": {
+      "0.5.108": {
+        "en": "Implement KEBA KeContact P40/P40 Pro Modbus TCP V1.02 precisely: Unit-ID 255, FC3 isolated single-register reads, FC6 writes, max 2-word reads, all KEBA mA/mW/0.1Wh values normalized to A/W/Wh in datapoints and aliases, A-based write control converted back to mA, and safe 5-second write pacing.",
+        "de": "KEBA KeContact P40/P40 Pro Modbus TCP V1.02 exakt umgesetzt: Unit-ID 255, isolierte FC3-Einzelregister-Lesezugriffe, FC6-Schreiben, maximal 2-Wort-Lesezugriffe, alle KEBA-mA/mW/0,1Wh-Werte in Datenpunkten und Aliassen auf A/W/Wh normalisiert, A-basierte Schreibsteuerung intern zurück nach mA gewandelt und sichere 5-Sekunden-Schreib-Taktung."
+      },
       "0.5.107": {
-        "en": "Modbus stability profile: safer default read grouping, optional read error isolation, Unit-ID fallback probing for KEBA P40/KeContact, and a hardened KEBA Modbus TCP/RTU template with UID 255/1 fallback and split polling.",
-        "de": "Modbus-Stabilitätsprofil: sicherere Standard-Lesegruppen, isolierte optionale Lesefehler, Unit-ID-Fallback-Prüfung für KEBA P40/KeContact sowie gehärtetes KEBA-Modbus-TCP/RTU-Template mit UID-255/1-Fallback und Split-Polling."
+        "en": "Modbus runtime stabilization: use safe contiguous default reads, adaptive split recovery for rejected read groups, soft handling for unsupported optional registers, and KEBA P40 safe profile with Unit-ID 255/address offset 0 plus charging/cable state datapoints.",
+        "de": "Modbus-Laufzeit stabilisiert: sichere zusammenhängende Lesegruppen als Default, adaptive Split-Recovery bei abgelehnten Read-Gruppen, weiche Behandlung nicht unterstützter optionaler Register und KEBA-P40-Safe-Profil mit Unit-ID 255/Adress-Offset 0 sowie Lade-/Kabelstatus-Datenpunkten."
       },
       "0.5.106": {
         "en": "Alfen ACE status cleanup: expose human-readable Mode 3/status aliases, add raw Mode 3 code alias, state labels for statusCode, and normalize Alfen current-limit valid-time readback variants.",

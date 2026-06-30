@@ -554,7 +554,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "battery.bydcommercial.BydBatteryBoxCommercialC130Impl",
@@ -4695,7 +4710,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "battery.fenecon.BatteryFeneconCommercialImpl",
@@ -5071,7 +5101,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "battery.fenecon.BatteryFeneconHomeImpl",
@@ -5432,7 +5477,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "battery.pylontech.PylontechPowercubeM2BatteryImpl",
@@ -6108,7 +6168,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "battery.sma.SmaBatteryImpl",
@@ -6364,7 +6439,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "battery.soltaro.BatterySoltaroClusterVersionBImpl",
@@ -6815,7 +6905,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "battery.soltaro.BatterySoltaroClusterVersionCImpl",
@@ -7221,7 +7326,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "battery.soltaro.BatterySoltaroSingleRackVersionAImpl",
@@ -11932,7 +12052,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "battery.soltaro.BatterySoltaroSingleRackVersionBImpl",
@@ -15578,7 +15713,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "battery.soltaro.BatterySoltaroSingleRackVersionCImpl",
@@ -16239,7 +16389,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "battery.victron.VictronBatteryImpl",
@@ -17515,7 +17680,22 @@
             "scaleFactor": -2
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "battery_inverter.refu88k.BatteryInverterRefuStore88kImpl",
@@ -18227,7 +18407,22 @@
             }
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "battery_inverter.sinexcel.BatteryInverterSinexcelImpl",
@@ -23343,7 +23538,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "battery_inverter.victron.VictronBatteryInverterImpl",
@@ -23989,7 +24199,22 @@
             "scaleFactor": -1
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "charger.goodwe.AbstractGoodWeEtCharger",
@@ -24062,7 +24287,22 @@
           "default": 35103,
           "hint": "PV1=35103, PV2=35107, PV3=35111"
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "dc_charger.victron.VictronDcChargerImpl",
@@ -24678,7 +24918,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "ess.adstec.EssAdstecStoraxeImpl",
@@ -24844,7 +25099,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "ess.fenecon.AbstractEssFeneconCommercial40Pv",
@@ -25475,7 +25745,22 @@
             "scaleFactor": 2
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "ess.fenecon.AbstractFeneconDessCharger",
@@ -25531,7 +25816,22 @@
           "type": "number",
           "default": 11230
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "ess.fenecon.EssFeneconCommercial40Impl",
@@ -29807,7 +30107,22 @@
             "scaleFactor": 2
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "ess.fenecon.FeneconDessEssImpl",
@@ -29973,7 +30288,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "ess.fenecon.FeneconHomeEssImpl",
@@ -30893,7 +31223,22 @@
             "scaleFactor": -3
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "ess.fenecon.FeneconMiniEssImpl",
@@ -32184,7 +32529,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "ess.fenecon.FeneconProEssImpl",
@@ -33295,7 +33655,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "ess.foxess.FoxESSH3Ess",
@@ -33320,7 +33695,16 @@
             "positiveDirection": 0,
             "target": 1,
             "enable": 1
-          }
+          },
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       },
       "pollIntervalMs": 10000,
@@ -33976,7 +34360,16 @@
             "positiveDirection": 0,
             "target": 1,
             "enable": 1
-          }
+          },
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       },
       "pollIntervalMs": 10000,
@@ -34625,7 +35018,18 @@
       "driverHints": {
         "modbus": {
           "autoSunSpec": true,
-          "sunSpecTemplateBase": 40001
+          "sunSpecTemplateBase": 40001,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       },
       "datapoints": [
@@ -37114,7 +37518,18 @@
       "driverHints": {
         "modbus": {
           "autoSunSpec": true,
-          "sunSpecTemplateBase": 40001
+          "sunSpecTemplateBase": 40001,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       },
       "datapoints": [
@@ -40015,7 +40430,22 @@
             "dataType": "uint16"
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "ess.kostal.KostalManagedEssImpl",
@@ -40445,7 +40875,22 @@
             "dataType": "uint16"
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "ess.samsung.sdi.http.v1",
@@ -41185,7 +41630,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "ess.solax.Ems1000ModbusTcp",
@@ -41239,7 +41699,15 @@
           ],
           "minCommandIntervalMs": 1000,
           "reconnectBackoffMs": 2000,
-          "timeoutMs": 5000
+          "timeoutMs": 5000,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "maxReconnectBackoffMs": 30000
         },
         "polling": {
           "fastIntervalMs": 5000,
@@ -41973,7 +42441,15 @@
             "defaultBatTarget": 0,
             "defaultExecDuration": 1800,
             "defaultNextMotion": 160
-          }
+          },
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "maxReconnectBackoffMs": 30000
         },
         "polling": {
           "fastIntervalMs": 3000,
@@ -42543,7 +43019,18 @@
       "driverHints": {
         "modbus": {
           "autoSunSpec": true,
-          "sunSpecTemplateBase": 40001
+          "sunSpecTemplateBase": 40001,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       },
       "datapoints": [
@@ -44193,7 +44680,18 @@
               "nAP_POWER_SETPOINT",
               "sET_ACTIVE_POWER"
             ]
-          }
+          },
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       },
       "datapoints": [
@@ -46081,7 +46579,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "evcs.abl.EvcsAblImpl",
@@ -46211,7 +46724,22 @@
             }
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "evcs.abl.emh1.evcc2_3.modbusAscii",
@@ -46237,7 +46765,16 @@
             "dataBits": 8,
             "stopBits": 1,
             "enforce": false
-          }
+          },
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "minCommandIntervalMs": 100,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       },
       "datapoints": [
@@ -47098,7 +47635,22 @@
             }
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "evcs.alpitronic.hypercharger.connector2",
@@ -47594,7 +48146,22 @@
             }
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "evcs.alpitronic.hypercharger.connector3",
@@ -48090,7 +48657,22 @@
             }
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "evcs.alpitronic.hypercharger.connector4",
@@ -48586,7 +49168,22 @@
             }
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "evcs.alpitronic.hypercharger.station",
@@ -48794,7 +49391,22 @@
             }
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "evcs.goe.EvcsGoeModbusImpl",
@@ -48930,7 +49542,22 @@
             "scaleFactor": -1
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "evcs.goe.chargerhome.http.v1",
@@ -49816,7 +50443,22 @@
             }
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "evcs.keba.EvcsKebaModbusImpl",
@@ -49825,11 +50467,10 @@
       },
       "category": "EVCS",
       "manufacturer": "KEBA",
-      "model": "KeContact P40 (Modbus TCP/RTU)",
-      "name": "KEBA KeContact P40 (Modbus)",
+      "model": "KeContact P40 / P40 Pro",
+      "name": "KEBA KeContact P40 / P40 Pro Modbus TCP V1.02",
       "protocols": [
-        "modbusTcp",
-        "modbusRtu"
+        "modbusTcp"
       ],
       "datapoints": [
         {
@@ -49845,12 +50486,20 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": 0
+          },
+          "states": {
+            "0": "Start-up",
+            "1": "Not ready / not connected / locked",
+            "2": "Ready / waiting for EV",
+            "3": "Charging",
+            "4": "Error",
+            "5": "Interrupted / suspended / temperature"
           }
         },
         {
           "id": "cABLE_STATE",
           "name": "Cable state",
-          "role": "indicator.connected",
+          "role": "indicator.status",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -49860,11 +50509,18 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": 0
+          },
+          "states": {
+            "0": "No cable plugged",
+            "1": "Cable connected to station",
+            "3": "Cable connected/locked at station",
+            "5": "Cable connected to station and EV",
+            "7": "Cable connected to station and EV / locked / charging"
           }
         },
         {
           "id": "eRROR_CODE",
-          "name": "eRROR_CODE",
+          "name": "EVSE error code",
           "role": "value",
           "type": "number",
           "rw": "ro",
@@ -49879,10 +50535,11 @@
         },
         {
           "id": "currentL1",
-          "name": "Current L1",
+          "name": "Charging current phase 1",
           "role": "value.current",
           "type": "number",
           "rw": "ro",
+          "unit": "A",
           "source": {
             "kind": "modbus",
             "fc": 3,
@@ -49890,15 +50547,15 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": -3
-          },
-          "unit": "A"
+          }
         },
         {
           "id": "currentL2",
-          "name": "Current L2",
+          "name": "Charging current phase 2",
           "role": "value.current",
           "type": "number",
           "rw": "ro",
+          "unit": "A",
           "source": {
             "kind": "modbus",
             "fc": 3,
@@ -49906,15 +50563,15 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": -3
-          },
-          "unit": "A"
+          }
         },
         {
           "id": "currentL3",
-          "name": "Current L3",
+          "name": "Charging current phase 3",
           "role": "value.current",
           "type": "number",
           "rw": "ro",
+          "unit": "A",
           "source": {
             "kind": "modbus",
             "fc": 3,
@@ -49922,13 +50579,12 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": -3
-          },
-          "unit": "A"
+          }
         },
         {
           "id": "sERIAL_NUMBER",
-          "name": "sERIAL_NUMBER",
-          "role": "value",
+          "name": "Serial number",
+          "role": "info.serial",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -49941,9 +50597,24 @@
           }
         },
         {
+          "id": "pRODUCT_TYPE_AND_FEATURES",
+          "name": "Product type and features",
+          "role": "info",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 1016,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
           "id": "fIRMWARE",
-          "name": "fIRMWARE",
-          "role": "value",
+          "name": "Software package version",
+          "role": "info.firmware",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -49957,10 +50628,11 @@
         },
         {
           "id": "aCTIVE_POWER",
-          "name": "Active power (import)",
+          "name": "Active power",
           "role": "value.power",
           "type": "number",
           "rw": "ro",
+          "unit": "W",
           "source": {
             "kind": "modbus",
             "fc": 3,
@@ -49968,31 +50640,31 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": -3
-          },
-          "unit": "W"
+          }
         },
         {
           "id": "aCTIVE_PRODUCTION_ENERGY",
-          "name": "Energy total (import)",
+          "name": "Total energy",
           "role": "value.energy",
           "type": "number",
           "rw": "ro",
+          "unit": "Wh",
           "source": {
             "kind": "modbus",
             "fc": 3,
             "address": 1036,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": -3
-          },
-          "unit": "kWh"
+            "scaleFactor": -1
+          }
         },
         {
           "id": "voltageL1",
-          "name": "Voltage L1",
+          "name": "Voltage phase 1",
           "role": "value.voltage",
           "type": "number",
           "rw": "ro",
+          "unit": "V",
           "source": {
             "kind": "modbus",
             "fc": 3,
@@ -50000,15 +50672,15 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": 0
-          },
-          "unit": "V"
+          }
         },
         {
           "id": "voltageL2",
-          "name": "Voltage L2",
+          "name": "Voltage phase 2",
           "role": "value.voltage",
           "type": "number",
           "rw": "ro",
+          "unit": "V",
           "source": {
             "kind": "modbus",
             "fc": 3,
@@ -50016,15 +50688,15 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": 0
-          },
-          "unit": "V"
+          }
         },
         {
           "id": "voltageL3",
-          "name": "Voltage L3",
+          "name": "Voltage phase 3",
           "role": "value.voltage",
           "type": "number",
           "rw": "ro",
+          "unit": "V",
           "source": {
             "kind": "modbus",
             "fc": 3,
@@ -50032,8 +50704,7 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": 0
-          },
-          "unit": "V"
+          }
         },
         {
           "id": "pOWER_FACTOR",
@@ -50041,6 +50712,7 @@
           "role": "value",
           "type": "number",
           "rw": "ro",
+          "unit": "%",
           "source": {
             "kind": "modbus",
             "fc": 3,
@@ -50048,43 +50720,62 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": -1
-          },
-          "unit": "%"
+          }
         },
         {
           "id": "mAX_CHARGING_CURRENT",
-          "name": "Charge limit",
+          "name": "Max charging current",
           "role": "value.current",
           "type": "number",
           "rw": "ro",
+          "unit": "A",
           "source": {
             "kind": "modbus",
             "fc": 3,
             "address": 1100,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 0
-          },
-          "unit": "A"
+            "scaleFactor": -3
+          }
         },
         {
           "id": "mAX_SUPPORTED_CURRENT",
-          "name": "mAX_SUPPORTED_CURRENT",
-          "role": "value",
+          "name": "Max supported current",
+          "role": "value.current",
           "type": "number",
           "rw": "ro",
+          "unit": "A",
           "source": {
             "kind": "modbus",
             "fc": 3,
             "address": 1110,
             "length": 2,
             "dataType": "uint32",
+            "scaleFactor": -3
+          }
+        },
+        {
+          "id": "fAST_CHARGING_STATE",
+          "name": "Fast charging state",
+          "role": "indicator",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 1200,
+            "length": 2,
+            "dataType": "uint32",
             "scaleFactor": 0
+          },
+          "states": {
+            "0": "Fast charging inactive",
+            "1": "Fast charging active / Modbus current control unavailable"
           }
         },
         {
           "id": "idTag",
-          "name": "idTag",
+          "name": "RFID card UID first 4 bytes (optional, requires KEBA RFID-read activation)",
           "role": "value",
           "type": "number",
           "rw": "ro",
@@ -50094,28 +50785,29 @@
             "address": 1500,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 0
+            "scaleFactor": 0,
+            "poll": false
           }
         },
         {
           "id": "eNERGY_SESSION",
-          "name": "Energy session",
+          "name": "Charged energy current session",
           "role": "value.energy",
           "type": "number",
           "rw": "ro",
+          "unit": "Wh",
           "source": {
             "kind": "modbus",
             "fc": 3,
             "address": 1502,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": -3
-          },
-          "unit": "kWh"
+            "scaleFactor": -1
+          }
         },
         {
           "id": "pHASE_SWITCH_SOURCE",
-          "name": "Number of phases",
+          "name": "Phase switching source (future firmware)",
           "role": "value",
           "type": "number",
           "rw": "ro",
@@ -50127,14 +50819,20 @@
             "dataType": "uint32",
             "scaleFactor": 0
           },
-          "unit": ""
+          "states": {
+            "0": "No phase toggle source",
+            "1": "OCPP",
+            "2": "REST API",
+            "3": "Modbus TCP"
+          }
         },
         {
           "id": "pHASE_SWITCH_STATE",
-          "name": "pHASE_SWITCH_STATE",
+          "name": "Phase switching state (future firmware)",
           "role": "value",
           "type": "number",
           "rw": "ro",
+          "unit": "phases",
           "source": {
             "kind": "modbus",
             "fc": 3,
@@ -50142,29 +50840,35 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": 0
+          },
+          "states": {
+            "1": "1 phase",
+            "3": "3 phases"
           }
         },
         {
           "id": "fAILSAFE_CURRENT_SETTING",
-          "name": "fAILSAFE_CURRENT_SETTING",
-          "role": "value",
+          "name": "Failsafe current setting",
+          "role": "value.current",
           "type": "number",
           "rw": "ro",
+          "unit": "A",
           "source": {
             "kind": "modbus",
             "fc": 3,
             "address": 1600,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 0
+            "scaleFactor": -3
           }
         },
         {
           "id": "fAILSAFE_TIMEOUT_SETTING",
-          "name": "fAILSAFE_TIMEOUT_SETTING",
+          "name": "Failsafe timeout setting",
           "role": "value",
           "type": "number",
           "rw": "ro",
+          "unit": "s",
           "source": {
             "kind": "modbus",
             "fc": 3,
@@ -50175,45 +50879,86 @@
           }
         },
         {
+          "id": "hW_REVISION_DEVICE",
+          "name": "Hardware revision device",
+          "role": "info",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 1700,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "hW_REVISION_MS10",
+          "name": "Hardware revision KC-MS10",
+          "role": "info",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 1702,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
           "id": "sET_CHARGING_CURRENT",
-          "name": "Charging current limit",
+          "name": "Set charging current limit",
           "role": "level.current",
           "type": "number",
           "rw": "rw",
+          "unit": "A",
           "source": {
             "kind": "modbus",
             "fc": 6,
             "address": 5004,
             "length": 1,
             "dataType": "uint16",
-            "scaleFactor": 0,
-            "min": 0,
-            "max": 63000,
-            "step": 100,
-            "round": 0
-          },
-          "unit": "mA"
+            "scaleFactor": -3,
+            "finite": true,
+            "allowedRanges": [
+              [
+                0,
+                0
+              ],
+              [
+                6,
+                32
+              ]
+            ]
+          }
         },
         {
           "id": "sET_ENERGY_LIMIT",
-          "name": "Energy limit (stop after)",
-          "role": "value",
+          "name": "Set energy limit for current session",
+          "role": "level.energy",
           "type": "number",
           "rw": "rw",
+          "unit": "Wh",
           "source": {
             "kind": "modbus",
             "fc": 6,
             "address": 5010,
             "length": 1,
             "dataType": "uint16",
-            "scaleFactor": 0
-          },
-          "unit": "Wh"
+            "scaleFactor": 1,
+            "finite": true,
+            "round": true,
+            "minValue": 0,
+            "maxValue": 655350
+          }
         },
         {
           "id": "sET_UNLOCK_PLUG",
-          "name": "Unlock plug",
-          "role": "switch",
+          "name": "Unlock plug command",
+          "role": "button",
           "type": "boolean",
           "rw": "rw",
           "source": {
@@ -50223,14 +50968,19 @@
             "length": 1,
             "dataType": "uint16",
             "scaleFactor": 0,
-            "falseValue": 0,
-            "trueValue": 1
-          },
-          "unit": ""
+            "allowedValues": [
+              0
+            ],
+            "valueMap": {
+              "true": 0,
+              "1": 0
+            },
+            "round": true
+          }
         },
         {
           "id": "sET_ENABLE",
-          "name": "Station enable",
+          "name": "Enable / disable charging station (future firmware)",
           "role": "switch",
           "type": "boolean",
           "rw": "rw",
@@ -50241,32 +50991,50 @@
             "length": 1,
             "dataType": "uint16",
             "scaleFactor": 0,
+            "allowedValues": [
+              0,
+              1
+            ],
+            "trueValue": 1,
             "falseValue": 0,
-            "trueValue": 1
-          },
-          "unit": ""
+            "round": true
+          }
         },
         {
           "id": "sET_PHASE_SWITCH_SOURCE",
-          "name": "Phase switching source",
-          "role": "value",
+          "name": "Set phase switching source (future firmware)",
+          "role": "level",
           "type": "number",
           "rw": "rw",
+          "states": {
+            "0": "No phase toggle source",
+            "1": "OCPP",
+            "2": "REST API",
+            "3": "Modbus TCP"
+          },
           "source": {
             "kind": "modbus",
             "fc": 6,
             "address": 5050,
             "length": 1,
             "dataType": "uint16",
-            "scaleFactor": 0
+            "scaleFactor": 0,
+            "finite": true,
+            "round": true,
+            "minValue": 0,
+            "maxValue": 3
           }
         },
         {
           "id": "sET_TRIGGER_PHASE_SWITCH",
-          "name": "Trigger phase switch (0=1ph,1=3ph)",
-          "role": "switch",
-          "type": "boolean",
+          "name": "Trigger phase switch (0=1 phase, 1=3 phases; future firmware)",
+          "role": "level",
+          "type": "number",
           "rw": "rw",
+          "states": {
+            "0": "1 phase",
+            "1": "3 phases"
+          },
           "source": {
             "kind": "modbus",
             "fc": 6,
@@ -50274,38 +51042,125 @@
             "length": 1,
             "dataType": "uint16",
             "scaleFactor": 0,
-            "falseValue": 0,
-            "trueValue": 1
+            "finite": true,
+            "round": true,
+            "allowedValues": [
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "id": "sET_FAILSAFE_CURRENT",
+          "name": "Set EMS failsafe current",
+          "role": "level.current",
+          "type": "number",
+          "rw": "rw",
+          "unit": "A",
+          "source": {
+            "kind": "modbus",
+            "fc": 6,
+            "address": 5016,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": -3,
+            "finite": true,
+            "allowedRanges": [
+              [
+                0,
+                0
+              ],
+              [
+                6,
+                32
+              ]
+            ]
+          }
+        },
+        {
+          "id": "sET_FAILSAFE_TIMEOUT",
+          "name": "Set EMS failsafe timeout",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "unit": "s",
+          "source": {
+            "kind": "modbus",
+            "fc": 6,
+            "address": 5018,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "finite": true,
+            "round": true,
+            "allowedRanges": [
+              [
+                0,
+                0
+              ],
+              [
+                5,
+                600
+              ]
+            ]
+          }
+        },
+        {
+          "id": "aCTIVATE_FAST_CHARGING",
+          "name": "Activate fast charging",
+          "role": "button",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "fc": 6,
+            "address": 5200,
+            "length": 1,
+            "dataType": "uint16",
+            "scaleFactor": 0,
+            "allowedValues": [
+              1
+            ],
+            "valueMap": {
+              "true": 1,
+              "1": 1
+            },
+            "round": true
           }
         }
       ],
-      "description": "KEBA KeContact P40 via Modbus TCP/RTU (holding registers). Stable Modbus profile: strict register groups, UID 255/1 fallback and safe polling.",
+      "description": "KEBA KeContact P40/P40 Pro Modbus TCP according to Programmers Guide V1.02. Uses Unit-ID 255, FC3 single-register reads, FC6 writes, address offset 0, isolated UINT32 reads with max length 2 words. All mA/mW/0.1Wh values are normalized to A/W/Wh for adapter datapoints and aliases; write values in A are converted back to mA on Modbus.",
       "driverHints": {
         "modbus": {
-          "unitIdDefault": 255,
-          "unitIdFallbacks": [
-            255,
-            1
-          ],
-          "forceAddressOffset": 0,
-          "timeoutMs": 3000,
-          "connectTimeoutMs": 6000,
-          "operationTimeoutMs": 7000,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 8000,
+          "connectTimeoutMs": 7000,
+          "maxReadRegs": 2,
           "strictContiguousReads": true,
+          "adaptiveReadSplit": true,
+          "softIllegalAddressReads": true,
           "continueOnReadError": true,
           "skipFailedReadGroupsMs": 300000,
-          "maxReadRegs": 16,
-          "minCommandIntervalMs": 150,
+          "splitFailedReadGroupsMs": 600000,
+          "minCommandIntervalMs": 500,
+          "optionalReadErrorLogLevel": "info",
+          "unitIdDefault": 255,
+          "tcpUnitIdDefault": 255,
+          "enforceTcpUnitIdDefault": true,
+          "forceAddressOffset": 0,
+          "isolateReadDatapoints": true,
+          "writeThrottleMs": 5000,
+          "writeMaxPerTick": 1,
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000,
-          "optionalReadErrorLogLevel": "debug",
-          "writeThrottleMs": 500,
-          "writeMaxPerTick": 1
+          "requiredReadDpIds": [
+            "cHARGING_STATE"
+          ]
         },
         "polling": {
+          "initialFastOnly": true,
           "fastIntervalMs": 5000,
           "slowIntervalMs": 300000,
-          "initialFastOnly": true,
           "fastDpIds": [
             "cHARGING_STATE",
             "cABLE_STATE",
@@ -50315,11 +51170,10 @@
             "currentL3",
             "aCTIVE_POWER",
             "aCTIVE_PRODUCTION_ENERGY",
-            "eNERGY_SESSION",
             "mAX_CHARGING_CURRENT",
             "mAX_SUPPORTED_CURRENT",
-            "pHASE_SWITCH_SOURCE",
-            "pHASE_SWITCH_STATE",
+            "fAST_CHARGING_STATE",
+            "eNERGY_SESSION",
             "fAILSAFE_CURRENT_SETTING",
             "fAILSAFE_TIMEOUT_SETTING"
           ],
@@ -50331,6 +51185,7 @@
             "currentL2",
             "currentL3",
             "sERIAL_NUMBER",
+            "pRODUCT_TYPE_AND_FEATURES",
             "fIRMWARE",
             "aCTIVE_POWER",
             "aCTIVE_PRODUCTION_ENERGY",
@@ -50340,14 +51195,69 @@
             "pOWER_FACTOR",
             "mAX_CHARGING_CURRENT",
             "mAX_SUPPORTED_CURRENT",
-            "idTag",
+            "fAST_CHARGING_STATE",
             "eNERGY_SESSION",
             "pHASE_SWITCH_SOURCE",
             "pHASE_SWITCH_STATE",
             "fAILSAFE_CURRENT_SETTING",
-            "fAILSAFE_TIMEOUT_SETTING"
+            "fAILSAFE_TIMEOUT_SETTING",
+            "hW_REVISION_DEVICE",
+            "hW_REVISION_MS10"
           ]
+        },
+        "keba": {
+          "runCurrentA": 16,
+          "stopCurrentA": 0,
+          "phaseSwitchPrewriteSource": true
         }
+      },
+      "polling": {
+        "initialFastOnly": true,
+        "fastIntervalMs": 5000,
+        "slowIntervalMs": 300000,
+        "fastDpIds": [
+          "cHARGING_STATE",
+          "cABLE_STATE",
+          "eRROR_CODE",
+          "currentL1",
+          "currentL2",
+          "currentL3",
+          "aCTIVE_POWER",
+          "aCTIVE_PRODUCTION_ENERGY",
+          "mAX_CHARGING_CURRENT",
+          "mAX_SUPPORTED_CURRENT",
+          "fAST_CHARGING_STATE",
+          "eNERGY_SESSION",
+          "fAILSAFE_CURRENT_SETTING",
+          "fAILSAFE_TIMEOUT_SETTING"
+        ],
+        "slowDpIds": [
+          "cHARGING_STATE",
+          "cABLE_STATE",
+          "eRROR_CODE",
+          "currentL1",
+          "currentL2",
+          "currentL3",
+          "sERIAL_NUMBER",
+          "pRODUCT_TYPE_AND_FEATURES",
+          "fIRMWARE",
+          "aCTIVE_POWER",
+          "aCTIVE_PRODUCTION_ENERGY",
+          "voltageL1",
+          "voltageL2",
+          "voltageL3",
+          "pOWER_FACTOR",
+          "mAX_CHARGING_CURRENT",
+          "mAX_SUPPORTED_CURRENT",
+          "fAST_CHARGING_STATE",
+          "eNERGY_SESSION",
+          "pHASE_SWITCH_SOURCE",
+          "pHASE_SWITCH_STATE",
+          "fAILSAFE_CURRENT_SETTING",
+          "fAILSAFE_TIMEOUT_SETTING",
+          "hW_REVISION_DEVICE",
+          "hW_REVISION_MS10"
+        ]
       }
     },
     {
@@ -50640,7 +51550,46 @@
             }
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "timeoutMs": 3000,
+          "operationTimeoutMs": 6000,
+          "connectTimeoutMs": 6000,
+          "maxReadRegs": 16,
+          "strictContiguousReads": true,
+          "adaptiveReadSplit": true,
+          "softIllegalAddressReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "splitFailedReadGroupsMs": 600000,
+          "minCommandIntervalMs": 150,
+          "optionalReadErrorLogLevel": "info",
+          "unitIdDefault": 255,
+          "enforceUnitIdDefault": true,
+          "forceAddressOffset": 0
+        },
+        "polling": {
+          "initialFastOnly": true,
+          "fastIntervalMs": 5000,
+          "slowIntervalMs": 300000,
+          "fastDpIds": [
+            "cHARGING_STATE",
+            "cABLE_STATE",
+            "eRROR_CODE",
+            "currentL1",
+            "currentL2",
+            "currentL3",
+            "aCTIVE_POWER",
+            "aCTIVE_PRODUCTION_ENERGY",
+            "eNERGY_SESSION",
+            "mAX_CHARGING_CURRENT",
+            "mAX_SUPPORTED_CURRENT",
+            "pHASE_SWITCH_SOURCE",
+            "pHASE_SWITCH_STATE"
+          ]
+        }
+      }
     },
     {
       "id": "evcs.mennekes.EvcsMennekesImpl",
@@ -50802,7 +51751,12 @@
           "operationTimeoutMs": 7000,
           "minCommandIntervalMs": 250,
           "reconnectBackoffMs": 1000,
-          "maxReconnectBackoffMs": 30000
+          "maxReconnectBackoffMs": 30000,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "optionalReadErrorLogLevel": "warn"
         }
       }
     },
@@ -50994,7 +51948,8 @@
           },
           "permanentWriteErrorRetryAttempts": 1,
           "unsupportedWriteCooldownMs": 600000,
-          "writeMaxPerTick": 1
+          "writeMaxPerTick": 1,
+          "optionalReadErrorLogLevel": "warn"
         },
         "mennekes": {
           "runCurrentA": 16,
@@ -53298,7 +54253,15 @@
         "modbus": {
           "minCommandIntervalMs": 1000,
           "reconnectBackoffMs": 2000,
-          "timeoutMs": 5000
+          "timeoutMs": 5000,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "maxReconnectBackoffMs": 30000
         },
         "polling": {
           "fastIntervalMs": 5000
@@ -53664,7 +54627,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "evcs.webasto.EvcsWebastoNextImpl",
@@ -54115,7 +55093,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "evcs.webasto.EvcsWebastoUniteImpl",
@@ -54671,7 +55664,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "evse.chargepoint.EvseAlpitronicImpl",
@@ -54915,7 +55923,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "evse.chargepoint.EvseChargePointHeidelbergConnectImpl",
@@ -55291,7 +56314,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "evse.chargepoint.EvseKebaModbusImpl",
@@ -55320,6 +56358,14 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": 0
+          },
+          "states": {
+            "0": "Starting",
+            "1": "Not ready for charging",
+            "2": "Ready for charging / waiting for EV",
+            "3": "Charging",
+            "4": "Error",
+            "5": "Charging interrupted / rejected"
           }
         },
         {
@@ -55335,6 +56381,13 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": 0
+          },
+          "states": {
+            "0": "Unplugged",
+            "1": "Plugged on wallbox",
+            "3": "Plugged on wallbox and locked",
+            "5": "Plugged on EV, not locked",
+            "7": "Plugged and locked"
           }
         },
         {
@@ -55355,7 +56408,7 @@
         {
           "id": "currentL1",
           "name": "currentL1",
-          "role": "value",
+          "role": "value.current",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -55364,13 +56417,14 @@
             "address": 1008,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 0
-          }
+            "scaleFactor": -3
+          },
+          "unit": "A"
         },
         {
           "id": "currentL2",
           "name": "currentL2",
-          "role": "value",
+          "role": "value.current",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -55379,13 +56433,14 @@
             "address": 1010,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 0
-          }
+            "scaleFactor": -3
+          },
+          "unit": "A"
         },
         {
           "id": "currentL3",
           "name": "currentL3",
-          "role": "value",
+          "role": "value.current",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -55394,8 +56449,9 @@
             "address": 1012,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 0
-          }
+            "scaleFactor": -3
+          },
+          "unit": "A"
         },
         {
           "id": "sERIAL_NUMBER",
@@ -55407,6 +56463,21 @@
             "kind": "modbus",
             "fc": 3,
             "address": 1014,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "pRODUCT_TYPE_AND_FEATURES",
+          "name": "Product type and features",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 1016,
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": 0
@@ -55430,7 +56501,7 @@
         {
           "id": "aCTIVE_POWER",
           "name": "aCTIVE_POWER",
-          "role": "value",
+          "role": "value.power",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -55440,12 +56511,13 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": -3
-          }
+          },
+          "unit": "W"
         },
         {
           "id": "aCTIVE_PRODUCTION_ENERGY",
           "name": "aCTIVE_PRODUCTION_ENERGY",
-          "role": "value",
+          "role": "value.energy",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -55455,12 +56527,13 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": 0
-          }
+          },
+          "unit": "Wh"
         },
         {
           "id": "voltageL1",
           "name": "voltageL1",
-          "role": "value",
+          "role": "value.voltage",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -55469,13 +56542,14 @@
             "address": 1040,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 3
-          }
+            "scaleFactor": 0
+          },
+          "unit": "V"
         },
         {
           "id": "voltageL2",
           "name": "voltageL2",
-          "role": "value",
+          "role": "value.voltage",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -55484,13 +56558,14 @@
             "address": 1042,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 3
-          }
+            "scaleFactor": 0
+          },
+          "unit": "V"
         },
         {
           "id": "voltageL3",
           "name": "voltageL3",
-          "role": "value",
+          "role": "value.voltage",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -55499,8 +56574,9 @@
             "address": 1044,
             "length": 2,
             "dataType": "uint32",
-            "scaleFactor": 3
-          }
+            "scaleFactor": 0
+          },
+          "unit": "V"
         },
         {
           "id": "pOWER_FACTOR",
@@ -55520,7 +56596,7 @@
         {
           "id": "mAX_CHARGING_CURRENT",
           "name": "mAX_CHARGING_CURRENT",
-          "role": "value",
+          "role": "value.current",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -55530,12 +56606,13 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": 0
-          }
+          },
+          "unit": "mA"
         },
         {
           "id": "mAX_SUPPORTED_CURRENT",
           "name": "mAX_SUPPORTED_CURRENT",
-          "role": "value",
+          "role": "value.current",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -55545,12 +56622,13 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": 0
-          }
+          },
+          "unit": "mA"
         },
         {
           "id": "eNERGY_SESSION",
           "name": "eNERGY_SESSION",
-          "role": "value",
+          "role": "value.energy",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -55560,7 +56638,8 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": 0
-          }
+          },
+          "unit": "Wh"
         },
         {
           "id": "pHASE_SWITCH_SOURCE",
@@ -55595,7 +56674,7 @@
         {
           "id": "fAILSAFE_CURRENT_SETTING",
           "name": "fAILSAFE_CURRENT_SETTING",
-          "role": "value",
+          "role": "value.current",
           "type": "number",
           "rw": "ro",
           "source": {
@@ -55605,7 +56684,8 @@
             "length": 2,
             "dataType": "uint32",
             "scaleFactor": 0
-          }
+          },
+          "unit": "mA"
         },
         {
           "id": "fAILSAFE_TIMEOUT_SETTING",
@@ -55625,7 +56705,7 @@
         {
           "id": "sET_CHARGING_CURRENT",
           "name": "sET_CHARGING_CURRENT",
-          "role": "value",
+          "role": "level.current",
           "type": "number",
           "rw": "rw",
           "source": {
@@ -55635,16 +56715,17 @@
             "length": 1,
             "dataType": "uint16",
             "scaleFactor": 0,
-            "min": 0,
-            "max": 63000,
-            "step": 100,
-            "round": 0
-          }
+            "finite": true,
+            "round": true,
+            "minValue": 0,
+            "maxValue": 32000
+          },
+          "unit": "mA"
         },
         {
           "id": "sET_ENERGY_LIMIT",
           "name": "sET_ENERGY_LIMIT",
-          "role": "value",
+          "role": "level.energy",
           "type": "number",
           "rw": "rw",
           "source": {
@@ -55653,14 +56734,19 @@
             "address": 5010,
             "length": 1,
             "dataType": "uint16",
-            "scaleFactor": 0
-          }
+            "scaleFactor": 0,
+            "finite": true,
+            "round": true,
+            "minValue": 0,
+            "maxValue": 65535
+          },
+          "unit": "Wh"
         },
         {
           "id": "sET_UNLOCK_PLUG",
           "name": "sET_UNLOCK_PLUG",
-          "role": "value",
-          "type": "number",
+          "role": "switch",
+          "type": "boolean",
           "rw": "rw",
           "source": {
             "kind": "modbus",
@@ -55669,15 +56755,17 @@
             "length": 1,
             "dataType": "uint16",
             "scaleFactor": 0,
-            "falseValue": 0,
-            "trueValue": 1
+            "allowedValues": [
+              0,
+              1
+            ]
           }
         },
         {
           "id": "sET_ENABLE",
           "name": "sET_ENABLE",
-          "role": "value",
-          "type": "number",
+          "role": "switch",
+          "type": "boolean",
           "rw": "rw",
           "source": {
             "kind": "modbus",
@@ -55686,14 +56774,16 @@
             "length": 1,
             "dataType": "uint16",
             "scaleFactor": 0,
-            "falseValue": 0,
-            "trueValue": 1
+            "allowedValues": [
+              0,
+              1
+            ]
           }
         },
         {
           "id": "sET_PHASE_SWITCH_SOURCE",
           "name": "sET_PHASE_SWITCH_SOURCE",
-          "role": "value",
+          "role": "level",
           "type": "number",
           "rw": "rw",
           "source": {
@@ -55702,14 +56792,18 @@
             "address": 5050,
             "length": 1,
             "dataType": "uint16",
-            "scaleFactor": 0
+            "scaleFactor": 0,
+            "finite": true,
+            "round": true,
+            "minValue": 0,
+            "maxValue": 65535
           }
         },
         {
           "id": "sET_TRIGGER_PHASE_SWITCH",
           "name": "sET_TRIGGER_PHASE_SWITCH",
-          "role": "value",
-          "type": "number",
+          "role": "switch",
+          "type": "boolean",
           "rw": "rw",
           "source": {
             "kind": "modbus",
@@ -55718,37 +56812,41 @@
             "length": 1,
             "dataType": "uint16",
             "scaleFactor": 0,
-            "falseValue": 0,
-            "trueValue": 1
+            "allowedValues": [
+              0,
+              1
+            ]
           }
         }
       ],
       "driverHints": {
         "modbus": {
-          "unitIdDefault": 255,
-          "unitIdFallbacks": [
-            255,
-            1
-          ],
-          "forceAddressOffset": 0,
-          "timeoutMs": 3000,
-          "connectTimeoutMs": 6000,
+          "timeoutMs": 5000,
           "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "maxReadRegs": 2,
           "strictContiguousReads": true,
+          "adaptiveReadSplit": true,
+          "softIllegalAddressReads": true,
           "continueOnReadError": true,
           "skipFailedReadGroupsMs": 300000,
-          "maxReadRegs": 16,
-          "minCommandIntervalMs": 150,
+          "splitFailedReadGroupsMs": 600000,
+          "minCommandIntervalMs": 250,
+          "optionalReadErrorLogLevel": "info",
+          "unitIdDefault": 255,
+          "tcpUnitIdDefault": 255,
+          "enforceTcpUnitIdDefault": true,
+          "forceAddressOffset": 0,
+          "isolateReadDatapoints": true,
+          "writeThrottleMs": 5000,
+          "writeMaxPerTick": 1,
           "reconnectBackoffMs": 1000,
-          "maxReconnectBackoffMs": 30000,
-          "optionalReadErrorLogLevel": "debug",
-          "writeThrottleMs": 500,
-          "writeMaxPerTick": 1
+          "maxReconnectBackoffMs": 30000
         },
         "polling": {
+          "initialFastOnly": true,
           "fastIntervalMs": 5000,
           "slowIntervalMs": 300000,
-          "initialFastOnly": true,
           "fastDpIds": [
             "cHARGING_STATE",
             "cABLE_STATE",
@@ -55757,14 +56855,10 @@
             "currentL2",
             "currentL3",
             "aCTIVE_POWER",
-            "aCTIVE_PRODUCTION_ENERGY",
-            "eNERGY_SESSION",
             "mAX_CHARGING_CURRENT",
             "mAX_SUPPORTED_CURRENT",
             "pHASE_SWITCH_SOURCE",
-            "pHASE_SWITCH_STATE",
-            "fAILSAFE_CURRENT_SETTING",
-            "fAILSAFE_TIMEOUT_SETTING"
+            "pHASE_SWITCH_STATE"
           ],
           "slowDpIds": [
             "cHARGING_STATE",
@@ -55775,6 +56869,7 @@
             "currentL3",
             "sERIAL_NUMBER",
             "fIRMWARE",
+            "pRODUCT_TYPE_AND_FEATURES",
             "aCTIVE_POWER",
             "aCTIVE_PRODUCTION_ENERGY",
             "voltageL1",
@@ -55783,7 +56878,6 @@
             "pOWER_FACTOR",
             "mAX_CHARGING_CURRENT",
             "mAX_SUPPORTED_CURRENT",
-            "idTag",
             "eNERGY_SESSION",
             "pHASE_SWITCH_SOURCE",
             "pHASE_SWITCH_STATE",
@@ -55791,8 +56885,7 @@
             "fAILSAFE_TIMEOUT_SETTING"
           ]
         }
-      },
-      "description": "ChargePoint KEBA-compatible Modbus profile. Stable Modbus profile: strict register groups, UID 255/1 fallback and safe polling."
+      }
     },
     {
       "id": "generic.canbus.raw.v1",
@@ -55976,7 +57069,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "generic.mqtt",
@@ -56046,7 +57154,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "heat.lambda.LambdaWpModbus",
@@ -57519,7 +58642,22 @@
             "scaleFactor": -1
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "heat.mypv.HeatMyPvAcThor9sImpl",
@@ -57715,7 +58853,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "heat.tecalor.TecalorLwzModbus",
@@ -58039,7 +59192,22 @@
             }
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "heat.tecalor.TecalorWpm3iModbus",
@@ -59081,7 +60249,22 @@
             }
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "io.filipowski.IoFilipowskiMrAo1Impl",
@@ -59131,7 +60314,22 @@
           "type": "number",
           "default": 0
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "io.kmtronic.IoKmtronicRelay4PortImpl",
@@ -59267,7 +60465,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "io.kmtronic.IoKmtronicRelay8PortImpl",
@@ -59523,7 +60736,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "io.onewire.OneWireDs18b20Temperature.V1",
@@ -60802,7 +62030,22 @@
           "type": "number",
           "default": 0
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "io.wut.WebIoDigital4_57733_4xInOutImpl",
@@ -61132,7 +62375,22 @@
             }
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "io.wut.WebIoDigital4_57736_16xInOutImpl",
@@ -62194,7 +63452,22 @@
             }
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "io.wut.WebIoDigital4_57756_Logger16xInOutImpl",
@@ -63256,7 +64529,22 @@
             }
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.abb.b23.mbus.v1",
@@ -63528,7 +64816,22 @@
             "scaleFactor": -1
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.bcontrol.MeterBControlEM300Impl",
@@ -64129,7 +65432,22 @@
             "scaleFactor": -1
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.bgetech.MeterBgeTechDrt428M2Impl",
@@ -65210,7 +66528,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.camillebauer.MeterCamillebauerAplusImpl",
@@ -65506,7 +66839,22 @@
             "wordOrder": "le"
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.carlo.MeterCarloGavazziEm100Impl",
@@ -65660,7 +67008,22 @@
           },
           "unit": "Wh"
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.carlo.MeterCarloGavazziEm300Impl",
@@ -66044,7 +67407,22 @@
           },
           "unit": "Wh"
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.discovergy.inexogy.http.v1",
@@ -66315,7 +67693,22 @@
           },
           "unit": "Hz"
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.eastron.MeterEastronSdm630Impl",
@@ -66609,7 +68002,22 @@
           },
           "unit": "varh"
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.fenecon.FeneconDessGridMeterImpl",
@@ -66805,7 +68213,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.fenecon.FeneconDessPvMeterImpl",
@@ -66866,7 +68289,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.fenecon.FeneconMiniGridMeterImpl",
@@ -66897,7 +68335,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.fenecon.FeneconMiniPvMeterImpl",
@@ -66928,7 +68381,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.fenecon.FeneconProPvMeterImpl",
@@ -67034,7 +68502,22 @@
             "scaleFactor": 2
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.hager.ecr380d",
@@ -67403,7 +68886,22 @@
           },
           "unit": "kWh"
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.janitza.MeterJanitzaUmg104Impl",
@@ -67614,7 +69112,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.janitza.MeterJanitzaUmg511Impl",
@@ -67795,7 +69308,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.janitza.MeterJanitzaUmg604Impl",
@@ -68033,7 +69561,22 @@
           "unit": "kW"
         }
       ],
-      "notes": "Werte werden im Adapter auf kW/kWh skaliert und auf 2 Nachkommastellen gerundet."
+      "notes": "Werte werden im Adapter auf kW/kWh skaliert und auf 2 Nachkommastellen gerundet.",
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.janitza.MeterJanitzaUmg604proImpl",
@@ -68271,7 +69814,22 @@
           "unit": "kW"
         }
       ],
-      "notes": "Werte werden im Adapter auf kW/kWh skaliert und auf 2 Nachkommastellen gerundet."
+      "notes": "Werte werden im Adapter auf kW/kWh skaliert und auf 2 Nachkommastellen gerundet.",
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.janitza.MeterJanitzaUmg801Impl",
@@ -68332,7 +69890,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.janitza.MeterJanitzaUmg806Impl",
@@ -68513,7 +70086,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.janitza.MeterJanitzaUmg96paImpl",
@@ -68819,7 +70407,22 @@
           }
         }
       ],
-      "notes": "Häufig benötigte Messwerte (Float). Leistungen/Energien werden auf kW/kWh skaliert und auf 2 Nachkommastellen gerundet."
+      "notes": "Häufig benötigte Messwerte (Float). Leistungen/Energien werden auf kW/kWh skaliert und auf 2 Nachkommastellen gerundet.",
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.janitza.MeterJanitzaUmg96rmeImpl",
@@ -69015,7 +70618,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.kdk.MeterKdk2puctImpl",
@@ -69436,7 +71054,22 @@
             "scaleFactor": 3
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.kostal.KostalGridMeterBigEndianImpl",
@@ -69760,7 +71393,22 @@
             "wordOrder": "be"
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.kostal.KostalGridMeterImpl",
@@ -70084,7 +71732,22 @@
             "wordOrder": "le"
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.mbus.GenericWiredMbusDevice.V1",
@@ -70574,7 +72237,22 @@
             "wordOrder": "le"
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.plexlog.MeterPlexlogDataloggerImpl",
@@ -70710,7 +72388,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.pqplus.MeterPqplusUmd96Impl",
@@ -70831,7 +72524,22 @@
             "scaleFactor": 3
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.pqplus.MeterPqplusUmd97Impl",
@@ -70967,7 +72675,22 @@
             "scaleFactor": 3
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.samsung.ess.grid.http.v1",
@@ -71327,7 +73050,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.shelly.3em_gen1",
@@ -72397,7 +74135,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.siemens.MeterSiemensPac2200Impl",
@@ -72578,7 +74331,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.siemens.MeterSiemensSicamt7kg966Impl",
@@ -73026,7 +74794,22 @@
             "wordOrder": "le"
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.sma.MeterSmaShm20Impl",
@@ -73447,7 +75230,22 @@
             "scaleFactor": 1
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.sma.SmaEnergyMeterSpeedwireImpl",
@@ -73948,7 +75746,22 @@
           },
           "unit": "kWh"
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.socomec.countis_e23_e24_e27_e28",
@@ -74269,7 +76082,22 @@
           },
           "unit": "kWh"
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.socomec.countis_e34_e44",
@@ -74558,7 +76386,22 @@
           },
           "unit": "kWh"
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.socomec.diris_a10",
@@ -74847,7 +76690,22 @@
           },
           "unit": "kWh"
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.socomec.diris_a14",
@@ -75136,7 +76994,22 @@
           },
           "unit": "kWh"
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.socomec.diris_b30",
@@ -75409,7 +77282,22 @@
           },
           "unit": "kWh"
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.sunspec.generic.model201.v1",
@@ -75428,7 +77316,18 @@
       "driverHints": {
         "modbus": {
           "autoSunSpec": true,
-          "sunSpecTemplateBase": 40001
+          "sunSpecTemplateBase": 40001,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       },
       "datapoints": [
@@ -76746,7 +78645,18 @@
       "driverHints": {
         "modbus": {
           "autoSunSpec": true,
-          "sunSpecTemplateBase": 40001
+          "sunSpecTemplateBase": 40001,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       },
       "datapoints": [
@@ -78064,7 +79974,18 @@
       "driverHints": {
         "modbus": {
           "autoSunSpec": true,
-          "sunSpecTemplateBase": 40001
+          "sunSpecTemplateBase": 40001,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       },
       "datapoints": [
@@ -79484,7 +81405,22 @@
             "scaleFactor": 1
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.victron.VictronAcOutPowerMeterImpl",
@@ -79650,7 +81586,22 @@
             "scaleFactor": 1
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.victron.VictronMeterImpl",
@@ -79891,7 +81842,22 @@
             "scaleFactor": 1
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.weidmueller.MeterWeidmueller525Impl",
@@ -80732,7 +82698,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "meter.ziehl.MeterZiehlEfr4001IpImpl",
@@ -81380,7 +83361,22 @@
             "wordOrder": "le"
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "pv_inverter.foxess.FoxESSTG3G3PvInverter",
@@ -81408,7 +83404,16 @@
             "positiveDirection": 0,
             "target": 0,
             "enable": 1
-          }
+          },
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       },
       "pollIntervalMs": 10000,
@@ -89785,7 +91790,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "pv_inverter.goodwe.GoodWeEmergencyPowerMeterImpl",
@@ -89981,7 +92001,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "pv_inverter.goodwe.GoodWeGridMeterImpl",
@@ -90057,7 +92092,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "pv_inverter.kaco.blueplanet.nx3.sunspec.v1",
@@ -90075,7 +92125,18 @@
       "driverHints": {
         "modbus": {
           "autoSunSpec": true,
-          "sunSpecTemplateBase": 40001
+          "sunSpecTemplateBase": 40001,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       },
       "datapoints": [
@@ -92641,7 +94702,18 @@
             ],
             "storeOnWrite": true,
             "useFallbackFromDpState": true
-          }
+          },
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       }
     },
@@ -93226,7 +95298,18 @@
             ],
             "storeOnWrite": true,
             "useFallbackFromDpState": true
-          }
+          },
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       }
     },
@@ -93257,6 +95340,19 @@
             "OpMod",
             "FstStop"
           ]
+        },
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       },
       "datapoints": [
@@ -103328,7 +105424,18 @@
       "driverHints": {
         "modbus": {
           "autoSunSpec": true,
-          "sunSpecTemplateBase": 40000
+          "sunSpecTemplateBase": 40000,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       },
       "datapoints": [
@@ -104185,7 +106292,18 @@
       "driverHints": {
         "modbus": {
           "autoSunSpec": true,
-          "sunSpecTemplateBase": 40000
+          "sunSpecTemplateBase": 40000,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       },
       "datapoints": [
@@ -104668,7 +106786,22 @@
             "scaleFactor": -2
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "pv_inverter.sma.SmaStpxxUs41Minimal",
@@ -104822,7 +106955,22 @@
             }
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "pv_inverter.sma.SmaSunnyTripowerXMinimal",
@@ -104969,7 +107117,22 @@
             }
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "pv_inverter.solarlog.PvInverterSolarlogImpl",
@@ -105060,7 +107223,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "pv_inverter.solarlog.SolarLogDpmDirectMarketing",
@@ -105087,7 +107265,18 @@
                 "dpId": "WatchDog_Tag"
               }
             ]
-          }
+          },
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       },
       "datapoints": [
@@ -105324,7 +107513,18 @@
                 "dpId": "WatchDog_Tag"
               }
             ]
-          }
+          },
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       },
       "datapoints": [
@@ -106828,7 +109028,15 @@
         "modbus": {
           "minCommandIntervalMs": 1000,
           "reconnectBackoffMs": 2000,
-          "timeoutMs": 5000
+          "timeoutMs": 5000,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "maxReconnectBackoffMs": 30000
         }
       }
     },
@@ -106849,7 +109057,18 @@
       "driverHints": {
         "modbus": {
           "autoSunSpec": true,
-          "sunSpecTemplateBase": 40001
+          "sunSpecTemplateBase": 40001,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       },
       "datapoints": [
@@ -108100,7 +110319,18 @@
       "driverHints": {
         "modbus": {
           "autoSunSpec": true,
-          "sunSpecTemplateBase": 40001
+          "sunSpecTemplateBase": 40001,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       },
       "datapoints": [
@@ -109351,7 +111581,18 @@
       "driverHints": {
         "modbus": {
           "autoSunSpec": true,
-          "sunSpecTemplateBase": 40001
+          "sunSpecTemplateBase": 40001,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       },
       "datapoints": [
@@ -110794,7 +113035,22 @@
             "scaleFactor": 1
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "pv_inverter.victron.VictronPvInverterViaDcChargerImpl",
@@ -111395,7 +113651,22 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
+        }
+      }
     },
     {
       "id": "evcs.alfen.ng9xx.ace.socket1.modbusTcp",
@@ -111489,7 +113760,9 @@
               1
             ],
             "retryAlternateControlAddress": true
-          }
+          },
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         },
         "polling": {
           "initialFastOnly": true,
@@ -113201,7 +115474,9 @@
               1
             ],
             "retryAlternateControlAddress": true
-          }
+          },
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         },
         "polling": {
           "initialFastOnly": true,
@@ -114915,7 +117190,9 @@
               1
             ],
             "retryAlternateControlAddress": true
-          }
+          },
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         },
         "polling": {
           "initialFastOnly": true,
@@ -118051,7 +120328,18 @@
             ],
             "storeOnWrite": true,
             "useFallbackFromDpState": true
-          }
+          },
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       }
     },
@@ -118661,7 +120949,18 @@
             ],
             "storeOnWrite": true,
             "useFallbackFromDpState": true
-          }
+          },
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 32,
+          "minCommandIntervalMs": 100,
+          "timeoutMs": 5000,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000
         }
       }
     },
@@ -126161,7 +128460,12 @@
             "LoadPower"
           ],
           "continueOnReadError": true,
-          "skipFailedReadGroupsMs": 300000
+          "skipFailedReadGroupsMs": 300000,
+          "strictContiguousReads": true,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "maxReconnectBackoffMs": 30000
         },
         "polling": {
           "fastIntervalMs": 5000,
@@ -141845,7 +144149,11 @@
           ],
           "continueOnReadError": true,
           "skipFailedReadGroupsMs": 300000,
-          "strictContiguousReads": true
+          "strictContiguousReads": true,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "maxReconnectBackoffMs": 30000
         },
         "polling": {
           "fastIntervalMs": 5000,
@@ -143893,7 +146201,12 @@
             "TotalFaultyDevicesConnected"
           ],
           "continueOnReadError": true,
-          "skipFailedReadGroupsMs": 300000
+          "skipFailedReadGroupsMs": 300000,
+          "strictContiguousReads": true,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "maxReconnectBackoffMs": 30000
         },
         "polling": {
           "fastIntervalMs": 5000,
@@ -145017,7 +147330,12 @@
             "Hz"
           ],
           "continueOnReadError": true,
-          "skipFailedReadGroupsMs": 300000
+          "skipFailedReadGroupsMs": 300000,
+          "strictContiguousReads": true,
+          "operationTimeoutMs": 7000,
+          "connectTimeoutMs": 7000,
+          "optionalReadErrorLogLevel": "warn",
+          "maxReconnectBackoffMs": 30000
         },
         "polling": {
           "fastIntervalMs": 5000,

@@ -1,3 +1,17 @@
+
+## 0.5.108 KEBA KeContact P40/P40 Pro Modbus TCP V1.02
+
+- KEBA-P40-Template gegen den Programmers Guide V1.02 umgesetzt: Unit-ID 255, Port 502, FC3 Lesen, FC6 Schreiben, keine Mehrfachregister-Leseblöcke über mehrere Registerwerte.
+- Alle KEBA-Stromwerte werden im Adapter als Ampere geführt; intern werden mA-Register der Wallbox beim Lesen nach A und beim Schreiben von A nach mA umgerechnet.
+- Native Schreib-Datenpunkte wie `sET_CHARGING_CURRENT` und `sET_FAILSAFE_CURRENT` erwarten jetzt A (`0` oder `6..32`) und schreiben daraus automatisch `0` bzw. `6000..32000` mA per FC6.
+- KEBA-Aliase für `aliases.ctrl.currentLimitA`, `aliases.ctrl.run`, `aliases.ctrl.chargeEnable`, `aliases.ctrl.failsafeCurrentA`, Status, Leistung und Energie ergänzt/stabilisiert.
+
+## 0.5.107 Modbus-Stabilität
+
+- Globale Modbus-Härtung: Templates lesen standardmäßig lückensicherer, mit kleineren Registerblöcken und temporärem Skip optional fehlerhafter Read-Gruppen.
+- KEBA KeContact P40: Modbus/TCP nutzt jetzt den KEBA-Default Unit-ID 255, Address-Offset 0, isoliertes Polling nach OpenEMS-/KEBA-Registerlayout und stabile Aliase für Status, Stromlimit und Ladefreigabe.
+- Optionales KEBA-Register `idTag` wird nicht mehr automatisch gepollt, weil es je nach Firmware nicht zuverlässig lesbar ist.
+
 # nexowatt-devices (ioBroker Adapter)
 
 **nexowatt-devices** ist ein eigenständiger Multi‑Protokoll‑Geräteadapter für ioBroker.
@@ -450,25 +464,39 @@ The Alfen ACE socket/SCN EMS control block is now probed safely with both docume
 - Added status labels for `aliases.r.statusCode` so dashboards can map `0..8` to useful texts.
 - Normalizes Alfen current-limit valid-time readback variants where field devices expose UINT32 valid time with swapped word order.
 
-## 4c) Modbus-Stabilitätsprofil
+### 0.5.107 Modbus runtime and KEBA P40 stabilization
 
-Ab Version `0.5.107` verwendet der Adapter für Modbus-Geräte defensivere Standardwerte:
+- Modbus TCP/RTU/ASCII reads now default to conservative contiguous register groups with a lower default maximum span. This avoids requests across reserved register gaps on sensitive devices.
+- Added adaptive read recovery: when a device rejects a grouped read with Modbus exception 2/3, the adapter temporarily splits that group into per-datapoint reads and keeps all supported values instead of dropping the whole device offline.
+- Unsupported optional Modbus registers are skipped temporarily and throttled in the log. If every requested group fails, the poll still fails so wrong IP/template/Unit-ID cases remain visible.
+- KEBA KeContact P40 Modbus profile hardened: fixed default Unit-ID to 255, enforced address offset 0, added safe polling hints, and added charging/cable state datapoints at 1000/1004 for status aliases.
 
-- Lesegruppen werden standardmäßig nicht mehr über Registerlücken hinweg zusammengezogen.
-- Optionale Registerfehler können isoliert und temporär übersprungen werden, ohne die übrigen Livewerte zu blockieren.
-- Zwischen Modbus-Kommandos wird standardmäßig ein kleiner Mindestabstand eingehalten.
-- Templates können Unit-ID-Fallbacks definieren; für KEBA KeContact/P40 wird z.B. UID `255` mit Fallback auf UID `1` unterstützt.
 
-Diese Einstellungen können pro Gerät bzw. Template über `driverHints.modbus` übersteuert werden.
 
-### KEBA KeContact P40 / Modbus
+### KEBA KeContact P40 / P40 Pro Modbus TCP
 
-Das KEBA-P40-Modbus-Template nutzt ein gehärtetes Profil mit:
+Das Template `evcs.keba.EvcsKebaModbusImpl` ist gegen den KEBA *Modbus TCP Programmers Guide V1.02* umgesetzt.
 
-- Unit-ID-Default `255` und Fallback `255/1`
-- festem Address-Offset `0`
-- strikt zusammenhängenden Registergruppen
-- Split-Polling für Kernwerte und optionale Zusatzwerte
-- Schreibwertbegrenzung für `sET_CHARGING_CURRENT` in mA
+Wichtige Verbindungswerte:
 
-Wenn bei einer vorhandenen Anlage noch Unit-ID `1` gespeichert ist, probiert der Adapter bei `Illegal Data Address` automatisch UID `255` und merkt sich die funktionierende Unit-ID für die laufende Verbindung.
+- Protokoll: `modbusTcp`
+- Port: `502`
+- Unit-ID: `255`
+- Address Offset: `0`
+- Lesen: `FC3`, pro Anfrage genau ein Registerwert mit maximal `2` Modbus-Wörtern
+- Schreiben: `FC6`, keine FC16-Blockschreibzugriffe
+
+Die KEBA liefert Ströme intern in `mA`; im Adapter werden alle relevanten Stromwerte als `A` geführt. Das gilt auch für Schreibwerte wie `aliases.ctrl.currentLimitA`, `sET_CHARGING_CURRENT`, `sET_FAILSAFE_CURRENT` und die Readbacks `currentL1/L2/L3`, `mAX_CHARGING_CURRENT`, `mAX_SUPPORTED_CURRENT`, `fAILSAFE_CURRENT_SETTING`.
+
+Wichtige Aliase:
+
+- `aliases.ctrl.currentLimitA`: 0 A = Laden pausieren, 6…32 A = Ladestrom setzen
+- `aliases.ctrl.run` / `aliases.ctrl.chargeEnable`: `true` schreibt den Default-Freigabestrom, `false` schreibt 0 A
+- `aliases.ctrl.failsafeCurrentA`: Failsafe-Strom in A
+- `aliases.ctrl.failsafeTimeoutS`: Failsafe-Timeout in Sekunden
+- `aliases.r.power`: Ladeleistung in W
+- `aliases.r.currentL1/L2/L3`: Phasenströme in A
+- `aliases.r.voltageL1/L2/L3`: Phasenspannungen in V
+- `aliases.r.energyTotal`: Gesamtenergie in Wh
+- `aliases.r.energySession`: Session-Energie in Wh
+- `aliases.r.statusText`: verständlicher Ladestationsstatus

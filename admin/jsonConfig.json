@@ -641,7 +641,7 @@
                 },
                 {
                   "value": "evcs.keba.EvcsKebaModbusImpl",
-                  "label": "EVCS | KEBA KeContact P40 (Modbus TCP/RTU) KEBA KeContact P40 (Modbus)"
+                  "label": "EVCS | KEBA KeContact P40 / P40 Pro Modbus TCP V1.02"
                 },
                 {
                   "value": "evcs.mennekes.EvcsMennekesImpl",
