@@ -49833,6 +49833,36 @@
       ],
       "datapoints": [
         {
+          "id": "cHARGING_STATE",
+          "name": "Charging state",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 1000,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
+          "id": "cABLE_STATE",
+          "name": "Cable state",
+          "role": "indicator.connected",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 1004,
+            "length": 2,
+            "dataType": "uint32",
+            "scaleFactor": 0
+          }
+        },
+        {
           "id": "eRROR_CODE",
           "name": "eRROR_CODE",
           "role": "value",
@@ -50156,7 +50186,11 @@
             "address": 5004,
             "length": 1,
             "dataType": "uint16",
-            "scaleFactor": 0
+            "scaleFactor": 0,
+            "min": 0,
+            "max": 63000,
+            "step": 100,
+            "round": 0
           },
           "unit": "mA"
         },
@@ -50188,7 +50222,9 @@
             "address": 5012,
             "length": 1,
             "dataType": "uint16",
-            "scaleFactor": 0
+            "scaleFactor": 0,
+            "falseValue": 0,
+            "trueValue": 1
           },
           "unit": ""
         },
@@ -50204,7 +50240,9 @@
             "address": 5014,
             "length": 1,
             "dataType": "uint16",
-            "scaleFactor": 0
+            "scaleFactor": 0,
+            "falseValue": 0,
+            "trueValue": 1
           },
           "unit": ""
         },
@@ -50235,11 +50273,82 @@
             "address": 5052,
             "length": 1,
             "dataType": "uint16",
-            "scaleFactor": 0
+            "scaleFactor": 0,
+            "falseValue": 0,
+            "trueValue": 1
           }
         }
       ],
-      "description": "KEBA KeContact P40 via Modbus TCP/RTU (holding registers)."
+      "description": "KEBA KeContact P40 via Modbus TCP/RTU (holding registers). Stable Modbus profile: strict register groups, UID 255/1 fallback and safe polling.",
+      "driverHints": {
+        "modbus": {
+          "unitIdDefault": 255,
+          "unitIdFallbacks": [
+            255,
+            1
+          ],
+          "forceAddressOffset": 0,
+          "timeoutMs": 3000,
+          "connectTimeoutMs": 6000,
+          "operationTimeoutMs": 7000,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 16,
+          "minCommandIntervalMs": 150,
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000,
+          "optionalReadErrorLogLevel": "debug",
+          "writeThrottleMs": 500,
+          "writeMaxPerTick": 1
+        },
+        "polling": {
+          "fastIntervalMs": 5000,
+          "slowIntervalMs": 300000,
+          "initialFastOnly": true,
+          "fastDpIds": [
+            "cHARGING_STATE",
+            "cABLE_STATE",
+            "eRROR_CODE",
+            "currentL1",
+            "currentL2",
+            "currentL3",
+            "aCTIVE_POWER",
+            "aCTIVE_PRODUCTION_ENERGY",
+            "eNERGY_SESSION",
+            "mAX_CHARGING_CURRENT",
+            "mAX_SUPPORTED_CURRENT",
+            "pHASE_SWITCH_SOURCE",
+            "pHASE_SWITCH_STATE",
+            "fAILSAFE_CURRENT_SETTING",
+            "fAILSAFE_TIMEOUT_SETTING"
+          ],
+          "slowDpIds": [
+            "cHARGING_STATE",
+            "cABLE_STATE",
+            "eRROR_CODE",
+            "currentL1",
+            "currentL2",
+            "currentL3",
+            "sERIAL_NUMBER",
+            "fIRMWARE",
+            "aCTIVE_POWER",
+            "aCTIVE_PRODUCTION_ENERGY",
+            "voltageL1",
+            "voltageL2",
+            "voltageL3",
+            "pOWER_FACTOR",
+            "mAX_CHARGING_CURRENT",
+            "mAX_SUPPORTED_CURRENT",
+            "idTag",
+            "eNERGY_SESSION",
+            "pHASE_SWITCH_SOURCE",
+            "pHASE_SWITCH_STATE",
+            "fAILSAFE_CURRENT_SETTING",
+            "fAILSAFE_TIMEOUT_SETTING"
+          ]
+        }
+      }
     },
     {
       "id": "evcs.keba.udp.KeContactP20P30",
@@ -55525,7 +55634,11 @@
             "address": 5004,
             "length": 1,
             "dataType": "uint16",
-            "scaleFactor": 0
+            "scaleFactor": 0,
+            "min": 0,
+            "max": 63000,
+            "step": 100,
+            "round": 0
           }
         },
         {
@@ -55555,7 +55668,9 @@
             "address": 5012,
             "length": 1,
             "dataType": "uint16",
-            "scaleFactor": 0
+            "scaleFactor": 0,
+            "falseValue": 0,
+            "trueValue": 1
           }
         },
         {
@@ -55570,7 +55685,9 @@
             "address": 5014,
             "length": 1,
             "dataType": "uint16",
-            "scaleFactor": 0
+            "scaleFactor": 0,
+            "falseValue": 0,
+            "trueValue": 1
           }
         },
         {
@@ -55600,10 +55717,82 @@
             "address": 5052,
             "length": 1,
             "dataType": "uint16",
-            "scaleFactor": 0
+            "scaleFactor": 0,
+            "falseValue": 0,
+            "trueValue": 1
           }
         }
-      ]
+      ],
+      "driverHints": {
+        "modbus": {
+          "unitIdDefault": 255,
+          "unitIdFallbacks": [
+            255,
+            1
+          ],
+          "forceAddressOffset": 0,
+          "timeoutMs": 3000,
+          "connectTimeoutMs": 6000,
+          "operationTimeoutMs": 7000,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 16,
+          "minCommandIntervalMs": 150,
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 30000,
+          "optionalReadErrorLogLevel": "debug",
+          "writeThrottleMs": 500,
+          "writeMaxPerTick": 1
+        },
+        "polling": {
+          "fastIntervalMs": 5000,
+          "slowIntervalMs": 300000,
+          "initialFastOnly": true,
+          "fastDpIds": [
+            "cHARGING_STATE",
+            "cABLE_STATE",
+            "eRROR_CODE",
+            "currentL1",
+            "currentL2",
+            "currentL3",
+            "aCTIVE_POWER",
+            "aCTIVE_PRODUCTION_ENERGY",
+            "eNERGY_SESSION",
+            "mAX_CHARGING_CURRENT",
+            "mAX_SUPPORTED_CURRENT",
+            "pHASE_SWITCH_SOURCE",
+            "pHASE_SWITCH_STATE",
+            "fAILSAFE_CURRENT_SETTING",
+            "fAILSAFE_TIMEOUT_SETTING"
+          ],
+          "slowDpIds": [
+            "cHARGING_STATE",
+            "cABLE_STATE",
+            "eRROR_CODE",
+            "currentL1",
+            "currentL2",
+            "currentL3",
+            "sERIAL_NUMBER",
+            "fIRMWARE",
+            "aCTIVE_POWER",
+            "aCTIVE_PRODUCTION_ENERGY",
+            "voltageL1",
+            "voltageL2",
+            "voltageL3",
+            "pOWER_FACTOR",
+            "mAX_CHARGING_CURRENT",
+            "mAX_SUPPORTED_CURRENT",
+            "idTag",
+            "eNERGY_SESSION",
+            "pHASE_SWITCH_SOURCE",
+            "pHASE_SWITCH_STATE",
+            "fAILSAFE_CURRENT_SETTING",
+            "fAILSAFE_TIMEOUT_SETTING"
+          ]
+        }
+      },
+      "description": "ChargePoint KEBA-compatible Modbus profile. Stable Modbus profile: strict register groups, UID 255/1 fallback and safe polling."
     },
     {
       "id": "generic.canbus.raw.v1",

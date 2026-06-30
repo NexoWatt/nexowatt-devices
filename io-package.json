@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.106",
+    "version": "0.5.107",
     "news": {
+      "0.5.107": {
+        "en": "Modbus stability profile: safer default read grouping, optional read error isolation, Unit-ID fallback probing for KEBA P40/KeContact, and a hardened KEBA Modbus TCP/RTU template with UID 255/1 fallback and split polling.",
+        "de": "Modbus-Stabilitätsprofil: sicherere Standard-Lesegruppen, isolierte optionale Lesefehler, Unit-ID-Fallback-Prüfung für KEBA P40/KeContact sowie gehärtetes KEBA-Modbus-TCP/RTU-Template mit UID-255/1-Fallback und Split-Polling."
+      },
       "0.5.106": {
         "en": "Alfen ACE status cleanup: expose human-readable Mode 3/status aliases, add raw Mode 3 code alias, state labels for statusCode, and normalize Alfen current-limit valid-time readback variants.",
         "de": "Alfen-ACE-Status bereinigt: Mode-3-/Status-Aliase geben jetzt verständliche Texte aus, zusätzlicher Rohcode-Alias, StatusCode-States und Normalisierung der Alfen-Current-Limit-Valid-Time-Readbacks."

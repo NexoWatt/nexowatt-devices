@@ -449,3 +449,26 @@ The Alfen ACE socket/SCN EMS control block is now probed safely with both docume
 - Added `aliases.r.mode3Code` for the raw Alfen/IEC Mode-3 code (`A`, `B1`, `C2`, ...), while `aliases.r.mode3State`, `aliases.r.statusText` and `aliases.r.status` are intended for frontends.
 - Added status labels for `aliases.r.statusCode` so dashboards can map `0..8` to useful texts.
 - Normalizes Alfen current-limit valid-time readback variants where field devices expose UINT32 valid time with swapped word order.
+
+## 4c) Modbus-Stabilitätsprofil
+
+Ab Version `0.5.107` verwendet der Adapter für Modbus-Geräte defensivere Standardwerte:
+
+- Lesegruppen werden standardmäßig nicht mehr über Registerlücken hinweg zusammengezogen.
+- Optionale Registerfehler können isoliert und temporär übersprungen werden, ohne die übrigen Livewerte zu blockieren.
+- Zwischen Modbus-Kommandos wird standardmäßig ein kleiner Mindestabstand eingehalten.
+- Templates können Unit-ID-Fallbacks definieren; für KEBA KeContact/P40 wird z.B. UID `255` mit Fallback auf UID `1` unterstützt.
+
+Diese Einstellungen können pro Gerät bzw. Template über `driverHints.modbus` übersteuert werden.
+
+### KEBA KeContact P40 / Modbus
+
+Das KEBA-P40-Modbus-Template nutzt ein gehärtetes Profil mit:
+
+- Unit-ID-Default `255` und Fallback `255/1`
+- festem Address-Offset `0`
+- strikt zusammenhängenden Registergruppen
+- Split-Polling für Kernwerte und optionale Zusatzwerte
+- Schreibwertbegrenzung für `sET_CHARGING_CURRENT` in mA
+
+Wenn bei einer vorhandenen Anlage noch Unit-ID `1` gespeichert ist, probiert der Adapter bei `Illegal Data Address` automatisch UID `255` und merkt sich die funktionierende Unit-ID für die laufende Verbindung.
