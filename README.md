@@ -442,3 +442,10 @@ The Alfen ACE socket/SCN EMS control block is now probed safely with both docume
 - Caches the accepted adaptive Alfen control address not only for the written datapoint, but for the complete socket-control readback block. This avoids decoding adjacent registers as false readback values.
 - Alfen control aliases (`aliases.ctrl.currentLimitA`, `aliases.ctrl.phaseMode`, `aliases.ctrl.run`, `aliases.ctrl.chargeEnable`) now keep the last successfully commanded value instead of being overwritten by volatile readback values such as `0 A` or `1 phase`.
 - The Alfen watchdog refresh repeats only the Max Current command every 10 seconds. Phase switching is a command, not a watchdog current setpoint, and is no longer cyclically rewritten.
+
+### 0.5.106 Alfen ACE status text cleanup
+
+- Alfen Mode-3 aliases now expose human-readable status text first, e.g. `No vehicle (A)` instead of only the raw IEC code `A`.
+- Added `aliases.r.mode3Code` for the raw Alfen/IEC Mode-3 code (`A`, `B1`, `C2`, ...), while `aliases.r.mode3State`, `aliases.r.statusText` and `aliases.r.status` are intended for frontends.
+- Added status labels for `aliases.r.statusCode` so dashboards can map `0..8` to useful texts.
+- Normalizes Alfen current-limit valid-time readback variants where field devices expose UINT32 valid time with swapped word order.

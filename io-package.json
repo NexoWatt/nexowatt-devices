@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.105",
+    "version": "0.5.106",
     "news": {
+      "0.5.106": {
+        "en": "Alfen ACE status cleanup: expose human-readable Mode 3/status aliases, add raw Mode 3 code alias, state labels for statusCode, and normalize Alfen current-limit valid-time readback variants.",
+        "de": "Alfen-ACE-Status bereinigt: Mode-3-/Status-Aliase geben jetzt verständliche Texte aus, zusätzlicher Rohcode-Alias, StatusCode-States und Normalisierung der Alfen-Current-Limit-Valid-Time-Readbacks."
+      },
       "0.5.105": {
         "en": "Alfen ACE cleanup: cache the accepted adaptive control address for the whole socket-control readback block, keep control aliases on the last commanded value instead of volatile readback, and refresh only Max Current every 10s for the watchdog.",
         "de": "Alfen-ACE-Bereinigung: akzeptierte adaptive Control-Adresse wird für den gesamten Socket-Control-Readback-Block gecacht, Steuer-Aliase behalten den zuletzt gesendeten Sollwert statt volatilem Readback, und der Watchdog refreshed nur noch Max Current alle 10 s."

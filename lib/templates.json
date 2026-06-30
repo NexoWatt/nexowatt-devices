@@ -112756,7 +112756,7 @@
               "address": 1207,
               "length": 2,
               "dataType": "uint32",
-              "wordOrder": "le",
+              "wordOrder": "be",
               "unitId": 1,
               "nanToNull": true,
               "optional": true,
@@ -112767,7 +112767,8 @@
             "disableAddressFallbackOffsets": true,
             "noAddressFallback": true
           },
-          "unit": "s"
+          "unit": "s",
+          "desc": "Alfen ACE register 1208..1209, valid time remaining. Runtime alias also normalizes field word-order variants."
         },
         {
           "id": "sET_CHARGING_CURRENT",
@@ -114467,7 +114468,7 @@
               "address": 1207,
               "length": 2,
               "dataType": "uint32",
-              "wordOrder": "le",
+              "wordOrder": "be",
               "unitId": 2,
               "nanToNull": true,
               "optional": true,
@@ -114478,7 +114479,8 @@
             "disableAddressFallbackOffsets": true,
             "noAddressFallback": true
           },
-          "unit": "s"
+          "unit": "s",
+          "desc": "Alfen ACE register 1208..1209, valid time remaining. Runtime alias also normalizes field word-order variants."
         },
         {
           "id": "sET_CHARGING_CURRENT",
@@ -117090,7 +117092,7 @@
               "address": 1207,
               "length": 2,
               "dataType": "uint32",
-              "wordOrder": "le",
+              "wordOrder": "be",
               "unitId": 1,
               "nanToNull": true,
               "optional": true,
@@ -117101,7 +117103,8 @@
             "disableAddressFallbackOffsets": true,
             "noAddressFallback": true
           },
-          "unit": "s"
+          "unit": "s",
+          "desc": "Alfen ACE register 1208..1209, valid time remaining. Runtime alias also normalizes field word-order variants."
         },
         {
           "id": "sET_CHARGING_CURRENT",
