@@ -1,8 +1,16 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.102",
+    "version": "0.5.104",
     "news": {
+      "0.5.104": {
+        "en": "Alfen ACE Modbus adaptive control-block addressing: probe socket/SCN control registers safely, support chargers exposing the writable EMS block at the table address, cache the working address for reads/writes, and keep watchdog refresh at 10 s without warning spam.",
+        "de": "Alfen-ACE-Modbus: adaptive Adressierung für den Control-Block ergänzt. Socket-/SCN-Steuerregister werden sicher geprüft, Wallboxen mit schreibbarem EMS-Block auf Tabellenadresse werden unterstützt, die funktionierende Adresse wird für Lesen/Schreiben gecacht und der 10-s-Watchdog läuft ohne Warnspam."
+      },
+      "0.5.103": {
+        "en": "Alfen ACE stability: preflight-probe socket/SCN control registers before writes, suppress unsupported control writes into meter-only profiles, keep addresses fixed at document register - 1, and improve Alfen-specific ECONNREFUSED diagnostics.",
+        "de": "Alfen-ACE-Stabilität: Socket-/SCN-Control-Register werden vor Schreibzugriffen geprüft, nicht freigegebene Control-Writes in Meter-only-Profilen werden sauber unterdrückt, Adressen bleiben fest auf Dokumentregister - 1, und Alfen-spezifische ECONNREFUSED-Diagnose wurde verbessert."
+      },
       "0.5.102": {
         "en": "Alfen NG9xx/ACE stability fix: prevent crash on rejected alias writes, enforce template protocol address offset over stale device config, and keep Alfen current setpoint writes rounded/in cooldown after Modbus rejects.",
         "de": "Alfen-NG9xx/ACE-Stabilitätsfix: kein Absturz mehr bei abgelehnten Alias-Schreibzugriffen, Template-Protokolladressierung überschreibt alte Geräte-Offsets, und Alfen-Stromsollwerte werden gerundet sowie nach Modbus-Ablehnung sauber pausiert."

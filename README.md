@@ -431,3 +431,8 @@ The Alfen ACE template uses the protocol addresses required by the Alfen documen
 - Disables unsafe off-by-one write retries for Alfen 32-bit control registers.
 - Keeps unexpected state-change errors from terminating the adapter instance.
 
+
+
+### 0.5.104 Alfen ACE adaptive control addressing
+
+The Alfen ACE socket/SCN EMS control block is now probed safely with both documented protocol addressing and the table-address variant observed on field devices. The adapter caches the accepted address for read/write and refreshes accepted setpoints every 10 seconds for the Alfen watchdog.

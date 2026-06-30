@@ -111226,7 +111226,7 @@
           "setpointKeepalive": {
             "checkPeriodMs": 10000,
             "requireEverWritten": true,
-            "unsupportedBackoffMs": 3600000,
+            "unsupportedBackoffMs": 86400000,
             "targets": [
               {
                 "setpointDpId": "sET_CHARGING_CURRENT",
@@ -111234,13 +111234,13 @@
                 "minWriteIntervalMs": 9000,
                 "requireEverWritten": true,
                 "requireFreshState": false,
-                "disableOnErrorMs": 3600000,
+                "disableOnErrorMs": 86400000,
                 "disableOnExceptionCodes": [
                   2,
                   3
                 ],
-                "unsupportedBackoffMs": 3600000,
-                "writeRejectBackoffMs": 3600000
+                "unsupportedBackoffMs": 86400000,
+                "writeRejectBackoffMs": 86400000
               },
               {
                 "setpointDpId": "cHARGE_USING_PHASES",
@@ -111248,22 +111248,22 @@
                 "minWriteIntervalMs": 9000,
                 "requireEverWritten": true,
                 "requireFreshState": false,
-                "disableOnErrorMs": 3600000,
+                "disableOnErrorMs": 86400000,
                 "disableOnExceptionCodes": [
                   2,
                   3
                 ],
-                "unsupportedBackoffMs": 3600000,
-                "writeRejectBackoffMs": 3600000
+                "unsupportedBackoffMs": 86400000,
+                "writeRejectBackoffMs": 86400000
               }
             ],
             "requireFreshState": false,
-            "disableOnErrorMs": 3600000,
+            "disableOnErrorMs": 86400000,
             "disableOnExceptionCodes": [
               2,
               3
             ],
-            "writeRejectBackoffMs": 3600000,
+            "writeRejectBackoffMs": 86400000,
             "logLevel": "debug",
             "periodMs": 10000
           },
@@ -111279,7 +111279,7 @@
           "skipFailedReadGroupsMs": 3600000,
           "maxReadRegs": 5,
           "isolateReadDatapoints": true,
-          "unsupportedWriteCooldownMs": 3600000,
+          "unsupportedWriteCooldownMs": 86400000,
           "permanentWriteErrorRetryAttempts": 1,
           "requiredReadDpIds": [
             "aCTIVE_POWER"
@@ -111288,8 +111288,8 @@
             "enabled": false
           },
           "optionalReadErrorLogLevel": "debug",
-          "setpointKeepaliveUnsupportedBackoffMs": 3600000,
-          "writeRejectBackoffMs": 3600000,
+          "setpointKeepaliveUnsupportedBackoffMs": 86400000,
+          "writeRejectBackoffMs": 86400000,
           "addressing": {
             "documentRegisterOffset": -1,
             "templateUsesProtocolAddresses": true,
@@ -111299,7 +111299,20 @@
           "disableOffByOneFallback": true,
           "addressOffsetDefault": 0,
           "enforcedAddressOffset": 0,
-          "disableFallbackAddressOffsets": true
+          "disableFallbackAddressOffsets": true,
+          "alfen": {
+            "probeControlBeforeWrite": true,
+            "controlUnsupportedBackoffMs": 86400000,
+            "controlProbeOkCacheMs": 60000,
+            "socketControlMustBeExposed": true,
+            "cleanMeterOnlyFallback": true,
+            "adaptiveControlAddress": true,
+            "controlAddressOffsets": [
+              0,
+              1
+            ],
+            "retryAlternateControlAddress": true
+          }
         },
         "polling": {
           "initialFastOnly": true,
@@ -112911,7 +112924,10 @@
       "unitIdDefault": 1,
       "forceAddressOffset": 0,
       "addressOffsetDefault": 0,
-      "disableAddressFallbackOffsets": true
+      "disableAddressFallbackOffsets": true,
+      "alfen": {
+        "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores protocol address=document register-1 for meter values; socket/SCN control/status block is adaptively probed with offsets [0,+1] because field devices may expose the writable EMS block at the table address."
+      }
     },
     {
       "id": "evcs.alfen.ng9xx.ace.socket2.modbusTcp",
@@ -112931,7 +112947,7 @@
           "setpointKeepalive": {
             "checkPeriodMs": 10000,
             "requireEverWritten": true,
-            "unsupportedBackoffMs": 3600000,
+            "unsupportedBackoffMs": 86400000,
             "targets": [
               {
                 "setpointDpId": "sET_CHARGING_CURRENT",
@@ -112939,13 +112955,13 @@
                 "minWriteIntervalMs": 9000,
                 "requireEverWritten": true,
                 "requireFreshState": false,
-                "disableOnErrorMs": 3600000,
+                "disableOnErrorMs": 86400000,
                 "disableOnExceptionCodes": [
                   2,
                   3
                 ],
-                "unsupportedBackoffMs": 3600000,
-                "writeRejectBackoffMs": 3600000
+                "unsupportedBackoffMs": 86400000,
+                "writeRejectBackoffMs": 86400000
               },
               {
                 "setpointDpId": "cHARGE_USING_PHASES",
@@ -112953,22 +112969,22 @@
                 "minWriteIntervalMs": 9000,
                 "requireEverWritten": true,
                 "requireFreshState": false,
-                "disableOnErrorMs": 3600000,
+                "disableOnErrorMs": 86400000,
                 "disableOnExceptionCodes": [
                   2,
                   3
                 ],
-                "unsupportedBackoffMs": 3600000,
-                "writeRejectBackoffMs": 3600000
+                "unsupportedBackoffMs": 86400000,
+                "writeRejectBackoffMs": 86400000
               }
             ],
             "requireFreshState": false,
-            "disableOnErrorMs": 3600000,
+            "disableOnErrorMs": 86400000,
             "disableOnExceptionCodes": [
               2,
               3
             ],
-            "writeRejectBackoffMs": 3600000,
+            "writeRejectBackoffMs": 86400000,
             "logLevel": "debug",
             "periodMs": 10000
           },
@@ -112984,7 +113000,7 @@
           "skipFailedReadGroupsMs": 3600000,
           "maxReadRegs": 5,
           "isolateReadDatapoints": true,
-          "unsupportedWriteCooldownMs": 3600000,
+          "unsupportedWriteCooldownMs": 86400000,
           "permanentWriteErrorRetryAttempts": 1,
           "requiredReadDpIds": [
             "aCTIVE_POWER"
@@ -112993,8 +113009,8 @@
             "enabled": false
           },
           "optionalReadErrorLogLevel": "debug",
-          "setpointKeepaliveUnsupportedBackoffMs": 3600000,
-          "writeRejectBackoffMs": 3600000,
+          "setpointKeepaliveUnsupportedBackoffMs": 86400000,
+          "writeRejectBackoffMs": 86400000,
           "addressing": {
             "documentRegisterOffset": -1,
             "templateUsesProtocolAddresses": true,
@@ -113004,7 +113020,20 @@
           "disableOffByOneFallback": true,
           "addressOffsetDefault": 0,
           "enforcedAddressOffset": 0,
-          "disableFallbackAddressOffsets": true
+          "disableFallbackAddressOffsets": true,
+          "alfen": {
+            "probeControlBeforeWrite": true,
+            "controlUnsupportedBackoffMs": 86400000,
+            "controlProbeOkCacheMs": 60000,
+            "socketControlMustBeExposed": true,
+            "cleanMeterOnlyFallback": true,
+            "adaptiveControlAddress": true,
+            "controlAddressOffsets": [
+              0,
+              1
+            ],
+            "retryAlternateControlAddress": true
+          }
         },
         "polling": {
           "initialFastOnly": true,
@@ -114616,7 +114645,10 @@
       "unitIdDefault": 2,
       "forceAddressOffset": 0,
       "addressOffsetDefault": 0,
-      "disableAddressFallbackOffsets": true
+      "disableAddressFallbackOffsets": true,
+      "alfen": {
+        "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores protocol address=document register-1 for meter values; socket/SCN control/status block is adaptively probed with offsets [0,+1] because field devices may expose the writable EMS block at the table address."
+      }
     },
     {
       "id": "evcs.alfen.ng9xx.ace.station.modbusTcp",
@@ -114636,7 +114668,7 @@
           "setpointKeepalive": {
             "checkPeriodMs": 10000,
             "requireEverWritten": true,
-            "unsupportedBackoffMs": 3600000,
+            "unsupportedBackoffMs": 86400000,
             "targets": [
               {
                 "setpointDpId": "sET_CHARGING_CURRENT",
@@ -114644,13 +114676,13 @@
                 "minWriteIntervalMs": 9000,
                 "requireEverWritten": true,
                 "requireFreshState": false,
-                "disableOnErrorMs": 3600000,
+                "disableOnErrorMs": 86400000,
                 "disableOnExceptionCodes": [
                   2,
                   3
                 ],
-                "unsupportedBackoffMs": 3600000,
-                "writeRejectBackoffMs": 3600000
+                "unsupportedBackoffMs": 86400000,
+                "writeRejectBackoffMs": 86400000
               },
               {
                 "setpointDpId": "cHARGE_USING_PHASES",
@@ -114658,22 +114690,22 @@
                 "minWriteIntervalMs": 9000,
                 "requireEverWritten": true,
                 "requireFreshState": false,
-                "disableOnErrorMs": 3600000,
+                "disableOnErrorMs": 86400000,
                 "disableOnExceptionCodes": [
                   2,
                   3
                 ],
-                "unsupportedBackoffMs": 3600000,
-                "writeRejectBackoffMs": 3600000
+                "unsupportedBackoffMs": 86400000,
+                "writeRejectBackoffMs": 86400000
               }
             ],
             "requireFreshState": false,
-            "disableOnErrorMs": 3600000,
+            "disableOnErrorMs": 86400000,
             "disableOnExceptionCodes": [
               2,
               3
             ],
-            "writeRejectBackoffMs": 3600000,
+            "writeRejectBackoffMs": 86400000,
             "logLevel": "debug",
             "periodMs": 10000
           },
@@ -114689,7 +114721,7 @@
           "skipFailedReadGroupsMs": 3600000,
           "maxReadRegs": 5,
           "isolateReadDatapoints": true,
-          "unsupportedWriteCooldownMs": 3600000,
+          "unsupportedWriteCooldownMs": 86400000,
           "permanentWriteErrorRetryAttempts": 1,
           "requiredReadDpIds": [
             "aCTIVE_POWER"
@@ -114698,8 +114730,8 @@
             "enabled": false
           },
           "optionalReadErrorLogLevel": "debug",
-          "setpointKeepaliveUnsupportedBackoffMs": 3600000,
-          "writeRejectBackoffMs": 3600000,
+          "setpointKeepaliveUnsupportedBackoffMs": 86400000,
+          "writeRejectBackoffMs": 86400000,
           "addressing": {
             "documentRegisterOffset": -1,
             "templateUsesProtocolAddresses": true,
@@ -114711,7 +114743,20 @@
           "disableOffByOneFallback": true,
           "addressOffsetDefault": 0,
           "enforcedAddressOffset": 0,
-          "disableFallbackAddressOffsets": true
+          "disableFallbackAddressOffsets": true,
+          "alfen": {
+            "probeControlBeforeWrite": true,
+            "controlUnsupportedBackoffMs": 86400000,
+            "controlProbeOkCacheMs": 60000,
+            "socketControlMustBeExposed": true,
+            "cleanMeterOnlyFallback": true,
+            "adaptiveControlAddress": true,
+            "controlAddressOffsets": [
+              0,
+              1
+            ],
+            "retryAlternateControlAddress": true
+          }
         },
         "polling": {
           "initialFastOnly": true,
@@ -117233,7 +117278,10 @@
       "unitIdDefault": 1,
       "forceAddressOffset": 0,
       "addressOffsetDefault": 0,
-      "disableAddressFallbackOffsets": true
+      "disableAddressFallbackOffsets": true,
+      "alfen": {
+        "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores protocol address=document register-1 for meter values; socket/SCN control/status block is adaptively probed with offsets [0,+1] because field devices may expose the writable EMS block at the table address."
+      }
     },
     {
       "id": "pv_inverter.kostal.PikoModbusSunSpecBigEndianImpl",
