@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.108",
+    "version": "0.5.109",
     "news": {
       "0.5.108": {
         "en": "Implement KEBA KeContact P40/P40 Pro Modbus TCP V1.02 precisely: Unit-ID 255, FC3 isolated single-register reads, FC6 writes, max 2-word reads, all KEBA mA/mW/0.1Wh values normalized to A/W/Wh in datapoints and aliases, A-based write control converted back to mA, and safe 5-second write pacing.",
@@ -400,6 +400,10 @@
       "0.5.97": {
         "en": "Alfen NG9xx/ACE compatibility fix: isolate important socket reads so unsupported optional meter/register values do not hide neighbours; add stable aliases for Mode-3 status, vehicle connected/charging, applied current limit, valid-time, setpoint acknowledgement, phase mode and charging release; refresh Alfen writable setpoints every 10 seconds for the watchdog.",
         "de": "Alfen-NG9xx/ACE-Kompatibilitätsfix: wichtige Socket-Reads werden einzeln gelesen, damit nicht unterstützte optionale Meter-/Registerwerte keine Nachbarwerte mitreißen; stabile Aliase für Mode-3-Status, Fahrzeug verbunden/Ladevorgang aktiv, angewendetes Stromlimit, Valid-Time, Setpoint-Übernahme, Phasenmodus und Ladefreigabe ergänzt; Alfen-Schreibwerte werden für den Watchdog alle 10 Sekunden erneuert."
+      },
+      "0.5.109": {
+        "en": "KEBA P40 clean-up: coerce boolean alias states correctly, make KEBA command buttons command-only, fix unlock/fast-charge command values, and stop polling unsupported FENECON home component-id strings by default.",
+        "de": "KEBA-P40-Bereinigung: boolsche Alias-States korrekt typisieren, KEBA-Befehlstaster als reine Befehls-Aliase behandeln, Unlock-/Fast-Charge-Kommandowerte korrigieren und nicht unterstützte FENECON-home-Component-ID-Strings standardmäßig nicht mehr pollen."
       }
     },
     "title": "NexoWatt Devices",

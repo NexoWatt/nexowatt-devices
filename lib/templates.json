@@ -30331,9 +30331,11 @@
               "fc": 4,
               "address": 200,
               "length": 8,
-              "dataType": "string"
+              "dataType": "string",
+              "poll": false
             }
-          }
+          },
+          "note": "Component-ID string is metadata only and is not polled by default because some FENECON/OpenEMS profiles reject these optional addresses."
         },
         {
           "id": "State",
@@ -30860,9 +30862,11 @@
               "fc": 3,
               "address": 500,
               "length": 8,
-              "dataType": "string"
+              "dataType": "string",
+              "poll": false
             }
-          }
+          },
+          "note": "Component-ID string is metadata only and is not polled by default because some FENECON/OpenEMS profiles reject these optional addresses."
         },
         {
           "id": "eSS0_STATE",
@@ -31234,7 +31238,7 @@
           "timeoutMs": 5000,
           "operationTimeoutMs": 7000,
           "connectTimeoutMs": 7000,
-          "optionalReadErrorLogLevel": "warn",
+          "optionalReadErrorLogLevel": "debug",
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
