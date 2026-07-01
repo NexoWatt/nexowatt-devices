@@ -51778,7 +51778,7 @@
       ],
       "driverHints": {
         "pollIntervalMs": 5000,
-        "heartbeatTimeoutMs": 30000,
+        "heartbeatTimeoutMs": 90000,
         "polling": {
           "fastIntervalMs": 5000,
           "slowIntervalMs": 300000,
@@ -51912,13 +51912,7 @@
           "requiredReadDpIds": [
             "cHARGE_POINT_STATE",
             "vEHICLE_STATE",
-            "cURRENT_L1",
-            "cURRENT_L2",
-            "cURRENT_L3",
-            "aCTIVE_POWER",
-            "sIGNALED_CURRENT_TO_EV",
-            "hEMS_CONFIGURATION",
-            "hEMS_COMMUNICATION_STATUS"
+            "cHARGE_POINT_AVAILABILITY"
           ],
           "skipFailedReadGroupsMs": 600000,
           "writeThrottleMs": 500,
@@ -51953,7 +51947,8 @@
           "permanentWriteErrorRetryAttempts": 1,
           "unsupportedWriteCooldownMs": 600000,
           "writeMaxPerTick": 1,
-          "optionalReadErrorLogLevel": "warn"
+          "optionalReadErrorLogLevel": "debug",
+          "readErrorGraceMs": 90000
         },
         "mennekes": {
           "runCurrentA": 16,
@@ -52331,10 +52326,12 @@
               "fc": 3,
               "address": 200,
               "length": 2,
-              "dataType": "int32"
+              "dataType": "int32",
+              "scaleFactor": -3
             }
           },
-          "unit": "Wh"
+          "unit": "kWh",
+          "decimals": 3
         },
         {
           "id": "mETER_ENERGY_L2",
@@ -52348,10 +52345,12 @@
               "fc": 3,
               "address": 202,
               "length": 2,
-              "dataType": "int32"
+              "dataType": "int32",
+              "scaleFactor": -3
             }
           },
-          "unit": "Wh"
+          "unit": "kWh",
+          "decimals": 3
         },
         {
           "id": "mETER_ENERGY_L3",
@@ -52365,10 +52364,12 @@
               "fc": 3,
               "address": 204,
               "length": 2,
-              "dataType": "int32"
+              "dataType": "int32",
+              "scaleFactor": -3
             }
           },
-          "unit": "Wh"
+          "unit": "kWh",
+          "decimals": 3
         },
         {
           "id": "mETER_POWER_L1",
@@ -52490,10 +52491,12 @@
               "fc": 3,
               "address": 218,
               "length": 2,
-              "dataType": "int32"
+              "dataType": "int32",
+              "scaleFactor": -3
             }
           },
-          "unit": "Wh"
+          "unit": "kWh",
+          "decimals": 3
         },
         {
           "id": "aCTIVE_POWER",
@@ -52958,10 +52961,12 @@
               "fc": 3,
               "address": 716,
               "length": 2,
-              "dataType": "uint32"
+              "dataType": "uint32",
+              "scaleFactor": -3
             }
           },
-          "unit": "Wh"
+          "unit": "kWh",
+          "decimals": 3
         },
         {
           "id": "cHARGING_DURATION",

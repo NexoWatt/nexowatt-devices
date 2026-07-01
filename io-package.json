@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.109",
+    "version": "0.5.110",
     "news": {
+      "0.5.110": {
+        "en": "MENNEKES AMTRON cleanup: expose EVCS energy aliases and native Mennekes energy datapoints in kWh, add heartbeat/read-error grace to prevent online/offline flapping on slower wallboxes, and reduce Mennekes optional read warnings.",
+        "de": "MENNEKES-AMTRON-Bereinigung: EVCS-Energie-Aliase und native Mennekes-Energiedatenpunkte werden in kWh ausgegeben, Heartbeat-/Read-Error-Grace verhindert Online/Offline-Flattern bei langsameren Wallboxen, und optionale Mennekes-Lesefehler werden weniger laut protokolliert."
+      },
       "0.5.108": {
         "en": "Implement KEBA KeContact P40/P40 Pro Modbus TCP V1.02 precisely: Unit-ID 255, FC3 isolated single-register reads, FC6 writes, max 2-word reads, all KEBA mA/mW/0.1Wh values normalized to A/W/Wh in datapoints and aliases, A-based write control converted back to mA, and safe 5-second write pacing.",
         "de": "KEBA KeContact P40/P40 Pro Modbus TCP V1.02 exakt umgesetzt: Unit-ID 255, isolierte FC3-Einzelregister-Lesezugriffe, FC6-Schreiben, maximal 2-Wort-Lesezugriffe, alle KEBA-mA/mW/0,1Wh-Werte in Datenpunkten und Aliassen auf A/W/Wh normalisiert, A-basierte Schreibsteuerung intern zurück nach mA gewandelt und sichere 5-Sekunden-Schreib-Taktung."

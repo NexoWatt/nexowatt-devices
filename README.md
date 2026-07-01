@@ -500,3 +500,9 @@ Wichtige Aliase:
 - `aliases.r.energyTotal`: Gesamtenergie in Wh
 - `aliases.r.energySession`: Session-Energie in Wh
 - `aliases.r.statusText`: verständlicher Ladestationsstatus
+
+### 0.5.110 MENNEKES AMTRON energy/heartbeat cleanup
+
+- EVCS energy aliases are normalized to kWh so dashboards do not display Wh counters as kWh.
+- MENNEKES AMTRON meter/session energy datapoints are exposed in kWh.
+- MENNEKES AMTRON heartbeat/read-error grace prevents online/offline flapping on slower units while real TCP/transport failures still go offline immediately.
