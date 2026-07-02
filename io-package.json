@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.116",
+    "version": "0.5.117",
     "news": {
+      "0.5.117": {
+        "en": "Alfen ACE watchdog fix: seed EMS setpoint keepalive from command aliases after adapter restarts, persist last Alfen current/phase commands, and refresh current/phase writes every 5s from the last commanded values.",
+        "de": "Alfen-ACE-Watchdog-Fix: EMS-Sollwert-Keepalive nach Adapter-Neustarts aus den Steuer-Aliases initialisieren, letzte Alfen-Strom-/Phasenbefehle speichern und Strom-/Phasen-Schreibbefehle alle 5s aus den letzten Befehlswerten erneuern."
+      },
       "0.5.116": {
         "en": "Alfen ACE Modbus template re-audited against Configuration Guide v1.0 EN 05/2025: enforce document-register-minus-1 protocol addresses, remove alternate +1 control fallbacks, write Max Current at FC16@1209 and Charge Using Phases at FC6@1214, refresh active Alfen write setpoints every 5 s from the last command value, and keep Alfen energy counters normalized to kWh.",
         "de": "Alfen-ACE-Modbus-Template gegen Configuration Guide v1.0 EN 05/2025 neu geprüft: Dokumentregister-minus-1-Protokolladressen werden fest erzwungen, alternative +1-Control-Fallbacks entfernt, Max Current wird auf FC16@1209 und Charge Using Phases auf FC6@1214 geschrieben, aktive Alfen-Schreibsollwerte werden alle 5 s aus dem letzten Befehlswert erneuert und Alfen-Energiewerte bleiben direkt auf kWh normalisiert."

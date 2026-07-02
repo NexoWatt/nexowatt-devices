@@ -113704,7 +113704,7 @@
               3
             ],
             "writeRejectBackoffMs": 10000,
-            "logLevel": "debug",
+            "logLevel": "info",
             "useLastCommandValue": true,
             "targets": [
               {
@@ -113721,7 +113721,7 @@
                 "unsupportedBackoffMs": 10000,
                 "writeRejectBackoffMs": 10000,
                 "useLastCommandValue": true,
-                "reason": "Alfen ACE Modbus Server Max Current (doc 1210..1211/protocol 1209) must be rewritten before Valid Time expires."
+                "reason": "Alfen ACE Modbus Server Max Current is refreshed every 5 s from the last commanded value; command aliases are seeded on restart."
               },
               {
                 "setpointDpId": "cHARGE_USING_PHASES",
@@ -113739,10 +113739,14 @@
                 "useLastCommandValue": true,
                 "activeIfCommandDpId": "sET_CHARGING_CURRENT",
                 "activeIfCommandValueGt": 0.1,
-                "reason": "Refresh phase command only while a positive Max Current command is active."
+                "reason": "Alfen ACE phase command is refreshed every 5 s while a positive current command is active, because the charger watchdog can drop command state otherwise."
               }
             ],
-            "reason": "Alfen ACE write registers are refreshed from the last command value. Max Current is mandatory for the Valid Time watchdog; phase is kept in sync while a positive current command is active."
+            "reason": "Alfen ACE write registers are refreshed from the last command value. Max Current is mandatory for the Valid Time watchdog; phase is kept in sync while a positive current command is active.",
+            "seedFromCommandAliases": true,
+            "allowDuringPoll": true,
+            "allowWhilePolling": true,
+            "primeFromCommandStates": true
           },
           "unitIdDefault": 1,
           "enforceUnitIdDefault": true,
@@ -113762,7 +113766,18 @@
             "aCTIVE_POWER"
           ],
           "restoreSetpointsOnStart": {
-            "enabled": false
+            "enabled": true,
+            "dpIds": [
+              "sET_CHARGING_CURRENT",
+              "cHARGE_USING_PHASES"
+            ],
+            "delayMs": 1500,
+            "maxRetries": 6,
+            "retryMs": 3000,
+            "storeOnWrite": true,
+            "useFallbackFromDpState": false,
+            "logLevel": "debug",
+            "reason": "Alfen ACE EMS setpoints must survive adapter restarts so the 5 s Modbus watchdog can continue from the last commanded value."
           },
           "optionalReadErrorLogLevel": "debug",
           "setpointKeepaliveUnsupportedBackoffMs": 10000,
@@ -113793,12 +113808,17 @@
             "strictProtocolWriteAddress": true,
             "maxCurrentWriteProtocolAddress": 1209,
             "chargeUsingPhasesWriteProtocolAddress": 1214,
-            "phaseModeKeepalive": false,
+            "phaseModeKeepalive": true,
             "currentKeepaliveMs": 5000,
             "phaseModeConfirmAfterWriteMs": 5000,
-            "addressAuditVersion": "0.5.116",
+            "addressAuditVersion": "0.5.117",
             "addressAuditSource": "configuration_guide_modbus_ace_v1.pdf / Alfen ACE v1.0 EN 05/2025",
-            "registerGuide": "Alfen ACE Configuration Guide v1.0 EN 05/2025"
+            "registerGuide": "Alfen ACE Configuration Guide v1.0 EN 05/2025",
+            "seedKeepaliveFromCommandAliases": true,
+            "bootstrapControlFromAliasState": true,
+            "watchdogStartupBootstrap": "restore active current/phase command from aliases after adapter restart",
+            "watchdogPrimeFromAliases": true,
+            "watchdogAllowDuringPoll": true
           },
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000,
@@ -113820,7 +113840,10 @@
               }
             ],
             "reason": "Repeat a changed Alfen EMS write once after 5 s idle; cyclic refresh is handled by setpointKeepalive."
-          }
+          },
+          "bootstrapControlFromAliasState": true,
+          "allowKeepaliveWhileReadBusy": true,
+          "seedSetpointKeepaliveFromAliases": true
         },
         "polling": {
           "initialFastOnly": true,
@@ -113923,7 +113946,9 @@
           "phaseModeRejectsInvalidValues": true,
           "safetyNote": "Max Current is the continuous watchdog value. Charge Using Phases is written to protocol address 1214 and confirmed once after 5 s only.",
           "phaseModeConfirmAfterWriteMs": 5000,
-          "addressAuditVersion": "0.5.116"
+          "addressAuditVersion": "0.5.117",
+          "watchdogPrimeFromAliases": true,
+          "watchdogAllowDuringPoll": true
         }
       },
       "datapoints": [
@@ -115484,17 +115509,20 @@
         "phaseModeRejectsInvalidValues": true,
         "safetyNote": "Max Current and active phase command are refreshed from the last command. Charge Using Phases accepts only explicit 1 or 3 and is written to protocol address 1214.",
         "phaseModeConfirmAfterWriteMs": 5000,
-        "addressAuditVersion": "0.5.116"
+        "addressAuditVersion": "0.5.117",
+        "watchdogPrimeFromAliases": true,
+        "watchdogAllowDuringPoll": true
       },
-      "version": "0.5.116",
+      "version": "0.5.117",
       "meta": {
         "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; Max Current writes document 1210..1211 as protocol 1209 len=2 FC16; Charge Using Phases writes document 1215 as protocol 1214 len=1 FC06; both are watchdog-refreshed after command.",
         "registerGuide": "Alfen ACE Configuration Guide Modbus for ACE v1.0 EN 05/2025",
         "addressing": "Template stores protocol addresses: Modbus address = document register - 1.",
         "socketControlAudit": "Availability doc1200->1199, Mode3 doc1201..1205->1200, ActualAppliedMaxCurrent doc1206..1207->1205, ValidTime doc1208..1209->1207, MaxCurrent doc1210..1211->1209, SafeCurrent doc1212..1213->1211, SetpointAccountedFor doc1214->1213, ChargeUsingPhases doc1215->1214.",
-        "unitIds": "Socket 1 UID 1, Socket 2 UID 2, Station/SCN UID 200."
+        "unitIds": "Socket 1 UID 1, Socket 2 UID 2, Station/SCN UID 200.",
+        "watchdogFix": "0.5.117: keepalive command memory seeded from command aliases after restart; refresh writes may queue during polling."
       },
-      "revision": "0.5.116",
+      "revision": "0.5.117",
       "docVersion": "Alfen ACE Modbus Configuration Guide v1.0 EN 05/2025"
     },
     {
@@ -115524,7 +115552,7 @@
               3
             ],
             "writeRejectBackoffMs": 10000,
-            "logLevel": "debug",
+            "logLevel": "info",
             "useLastCommandValue": true,
             "targets": [
               {
@@ -115541,7 +115569,7 @@
                 "unsupportedBackoffMs": 10000,
                 "writeRejectBackoffMs": 10000,
                 "useLastCommandValue": true,
-                "reason": "Alfen ACE Modbus Server Max Current (doc 1210..1211/protocol 1209) must be rewritten before Valid Time expires."
+                "reason": "Alfen ACE Modbus Server Max Current is refreshed every 5 s from the last commanded value; command aliases are seeded on restart."
               },
               {
                 "setpointDpId": "cHARGE_USING_PHASES",
@@ -115559,10 +115587,14 @@
                 "useLastCommandValue": true,
                 "activeIfCommandDpId": "sET_CHARGING_CURRENT",
                 "activeIfCommandValueGt": 0.1,
-                "reason": "Refresh phase command only while a positive Max Current command is active."
+                "reason": "Alfen ACE phase command is refreshed every 5 s while a positive current command is active, because the charger watchdog can drop command state otherwise."
               }
             ],
-            "reason": "Alfen ACE write registers are refreshed from the last command value. Max Current is mandatory for the Valid Time watchdog; phase is kept in sync while a positive current command is active."
+            "reason": "Alfen ACE write registers are refreshed from the last command value. Max Current is mandatory for the Valid Time watchdog; phase is kept in sync while a positive current command is active.",
+            "seedFromCommandAliases": true,
+            "allowDuringPoll": true,
+            "allowWhilePolling": true,
+            "primeFromCommandStates": true
           },
           "unitIdDefault": 2,
           "enforceUnitIdDefault": true,
@@ -115582,7 +115614,18 @@
             "aCTIVE_POWER"
           ],
           "restoreSetpointsOnStart": {
-            "enabled": false
+            "enabled": true,
+            "dpIds": [
+              "sET_CHARGING_CURRENT",
+              "cHARGE_USING_PHASES"
+            ],
+            "delayMs": 1500,
+            "maxRetries": 6,
+            "retryMs": 3000,
+            "storeOnWrite": true,
+            "useFallbackFromDpState": false,
+            "logLevel": "debug",
+            "reason": "Alfen ACE EMS setpoints must survive adapter restarts so the 5 s Modbus watchdog can continue from the last commanded value."
           },
           "optionalReadErrorLogLevel": "debug",
           "setpointKeepaliveUnsupportedBackoffMs": 10000,
@@ -115613,12 +115656,17 @@
             "strictProtocolWriteAddress": true,
             "maxCurrentWriteProtocolAddress": 1209,
             "chargeUsingPhasesWriteProtocolAddress": 1214,
-            "phaseModeKeepalive": false,
+            "phaseModeKeepalive": true,
             "currentKeepaliveMs": 5000,
             "phaseModeConfirmAfterWriteMs": 5000,
-            "addressAuditVersion": "0.5.116",
+            "addressAuditVersion": "0.5.117",
             "addressAuditSource": "configuration_guide_modbus_ace_v1.pdf / Alfen ACE v1.0 EN 05/2025",
-            "registerGuide": "Alfen ACE Configuration Guide v1.0 EN 05/2025"
+            "registerGuide": "Alfen ACE Configuration Guide v1.0 EN 05/2025",
+            "seedKeepaliveFromCommandAliases": true,
+            "bootstrapControlFromAliasState": true,
+            "watchdogStartupBootstrap": "restore active current/phase command from aliases after adapter restart",
+            "watchdogPrimeFromAliases": true,
+            "watchdogAllowDuringPoll": true
           },
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000,
@@ -115640,7 +115688,10 @@
               }
             ],
             "reason": "Repeat a changed Alfen EMS write once after 5 s idle; cyclic refresh is handled by setpointKeepalive."
-          }
+          },
+          "bootstrapControlFromAliasState": true,
+          "allowKeepaliveWhileReadBusy": true,
+          "seedSetpointKeepaliveFromAliases": true
         },
         "polling": {
           "initialFastOnly": true,
@@ -115743,7 +115794,9 @@
           "phaseModeRejectsInvalidValues": true,
           "safetyNote": "Max Current is the continuous watchdog value. Charge Using Phases is written to protocol address 1214 and confirmed once after 5 s only.",
           "phaseModeConfirmAfterWriteMs": 5000,
-          "addressAuditVersion": "0.5.116"
+          "addressAuditVersion": "0.5.117",
+          "watchdogPrimeFromAliases": true,
+          "watchdogAllowDuringPoll": true
         }
       },
       "datapoints": [
@@ -117304,17 +117357,20 @@
         "phaseModeRejectsInvalidValues": true,
         "safetyNote": "Max Current and active phase command are refreshed from the last command. Charge Using Phases accepts only explicit 1 or 3 and is written to protocol address 1214.",
         "phaseModeConfirmAfterWriteMs": 5000,
-        "addressAuditVersion": "0.5.116"
+        "addressAuditVersion": "0.5.117",
+        "watchdogPrimeFromAliases": true,
+        "watchdogAllowDuringPoll": true
       },
-      "version": "0.5.116",
+      "version": "0.5.117",
       "meta": {
         "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; Max Current writes document 1210..1211 as protocol 1209 len=2 FC16; Charge Using Phases writes document 1215 as protocol 1214 len=1 FC06; both are watchdog-refreshed after command.",
         "registerGuide": "Alfen ACE Configuration Guide Modbus for ACE v1.0 EN 05/2025",
         "addressing": "Template stores protocol addresses: Modbus address = document register - 1.",
         "socketControlAudit": "Availability doc1200->1199, Mode3 doc1201..1205->1200, ActualAppliedMaxCurrent doc1206..1207->1205, ValidTime doc1208..1209->1207, MaxCurrent doc1210..1211->1209, SafeCurrent doc1212..1213->1211, SetpointAccountedFor doc1214->1213, ChargeUsingPhases doc1215->1214.",
-        "unitIds": "Socket 1 UID 1, Socket 2 UID 2, Station/SCN UID 200."
+        "unitIds": "Socket 1 UID 1, Socket 2 UID 2, Station/SCN UID 200.",
+        "watchdogFix": "0.5.117: keepalive command memory seeded from command aliases after restart; refresh writes may queue during polling."
       },
-      "revision": "0.5.116",
+      "revision": "0.5.117",
       "docVersion": "Alfen ACE Modbus Configuration Guide v1.0 EN 05/2025"
     },
     {
@@ -117344,7 +117400,7 @@
               3
             ],
             "writeRejectBackoffMs": 10000,
-            "logLevel": "debug",
+            "logLevel": "info",
             "useLastCommandValue": true,
             "targets": [
               {
@@ -117361,7 +117417,7 @@
                 "unsupportedBackoffMs": 10000,
                 "writeRejectBackoffMs": 10000,
                 "useLastCommandValue": true,
-                "reason": "Alfen ACE Modbus Server Max Current (doc 1210..1211/protocol 1209) must be rewritten before Valid Time expires."
+                "reason": "Alfen ACE Modbus Server Max Current is refreshed every 5 s from the last commanded value; command aliases are seeded on restart."
               },
               {
                 "setpointDpId": "cHARGE_USING_PHASES",
@@ -117379,7 +117435,7 @@
                 "useLastCommandValue": true,
                 "activeIfCommandDpId": "sET_CHARGING_CURRENT",
                 "activeIfCommandValueGt": 0.1,
-                "reason": "Refresh phase command only while a positive Max Current command is active."
+                "reason": "Alfen ACE phase command is refreshed every 5 s while a positive current command is active, because the charger watchdog can drop command state otherwise."
               },
               {
                 "setpointDpId": "sCN_MAX_CURRENT",
@@ -117446,7 +117502,11 @@
                 "reason": "Alfen SCN Max Current values have their own remaining valid time and must be refreshed when used."
               }
             ],
-            "reason": "Alfen ACE write registers are refreshed from the last command value. Max Current is mandatory for the Valid Time watchdog; phase is kept in sync while a positive current command is active."
+            "reason": "Alfen ACE write registers are refreshed from the last command value. Max Current is mandatory for the Valid Time watchdog; phase is kept in sync while a positive current command is active.",
+            "seedFromCommandAliases": true,
+            "allowDuringPoll": true,
+            "allowWhilePolling": true,
+            "primeFromCommandStates": true
           },
           "unitIdDefault": 1,
           "enforceUnitIdDefault": true,
@@ -117466,7 +117526,22 @@
             "aCTIVE_POWER"
           ],
           "restoreSetpointsOnStart": {
-            "enabled": false
+            "enabled": true,
+            "dpIds": [
+              "sET_CHARGING_CURRENT",
+              "cHARGE_USING_PHASES",
+              "sCN_MAX_CURRENT",
+              "sCN_MAX_CURRENT_L1",
+              "sCN_MAX_CURRENT_L2",
+              "sCN_MAX_CURRENT_L3"
+            ],
+            "delayMs": 1500,
+            "maxRetries": 6,
+            "retryMs": 3000,
+            "storeOnWrite": true,
+            "useFallbackFromDpState": false,
+            "logLevel": "debug",
+            "reason": "Alfen ACE EMS setpoints must survive adapter restarts so the 5 s Modbus watchdog can continue from the last commanded value."
           },
           "optionalReadErrorLogLevel": "debug",
           "setpointKeepaliveUnsupportedBackoffMs": 10000,
@@ -117499,12 +117574,17 @@
             "strictProtocolWriteAddress": true,
             "maxCurrentWriteProtocolAddress": 1209,
             "chargeUsingPhasesWriteProtocolAddress": 1214,
-            "phaseModeKeepalive": false,
+            "phaseModeKeepalive": true,
             "currentKeepaliveMs": 5000,
             "phaseModeConfirmAfterWriteMs": 5000,
-            "addressAuditVersion": "0.5.116",
+            "addressAuditVersion": "0.5.117",
             "addressAuditSource": "configuration_guide_modbus_ace_v1.pdf / Alfen ACE v1.0 EN 05/2025",
-            "registerGuide": "Alfen ACE Configuration Guide v1.0 EN 05/2025"
+            "registerGuide": "Alfen ACE Configuration Guide v1.0 EN 05/2025",
+            "seedKeepaliveFromCommandAliases": true,
+            "bootstrapControlFromAliasState": true,
+            "watchdogStartupBootstrap": "restore active current/phase command from aliases after adapter restart",
+            "watchdogPrimeFromAliases": true,
+            "watchdogAllowDuringPoll": true
           },
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000,
@@ -117546,7 +117626,10 @@
               }
             ],
             "reason": "Repeat a changed Alfen EMS write once after 5 s idle; cyclic refresh is handled by setpointKeepalive."
-          }
+          },
+          "bootstrapControlFromAliasState": true,
+          "allowKeepaliveWhileReadBusy": true,
+          "seedSetpointKeepaliveFromAliases": true
         },
         "polling": {
           "initialFastOnly": true,
@@ -117649,7 +117732,9 @@
           "phaseModeRejectsInvalidValues": true,
           "safetyNote": "Max Current is the continuous watchdog value. Charge Using Phases is written to protocol address 1214 and confirmed once after 5 s only.",
           "phaseModeConfirmAfterWriteMs": 5000,
-          "addressAuditVersion": "0.5.116"
+          "addressAuditVersion": "0.5.117",
+          "watchdogPrimeFromAliases": true,
+          "watchdogAllowDuringPoll": true
         }
       },
       "datapoints": [
@@ -120120,17 +120205,20 @@
         "phaseModeRejectsInvalidValues": true,
         "safetyNote": "Max Current and active phase command are refreshed from the last command. Charge Using Phases accepts only explicit 1 or 3 and is written to protocol address 1214.",
         "phaseModeConfirmAfterWriteMs": 5000,
-        "addressAuditVersion": "0.5.116"
+        "addressAuditVersion": "0.5.117",
+        "watchdogPrimeFromAliases": true,
+        "watchdogAllowDuringPoll": true
       },
-      "version": "0.5.116",
+      "version": "0.5.117",
       "meta": {
         "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; Max Current writes document 1210..1211 as protocol 1209 len=2 FC16; Charge Using Phases writes document 1215 as protocol 1214 len=1 FC06; both are watchdog-refreshed after command.",
         "registerGuide": "Alfen ACE Configuration Guide Modbus for ACE v1.0 EN 05/2025",
         "addressing": "Template stores protocol addresses: Modbus address = document register - 1.",
         "socketControlAudit": "Availability doc1200->1199, Mode3 doc1201..1205->1200, ActualAppliedMaxCurrent doc1206..1207->1205, ValidTime doc1208..1209->1207, MaxCurrent doc1210..1211->1209, SafeCurrent doc1212..1213->1211, SetpointAccountedFor doc1214->1213, ChargeUsingPhases doc1215->1214.",
-        "unitIds": "Socket 1 UID 1, Socket 2 UID 2, Station/SCN UID 200."
+        "unitIds": "Socket 1 UID 1, Socket 2 UID 2, Station/SCN UID 200.",
+        "watchdogFix": "0.5.117: keepalive command memory seeded from command aliases after restart; refresh writes may queue during polling."
       },
-      "revision": "0.5.116",
+      "revision": "0.5.117",
       "docVersion": "Alfen ACE Modbus Configuration Guide v1.0 EN 05/2025"
     },
     {
