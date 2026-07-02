@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.115",
+    "version": "0.5.116",
     "news": {
+      "0.5.116": {
+        "en": "Alfen ACE Modbus template re-audited against Configuration Guide v1.0 EN 05/2025: enforce document-register-minus-1 protocol addresses, remove alternate +1 control fallbacks, write Max Current at FC16@1209 and Charge Using Phases at FC6@1214, refresh active Alfen write setpoints every 5 s from the last command value, and keep Alfen energy counters normalized to kWh.",
+        "de": "Alfen-ACE-Modbus-Template gegen Configuration Guide v1.0 EN 05/2025 neu geprüft: Dokumentregister-minus-1-Protokolladressen werden fest erzwungen, alternative +1-Control-Fallbacks entfernt, Max Current wird auf FC16@1209 und Charge Using Phases auf FC6@1214 geschrieben, aktive Alfen-Schreibsollwerte werden alle 5 s aus dem letzten Befehlswert erneuert und Alfen-Energiewerte bleiben direkt auf kWh normalisiert."
+      },
       "0.5.115": {
         "en": "Alfen ACE address audit: keep strict protocol addresses (document register - 1), fix Max Current valid-time word order to little-word-endian, keep cyclic watchdog refresh only on Max Current, and confirm phase switching once after 5 s without cyclic re-triggering.",
         "de": "Alfen-ACE-Adressaudit: strikte Protokolladressen bleiben aktiv (Dokumentregister - 1), Max-Current-Valid-Time nutzt jetzt Little-Word-Endian, zyklischer Watchdog-Refresh läuft nur für Max Current, Phasenumschaltung wird einmal nach 5 s bestätigt und nicht zyklisch neu getriggert."

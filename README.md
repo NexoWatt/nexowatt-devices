@@ -539,3 +539,10 @@ Wichtige Aliase:
 - Max Current: document `1210..1211` => protocol `1209`, FC16 length 2, refreshed every 5 seconds from the last commanded current.
 - Charge Using Phases: document `1215` => protocol `1214`, FC06 length 1, confirmed once after 5 seconds; it is intentionally not cyclically refreshed because the Alfen validity timer applies to maximum-current setpoints.
 
+
+
+### Alfen ACE Modbus v1.0 audit (0.5.116)
+
+Alfen ACE templates are aligned with `configuration_guide_modbus_ace_v1.pdf` / Configuration Guide Modbus for ACE v1.0 EN 05/2025.
+The templates store Modbus protocol addresses (`documentation register - 1`): Max Current document `1210..1211` is written as `FC16@1209`, and Charge using phases document `1215` is written as `FC6@1214`. Socket 1 uses Unit-ID 1, Socket 2 uses Unit-ID 2, and Station/SCN uses Unit-ID 200.
+Alfen Max Current values are refreshed every 5 seconds from the last commanded value. Charge Using Phases is also kept in sync every 5 seconds while a positive Max Current command is active and is confirmed once after each phase write. Energy counters documented as Wh/VAh/VArh are exposed by the adapter as kWh/kVAh/kVArh.
