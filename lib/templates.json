@@ -113693,14 +113693,14 @@
         "pollIntervalMs": 5000,
         "modbus": {
           "setpointKeepalive": {
-            "checkPeriodMs": 10000,
+            "checkPeriodMs": 1000,
             "requireEverWritten": true,
             "unsupportedBackoffMs": 86400000,
             "targets": [
               {
                 "setpointDpId": "sET_CHARGING_CURRENT",
-                "intervalMs": 10000,
-                "minWriteIntervalMs": 9000,
+                "intervalMs": 5000,
+                "minWriteIntervalMs": 4500,
                 "requireEverWritten": true,
                 "requireFreshState": false,
                 "disableOnErrorMs": 86400000,
@@ -113721,7 +113721,7 @@
             ],
             "writeRejectBackoffMs": 86400000,
             "logLevel": "debug",
-            "periodMs": 10000,
+            "periodMs": 1000,
             "useLastCommandValue": true
           },
           "unitIdDefault": 1,
@@ -113750,7 +113750,8 @@
           "addressing": {
             "documentRegisterOffset": -1,
             "templateUsesProtocolAddresses": true,
-            "fallbackOffsetsDisabled": true
+            "fallbackOffsetsDisabled": true,
+            "strictProtocolWriteAddress": true
           },
           "disableAddressFallbackOffsets": true,
           "disableOffByOneFallback": true,
@@ -113763,15 +113764,36 @@
             "controlProbeOkCacheMs": 60000,
             "socketControlMustBeExposed": true,
             "cleanMeterOnlyFallback": true,
-            "adaptiveControlAddress": true,
+            "adaptiveControlAddress": false,
             "controlAddressOffsets": [
-              0,
-              1
+              0
             ],
-            "retryAlternateControlAddress": true
+            "retryAlternateControlAddress": false,
+            "strictProtocolWriteAddress": true,
+            "maxCurrentWriteProtocolAddress": 1209,
+            "chargeUsingPhasesWriteProtocolAddress": 1214
           },
           "reconnectBackoffMs": 1000,
-          "maxReconnectBackoffMs": 30000
+          "maxReconnectBackoffMs": 30000,
+          "postWriteRepeat": {
+            "enabled": true,
+            "delayMs": 5000,
+            "useLastCommandValue": true,
+            "logLevel": "debug",
+            "targets": [
+              {
+                "dpId": "sET_CHARGING_CURRENT",
+                "delayMs": 5000,
+                "useLastCommandValue": true
+              },
+              {
+                "dpId": "cHARGE_USING_PHASES",
+                "delayMs": 5000,
+                "useLastCommandValue": true
+              }
+            ],
+            "reason": "Alfen ACE EMS write commands are repeated once after 5 s idle; Max Current is then refreshed every 5 s from the last commanded value."
+          }
         },
         "polling": {
           "initialFastOnly": true,
@@ -115388,8 +115410,9 @@
       "addressOffsetDefault": 0,
       "disableAddressFallbackOffsets": true,
       "alfen": {
-        "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores protocol address=document register-1 for meter values; socket/SCN control/status block is adaptively probed with offsets [0,+1] because field devices may expose the writable EMS block at the table address."
-      }
+        "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores protocol address=document register-1. Socket Max Current write uses document 1210..1211 => FC16 start address 1209 len=2; no +1/table-address write fallback."
+      },
+      "version": "0.5.112"
     },
     {
       "id": "evcs.alfen.ng9xx.ace.socket2.modbusTcp",
@@ -115407,14 +115430,14 @@
         "pollIntervalMs": 5000,
         "modbus": {
           "setpointKeepalive": {
-            "checkPeriodMs": 10000,
+            "checkPeriodMs": 1000,
             "requireEverWritten": true,
             "unsupportedBackoffMs": 86400000,
             "targets": [
               {
                 "setpointDpId": "sET_CHARGING_CURRENT",
-                "intervalMs": 10000,
-                "minWriteIntervalMs": 9000,
+                "intervalMs": 5000,
+                "minWriteIntervalMs": 4500,
                 "requireEverWritten": true,
                 "requireFreshState": false,
                 "disableOnErrorMs": 86400000,
@@ -115435,7 +115458,7 @@
             ],
             "writeRejectBackoffMs": 86400000,
             "logLevel": "debug",
-            "periodMs": 10000,
+            "periodMs": 1000,
             "useLastCommandValue": true
           },
           "unitIdDefault": 2,
@@ -115464,7 +115487,8 @@
           "addressing": {
             "documentRegisterOffset": -1,
             "templateUsesProtocolAddresses": true,
-            "fallbackOffsetsDisabled": true
+            "fallbackOffsetsDisabled": true,
+            "strictProtocolWriteAddress": true
           },
           "disableAddressFallbackOffsets": true,
           "disableOffByOneFallback": true,
@@ -115477,15 +115501,36 @@
             "controlProbeOkCacheMs": 60000,
             "socketControlMustBeExposed": true,
             "cleanMeterOnlyFallback": true,
-            "adaptiveControlAddress": true,
+            "adaptiveControlAddress": false,
             "controlAddressOffsets": [
-              0,
-              1
+              0
             ],
-            "retryAlternateControlAddress": true
+            "retryAlternateControlAddress": false,
+            "strictProtocolWriteAddress": true,
+            "maxCurrentWriteProtocolAddress": 1209,
+            "chargeUsingPhasesWriteProtocolAddress": 1214
           },
           "reconnectBackoffMs": 1000,
-          "maxReconnectBackoffMs": 30000
+          "maxReconnectBackoffMs": 30000,
+          "postWriteRepeat": {
+            "enabled": true,
+            "delayMs": 5000,
+            "useLastCommandValue": true,
+            "logLevel": "debug",
+            "targets": [
+              {
+                "dpId": "sET_CHARGING_CURRENT",
+                "delayMs": 5000,
+                "useLastCommandValue": true
+              },
+              {
+                "dpId": "cHARGE_USING_PHASES",
+                "delayMs": 5000,
+                "useLastCommandValue": true
+              }
+            ],
+            "reason": "Alfen ACE EMS write commands are repeated once after 5 s idle; Max Current is then refreshed every 5 s from the last commanded value."
+          }
         },
         "polling": {
           "initialFastOnly": true,
@@ -117102,8 +117147,9 @@
       "addressOffsetDefault": 0,
       "disableAddressFallbackOffsets": true,
       "alfen": {
-        "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores protocol address=document register-1 for meter values; socket/SCN control/status block is adaptively probed with offsets [0,+1] because field devices may expose the writable EMS block at the table address."
-      }
+        "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores protocol address=document register-1. Socket Max Current write uses document 1210..1211 => FC16 start address 1209 len=2; no +1/table-address write fallback."
+      },
+      "version": "0.5.112"
     },
     {
       "id": "evcs.alfen.ng9xx.ace.station.modbusTcp",
@@ -117121,14 +117167,14 @@
         "pollIntervalMs": 5000,
         "modbus": {
           "setpointKeepalive": {
-            "checkPeriodMs": 10000,
+            "checkPeriodMs": 1000,
             "requireEverWritten": true,
             "unsupportedBackoffMs": 86400000,
             "targets": [
               {
                 "setpointDpId": "sET_CHARGING_CURRENT",
-                "intervalMs": 10000,
-                "minWriteIntervalMs": 9000,
+                "intervalMs": 5000,
+                "minWriteIntervalMs": 4500,
                 "requireEverWritten": true,
                 "requireFreshState": false,
                 "disableOnErrorMs": 86400000,
@@ -117149,7 +117195,7 @@
             ],
             "writeRejectBackoffMs": 86400000,
             "logLevel": "debug",
-            "periodMs": 10000,
+            "periodMs": 1000,
             "useLastCommandValue": true
           },
           "unitIdDefault": 1,
@@ -117178,7 +117224,8 @@
           "addressing": {
             "documentRegisterOffset": -1,
             "templateUsesProtocolAddresses": true,
-            "fallbackOffsetsDisabled": true
+            "fallbackOffsetsDisabled": true,
+            "strictProtocolWriteAddress": true
           },
           "alfenScnUnitId": 200,
           "alfenScnPollingDefault": false,
@@ -117193,15 +117240,36 @@
             "controlProbeOkCacheMs": 60000,
             "socketControlMustBeExposed": true,
             "cleanMeterOnlyFallback": true,
-            "adaptiveControlAddress": true,
+            "adaptiveControlAddress": false,
             "controlAddressOffsets": [
-              0,
-              1
+              0
             ],
-            "retryAlternateControlAddress": true
+            "retryAlternateControlAddress": false,
+            "strictProtocolWriteAddress": true,
+            "maxCurrentWriteProtocolAddress": 1209,
+            "chargeUsingPhasesWriteProtocolAddress": 1214
           },
           "reconnectBackoffMs": 1000,
-          "maxReconnectBackoffMs": 30000
+          "maxReconnectBackoffMs": 30000,
+          "postWriteRepeat": {
+            "enabled": true,
+            "delayMs": 5000,
+            "useLastCommandValue": true,
+            "logLevel": "debug",
+            "targets": [
+              {
+                "dpId": "sET_CHARGING_CURRENT",
+                "delayMs": 5000,
+                "useLastCommandValue": true
+              },
+              {
+                "dpId": "cHARGE_USING_PHASES",
+                "delayMs": 5000,
+                "useLastCommandValue": true
+              }
+            ],
+            "reason": "Alfen ACE EMS write commands are repeated once after 5 s idle; Max Current is then refreshed every 5 s from the last commanded value."
+          }
         },
         "polling": {
           "initialFastOnly": true,
@@ -119728,8 +119796,9 @@
       "addressOffsetDefault": 0,
       "disableAddressFallbackOffsets": true,
       "alfen": {
-        "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores protocol address=document register-1 for meter values; socket/SCN control/status block is adaptively probed with offsets [0,+1] because field devices may expose the writable EMS block at the table address."
-      }
+        "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores protocol address=document register-1. Socket Max Current write uses document 1210..1211 => FC16 start address 1209 len=2; no +1/table-address write fallback."
+      },
+      "version": "0.5.112"
     },
     {
       "id": "pv_inverter.kostal.PikoModbusSunSpecBigEndianImpl",

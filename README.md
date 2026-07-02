@@ -506,3 +506,10 @@ Wichtige Aliase:
 - EVCS energy aliases are normalized to kWh so dashboards do not display Wh counters as kWh.
 - MENNEKES AMTRON meter/session energy datapoints are exposed in kWh.
 - MENNEKES AMTRON heartbeat/read-error grace prevents online/offline flapping on slower units while real TCP/transport failures still go offline immediately.
+
+
+### 0.5.112 Alfen ACE strict write address + watchdog
+
+- Alfen Max Current is now written only to the audited protocol address `1209` (`document register 1210..1211`, FC16 length 2). The previous adaptive `+1`/table-address write fallback is disabled because `FC16@1210 len=2` shifts the 32-bit value into the neighbouring register pair.
+- Alfen current readback uses the separate Actual Applied Max Current register (`document 1206..1207`) where available; command aliases keep the last commanded value.
+- Alfen write commands are confirmed once after 5 seconds without a newer write. Max Current is additionally refreshed every 5 seconds from the last commanded value for the charger watchdog.

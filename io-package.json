@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.110",
+    "version": "0.5.112",
     "news": {
+      "0.5.112": {
+        "en": "Alfen ACE strict write-address fix: Max Current is written only to protocol address 1209 (document 1210..1211) with no +1/table-address fallback, readback uses the separate Actual Applied Max Current register, and Alfen command watchdog confirms writes after 5 s idle with 5 s Max Current refresh.",
+        "de": "Alfen-ACE-Schreibadress-Fix: Max Current wird ausschließlich auf Protokolladresse 1209 geschrieben (Dokumentregister 1210..1211), ohne +1-/Tabellenadress-Fallback. Der Readback nutzt das separate Actual-Applied-Max-Current-Register, und der Alfen-Command-Watchdog bestätigt Schreibwerte nach 5 s Ruhe mit 5-s-Max-Current-Refresh."
+      },
       "0.5.110": {
         "en": "MENNEKES AMTRON cleanup: expose EVCS energy aliases and native Mennekes energy datapoints in kWh, add heartbeat/read-error grace to prevent online/offline flapping on slower wallboxes, and reduce Mennekes optional read warnings.",
         "de": "MENNEKES-AMTRON-Bereinigung: EVCS-Energie-Aliase und native Mennekes-Energiedatenpunkte werden in kWh ausgegeben, Heartbeat-/Read-Error-Grace verhindert Online/Offline-Flattern bei langsameren Wallboxen, und optionale Mennekes-Lesefehler werden weniger laut protokolliert."
