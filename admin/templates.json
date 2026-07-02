@@ -113722,7 +113722,8 @@
             "writeRejectBackoffMs": 86400000,
             "logLevel": "debug",
             "periodMs": 1000,
-            "useLastCommandValue": true
+            "useLastCommandValue": true,
+            "reason": "Alfen ACE Max Current is watchdog-refreshed every 5 s. Phase switching is intentionally not cyclic; it is written once and confirmed once after 5 s to avoid unintended charge starts."
           },
           "unitIdDefault": 1,
           "enforceUnitIdDefault": true,
@@ -113771,7 +113772,12 @@
             "retryAlternateControlAddress": false,
             "strictProtocolWriteAddress": true,
             "maxCurrentWriteProtocolAddress": 1209,
-            "chargeUsingPhasesWriteProtocolAddress": 1214
+            "chargeUsingPhasesWriteProtocolAddress": 1214,
+            "phaseModeKeepalive": false,
+            "phaseModeKeepaliveMs": 5000,
+            "currentKeepaliveMs": 5000,
+            "phaseModeConfirmAfterWriteMs": 5000,
+            "addressAuditVersion": "0.5.115"
           },
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000,
@@ -113792,8 +113798,9 @@
                 "useLastCommandValue": true
               }
             ],
-            "reason": "Alfen ACE EMS write commands are repeated once after 5 s idle; Max Current is then refreshed every 5 s from the last commanded value."
-          }
+            "reason": "Alfen ACE Max Current is the only cyclic watchdog setpoint. Phase switching is a write command and is confirmed once after 5 s idle, not cyclically refreshed."
+          },
+          "phaseModeKeepalive": true
         },
         "polling": {
           "initialFastOnly": true,
@@ -113884,13 +113891,20 @@
           "optionalMeterNaNAsNull": true,
           "safeDefaultMode": "socket",
           "socketControlRegisterBlock": "1200..1215 document registers / 1199..1214 protocol addresses",
-          "setpointWatchdogRefreshMs": 10000,
-          "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores Modbus protocol address = documentation register - 1; status/control blocks are polled only via aliases/fallback when exposed by the charger profile",
+          "setpointWatchdogRefreshMs": 5000,
+          "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025. Template stores Modbus protocol address = documentation register - 1. Socket block audit: Availability doc1200=>1199; Mode3 doc1201..1205=>1200; ActualAppliedMaxCurrent doc1206..1207=>1205; ValidTime doc1208..1209=>1207 UINT32 little-word; MaxCurrent doc1210..1211=>1209 FC16 len2; SafeCurrent doc1212..1213=>1211; SetpointAccountedFor doc1214=>1213; ChargeUsingPhases doc1215=>1214 FC6 len1.",
           "controlMode": "socket",
           "deriveStatusFromPowerWhenMode3Missing": true,
           "scnPollingDefault": false,
           "phaseModeKeepalive": false,
-          "commandAliasesHoldLastCommand": true
+          "commandAliasesHoldLastCommand": true,
+          "chargeUsingPhasesWriteProtocolAddress": 1214,
+          "maxCurrentWriteProtocolAddress": 1209,
+          "phaseModeKeepaliveMs": 5000,
+          "phaseModeKeepaliveRequiresCurrentCommandA": 0.1,
+          "phaseModeRejectsInvalidValues": true,
+          "safetyNote": "Phase command only accepts explicit 1/3. 0/false/invalid values are ignored and do not become 3 phases.",
+          "phaseModeConfirmAfterWriteMs": 5000
         }
       },
       "datapoints": [
@@ -115249,7 +115263,7 @@
               "address": 1207,
               "length": 2,
               "dataType": "uint32",
-              "wordOrder": "be",
+              "wordOrder": "le",
               "unitId": 1,
               "nanToNull": true,
               "optional": true,
@@ -115261,7 +115275,7 @@
             "noAddressFallback": true
           },
           "unit": "s",
-          "desc": "Alfen ACE register 1208..1209, valid time remaining. Runtime alias also normalizes field word-order variants."
+          "desc": "Alfen ACE document registers 1208..1209, protocol address 1207, UINT32 seconds, little-word-endian."
         },
         {
           "id": "sET_CHARGING_CURRENT",
@@ -115305,7 +115319,7 @@
             "noAddressFallback": true
           },
           "unit": "A",
-          "desc": "Alfen ACE register 1210..1211, protocol address 1209. Requires Active Load Balancing, Data Source=Energy Management System, TCP/IP EMS control mode=Socket, Enable sockets and Allow writing maximum currents."
+          "desc": "Alfen ACE document registers 1210..1211, protocol address 1209. Written as complete FLOAT32 via FC16 and refreshed every 5 s from the last commanded current."
         },
         {
           "id": "aCTIVE_LOAD_BALANCING_SAFE_CURRENT",
@@ -115378,7 +115392,7 @@
               "noAddressFallback": true
             },
             "write": {
-              "fc": 16,
+              "fc": 6,
               "address": 1214,
               "length": 1,
               "dataType": "uint16",
@@ -115402,7 +115416,7 @@
             "noAddressFallback": true
           },
           "unit": "phases",
-          "desc": "Alfen ACE register 1215, protocol address 1214. Requires Energy Management System mode and Allow 1-/3-phase charging in ACE."
+          "desc": "Alfen ACE document register 1215, protocol address 1214. Written as one UINT16 via FC06 and confirmed once after 5 s; not cyclically refreshed."
         }
       ],
       "unitIdDefault": 1,
@@ -115410,9 +115424,15 @@
       "addressOffsetDefault": 0,
       "disableAddressFallbackOffsets": true,
       "alfen": {
-        "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores protocol address=document register-1. Socket Max Current write uses document 1210..1211 => FC16 start address 1209 len=2; no +1/table-address write fallback."
+        "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores protocol address=document register-1. Max Current write uses document 1210..1211 => FC16@1209 len=2. Charge Using Phases uses document 1215 => FC6@1214 len=1 and is not cyclically refreshed.",
+        "phaseModeKeepalive": false,
+        "phaseModePostWriteConfirmMs": 5000,
+        "setpointWatchdogRefreshMs": 5000
       },
-      "version": "0.5.112"
+      "version": "0.5.115",
+      "meta": {
+        "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; Max Current writes document 1210..1211 as protocol 1209 len=2 FC16; Charge Using Phases writes document 1215 as protocol 1214 len=1 FC06; both are watchdog-refreshed after command."
+      }
     },
     {
       "id": "evcs.alfen.ng9xx.ace.socket2.modbusTcp",
@@ -115459,7 +115479,8 @@
             "writeRejectBackoffMs": 86400000,
             "logLevel": "debug",
             "periodMs": 1000,
-            "useLastCommandValue": true
+            "useLastCommandValue": true,
+            "reason": "Alfen ACE Max Current is watchdog-refreshed every 5 s. Phase switching is intentionally not cyclic; it is written once and confirmed once after 5 s to avoid unintended charge starts."
           },
           "unitIdDefault": 2,
           "enforceUnitIdDefault": true,
@@ -115508,7 +115529,12 @@
             "retryAlternateControlAddress": false,
             "strictProtocolWriteAddress": true,
             "maxCurrentWriteProtocolAddress": 1209,
-            "chargeUsingPhasesWriteProtocolAddress": 1214
+            "chargeUsingPhasesWriteProtocolAddress": 1214,
+            "phaseModeKeepalive": false,
+            "phaseModeKeepaliveMs": 5000,
+            "currentKeepaliveMs": 5000,
+            "phaseModeConfirmAfterWriteMs": 5000,
+            "addressAuditVersion": "0.5.115"
           },
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000,
@@ -115529,8 +115555,9 @@
                 "useLastCommandValue": true
               }
             ],
-            "reason": "Alfen ACE EMS write commands are repeated once after 5 s idle; Max Current is then refreshed every 5 s from the last commanded value."
-          }
+            "reason": "Alfen ACE Max Current is the only cyclic watchdog setpoint. Phase switching is a write command and is confirmed once after 5 s idle, not cyclically refreshed."
+          },
+          "phaseModeKeepalive": true
         },
         "polling": {
           "initialFastOnly": true,
@@ -115621,13 +115648,20 @@
           "optionalMeterNaNAsNull": true,
           "safeDefaultMode": "socket",
           "socketControlRegisterBlock": "1200..1215 document registers / 1199..1214 protocol addresses",
-          "setpointWatchdogRefreshMs": 10000,
-          "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores Modbus protocol address = documentation register - 1; status/control blocks are polled only via aliases/fallback when exposed by the charger profile",
+          "setpointWatchdogRefreshMs": 5000,
+          "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025. Template stores Modbus protocol address = documentation register - 1. Socket block audit: Availability doc1200=>1199; Mode3 doc1201..1205=>1200; ActualAppliedMaxCurrent doc1206..1207=>1205; ValidTime doc1208..1209=>1207 UINT32 little-word; MaxCurrent doc1210..1211=>1209 FC16 len2; SafeCurrent doc1212..1213=>1211; SetpointAccountedFor doc1214=>1213; ChargeUsingPhases doc1215=>1214 FC6 len1.",
           "controlMode": "socket",
           "deriveStatusFromPowerWhenMode3Missing": true,
           "scnPollingDefault": false,
           "phaseModeKeepalive": false,
-          "commandAliasesHoldLastCommand": true
+          "commandAliasesHoldLastCommand": true,
+          "chargeUsingPhasesWriteProtocolAddress": 1214,
+          "maxCurrentWriteProtocolAddress": 1209,
+          "phaseModeKeepaliveMs": 5000,
+          "phaseModeKeepaliveRequiresCurrentCommandA": 0.1,
+          "phaseModeRejectsInvalidValues": true,
+          "safetyNote": "Phase command only accepts explicit 1/3. 0/false/invalid values are ignored and do not become 3 phases.",
+          "phaseModeConfirmAfterWriteMs": 5000
         }
       },
       "datapoints": [
@@ -116986,7 +117020,7 @@
               "address": 1207,
               "length": 2,
               "dataType": "uint32",
-              "wordOrder": "be",
+              "wordOrder": "le",
               "unitId": 2,
               "nanToNull": true,
               "optional": true,
@@ -116998,7 +117032,7 @@
             "noAddressFallback": true
           },
           "unit": "s",
-          "desc": "Alfen ACE register 1208..1209, valid time remaining. Runtime alias also normalizes field word-order variants."
+          "desc": "Alfen ACE document registers 1208..1209, protocol address 1207, UINT32 seconds, little-word-endian."
         },
         {
           "id": "sET_CHARGING_CURRENT",
@@ -117042,7 +117076,7 @@
             "noAddressFallback": true
           },
           "unit": "A",
-          "desc": "Alfen ACE register 1210..1211, protocol address 1209. Requires Active Load Balancing, Data Source=Energy Management System, TCP/IP EMS control mode=Socket, Enable sockets and Allow writing maximum currents."
+          "desc": "Alfen ACE document registers 1210..1211, protocol address 1209. Written as complete FLOAT32 via FC16 and refreshed every 5 s from the last commanded current."
         },
         {
           "id": "aCTIVE_LOAD_BALANCING_SAFE_CURRENT",
@@ -117115,7 +117149,7 @@
               "noAddressFallback": true
             },
             "write": {
-              "fc": 16,
+              "fc": 6,
               "address": 1214,
               "length": 1,
               "dataType": "uint16",
@@ -117139,7 +117173,7 @@
             "noAddressFallback": true
           },
           "unit": "phases",
-          "desc": "Alfen ACE register 1215, protocol address 1214. Requires Energy Management System mode and Allow 1-/3-phase charging in ACE."
+          "desc": "Alfen ACE document register 1215, protocol address 1214. Written as one UINT16 via FC06 and confirmed once after 5 s; not cyclically refreshed."
         }
       ],
       "unitIdDefault": 2,
@@ -117147,9 +117181,15 @@
       "addressOffsetDefault": 0,
       "disableAddressFallbackOffsets": true,
       "alfen": {
-        "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores protocol address=document register-1. Socket Max Current write uses document 1210..1211 => FC16 start address 1209 len=2; no +1/table-address write fallback."
+        "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores protocol address=document register-1. Max Current write uses document 1210..1211 => FC16@1209 len=2. Charge Using Phases uses document 1215 => FC6@1214 len=1 and is not cyclically refreshed.",
+        "phaseModeKeepalive": false,
+        "phaseModePostWriteConfirmMs": 5000,
+        "setpointWatchdogRefreshMs": 5000
       },
-      "version": "0.5.112"
+      "version": "0.5.115",
+      "meta": {
+        "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; Max Current writes document 1210..1211 as protocol 1209 len=2 FC16; Charge Using Phases writes document 1215 as protocol 1214 len=1 FC06; both are watchdog-refreshed after command."
+      }
     },
     {
       "id": "evcs.alfen.ng9xx.ace.station.modbusTcp",
@@ -117196,7 +117236,8 @@
             "writeRejectBackoffMs": 86400000,
             "logLevel": "debug",
             "periodMs": 1000,
-            "useLastCommandValue": true
+            "useLastCommandValue": true,
+            "reason": "Alfen ACE Max Current is watchdog-refreshed every 5 s. Phase switching is intentionally not cyclic; it is written once and confirmed once after 5 s to avoid unintended charge starts."
           },
           "unitIdDefault": 1,
           "enforceUnitIdDefault": true,
@@ -117247,7 +117288,12 @@
             "retryAlternateControlAddress": false,
             "strictProtocolWriteAddress": true,
             "maxCurrentWriteProtocolAddress": 1209,
-            "chargeUsingPhasesWriteProtocolAddress": 1214
+            "chargeUsingPhasesWriteProtocolAddress": 1214,
+            "phaseModeKeepalive": false,
+            "phaseModeKeepaliveMs": 5000,
+            "currentKeepaliveMs": 5000,
+            "phaseModeConfirmAfterWriteMs": 5000,
+            "addressAuditVersion": "0.5.115"
           },
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000,
@@ -117268,8 +117314,9 @@
                 "useLastCommandValue": true
               }
             ],
-            "reason": "Alfen ACE EMS write commands are repeated once after 5 s idle; Max Current is then refreshed every 5 s from the last commanded value."
-          }
+            "reason": "Alfen ACE Max Current is the only cyclic watchdog setpoint. Phase switching is a write command and is confirmed once after 5 s idle, not cyclically refreshed."
+          },
+          "phaseModeKeepalive": true
         },
         "polling": {
           "initialFastOnly": true,
@@ -117361,12 +117408,19 @@
           "safeDefaultMode": "socket",
           "socketControlRegisterBlock": "1200..1215 document registers / 1199..1214 protocol addresses",
           "scnPollingDefault": false,
-          "setpointWatchdogRefreshMs": 10000,
-          "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores Modbus protocol address = documentation register - 1; status/control blocks are polled only via aliases/fallback when exposed by the charger profile",
+          "setpointWatchdogRefreshMs": 5000,
+          "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025. Template stores Modbus protocol address = documentation register - 1. Socket block audit: Availability doc1200=>1199; Mode3 doc1201..1205=>1200; ActualAppliedMaxCurrent doc1206..1207=>1205; ValidTime doc1208..1209=>1207 UINT32 little-word; MaxCurrent doc1210..1211=>1209 FC16 len2; SafeCurrent doc1212..1213=>1211; SetpointAccountedFor doc1214=>1213; ChargeUsingPhases doc1215=>1214 FC6 len1.",
           "controlMode": "socket",
           "deriveStatusFromPowerWhenMode3Missing": true,
           "phaseModeKeepalive": false,
-          "commandAliasesHoldLastCommand": true
+          "commandAliasesHoldLastCommand": true,
+          "chargeUsingPhasesWriteProtocolAddress": 1214,
+          "maxCurrentWriteProtocolAddress": 1209,
+          "phaseModeKeepaliveMs": 5000,
+          "phaseModeKeepaliveRequiresCurrentCommandA": 0.1,
+          "phaseModeRejectsInvalidValues": true,
+          "safetyNote": "Phase command only accepts explicit 1/3. 0/false/invalid values are ignored and do not become 3 phases.",
+          "phaseModeConfirmAfterWriteMs": 5000
         }
       },
       "datapoints": [
@@ -119635,7 +119689,7 @@
               "address": 1207,
               "length": 2,
               "dataType": "uint32",
-              "wordOrder": "be",
+              "wordOrder": "le",
               "unitId": 1,
               "nanToNull": true,
               "optional": true,
@@ -119647,7 +119701,7 @@
             "noAddressFallback": true
           },
           "unit": "s",
-          "desc": "Alfen ACE register 1208..1209, valid time remaining. Runtime alias also normalizes field word-order variants."
+          "desc": "Alfen ACE document registers 1208..1209, protocol address 1207, UINT32 seconds, little-word-endian."
         },
         {
           "id": "sET_CHARGING_CURRENT",
@@ -119691,7 +119745,7 @@
             "noAddressFallback": true
           },
           "unit": "A",
-          "desc": "Alfen ACE register 1210..1211, protocol address 1209. Requires Active Load Balancing, Data Source=Energy Management System, TCP/IP EMS control mode=Socket, Enable sockets and Allow writing maximum currents."
+          "desc": "Alfen ACE document registers 1210..1211, protocol address 1209. Written as complete FLOAT32 via FC16 and refreshed every 5 s from the last commanded current."
         },
         {
           "id": "aCTIVE_LOAD_BALANCING_SAFE_CURRENT",
@@ -119764,7 +119818,7 @@
               "noAddressFallback": true
             },
             "write": {
-              "fc": 16,
+              "fc": 6,
               "address": 1214,
               "length": 1,
               "dataType": "uint16",
@@ -119788,7 +119842,7 @@
             "noAddressFallback": true
           },
           "unit": "phases",
-          "desc": "Alfen ACE register 1215, protocol address 1214. Requires Energy Management System mode and Allow 1-/3-phase charging in ACE."
+          "desc": "Alfen ACE document register 1215, protocol address 1214. Written as one UINT16 via FC06 and confirmed once after 5 s; not cyclically refreshed."
         }
       ],
       "unitIdDefault": 1,
@@ -119796,9 +119850,15 @@
       "addressOffsetDefault": 0,
       "disableAddressFallbackOffsets": true,
       "alfen": {
-        "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores protocol address=document register-1. Socket Max Current write uses document 1210..1211 => FC16 start address 1209 len=2; no +1/table-address write fallback."
+        "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; template stores protocol address=document register-1. Max Current write uses document 1210..1211 => FC16@1209 len=2. Charge Using Phases uses document 1215 => FC6@1214 len=1 and is not cyclically refreshed.",
+        "phaseModeKeepalive": false,
+        "phaseModePostWriteConfirmMs": 5000,
+        "setpointWatchdogRefreshMs": 5000
       },
-      "version": "0.5.112"
+      "version": "0.5.115",
+      "meta": {
+        "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; Max Current writes document 1210..1211 as protocol 1209 len=2 FC16; Charge Using Phases writes document 1215 as protocol 1214 len=1 FC06; both are watchdog-refreshed after command."
+      }
     },
     {
       "id": "pv_inverter.kostal.PikoModbusSunSpecBigEndianImpl",

@@ -513,3 +513,29 @@ Wichtige Aliase:
 - Alfen Max Current is now written only to the audited protocol address `1209` (`document register 1210..1211`, FC16 length 2). The previous adaptive `+1`/table-address write fallback is disabled because `FC16@1210 len=2` shifts the 32-bit value into the neighbouring register pair.
 - Alfen current readback uses the separate Actual Applied Max Current register (`document 1206..1207`) where available; command aliases keep the last commanded value.
 - Alfen write commands are confirmed once after 5 seconds without a newer write. Max Current is additionally refreshed every 5 seconds from the last commanded value for the charger watchdog.
+
+### 0.5.113 - Alfen ACE phase watchdog
+
+- Alfen ACE `Charge Using Phases` is now handled like an EMS write command: after the first command it is repeated once after 5 s idle and then kept alive every 5 s from the last commanded value.
+- `sET_CHARGING_CURRENT` remains fixed on protocol address 1209 (`doc 1210..1211`); `cHARGE_USING_PHASES` remains fixed on protocol address 1214 (`doc 1215`) and is written via FC06.
+
+
+### 0.5.113 Alfen ACE phase-command watchdog
+
+- Alfen phase switching (`aliases.ctrl.phaseMode` / `cHARGE_USING_PHASES`) is now treated as a watchdog-managed EMS command too.
+- The phase command is written as a single-register FC6 command to protocol address `1214` (Alfen document register `1215`).
+- After a successful phase command the adapter repeats it once after 5 seconds of command-idle time and then refreshes the last successful phase command every 5 seconds, just like the Max Current command.
+- Max Current remains a 2-register FC16 write at protocol address `1209` (Alfen document registers `1210..1211`); no unsafe shifted write fallback is used.
+
+### 0.5.114 - Alfen ACE safe phase confirmation
+
+- Alfen ACE Max Current remains refreshed every 5 seconds from the last commanded value.
+- Alfen ACE Charge Using Phases is written strictly to protocol address 1214 via FC06 and confirmed once after 5 seconds idle, but is no longer cyclically refreshed to avoid unintended charger state transitions.
+
+### 0.5.115 - Alfen ACE address audit
+
+- Re-audited the Alfen ACE socket control block against the vendor table and kept strict protocol addresses (`document register - 1`) with no +1 fallback.
+- Fixed `mODBUS_MAX_CURRENT_VALID_TIME` word order to little-word-endian: document `1208..1209` => protocol `1207`, UINT32 seconds.
+- Max Current: document `1210..1211` => protocol `1209`, FC16 length 2, refreshed every 5 seconds from the last commanded current.
+- Charge Using Phases: document `1215` => protocol `1214`, FC06 length 1, confirmed once after 5 seconds; it is intentionally not cyclically refreshed because the Alfen validity timer applies to maximum-current setpoints.
+
