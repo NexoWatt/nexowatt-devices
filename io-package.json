@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.121",
+    "version": "0.5.122",
     "news": {
+      "0.5.122": {
+        "en": "Alfen ACE diagnostics/fix: Runtime now consistently reads Alfen hints from driverHints.modbus.alfen and top-level template metadata, exposes all-IDs behavior correctly, and warns when optional Socket2/SCN mirror writes fail so a Socket-vs-SCN EMS mode mismatch is visible.",
+        "de": "Alfen-ACE-Diagnose/Fix: Die Runtime liest Alfen-Hinweise jetzt konsistent aus driverHints.modbus.alfen und Template-Metadaten, behandelt All-IDs-Verhalten korrekt und warnt bei fehlgeschlagenen Socket2-/SCN-Spiegelschreibungen, damit ein Socket-vs-SCN-EMS-Modus-Mismatch sichtbar wird."
+      },
       "0.5.121": {
         "en": "Alfen ACE all-IDs station mode: station template now reads Socket 1, Socket 2 and SCN/server-address 200 values, mirrors current/phase commands to Socket 2 and SCN where supported, and retries watchdog writes without long unsupported latches.",
         "de": "Alfen ACE All-IDs-Station-Modus: Das Station-Template liest jetzt Socket 1, Socket 2 und SCN/Serveradresse 200, spiegelt Strom-/Phasenbefehle auf Socket 2 und SCN soweit unterstützt und blockiert Watchdog-Schreibbefehle nicht mehr durch lange Unsupported-Sperren."
