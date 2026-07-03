@@ -113693,8 +113693,8 @@
         "pollIntervalMs": 5000,
         "modbus": {
           "setpointKeepalive": {
-            "checkPeriodMs": 1000,
-            "periodMs": 1000,
+            "checkPeriodMs": 5000,
+            "periodMs": 5000,
             "requireEverWritten": true,
             "requireFreshState": false,
             "unsupportedBackoffMs": 10000,
@@ -113742,11 +113742,12 @@
                 "reason": "Alfen ACE phase command is refreshed every 5 s while a positive current command is active, because the charger watchdog can drop command state otherwise."
               }
             ],
-            "reason": "Alfen ACE write registers are refreshed from the last command value. Max Current is mandatory for the Valid Time watchdog; phase is kept in sync while a positive current command is active.",
+            "reason": "Alfen ACE write registers are refreshed every 5 s from the last explicit current/power command; boolean run/chargeEnable no longer overrides Min+PV with the default current.",
             "seedFromCommandAliases": true,
             "allowDuringPoll": true,
             "allowWhilePolling": true,
-            "primeFromCommandStates": true
+            "primeFromCommandStates": true,
+            "controlCleanupVersion": "0.5.118"
           },
           "unitIdDefault": 1,
           "enforceUnitIdDefault": true,
@@ -113811,14 +113812,18 @@
             "phaseModeKeepalive": true,
             "currentKeepaliveMs": 5000,
             "phaseModeConfirmAfterWriteMs": 5000,
-            "addressAuditVersion": "0.5.117",
+            "addressAuditVersion": "0.5.118",
             "addressAuditSource": "configuration_guide_modbus_ace_v1.pdf / Alfen ACE v1.0 EN 05/2025",
             "registerGuide": "Alfen ACE Configuration Guide v1.0 EN 05/2025",
             "seedKeepaliveFromCommandAliases": true,
             "bootstrapControlFromAliasState": true,
             "watchdogStartupBootstrap": "restore active current/phase command from aliases after adapter restart",
             "watchdogPrimeFromAliases": true,
-            "watchdogAllowDuringPoll": true
+            "watchdogAllowDuringPoll": true,
+            "defaultEnableCurrentA": 6,
+            "runCurrentA": 6,
+            "minPvSafeDefaultCurrentA": 6,
+            "runDoesNotOverrideCurrentLimit": true
           },
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000,
@@ -113928,8 +113933,8 @@
           ]
         },
         "alfen": {
-          "defaultEnableCurrentA": 16,
-          "runCurrentA": 16,
+          "defaultEnableCurrentA": 6,
+          "runCurrentA": 6,
           "stopCurrentA": 0,
           "optionalMeterNaNAsNull": true,
           "safeDefaultMode": "socket",
@@ -115489,8 +115494,8 @@
       "addressOffsetDefault": 0,
       "disableAddressFallbackOffsets": true,
       "alfen": {
-        "defaultEnableCurrentA": 16,
-        "runCurrentA": 16,
+        "defaultEnableCurrentA": 6,
+        "runCurrentA": 6,
         "stopCurrentA": 0,
         "optionalMeterNaNAsNull": true,
         "safeDefaultMode": "socket",
@@ -115509,11 +115514,13 @@
         "phaseModeRejectsInvalidValues": true,
         "safetyNote": "Max Current and active phase command are refreshed from the last command. Charge Using Phases accepts only explicit 1 or 3 and is written to protocol address 1214.",
         "phaseModeConfirmAfterWriteMs": 5000,
-        "addressAuditVersion": "0.5.117",
+        "addressAuditVersion": "0.5.118",
         "watchdogPrimeFromAliases": true,
-        "watchdogAllowDuringPoll": true
+        "watchdogAllowDuringPoll": true,
+        "minPvSafeDefaultCurrentA": 6,
+        "runDoesNotOverrideCurrentLimit": true
       },
-      "version": "0.5.117",
+      "version": "0.5.118",
       "meta": {
         "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; Max Current writes document 1210..1211 as protocol 1209 len=2 FC16; Charge Using Phases writes document 1215 as protocol 1214 len=1 FC06; both are watchdog-refreshed after command.",
         "registerGuide": "Alfen ACE Configuration Guide Modbus for ACE v1.0 EN 05/2025",
@@ -115541,8 +115548,8 @@
         "pollIntervalMs": 5000,
         "modbus": {
           "setpointKeepalive": {
-            "checkPeriodMs": 1000,
-            "periodMs": 1000,
+            "checkPeriodMs": 5000,
+            "periodMs": 5000,
             "requireEverWritten": true,
             "requireFreshState": false,
             "unsupportedBackoffMs": 10000,
@@ -115590,11 +115597,12 @@
                 "reason": "Alfen ACE phase command is refreshed every 5 s while a positive current command is active, because the charger watchdog can drop command state otherwise."
               }
             ],
-            "reason": "Alfen ACE write registers are refreshed from the last command value. Max Current is mandatory for the Valid Time watchdog; phase is kept in sync while a positive current command is active.",
+            "reason": "Alfen ACE write registers are refreshed every 5 s from the last explicit current/power command; boolean run/chargeEnable no longer overrides Min+PV with the default current.",
             "seedFromCommandAliases": true,
             "allowDuringPoll": true,
             "allowWhilePolling": true,
-            "primeFromCommandStates": true
+            "primeFromCommandStates": true,
+            "controlCleanupVersion": "0.5.118"
           },
           "unitIdDefault": 2,
           "enforceUnitIdDefault": true,
@@ -115659,14 +115667,18 @@
             "phaseModeKeepalive": true,
             "currentKeepaliveMs": 5000,
             "phaseModeConfirmAfterWriteMs": 5000,
-            "addressAuditVersion": "0.5.117",
+            "addressAuditVersion": "0.5.118",
             "addressAuditSource": "configuration_guide_modbus_ace_v1.pdf / Alfen ACE v1.0 EN 05/2025",
             "registerGuide": "Alfen ACE Configuration Guide v1.0 EN 05/2025",
             "seedKeepaliveFromCommandAliases": true,
             "bootstrapControlFromAliasState": true,
             "watchdogStartupBootstrap": "restore active current/phase command from aliases after adapter restart",
             "watchdogPrimeFromAliases": true,
-            "watchdogAllowDuringPoll": true
+            "watchdogAllowDuringPoll": true,
+            "defaultEnableCurrentA": 6,
+            "runCurrentA": 6,
+            "minPvSafeDefaultCurrentA": 6,
+            "runDoesNotOverrideCurrentLimit": true
           },
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000,
@@ -115776,8 +115788,8 @@
           ]
         },
         "alfen": {
-          "defaultEnableCurrentA": 16,
-          "runCurrentA": 16,
+          "defaultEnableCurrentA": 6,
+          "runCurrentA": 6,
           "stopCurrentA": 0,
           "optionalMeterNaNAsNull": true,
           "safeDefaultMode": "socket",
@@ -117337,8 +117349,8 @@
       "addressOffsetDefault": 0,
       "disableAddressFallbackOffsets": true,
       "alfen": {
-        "defaultEnableCurrentA": 16,
-        "runCurrentA": 16,
+        "defaultEnableCurrentA": 6,
+        "runCurrentA": 6,
         "stopCurrentA": 0,
         "optionalMeterNaNAsNull": true,
         "safeDefaultMode": "socket",
@@ -117357,11 +117369,13 @@
         "phaseModeRejectsInvalidValues": true,
         "safetyNote": "Max Current and active phase command are refreshed from the last command. Charge Using Phases accepts only explicit 1 or 3 and is written to protocol address 1214.",
         "phaseModeConfirmAfterWriteMs": 5000,
-        "addressAuditVersion": "0.5.117",
+        "addressAuditVersion": "0.5.118",
         "watchdogPrimeFromAliases": true,
-        "watchdogAllowDuringPoll": true
+        "watchdogAllowDuringPoll": true,
+        "minPvSafeDefaultCurrentA": 6,
+        "runDoesNotOverrideCurrentLimit": true
       },
-      "version": "0.5.117",
+      "version": "0.5.118",
       "meta": {
         "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; Max Current writes document 1210..1211 as protocol 1209 len=2 FC16; Charge Using Phases writes document 1215 as protocol 1214 len=1 FC06; both are watchdog-refreshed after command.",
         "registerGuide": "Alfen ACE Configuration Guide Modbus for ACE v1.0 EN 05/2025",
@@ -117389,8 +117403,8 @@
         "pollIntervalMs": 5000,
         "modbus": {
           "setpointKeepalive": {
-            "checkPeriodMs": 1000,
-            "periodMs": 1000,
+            "checkPeriodMs": 5000,
+            "periodMs": 5000,
             "requireEverWritten": true,
             "requireFreshState": false,
             "unsupportedBackoffMs": 10000,
@@ -117502,11 +117516,12 @@
                 "reason": "Alfen SCN Max Current values have their own remaining valid time and must be refreshed when used."
               }
             ],
-            "reason": "Alfen ACE write registers are refreshed from the last command value. Max Current is mandatory for the Valid Time watchdog; phase is kept in sync while a positive current command is active.",
+            "reason": "Alfen ACE write registers are refreshed every 5 s from the last explicit current/power command; boolean run/chargeEnable no longer overrides Min+PV with the default current.",
             "seedFromCommandAliases": true,
             "allowDuringPoll": true,
             "allowWhilePolling": true,
-            "primeFromCommandStates": true
+            "primeFromCommandStates": true,
+            "controlCleanupVersion": "0.5.118"
           },
           "unitIdDefault": 1,
           "enforceUnitIdDefault": true,
@@ -117577,14 +117592,18 @@
             "phaseModeKeepalive": true,
             "currentKeepaliveMs": 5000,
             "phaseModeConfirmAfterWriteMs": 5000,
-            "addressAuditVersion": "0.5.117",
+            "addressAuditVersion": "0.5.118",
             "addressAuditSource": "configuration_guide_modbus_ace_v1.pdf / Alfen ACE v1.0 EN 05/2025",
             "registerGuide": "Alfen ACE Configuration Guide v1.0 EN 05/2025",
             "seedKeepaliveFromCommandAliases": true,
             "bootstrapControlFromAliasState": true,
             "watchdogStartupBootstrap": "restore active current/phase command from aliases after adapter restart",
             "watchdogPrimeFromAliases": true,
-            "watchdogAllowDuringPoll": true
+            "watchdogAllowDuringPoll": true,
+            "defaultEnableCurrentA": 6,
+            "runCurrentA": 6,
+            "minPvSafeDefaultCurrentA": 6,
+            "runDoesNotOverrideCurrentLimit": true
           },
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000,
@@ -117714,8 +117733,8 @@
           ]
         },
         "alfen": {
-          "defaultEnableCurrentA": 16,
-          "runCurrentA": 16,
+          "defaultEnableCurrentA": 6,
+          "runCurrentA": 6,
           "stopCurrentA": 0,
           "optionalMeterNaNAsNull": true,
           "safeDefaultMode": "socket",
@@ -120185,8 +120204,8 @@
       "addressOffsetDefault": 0,
       "disableAddressFallbackOffsets": true,
       "alfen": {
-        "defaultEnableCurrentA": 16,
-        "runCurrentA": 16,
+        "defaultEnableCurrentA": 6,
+        "runCurrentA": 6,
         "stopCurrentA": 0,
         "optionalMeterNaNAsNull": true,
         "safeDefaultMode": "socket",
@@ -120205,11 +120224,13 @@
         "phaseModeRejectsInvalidValues": true,
         "safetyNote": "Max Current and active phase command are refreshed from the last command. Charge Using Phases accepts only explicit 1 or 3 and is written to protocol address 1214.",
         "phaseModeConfirmAfterWriteMs": 5000,
-        "addressAuditVersion": "0.5.117",
+        "addressAuditVersion": "0.5.118",
         "watchdogPrimeFromAliases": true,
-        "watchdogAllowDuringPoll": true
+        "watchdogAllowDuringPoll": true,
+        "minPvSafeDefaultCurrentA": 6,
+        "runDoesNotOverrideCurrentLimit": true
       },
-      "version": "0.5.117",
+      "version": "0.5.118",
       "meta": {
         "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; Max Current writes document 1210..1211 as protocol 1209 len=2 FC16; Charge Using Phases writes document 1215 as protocol 1214 len=1 FC06; both are watchdog-refreshed after command.",
         "registerGuide": "Alfen ACE Configuration Guide Modbus for ACE v1.0 EN 05/2025",

@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.117",
+    "version": "0.5.118",
     "news": {
+      "0.5.118": {
+        "en": "Alfen ACE control cleanup: run/chargeEnable no longer overwrite Min+PV or current/power setpoints with 16 A, add Alfen powerLimitW-to-current conversion, keep queued explicit current commands over boolean release commands, and set Alfen default release current to 6 A.",
+        "de": "Alfen-ACE-Steuerung bereinigt: run/chargeEnable überschreiben Min+PV- bzw. Strom-/Leistungssollwerte nicht mehr mit 16 A, Alfen powerLimitW wird in Strom umgerechnet, explizite Strombefehle bleiben in der Queue vor boolschen Freigabebefehlen erhalten und der Alfen-Standard-Freigabestrom ist 6 A."
+      },
       "0.5.117": {
         "en": "Alfen ACE watchdog fix: seed EMS setpoint keepalive from command aliases after adapter restarts, persist last Alfen current/phase commands, and refresh current/phase writes every 5s from the last commanded values.",
         "de": "Alfen-ACE-Watchdog-Fix: EMS-Sollwert-Keepalive nach Adapter-Neustarts aus den Steuer-Aliases initialisieren, letzte Alfen-Strom-/Phasenbefehle speichern und Strom-/Phasen-Schreibbefehle alle 5s aus den letzten Befehlswerten erneuern."
