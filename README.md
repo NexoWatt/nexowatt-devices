@@ -546,3 +546,10 @@ Wichtige Aliase:
 Alfen ACE templates are aligned with `configuration_guide_modbus_ace_v1.pdf` / Configuration Guide Modbus for ACE v1.0 EN 05/2025.
 The templates store Modbus protocol addresses (`documentation register - 1`): Max Current document `1210..1211` is written as `FC16@1209`, and Charge using phases document `1215` is written as `FC6@1214`. Socket 1 uses Unit-ID 1, Socket 2 uses Unit-ID 2, and Station/SCN uses Unit-ID 200.
 Alfen Max Current values are refreshed every 5 seconds from the last commanded value. Charge Using Phases is also kept in sync every 5 seconds while a positive Max Current command is active and is confirmed once after each phase write. Energy counters documented as Wh/VAh/VArh are exposed by the adapter as kWh/kVAh/kVArh.
+
+### 0.5.119 - Alfen ACE phase/current command clean-up
+
+- Alfen `cHARGE_USING_PHASES` now writes the audited ACE register `1215` as Modbus protocol address `1214` using FC16 length 1.
+- Alfen command aliases parse UI values such as `16 A` and `3 phases`, not only plain numbers.
+- Alfen phase keepalive is seeded from `aliases.ctrl.phaseMode` before older persistent setpoint memory, preventing an old `1 phase` value from overriding a manual/EMS `3 phases` command after restart.
+- Added Alfen `aliases.r.phaseMode` readback alias so dashboards can distinguish commanded phase mode from charger readback.

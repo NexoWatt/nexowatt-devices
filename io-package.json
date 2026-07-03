@@ -1,11 +1,23 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.118",
+    "version": "0.5.121",
     "news": {
+      "0.5.121": {
+        "en": "Alfen ACE all-IDs station mode: station template now reads Socket 1, Socket 2 and SCN/server-address 200 values, mirrors current/phase commands to Socket 2 and SCN where supported, and retries watchdog writes without long unsupported latches.",
+        "de": "Alfen ACE All-IDs-Station-Modus: Das Station-Template liest jetzt Socket 1, Socket 2 und SCN/Serveradresse 200, spiegelt Strom-/Phasenbefehle auf Socket 2 und SCN soweit unterstützt und blockiert Watchdog-Schreibbefehle nicht mehr durch lange Unsupported-Sperren."
+      },
+      "0.5.120": {
+        "en": "Alfen ACE Modbus: fix manual alias writes and phase switching. Charge Using Phases now uses audited FC16@1214 len=1, stale stored phase=1 is ignored on startup, and automatic keepalive can no longer overwrite queued user commands.",
+        "de": "Alfen ACE Modbus: manuelle Alias-Schreibzugriffe und Phasenumschaltung korrigiert. Charge Using Phases schreibt jetzt geprüft per FC16@1214 len=1, alte gespeicherte Phase=1 wird beim Start ignoriert, und automatische Keepalives überschreiben keine wartenden User-Kommandos mehr."
+      },
+      "0.5.119": {
+        "en": "Alfen ACE control clean-up: phase switching now writes register 1215 as protocol address 1214 via FC16 length 1, command aliases accept UI labels with units, phase keepalive is seeded from aliases before old setpoint memory, and readback alias r.phaseMode was added.",
+        "de": "Alfen-ACE-Steuerung bereinigt: Phasenumschaltung schreibt Register 1215 jetzt als Protokolladresse 1214 per FC16 Länge 1, Steuer-Aliase akzeptieren UI-Werte mit Einheiten, Phasen-Keepalive wird zuerst aus den Aliasen statt aus altem Setpoint-Speicher gesetzt, und r.phaseMode wurde als Readback-Alias ergänzt."
+      },
       "0.5.118": {
-        "en": "Alfen ACE control cleanup: run/chargeEnable no longer overwrite Min+PV or current/power setpoints with 16 A, add Alfen powerLimitW-to-current conversion, keep queued explicit current commands over boolean release commands, and set Alfen default release current to 6 A.",
-        "de": "Alfen-ACE-Steuerung bereinigt: run/chargeEnable überschreiben Min+PV- bzw. Strom-/Leistungssollwerte nicht mehr mit 16 A, Alfen powerLimitW wird in Strom umgerechnet, explizite Strombefehle bleiben in der Queue vor boolschen Freigabebefehlen erhalten und der Alfen-Standard-Freigabestrom ist 6 A."
+        "en": "Alfen ACE watchdog/runtime fix: queued user current commands now immediately become the active watchdog value, run/chargeEnable no longer overwrite dynamic Min+PV/PV current limits with 16 A, add powerLimitW alias converting W to A, and align Alfen keepalive tick to 5 s.",
+        "de": "Alfen-ACE-Watchdog-/Runtime-Fix: Warteschlangen-Schreibbefehle für Strom werden sofort zum aktiven Watchdog-Sollwert, run/chargeEnable überschreiben dynamische Min+PV/PV-Stromlimits nicht mehr mit 16 A, powerLimitW-Alias mit W→A-Umrechnung ergänzt und Alfen-Keepalive auf 5 s ausgerichtet."
       },
       "0.5.117": {
         "en": "Alfen ACE watchdog fix: seed EMS setpoint keepalive from command aliases after adapter restarts, persist last Alfen current/phase commands, and refresh current/phase writes every 5s from the last commanded values.",
