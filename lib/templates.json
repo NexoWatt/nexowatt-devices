@@ -113742,7 +113742,7 @@
                 "reason": "Alfen ACE phase command is refreshed every 5 s while a positive current command is active. 0.5.119 writes it as FC16@1214 len=1 and seeds from aliases.ctrl.phaseMode first."
               }
             ],
-            "reason": "Alfen ACE 0.5.123: watchdog refreshes the Socket-1 primary command; optional Socket-2/SCN mirrors are executed from the primary datapoint write.",
+            "reason": "Alfen ACE 0.5.124: keepalive refreshes only the primary socket command. UID2/SCN are not mirrored automatically; their native datapoints remain manually writable.",
             "seedFromCommandAliases": true,
             "allowDuringPoll": true,
             "allowWhilePolling": true,
@@ -115416,80 +115416,6 @@
               "integer": true,
               "disableAddressFallbackOffsets": true,
               "noAddressFallback": true,
-              "mirrorWrites": [
-                {
-                  "label": "Alfen Socket 2 Modbus Server Max Current",
-                  "fc": 16,
-                  "address": 1209,
-                  "length": 2,
-                  "dataType": "float32",
-                  "wordOrder": "le",
-                  "unitId": 2,
-                  "minValue": 0,
-                  "maxValue": 80,
-                  "finite": true,
-                  "round": true,
-                  "integer": true,
-                  "optional": true,
-                  "ignoreErrors": true,
-                  "disableAddressFallbackOffsets": true,
-                  "noAddressFallback": true
-                },
-                {
-                  "label": "Alfen SCN Max Current L1",
-                  "fc": 16,
-                  "address": 1416,
-                  "length": 2,
-                  "dataType": "float32",
-                  "wordOrder": "le",
-                  "unitId": 200,
-                  "minValue": 0,
-                  "maxValue": 80,
-                  "finite": true,
-                  "round": true,
-                  "integer": true,
-                  "optional": true,
-                  "ignoreErrors": true,
-                  "disableAddressFallbackOffsets": true,
-                  "noAddressFallback": true
-                },
-                {
-                  "label": "Alfen SCN Max Current L2",
-                  "fc": 16,
-                  "address": 1418,
-                  "length": 2,
-                  "dataType": "float32",
-                  "wordOrder": "le",
-                  "unitId": 200,
-                  "minValue": 0,
-                  "maxValue": 80,
-                  "finite": true,
-                  "round": true,
-                  "integer": true,
-                  "optional": true,
-                  "ignoreErrors": true,
-                  "disableAddressFallbackOffsets": true,
-                  "noAddressFallback": true
-                },
-                {
-                  "label": "Alfen SCN Max Current L3",
-                  "fc": 16,
-                  "address": 1420,
-                  "length": 2,
-                  "dataType": "float32",
-                  "wordOrder": "le",
-                  "unitId": 200,
-                  "minValue": 0,
-                  "maxValue": 80,
-                  "finite": true,
-                  "round": true,
-                  "integer": true,
-                  "optional": true,
-                  "ignoreErrors": true,
-                  "disableAddressFallbackOffsets": true,
-                  "noAddressFallback": true
-                }
-              ],
               "mirrorWriteReason": "0.5.122: All-IDs profile mirrors socket current to Socket 2 and SCN phase registers as individual FC16 len=2 writes."
             },
             "unitId": 1,
@@ -115497,7 +115423,7 @@
             "noAddressFallback": true
           },
           "unit": "A",
-          "desc": "Alfen ACE Modbus Server Max Current: document registers 1210..1211, protocol address 1209..1210. Must be written as one FC16 block, length 2, FLOAT32 little-word-endian.",
+          "desc": "Alfen ACE Modbus Server Max Current: document registers 1210..1211, protocol address 1209..1210. Public alias writes primary socket only; no automatic UID2/SCN mirroring in 0.5.124.",
           "fc": 16,
           "address": 1209,
           "length": 2,
@@ -115602,7 +115528,7 @@
             "noAddressFallback": true
           },
           "unit": "phases",
-          "desc": "Alfen ACE Charge using 1 or 3 phases: document register 1215, protocol address 1214. Write FC16 length 1 value 1 or 3; confirmed after 5 s and watchdog-refreshed while a positive current command is active.",
+          "desc": "Alfen ACE Charge using 1 or 3 phases: document register 1215, protocol address 1214. Public alias writes only the primary socket; no automatic UID2/SCN mirroring in 0.5.124.",
           "fc": 16,
           "address": 1214,
           "length": 1,
@@ -115655,10 +115581,13 @@
         "phaseModeWriteFunction": "FC16 len=1 at protocol address 1214 (document register 1215)",
         "manualAliasWriteBypassesCooldown": true,
         "scnPrimaryControl": false,
-        "scnMirrorOnly": true,
-        "socketPrimaryFixVersion": "0.5.123"
+        "scnMirrorOnly": false,
+        "socketPrimaryFixVersion": "0.5.124",
+        "allIdsWriteMirrors": false,
+        "autoMirrorWrites": "disabled-by-default",
+        "diagnosis": "SCN_MAX_CURRENT_ENABLE=0 or Socket-2 illegal address means UID200/UID2 must not be mirrored from public aliases."
       },
-      "version": "0.5.123",
+      "version": "0.5.124",
       "meta": {
         "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; Max Current writes document 1210..1211 as protocol 1209 len=2 FC16; Charge Using Phases writes document 1215 as protocol 1214 len=1 FC06; both are watchdog-refreshed after command.",
         "registerGuide": "Alfen ACE Configuration Guide Modbus for ACE v1.0 EN 05/2025",
@@ -115669,7 +115598,7 @@
         "0.5.119": "Phase command writes use the audited protocol address 1214 with FC16 length 1; phase command seeding now prefers aliases.ctrl.phaseMode over old persistent memory; aliases accept UI strings like \"3 phases\" and \"16 A\".",
         "0.5.122": "DeviceRuntime now consumes driverHints.modbus.alfen/top-level Alfen hints; if SCN mirror writes fail the adapter logs it clearly because setpointAccountedFor=false means the charger is not accounting the socket setpoint."
       },
-      "revision": "Alfen ACE all-IDs control diagnostics 0.5.122",
+      "revision": "alfen-socket-only-runtimefix-0.5.124",
       "docVersion": "Alfen ACE Modbus v1.0 EN 05/2025",
       "changelog": {
         "0.5.120": "Manual Alfen alias writes bypass automatic cooldown, stale phase=1 memory is ignored on startup, and Charge Using Phases writes use audited FC16@1214 len=1.",
@@ -115744,7 +115673,7 @@
                 "reason": "Alfen ACE phase command is refreshed every 5 s while a positive current command is active. 0.5.119 writes it as FC16@1214 len=1 and seeds from aliases.ctrl.phaseMode first."
               }
             ],
-            "reason": "Alfen ACE 0.5.123: watchdog refreshes the Socket-1 primary command; optional Socket-2/SCN mirrors are executed from the primary datapoint write.",
+            "reason": "Alfen ACE 0.5.124: keepalive refreshes only the primary socket command. UID2/SCN are not mirrored automatically; their native datapoints remain manually writable.",
             "seedFromCommandAliases": true,
             "allowDuringPoll": true,
             "allowWhilePolling": true,
@@ -117418,80 +117347,6 @@
               "integer": true,
               "disableAddressFallbackOffsets": true,
               "noAddressFallback": true,
-              "mirrorWrites": [
-                {
-                  "label": "Alfen Socket 2 Modbus Server Max Current",
-                  "fc": 16,
-                  "address": 1209,
-                  "length": 2,
-                  "dataType": "float32",
-                  "wordOrder": "le",
-                  "unitId": 2,
-                  "minValue": 0,
-                  "maxValue": 80,
-                  "finite": true,
-                  "round": true,
-                  "integer": true,
-                  "optional": true,
-                  "ignoreErrors": true,
-                  "disableAddressFallbackOffsets": true,
-                  "noAddressFallback": true
-                },
-                {
-                  "label": "Alfen SCN Max Current L1",
-                  "fc": 16,
-                  "address": 1416,
-                  "length": 2,
-                  "dataType": "float32",
-                  "wordOrder": "le",
-                  "unitId": 200,
-                  "minValue": 0,
-                  "maxValue": 80,
-                  "finite": true,
-                  "round": true,
-                  "integer": true,
-                  "optional": true,
-                  "ignoreErrors": true,
-                  "disableAddressFallbackOffsets": true,
-                  "noAddressFallback": true
-                },
-                {
-                  "label": "Alfen SCN Max Current L2",
-                  "fc": 16,
-                  "address": 1418,
-                  "length": 2,
-                  "dataType": "float32",
-                  "wordOrder": "le",
-                  "unitId": 200,
-                  "minValue": 0,
-                  "maxValue": 80,
-                  "finite": true,
-                  "round": true,
-                  "integer": true,
-                  "optional": true,
-                  "ignoreErrors": true,
-                  "disableAddressFallbackOffsets": true,
-                  "noAddressFallback": true
-                },
-                {
-                  "label": "Alfen SCN Max Current L3",
-                  "fc": 16,
-                  "address": 1420,
-                  "length": 2,
-                  "dataType": "float32",
-                  "wordOrder": "le",
-                  "unitId": 200,
-                  "minValue": 0,
-                  "maxValue": 80,
-                  "finite": true,
-                  "round": true,
-                  "integer": true,
-                  "optional": true,
-                  "ignoreErrors": true,
-                  "disableAddressFallbackOffsets": true,
-                  "noAddressFallback": true
-                }
-              ],
               "mirrorWriteReason": "0.5.122: All-IDs profile mirrors socket current to Socket 2 and SCN phase registers as individual FC16 len=2 writes."
             },
             "unitId": 2,
@@ -117499,7 +117354,7 @@
             "noAddressFallback": true
           },
           "unit": "A",
-          "desc": "Alfen ACE Modbus Server Max Current: document registers 1210..1211, protocol address 1209..1210. Must be written as one FC16 block, length 2, FLOAT32 little-word-endian.",
+          "desc": "Alfen ACE Modbus Server Max Current: document registers 1210..1211, protocol address 1209..1210. Public alias writes primary socket only; no automatic UID2/SCN mirroring in 0.5.124.",
           "fc": 16,
           "address": 1209,
           "length": 2,
@@ -117604,7 +117459,7 @@
             "noAddressFallback": true
           },
           "unit": "phases",
-          "desc": "Alfen ACE Charge using 1 or 3 phases: document register 1215, protocol address 1214. Write FC16 length 1 value 1 or 3; confirmed after 5 s and watchdog-refreshed while a positive current command is active.",
+          "desc": "Alfen ACE Charge using 1 or 3 phases: document register 1215, protocol address 1214. Public alias writes only the primary socket; no automatic UID2/SCN mirroring in 0.5.124.",
           "fc": 16,
           "address": 1214,
           "length": 1,
@@ -117657,10 +117512,13 @@
         "phaseModeWriteFunction": "FC16 len=1 at protocol address 1214 (document register 1215)",
         "manualAliasWriteBypassesCooldown": true,
         "scnPrimaryControl": false,
-        "scnMirrorOnly": true,
-        "socketPrimaryFixVersion": "0.5.123"
+        "scnMirrorOnly": false,
+        "socketPrimaryFixVersion": "0.5.124",
+        "allIdsWriteMirrors": false,
+        "autoMirrorWrites": "disabled-by-default",
+        "diagnosis": "SCN_MAX_CURRENT_ENABLE=0 or Socket-2 illegal address means UID200/UID2 must not be mirrored from public aliases."
       },
-      "version": "0.5.123",
+      "version": "0.5.124",
       "meta": {
         "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; Max Current writes document 1210..1211 as protocol 1209 len=2 FC16; Charge Using Phases writes document 1215 as protocol 1214 len=1 FC06; both are watchdog-refreshed after command.",
         "registerGuide": "Alfen ACE Configuration Guide Modbus for ACE v1.0 EN 05/2025",
@@ -117671,7 +117529,7 @@
         "0.5.119": "Phase command writes use the audited protocol address 1214 with FC16 length 1; phase command seeding now prefers aliases.ctrl.phaseMode over old persistent memory; aliases accept UI strings like \"3 phases\" and \"16 A\".",
         "0.5.122": "DeviceRuntime now consumes driverHints.modbus.alfen/top-level Alfen hints; if SCN mirror writes fail the adapter logs it clearly because setpointAccountedFor=false means the charger is not accounting the socket setpoint."
       },
-      "revision": "Alfen ACE all-IDs control diagnostics 0.5.122",
+      "revision": "alfen-socket-only-runtimefix-0.5.124",
       "docVersion": "Alfen ACE Modbus v1.0 EN 05/2025",
       "changelog": {
         "0.5.120": "Manual Alfen alias writes bypass automatic cooldown, stale phase=1 memory is ignored on startup, and Charge Using Phases writes use audited FC16@1214 len=1.",
@@ -117688,8 +117546,8 @@
       },
       "category": "EVCS",
       "manufacturer": "Alfen",
-      "model": "NG9xx ACE Station/All IDs SCN primary",
-      "name": "Alfen NG9xx (ACE) Station/All IDs Socket primary + optional SCN (Modbus TCP)",
+      "model": "NG9xx ACE Station/All IDs Socket-1 primary",
+      "name": "Alfen NG9xx (ACE) Station/All IDs read, Socket-1 primary write (Modbus TCP)",
       "protocols": [
         "modbusTcp"
       ],
@@ -117746,7 +117604,7 @@
                 "reason": "Alfen ACE phase command is refreshed every 5 s while a positive current command is active. 0.5.119 writes it as FC16@1214 len=1 and seeds from aliases.ctrl.phaseMode first."
               }
             ],
-            "reason": "Alfen ACE 0.5.123: watchdog refreshes the Socket-1 primary command; optional Socket-2/SCN mirrors are executed from the primary datapoint write.",
+            "reason": "Alfen ACE 0.5.124: keepalive refreshes only the primary socket command. UID2/SCN are not mirrored automatically; their native datapoints remain manually writable.",
             "seedFromCommandAliases": true,
             "allowDuringPoll": true,
             "allowWhilePolling": true,
@@ -118809,84 +118667,6 @@
               "maxValue": 80,
               "disableAddressFallbackOffsets": true,
               "noAddressFallback": true,
-              "mirrorWrites": [
-                {
-                  "label": "Alfen SCN Max Current L2",
-                  "fc": 16,
-                  "address": 1418,
-                  "length": 2,
-                  "dataType": "float32",
-                  "wordOrder": "le",
-                  "unitId": 200,
-                  "minValue": 0,
-                  "maxValue": 80,
-                  "finite": true,
-                  "round": true,
-                  "integer": true,
-                  "optional": true,
-                  "ignoreErrors": true,
-                  "warnOnError": true,
-                  "disableAddressFallbackOffsets": true,
-                  "noAddressFallback": true
-                },
-                {
-                  "label": "Alfen SCN Max Current L3",
-                  "fc": 16,
-                  "address": 1420,
-                  "length": 2,
-                  "dataType": "float32",
-                  "wordOrder": "le",
-                  "unitId": 200,
-                  "minValue": 0,
-                  "maxValue": 80,
-                  "finite": true,
-                  "round": true,
-                  "integer": true,
-                  "optional": true,
-                  "ignoreErrors": true,
-                  "warnOnError": true,
-                  "disableAddressFallbackOffsets": true,
-                  "noAddressFallback": true
-                },
-                {
-                  "label": "Alfen Socket 1 Modbus Server Max Current mirror from SCN primary",
-                  "fc": 16,
-                  "address": 1209,
-                  "length": 2,
-                  "dataType": "float32",
-                  "wordOrder": "le",
-                  "unitId": 1,
-                  "minValue": 0,
-                  "maxValue": 80,
-                  "finite": true,
-                  "round": true,
-                  "integer": true,
-                  "optional": true,
-                  "ignoreErrors": true,
-                  "warnOnError": true,
-                  "disableAddressFallbackOffsets": true,
-                  "noAddressFallback": true
-                },
-                {
-                  "label": "Alfen Socket 2 Modbus Server Max Current mirror from SCN primary",
-                  "fc": 16,
-                  "address": 1209,
-                  "length": 2,
-                  "dataType": "float32",
-                  "wordOrder": "le",
-                  "unitId": 2,
-                  "minValue": 0,
-                  "maxValue": 80,
-                  "finite": true,
-                  "round": true,
-                  "integer": true,
-                  "optional": true,
-                  "ignoreErrors": true,
-                  "warnOnError": true,
-                  "disableAddressFallbackOffsets": true,
-                  "noAddressFallback": true
-                }
-              ],
               "desc": "Alfen ACE SCN max current all phases; writes the same FLOAT32 current to L1/L2/L3 in one FC16 block."
             },
             "disableAddressFallbackOffsets": true,
@@ -120579,80 +120359,6 @@
               "integer": true,
               "disableAddressFallbackOffsets": true,
               "noAddressFallback": true,
-              "mirrorWrites": [
-                {
-                  "label": "Alfen Socket 2 Modbus Server Max Current",
-                  "fc": 16,
-                  "address": 1209,
-                  "length": 2,
-                  "dataType": "float32",
-                  "wordOrder": "le",
-                  "unitId": 2,
-                  "minValue": 0,
-                  "maxValue": 80,
-                  "finite": true,
-                  "round": true,
-                  "integer": true,
-                  "optional": true,
-                  "ignoreErrors": true,
-                  "disableAddressFallbackOffsets": true,
-                  "noAddressFallback": true
-                },
-                {
-                  "label": "Alfen SCN Max Current L1",
-                  "fc": 16,
-                  "address": 1416,
-                  "length": 2,
-                  "dataType": "float32",
-                  "wordOrder": "le",
-                  "unitId": 200,
-                  "minValue": 0,
-                  "maxValue": 80,
-                  "finite": true,
-                  "round": true,
-                  "integer": true,
-                  "optional": true,
-                  "ignoreErrors": true,
-                  "disableAddressFallbackOffsets": true,
-                  "noAddressFallback": true
-                },
-                {
-                  "label": "Alfen SCN Max Current L2",
-                  "fc": 16,
-                  "address": 1418,
-                  "length": 2,
-                  "dataType": "float32",
-                  "wordOrder": "le",
-                  "unitId": 200,
-                  "minValue": 0,
-                  "maxValue": 80,
-                  "finite": true,
-                  "round": true,
-                  "integer": true,
-                  "optional": true,
-                  "ignoreErrors": true,
-                  "disableAddressFallbackOffsets": true,
-                  "noAddressFallback": true
-                },
-                {
-                  "label": "Alfen SCN Max Current L3",
-                  "fc": 16,
-                  "address": 1420,
-                  "length": 2,
-                  "dataType": "float32",
-                  "wordOrder": "le",
-                  "unitId": 200,
-                  "minValue": 0,
-                  "maxValue": 80,
-                  "finite": true,
-                  "round": true,
-                  "integer": true,
-                  "optional": true,
-                  "ignoreErrors": true,
-                  "disableAddressFallbackOffsets": true,
-                  "noAddressFallback": true
-                }
-              ],
               "mirrorWriteReason": "0.5.122: All-IDs profile mirrors socket current to Socket 2 and SCN phase registers as individual FC16 len=2 writes."
             },
             "unitId": 1,
@@ -120660,7 +120366,7 @@
             "noAddressFallback": true
           },
           "unit": "A",
-          "desc": "Alfen ACE Max Current: primary write UID1 FC16@1209 len=2; the same value is mirrored to UID2 and UID200/SCN where supported. Independent SCN keepalive is disabled to avoid stale override.",
+          "desc": "Alfen ACE Modbus Server Max Current: document registers 1210..1211, protocol address 1209..1210. Public alias writes primary socket only; no automatic UID2/SCN mirroring in 0.5.124.",
           "fc": 16,
           "address": 1209,
           "length": 2,
@@ -120758,79 +120464,14 @@
               "optional": true,
               "finite": true,
               "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "mirrorWrites": [
-                {
-                  "label": "Alfen Socket 1 Charge Using Phases FC6 compatibility write",
-                  "fc": 6,
-                  "address": 1214,
-                  "length": 1,
-                  "dataType": "uint16",
-                  "unitId": 1,
-                  "allowedValues": [
-                    1,
-                    3
-                  ],
-                  "valueMap": {
-                    "1": 1,
-                    "3": 3
-                  },
-                  "finite": true,
-                  "optional": true,
-                  "ignoreErrors": true,
-                  "disableAddressFallbackOffsets": true,
-                  "noAddressFallback": true
-                },
-                {
-                  "label": "Alfen Socket 2 Charge Using Phases",
-                  "fc": 16,
-                  "address": 1214,
-                  "length": 1,
-                  "dataType": "uint16",
-                  "unitId": 2,
-                  "allowedValues": [
-                    1,
-                    3
-                  ],
-                  "valueMap": {
-                    "1": 1,
-                    "3": 3
-                  },
-                  "finite": true,
-                  "optional": true,
-                  "ignoreErrors": true,
-                  "disableAddressFallbackOffsets": true,
-                  "noAddressFallback": true
-                },
-                {
-                  "label": "Alfen Socket 2 Charge Using Phases FC6 compatibility write",
-                  "fc": 6,
-                  "address": 1214,
-                  "length": 1,
-                  "dataType": "uint16",
-                  "unitId": 2,
-                  "allowedValues": [
-                    1,
-                    3
-                  ],
-                  "valueMap": {
-                    "1": 1,
-                    "3": 3
-                  },
-                  "finite": true,
-                  "optional": true,
-                  "ignoreErrors": true,
-                  "disableAddressFallbackOffsets": true,
-                  "noAddressFallback": true
-                }
-              ]
+              "noAddressFallback": true
             },
             "unitId": 1,
             "disableAddressFallbackOffsets": true,
             "noAddressFallback": true
           },
           "unit": "phases",
-          "desc": "Alfen ACE Charge using 1 or 3 phases: document register 1215, protocol address 1214. Adapter writes FC16 and also an optional FC6 compatibility write on socket IDs; value 1 or 3 only.",
+          "desc": "Alfen ACE Charge using 1 or 3 phases: document register 1215, protocol address 1214. Public alias writes only the primary socket; no automatic UID2/SCN mirroring in 0.5.124.",
           "fc": 16,
           "address": 1214,
           "length": 1,
@@ -122432,12 +122073,14 @@
         "resetLegacyPhaseMemoryToDefault": true,
         "phaseModeWriteFunction": "FC16 len=1 at protocol address 1214 (document register 1215)",
         "manualAliasWriteBypassesCooldown": true,
-        "allIdsWriteMirrors": true,
+        "allIdsWriteMirrors": false,
         "scnPrimaryControl": false,
-        "scnMirrorOnly": true,
-        "socketPrimaryFixVersion": "0.5.123"
+        "scnMirrorOnly": false,
+        "socketPrimaryFixVersion": "0.5.124",
+        "autoMirrorWrites": "disabled-by-default",
+        "diagnosis": "SCN_MAX_CURRENT_ENABLE=0 or Socket-2 illegal address means UID200/UID2 must not be mirrored from public aliases."
       },
-      "version": "0.5.123",
+      "version": "0.5.124",
       "meta": {
         "addressesAuditedAgainst": "Alfen ACE Modbus v1.0 EN 05/2025; Max Current writes document 1210..1211 as protocol 1209 len=2 FC16; Charge Using Phases writes document 1215 as protocol 1214 len=1 FC06; both are watchdog-refreshed after command.",
         "registerGuide": "Alfen ACE Configuration Guide Modbus for ACE v1.0 EN 05/2025",
@@ -122448,7 +122091,7 @@
         "0.5.119": "Phase command writes use the audited protocol address 1214 with FC16 length 1; phase command seeding now prefers aliases.ctrl.phaseMode over old persistent memory; aliases accept UI strings like \"3 phases\" and \"16 A\".",
         "0.5.122": "DeviceRuntime now consumes driverHints.modbus.alfen/top-level Alfen hints; if SCN mirror writes fail the adapter logs it clearly because setpointAccountedFor=false means the charger is not accounting the socket setpoint."
       },
-      "revision": "alfen-allids-socket-primary-0.5.123",
+      "revision": "alfen-socket-only-runtimefix-0.5.124",
       "docVersion": "Alfen ACE Modbus v1.0 EN 05/2025",
       "changelog": {
         "0.5.120": "Manual Alfen alias writes bypass automatic cooldown, stale phase=1 memory is ignored on startup, and Charge Using Phases writes use audited FC16@1214 len=1.",
@@ -122457,8 +122100,8 @@
       "news": {
         "0.5.123": "Alfen ACE: All-IDs/Station template uses Socket-1 as the primary writable command path again and only mirrors to Socket-2/SCN optionally. Fixes non-accounted setpoints when SCN is disabled (sCN_MAX_CURRENT_ENABLE=0)."
       },
-      "title": "Alfen NG9xx (ACE) Station/All IDs Socket primary + optional SCN (Modbus TCP)",
-      "desc": "Reads UID1/UID2/UID200 where available. User commands write Socket 1 first (UID1 FC16@1209), then best-effort mirror to Socket 2 and SCN. Use this when SCN is disabled or unknown; sCN_MAX_CURRENT_ENABLE=0 is handled as non-fatal."
+      "title": "Alfen NG9xx (ACE) Station/All IDs read, Socket-1 primary write (Modbus TCP)",
+      "desc": "Reads UID1/UID2/UID200 where available, but public aliases write only the selected primary Socket-1 path by default. UID2/SCN are not mirrored automatically unless their native datapoints are written directly."
     },
     {
       "id": "pv_inverter.kostal.PikoModbusSunSpecBigEndianImpl",

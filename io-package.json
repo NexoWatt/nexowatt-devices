@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.123",
+    "version": "0.5.124",
     "news": {
+      "0.5.124": {
+        "en": "Alfen ACE cleanup: fix All-IDs alias runtime helpers, make public aliases Socket-1 primary without automatic UID2/SCN mirroring, correct chargingReleased when setpoint is not accounted, and normalize implausible Alfen validity-time aliases.",
+        "de": "Alfen-ACE-Bereinigung: All-IDs-Alias-Runtime-Helfer korrigiert, öffentliche Aliase schreiben Socket 1 primär ohne automatische UID2/SCN-Spiegelung, chargingReleased bei nicht berücksichtigtem Setpoint korrigiert und unplausible Alfen-Validity-Time-Aliase normalisiert."
+      },
       "0.5.122": {
         "en": "Alfen ACE All-IDs control: use SCN current as primary control in Station/All-IDs template, mirror writes independently to Socket 1/2, keep phase writes with FC16 plus optional FC6 compatibility, and make chargingReleased reflect charger-side accounted/valid-time readbacks.",
         "de": "Alfen ACE All-IDs-Steuerung: Station/All-IDs-Template nutzt SCN-Strom als primäre Steuerung, spiegelt Schreibbefehle unabhängig auf Socket 1/2, hält Phasenbefehle per FC16 plus optionalem FC6-Kompatibilitätsschreibzugriff und lässt chargingReleased den echten Wallbox-Status über Accounted/Valid-Time anzeigen."
