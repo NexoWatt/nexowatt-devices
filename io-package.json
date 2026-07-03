@@ -1,11 +1,11 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.122",
+    "version": "0.5.123",
     "news": {
       "0.5.122": {
-        "en": "Alfen ACE diagnostics/fix: Runtime now consistently reads Alfen hints from driverHints.modbus.alfen and top-level template metadata, exposes all-IDs behavior correctly, and warns when optional Socket2/SCN mirror writes fail so a Socket-vs-SCN EMS mode mismatch is visible.",
-        "de": "Alfen-ACE-Diagnose/Fix: Die Runtime liest Alfen-Hinweise jetzt konsistent aus driverHints.modbus.alfen und Template-Metadaten, behandelt All-IDs-Verhalten korrekt und warnt bei fehlgeschlagenen Socket2-/SCN-Spiegelschreibungen, damit ein Socket-vs-SCN-EMS-Modus-Mismatch sichtbar wird."
+        "en": "Alfen ACE All-IDs control: use SCN current as primary control in Station/All-IDs template, mirror writes independently to Socket 1/2, keep phase writes with FC16 plus optional FC6 compatibility, and make chargingReleased reflect charger-side accounted/valid-time readbacks.",
+        "de": "Alfen ACE All-IDs-Steuerung: Station/All-IDs-Template nutzt SCN-Strom als primäre Steuerung, spiegelt Schreibbefehle unabhängig auf Socket 1/2, hält Phasenbefehle per FC16 plus optionalem FC6-Kompatibilitätsschreibzugriff und lässt chargingReleased den echten Wallbox-Status über Accounted/Valid-Time anzeigen."
       },
       "0.5.121": {
         "en": "Alfen ACE all-IDs station mode: station template now reads Socket 1, Socket 2 and SCN/server-address 200 values, mirrors current/phase commands to Socket 2 and SCN where supported, and retries watchdog writes without long unsupported latches.",
@@ -452,6 +452,10 @@
       "0.2.0": {
         "en": "Rename adapter to a valid id (no dots) and remove any external template references. Add generic built-in templates for Modbus/MQTT/HTTP.",
         "de": "Adapter auf gültige ID umbenannt (keine Punkte) und externe Template-Referenzen entfernt. Generische Built-in-Templates für Modbus/MQTT/HTTP ergänzt."
+      },
+      "0.5.123": {
+        "en": "Alfen ACE: fix Station/All-IDs profile to use Socket-1 as primary write path again, with Socket-2/SCN only as optional mirrors. Prevents SCN-disabled stations from ignoring current setpoints while reporting setpointAccountedFor=false.",
+        "de": "Alfen ACE: Station/All-IDs-Profil nutzt wieder Socket 1 als primären Schreibpfad; Socket 2/SCN sind nur optionale Spiegelungen. Verhindert, dass Stationen mit deaktiviertem SCN Stromsollwerte ignorieren und setpointAccountedFor=false melden."
       }
     },
     "title": "NexoWatt Devices",

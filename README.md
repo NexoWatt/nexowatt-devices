@@ -553,3 +553,7 @@ Alfen Max Current values are refreshed every 5 seconds from the last commanded v
 - Alfen command aliases parse UI values such as `16 A` and `3 phases`, not only plain numbers.
 - Alfen phase keepalive is seeded from `aliases.ctrl.phaseMode` before older persistent setpoint memory, preventing an old `1 phase` value from overriding a manual/EMS `3 phases` command after restart.
 - Added Alfen `aliases.r.phaseMode` readback alias so dashboards can distinguish commanded phase mode from charger readback.
+
+### 0.5.122 - Alfen ACE All-IDs control follow-up
+
+The Alfen ACE Station/All-IDs template now treats SCN current as the primary control path and mirrors the same current command to Socket 1 and Socket 2 where supported. This matches installations configured for TCP/IP EMS Control Mode = SCN, while still keeping socket writes available. Mirror write results are surfaced in the log for the first attempts so integrators can see which Unit-ID actually accepts control. The `chargingReleased` alias now reflects charger-side accounted/valid-time readback instead of only the requested command value.
