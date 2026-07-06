@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.126",
+    "version": "0.5.127",
     "news": {
+      "0.5.127": {
+        "en": "Sungrow hybrid direction fix: restore documented charge/discharge command mapping while keeping signed ESS convention (+W discharge, -W charge).",
+        "de": "Sungrow-Hybrid-Richtungsfix: dokumentiertes Charge/Discharge-Command-Mapping wiederhergestellt, bei unveränderter ESS-Vorzeichenlogik (+W entladen, -W laden)."
+      },
       "0.5.126": {
         "en": "Sungrow hybrid control fix: correct charge/discharge command mapping for signed battery power setpoints so positive values discharge and negative values charge.",
         "de": "Sungrow-Hybrid-Steuerung korrigiert: Charge/Discharge-Command-Mapping für signierte Batteriesollwerte korrigiert, damit positive Werte entladen und negative Werte laden."

@@ -566,3 +566,7 @@ The Sungrow residential hybrid/Logger/iHomeManager templates refresh signed batt
 ### 0.5.126
 
 - Sungrow hybrid battery control: corrected charge/discharge command mapping for signed power setpoints. Positive `aliases.ctrl.powerSetpointW` values now command discharge; negative values command charge.
+
+### Sungrow direction correction (0.5.127)
+
+Sungrow hybrid ESS signed power commands now use the documented command mapping again: `0xAA`/`170` = charge and `0xBB`/`187` = discharge, while the adapter/EOS convention remains unchanged: positive `aliases.ctrl.powerSetpointW` discharges the battery, negative values charge it. The convenience aliases `aliases.ctrl.chargePowerW` and `aliases.ctrl.dischargePowerW` therefore map to the correct physical direction.
