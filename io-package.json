@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.125",
+    "version": "0.5.126",
     "news": {
+      "0.5.126": {
+        "en": "Sungrow hybrid control fix: correct charge/discharge command mapping for signed battery power setpoints so positive values discharge and negative values charge.",
+        "de": "Sungrow-Hybrid-Steuerung korrigiert: Charge/Discharge-Command-Mapping für signierte Batteriesollwerte korrigiert, damit positive Werte entladen und negative Werte laden."
+      },
       "0.5.124": {
         "en": "Alfen ACE cleanup: fix All-IDs alias runtime helpers, make public aliases Socket-1 primary without automatic UID2/SCN mirroring, correct chargingReleased when setpoint is not accounted, and normalize implausible Alfen validity-time aliases.",
         "de": "Alfen-ACE-Bereinigung: All-IDs-Alias-Runtime-Helfer korrigiert, öffentliche Aliase schreiben Socket 1 primär ohne automatische UID2/SCN-Spiegelung, chargingReleased bei nicht berücksichtigtem Setpoint korrigiert und unplausible Alfen-Validity-Time-Aliase normalisiert."
