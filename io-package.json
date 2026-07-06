@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.127",
+    "version": "0.5.128",
     "news": {
+      "0.5.128": {
+        "en": "Sungrow ESS control diagnostics: move EMS/charge-discharge control registers into the fast poll, speed up hybrid live polling to 2s, and refresh battery power setpoints every 5s for quicker storage response.",
+        "de": "Sungrow-ESS-Steuerdiagnose: EMS-/Lade-Entlade-Steuerregister werden jetzt im Fast-Poll gelesen, Hybrid-Livewerte laufen mit 2 s und Batterie-Leistungssollwerte werden alle 5 s erneuert."
+      },
       "0.5.127": {
         "en": "Sungrow hybrid direction fix: restore documented charge/discharge command mapping while keeping signed ESS convention (+W discharge, -W charge).",
         "de": "Sungrow-Hybrid-Richtungsfix: dokumentiertes Charge/Discharge-Command-Mapping wiederhergestellt, bei unveränderter ESS-Vorzeichenlogik (+W entladen, -W laden)."

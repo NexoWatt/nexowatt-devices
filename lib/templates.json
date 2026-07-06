@@ -146410,10 +146410,10 @@
       "driverHints": {
         "modbus": {
           "unitIdDefault": 1,
-          "minCommandIntervalMs": 500,
-          "writeThrottleMs": 1000,
-          "commandCadenceMs": 500,
-          "writeMaxPerTick": 1,
+          "minCommandIntervalMs": 250,
+          "writeThrottleMs": 500,
+          "commandCadenceMs": 250,
+          "writeMaxPerTick": 2,
           "reconnectBackoffMs": 2000,
           "timeoutMs": 5000,
           "maxReadRegs": 20,
@@ -146563,7 +146563,7 @@
             "targets": [
               {
                 "dpId": "sET_ACTIVE_POWER",
-                "delayMs": 5000,
+                "delayMs": 3000,
                 "useLastCommandValue": true,
                 "logLevel": "debug"
               }
@@ -146572,7 +146572,7 @@
           "seedSetpointKeepaliveFromAliases": true,
           "setpointKeepalive": {
             "enabled": true,
-            "checkPeriodMs": 5000,
+            "checkPeriodMs": 2500,
             "requireEverWritten": false,
             "useLastCommandValue": true,
             "allowDuringPoll": true,
@@ -146581,8 +146581,8 @@
             "targets": [
               {
                 "setpointDpId": "sET_ACTIVE_POWER",
-                "intervalMs": 10000,
-                "minWriteIntervalMs": 5000,
+                "intervalMs": 5000,
+                "minWriteIntervalMs": 3000,
                 "useLastCommandValue": true,
                 "requireEverWritten": false,
                 "fallbackCommandSources": [
@@ -146598,7 +146598,7 @@
           }
         },
         "polling": {
-          "fastIntervalMs": 5000,
+          "fastIntervalMs": 2000,
           "slowIntervalMs": 300000,
           "fastDpIds": [
             "sYSTEM_STATE",
@@ -146616,7 +146616,21 @@
             "InverterAlarm",
             "GridSideFault",
             "SystemFault1",
-            "SystemFault2"
+            "SystemFault2",
+            "eMS_MODE_SELECTION",
+            "cHARGE_DISCHARGE_COMMAND",
+            "cHARGE_DISCHARGE_POWER",
+            "cHARGE_DISCHARGE_POWER_WIDE",
+            "ExternalEMSHeartbeat",
+            "sET_MAX_CHARGE_POWER",
+            "sET_MAX_DISCHARGE_POWER",
+            "sET_MAX_SOC",
+            "sET_MIN_SOC",
+            "eXPORT_POWER_LIMIT",
+            "eXPORT_POWER_LIMIT_WIDE",
+            "eXPORT_POWER_PERCENTAGE",
+            "WMaxLim_Ena",
+            "wMaxLimPct"
           ],
           "initialFastOnly": true,
           "slowDpIds": [
@@ -148540,10 +148554,10 @@
       "driverHints": {
         "modbus": {
           "unitIdDefault": 247,
-          "minCommandIntervalMs": 500,
-          "writeThrottleMs": 1000,
-          "commandCadenceMs": 500,
-          "writeMaxPerTick": 1,
+          "minCommandIntervalMs": 250,
+          "writeThrottleMs": 500,
+          "commandCadenceMs": 250,
+          "writeMaxPerTick": 2,
           "reconnectBackoffMs": 2000,
           "timeoutMs": 5000,
           "maxReadRegs": 80,
@@ -148674,7 +148688,7 @@
             "targets": [
               {
                 "dpId": "sET_ACTIVE_POWER",
-                "delayMs": 5000,
+                "delayMs": 3000,
                 "useLastCommandValue": true,
                 "logLevel": "debug"
               }
@@ -148683,7 +148697,7 @@
           "seedSetpointKeepaliveFromAliases": true,
           "setpointKeepalive": {
             "enabled": true,
-            "checkPeriodMs": 5000,
+            "checkPeriodMs": 3000,
             "requireEverWritten": false,
             "useLastCommandValue": true,
             "allowDuringPoll": true,
@@ -148692,8 +148706,8 @@
             "targets": [
               {
                 "setpointDpId": "sET_ACTIVE_POWER",
-                "intervalMs": 10000,
-                "minWriteIntervalMs": 5000,
+                "intervalMs": 5000,
+                "minWriteIntervalMs": 3000,
                 "useLastCommandValue": true,
                 "requireEverWritten": false,
                 "fallbackCommandSources": [
@@ -148709,7 +148723,7 @@
           }
         },
         "polling": {
-          "fastIntervalMs": 5000,
+          "fastIntervalMs": 3000,
           "slowIntervalMs": 60000,
           "fastDpIds": [
             "pV_POWER",
@@ -148721,7 +148735,14 @@
             "EToday",
             "TotWhOut",
             "ArraySwitchStatus",
-            "TotalFaultyDevicesConnected"
+            "TotalFaultyDevicesConnected",
+            "eMS_MODE_SELECTION",
+            "cHARGE_DISCHARGE_COMMAND",
+            "cHARGE_DISCHARGE_POWER",
+            "ExternalEMSHeartbeat",
+            "eXPORT_POWER_LIMIT",
+            "eXPORT_POWER_PERCENTAGE",
+            "wMaxLimPct"
           ],
           "initialFastOnly": true
         }
@@ -149760,10 +149781,10 @@
       "driverHints": {
         "modbus": {
           "unitIdDefault": 247,
-          "minCommandIntervalMs": 500,
-          "writeThrottleMs": 1000,
-          "commandCadenceMs": 500,
-          "writeMaxPerTick": 1,
+          "minCommandIntervalMs": 250,
+          "writeThrottleMs": 500,
+          "commandCadenceMs": 250,
+          "writeMaxPerTick": 2,
           "reconnectBackoffMs": 2000,
           "timeoutMs": 5000,
           "maxReadRegs": 80,
@@ -149861,7 +149882,7 @@
             "targets": [
               {
                 "dpId": "sET_ACTIVE_POWER",
-                "delayMs": 5000,
+                "delayMs": 3000,
                 "useLastCommandValue": true,
                 "logLevel": "debug"
               }
@@ -149870,7 +149891,7 @@
           "seedSetpointKeepaliveFromAliases": true,
           "setpointKeepalive": {
             "enabled": true,
-            "checkPeriodMs": 5000,
+            "checkPeriodMs": 3000,
             "requireEverWritten": false,
             "useLastCommandValue": true,
             "allowDuringPoll": true,
@@ -149879,8 +149900,8 @@
             "targets": [
               {
                 "setpointDpId": "sET_ACTIVE_POWER",
-                "intervalMs": 10000,
-                "minWriteIntervalMs": 5000,
+                "intervalMs": 5000,
+                "minWriteIntervalMs": 3000,
                 "useLastCommandValue": true,
                 "requireEverWritten": false,
                 "fallbackCommandSources": [
@@ -149896,7 +149917,7 @@
           }
         },
         "polling": {
-          "fastIntervalMs": 5000,
+          "fastIntervalMs": 3000,
           "slowIntervalMs": 60000,
           "fastDpIds": [
             "aCTIVE_POWER",
@@ -149905,7 +149926,13 @@
             "bATTERY_POWER",
             "sOC",
             "ChargerChargingStatus",
-            "Hz"
+            "Hz",
+            "eMS_MODE_SELECTION",
+            "cHARGE_DISCHARGE_COMMAND",
+            "cHARGE_DISCHARGE_POWER",
+            "WMaxLim_Ena",
+            "wMaxLimPct",
+            "eXPORT_POWER_PERCENTAGE"
           ],
           "initialFastOnly": true
         }
