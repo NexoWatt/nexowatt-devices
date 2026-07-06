@@ -562,3 +562,7 @@ The Alfen ACE Station/All-IDs template now treats SCN current as the primary con
 
 The Sungrow residential hybrid/Logger/iHomeManager templates refresh signed battery power commands periodically.  A write to `aliases.ctrl.powerSetpointW` / `sET_ACTIVE_POWER` writes the required EMS mode, charge/discharge command and power helper registers together where possible, refreshes the command for the EMS watchdog, restores the last setpoint after reconnect, writes the external EMS/VPP heartbeat when available, and falls back to the wide-range power helper register for larger systems.
 
+
+### 0.5.126
+
+- Sungrow hybrid battery control: corrected charge/discharge command mapping for signed power setpoints. Positive `aliases.ctrl.powerSetpointW` values now command discharge; negative values command charge.
