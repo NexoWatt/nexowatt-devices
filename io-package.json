@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.123",
+    "version": "0.5.125",
     "news": {
+      "0.5.124": {
+        "en": "Alfen ACE cleanup: fix All-IDs alias runtime helpers, make public aliases Socket-1 primary without automatic UID2/SCN mirroring, correct chargingReleased when setpoint is not accounted, and normalize implausible Alfen validity-time aliases.",
+        "de": "Alfen-ACE-Bereinigung: All-IDs-Alias-Runtime-Helfer korrigiert, öffentliche Aliase schreiben Socket 1 primär ohne automatische UID2/SCN-Spiegelung, chargingReleased bei nicht berücksichtigtem Setpoint korrigiert und unplausible Alfen-Validity-Time-Aliase normalisiert."
+      },
       "0.5.122": {
         "en": "Alfen ACE All-IDs control: use SCN current as primary control in Station/All-IDs template, mirror writes independently to Socket 1/2, keep phase writes with FC16 plus optional FC6 compatibility, and make chargingReleased reflect charger-side accounted/valid-time readbacks.",
         "de": "Alfen ACE All-IDs-Steuerung: Station/All-IDs-Template nutzt SCN-Strom als primäre Steuerung, spiegelt Schreibbefehle unabhängig auf Socket 1/2, hält Phasenbefehle per FC16 plus optionalem FC6-Kompatibilitätsschreibzugriff und lässt chargingReleased den echten Wallbox-Status über Accounted/Valid-Time anzeigen."
@@ -456,6 +460,10 @@
       "0.5.123": {
         "en": "Alfen ACE: fix Station/All-IDs profile to use Socket-1 as primary write path again, with Socket-2/SCN only as optional mirrors. Prevents SCN-disabled stations from ignoring current setpoints while reporting setpointAccountedFor=false.",
         "de": "Alfen ACE: Station/All-IDs-Profil nutzt wieder Socket 1 als primären Schreibpfad; Socket 2/SCN sind nur optionale Spiegelungen. Verhindert, dass Stationen mit deaktiviertem SCN Stromsollwerte ignorieren und setpointAccountedFor=false melden."
+      },
+      "0.5.125": {
+        "en": "Sungrow hybrid ESS control fix: signed battery power now refreshes periodically, restores the last command after reconnect, writes EMS mode/command/power more atomically, supports the wide power register, and clamps commands to configured charge/discharge limits.",
+        "de": "Sungrow-Hybrid-ESS-Steuerung korrigiert: signierte Batterieleistung wird periodisch erneuert, nach Reconnect wiederhergestellt, EMS-Modus/Command/Leistung konsistenter geschrieben, Wide-Power-Register unterstützt und Sollwerte auf konfigurierte Lade-/Entladegrenzen begrenzt."
       }
     },
     "title": "NexoWatt Devices",

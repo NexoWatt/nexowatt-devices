@@ -557,3 +557,8 @@ Alfen Max Current values are refreshed every 5 seconds from the last commanded v
 ### 0.5.122 - Alfen ACE All-IDs control follow-up
 
 The Alfen ACE Station/All-IDs template now treats SCN current as the primary control path and mirrors the same current command to Socket 1 and Socket 2 where supported. This matches installations configured for TCP/IP EMS Control Mode = SCN, while still keeping socket writes available. Mirror write results are surfaced in the log for the first attempts so integrators can see which Unit-ID actually accepts control. The `chargingReleased` alias now reflects charger-side accounted/valid-time readback instead of only the requested command value.
+
+### Sungrow hybrid ESS control stability (0.5.125)
+
+The Sungrow residential hybrid/Logger/iHomeManager templates refresh signed battery power commands periodically.  A write to `aliases.ctrl.powerSetpointW` / `sET_ACTIVE_POWER` writes the required EMS mode, charge/discharge command and power helper registers together where possible, refreshes the command for the EMS watchdog, restores the last setpoint after reconnect, writes the external EMS/VPP heartbeat when available, and falls back to the wide-range power helper register for larger systems.
+
