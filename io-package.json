@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.128",
+    "version": "0.5.129",
     "news": {
+      "0.5.129": {
+        "en": "Alfen ACE control-stable template: reduce polling to essential registers, enforce Socket Unit-ID protocol writes, keep Max Current and phase commands alive every 5 s, and remove unstable All-IDs/SCN mirror control from the default profile.",
+        "de": "Alfen-ACE-Steuerung stabilisiert: Polling auf notwendige Register reduziert, Socket-Unit-ID-Schreibpfad strikt erzwungen, Max Current und Phasenbefehl alle 5 s gehalten und instabile All-IDs-/SCN-Spiegelsteuerung aus dem Standardprofil entfernt."
+      },
       "0.5.128": {
         "en": "Sungrow ESS control diagnostics: move EMS/charge-discharge control registers into the fast poll, speed up hybrid live polling to 2s, and refresh battery power setpoints every 5s for quicker storage response.",
         "de": "Sungrow-ESS-Steuerdiagnose: EMS-/Lade-Entlade-Steuerregister werden jetzt im Fast-Poll gelesen, Hybrid-Livewerte laufen mit 2 s und Batterie-Leistungssollwerte werden alle 5 s erneuert."

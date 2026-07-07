@@ -570,3 +570,15 @@ The Sungrow residential hybrid/Logger/iHomeManager templates refresh signed batt
 ### Sungrow direction correction (0.5.127)
 
 Sungrow hybrid ESS signed power commands now use the documented command mapping again: `0xAA`/`170` = charge and `0xBB`/`187` = discharge, while the adapter/EOS convention remains unchanged: positive `aliases.ctrl.powerSetpointW` discharges the battery, negative values charge it. The convenience aliases `aliases.ctrl.chargePowerW` and `aliases.ctrl.dischargePowerW` therefore map to the correct physical direction.
+
+## Alfen ACE EMS control note (0.5.129)
+
+The Alfen NG9xx ACE templates are intentionally reduced to control-critical registers.
+Use the Socket 1 control-only template for normal single-socket installations. The adapter writes **Modbus Server Max Current** every 5 seconds after a command so that the charger does not fall back to Safe Current before the Alfen validity timer expires. Positive current commands below 6 A are normalized to 6 A; 0 A remains the stop command. Phase switching is written only on explicit phase commands and once again after 5 seconds, not on every watchdog tick.
+
+For the charger to accept writes, ACE Service Installer / Eve Install must be configured for Active Load Balancing with Data Source **Energy Management System**, TCP/IP EMS mode **Socket**, Safe Current set, and writing maximum currents enabled. `aliases.r.setpointAccountedFor=true` confirms that the charger is accounting the written Socket Max Current.
+
+## Alfen ACE Control Fix 0.5.129
+
+Diese Version enthält ein reduziertes Alfen-Control-only-Profil für den EMS-Socket-Modus. Der steuernde Pfad ist bewusst klein gehalten: Socket Unit-ID 1/2, `sET_CHARGING_CURRENT` über FC16 auf Protokolladresse 1209 und ein 5-s-Watchdog, der den letzten Strombefehl erneuert. Positive Strombefehle unter 6 A werden auf 6 A normalisiert; 0 A bleibt Stop. Die Phasenumschaltung wird nicht zyklisch gespammt, sondern nur bei explizitem Kommando und einmaliger Wiederholung geschrieben.
+
