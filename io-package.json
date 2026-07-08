@@ -1,11 +1,15 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.131",
+    "version": "0.5.132",
     "news": {
+      "0.5.132": {
+        "en": "Sungrow Residential Hybrid EMS write-point support: sET_ACTIVE_POWER, sET_CHARGE_POWER and sET_DISCHARGE_POWER are now single EMS-facing datapoints; the Modbus driver writes External EMS mode, command, power and heartbeat automatically according to Sungrow V1.1.11.",
+        "de": "Sungrow Residential Hybrid EMS-Schreibpunkt-Unterstützung: sET_ACTIVE_POWER, sET_CHARGE_POWER und sET_DISCHARGE_POWER sind jetzt einzelne EMS-Datenpunkte; der Modbus-Treiber schreibt External-EMS-Modus, Kommando, Leistung und Heartbeat automatisch gemäß Sungrow V1.1.11."
+      },
       "0.5.131": {
-        "en": "Sungrow Residential Hybrid protocol V1.1.11: use External EMS mode 3 for storage setpoints, refresh heartbeat=20 on a 10s cadence, avoid fast polling of RW setting registers, add PV power limitation register 13018 and MG8RL/MG10RL device types.",
-        "de": "Sungrow Residential Hybrid Protokoll V1.1.11: Speicher-Sollwerte nutzen jetzt External EMS Mode 3, Heartbeat=20 wird im 10-s-Takt erneuert, RW-Setting-Register werden nicht mehr schnell gepollt, PV power limitation Register 13018 sowie MG8RL/MG10RL-Gerätetypen ergänzt."
+        "en": "Sungrow Residential Hybrid protocol V1.1.11: update hybrid template metadata/registers, add PV power limitation, MG8RL/MG10RL model codes, switch signed battery control to External EMS mode with fixed 20 s heartbeat, and reduce fast polling of RW registers.",
+        "de": "Sungrow Residential Hybrid Protokoll V1.1.11: Hybrid-Template/Register aktualisiert, PV power limitation ergänzt, MG8RL/MG10RL-Modellcodes ergänzt, signierte Speichersteuerung auf External EMS Mode mit festem 20-s-Heartbeat umgestellt und schnelles Polling von RW-Registern reduziert."
       },
       "0.5.130": {
         "en": "Sungrow ESS heartbeat fix: write External EMS/VPP heartbeat as a fixed 20 s timeout instead of an invalid counter, throttle heartbeat refreshes, and keep primary storage power commands running if optional Sungrow helper writes are rejected.",

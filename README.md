@@ -268,8 +268,8 @@ Der Adapter enthält zusätzliche Sungrow-Templates für direkte Wechselrichter-
 - **Sungrow Residential Hybrid V1.1.11 (Modbus)**
   - `templateId`: `ess.sungrow.ResidentialHybridV119`
   - Kategorie: `ESS`
-  - Wichtig: `pV_POWER`, `W`, `gRID_POWER`, `lOAD_POWER`, `bATTERY_POWER`, `Soc`, Energiewerte, Fehler-Bitfelder, Firmware-Versionen
-  - Steuerung: `aliases.ctrl.powerSetpointW` schreibt als signierter Leistungs-Sollwert: positiv = Entladen, negativ = Laden, `0` = Stop. Der Adapter setzt jetzt gezielt **External EMS mode = 3**, schreibt Lade-/Entlade-Kommando und Leistungsregister und erneuert `ExternalEMSHeartbeat=20` im stabilen ca. 10-s-Takt. RW-Setting-Register werden bewusst nicht schnell gepollt, damit WiNet-S/WiNet-S2/Logger-Weiterleitung nicht überlastet wird. Neu ergänzt: `PVPowerLimitation` (Register 13018) sowie MG8RL/MG10RL-Gerätetypen.
+  - Wichtig: `pV_POWER`, `W`, `gRID_POWER`, `lOAD_POWER`, `bATTERY_POWER`, `Soc`, Energiewerte, Fehler-Bitfelder, Firmware-Versionen, PV power limitation und MG8RL/MG10RL-Modellcodes
+  - Steuerung: `aliases.ctrl.powerSetpointW` schreibt als signierter Leistungs-Sollwert: positiv = Entladen, negativ = Laden, `0` = Stop. Der Adapter setzt dabei automatisch External EMS Mode (`13050=3`), Lade-/Entlade-Kommando `13051`, Leistungsregister `13052` und hält den External-EMS-Heartbeat `13080` mit `20 s` aktiv.
 
 - **Sungrow Logger1000/3000/4000 (Modbus)**
   - `templateId`: `ess.sungrow.Logger1000_3000_4000`
@@ -571,11 +571,11 @@ The Sungrow residential hybrid/Logger/iHomeManager templates refresh signed batt
 
 Sungrow hybrid ESS signed power commands now use the documented command mapping again: `0xAA`/`170` = charge and `0xBB`/`187` = discharge, while the adapter/EOS convention remains unchanged: positive `aliases.ctrl.powerSetpointW` discharges the battery, negative values charge it. The convenience aliases `aliases.ctrl.chargePowerW` and `aliases.ctrl.dischargePowerW` therefore map to the correct physical direction.
 
-### Sungrow Residential Hybrid Protocol V1.1.11 (0.5.131)
+### Sungrow Residential Hybrid protocol V1.1.11 (0.5.131)
 
-The Sungrow Residential Hybrid template now follows protocol **V1.1.11** for SH/RS/RT/T and MG RL hybrid inverters. Signed storage control uses **EMS mode 3 (External EMS)**, writes `Charge/discharge command` (13051), `Charge/discharge power` (13052) or the wide-range helper (33148), and refreshes `ExternalEMSHeartbeat=20` roughly every 10 seconds. Fast polling is limited to RO operating values; RW setting registers are intentionally kept out of the fast poll loop.
+The residential hybrid template is aligned with **Communication Protocol of Residential Hybrid Inverter V1.1.11 EN (2025-11-17)**. Template addresses remain protocol addresses (`documentation register - 1`), U32/S32 values use low-word-first order, and signed ESS control now uses **External EMS Mode** (`EMS mode selection` register 13050 = `3`) with a fixed `External EMS heartbeat` value of `20 s` on register 13080. `sET_ACTIVE_POWER` keeps the EOS convention: positive values discharge, negative values charge, zero stops.
 
-Additional protocol coverage: `PVPowerLimitation` at register 13018 and device type labels for MG8RL/MG10RL. Register addresses in the JSON remain protocol addresses, i.e. Sungrow documentation register minus 1.
+The V1.1.10/V1.1.11 additions are included: `PVPowerLimitation` (document register 13018 / protocol address 13017), firmware information registers, Channel 2 meter registers, and device type states for `MG8RL`/`MG10RL`. Fast polling is intentionally limited to live read-only values; RW setting registers are no longer polled every 2 seconds to avoid stressing WiNet/Logger forwarding.
 
 ## Alfen ACE EMS control note (0.5.129)
 
@@ -588,3 +588,15 @@ For the charger to accept writes, ACE Service Installer / Eve Install must be co
 
 Diese Version enthält ein reduziertes Alfen-Control-only-Profil für den EMS-Socket-Modus. Der steuernde Pfad ist bewusst klein gehalten: Socket Unit-ID 1/2, `sET_CHARGING_CURRENT` über FC16 auf Protokolladresse 1209 und ein 5-s-Watchdog, der den letzten Strombefehl erneuert. Positive Strombefehle unter 6 A werden auf 6 A normalisiert; 0 A bleibt Stop. Die Phasenumschaltung wird nicht zyklisch gespammt, sondern nur bei explizitem Kommando und einmaliger Wiederholung geschrieben.
 
+
+### Sungrow EMS single-write datapoints (0.5.132)
+
+Sungrow Residential Hybrid control now exposes EMS-friendly virtual write datapoints.  EMS integrations only need to write a power datapoint; the Modbus driver internally translates that value into the Sungrow V1.1.11 control sequence: ensure `EMS mode selection` 13050 = `3` (External EMS), write `Charge/discharge command` 13051 and `Charge/discharge power` 13052 together via one FC16 block, and keep `External EMS heartbeat` 13080 refreshed as fixed `20 s` timeout value.
+
+Available EMS write points:
+
+- `sET_ACTIVE_POWER` / `aliases.ctrl.powerSetpointW`: signed W, positive = discharge, negative = charge, `0` = stop.
+- `sET_CHARGE_POWER`: positive W charge command, `0` = stop.
+- `sET_DISCHARGE_POWER`: positive W discharge command, `0` = stop.
+
+Helper registers such as `eMS_MODE_SELECTION`, `cHARGE_DISCHARGE_COMMAND`, `cHARGE_DISCHARGE_POWER`, and `ExternalEMSHeartbeat` do not have to be assigned by EMS logic.  They remain visible for diagnostics/manual tests, but the adapter writes them automatically from the public power setpoint.
