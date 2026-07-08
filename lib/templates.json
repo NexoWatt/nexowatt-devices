@@ -124859,8 +124859,8 @@
       },
       "category": "ESS",
       "manufacturer": "Sungrow",
-      "model": "Residential Hybrid Inverter SH/RS/RT/T/MG V1.1.9",
-      "name": "Sungrow Residential Hybrid Inverter (SHxxRS/RT/T, MG RL) Modbus V1.1.9",
+      "model": "Residential Hybrid Inverter SH/RS/RT/T/MG V1.1.11",
+      "name": "Sungrow Residential Hybrid Inverter (SHxxRS/RT/T, MG RL) Modbus V1.1.11",
       "protocols": [
         "modbusTcp",
         "modbusRtu"
@@ -124947,6 +124947,43 @@
               "dataType": "uint16",
               "nanToNull": true
             }
+          },
+          "states": {
+            "3351": "SH3.0RS",
+            "3341": "SH3.6RS",
+            "3352": "SH4.0RS",
+            "3343": "SH5.0RS",
+            "3344": "SH6.0RS",
+            "3354": "SH8.0RS",
+            "3355": "SH10RS",
+            "3584": "SH5.0RT",
+            "3585": "SH6.0RT",
+            "3586": "SH8.0RT",
+            "3587": "SH10RT",
+            "3600": "SH5.0RT-20",
+            "3601": "SH6.0RT-20",
+            "3602": "SH8.0RT-20",
+            "3603": "SH10RT-20",
+            "3596": "SH5.0RT-V112",
+            "3597": "SH6.0RT-V112",
+            "3598": "SH8.0RT-V112",
+            "3599": "SH10RT-V112",
+            "3592": "SH5.0RT-V122",
+            "3593": "SH6.0RT-V122",
+            "3594": "SH8.0RT-V122",
+            "3595": "SH10RT-V122",
+            "3616": "SH5T",
+            "3617": "SH6T",
+            "3618": "SH8T",
+            "3619": "SH10T",
+            "3620": "SH12T",
+            "3621": "SH15T",
+            "3622": "SH20T",
+            "3624": "SH25T",
+            "3367": "MG5RL",
+            "3368": "MG6RL",
+            "3369": "MG8RL",
+            "3370": "MG10RL"
           }
         },
         {
@@ -124984,6 +125021,11 @@
               "dataType": "uint16",
               "nanToNull": true
             }
+          },
+          "states": {
+            "0": "Single phase",
+            "1": "3P4L",
+            "2": "3P3L"
           }
         },
         {
@@ -137871,6 +137913,43 @@
               "dataType": "uint16",
               "nanToNull": true
             }
+          },
+          "states": {
+            "0": "Running (on-grid)",
+            "64": "Running (on-grid)",
+            "20": "Microgrid operation",
+            "1024": "Running in maintain mode",
+            "2048": "Running in compulsory mode",
+            "4096": "Running (off-grid)",
+            "8192": "Open loop",
+            "16384": "Running in External EMS mode",
+            "16385": "Emergency charging operation",
+            "4369": "Uninitialized",
+            "32768": "Stop",
+            "1": "Stop",
+            "4864": "Key stop",
+            "2": "Key stop",
+            "5376": "Emergency stop",
+            "4": "Emergency stop",
+            "5120": "Standby",
+            "8": "Standby",
+            "4608": "Initial standby",
+            "16": "Initial standby",
+            "5632": "Starting",
+            "32": "Starting",
+            "6144": "Intelligent station building status",
+            "37120": "Warn running",
+            "33024": "Derating running",
+            "128": "Derating running",
+            "33280": "Dispatch running",
+            "21760": "Fault",
+            "256": "Fault",
+            "5888": "AFCI self-test shutdown",
+            "6400": "Safe mode",
+            "65": "Off-grid charge",
+            "512": "Update failed",
+            "9472": "Communicate fault",
+            "9473": "Restarting"
           }
         },
         {
@@ -139559,6 +139638,36 @@
           }
         },
         {
+          "id": "PVPowerLimitation",
+          "name": "PV power limitation",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 13017,
+              "length": 1,
+              "dataType": "uint16",
+              "trueValue": 170,
+              "toBoolean": true,
+              "falseValue": 85,
+              "nanToNull": true
+            },
+            "write": {
+              "fc": 6,
+              "address": 13017,
+              "length": 1,
+              "dataType": "uint16",
+              "trueValue": 170,
+              "toBoolean": true,
+              "falseValue": 85
+            }
+          },
+          "description": "Sungrow V1.1.11 RW register 13018: true=0xAA Limit PV, false=0x55 Allow PV. Only SHT models are supported."
+        },
+        {
           "id": "eMS_MODE_SELECTION",
           "name": "EMS mode selection",
           "role": "level",
@@ -139579,6 +139688,12 @@
               "length": 1,
               "dataType": "uint16"
             }
+          },
+          "states": {
+            "0": "Self-consumption",
+            "2": "Compulsory",
+            "3": "External EMS",
+            "4": "VPP"
           }
         },
         {
@@ -139602,6 +139717,11 @@
               "length": 1,
               "dataType": "uint16"
             }
+          },
+          "states": {
+            "170": "Charge",
+            "187": "Discharge",
+            "204": "Stop"
           }
         },
         {
@@ -139623,21 +139743,25 @@
               "fc": 6,
               "address": 13051,
               "length": 1,
-              "dataType": "uint16"
+              "dataType": "uint16",
+              "minValue": 0,
+              "maxValue": 65535,
+              "round": true
             }
           },
           "unit": "W"
         },
         {
           "id": "sET_ACTIVE_POWER",
-          "name": "Signed battery power setpoint (+discharge / -charge / 0 stop)",
+          "name": "Signed battery power setpoint (+discharge / -charge / 0 stop, External EMS)",
           "role": "level.power",
           "type": "number",
           "rw": "wo",
           "source": {
             "kind": "modbus"
           },
-          "unit": "W"
+          "unit": "W",
+          "description": "Writes EMS mode 3, charge/discharge command 13051, power 13052/33148 and ExternalEMSHeartbeat=20 using the Sungrow residential hybrid V1.1.11 protocol."
         },
         {
           "id": "sET_MAX_SOC",
@@ -139986,7 +140110,10 @@
               "address": 33046,
               "length": 1,
               "dataType": "uint16",
-              "scaleFactor": 1
+              "scaleFactor": 1,
+              "minValue": 0,
+              "maxValue": 655350,
+              "round": true
             }
           },
           "unit": "W",
@@ -140013,7 +140140,10 @@
               "address": 33047,
               "length": 1,
               "dataType": "uint16",
-              "scaleFactor": 1
+              "scaleFactor": 1,
+              "minValue": 0,
+              "maxValue": 655350,
+              "round": true
             }
           },
           "unit": "W",
@@ -140040,7 +140170,10 @@
               "address": 33147,
               "length": 1,
               "dataType": "uint16",
-              "scaleFactor": 1
+              "scaleFactor": 1,
+              "minValue": 0,
+              "maxValue": 655350,
+              "round": true
             }
           },
           "unit": "W",
@@ -140067,7 +140200,10 @@
               "address": 31221,
               "length": 1,
               "dataType": "uint16",
-              "scaleFactor": 1
+              "scaleFactor": 1,
+              "minValue": 0,
+              "maxValue": 655350,
+              "round": true
             }
           },
           "unit": "W",
@@ -140393,7 +140529,7 @@
           "decimals": 2
         }
       ],
-      "notes": "Sungrow residential hybrid inverter template based on protocol V1.1.9. Register addresses are zero-based (register - 1), U32/S32 use low-word-first word order. The signed setpoint sET_ACTIVE_POWER automatically writes EMS mode, charge/discharge command and charge/discharge power.",
+      "notes": "Sungrow residential hybrid inverter template updated to protocol V1.1.11. Register addresses are zero-based (register - 1), U32/S32 use low-word-first word order. The signed setpoint sET_ACTIVE_POWER now uses External EMS mode (3), writes charge/discharge command and power, and refreshes ExternalEMSHeartbeat=20 about every 10 s. Frequent polling of RW setting registers is avoided for WiNet-S/WiNet-S2/Logger forwarding stability.",
       "driverHints": {
         "modbus": {
           "unitIdDefault": 1,
@@ -140416,7 +140552,7 @@
             "enabled": true,
             "triggerDpId": "sET_ACTIVE_POWER",
             "modeDpId": "eMS_MODE_SELECTION",
-            "modeValue": 2,
+            "modeValue": 3,
             "commandDpId": "cHARGE_DISCHARGE_COMMAND",
             "powerDpId": "cHARGE_DISCHARGE_POWER",
             "chargeValue": 170,
@@ -140436,7 +140572,9 @@
             "heartbeatValue": 20,
             "heartbeatMinValue": 0,
             "heartbeatMaxValue": 1000,
-            "heartbeatMinIntervalMs": 8000
+            "heartbeatMinIntervalMs": 9000,
+            "heartbeatTiming": "after_control",
+            "repeatCommandAfterHeartbeat": false
           },
           "preWrites": [
             {
@@ -140484,7 +140622,11 @@
               "writes": [
                 {
                   "dpId": "eMS_MODE_SELECTION",
-                  "value": 2
+                  "value": 3
+                },
+                {
+                  "dpId": "ExternalEMSHeartbeat",
+                  "value": 20
                 }
               ],
               "cooldownMs": 10000
@@ -140494,7 +140636,11 @@
               "writes": [
                 {
                   "dpId": "eMS_MODE_SELECTION",
-                  "value": 2
+                  "value": 3
+                },
+                {
+                  "dpId": "ExternalEMSHeartbeat",
+                  "value": 20
                 }
               ],
               "cooldownMs": 10000
@@ -140504,7 +140650,11 @@
               "writes": [
                 {
                   "dpId": "eMS_MODE_SELECTION",
-                  "value": 2
+                  "value": 3
+                },
+                {
+                  "dpId": "ExternalEMSHeartbeat",
+                  "value": 20
                 }
               ],
               "cooldownMs": 10000
@@ -140552,7 +140702,7 @@
             "targets": [
               {
                 "dpId": "sET_ACTIVE_POWER",
-                "delayMs": 3000,
+                "delayMs": 5000,
                 "useLastCommandValue": true,
                 "logLevel": "debug"
               }
@@ -140561,7 +140711,7 @@
           "seedSetpointKeepaliveFromAliases": true,
           "setpointKeepalive": {
             "enabled": true,
-            "checkPeriodMs": 2500,
+            "checkPeriodMs": 3000,
             "requireEverWritten": false,
             "useLastCommandValue": true,
             "allowDuringPoll": true,
@@ -140570,8 +140720,8 @@
             "targets": [
               {
                 "setpointDpId": "sET_ACTIVE_POWER",
-                "intervalMs": 5000,
-                "minWriteIntervalMs": 3000,
+                "intervalMs": 10000,
+                "minWriteIntervalMs": 8000,
                 "useLastCommandValue": true,
                 "requireEverWritten": false,
                 "fallbackCommandSources": [
@@ -140584,10 +140734,11 @@
                 ]
               }
             ]
-          }
+          },
+          "sungrowHybridProtocolVersion": "V1.1.11"
         },
         "polling": {
-          "fastIntervalMs": 2000,
+          "fastIntervalMs": 3000,
           "slowIntervalMs": 300000,
           "fastDpIds": [
             "sYSTEM_STATE",
@@ -140605,21 +140756,7 @@
             "InverterAlarm",
             "GridSideFault",
             "SystemFault1",
-            "SystemFault2",
-            "eMS_MODE_SELECTION",
-            "cHARGE_DISCHARGE_COMMAND",
-            "cHARGE_DISCHARGE_POWER",
-            "cHARGE_DISCHARGE_POWER_WIDE",
-            "ExternalEMSHeartbeat",
-            "sET_MAX_CHARGE_POWER",
-            "sET_MAX_DISCHARGE_POWER",
-            "sET_MAX_SOC",
-            "sET_MIN_SOC",
-            "eXPORT_POWER_LIMIT",
-            "eXPORT_POWER_LIMIT_WIDE",
-            "eXPORT_POWER_PERCENTAGE",
-            "WMaxLim_Ena",
-            "wMaxLimPct"
+            "SystemFault2"
           ],
           "initialFastOnly": true,
           "slowDpIds": [
@@ -140729,9 +140866,18 @@
             "sET_MAX_CHARGE_POWER",
             "sET_MAX_DISCHARGE_POWER",
             "cHARGE_DISCHARGE_POWER_WIDE",
-            "eXPORT_POWER_LIMIT_WIDE"
-          ]
+            "eXPORT_POWER_LIMIT_WIDE",
+            "PVPowerLimitation"
+          ],
+          "notes": {
+            "0.5.131": "RW setting registers are deliberately excluded from fast polling per Sungrow V1.1.11 WiNet/Logger forwarding warning."
+          }
         }
+      },
+      "protocolVersion": "V1.1.11",
+      "implementationVersion": "0.5.131",
+      "revisionHistory": {
+        "0.5.131": "Updated Sungrow Residential Hybrid template to protocol V1.1.11, External EMS mode 3, stable heartbeat cadence, PV power limitation register 13018, and MG8RL/MG10RL device types."
       }
     },
     {

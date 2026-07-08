@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.130",
+    "version": "0.5.131",
     "news": {
+      "0.5.131": {
+        "en": "Sungrow Residential Hybrid protocol V1.1.11: use External EMS mode 3 for storage setpoints, refresh heartbeat=20 on a 10s cadence, avoid fast polling of RW setting registers, add PV power limitation register 13018 and MG8RL/MG10RL device types.",
+        "de": "Sungrow Residential Hybrid Protokoll V1.1.11: Speicher-Sollwerte nutzen jetzt External EMS Mode 3, Heartbeat=20 wird im 10-s-Takt erneuert, RW-Setting-Register werden nicht mehr schnell gepollt, PV power limitation Register 13018 sowie MG8RL/MG10RL-Gerätetypen ergänzt."
+      },
       "0.5.130": {
         "en": "Sungrow ESS heartbeat fix: write External EMS/VPP heartbeat as a fixed 20 s timeout instead of an invalid counter, throttle heartbeat refreshes, and keep primary storage power commands running if optional Sungrow helper writes are rejected.",
         "de": "Sungrow-ESS-Heartbeat korrigiert: External-EMS-/VPP-Heartbeat wird als fester 20-s-Timeout statt als ungültiger Counter geschrieben, Heartbeat-Refreshes werden gedrosselt und Speicher-Leistungsbefehle laufen weiter, wenn optionale Sungrow-Hilfsschreibvorgänge abgelehnt werden."

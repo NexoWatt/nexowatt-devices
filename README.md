@@ -265,11 +265,11 @@ Der Adapter enthält zusätzliche Sungrow-Templates für direkte Wechselrichter-
   - Wichtig: `W` (Wirkleistung), `pV_POWER` (PV/DC-Leistung), `TotWhOut` (Gesamtertrag), `St` (Betriebszustand), `Evt1` (Fehlercode), `WMaxLim_Ena`, `WMaxLimPct`, `WMaxLim`
   - Schreiblogik: Beim Schreiben von `WMaxLimPct` oder `WMaxLim` wird der Sungrow-Leistungsbegrenzungs-Schalter automatisch aktiviert.
 
-- **Sungrow Residential Hybrid V1.1.9 (Modbus)**
+- **Sungrow Residential Hybrid V1.1.11 (Modbus)**
   - `templateId`: `ess.sungrow.ResidentialHybridV119`
   - Kategorie: `ESS`
   - Wichtig: `pV_POWER`, `W`, `gRID_POWER`, `lOAD_POWER`, `bATTERY_POWER`, `Soc`, Energiewerte, Fehler-Bitfelder, Firmware-Versionen
-  - Steuerung: `aliases.ctrl.powerSetpointW` schreibt als signierter Leistungs-Sollwert: positiv = Entladen, negativ = Laden, `0` = Stop. Der Adapter setzt dabei automatisch EMS-/Betriebsmodus, Lade-/Entlade-Kommando und Leistungsregister.
+  - Steuerung: `aliases.ctrl.powerSetpointW` schreibt als signierter Leistungs-Sollwert: positiv = Entladen, negativ = Laden, `0` = Stop. Der Adapter setzt jetzt gezielt **External EMS mode = 3**, schreibt Lade-/Entlade-Kommando und Leistungsregister und erneuert `ExternalEMSHeartbeat=20` im stabilen ca. 10-s-Takt. RW-Setting-Register werden bewusst nicht schnell gepollt, damit WiNet-S/WiNet-S2/Logger-Weiterleitung nicht überlastet wird. Neu ergänzt: `PVPowerLimitation` (Register 13018) sowie MG8RL/MG10RL-Gerätetypen.
 
 - **Sungrow Logger1000/3000/4000 (Modbus)**
   - `templateId`: `ess.sungrow.Logger1000_3000_4000`
@@ -570,6 +570,12 @@ The Sungrow residential hybrid/Logger/iHomeManager templates refresh signed batt
 ### Sungrow direction correction (0.5.127)
 
 Sungrow hybrid ESS signed power commands now use the documented command mapping again: `0xAA`/`170` = charge and `0xBB`/`187` = discharge, while the adapter/EOS convention remains unchanged: positive `aliases.ctrl.powerSetpointW` discharges the battery, negative values charge it. The convenience aliases `aliases.ctrl.chargePowerW` and `aliases.ctrl.dischargePowerW` therefore map to the correct physical direction.
+
+### Sungrow Residential Hybrid Protocol V1.1.11 (0.5.131)
+
+The Sungrow Residential Hybrid template now follows protocol **V1.1.11** for SH/RS/RT/T and MG RL hybrid inverters. Signed storage control uses **EMS mode 3 (External EMS)**, writes `Charge/discharge command` (13051), `Charge/discharge power` (13052) or the wide-range helper (33148), and refreshes `ExternalEMSHeartbeat=20` roughly every 10 seconds. Fast polling is limited to RO operating values; RW setting registers are intentionally kept out of the fast poll loop.
+
+Additional protocol coverage: `PVPowerLimitation` at register 13018 and device type labels for MG8RL/MG10RL. Register addresses in the JSON remain protocol addresses, i.e. Sungrow documentation register minus 1.
 
 ## Alfen ACE EMS control note (0.5.129)
 
