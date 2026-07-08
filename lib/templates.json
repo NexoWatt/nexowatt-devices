@@ -139765,7 +139765,10 @@
               "fc": 6,
               "address": 13079,
               "length": 1,
-              "dataType": "uint16"
+              "dataType": "uint16",
+              "minValue": 0,
+              "maxValue": 1000,
+              "round": true
             }
           },
           "unit": "s"
@@ -140423,15 +140426,17 @@
             "writePowerOnStop": true,
             "blockModeCommandPower": true,
             "blockWrite": true,
-            "heartbeatValueMode": "counter",
-            "heartbeatCounterMin": 1,
-            "heartbeatCounterMax": 65535,
+            "heartbeatValueMode": "fixed",
             "clampToLimitDp": true,
             "repeatCommandAfterWidePower": true,
             "widePowerDpId": "cHARGE_DISCHARGE_POWER_WIDE",
             "maxChargePowerDpId": "sET_MAX_CHARGE_POWER",
             "maxDischargePowerDpId": "sET_MAX_DISCHARGE_POWER",
-            "heartbeatDpId": "ExternalEMSHeartbeat"
+            "heartbeatDpId": "ExternalEMSHeartbeat",
+            "heartbeatValue": 20,
+            "heartbeatMinValue": 0,
+            "heartbeatMaxValue": 1000,
+            "heartbeatMinIntervalMs": 8000
           },
           "preWrites": [
             {
@@ -142499,7 +142504,10 @@
               "fc": 6,
               "address": 8032,
               "length": 1,
-              "dataType": "uint16"
+              "dataType": "uint16",
+              "minValue": 0,
+              "maxValue": 1000,
+              "round": true
             }
           },
           "unit": "s"
@@ -142567,12 +142575,14 @@
             "writePowerOnStop": true,
             "blockModeCommandPower": true,
             "blockWrite": true,
-            "heartbeatValueMode": "counter",
-            "heartbeatCounterMin": 1,
-            "heartbeatCounterMax": 65535,
+            "heartbeatValueMode": "fixed",
             "clampToLimitDp": true,
             "repeatCommandAfterWidePower": true,
-            "heartbeatDpId": "ExternalEMSHeartbeat"
+            "heartbeatDpId": "ExternalEMSHeartbeat",
+            "heartbeatValue": 20,
+            "heartbeatMinValue": 0,
+            "heartbeatMaxValue": 1000,
+            "heartbeatMinIntervalMs": 8000
           },
           "preWrites": [
             {
@@ -143587,7 +143597,10 @@
               "fc": 6,
               "address": 8032,
               "length": 1,
-              "dataType": "uint16"
+              "dataType": "uint16",
+              "minValue": 0,
+              "maxValue": 1000,
+              "round": true
             }
           },
           "unit": "s"
@@ -143794,12 +143807,14 @@
             "writePowerOnStop": true,
             "blockModeCommandPower": true,
             "blockWrite": true,
-            "heartbeatValueMode": "counter",
-            "heartbeatCounterMin": 1,
-            "heartbeatCounterMax": 65535,
+            "heartbeatValueMode": "fixed",
             "clampToLimitDp": true,
             "repeatCommandAfterWidePower": true,
-            "heartbeatDpId": "ExternalVPPHeartbeat"
+            "heartbeatDpId": "ExternalVPPHeartbeat",
+            "heartbeatValue": 20,
+            "heartbeatMinValue": 0,
+            "heartbeatMaxValue": 1000,
+            "heartbeatMinIntervalMs": 8000
           },
           "preWrites": [
             {

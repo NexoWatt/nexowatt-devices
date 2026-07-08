@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.129",
+    "version": "0.5.130",
     "news": {
+      "0.5.130": {
+        "en": "Sungrow ESS heartbeat fix: write External EMS/VPP heartbeat as a fixed 20 s timeout instead of an invalid counter, throttle heartbeat refreshes, and keep primary storage power commands running if optional Sungrow helper writes are rejected.",
+        "de": "Sungrow-ESS-Heartbeat korrigiert: External-EMS-/VPP-Heartbeat wird als fester 20-s-Timeout statt als ungültiger Counter geschrieben, Heartbeat-Refreshes werden gedrosselt und Speicher-Leistungsbefehle laufen weiter, wenn optionale Sungrow-Hilfsschreibvorgänge abgelehnt werden."
+      },
       "0.5.129": {
         "en": "Alfen ACE control-stable template: reduce polling to essential registers, enforce Socket Unit-ID protocol writes, keep Max Current and phase commands alive every 5 s, and remove unstable All-IDs/SCN mirror control from the default profile.",
         "de": "Alfen-ACE-Steuerung stabilisiert: Polling auf notwendige Register reduziert, Socket-Unit-ID-Schreibpfad strikt erzwungen, Max Current und Phasenbefehl alle 5 s gehalten und instabile All-IDs-/SCN-Spiegelsteuerung aus dem Standardprofil entfernt."
