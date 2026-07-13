@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.132",
+    "version": "0.5.133",
     "news": {
       "0.5.132": {
         "en": "Sungrow Residential Hybrid EMS write-point support: sET_ACTIVE_POWER, sET_CHARGE_POWER and sET_DISCHARGE_POWER are now single EMS-facing datapoints; the Modbus driver writes External EMS mode, command, power and heartbeat automatically according to Sungrow V1.1.11.",
