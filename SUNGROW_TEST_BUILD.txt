@@ -1,11 +1,7 @@
-NexoWatt Devices 0.5.135 – Sungrow Fast Feedback field test
+NexoWatt Devices 0.5.136 – Sungrow Fast Feedback auf Basis 0.5.133
 
-Test branch: fix/sungrow-fast-feedback
-Base version: 0.5.134
-
-Key behavior:
-- exact arbitrary watt setpoints; no 500 W step rounding
-- exact 0 W stop
-- storage writes no longer wait for a complete multi-group poll
-- prioritized bATTERY_POWER feedback after storage commands
-- Modbus wire-level minimum spacing remains 1000 ms
+WICHTIG:
+- Lade-/Entladerichtung stammt unverändert aus Version 0.5.133.
+- lib/templates.json, admin/templates.json, lib/drivers/modbus.js und lib/deviceRuntime.js sind bytegleich zu 0.5.133.
+- Ergänzt wurden ausschließlich eine schnellere, vom Vollpoll getrennte Schreibplanung und priorisierte bATTERY_POWER-Rückmeldung.
+- Keine 500-W-Rundung; 0 W bleibt Stop.
