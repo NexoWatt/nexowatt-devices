@@ -1,0 +1,88 @@
+name: Build Sungrow test ZIP
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - fix/sungrow-fast-feedback
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout test branch
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate JavaScript and tests
+        run: |
+          node --check bootstrap.js
+          node --check lib/sungrowFastFeedbackPatch.js
+          node --test test/sungrowFastFeedbackPatch.test.js
+
+      - name: Prepare installable adapter tree as version 0.5.135
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const version = '0.5.135';
+
+          const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+          pkg.version = version;
+          fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+
+          const io = JSON.parse(fs.readFileSync('io-package.json', 'utf8'));
+          io.common.version = version;
+          io.common.news = io.common.news || {};
+          io.common.news[version] = {
+            en: 'Sungrow Residential Hybrid field-test build: storage writes are decoupled from full polling and battery-power feedback is priority-read after commands. Exact watt setpoints and exact 0 W stop are preserved.',
+            de: 'Sungrow Residential Hybrid Feldtest: Speicher-Schreibbefehle sind vom Voll-Polling entkoppelt und die Batterieleistung wird nach Befehlen priorisiert zurückgelesen. Exakte Watt-Sollwerte und ein exakter 0-W-Stopp bleiben erhalten.'
+          };
+          fs.writeFileSync('io-package.json', JSON.stringify(io, null, 2) + '\n');
+          NODE
+
+          cat > SUNGROW_TEST_BUILD.txt <<'EOF'
+          NexoWatt Devices 0.5.135 – Sungrow Fast Feedback field test
+
+          Test branch: fix/sungrow-fast-feedback
+          Base version: 0.5.134
+
+          Key behavior:
+          - exact arbitrary watt setpoints; no 500 W step rounding
+          - exact 0 W stop
+          - storage writes no longer wait for a complete multi-group poll
+          - prioritized bATTERY_POWER feedback after storage commands
+          - Modbus wire-level minimum spacing remains 1000 ms
+          EOF
+
+      - name: Create ZIP
+        run: |
+          set -euo pipefail
+          ROOT='iobroker.nexowatt-devices-0.5.135-sungrow-test'
+          mkdir -p "$ROOT"
+          rsync -a ./ "$ROOT/" \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude 'node_modules/' \
+            --exclude "$ROOT/"
+          zip -r -9 "${ROOT}.zip" "$ROOT"
+          sha256sum "${ROOT}.zip" > "${ROOT}.zip.sha256"
+
+      - name: Upload ZIP artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: iobroker.nexowatt-devices-0.5.135-sungrow-test
+          path: |
+            iobroker.nexowatt-devices-0.5.135-sungrow-test.zip
+            iobroker.nexowatt-devices-0.5.135-sungrow-test.zip.sha256
+          if-no-files-found: error
+          retention-days: 14
