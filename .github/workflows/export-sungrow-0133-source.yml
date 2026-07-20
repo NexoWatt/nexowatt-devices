@@ -1,0 +1,34 @@
+name: Export Sungrow 0.5.133 source
+
+on:
+  push:
+    branches:
+      - test/sungrow-0.5.136-from-0.5.133
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create clean source ZIP
+        run: |
+          set -euo pipefail
+          ROOT='nexowatt-devices-0.5.133-source'
+          mkdir -p "$ROOT"
+          rsync -a ./ "$ROOT/" \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude 'node_modules/' \
+            --exclude "$ROOT/"
+          zip -r -9 "${ROOT}.zip" "$ROOT"
+      - name: Upload source
+        uses: actions/upload-artifact@v4
+        with:
+          name: nexowatt-devices-0.5.133-source
+          path: nexowatt-devices-0.5.133-source.zip
+          if-no-files-found: error
+          retention-days: 2
