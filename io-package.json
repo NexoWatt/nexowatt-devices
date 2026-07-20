@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.135",
+    "version": "0.5.132",
     "news": {
       "0.5.134": {
         "en": "Sungrow Residential Hybrid Fast EMS: battery power watchdog, restore-on-start and post-write repeat are disabled. EMS setpoints are sent only on changes as one FC16 block; heartbeat runs separately about every 10 s. The write queue checks faster while keeping the Sungrow-compatible 1000 ms minimum Modbus command spacing.",
