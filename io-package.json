@@ -1,8 +1,16 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.132",
+    "version": "0.5.135",
     "news": {
+      "0.5.134": {
+        "en": "Sungrow Residential Hybrid Fast EMS: battery power watchdog, restore-on-start and post-write repeat are disabled. EMS setpoints are sent only on changes as one FC16 block; heartbeat runs separately about every 10 s. The write queue checks faster while keeping the Sungrow-compatible 1000 ms minimum Modbus command spacing.",
+        "de": "Sungrow Residential Hybrid Fast-EMS: Leistungs-Watchdog, Restore-Setpoint und Post-Write-Repeat sind für den Speicher deaktiviert. EMS-Leistungsvorgaben werden nur bei Änderung als ein FC16-Block gesendet; Heartbeat läuft separat alle ca. 10 s. Die Schreibwarteschlange prüft schneller, bleibt aber bei Sungrow-konformen 1000 ms Modbus-Mindestabstand."
+      },
+      "0.5.133": {
+        "en": "Sungrow Residential Hybrid dispatch fix: charge/discharge aliases use dedicated direction writepoints, automatic control is sent as one EMS mode+command+power block, optional wide-power helper writes are disabled by default, and fast polling/write latency is reduced.",
+        "de": "Sungrow Residential Hybrid Dispatch-Fix: Lade-/Entlade-Aliase nutzen eigene Richtungs-Schreibpunkte, die automatische Steuerung wird als ein EMS-Mode+Command+Power-Block gesendet, optionale Wide-Power-Hilfsschreibzugriffe sind standardmäßig deaktiviert und Lese-/Schreiblatenz ist reduziert."
+      },
       "0.5.132": {
         "en": "Sungrow Residential Hybrid EMS write-point support: sET_ACTIVE_POWER, sET_CHARGE_POWER and sET_DISCHARGE_POWER are now single EMS-facing datapoints; the Modbus driver writes External EMS mode, command, power and heartbeat automatically according to Sungrow V1.1.11.",
         "de": "Sungrow Residential Hybrid EMS-Schreibpunkt-Unterstützung: sET_ACTIVE_POWER, sET_CHARGE_POWER und sET_DISCHARGE_POWER sind jetzt einzelne EMS-Datenpunkte; der Modbus-Treiber schreibt External-EMS-Modus, Kommando, Leistung und Heartbeat automatisch gemäß Sungrow V1.1.11."
@@ -492,6 +500,10 @@
       "0.5.125": {
         "en": "Sungrow hybrid ESS control fix: signed battery power now refreshes periodically, restores the last command after reconnect, writes EMS mode/command/power more atomically, supports the wide power register, and clamps commands to configured charge/discharge limits.",
         "de": "Sungrow-Hybrid-ESS-Steuerung korrigiert: signierte Batterieleistung wird periodisch erneuert, nach Reconnect wiederhergestellt, EMS-Modus/Command/Leistung konsistenter geschrieben, Wide-Power-Register unterstützt und Sollwerte auf konfigurierte Lade-/Entladegrenzen begrenzt."
+      },
+      "0.5.135": {
+        "en": "Sungrow Residential Hybrid field-test build: storage writes are decoupled from full polling and battery-power feedback is priority-read after commands. Exact watt setpoints and exact 0 W stop are preserved.",
+        "de": "Sungrow Residential Hybrid Feldtest: Speicher-Schreibbefehle sind vom Voll-Polling entkoppelt und die Batterieleistung wird nach Befehlen priorisiert zurückgelesen. Exakte Watt-Sollwerte und ein exakter 0-W-Stopp bleiben erhalten."
       }
     },
     "title": "NexoWatt Devices",

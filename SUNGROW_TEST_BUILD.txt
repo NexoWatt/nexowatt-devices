@@ -1,0 +1,11 @@
+NexoWatt Devices 0.5.135 – Sungrow Fast Feedback field test
+
+Test branch: fix/sungrow-fast-feedback
+Base version: 0.5.134
+
+Key behavior:
+- exact arbitrary watt setpoints; no 500 W step rounding
+- exact 0 W stop
+- storage writes no longer wait for a complete multi-group poll
+- prioritized bATTERY_POWER feedback after storage commands
+- Modbus wire-level minimum spacing remains 1000 ms

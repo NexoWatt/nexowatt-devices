@@ -124863,7 +124863,7 @@
       "category": "ESS",
       "manufacturer": "Sungrow",
       "model": "Residential Hybrid Inverter SH/RS/RT/T/MG V1.1.11",
-      "name": "Sungrow Residential Hybrid Inverter (SHxxRS/RT/T, MG RL) Modbus V1.1.11",
+      "name": "Sungrow Residential Hybrid Inverter (SHxxRS/RT/T, MG RL) Modbus V1.1.11 – Fast EMS no watchdog",
       "protocols": [
         "modbusTcp",
         "modbusRtu"
@@ -139797,7 +139797,7 @@
             "kind": "modbus"
           },
           "unit": "W",
-          "description": "Single EMS write point. The adapter converts the signed W value into Sungrow External EMS mode 3, charge/discharge command 13051, power 13052/33148 and ExternalEMSHeartbeat=20."
+          "description": "Single EMS write point. Adapter converts signed W into Sungrow External EMS mode 3 + command/power FC16 block. +W=discharge, -W=charge, 0=stop. No cyclic power watchdog/replay; EMS should write its current target itself."
         },
         {
           "id": "sET_CHARGE_POWER",
@@ -139809,7 +139809,7 @@
             "kind": "modbus"
           },
           "unit": "W",
-          "description": "EMS-friendly charge-only write point. Writing a positive W value makes the adapter set EMS mode 3, command 0xAA, power 13052/33148 and heartbeat 13080=20. Writing 0 stops charge/discharge."
+          "description": "Charge-only EMS write point. Positive W writes command 0xAA + power via Sungrow FC16 control block. 0 stops. No delayed adapter repeat."
         },
         {
           "id": "sET_DISCHARGE_POWER",
@@ -139821,7 +139821,7 @@
             "kind": "modbus"
           },
           "unit": "W",
-          "description": "EMS-friendly discharge-only write point. Writing a positive W value makes the adapter set EMS mode 3, command 0xBB, power 13052/33148 and heartbeat 13080=20. Writing 0 stops charge/discharge."
+          "description": "Discharge-only EMS write point. Positive W writes command 0xBB + power via Sungrow FC16 control block. 0 stops. No delayed adapter repeat."
         },
         {
           "id": "sET_MAX_SOC",
@@ -140579,17 +140579,17 @@
           "decimals": 2
         }
       ],
-      "notes": "Sungrow residential hybrid inverter template implemented against protocol V1.1.11 (2025-11-17). Register addresses are zero-based (documentation register - 1). U32/S32 use low-word-first word order and big-endian bytes. The EMS-facing signed setpoint sET_ACTIVE_POWER / aliases.ctrl.powerSetpointW is a virtual write datapoint: the device adapter internally ensures External EMS mode (13050=3), writes charge/discharge command and power together as one FC16 block over 13051..13052, keeps External EMS heartbeat 13080 at fixed 20 s, and refreshes the last public setpoint every 10 s after it has been used. Helper registers do not have to be mapped by EMS. Includes V1.1.10/V1.1.11 additions such as PV power limitation and MG8RL/MG10RL model codes.",
+      "notes": "Sungrow residential hybrid inverter template implemented against protocol V1.1.11 (2025-11-17). Register addresses are zero-based (documentation register - 1). U32/S32 use low-word-first word order and big-endian bytes. EMS writes only power setpoints; the adapter writes EMS mode + charge/discharge command + power as one FC16 block over 13050..13052. For fast EMS operation the cyclic power-setpoint watchdog, delayed post-write repeats and restore-on-start writes are disabled; only the Sungrow External EMS heartbeat 13080 is refreshed separately with fixed value 20 about every 10 s. RW helper registers are excluded from fast polling and Modbus command spacing remains >=1000 ms per Sungrow WiNet/Logger requirement.",
       "driverHints": {
         "modbus": {
           "unitIdDefault": 1,
           "minCommandIntervalMs": 1000,
-          "writeThrottleMs": 1000,
-          "commandCadenceMs": 1000,
+          "writeThrottleMs": 250,
+          "commandCadenceMs": 250,
           "writeMaxPerTick": 1,
-          "reconnectBackoffMs": 2000,
-          "timeoutMs": 5000,
-          "maxReadRegs": 20,
+          "reconnectBackoffMs": 1000,
+          "timeoutMs": 2500,
+          "maxReadRegs": 40,
           "serialDefaults": {
             "baudRate": 9600,
             "parity": "none",
@@ -140638,36 +140638,6 @@
                 }
               ],
               "cooldownMs": 10000
-            },
-            {
-              "triggerDpId": "cHARGE_DISCHARGE_COMMAND",
-              "writes": [
-                {
-                  "dpId": "eMS_MODE_SELECTION",
-                  "value": 3
-                }
-              ],
-              "cooldownMs": 10000
-            },
-            {
-              "triggerDpId": "cHARGE_DISCHARGE_POWER",
-              "writes": [
-                {
-                  "dpId": "eMS_MODE_SELECTION",
-                  "value": 3
-                }
-              ],
-              "cooldownMs": 10000
-            },
-            {
-              "triggerDpId": "cHARGE_DISCHARGE_POWER_WIDE",
-              "writes": [
-                {
-                  "dpId": "eMS_MODE_SELECTION",
-                  "value": 3
-                }
-              ],
-              "cooldownMs": 10000
             }
           ],
           "requiredReadDpIds": [
@@ -140690,24 +140660,19 @@
           ],
           "continueOnReadError": true,
           "skipFailedReadGroupsMs": 300000,
-          "strictContiguousReads": true,
-          "operationTimeoutMs": 7000,
-          "connectTimeoutMs": 7000,
-          "optionalReadErrorLogLevel": "warn",
-          "maxReconnectBackoffMs": 30000,
+          "strictContiguousReads": false,
+          "operationTimeoutMs": 3500,
+          "connectTimeoutMs": 3500,
+          "optionalReadErrorLogLevel": "debug",
+          "maxReconnectBackoffMs": 10000,
           "restoreSetpointsOnStart": {
-            "enabled": true,
+            "enabled": false,
+            "disabledReason": "Fast EMS mode: external EMS writes power every second; adapter must not restore stale storage commands after start/reconnect.",
             "dpIds": [
-              "sET_ACTIVE_POWER",
-              "sET_CHARGE_POWER",
-              "sET_DISCHARGE_POWER"
+              "sET_ACTIVE_POWER"
             ],
-            "delayMs": 3000,
-            "retryMs": 5000,
-            "maxRetries": 12,
-            "storeOnWrite": true,
-            "useFallbackFromDpState": true,
-            "logLevel": "debug",
+            "storeOnWrite": false,
+            "useFallbackFromDpState": false,
             "exclusiveGroups": [
               [
                 "sET_ACTIVE_POWER",
@@ -140717,44 +140682,14 @@
             ]
           },
           "postWriteRepeat": {
-            "enabled": true,
-            "targets": [
-              {
-                "dpId": "sET_ACTIVE_POWER",
-                "delayMs": 5000,
-                "useLastCommandValue": true,
-                "logLevel": "debug"
-              },
-              {
-                "dpId": "sET_CHARGE_POWER",
-                "delayMs": 5000,
-                "useLastCommandValue": true,
-                "logLevel": "debug"
-              },
-              {
-                "dpId": "sET_DISCHARGE_POWER",
-                "delayMs": 5000,
-                "useLastCommandValue": true,
-                "logLevel": "debug"
-              }
-            ]
+            "enabled": false,
+            "disabledReason": "Fast EMS mode: delayed repeats/watchdogs can replay an older charge/discharge direction and slow down or override the current EMS command."
           },
-          "seedSetpointKeepaliveFromAliases": true,
+          "seedSetpointKeepaliveFromAliases": false,
           "setpointKeepalive": {
             "enabled": false,
             "checkPeriodMs": 5000,
-            "requireEverWritten": true,
-            "logLevel": "debug",
-            "targets": [
-              {
-                "setpointDpId": "sET_ACTIVE_POWER",
-                "intervalMs": 10000,
-                "minWriteIntervalMs": 9000,
-                "useLastCommandValue": true,
-                "requireEverWritten": true
-              }
-            ],
-            "disabledReason": "Sungrow External EMS/VPP heartbeat is refreshed separately; power/mode/command are written only on EMS setpoint changes, restore, or the single post-write repeat."
+            "disabledReason": "Fast EMS mode: EMS already sends current setpoints cyclically; do not refresh sET_ACTIVE_POWER automatically."
           },
           "sungrowProtocolVersion": "V1.1.11",
           "sungrowSignedPowerControls": [
@@ -140769,30 +140704,35 @@
               "stopValue": 204,
               "positiveIsCharge": false,
               "writePowerOnStop": true,
-              "blockModeCommandPower": false,
+              "blockModeCommandPower": true,
               "blockWrite": true,
               "heartbeatValueMode": "fixed",
               "clampToLimitDp": true,
-              "repeatCommandAfterWidePower": true,
-              "widePowerDpId": "cHARGE_DISCHARGE_POWER_WIDE",
+              "repeatCommandAfterWidePower": false,
               "maxChargePowerDpId": "sET_MAX_CHARGE_POWER",
               "maxDischargePowerDpId": "sET_MAX_DISCHARGE_POWER",
               "heartbeatDpId": "ExternalEMSHeartbeat",
               "heartbeatValue": 20,
               "heartbeatMinValue": 0,
               "heartbeatMaxValue": 1000,
-              "heartbeatMinIntervalMs": 8000,
+              "heartbeatMinIntervalMs": 9000,
               "heartbeatDefaultValue": 20,
-              "heartbeatAfterPowerCommand": true,
+              "heartbeatAfterPowerCommand": false,
               "heartbeatAutoRefresh": true,
               "heartbeatRefreshIntervalMs": 10000,
               "triggerDpId": "sET_ACTIVE_POWER",
               "blockCommandPower": true,
-              "blockCommandPowerOnly": true,
+              "blockCommandPowerOnly": false,
               "requireContiguousCommandPower": true,
               "commandPowerBlockMaxWords": 2,
-              "modeWriteStrategy": "interval",
-              "modeWriteMinIntervalMs": 60000
+              "modeWriteStrategy": "block",
+              "modeWriteMinIntervalMs": 0,
+              "modeWriteEveryCommand": true,
+              "writeWidePower": false,
+              "widePowerWriteMode": "never",
+              "blockMaxWords": 3,
+              "writeHeartbeatAfterPowerCommand": false,
+              "heartbeatOnCommand": false
             },
             {
               "enabled": true,
@@ -140805,31 +140745,36 @@
               "stopValue": 204,
               "positiveIsCharge": false,
               "writePowerOnStop": true,
-              "blockModeCommandPower": false,
+              "blockModeCommandPower": true,
               "blockWrite": true,
               "heartbeatValueMode": "fixed",
               "clampToLimitDp": true,
-              "repeatCommandAfterWidePower": true,
-              "widePowerDpId": "cHARGE_DISCHARGE_POWER_WIDE",
+              "repeatCommandAfterWidePower": false,
               "maxChargePowerDpId": "sET_MAX_CHARGE_POWER",
               "maxDischargePowerDpId": "sET_MAX_DISCHARGE_POWER",
               "heartbeatDpId": "ExternalEMSHeartbeat",
               "heartbeatValue": 20,
               "heartbeatMinValue": 0,
               "heartbeatMaxValue": 1000,
-              "heartbeatMinIntervalMs": 8000,
+              "heartbeatMinIntervalMs": 9000,
               "heartbeatDefaultValue": 20,
-              "heartbeatAfterPowerCommand": true,
+              "heartbeatAfterPowerCommand": false,
               "heartbeatAutoRefresh": true,
               "heartbeatRefreshIntervalMs": 10000,
               "triggerDpId": "sET_CHARGE_POWER",
               "blockCommandPower": true,
-              "blockCommandPowerOnly": true,
+              "blockCommandPowerOnly": false,
               "requireContiguousCommandPower": true,
               "commandPowerBlockMaxWords": 2,
-              "modeWriteStrategy": "interval",
-              "modeWriteMinIntervalMs": 60000,
-              "direction": "charge"
+              "modeWriteStrategy": "block",
+              "modeWriteMinIntervalMs": 0,
+              "direction": "charge",
+              "modeWriteEveryCommand": true,
+              "writeWidePower": false,
+              "widePowerWriteMode": "never",
+              "blockMaxWords": 3,
+              "writeHeartbeatAfterPowerCommand": false,
+              "heartbeatOnCommand": false
             },
             {
               "enabled": true,
@@ -140842,31 +140787,36 @@
               "stopValue": 204,
               "positiveIsCharge": false,
               "writePowerOnStop": true,
-              "blockModeCommandPower": false,
+              "blockModeCommandPower": true,
               "blockWrite": true,
               "heartbeatValueMode": "fixed",
               "clampToLimitDp": true,
-              "repeatCommandAfterWidePower": true,
-              "widePowerDpId": "cHARGE_DISCHARGE_POWER_WIDE",
+              "repeatCommandAfterWidePower": false,
               "maxChargePowerDpId": "sET_MAX_CHARGE_POWER",
               "maxDischargePowerDpId": "sET_MAX_DISCHARGE_POWER",
               "heartbeatDpId": "ExternalEMSHeartbeat",
               "heartbeatValue": 20,
               "heartbeatMinValue": 0,
               "heartbeatMaxValue": 1000,
-              "heartbeatMinIntervalMs": 8000,
+              "heartbeatMinIntervalMs": 9000,
               "heartbeatDefaultValue": 20,
-              "heartbeatAfterPowerCommand": true,
+              "heartbeatAfterPowerCommand": false,
               "heartbeatAutoRefresh": true,
               "heartbeatRefreshIntervalMs": 10000,
               "triggerDpId": "sET_DISCHARGE_POWER",
               "blockCommandPower": true,
-              "blockCommandPowerOnly": true,
+              "blockCommandPowerOnly": false,
               "requireContiguousCommandPower": true,
               "commandPowerBlockMaxWords": 2,
-              "modeWriteStrategy": "interval",
-              "modeWriteMinIntervalMs": 60000,
-              "direction": "discharge"
+              "modeWriteStrategy": "block",
+              "modeWriteMinIntervalMs": 0,
+              "direction": "discharge",
+              "modeWriteEveryCommand": true,
+              "writeWidePower": false,
+              "widePowerWriteMode": "never",
+              "blockMaxWords": 3,
+              "writeHeartbeatAfterPowerCommand": false,
+              "heartbeatOnCommand": false
             }
           ],
           "sungrowSignedPowerControl": {
@@ -140880,30 +140830,46 @@
             "stopValue": 204,
             "positiveIsCharge": false,
             "writePowerOnStop": true,
-            "blockModeCommandPower": false,
+            "blockModeCommandPower": true,
             "blockWrite": true,
             "heartbeatValueMode": "fixed",
             "clampToLimitDp": true,
-            "repeatCommandAfterWidePower": true,
-            "widePowerDpId": "cHARGE_DISCHARGE_POWER_WIDE",
+            "repeatCommandAfterWidePower": false,
             "maxChargePowerDpId": "sET_MAX_CHARGE_POWER",
             "maxDischargePowerDpId": "sET_MAX_DISCHARGE_POWER",
             "heartbeatDpId": "ExternalEMSHeartbeat",
             "heartbeatValue": 20,
             "heartbeatMinValue": 0,
             "heartbeatMaxValue": 1000,
-            "heartbeatMinIntervalMs": 8000,
+            "heartbeatMinIntervalMs": 9000,
             "heartbeatDefaultValue": 20,
-            "heartbeatAfterPowerCommand": true,
+            "heartbeatAfterPowerCommand": false,
             "heartbeatAutoRefresh": true,
             "heartbeatRefreshIntervalMs": 10000,
             "triggerDpId": "sET_ACTIVE_POWER",
             "blockCommandPower": true,
-            "blockCommandPowerOnly": true,
+            "blockCommandPowerOnly": false,
             "requireContiguousCommandPower": true,
             "commandPowerBlockMaxWords": 2,
-            "modeWriteStrategy": "interval",
-            "modeWriteMinIntervalMs": 60000
+            "modeWriteStrategy": "block",
+            "modeWriteMinIntervalMs": 0,
+            "modeWriteEveryCommand": true,
+            "writeWidePower": false,
+            "widePowerWriteMode": "never",
+            "blockMaxWords": 3,
+            "writeHeartbeatAfterPowerCommand": false,
+            "heartbeatOnCommand": false
+          },
+          "exclusiveSetpointGroups": [
+            [
+              "sET_ACTIVE_POWER",
+              "sET_CHARGE_POWER",
+              "sET_DISCHARGE_POWER"
+            ]
+          ],
+          "autoWatchdog": {
+            "enabled": false,
+            "disabledReason": "Sungrow storage power is driven by EMS change writes; no cyclic power watchdog."
           }
         },
         "polling": {
@@ -140918,14 +140884,8 @@
             "bATTERY_POWER",
             "sOC",
             "bATTERY_VOLTAGE",
-            "bATTERY_CURRENT",
             "bATTERY_TEMPERATURE",
-            "aCTIVE_POWER",
-            "HzPrecise",
-            "InverterAlarm",
-            "GridSideFault",
-            "SystemFault1",
-            "SystemFault2"
+            "aCTIVE_POWER"
           ],
           "initialFastOnly": true,
           "slowDpIds": [
@@ -141044,7 +141004,10 @@
             "InverterFirmwareVersion",
             "CommunicationModuleFirmwareVersion",
             "BatteryFirmwareVersion"
-          ]
+          ],
+          "notes": {
+            "0.5.134": "Fast EMS: fast poll contains only live feedback values. RW helper registers are not fast-polled; EMS writes are prioritized over reads."
+          }
         }
       }
     },
