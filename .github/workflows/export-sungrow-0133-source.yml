@@ -16,7 +16,14 @@ jobs:
   export:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout exact 0.5.133 test branch
+        uses: actions/checkout@v4
+        with:
+          ref: test/sungrow-0.5.136-from-0.5.133
+      - name: Verify exact base
+        run: |
+          test "$(node -p "require('./package.json').version")" = '0.5.133'
+          test "$(node -p "require('./io-package.json').common.version")" = '0.5.133'
       - name: Create clean source ZIP
         run: |
           set -euo pipefail
