@@ -1,6 +1,9 @@
 name: Export Sungrow 0.5.133 source
 
 on:
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - test/sungrow-0.5.136-from-0.5.133
