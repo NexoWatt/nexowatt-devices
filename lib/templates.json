@@ -144248,6 +144248,549 @@
           "initialFastOnly": true
         }
       }
+    },
+    {
+      "id": "evcs.weidmueller.chargeWallboxBusiness.modbusTcp",
+      "source": {
+        "type": "builtin",
+        "document": "Weidmueller-Business-Wallbox-CH-W-B-A3.7_11-PPNM-Vernetzung.pdf",
+        "documentNumber": "2759890000/00/03.2021",
+        "implementedFrom": "Weidmüller / mobility concepts Anleitung zur Vernetzung Charge Wallbox Business (CH-W-B)"
+      },
+      "category": "EVCS",
+      "manufacturer": "Weidmüller",
+      "model": "Charge Wallbox Business CH-W-B A3.7/11 / A7.4/22",
+      "name": "Weidmüller Charge Wallbox Business CH-W-B (Modbus TCP)",
+      "protocols": [
+        "modbusTcp"
+      ],
+      "datapoints": [
+        {
+          "id": "eVSE_STATE",
+          "name": "EV status (IEC 61851 ASCII code)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 100,
+            "length": 1,
+            "dataType": "uint16"
+          },
+          "states": {
+            "65": "A - No vehicle connected",
+            "66": "B - Vehicle connected, not charging",
+            "67": "C - Vehicle charging",
+            "68": "D - Vehicle charging, ventilation required",
+            "69": "E - Error",
+            "70": "F - Error"
+          },
+          "description": "Input register 100. The register contains the ASCII code A..F (normally decimal 65..70)."
+        },
+        {
+          "id": "pROXIMITY_CURRENT",
+          "name": "Proximity cable current",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 101,
+            "length": 1,
+            "dataType": "uint16"
+          },
+          "unit": "A",
+          "decimals": 0,
+          "description": "Input register 101; cable/proximity current rating in amperes."
+        },
+        {
+          "id": "cHARGING_TIME",
+          "name": "Charging time",
+          "role": "value.interval",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 102,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le",
+            "byteOrder": "be"
+          },
+          "unit": "s",
+          "decimals": 0,
+          "description": "Input registers 102..103, low 16-bit word first."
+        },
+        {
+          "id": "dIP_SWITCH_CONFIG",
+          "name": "DIP switch configuration",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 104,
+            "length": 1,
+            "dataType": "uint16"
+          },
+          "description": "Input register 104 bit field; DIP 1 is the least-significant bit."
+        },
+        {
+          "id": "fIRMWARE_VERSION",
+          "name": "Firmware version",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 105,
+            "length": 2,
+            "dataType": "ascii_lsw_first",
+            "wordOrder": "be",
+            "byteOrder": "be"
+          },
+          "description": "Input registers 105..106, ASCII words stored least-significant word first."
+        },
+        {
+          "id": "vOLTAGE_L1",
+          "name": "Voltage L1",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 108,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le",
+            "byteOrder": "be"
+          },
+          "unit": "V",
+          "decimals": 0
+        },
+        {
+          "id": "vOLTAGE_L2",
+          "name": "Voltage L2",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 110,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le",
+            "byteOrder": "be"
+          },
+          "unit": "V",
+          "decimals": 0
+        },
+        {
+          "id": "vOLTAGE_L3",
+          "name": "Voltage L3",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 112,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le",
+            "byteOrder": "be"
+          },
+          "unit": "V",
+          "decimals": 0
+        },
+        {
+          "id": "cURRENT_L1",
+          "name": "Charging current L1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 114,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le",
+            "byteOrder": "be"
+          },
+          "unit": "A",
+          "decimals": 0
+        },
+        {
+          "id": "cURRENT_L2",
+          "name": "Charging current L2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 116,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le",
+            "byteOrder": "be"
+          },
+          "unit": "A",
+          "decimals": 0
+        },
+        {
+          "id": "cURRENT_L3",
+          "name": "Charging current L3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 118,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le",
+            "byteOrder": "be"
+          },
+          "unit": "A",
+          "decimals": 0
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Charging active power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 120,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le",
+            "byteOrder": "be"
+          },
+          "unit": "W",
+          "decimals": 0
+        },
+        {
+          "id": "eNERGY_SESSION",
+          "name": "Energy current charging session",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 4,
+            "address": 132,
+            "length": 2,
+            "dataType": "uint32",
+            "wordOrder": "le",
+            "byteOrder": "be"
+          },
+          "unit": "kWh",
+          "decimals": 0,
+          "description": "Input registers 132..133; vendor documentation specifies integer kWh for the current session."
+        },
+        {
+          "id": "pWM_CURRENT",
+          "name": "Applied PWM charging current",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 300,
+            "length": 1,
+            "dataType": "uint16"
+          },
+          "unit": "A",
+          "decimals": 0,
+          "description": "Holding register 300; currently applied PWM current in amperes."
+        },
+        {
+          "id": "mAC_ADDRESS",
+          "name": "MAC address",
+          "role": "info.mac",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 301,
+            "length": 3,
+            "dataType": "hex_lsw_first",
+            "wordOrder": "be",
+            "byteOrder": "be"
+          },
+          "description": "Holding registers 301..303; fixed 6-byte value, low word first."
+        },
+        {
+          "id": "sERIAL_NUMBER",
+          "name": "Serial number",
+          "role": "info.serial",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 304,
+            "length": 6,
+            "dataType": "ascii_lsw_first",
+            "wordOrder": "be",
+            "byteOrder": "be"
+          },
+          "description": "Holding registers 304..309; vendor table marks this identification field with a question mark."
+        },
+        {
+          "id": "dEVICE_NAME",
+          "name": "Device name",
+          "role": "info.name",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 310,
+            "length": 5,
+            "dataType": "ascii_lsw_first",
+            "wordOrder": "be",
+            "byteOrder": "be"
+          },
+          "description": "Holding registers 310..314. Kept read-only in the adapter to avoid changing device configuration accidentally."
+        },
+        {
+          "id": "iP_ADDRESS",
+          "name": "Configured IP address",
+          "role": "info.ip",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 315,
+            "length": 4,
+            "dataType": "ipv4_u16",
+            "wordOrder": "be",
+            "byteOrder": "be"
+          },
+          "description": "Holding registers 315..318; one decimal IPv4 octet per 16-bit register."
+        },
+        {
+          "id": "sUBNET_MASK",
+          "name": "Configured subnet mask",
+          "role": "info.ip",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 319,
+            "length": 4,
+            "dataType": "ipv4_u16",
+            "wordOrder": "be",
+            "byteOrder": "be"
+          },
+          "description": "Holding registers 319..322; one decimal IPv4 octet per 16-bit register."
+        },
+        {
+          "id": "gATEWAY",
+          "name": "Configured gateway",
+          "role": "info.ip",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 323,
+            "length": 4,
+            "dataType": "ipv4_u16",
+            "wordOrder": "be",
+            "byteOrder": "be"
+          },
+          "description": "Holding registers 323..326; one decimal IPv4 octet per 16-bit register."
+        },
+        {
+          "id": "sET_ENABLE",
+          "name": "Release or block charging",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "wo",
+          "source": {
+            "kind": "modbus",
+            "fc": 5,
+            "address": 400,
+            "length": 1,
+            "dataType": "bool"
+          },
+          "description": "Coil 400. True releases charging through the Ethernet/Modbus path; false blocks this path."
+        },
+        {
+          "id": "rFID_READER_ENABLE",
+          "name": "Enable RFID reader",
+          "role": "switch",
+          "type": "boolean",
+          "rw": "wo",
+          "source": {
+            "kind": "modbus",
+            "fc": 5,
+            "address": 419,
+            "length": 1,
+            "dataType": "bool"
+          },
+          "description": "Coil 419. The reader still emits an acoustic signal when a card is presented even while disabled."
+        },
+        {
+          "id": "cHARGING_RELEASED",
+          "name": "Charging released by any source",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 1,
+            "address": 436,
+            "length": 1,
+            "dataType": "bool"
+          },
+          "description": "Coil 436. True when charging is released by OCPP, Ethernet, RFID or the digital input."
+        },
+        {
+          "id": "sET_CHARGING_CURRENT",
+          "name": "Charging current setpoint",
+          "role": "level.current",
+          "type": "number",
+          "unit": "A",
+          "decimals": 1,
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "minValue": 0,
+            "maxValue": 32,
+            "read": {
+              "fc": 3,
+              "address": 528,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1
+            },
+            "write": {
+              "fc": 6,
+              "address": 528,
+              "length": 1,
+              "dataType": "uint16",
+              "scaleFactor": -1,
+              "minValue": 0,
+              "maxValue": 32
+            }
+          },
+          "description": "Documented holding register 528. Device value is current in A x 10; the adapter exposes amperes. Positive values below 6 A are normalized to 6 A by the stable alias; 0 A remains available as a stop-compatible command while the dedicated release coil is the primary run/stop control."
+        },
+        {
+          "id": "rFID_CARD_UID",
+          "name": "Last RFID card UID",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "fc": 3,
+            "address": 606,
+            "length": 16,
+            "dataType": "ascii_lsw_first",
+            "wordOrder": "be",
+            "byteOrder": "be"
+          },
+          "description": "Holding registers 606..621. Up to 32 hexadecimal characters; low word first with zero-word padding."
+        }
+      ],
+      "notes": "Implementation of the official CH-W-B networking guide 2759890000/00/03.2021. Modbus TCP uses port 502 and server/unit address 255. Register addresses are used exactly as printed in the guide. Multi-register values are low-16-bit-word first with normal Modbus byte order. Charging release is commanded through coil 400 and confirmed independently through coil 436; current setpoint register 528 is exposed in amperes although the device stores A x 10. DP10 must be enabled for Modbus TCP. The documented network configuration registers are intentionally read-only in this template so an EMS cannot accidentally change the wallbox IP settings.",
+      "driverHints": {
+        "pollIntervalMs": 3000,
+        "heartbeatTimeoutMs": 15000,
+        "modbus": {
+          "unitIdDefault": 255,
+          "tcpUnitIdDefault": 255,
+          "enforceTcpUnitIdDefault": true,
+          "forceAddressOffset": 0,
+          "disableAddressFallbackOffsets": true,
+          "disableOffByOneFallback": true,
+          "strictContiguousReads": true,
+          "continueOnReadError": true,
+          "skipFailedReadGroupsMs": 300000,
+          "maxReadRegs": 24,
+          "minCommandIntervalMs": 100,
+          "writeThrottleMs": 250,
+          "writeMaxPerTick": 1,
+          "timeoutMs": 3000,
+          "operationTimeoutMs": 5000,
+          "connectTimeoutMs": 5000,
+          "reconnectBackoffMs": 1000,
+          "maxReconnectBackoffMs": 15000,
+          "optionalReadErrorLogLevel": "debug",
+          "requiredReadDpIds": [
+            "eVSE_STATE",
+            "aCTIVE_POWER",
+            "pWM_CURRENT",
+            "cHARGING_RELEASED",
+            "sET_CHARGING_CURRENT"
+          ],
+          "restoreSetpointsOnStart": {
+            "enabled": false,
+            "disabledReason": "Safety: do not restore a stale charging release/current command after adapter or wallbox restart."
+          },
+          "postWriteRepeat": {
+            "enabled": false,
+            "disabledReason": "The CH-W-B guide specifies no command watchdog; each explicit EMS command is sent once."
+          },
+          "setpointKeepalive": {
+            "enabled": false,
+            "disabledReason": "No cyclic write keepalive is documented for the CH-W-B interface."
+          }
+        },
+        "polling": {
+          "fastIntervalMs": 3000,
+          "slowIntervalMs": 300000,
+          "initialFastOnly": true,
+          "fastDpIds": [
+            "eVSE_STATE",
+            "pROXIMITY_CURRENT",
+            "cHARGING_TIME",
+            "vOLTAGE_L1",
+            "vOLTAGE_L2",
+            "vOLTAGE_L3",
+            "cURRENT_L1",
+            "cURRENT_L2",
+            "cURRENT_L3",
+            "aCTIVE_POWER",
+            "eNERGY_SESSION",
+            "pWM_CURRENT",
+            "cHARGING_RELEASED",
+            "sET_CHARGING_CURRENT",
+            "rFID_CARD_UID"
+          ],
+          "slowDpIds": [
+            "dIP_SWITCH_CONFIG",
+            "fIRMWARE_VERSION",
+            "mAC_ADDRESS",
+            "sERIAL_NUMBER",
+            "dEVICE_NAME",
+            "iP_ADDRESS",
+            "sUBNET_MASK",
+            "gATEWAY"
+          ]
+        }
+      }
     }
   ]
 }

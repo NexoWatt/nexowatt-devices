@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.136",
+    "version": "0.5.137",
     "news": {
+      "0.5.137": {
+        "en": "Add Weidmüller Charge Wallbox Business CH-W-B Modbus TCP support: Unit-ID 255, live status/voltage/current/power/session energy, charging release control, current setpoint in amperes, RFID diagnostics and stable EVCS aliases.",
+        "de": "Weidmüller Charge Wallbox Business CH-W-B per Modbus TCP ergänzt: Unit-ID 255, Status/Spannung/Strom/Leistung/Sitzungsenergie, Ladefreigabe, Stromvorgabe in Ampere, RFID-Diagnose und stabile EVCS-Aliase."
+      },
       "0.5.132": {
         "en": "Sungrow Residential Hybrid EMS write-point support: sET_ACTIVE_POWER, sET_CHARGE_POWER and sET_DISCHARGE_POWER are now single EMS-facing datapoints; the Modbus driver writes External EMS mode, command, power and heartbeat automatically according to Sungrow V1.1.11.",
         "de": "Sungrow Residential Hybrid EMS-Schreibpunkt-Unterstützung: sET_ACTIVE_POWER, sET_CHARGE_POWER und sET_DISCHARGE_POWER sind jetzt einzelne EMS-Datenpunkte; der Modbus-Treiber schreibt External-EMS-Modus, Kommando, Leistung und Heartbeat automatisch gemäß Sungrow V1.1.11."

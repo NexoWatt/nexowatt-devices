@@ -318,7 +318,33 @@ Hinweis: Für HEMS-Steuerung muss die Wallbox-seitige Modbus-TCP-/HEMS-Konfigura
 Stabilitäts-Hinweis ab `0.5.94`: Das AMTRON-Template pollt Live-/Kernregister schnell und verschiebt Firmware-/Info-/Netzwerk-Zusatzregister in einen langsamen 5-Minuten-Poll. Zusätzlich setzt der Modbus-Treiber harte Operation-/Connect-Timeouts, schließt hängende TCP-Sockets aktiv und baut die Verbindung nach Timeouts sauber neu auf. Bereits geschriebene HEMS-Sollwerte werden periodisch aufgefrischt, damit die Wallbox nicht wegen auslaufender HEMS-Kommunikation in den Safe-Current-Fallback fällt.
 
 
-## 4e) Alfen NG9xx / ACE Modbus TCP
+## 4e) Weidmüller Charge Wallbox Business CH-W-B Modbus TCP
+
+Neu integriert ist das offizielle Modbus-TCP-Profil der Weidmüller Charge Wallbox Business für die Varianten A3.7/11 und A7.4/22:
+
+- `templateId`: `evcs.weidmueller.chargeWallboxBusiness.modbusTcp`
+- Kategorie: `EVCS`
+- Port: `502`
+- feste Unit-ID / Modbus-Adresse: `255`
+- Registeradressen werden exakt wie in Anleitung `2759890000/00/03.2021` verwendet
+- für Modbus TCP muss an der Wallbox DIP-Schalter `DP10` aktiviert sein
+
+Wichtige Datenpunkte und Aliases:
+
+- `eVSE_STATE` / `aliases.r.statusCode` / `aliases.r.statusText` - IEC-61851-Zustand A bis F
+- `aCTIVE_POWER` / `aliases.r.power` - aktuelle Ladeleistung in W
+- `eNERGY_SESSION` / `aliases.r.energySession` - Energie des aktuellen Ladevorgangs
+- `vOLTAGE_L1..L3`, `cURRENT_L1..L3` - Phasenmesswerte
+- `cHARGING_TIME` / `aliases.r.sessionTimeS` - Ladezeit in Sekunden
+- `sET_ENABLE` / `aliases.ctrl.run` / `aliases.ctrl.chargeEnable` - Ladefreigabe über Coil 400
+- `cHARGING_RELEASED` / `aliases.r.chargingReleased` - tatsächliche Freigabe über Coil 436
+- `sET_CHARGING_CURRENT` / `aliases.ctrl.currentLimitA` - Stromvorgabe über Holding 528; das Rohregister `A x 10` wird als Ampere dargestellt
+- `rFID_READER_ENABLE` und `rFID_CARD_UID` - RFID-Steuerung und Diagnose
+
+32-Bit-Werte und die herstellerspezifischen ASCII-/RFID-Felder werden Low-Word-First dekodiert. Netzwerkregister werden absichtlich nur gelesen, damit ein EMS nicht versehentlich IP-Adresse, Subnetz oder Gateway verändert. Alte Sollwerte werden nach Neustart nicht automatisch wiederhergestellt.
+
+
+## 4f) Alfen NG9xx / ACE Modbus TCP
 
 Für Alfen NG9xx / ACE sind drei getrennte Modbus-TCP-Templates enthalten, weil Alfen je Registergruppe feste Modbus-Serveradressen/Unit-IDs verwendet:
 
@@ -600,3 +626,11 @@ Available EMS write points:
 - `sET_DISCHARGE_POWER`: positive W discharge command, `0` = stop.
 
 Helper registers such as `eMS_MODE_SELECTION`, `cHARGE_DISCHARGE_COMMAND`, `cHARGE_DISCHARGE_POWER`, and `ExternalEMSHeartbeat` do not have to be assigned by EMS logic.  They remain visible for diagnostics/manual tests, but the adapter writes them automatically from the public power setpoint.
+
+
+### 0.5.137 - Weidmüller Charge Wallbox Business
+
+- Neues Modbus-TCP-Template für CH-W-B-A3.7/11 und CH-W-B-A7.4/22.
+- Unit-ID 255, direkte Herstelleradressen, Low-Word-First-Dekodierung.
+- Ladefreigabe über Coil 400, echte Freigaberückmeldung über Coil 436 und Stromvorgabe über Holding 528 (`A x 10`).
+- Stabile EVCS-Aliase für Status, Fahrzeug/Laden, Leistung, Sitzungsenergie, Stromlimit und Ladefreigabe.
