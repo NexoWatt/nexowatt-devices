@@ -243,6 +243,10 @@
                   "value": "Generic"
                 },
                 {
+                  "label": "go-e",
+                  "value": "go-e"
+                },
+                {
                   "label": "Goodwe",
                   "value": "Goodwe"
                 },
@@ -263,12 +267,12 @@
                   "value": "KACO"
                 },
                 {
-                  "label": "KEBA",
-                  "value": "KEBA"
-                },
-                {
                   "label": "Kdk",
                   "value": "Kdk"
+                },
+                {
+                  "label": "KEBA",
+                  "value": "KEBA"
                 },
                 {
                   "label": "Kmtronic",
@@ -295,8 +299,8 @@
                   "value": "Mypv"
                 },
                 {
-                  "label": "PQPlus",
-                  "value": "PQPlus"
+                  "label": "openWB",
+                  "value": "openWB"
                 },
                 {
                   "label": "Phoenixcontact",
@@ -307,16 +311,16 @@
                   "value": "Plexlog"
                 },
                 {
+                  "label": "PQPlus",
+                  "value": "PQPlus"
+                },
+                {
                   "label": "Pylontech",
                   "value": "Pylontech"
                 },
                 {
                   "label": "REFU",
                   "value": "REFU"
-                },
-                {
-                  "label": "SMA",
-                  "value": "SMA"
                 },
                 {
                   "label": "Samsung",
@@ -343,16 +347,20 @@
                   "value": "Sinexcel"
                 },
                 {
+                  "label": "SMA",
+                  "value": "SMA"
+                },
+                {
                   "label": "Socomec",
                   "value": "Socomec"
                 },
                 {
-                  "label": "SolaX",
-                  "value": "SolaX"
-                },
-                {
                   "label": "Solar-Log",
                   "value": "Solar-Log"
+                },
+                {
+                  "label": "SolaX",
+                  "value": "SolaX"
                 },
                 {
                   "label": "Soltaro",
@@ -371,12 +379,16 @@
                   "value": "TECALOR"
                 },
                 {
-                  "label": "TESVOLT",
-                  "value": "TESVOLT"
+                  "label": "Technische Alternative",
+                  "value": "Technische Alternative"
                 },
                 {
                   "label": "Tesla",
                   "value": "Tesla"
+                },
+                {
+                  "label": "TESVOLT",
+                  "value": "TESVOLT"
                 },
                 {
                   "label": "Victron",
@@ -397,14 +409,6 @@
                 {
                   "label": "ZIEHL",
                   "value": "ZIEHL"
-                },
-                {
-                  "label": "go-e",
-                  "value": "go-e"
-                },
-                {
-                  "label": "openWB",
-                  "value": "openWB"
                 }
               ],
               "freeSolo": false
@@ -718,6 +722,10 @@
                 {
                   "value": "heat.tecalor.TecalorWpm3iModbus",
                   "label": "HEAT | TECALOR wpm3i TECALOR Wärmepumpe (WPM 3(i) / ISG Modbus)"
+                },
+                {
+                  "value": "heat.ta.cmi",
+                  "label": "HEAT | Technische Alternative CMI / CMI-S – alle CAN-Knoten lesen + bidirektionale Heizungsbrücke"
                 },
                 {
                   "value": "io.onewire.OneWireDs18b20Temperature.V1",
@@ -1096,6 +1104,10 @@
               "newLine": true,
               "options": [
                 {
+                  "label": "1-Wire",
+                  "value": "onewire"
+                },
+                {
                   "label": "CANbus",
                   "value": "canbus"
                 },
@@ -1124,12 +1136,12 @@
                   "value": "mqtt"
                 },
                 {
-                  "label": "1-Wire",
-                  "value": "onewire"
-                },
-                {
                   "label": "Speedwire",
                   "value": "speedwire"
+                },
+                {
+                  "label": "TA CMI JSON + Modbus bridge",
+                  "value": "taCmi"
                 },
                 {
                   "label": "UDP",
@@ -1739,6 +1751,143 @@
             {
               "type": "divider",
               "hidden": "data.protocol !== 'http'",
+              "newLine": true
+            },
+            {
+              "type": "staticText",
+              "text": "Technische Alternative CMI / CMI-S",
+              "hidden": "data.protocol !== 'taCmi'",
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.baseUrl",
+              "label": "CMI Base URL (e.g. http://192.168.1.50)",
+              "hidden": "data.protocol !== 'taCmi'",
+              "sm": 12,
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.username",
+              "label": "CMI expert username",
+              "hidden": "data.protocol !== 'taCmi'",
+              "sm": 6,
+              "md": 4,
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.password",
+              "label": "CMI password",
+              "hidden": "data.protocol !== 'taCmi'",
+              "sm": 6,
+              "md": 4
+            },
+            {
+              "type": "text",
+              "attr": "connection.nodes",
+              "label": "CAN nodes (1-62 or 1,3,7)",
+              "hidden": "data.protocol !== 'taCmi'",
+              "default": "1-62",
+              "sm": 6,
+              "md": 4,
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.groups",
+              "label": "API groups (empty = automatic)",
+              "hidden": "data.protocol !== 'taCmi'",
+              "sm": 6,
+              "md": 4
+            },
+            {
+              "type": "number",
+              "attr": "connection.timeoutMs",
+              "label": "HTTP timeout (ms)",
+              "hidden": "data.protocol !== 'taCmi'",
+              "default": 10000,
+              "min": 500,
+              "max": 60000,
+              "sm": 4,
+              "md": 3,
+              "newLine": true
+            },
+            {
+              "type": "checkbox",
+              "attr": "connection.includeDesignations",
+              "label": "Read TA designations",
+              "hidden": "data.protocol !== 'taCmi'",
+              "default": true,
+              "sm": 4,
+              "md": 3
+            },
+            {
+              "type": "checkbox",
+              "attr": "connection.insecureTls",
+              "label": "Allow insecure TLS",
+              "hidden": "data.protocol !== 'taCmi'",
+              "default": false,
+              "sm": 4,
+              "md": 3
+            },
+            {
+              "type": "checkbox",
+              "attr": "connection.bridgeEnabled",
+              "label": "Enable NexoWatt Modbus bridge",
+              "hidden": "data.protocol !== 'taCmi'",
+              "default": true,
+              "sm": 4,
+              "md": 3,
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.bridgeHost",
+              "label": "Bridge bind address",
+              "hidden": "data.protocol !== 'taCmi'",
+              "default": "0.0.0.0",
+              "sm": 4,
+              "md": 3
+            },
+            {
+              "type": "port",
+              "attr": "connection.bridgePort",
+              "label": "Bridge port",
+              "hidden": "data.protocol !== 'taCmi'",
+              "default": 1502,
+              "sm": 2,
+              "md": 2
+            },
+            {
+              "type": "number",
+              "attr": "connection.bridgeUnitId",
+              "label": "Bridge Unit-ID",
+              "hidden": "data.protocol !== 'taCmi'",
+              "default": 1,
+              "min": 1,
+              "max": 247,
+              "sm": 2,
+              "md": 2
+            },
+            {
+              "type": "text",
+              "attr": "connection.bridgeMapJson",
+              "label": "Bridge channel map JSON (optional)",
+              "hidden": "data.protocol !== 'taCmi'",
+              "sm": 12,
+              "newLine": true
+            },
+            {
+              "type": "staticText",
+              "text": "CMI JSON is read-only and officially limited to one request per minute. For writes, configure the CMI as Modbus master to this NexoWatt server. Default: HR 0..63 / coils 0..63 NexoWatt→CMI; HR 100..163 / coils 100..163 CMI→NexoWatt.",
+              "hidden": "data.protocol !== 'taCmi'",
+              "newLine": true
+            },
+            {
+              "type": "divider",
+              "hidden": "data.protocol !== 'taCmi'",
               "newLine": true
             },
             {
