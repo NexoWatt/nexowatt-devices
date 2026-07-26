@@ -2,6 +2,8 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
 const {
   isSungrowResidentialRuntime,
   configureSungrowRuntime,
@@ -23,12 +25,12 @@ function makeRuntime(rawValue) {
   };
   const runtime = {
     started: true,
-    cfg: { enabled: true, id: 'ess1', templateId: 'ess.sungrow.ResidentialHybridV119' },
+    cfg: { enabled: true, id: 'ess1', templateId: 'ess.sungrow.ResidentialHybridV119', protocol: 'modbusTcp', pollIntervalMs: 5000, connection: {} },
     template: {
       id: 'ess.sungrow.ResidentialHybridV119',
       manufacturer: 'Sungrow',
       model: 'Residential Hybrid Inverter',
-      driverHints: { modbus: { commandCadenceMs: 250, writeThrottleMs: 1000, minCommandIntervalMs: 1000 } },
+      driverHints: { polling: { fastIntervalMs: 2000 }, modbus: { commandCadenceMs: 250, writeThrottleMs: 1000, minCommandIntervalMs: 1000 } },
     },
     dpById: new Map([['bATTERY_POWER', batteryDp]]),
     aliasDefs: [
@@ -70,12 +72,19 @@ test('detects only the Sungrow residential hybrid runtime', () => {
   assert.equal(isSungrowResidentialRuntime(runtime), false);
 });
 
-test('splits write scheduling from the full poll scheduler', () => {
+test('enforces Sungrow one-second polling and separates writes from full polls', () => {
   const runtime = makeRuntime(500);
   assert.equal(configureSungrowRuntime(runtime), true);
+  assert.equal(runtime.cfg.pollIntervalMs, 1000);
+  assert.equal(runtime.cfg.connection.minCommandIntervalMs, 200);
+  assert.equal(runtime.template.driverHints.polling.fastIntervalMs, 1000);
+  assert.equal(runtime.template.driverHints.polling.forceFastIntervalMs, 1000);
+  assert.equal(runtime.template.driverHints.polling.fixedFastCadence, true);
   assert.equal(runtime.template.driverHints.modbus.commandCadenceMs, 0);
   assert.equal(runtime.template.driverHints.modbus.writeThrottleMs, 250);
-  assert.equal(runtime.template.driverHints.modbus.minCommandIntervalMs, 1000);
+  assert.equal(runtime.template.driverHints.modbus.minCommandIntervalMs, 200);
+  assert.equal(runtime.template.driverHints.modbus.sungrowFastFeedback.intervalMs, 1000);
+  assert.equal(runtime.template.driverHints.modbus.sungrowFastFeedback.afterWriteOnly, true);
 });
 
 test('priority feedback updates exact power without 500 W quantisation', async () => {
@@ -103,3 +112,71 @@ test('negative charge feedback remains exact', async () => {
   assert.equal(runtime.states.get('devices.ess1.aliases.r.powerCharge'), 731);
   assert.equal(runtime.states.get('devices.ess1.aliases.r.powerDischarge'), 0);
 });
+
+test('packaged Sungrow template keeps 0.5.133 direction mapping and one-second fast profile', () => {
+  const root = path.resolve(__dirname, '..');
+  const runtimeTemplates = JSON.parse(fs.readFileSync(path.join(root, 'lib', 'templates.json'), 'utf8'));
+  const adminTemplates = fs.readFileSync(path.join(root, 'admin', 'templates.json'), 'utf8');
+  assert.equal(fs.readFileSync(path.join(root, 'lib', 'templates.json'), 'utf8'), adminTemplates);
+
+  const template = runtimeTemplates.templates.find(t => t.id === 'ess.sungrow.ResidentialHybridV119');
+  assert.ok(template);
+  const polling = template.driverHints.polling;
+  const modbus = template.driverHints.modbus;
+  assert.equal(polling.fastIntervalMs, 1000);
+  assert.equal(polling.forceFastIntervalMs, 1000);
+  assert.equal(polling.fixedFastCadence, true);
+  assert.equal(modbus.minCommandIntervalMs, 200);
+
+  const controls = [...modbus.sungrowSignedPowerControls, modbus.sungrowSignedPowerControl];
+  for (const control of controls) {
+    assert.equal(control.chargeValue, 170);
+    assert.equal(control.dischargeValue, 187);
+    assert.equal(control.stopValue, 204);
+    assert.equal(control.positiveIsCharge, false);
+  }
+});
+
+test('Sungrow fast datapoints form four register groups for a one-second TCP snapshot', () => {
+  const root = path.resolve(__dirname, '..');
+  const data = JSON.parse(fs.readFileSync(path.join(root, 'lib', 'templates.json'), 'utf8'));
+  const template = data.templates.find(t => t.id === 'ess.sungrow.ResidentialHybridV119');
+  const ids = new Set(template.driverHints.polling.fastDpIds);
+  const items = template.datapoints
+    .filter(dp => ids.has(dp.id))
+    .map(dp => {
+      const src = dp.source.read || dp.source;
+      return { id: dp.id, addr: Number(src.address), end: Number(src.address) + Number(src.length || 1) - 1 };
+    })
+    .sort((a, b) => a.addr - b.addr);
+
+  const groups = [];
+  let current = null;
+  for (const item of items) {
+    if (!current) {
+      current = { start: item.addr, end: item.end, ids: [item.id] };
+      continue;
+    }
+    const newEnd = Math.max(current.end, item.end);
+    const span = newEnd - current.start + 1;
+    if (span <= 40) {
+      current.end = newEnd;
+      current.ids.push(item.id);
+    } else {
+      groups.push(current);
+      current = { start: item.addr, end: item.end, ids: [item.id] };
+    }
+  }
+  if (current) groups.push(current);
+
+  assert.equal(groups.length, 4);
+  assert.deepEqual(groups.map(g => [g.start, g.end]), [
+    [5016, 5017],
+    [5213, 5214],
+    [5600, 5601],
+    [12999, 13034],
+  ]);
+  // Four request starts at 0/200/400/600 ms leave margin inside the 1000 ms target.
+  assert.equal((groups.length - 1) * template.driverHints.modbus.minCommandIntervalMs, 600);
+});
+

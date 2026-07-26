@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.137",
+    "version": "0.5.140",
     "news": {
+      "0.5.140": {
+        "en": "Alfen ACE write audit: retain the verified Socket FC16 frame, restore a real Unit-ID 200 Station/SCN control profile with an atomic three-phase setpoint, surface rejected manual writes in info.lastError, add exact accepted-write traces, and remove the duplicate current refresh path.",
+        "de": "Alfen-ACE-Schreibprüfung: bestätigten Socket-FC16-Frame beibehalten, echtes Station/SCN-Steuerprofil auf Unit-ID 200 mit atomarem Drei-Phasen-Sollwert wiederhergestellt, abgelehnte manuelle Schreibbefehle in info.lastError sichtbar gemacht, exakte Write-Traces ergänzt und den doppelten Strom-Refresh entfernt."
+      },
+      "0.5.139": {
+        "en": "Technische Alternative CMI/CMI-S integration: dynamically read all supported values from configured CAN nodes via JSON API v8 and control heating bidirectionally through an integrated Modbus TCP server with 64 analog and 64 digital channels per direction.",
+        "de": "Technische Alternative CMI/CMI-S integriert: alle unterstützten Werte der konfigurierten CAN-Knoten werden dynamisch über die JSON API v8 gelesen; die Heizung lässt sich bidirektional über einen integrierten Modbus-TCP-Server mit je 64 analogen und 64 digitalen Kanälen pro Richtung steuern."
+      },
+      "0.5.138": {
+        "en": "Sungrow Residential Hybrid 1-second control telemetry: critical live datapoints use a fixed 1000 ms poll target, Modbus TCP operation spacing is reduced to 200 ms for the four fast read groups, and battery power is read back immediately after EMS writes. The proven 0.5.133 charge/discharge direction mapping is unchanged.",
+        "de": "Sungrow Residential Hybrid mit 1-Sekunden-Regelwerten: kritische Live-Datenpunkte laufen mit festem 1000-ms-Pollziel, der Modbus-TCP-Abstand wird für die vier schnellen Lesegruppen auf 200 ms reduziert und die Batterieleistung wird nach EMS-Schreibbefehlen sofort zurückgelesen. Die bewährte Lade-/Entladerichtung aus 0.5.133 bleibt unverändert."
+      },
       "0.5.137": {
         "en": "Add Weidmüller Charge Wallbox Business CH-W-B Modbus TCP support: Unit-ID 255, live status/voltage/current/power/session energy, charging release control, current setpoint in amperes, RFID diagnostics and stable EVCS aliases.",
         "de": "Weidmüller Charge Wallbox Business CH-W-B per Modbus TCP ergänzt: Unit-ID 255, Status/Spannung/Strom/Leistung/Sitzungsenergie, Ladefreigabe, Stromvorgabe in Ampere, RFID-Diagnose und stabile EVCS-Aliase."

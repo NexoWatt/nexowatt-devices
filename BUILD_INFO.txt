@@ -1,32 +1,14 @@
-NexoWatt Devices 0.5.137 - Weidmüller Charge Wallbox Business CH-W-B
+NexoWatt Devices 0.5.140 – Alfen ACE Schreiblogik-Audit
 
-Base: NexoWatt Devices 0.5.136
-Template ID: evcs.weidmueller.chargeWallboxBusiness.modbusTcp
-Implementation source: Weidmüller networking guide 2759890000/00/03.2021
+Base: 0.5.139 (includes Technische Alternative CMI / CMI-S)
 
-Connection:
-- Modbus TCP port 502
-- Unit-ID 255 (enforced)
-- Register address offset 0 (enforced)
-- DP10 must be enabled on the wallbox
+Alfen changes:
+- Socket FC16 write frame re-audited against Modbus for ACE v1.0: UID1/2, protocol address 1209, FLOAT32 low-word-first/network-byte-order
+- restored a true Station/SCN profile on UID200
+- atomic SCN L1/L2/L3 current write via FC16 at protocol address 1416, length 6; 1 A step normalized
+- manual Modbus exception 2/3 write rejections now surface in info.lastError
+- exact accepted-write trace with Unit-ID, function, address, register words and data bytes
+- duplicate current post-write repeat removed; 5 s validity watchdog remains
+- packet-level regression tests added
 
-Core control mapping:
-- Coil 400: charging release command
-- Coil 436: actual charging release readback
-- Holding 528: charging current setpoint, A x 10
-- Coil 419: RFID reader enable
-
-Safety:
-- No stale setpoint restore after restart
-- No cyclic write keepalive
-- IP/subnet/gateway registers are read-only in this template
-
-Validation:
-- Runtime/admin templates identical
-- JSON and JavaScript syntax validated
-- Node test suite: 14/14 passed before packaging
-- Dynamic Modbus test verified Unit-ID 255, address 528 -> raw 76 for 7.6 A,
-  coil 400 release, low-word-first 32-bit reads and the documented RFID example
-
-Repository status:
-- This ZIP is a local test build. No repository merge was performed for this implementation.
+No physical Alfen charger was available in this build environment. Field confirmation must use the accepted-write trace plus valid-time/accounted/applied-current readbacks.

@@ -113804,17 +113804,12 @@
             "logLevel": "debug",
             "targets": [
               {
-                "dpId": "sET_CHARGING_CURRENT",
-                "delayMs": 5000,
-                "useLastCommandValue": true
-              },
-              {
                 "dpId": "cHARGE_USING_PHASES",
                 "delayMs": 5000,
                 "useLastCommandValue": true
               }
             ],
-            "reason": "Repeat a changed Alfen EMS command once after 5 s idle; the cyclic watchdog is reserved for Max Current."
+            "reason": "The current command is refreshed only by the 5 s validity watchdog. Phase mode is repeated once after an explicit command."
           },
           "addressing": {
             "documentRegisterOffset": -1,
@@ -113856,13 +113851,15 @@
             "defaultPhaseMode": 3,
             "allowSeedOnePhaseFromAlias": false,
             "controlMode": "socket",
-            "addressAuditVersion": "0.5.129",
+            "addressAuditVersion": "0.5.140",
             "addressAuditSource": "Filtered Alfen ACE register list supplied by user; protocol addresses use document register - 1.",
             "registerGuide": "Alfen ACE Modbus register table",
             "safeDefaultMode": "socket",
             "minRunCurrentA": 6,
             "positiveCurrentMinA": 6,
-            "controlOnlyVersion": "0.5.129"
+            "controlOnlyVersion": "0.5.129",
+            "writeAuditVersion": "0.5.140",
+            "acceptedWriteTrace": true
           },
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 5000,
@@ -113870,7 +113867,7 @@
           "allowKeepaliveWhileReadBusy": true,
           "seedSetpointKeepaliveFromAliases": true,
           "manualAliasWriteBypassesCooldown": true,
-          "addressAuditVersion": "0.5.129-control-only",
+          "addressAuditVersion": "0.5.140-alfen-write-audit",
           "softIllegalAddressReads": true,
           "adaptiveReadSplit": true,
           "splitFailedReadGroupsMs": 60000
@@ -114404,7 +114401,7 @@
         "socketUnitId": 1,
         "stationUnitId": 200,
         "controlMode": "socket",
-        "controlStableVersion": "0.5.129",
+        "controlStableVersion": "0.5.140",
         "defaultEnableCurrentA": 6,
         "runCurrentA": 6,
         "stopCurrentA": 0,
@@ -114423,7 +114420,8 @@
         "allIdsWriteMirrors": false,
         "autoMirrorWrites": "disabled",
         "controlOnlyVersion": "0.5.129",
-        "diagnosis": "Use aliases.r.setpointAccountedFor: true means the charger is accounting the written Socket Max Current. If false, enable EMS Socket mode / Allow writing maximum currents in ACE Service Installer."
+        "diagnosis": "Use aliases.r.setpointAccountedFor: true means the charger is accounting the written Socket Max Current. If false, enable EMS Socket mode / Allow writing maximum currents in ACE Service Installer.",
+        "writeAuditVersion": "0.5.140"
       },
       "version": "0.5.129",
       "meta": {
@@ -114573,17 +114571,12 @@
             "logLevel": "debug",
             "targets": [
               {
-                "dpId": "sET_CHARGING_CURRENT",
-                "delayMs": 5000,
-                "useLastCommandValue": true
-              },
-              {
                 "dpId": "cHARGE_USING_PHASES",
                 "delayMs": 5000,
                 "useLastCommandValue": true
               }
             ],
-            "reason": "Repeat a changed Alfen EMS command once after 5 s idle; the cyclic watchdog is reserved for Max Current."
+            "reason": "The current command is refreshed only by the 5 s validity watchdog. Phase mode is repeated once after an explicit command."
           },
           "addressing": {
             "documentRegisterOffset": -1,
@@ -114625,13 +114618,15 @@
             "defaultPhaseMode": 3,
             "allowSeedOnePhaseFromAlias": false,
             "controlMode": "socket",
-            "addressAuditVersion": "0.5.129",
+            "addressAuditVersion": "0.5.140",
             "addressAuditSource": "Filtered Alfen ACE register list supplied by user; protocol addresses use document register - 1.",
             "registerGuide": "Alfen ACE Modbus register table",
             "safeDefaultMode": "socket",
             "minRunCurrentA": 6,
             "positiveCurrentMinA": 6,
-            "controlOnlyVersion": "0.5.129"
+            "controlOnlyVersion": "0.5.129",
+            "writeAuditVersion": "0.5.140",
+            "acceptedWriteTrace": true
           },
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 5000,
@@ -114639,7 +114634,7 @@
           "allowKeepaliveWhileReadBusy": true,
           "seedSetpointKeepaliveFromAliases": true,
           "manualAliasWriteBypassesCooldown": true,
-          "addressAuditVersion": "0.5.129-control-only",
+          "addressAuditVersion": "0.5.140-alfen-write-audit",
           "softIllegalAddressReads": true,
           "adaptiveReadSplit": true,
           "splitFailedReadGroupsMs": 60000
@@ -115173,7 +115168,7 @@
         "socketUnitId": 2,
         "stationUnitId": 200,
         "controlMode": "socket",
-        "controlStableVersion": "0.5.129",
+        "controlStableVersion": "0.5.140",
         "defaultEnableCurrentA": 6,
         "runCurrentA": 6,
         "stopCurrentA": 0,
@@ -115192,7 +115187,8 @@
         "allIdsWriteMirrors": false,
         "autoMirrorWrites": "disabled",
         "controlOnlyVersion": "0.5.129",
-        "diagnosis": "Use aliases.r.setpointAccountedFor: true means the charger is accounting the written Socket Max Current. If false, enable EMS Socket mode / Allow writing maximum currents in ACE Service Installer."
+        "diagnosis": "Use aliases.r.setpointAccountedFor: true means the charger is accounting the written Socket Max Current. If false, enable EMS Socket mode / Allow writing maximum currents in ACE Service Installer.",
+        "writeAuditVersion": "0.5.140"
       },
       "version": "0.5.129",
       "meta": {
@@ -115222,8 +115218,8 @@
       },
       "category": "EVCS",
       "manufacturer": "Alfen",
-      "model": "NG9xx ACE Station + Socket 1 Control Only",
-      "name": "Alfen NG9xx (ACE) Station + Socket 1 / CONTROL ONLY (Modbus TCP)",
+      "model": "NG9xx (ACE Modbus) Station/SCN + Socket 1 diagnostics",
+      "name": "Alfen NG9xx (ACE) Station/SCN (Unit-ID 200) + Socket 1 diagnostics",
       "protocols": [
         "modbusTcp"
       ],
@@ -115233,6 +115229,20 @@
           "slowIntervalMs": 60000,
           "initialFastOnly": true,
           "fastDpIds": [
+            "sCN_TOTAL_CONSUMPTION_L1",
+            "sCN_TOTAL_CONSUMPTION_L2",
+            "sCN_TOTAL_CONSUMPTION_L3",
+            "sCN_ACTUAL_MAX_CURRENT_L1",
+            "sCN_ACTUAL_MAX_CURRENT_L2",
+            "sCN_ACTUAL_MAX_CURRENT_L3",
+            "sCN_MAX_CURRENT_L1",
+            "sCN_MAX_CURRENT_L2",
+            "sCN_MAX_CURRENT_L3",
+            "sCN_REMAINING_VALID_TIME_L1",
+            "sCN_REMAINING_VALID_TIME_L2",
+            "sCN_REMAINING_VALID_TIME_L3",
+            "sCN_SAFE_CURRENT",
+            "sCN_MAX_CURRENT_ENABLE",
             "aCTIVE_POWER",
             "tOTAL_CHARGED_ENERGY",
             "cURRENT_L1",
@@ -115248,9 +115258,39 @@
           ],
           "slowDpIds": [
             "sTATION_NAME",
+            "mANUFACTURER",
+            "mODBUS_TABLE_VERSION",
             "fIRMWARE_VERSION",
+            "pLATFORM_TYPE",
+            "sERIAL_NUMBER",
+            "dATE_YEAR",
+            "dATE_MONTH",
+            "dATE_DAY",
+            "tIME_HOUR",
+            "tIME_MINUTE",
+            "tIME_SECOND",
             "uPTIME_MS",
+            "tIMEZONE_OFFSET_MIN",
+            "sTATION_ACTIVE_MAX_CURRENT",
             "tEMPERATURE",
+            "oCPP_STATE",
+            "nUMBER_OF_SOCKETS",
+            "sCN_NAME",
+            "sCN_SOCKETS",
+            "sCN_TOTAL_CONSUMPTION_L1",
+            "sCN_TOTAL_CONSUMPTION_L2",
+            "sCN_TOTAL_CONSUMPTION_L3",
+            "sCN_ACTUAL_MAX_CURRENT_L1",
+            "sCN_ACTUAL_MAX_CURRENT_L2",
+            "sCN_ACTUAL_MAX_CURRENT_L3",
+            "sCN_MAX_CURRENT_L1",
+            "sCN_MAX_CURRENT_L2",
+            "sCN_MAX_CURRENT_L3",
+            "sCN_REMAINING_VALID_TIME_L1",
+            "sCN_REMAINING_VALID_TIME_L2",
+            "sCN_REMAINING_VALID_TIME_L3",
+            "sCN_SAFE_CURRENT",
+            "sCN_MAX_CURRENT_ENABLE",
             "vOLTAGE_L1",
             "vOLTAGE_L2",
             "vOLTAGE_L3",
@@ -115286,7 +115326,7 @@
             "allowWhilePolling": true,
             "targets": [
               {
-                "setpointDpId": "sET_CHARGING_CURRENT",
+                "setpointDpId": "sCN_MAX_CURRENT",
                 "intervalMs": 5000,
                 "minWriteIntervalMs": 4500,
                 "requireEverWritten": true,
@@ -115294,12 +115334,12 @@
                 "unsupportedBackoffMs": 1000,
                 "writeRejectBackoffMs": 1000,
                 "useLastCommandValue": true,
-                "reason": "Alfen ACE validity timer must be refreshed before it expires. Current command is repeated every 5 s from the last commanded value."
+                "reason": "Refresh all three SCN phase-current values in one FC16 request before the ACE validity timer expires."
               }
             ],
-            "reason": "0.5.129 control-only: watchdog refreshes Max Current only. Phase mode is written on command plus one post-write repeat, not every watchdog tick."
+            "reason": "SCN profile: refresh the combined Unit-ID 200 setpoint only after it was explicitly commanded."
           },
-          "unitIdDefault": 1,
+          "unitIdDefault": 200,
           "enforceUnitIdDefault": true,
           "forceAddressOffset": 0,
           "addressOffsetDefault": 0,
@@ -115325,7 +115365,7 @@
           "restoreSetpointsOnStart": {
             "enabled": true,
             "dpIds": [
-              "sET_CHARGING_CURRENT"
+              "sCN_MAX_CURRENT"
             ],
             "delayMs": 1500,
             "maxRetries": 6,
@@ -115333,7 +115373,7 @@
             "storeOnWrite": true,
             "useFallbackFromDpState": false,
             "logLevel": "debug",
-            "reason": "Restore only the current command. Do not restore a stale phase command."
+            "reason": "Restore only the combined SCN current command. Socket current and phase mode remain explicit diagnostic controls."
           },
           "postWriteRepeat": {
             "enabled": true,
@@ -115342,17 +115382,12 @@
             "logLevel": "debug",
             "targets": [
               {
-                "dpId": "sET_CHARGING_CURRENT",
-                "delayMs": 5000,
-                "useLastCommandValue": true
-              },
-              {
                 "dpId": "cHARGE_USING_PHASES",
                 "delayMs": 5000,
                 "useLastCommandValue": true
               }
             ],
-            "reason": "Repeat a changed Alfen EMS command once after 5 s idle; the cyclic watchdog is reserved for Max Current."
+            "reason": "The SCN current is handled by the cyclic 5 s validity watchdog; only an explicit phase command is repeated once."
           },
           "addressing": {
             "documentRegisterOffset": -1,
@@ -115366,7 +115401,7 @@
             "alwaysTryControlWrites": true,
             "controlUnsupportedBackoffMs": 30000,
             "controlProbeOkCacheMs": 60000,
-            "socketControlMustBeExposed": true,
+            "socketControlMustBeExposed": false,
             "cleanMeterOnlyFallback": true,
             "adaptiveControlAddress": false,
             "controlAddressOffsets": [
@@ -115393,14 +115428,20 @@
             "stopCurrentA": 0,
             "defaultPhaseMode": 3,
             "allowSeedOnePhaseFromAlias": false,
-            "controlMode": "socket",
-            "addressAuditVersion": "0.5.129",
-            "addressAuditSource": "Filtered Alfen ACE register list supplied by user; protocol addresses use document register - 1.",
+            "controlMode": "scn",
+            "addressAuditVersion": "0.5.140",
+            "addressAuditSource": "Alfen Modbus for ACE Configuration Guide v1.0 EN 05/2025; protocol addresses are document register minus 1.",
             "registerGuide": "Alfen ACE Modbus register table",
-            "safeDefaultMode": "socket",
+            "safeDefaultMode": "scn",
             "minRunCurrentA": 6,
             "positiveCurrentMinA": 6,
-            "controlOnlyVersion": "0.5.129"
+            "controlOnlyVersion": "0.5.129",
+            "scnPrimaryControl": true,
+            "scnMaxCurrentWriteProtocolAddress": 1416,
+            "scnMaxCurrentWriteLength": 6,
+            "scnUnitId": 200,
+            "writeAuditVersion": "0.5.140",
+            "acceptedWriteTrace": true
           },
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 5000,
@@ -115408,14 +115449,15 @@
           "allowKeepaliveWhileReadBusy": true,
           "seedSetpointKeepaliveFromAliases": true,
           "manualAliasWriteBypassesCooldown": true,
-          "addressAuditVersion": "0.5.129-control-only",
+          "addressAuditVersion": "0.5.140-alfen-write-audit",
           "softIllegalAddressReads": true,
           "adaptiveReadSplit": true,
           "splitFailedReadGroupsMs": 60000
         },
         "alfen": {
-          "addressesAuditedAgainst": "Filtered Alfen ACE control profile. All addresses are protocol addresses: document register - 1.",
-          "controlMode": "socketPrimary"
+          "addressesAuditedAgainst": "Alfen Modbus for ACE Configuration Guide v1.0 EN 05/2025; all addresses are protocol addresses (document register - 1).",
+          "controlMode": "scn",
+          "scnPrimaryControl": true
         },
         "pollIntervalMs": 5000
       },
@@ -115433,6 +115475,52 @@
               "address": 99,
               "length": 17,
               "dataType": "string",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          }
+        },
+        {
+          "id": "mANUFACTURER",
+          "name": "Manufacturer",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 116,
+              "length": 5,
+              "dataType": "string",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          }
+        },
+        {
+          "id": "mODBUS_TABLE_VERSION",
+          "name": "Modbus table version",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 121,
+              "length": 1,
+              "dataType": "int16",
               "unitId": 200,
               "disableAddressFallbackOffsets": true,
               "noAddressFallback": true,
@@ -115467,6 +115555,196 @@
           }
         },
         {
+          "id": "pLATFORM_TYPE",
+          "name": "Platform type",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 139,
+              "length": 17,
+              "dataType": "string",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          }
+        },
+        {
+          "id": "sERIAL_NUMBER",
+          "name": "Station serial number",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 156,
+              "length": 11,
+              "dataType": "string",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          }
+        },
+        {
+          "id": "dATE_YEAR",
+          "name": "Date year",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 167,
+              "length": 1,
+              "dataType": "int16",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "yr"
+        },
+        {
+          "id": "dATE_MONTH",
+          "name": "Date month",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 168,
+              "length": 1,
+              "dataType": "int16",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "month"
+        },
+        {
+          "id": "dATE_DAY",
+          "name": "Date day",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 169,
+              "length": 1,
+              "dataType": "int16",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "day"
+        },
+        {
+          "id": "tIME_HOUR",
+          "name": "Time hour",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 170,
+              "length": 1,
+              "dataType": "int16",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "h"
+        },
+        {
+          "id": "tIME_MINUTE",
+          "name": "Time minute",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 171,
+              "length": 1,
+              "dataType": "int16",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "min"
+        },
+        {
+          "id": "tIME_SECOND",
+          "name": "Time second",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 172,
+              "length": 1,
+              "dataType": "int16",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "s"
+        },
+        {
           "id": "uPTIME_MS",
           "name": "Uptime",
           "role": "value",
@@ -115482,18 +115760,68 @@
               "unitId": 200,
               "disableAddressFallbackOffsets": true,
               "noAddressFallback": true,
-              "wordOrder": "le",
-              "nanToNull": true,
               "optional": true,
-              "bigIntToNullOnOverflow": true,
-              "uint64OverflowToNull": true,
-              "byteOrder": "be"
+              "wordOrder": "le",
+              "byteOrder": "be",
+              "nanToNull": true,
+              "unsigned64SentinelToNull": true
             },
             "unitId": 200,
             "disableAddressFallbackOffsets": true,
             "noAddressFallback": true
           },
           "unit": "ms"
+        },
+        {
+          "id": "tIMEZONE_OFFSET_MIN",
+          "name": "Time-zone offset from UTC",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 177,
+              "length": 1,
+              "dataType": "int16",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "min"
+        },
+        {
+          "id": "sTATION_ACTIVE_MAX_CURRENT",
+          "name": "Station active max current",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1099,
+              "length": 2,
+              "dataType": "float32",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true,
+              "wordOrder": "le",
+              "byteOrder": "be",
+              "nanToNull": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "A"
         },
         {
           "id": "tEMPERATURE",
@@ -115511,16 +115839,580 @@
               "unitId": 200,
               "disableAddressFallbackOffsets": true,
               "noAddressFallback": true,
-              "wordOrder": "le",
-              "nanToNull": true,
               "optional": true,
-              "byteOrder": "be"
+              "wordOrder": "le",
+              "byteOrder": "be",
+              "nanToNull": true
             },
             "unitId": 200,
             "disableAddressFallbackOffsets": true,
             "noAddressFallback": true
           },
           "unit": "°C"
+        },
+        {
+          "id": "oCPP_STATE",
+          "name": "OCPP state",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1103,
+              "length": 1,
+              "dataType": "uint16",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          }
+        },
+        {
+          "id": "nUMBER_OF_SOCKETS",
+          "name": "Number of sockets",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1104,
+              "length": 1,
+              "dataType": "uint16",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          }
+        },
+        {
+          "id": "sCN_NAME",
+          "name": "Smart Charging Network name",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1399,
+              "length": 4,
+              "dataType": "string",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          }
+        },
+        {
+          "id": "sCN_SOCKETS",
+          "name": "SCN connected sockets",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1403,
+              "length": 1,
+              "dataType": "uint16",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          }
+        },
+        {
+          "id": "sCN_TOTAL_CONSUMPTION_L1",
+          "name": "SCN total consumption L1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1404,
+              "length": 2,
+              "dataType": "float32",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true,
+              "wordOrder": "le",
+              "byteOrder": "be",
+              "nanToNull": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "A"
+        },
+        {
+          "id": "sCN_TOTAL_CONSUMPTION_L2",
+          "name": "SCN total consumption L2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1406,
+              "length": 2,
+              "dataType": "float32",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true,
+              "wordOrder": "le",
+              "byteOrder": "be",
+              "nanToNull": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "A"
+        },
+        {
+          "id": "sCN_TOTAL_CONSUMPTION_L3",
+          "name": "SCN total consumption L3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1408,
+              "length": 2,
+              "dataType": "float32",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true,
+              "wordOrder": "le",
+              "byteOrder": "be",
+              "nanToNull": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "A"
+        },
+        {
+          "id": "sCN_ACTUAL_MAX_CURRENT_L1",
+          "name": "SCN actual max current L1",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1410,
+              "length": 2,
+              "dataType": "float32",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true,
+              "wordOrder": "le",
+              "byteOrder": "be",
+              "nanToNull": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "A"
+        },
+        {
+          "id": "sCN_ACTUAL_MAX_CURRENT_L2",
+          "name": "SCN actual max current L2",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1412,
+              "length": 2,
+              "dataType": "float32",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true,
+              "wordOrder": "le",
+              "byteOrder": "be",
+              "nanToNull": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "A"
+        },
+        {
+          "id": "sCN_ACTUAL_MAX_CURRENT_L3",
+          "name": "SCN actual max current L3",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1414,
+              "length": 2,
+              "dataType": "float32",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true,
+              "wordOrder": "le",
+              "byteOrder": "be",
+              "nanToNull": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "A"
+        },
+        {
+          "id": "sCN_MAX_CURRENT",
+          "name": "SCN max current all phases / EMS setpoint",
+          "role": "level.current",
+          "type": "number",
+          "rw": "wo",
+          "source": {
+            "kind": "modbus",
+            "write": {
+              "fc": 16,
+              "address": 1416,
+              "length": 6,
+              "dataType": "float32",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "finite": true,
+              "wordOrder": "le",
+              "byteOrder": "be",
+              "repeatEncodedValue": true,
+              "repeatValueWords": 2,
+              "minValue": 0,
+              "maxValue": 80,
+              "zeroOrMinValue": 6,
+              "nonZeroMinValue": 6,
+              "positiveMinValue": 6,
+              "minPositiveValue": 6,
+              "round": true,
+              "integer": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "A",
+          "desc": "Writes one FLOAT32 value to all three contiguous SCN phase setpoints in a single FC16 request: document registers 1417..1422, protocol address 1416, Unit-ID 200."
+        },
+        {
+          "id": "sCN_MAX_CURRENT_L1",
+          "name": "SCN max current L1",
+          "role": "level.current",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1416,
+              "length": 2,
+              "dataType": "float32",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true,
+              "wordOrder": "le",
+              "byteOrder": "be",
+              "nanToNull": true
+            },
+            "write": {
+              "fc": 16,
+              "address": 1416,
+              "length": 2,
+              "dataType": "float32",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "finite": true,
+              "wordOrder": "le",
+              "byteOrder": "be",
+              "minValue": 0,
+              "maxValue": 80,
+              "round": true,
+              "integer": true,
+              "zeroOrMinValue": 6,
+              "nonZeroMinValue": 6,
+              "positiveMinValue": 6,
+              "minPositiveValue": 6
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "A"
+        },
+        {
+          "id": "sCN_MAX_CURRENT_L2",
+          "name": "SCN max current L2",
+          "role": "level.current",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1418,
+              "length": 2,
+              "dataType": "float32",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true,
+              "wordOrder": "le",
+              "byteOrder": "be",
+              "nanToNull": true
+            },
+            "write": {
+              "fc": 16,
+              "address": 1418,
+              "length": 2,
+              "dataType": "float32",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "finite": true,
+              "wordOrder": "le",
+              "byteOrder": "be",
+              "minValue": 0,
+              "maxValue": 80,
+              "round": true,
+              "integer": true,
+              "zeroOrMinValue": 6,
+              "nonZeroMinValue": 6,
+              "positiveMinValue": 6,
+              "minPositiveValue": 6
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "A"
+        },
+        {
+          "id": "sCN_MAX_CURRENT_L3",
+          "name": "SCN max current L3",
+          "role": "level.current",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1420,
+              "length": 2,
+              "dataType": "float32",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true,
+              "wordOrder": "le",
+              "byteOrder": "be",
+              "nanToNull": true
+            },
+            "write": {
+              "fc": 16,
+              "address": 1420,
+              "length": 2,
+              "dataType": "float32",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "finite": true,
+              "wordOrder": "le",
+              "byteOrder": "be",
+              "minValue": 0,
+              "maxValue": 80,
+              "round": true,
+              "integer": true,
+              "zeroOrMinValue": 6,
+              "nonZeroMinValue": 6,
+              "positiveMinValue": 6,
+              "minPositiveValue": 6
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "A"
+        },
+        {
+          "id": "sCN_REMAINING_VALID_TIME_L1",
+          "name": "SCN remaining valid time L1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1422,
+              "length": 2,
+              "dataType": "uint32",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true,
+              "wordOrder": "le",
+              "byteOrder": "be",
+              "nanToNull": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "s"
+        },
+        {
+          "id": "sCN_REMAINING_VALID_TIME_L2",
+          "name": "SCN remaining valid time L2",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1424,
+              "length": 2,
+              "dataType": "uint32",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true,
+              "wordOrder": "le",
+              "byteOrder": "be",
+              "nanToNull": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "s"
+        },
+        {
+          "id": "sCN_REMAINING_VALID_TIME_L3",
+          "name": "SCN remaining valid time L3",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1426,
+              "length": 2,
+              "dataType": "uint32",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true,
+              "wordOrder": "le",
+              "byteOrder": "be",
+              "nanToNull": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "s"
+        },
+        {
+          "id": "sCN_SAFE_CURRENT",
+          "name": "SCN safe current",
+          "role": "value.current",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1428,
+              "length": 2,
+              "dataType": "float32",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true,
+              "wordOrder": "le",
+              "byteOrder": "be",
+              "nanToNull": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          },
+          "unit": "A"
+        },
+        {
+          "id": "sCN_MAX_CURRENT_ENABLE",
+          "name": "SCN Modbus server max current enabled",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1430,
+              "length": 1,
+              "dataType": "uint16",
+              "unitId": 200,
+              "disableAddressFallbackOffsets": true,
+              "noAddressFallback": true,
+              "optional": true,
+              "toBoolean": true
+            },
+            "unitId": 200,
+            "disableAddressFallbackOffsets": true,
+            "noAddressFallback": true
+          }
         },
         {
           "id": "vOLTAGE_L1",
@@ -116038,19 +116930,19 @@
       "addressOffsetDefault": 0,
       "disableAddressFallbackOffsets": true,
       "alfen": {
-        "addressesAuditedAgainst": "Filtered Alfen ACE control profile. All template addresses are protocol addresses: document register - 1.",
+        "addressesAuditedAgainst": "Alfen Modbus for ACE Configuration Guide v1.0 EN 05/2025; all template addresses are protocol addresses (document register - 1).",
         "maxCurrentProtocolAddress": 1209,
         "chargeUsingPhasesProtocolAddress": 1214,
         "socketUnitId": 1,
         "stationUnitId": 200,
-        "controlMode": "socket",
-        "controlStableVersion": "0.5.129",
+        "controlMode": "scn",
+        "controlStableVersion": "0.5.140",
         "defaultEnableCurrentA": 6,
         "runCurrentA": 6,
         "stopCurrentA": 0,
         "minRunCurrentA": 6,
         "positiveCurrentMinA": 6,
-        "safeDefaultMode": "socket",
+        "safeDefaultMode": "scn",
         "setpointWatchdogRefreshMs": 5000,
         "phaseModeKeepalive": false,
         "commandAliasesHoldLastCommand": true,
@@ -116058,12 +116950,16 @@
         "maxCurrentWriteProtocolAddress": 1209,
         "defaultPhaseMode": 3,
         "manualAliasWriteBypassesCooldown": true,
-        "scnPrimaryControl": false,
+        "scnPrimaryControl": true,
         "scnMirrorOnly": false,
         "allIdsWriteMirrors": false,
         "autoMirrorWrites": "disabled",
         "controlOnlyVersion": "0.5.129",
-        "diagnosis": "Use aliases.r.setpointAccountedFor: true means the charger is accounting the written Socket Max Current. If false, enable EMS Socket mode / Allow writing maximum currents in ACE Service Installer."
+        "diagnosis": "aliases.r.setpointAccountedFor maps to SCN_MAX_CURRENT_ENABLE in this profile. The combined command writes L1/L2/L3 atomically at UID200 FC16@1416 len=6.",
+        "scnUnitId": 200,
+        "scnMaxCurrentProtocolAddress": 1416,
+        "scnMaxCurrentLength": 6,
+        "writeAuditVersion": "0.5.140"
       },
       "version": "0.5.129",
       "meta": {
@@ -124863,7 +125759,7 @@
       "category": "ESS",
       "manufacturer": "Sungrow",
       "model": "Residential Hybrid Inverter SH/RS/RT/T/MG V1.1.11",
-      "name": "Sungrow Residential Hybrid Inverter (SHxxRS/RT/T, MG RL) Modbus V1.1.11 – EMS Dispatch Fix",
+      "name": "Sungrow Residential Hybrid Inverter (SHxxRS/RT/T, MG RL) Modbus V1.1.11 – 1 s EMS feedback",
       "protocols": [
         "modbusTcp",
         "modbusRtu"
@@ -124952,29 +125848,33 @@
             }
           },
           "states": {
-            "3351": "SH3.0RS (0xD17)",
             "3341": "SH3.6RS (0xD0D)",
-            "3352": "SH4.0RS (0xD18)",
             "3343": "SH5.0RS (0xD0F)",
             "3344": "SH6.0RS (0xD10)",
+            "3351": "SH3.0RS (0xD17)",
+            "3352": "SH4.0RS (0xD18)",
             "3354": "SH8.0RS (0xD1A)",
             "3355": "SH10RS (0xD1B)",
+            "3367": "MG5RL (0xD27)",
+            "3368": "MG6RL (0xD28)",
+            "3369": "MG8RL (0xD29)",
+            "3370": "MG10RL (0xD2A)",
             "3584": "SH5.0RT (0xE00)",
             "3585": "SH6.0RT (0xE01)",
             "3586": "SH8.0RT (0xE02)",
             "3587": "SH10RT (0xE03)",
-            "3600": "SH5.0RT-20 (0xE10)",
-            "3601": "SH6.0RT-20 (0xE11)",
-            "3602": "SH8.0RT-20 (0xE12)",
-            "3603": "SH10RT-20 (0xE13)",
-            "3596": "SH5.0RT-V112 (0xE0C)",
-            "3597": "SH6.0RT-V112 (0xE0D)",
-            "3598": "SH8.0RT-V112 (0xE0E)",
-            "3599": "SH10RT-V112 (0xE0F)",
             "3592": "SH5.0RT-V122 (0xE08)",
             "3593": "SH6.0RT-V122 (0xE09)",
             "3594": "SH8.0RT-V122 (0xE0A)",
             "3595": "SH10RT-V122 (0xE0B)",
+            "3596": "SH5.0RT-V112 (0xE0C)",
+            "3597": "SH6.0RT-V112 (0xE0D)",
+            "3598": "SH8.0RT-V112 (0xE0E)",
+            "3599": "SH10RT-V112 (0xE0F)",
+            "3600": "SH5.0RT-20 (0xE10)",
+            "3601": "SH6.0RT-20 (0xE11)",
+            "3602": "SH8.0RT-20 (0xE12)",
+            "3603": "SH10RT-20 (0xE13)",
             "3616": "SH5T (0xE20)",
             "3617": "SH6T (0xE21)",
             "3618": "SH8T (0xE22)",
@@ -124982,11 +125882,7 @@
             "3620": "SH12T (0xE24)",
             "3621": "SH15T (0xE25)",
             "3622": "SH20T (0xE26)",
-            "3624": "SH25T (0xE28)",
-            "3367": "MG5RL (0xD27)",
-            "3368": "MG6RL (0xD28)",
-            "3369": "MG8RL (0xD29)",
-            "3370": "MG10RL (0xD2A)"
+            "3624": "SH25T (0xE28)"
           }
         },
         {
@@ -137914,40 +138810,40 @@
           },
           "states": {
             "0": "Running (On-grid)",
-            "64": "Running (On-grid)",
+            "1": "Stop",
+            "2": "Key stop",
+            "4": "Emergency Stop",
+            "8": "Standby",
+            "16": "Initial standby",
             "20": "Microgrid Operation",
+            "32": "Starting",
+            "64": "Running (On-grid)",
+            "65": "Off-grid Charge",
+            "128": "Derating Running",
+            "256": "Fault",
+            "512": "Update Failed",
             "1024": "Running in maintain mode",
             "2048": "Running in compulsory mode",
             "4096": "Running (off-grid)",
+            "4369": "Uninitialized",
+            "4608": "Initial standby",
+            "4864": "Key stop",
+            "5120": "Standby",
+            "5376": "Emergency Stop",
+            "5632": "Starting",
+            "5888": "AFCI self-test shutdown",
+            "6144": "Intelligent Station Building Status",
+            "6400": "Safe Mode",
             "8192": "Open loop",
+            "9472": "Communicate fault",
+            "9473": "Restarting",
             "16384": "Running in External EMS mode",
             "16385": "Emergency Charging Operation",
-            "4369": "Uninitialized",
-            "32768": "Stop",
-            "1": "Stop",
-            "4864": "Key stop",
-            "2": "Key stop",
-            "5376": "Emergency Stop",
-            "4": "Emergency Stop",
-            "5120": "Standby",
-            "8": "Standby",
-            "4608": "Initial standby",
-            "16": "Initial standby",
-            "5632": "Starting",
-            "32": "Starting",
-            "6144": "Intelligent Station Building Status",
-            "37120": "Warn Running",
-            "33024": "Derating Running",
-            "128": "Derating Running",
-            "33280": "Dispatch Running",
             "21760": "Fault",
-            "256": "Fault",
-            "5888": "AFCI self-test shutdown",
-            "6400": "Safe Mode",
-            "65": "Off-grid Charge",
-            "512": "Update Failed",
-            "9472": "Communicate fault",
-            "9473": "Restarting"
+            "32768": "Stop",
+            "33024": "Derating Running",
+            "33280": "Dispatch Running",
+            "37120": "Warn Running"
           }
         },
         {
@@ -140579,11 +141475,11 @@
           "decimals": 2
         }
       ],
-      "notes": "Sungrow residential hybrid inverter template implemented against protocol V1.1.11 (2025-11-17). Register addresses are zero-based (documentation register - 1). U32/S32 use low-word-first word order and big-endian bytes. EMS writes only power setpoints; the adapter writes EMS mode + charge/discharge command + power as one FC16 block over 13050..13052, keeps External EMS heartbeat 13080 at fixed 20 s, and treats charge/discharge helper datapoints as mutually exclusive so an older delayed charge command cannot overwrite a new discharge command. RW helper registers are not fast-polled; request cadence is kept at >=1000 ms per Sungrow requirements.",
+      "notes": "Sungrow residential hybrid inverter template implemented against protocol V1.1.11 (2025-11-17). Register addresses are zero-based (documentation register - 1). U32/S32 use low-word-first word order and big-endian bytes. EMS writes only power setpoints; the adapter writes EMS mode + charge/discharge command + power as one FC16 block over 13050..13052, keeps External EMS heartbeat 13080 at fixed 20 s, and treats charge/discharge helper datapoints as mutually exclusive so an older delayed charge command cannot overwrite a new discharge command. RW helper registers are not fast-polled; request cadence is kept at >=1000 ms per Sungrow requirements. One-second control telemetry: the critical fast datapoints are scheduled with a fixed 1000 ms start-to-start target; Modbus TCP operations use a 200 ms gap so the four fast register groups can complete inside the target cycle. Exact 0 W and the 0.5.133 charge/discharge direction mapping remain unchanged.",
       "driverHints": {
         "modbus": {
           "unitIdDefault": 1,
-          "minCommandIntervalMs": 1000,
+          "minCommandIntervalMs": 200,
           "writeThrottleMs": 1000,
           "commandCadenceMs": 1000,
           "writeMaxPerTick": 1,
@@ -140902,10 +141798,20 @@
               "sET_CHARGE_POWER",
               "sET_DISCHARGE_POWER"
             ]
-          ]
+          ],
+          "sungrowFastFeedback": {
+            "enabled": true,
+            "intervalMs": 1000,
+            "retryBusyMs": 200,
+            "firstReadDelayMs": 150,
+            "activeWindowMs": 30000,
+            "idleCheckMs": 5000,
+            "afterWriteOnly": true,
+            "description": "Normal fast polling runs every second; additionally read battery power once immediately after each EMS setpoint write."
+          }
         },
         "polling": {
-          "fastIntervalMs": 2000,
+          "fastIntervalMs": 1000,
           "slowIntervalMs": 300000,
           "fastDpIds": [
             "sYSTEM_STATE",
@@ -141036,7 +141942,13 @@
             "InverterFirmwareVersion",
             "CommunicationModuleFirmwareVersion",
             "BatteryFirmwareVersion"
-          ]
+          ],
+          "forceFastIntervalMs": 1000,
+          "fixedFastCadence": true,
+          "fixedCadence": true,
+          "notes": {
+            "0.5.138": "Sungrow critical live values target a fixed 1 s start-to-start poll cadence. A cycle contains four Modbus TCP register groups."
+          }
         }
       }
     },
@@ -144789,6 +145701,126 @@
             "sUBNET_MASK",
             "gATEWAY"
           ]
+        }
+      }
+    },
+    {
+      "id": "heat.ta.cmi",
+      "source": {
+        "type": "builtin",
+        "protocol": "Technische Alternative CMI JSON-API Version 8 + CMI Modbus TCP master bridge",
+        "protocolReleaseDate": "2025-10-08",
+        "implementedFrom": "Official CMI JSON-API V8 and CMI online help (Modbus inputs/outputs)"
+      },
+      "category": "HEAT",
+      "manufacturer": "Technische Alternative",
+      "model": "CMI / CMI-S",
+      "name": "Technische Alternative CMI – alle CAN-Knoten lesen + bidirektionale Heizungsbrücke",
+      "protocols": [
+        "taCmi"
+      ],
+      "datapoints": [
+        {
+          "id": "cMI_API_STATUS",
+          "name": "CMI JSON API status",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "taCmiStatus"
+          }
+        },
+        {
+          "id": "cMI_API_STATUS_CODE",
+          "name": "CMI JSON API status code",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "taCmiStatus"
+          },
+          "states": {
+            "0": "OK",
+            "1": "NODE ERROR",
+            "2": "FAIL",
+            "3": "SYNTAX ERROR",
+            "4": "TOO MANY REQUESTS",
+            "5": "DEVICE NOT SUPPORTED",
+            "6": "TOO FEW ARGUMENTS",
+            "7": "CAN BUSY"
+          }
+        },
+        {
+          "id": "cMI_LAST_NODE",
+          "name": "Last requested CAN node",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "taCmiStatus"
+          }
+        },
+        {
+          "id": "cMI_DISCOVERED_NODES",
+          "name": "Discovered CAN nodes",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "taCmiStatus"
+          }
+        },
+        {
+          "id": "cMI_SCAN_PROGRESS",
+          "name": "CAN node scan progress",
+          "role": "value",
+          "type": "number",
+          "unit": "%",
+          "rw": "ro",
+          "source": {
+            "kind": "taCmiStatus"
+          }
+        },
+        {
+          "id": "cMI_BRIDGE_LISTENING",
+          "name": "NexoWatt Modbus bridge listening",
+          "role": "indicator.connected",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "taCmiStatus"
+          }
+        },
+        {
+          "id": "cMI_BRIDGE_CLIENT_LAST_SEEN_MS",
+          "name": "CMI Modbus client last seen",
+          "role": "value.time",
+          "type": "number",
+          "unit": "ms",
+          "rw": "ro",
+          "source": {
+            "kind": "taCmiStatus"
+          }
+        }
+      ],
+      "notes": "The official CMI JSON API is read-only and limited to one request per minute. This driver reads every supported value of every configured/discovered CAN node dynamically. Bidirectional control is implemented with a local Modbus TCP server because the CMI acts as Modbus master. CMI Modbus inputs read NexoWatt setpoints; CMI Modbus outputs write feedback values to NexoWatt. Default map: holding 0..63 / coils 0..63 NexoWatt→CMI; holding 100..163 / coils 100..163 CMI→NexoWatt. Analog values are signed 16-bit integers; scale and unit are configured per channel in bridgeMapJson and/or in the CMI. The CMI supports up to 64 analog and 64 digital values per Modbus direction.",
+      "driverHints": {
+        "pollIntervalMs": 60000,
+        "heartbeatTimeoutMs": 900000,
+        "taCmi": {
+          "apiPath": "/INCLUDE/api.cgi",
+          "apiVersion": 8,
+          "minRequestIntervalMs": 60000,
+          "nodeRange": "1-62",
+          "includeDesignations": true,
+          "bridgePortDefault": 1502,
+          "bridgeUnitIdDefault": 1,
+          "txAnalogBase": 0,
+          "rxAnalogBase": 100,
+          "txDigitalBase": 0,
+          "rxDigitalBase": 100,
+          "analogChannelsPerDirection": 64,
+          "digitalChannelsPerDirection": 64
         }
       }
     }

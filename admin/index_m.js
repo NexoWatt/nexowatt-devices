@@ -586,6 +586,10 @@ function summarizeConnection(d) {
   if (d.protocol === 'http') {
     return `${c.baseUrl || ''}${hbTxt ? (' (' + hbTxt.slice(2) + ')') : ''}`;
   }
+  if (d.protocol === 'taCmi') {
+    const bridge = c.bridgeEnabled === false ? 'bridge off' : `bridge :${c.bridgePort || 1502}/u${c.bridgeUnitId || 1}`;
+    return `${c.baseUrl || ''} (${c.nodes || '1-62'}, ${bridge}${hbTxt})`;
+  }
   if (d.protocol === 'udp') {
     return `${c.host || ''}:${c.port || 7090}${hbTxt ? (' (' + hbTxt.slice(2) + ')') : ''}`;
   }
@@ -681,6 +685,7 @@ function showConnBlock(protocol) {
   if (protocol === 'canbus') $('#conn_canbus').show();
   if (protocol === 'onewire') $('#conn_onewire').show();
   if (protocol === 'http') $('#conn_http').show();
+  if (protocol === 'taCmi') $('#conn_taCmi').show();
   if (protocol === 'udp') $('#conn_udp').show();
   if (protocol === 'speedwire') $('#conn_speedwire').show();
 
@@ -725,6 +730,9 @@ function summarizeDatapoint(dp) {
   if (kind === 'http') {
     return `${(src.method || 'GET').toUpperCase()} ${src.path || ''} ${src.jsonPath ? ('-> ' + src.jsonPath) : ''}`.trim();
   }
+  if (kind === 'taCmiStatus') return 'CMI runtime status';
+  if (kind === 'taCmiBridge') return `${src.direction || ''} ${src.valueType || ''} ch${src.channel || ''}`.trim();
+  if (kind === 'taCmiJson') return `node ${src.node || ''} ${src.group || ''} #${src.number || ''}`.trim();
   if (kind === 'udp') {
     const r = src.read || {};
     const w = src.write || {};
@@ -911,6 +919,20 @@ function openDeviceModal(device, idx) {
   $('#http_meterId').val(c.meterId || '');
   $('#http_insecureTls').prop('checked', !!c.insecureTls);
 
+  // TA CMI
+  $('#cmi_baseUrl').val(c.baseUrl || 'http://192.168.1.50');
+  $('#cmi_user').val(c.username || '');
+  $('#cmi_pass').val(c.password || '');
+  $('#cmi_nodes').val(c.nodes || c.nodeList || c.nodeRange || '1-62');
+  $('#cmi_groups').val(Array.isArray(c.groups) ? c.groups.join(',') : (c.groups || c.jsonParams || ''));
+  $('#cmi_timeout').val(c.timeoutMs ?? 10000);
+  $('#cmi_includeDesignations').prop('checked', c.includeDesignations !== false);
+  $('#cmi_insecureTls').prop('checked', !!c.insecureTls);
+  $('#cmi_bridgeEnabled').prop('checked', c.bridgeEnabled !== false);
+  $('#cmi_bridgeHost').val(c.bridgeHost || c.bindAddress || '0.0.0.0');
+  $('#cmi_bridgePort').val(c.bridgePort ?? c.serverPort ?? 1502);
+  $('#cmi_bridgeUnitId').val(c.bridgeUnitId ?? c.serverUnitId ?? 1);
+  $('#cmi_bridgeMapJson').val(typeof c.bridgeMapJson === 'string' ? c.bridgeMapJson : (Array.isArray(c.bridgeMap) ? JSON.stringify(c.bridgeMap, null, 2) : ''));
 
   // UDP
   $('#udp_host').val(c.host || '');
@@ -1037,6 +1059,28 @@ function collectDeviceFromModal() {
     d.connection.password = ($('#http_pass').val() || '').trim() || undefined;
     d.connection.meterId = ($('#http_meterId').val() || '').trim() || undefined;
     if ($('#http_insecureTls').is(':checked')) d.connection.insecureTls = true;
+  } else if (d.protocol === 'taCmi') {
+    d.connection.baseUrl = ($('#cmi_baseUrl').val() || '').trim();
+    d.connection.username = ($('#cmi_user').val() || '').trim() || undefined;
+    d.connection.password = ($('#cmi_pass').val() || '').trim() || undefined;
+    d.connection.nodes = ($('#cmi_nodes').val() || '').trim() || '1-62';
+    const groups = ($('#cmi_groups').val() || '').trim();
+    if (groups) d.connection.groups = groups;
+    d.connection.timeoutMs = parseInt($('#cmi_timeout').val(), 10) || 10000;
+    d.connection.includeDesignations = $('#cmi_includeDesignations').is(':checked');
+    if ($('#cmi_insecureTls').is(':checked')) d.connection.insecureTls = true;
+    d.connection.bridgeEnabled = $('#cmi_bridgeEnabled').is(':checked');
+    d.connection.bridgeHost = ($('#cmi_bridgeHost').val() || '').trim() || '0.0.0.0';
+    d.connection.bridgePort = parseInt($('#cmi_bridgePort').val(), 10) || 1502;
+    d.connection.bridgeUnitId = parseInt($('#cmi_bridgeUnitId').val(), 10) || 1;
+    const mapRaw = ($('#cmi_bridgeMapJson').val() || '').trim();
+    if (mapRaw) {
+      let parsed;
+      try { parsed = JSON.parse(mapRaw); } catch (e) { throw new Error('CMI Bridge-Kanaldefinitionen sind kein gültiges JSON'); }
+      if (!Array.isArray(parsed)) throw new Error('CMI Bridge-Kanaldefinitionen müssen ein JSON-Array sein');
+      d.connection.bridgeMap = parsed;
+    }
+    if (!d.pollIntervalMs || d.pollIntervalMs < 60000) d.pollIntervalMs = 60000;
   } else if (d.protocol === 'udp') {
     d.connection.host = ($('#udp_host').val() || '').trim();
     d.connection.port = parseInt($('#udp_port').val(), 10) || 7090;
@@ -1075,6 +1119,8 @@ function collectDeviceFromModal() {
   if (d.protocol === 'canbus' && !d.connection.interface) throw new Error('CAN Interface fehlt (z.B. can0)');
   if (d.protocol === 'onewire' && !d.connection.sensorId) throw new Error('1-Wire Sensor-ID fehlt');
   if (d.protocol === 'http' && !d.connection.baseUrl) throw new Error('HTTP Base-URL fehlt');
+  if (d.protocol === 'taCmi' && !d.connection.baseUrl) throw new Error('TA CMI Base-URL fehlt');
+  if (d.protocol === 'taCmi' && !d.connection.username) throw new Error('TA CMI Experten-Benutzer fehlt');
 
   if (d.protocol === 'udp' && !d.connection.host) throw new Error('UDP Host/IP fehlt');
 

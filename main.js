@@ -388,6 +388,7 @@ class NexowattDevicesAdapter extends utils.Adapter {
       case 'modbusAscii': return 'Modbus ASCII';
       case 'mqtt': return 'MQTT';
       case 'http': return 'HTTP/JSON';
+      case 'taCmi': return 'TA CMI JSON + Modbus bridge';
       case 'udp': return 'UDP';
       case 'speedwire': return 'Speedwire';
       case 'mbus': return 'M-Bus';
@@ -468,7 +469,7 @@ class NexowattDevicesAdapter extends utils.Adapter {
         const templateId = (msg.templateId || '').toString();
         const tpl = templateId ? byId[templateId] : null;
         const protos = (tpl && Array.isArray(tpl.protocols) && tpl.protocols.length) ? tpl.protocols : [
-          'modbusTcp', 'modbusRtu', 'modbusAscii', 'mqtt', 'http', 'udp', 'speedwire', 'mbus', 'onewire', 'canbus'
+          'modbusTcp', 'modbusRtu', 'modbusAscii', 'mqtt', 'http', 'taCmi', 'udp', 'speedwire', 'mbus', 'onewire', 'canbus'
         ];
         const res = Array.from(new Set(protos.map(p => String(p)))).map(p => ({ value: p, label: this._protocolLabel(p) }));
         return this.sendTo(obj.from, obj.command, res, obj.callback);

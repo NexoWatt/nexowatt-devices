@@ -27,4 +27,4 @@ Danach steuern über:
 
 ## Alfen muss passend konfiguriert sein
 
-In ACE Service Installer / Eve Install muss die Wallbox im EMS-/Socket-Modus laufen: Active Load Balancing aktiv, Data Source = Energy Management System, Modbus TCP/IP, Allow writing maximum currents, TCP/IP EMS Control Mode = Socket und Safe Current gesetzt.
+In ACE Service Installer / Eve Install muss die Wallbox im EMS-/Socket-Modus laufen: Active Load Balancing aktiv, Data Source = Energy Management System, Modbus TCP/IP, **Allow reading**, **Allow writing maximum currents**, **Enable sockets**, TCP/IP EMS Control Mode = Socket und Safe Current gesetzt. Der 0.5.140-Audit ergänzt ausdrücklich `Enable sockets`, weil ACE den empfangenen Socket-Sollwert sonst nicht in die Berechnung übernimmt.
