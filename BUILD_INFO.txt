@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 NexoWatt Devices 0.5.140 – Alfen ACE Schreiblogik-Audit
 
 Base: 0.5.139 (includes Technische Alternative CMI / CMI-S)
@@ -12,3 +13,20 @@ Alfen changes:
 - packet-level regression tests added
 
 No physical Alfen charger was available in this build environment. Field confirmation must use the accepted-write trace plus valid-time/accounted/applied-current readbacks.
+=======
+NexoWatt Devices 0.5.139 – Technische Alternative CMI / CMI-S
+
+Base: 0.5.138 (includes Sungrow 1 s telemetry and Weidmüller CH-W-B)
+
+Added:
+- protocol taCmi
+- CMI JSON API v8 dynamic CAN-node reader
+- all-node scan (1..62 or configured list)
+- dynamic datapoints with designations, units, status and RAS
+- integrated Modbus TCP server for bidirectional heating control
+- 64 analog + 64 digital channels in each direction
+- optional named/scaled bridge map and stable aliases
+- Materialize and JSON admin configuration
+
+No GitHub merge was performed for this test package.
+>>>>>>> 72b211c7109587144d24629b741a14a3cb83f766

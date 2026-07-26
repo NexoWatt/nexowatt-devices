@@ -692,6 +692,7 @@ Helper registers such as `eMS_MODE_SELECTION`, `cHARGE_DISCHARGE_COMMAND`, `cHAR
 - Je Richtung bis zu 64 analoge und 64 digitale Kanäle. Standardkarte: Holding/Coils 0…63 NexoWatt→CMI und 100…163 CMI→NexoWatt.
 - Frei definierbare Kanalnamen, Einheiten, Faktoren, Grenzwerte und stabile Aliase über `bridgeMap`.
 - Die offizielle JSON API bleibt read-only und auf eine Anfrage pro Minute begrenzt; schnelle Regelwerte laufen unabhängig davon über die Modbus-Brücke.
+<<<<<<< HEAD
 
 ### 0.5.140 - Alfen ACE write-logic audit
 
@@ -702,3 +703,5 @@ Helper registers such as `eMS_MODE_SELECTION`, `cHARGE_DISCHARGE_COMMAND`, `cHAR
 - Removed the duplicate current post-write repeat; only the 5-second validity watchdog refreshes the last explicit current command.
 - Added packet-level regression tests for Socket 1, Socket 2 and SCN writes.
 
+=======
+>>>>>>> 72b211c7109587144d24629b741a14a3cb83f766

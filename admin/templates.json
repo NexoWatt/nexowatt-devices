@@ -125759,7 +125759,11 @@
       "category": "ESS",
       "manufacturer": "Sungrow",
       "model": "Residential Hybrid Inverter SH/RS/RT/T/MG V1.1.11",
+<<<<<<< HEAD
       "name": "Sungrow Residential Hybrid Inverter (SHxxRS/RT/T, MG RL) Modbus V1.1.11 – 1 s EMS feedback",
+=======
+      "name": "Sungrow Residential Hybrid Inverter (SHxxRS/RT/T, MG RL) Modbus V1.1.11 – Fast EMS no watchdog",
+>>>>>>> 72b211c7109587144d24629b741a14a3cb83f766
       "protocols": [
         "modbusTcp",
         "modbusRtu"
