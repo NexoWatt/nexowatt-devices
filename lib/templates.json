@@ -46795,7 +46795,8 @@
             "length": 2,
             "dataType": "uint32",
             "bitShift": 16,
-            "bitMask": 63
+            "bitMask": 63,
+            "readRequestGroup": "abl-0x0001-r2"
           }
         },
         {
@@ -46811,7 +46812,8 @@
             "length": 2,
             "dataType": "uint32",
             "bitShift": 12,
-            "bitMask": 15
+            "bitMask": 15,
+            "readRequestGroup": "abl-0x0001-r2"
           }
         },
         {
@@ -46827,7 +46829,8 @@
             "length": 2,
             "dataType": "uint32",
             "bitShift": 8,
-            "bitMask": 15
+            "bitMask": 15,
+            "readRequestGroup": "abl-0x0001-r2"
           }
         },
         {
@@ -46843,7 +46846,8 @@
             "length": 2,
             "dataType": "uint32",
             "bitShift": 22,
-            "bitMask": 3
+            "bitMask": 3,
+            "readRequestGroup": "abl-0x0001-r2"
           }
         },
         {
@@ -46857,7 +46861,8 @@
             "fc": 3,
             "address": 3,
             "length": 1,
-            "dataType": "uint16"
+            "dataType": "uint16",
+            "readRequestGroup": "abl-0x0003-r1"
           }
         },
         {
@@ -46873,7 +46878,8 @@
             "length": 1,
             "dataType": "uint16",
             "bitShift": 6,
-            "bitMask": 3
+            "bitMask": 3,
+            "readRequestGroup": "abl-0x0003-r1"
           }
         },
         {
@@ -46889,7 +46895,8 @@
             "length": 1,
             "dataType": "uint16",
             "bitShift": 4,
-            "bitMask": 3
+            "bitMask": 3,
+            "readRequestGroup": "abl-0x0003-r1"
           }
         },
         {
@@ -46904,7 +46911,8 @@
             "address": 3,
             "length": 1,
             "dataType": "uint16",
-            "bitMask": 15
+            "bitMask": 15,
+            "readRequestGroup": "abl-0x0003-r1"
           }
         },
         {
@@ -46920,7 +46928,8 @@
             "length": 2,
             "dataType": "uint32",
             "bitShift": 16,
-            "bitMask": 255
+            "bitMask": 255,
+            "readRequestGroup": "abl-0x0006-r2"
           }
         },
         {
@@ -46938,7 +46947,8 @@
             "bitShift": 9,
             "bitMask": 1,
             "toBoolean": true,
-            "trueWhenZero": true
+            "trueWhenZero": true,
+            "readRequestGroup": "abl-0x0006-r2"
           }
         },
         {
@@ -46955,7 +46965,8 @@
             "dataType": "uint32",
             "bitShift": 8,
             "bitMask": 1,
-            "toBoolean": true
+            "toBoolean": true,
+            "readRequestGroup": "abl-0x0006-r2"
           }
         },
         {
@@ -46970,7 +46981,8 @@
             "address": 46,
             "length": 1,
             "dataType": "uint16",
-            "bitMask": 255
+            "bitMask": 255,
+            "readRequestGroup": "abl-0x002e-r5"
           }
         },
         {
@@ -46987,7 +46999,8 @@
             "dataType": "uint16",
             "bitShift": 15,
             "bitMask": 1,
-            "toBoolean": true
+            "toBoolean": true,
+            "readRequestGroup": "abl-0x002e-r5"
           }
         },
         {
@@ -47004,7 +47017,8 @@
             "dataType": "uint16",
             "bitShift": 14,
             "bitMask": 1,
-            "toBoolean": true
+            "toBoolean": true,
+            "readRequestGroup": "abl-0x002e-r5"
           }
         },
         {
@@ -47021,7 +47035,8 @@
             "dataType": "uint16",
             "bitShift": 12,
             "bitMask": 1,
-            "toBoolean": true
+            "toBoolean": true,
+            "readRequestGroup": "abl-0x002e-r5"
           }
         },
         {
@@ -47038,7 +47053,8 @@
             "dataType": "uint16",
             "bitShift": 13,
             "bitMask": 1,
-            "toBoolean": true
+            "toBoolean": true,
+            "readRequestGroup": "abl-0x002e-r5"
           }
         },
         {
@@ -47055,7 +47071,8 @@
             "length": 1,
             "dataType": "uint16",
             "bitMask": 4095,
-            "scaleFactor": -1
+            "scaleFactor": -1,
+            "readRequestGroup": "abl-0x002e-r5"
           }
         },
         {
@@ -47072,7 +47089,8 @@
             "length": 1,
             "dataType": "uint16",
             "scaleFactor": -1,
-            "nanValue": 1000
+            "nanValue": 1000,
+            "readRequestGroup": "abl-0x002e-r5"
           }
         },
         {
@@ -47089,7 +47107,8 @@
             "length": 1,
             "dataType": "uint16",
             "scaleFactor": -1,
-            "nanValue": 1000
+            "nanValue": 1000,
+            "readRequestGroup": "abl-0x002e-r5"
           }
         },
         {
@@ -47106,7 +47125,8 @@
             "length": 1,
             "dataType": "uint16",
             "scaleFactor": -1,
-            "nanValue": 1000
+            "nanValue": 1000,
+            "readRequestGroup": "abl-0x002e-r5"
           }
         },
         {

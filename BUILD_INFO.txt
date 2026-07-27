@@ -1,26 +1,26 @@
-NexoWatt Devices 0.5.141 – ABL eMH1 Strom-/Alias-Rückmeldung
+NexoWatt Devices 0.5.142 – ABL eMH1 EVCC2/3 exact Modbus-ASCII read groups
 
-Base: 0.5.140 release-safe (Alfen ACE write audit, TA CMI, Weidmüller, Sungrow fast feedback)
+Base: 0.5.141 ABL current/alias correction
 
-ABL eMH1 / EVCC2/3 changes:
-- fixed alias semantics: the charging-current command is a per-phase IEC 61851 limit and must not be compared with L1+L2+L3
-- aliases.r.currentA and compatibility alias aliases.r.currentTotalA now report the highest measured phase current
-- added explicit readbacks aliases.r.currentL1, currentL2, currentL3
-- added aliases.r.currentPhaseSumA only for diagnostics and estimated-power calculation
-- added applied current-limit readbacks aliases.r.currentLimitA and aliases.r.currentLimitPct
-- kept estimated power based on (L1+L2+L3) x 230 V
-- corrected the IEC 61851 boundary: 85 % PWM = 51 A; high-current formula starts above 85 %
-- retained the proven Modbus-ASCII addresses/scaling: 0x002F applied Ic PWM, 0x0030..0x0032 phase currents, 0x0014 Icmax write
+Root cause fixed:
+- the generic Modbus grouping combined ABL register 0x0001/R2 and 0x0003/R1 into one unsupported 0x0001/R3 request
+- transmitted invalid field frame was :010300010003F8
+- EVCC2/3 intentionally remains silent for invalid read requests, therefore the adapter logged a 2000 ms timeout
 
-Field example:
-- command: 10 % PWM = 6 A per phase
-- measured: 5.5 A / 5.5 A / 5.5 A
-- comparable live current: 5.5 A
-- phase-current sum: 16.5 A
-- estimated power: 16.5 A x 230 V = 3,795 W
+Correct requests in 0.5.142:
+- :010300010002F9  (UID1 FC3 start 0x0001 quantity 2)
+- :010300030001F8  (UID1 FC3 start 0x0003 quantity 1)
+- 0x0006..0x0007 remains one exact R2 request
+- 0x002E..0x0032 remains one exact R5 request
 
-Release checks:
-- 32/32 automated tests passed
-- release guard passed (JSON, conflict markers, version parity, template parity, JavaScript syntax)
-- npm pack --dry-run passed
-- npm publish --dry-run passed
+Implementation:
+- optional source.readRequestGroup boundaries added to the generic Modbus group builder
+- only explicitly tagged sources are separated; all untagged templates retain existing grouping behaviour
+- ABL runtime/admin templates synchronized
+
+Release checks to run:
+- automated test suite
+- release guard
+- npm pack --dry-run
+- npm publish --dry-run
+- unpacked ZIP/TGZ validation

@@ -1,3 +1,11 @@
+## 0.5.142 ABL eMH1 Modbus-ASCII-Lesegruppen korrigiert
+
+- Die Warnung `UID1 FC3 1-3 ... timeout waiting for response` wurde auf einen Fehler in unserer generischen Register-Gruppierung zurückgeführt.
+- ABL verlangt für `0x0001..0x0002` eine exakte R2-Anfrage und für `0x0003` eine separate R1-Anfrage. Diese beiden Befehle wurden bisher fälschlich zu `:010300010003F8` zusammengefasst.
+- Ab 0.5.142 sendet der Adapter `:010300010002F9` und `:010300030001F8` getrennt.
+- Auch die Blöcke `0x0006..0x0007` (R2) und `0x002E..0x0032` (R5) bleiben als exakte ABL-Protokollanfragen erhalten.
+- Andere Modbus-Templates bleiben unverändert; die neue Gruppengrenze wirkt nur bei ausdrücklich markierten Datenpunkten.
+
 ## 0.5.141 ABL eMH1 Stromrückmeldung korrigiert
 
 - `aliases.ctrl.currentLimitA` bleibt das Stromlimit **je Phase**. Bei `10 %` PWM entspricht das `6 A`.

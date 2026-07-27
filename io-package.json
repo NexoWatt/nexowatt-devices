@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.141",
+    "version": "0.5.142",
     "news": {
+      "0.5.142": {
+        "en": "ABL eMH1 Modbus-ASCII read-group fix: send device/firmware register 0x0001 as the required R2 request and Modbus settings register 0x0003 separately as R1. The adapter no longer combines them into the unsupported 0x0001/R3 request that makes EVCC2/3 remain silent and causes a 2-second timeout.",
+        "de": "ABL-eMH1-Modbus-ASCII-Lesegruppen korrigiert: Geräte-/Firmware-Register 0x0001 wird jetzt als vorgeschriebene R2-Anfrage und das Modbus-Einstellregister 0x0003 separat als R1-Anfrage gelesen. Der Adapter kombiniert sie nicht mehr zur nicht unterstützten Anfrage 0x0001/R3, auf die EVCC2/3 nicht antwortet und dadurch einen 2-Sekunden-Timeout erzeugt."
+      },
       "0.5.141": {
         "en": "ABL eMH1 current-feedback correction: expose L1/L2/L3 phase currents, report the comparable live charging current as the highest phase instead of adding amperes across phases, retain the phase-current sum only for estimated power, add a separate applied current-limit readback, and fix the IEC 61851 85 percent PWM boundary.",
         "de": "ABL-eMH1-Stromrückmeldung korrigiert: L1/L2/L3-Phasenströme als Aliase ergänzt, der vergleichbare Ist-Ladestrom wird als höchste Phase statt als Summe der Amperewerte ausgegeben, die Phasenstromsumme bleibt nur für die Leistungsschätzung erhalten, ein separater Rückmeldewert für das angewendete Stromlimit wurde ergänzt und die IEC-61851-Grenze bei 85 Prozent PWM korrigiert."
