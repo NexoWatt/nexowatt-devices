@@ -47043,7 +47043,7 @@
         },
         {
           "id": "iCMAX_DUTY_CYCLE_PCT",
-          "name": "Icmax duty cycle (%)",
+          "name": "Applied Ic duty cycle (%)",
           "role": "value",
           "type": "number",
           "unit": "%",

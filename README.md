@@ -1,3 +1,12 @@
+## 0.5.141 ABL eMH1 Stromrückmeldung korrigiert
+
+- `aliases.ctrl.currentLimitA` bleibt das Stromlimit **je Phase**. Bei `10 %` PWM entspricht das `6 A`.
+- `aliases.r.currentTotalA` addiert nicht mehr L1+L2+L3. Der Alias liefert jetzt den höchsten gemessenen Phasenstrom und ist dadurch direkt mit dem Stromlimit vergleichbar.
+- Neue eindeutige Rückmeldungen: `aliases.r.currentA`, `aliases.r.currentL1`, `aliases.r.currentL2`, `aliases.r.currentL3`, `aliases.r.currentLimitA` und `aliases.r.currentLimitPct`.
+- Die rechnerische Summe der Phasenströme bleibt unter `aliases.r.currentPhaseSumA` erhalten und wird ausschließlich für die geschätzte Ladeleistung verwendet.
+- Beispiel aus dem Feldtest: `3 × 5,5 A` ergeben als tatsächlichen Ladestrom `5,5 A`; nur die Leistungsrechnung verwendet `16,5 A × 230 V = 3.795 W`.
+- Die IEC-61851-PWM-Umrechnung wurde an der exakten Grenze `85 % = 51 A` korrigiert.
+
 ## 0.5.140 Alfen ACE Schreiblogik-Audit
 
 - Socket-Schreibframe gegen den Alfen-Leitfaden *Modbus for ACE v1.0* erneut vollständig geprüft: Socket 1/2 verwenden Unit-ID `1`/`2`, FC16, Protokolladresse `1209` (Dokumentregister `1210..1211`) und einen 32-Bit-Float mit Low-Word-First/Network-Byte-Order.

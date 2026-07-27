@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.140",
+    "version": "0.5.141",
     "news": {
+      "0.5.141": {
+        "en": "ABL eMH1 current-feedback correction: expose L1/L2/L3 phase currents, report the comparable live charging current as the highest phase instead of adding amperes across phases, retain the phase-current sum only for estimated power, add a separate applied current-limit readback, and fix the IEC 61851 85 percent PWM boundary.",
+        "de": "ABL-eMH1-Stromrückmeldung korrigiert: L1/L2/L3-Phasenströme als Aliase ergänzt, der vergleichbare Ist-Ladestrom wird als höchste Phase statt als Summe der Amperewerte ausgegeben, die Phasenstromsumme bleibt nur für die Leistungsschätzung erhalten, ein separater Rückmeldewert für das angewendete Stromlimit wurde ergänzt und die IEC-61851-Grenze bei 85 Prozent PWM korrigiert."
+      },
       "0.5.140": {
         "en": "Alfen ACE write audit: retain the verified Socket FC16 frame, restore a real Unit-ID 200 Station/SCN control profile with an atomic three-phase setpoint, surface rejected manual writes in info.lastError, add exact accepted-write traces, and remove the duplicate current refresh path.",
         "de": "Alfen-ACE-Schreibprüfung: bestätigten Socket-FC16-Frame beibehalten, echtes Station/SCN-Steuerprofil auf Unit-ID 200 mit atomarem Drei-Phasen-Sollwert wiederhergestellt, abgelehnte manuelle Schreibbefehle in info.lastError sichtbar gemacht, exakte Write-Traces ergänzt und den doppelten Strom-Refresh entfernt."

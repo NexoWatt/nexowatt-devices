@@ -1,32 +1,26 @@
-<<<<<<< HEAD
-NexoWatt Devices 0.5.140 – Alfen ACE Schreiblogik-Audit
+NexoWatt Devices 0.5.141 – ABL eMH1 Strom-/Alias-Rückmeldung
 
-Base: 0.5.139 (includes Technische Alternative CMI / CMI-S)
+Base: 0.5.140 release-safe (Alfen ACE write audit, TA CMI, Weidmüller, Sungrow fast feedback)
 
-Alfen changes:
-- Socket FC16 write frame re-audited against Modbus for ACE v1.0: UID1/2, protocol address 1209, FLOAT32 low-word-first/network-byte-order
-- restored a true Station/SCN profile on UID200
-- atomic SCN L1/L2/L3 current write via FC16 at protocol address 1416, length 6; 1 A step normalized
-- manual Modbus exception 2/3 write rejections now surface in info.lastError
-- exact accepted-write trace with Unit-ID, function, address, register words and data bytes
-- duplicate current post-write repeat removed; 5 s validity watchdog remains
-- packet-level regression tests added
+ABL eMH1 / EVCC2/3 changes:
+- fixed alias semantics: the charging-current command is a per-phase IEC 61851 limit and must not be compared with L1+L2+L3
+- aliases.r.currentA and compatibility alias aliases.r.currentTotalA now report the highest measured phase current
+- added explicit readbacks aliases.r.currentL1, currentL2, currentL3
+- added aliases.r.currentPhaseSumA only for diagnostics and estimated-power calculation
+- added applied current-limit readbacks aliases.r.currentLimitA and aliases.r.currentLimitPct
+- kept estimated power based on (L1+L2+L3) x 230 V
+- corrected the IEC 61851 boundary: 85 % PWM = 51 A; high-current formula starts above 85 %
+- retained the proven Modbus-ASCII addresses/scaling: 0x002F applied Ic PWM, 0x0030..0x0032 phase currents, 0x0014 Icmax write
 
-No physical Alfen charger was available in this build environment. Field confirmation must use the accepted-write trace plus valid-time/accounted/applied-current readbacks.
-=======
-NexoWatt Devices 0.5.139 – Technische Alternative CMI / CMI-S
+Field example:
+- command: 10 % PWM = 6 A per phase
+- measured: 5.5 A / 5.5 A / 5.5 A
+- comparable live current: 5.5 A
+- phase-current sum: 16.5 A
+- estimated power: 16.5 A x 230 V = 3,795 W
 
-Base: 0.5.138 (includes Sungrow 1 s telemetry and Weidmüller CH-W-B)
-
-Added:
-- protocol taCmi
-- CMI JSON API v8 dynamic CAN-node reader
-- all-node scan (1..62 or configured list)
-- dynamic datapoints with designations, units, status and RAS
-- integrated Modbus TCP server for bidirectional heating control
-- 64 analog + 64 digital channels in each direction
-- optional named/scaled bridge map and stable aliases
-- Materialize and JSON admin configuration
-
-No GitHub merge was performed for this test package.
->>>>>>> 72b211c7109587144d24629b741a14a3cb83f766
+Release checks:
+- 32/32 automated tests passed
+- release guard passed (JSON, conflict markers, version parity, template parity, JavaScript syntax)
+- npm pack --dry-run passed
+- npm publish --dry-run passed
