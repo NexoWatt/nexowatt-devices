@@ -1,26 +1,25 @@
-NexoWatt Devices 0.5.142 – ABL eMH1 EVCC2/3 exact Modbus-ASCII read groups
+NexoWatt Devices 0.5.143 - ABL eMH1 EVCC2/3 document audit and PWM control correction
 
-Base: 0.5.141 ABL current/alias correction
+Base: release-safe normal ZIP 0.5.142
 
-Root cause fixed:
-- the generic Modbus grouping combined ABL register 0x0001/R2 and 0x0003/R1 into one unsupported 0x0001/R3 request
-- transmitted invalid field frame was :010300010003F8
-- EVCC2/3 intentionally remains silent for invalid read requests, therefore the adapter logged a 2000 ms timeout
+Verified against ABL document 05 0015 20 Rev. B:
+- Modbus ASCII 38400 Bd, 8E1, device ID 1..16
+- exact R2/R1/R2/R5 read requests retained
+- invalid 0x0001/R3 request remains blocked
+- Icmax write at 0x0014 via FC16, 0.1 percent resolution
+- 10 A -> 16.6 percent -> 0x00A6 (exact document frame)
+- 16 A -> 26.6 percent -> 0x010A
+- 100 percent -> no current allowed
+- normal run/stop moved from EVCC state jumps to Icmax PWM pause/resume
+- Ampere requests below 6 A map to 100 percent pause (never force a higher current)
+- temporary charger-side PWM readback does not overwrite the last EMS setpoint
+- raw service-state writes restricted to documented command values
+- exact ABL read frames are protected from adaptive split recovery
+- live R5 frame is required; static diagnostics remain optional
 
-Correct requests in 0.5.142:
-- :010300010002F9  (UID1 FC3 start 0x0001 quantity 2)
-- :010300030001F8  (UID1 FC3 start 0x0003 quantity 1)
-- 0x0006..0x0007 remains one exact R2 request
-- 0x002E..0x0032 remains one exact R5 request
-
-Implementation:
-- optional source.readRequestGroup boundaries added to the generic Modbus group builder
-- only explicitly tagged sources are separated; all untagged templates retain existing grouping behaviour
-- ABL runtime/admin templates synchronized
-
-Release checks to run:
-- automated test suite
+Release requirements:
 - release guard
-- npm pack --dry-run
-- npm publish --dry-run
-- unpacked ZIP/TGZ validation
+- full automated tests
+- npm pack dry-run
+- npm publish dry-run
+- extracted ZIP/TGZ validation

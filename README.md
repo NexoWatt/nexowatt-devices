@@ -1,3 +1,14 @@
+## 0.5.143 ABL eMH1 EVCC2/3-Dokumentprüfung und PWM-Steuerung
+
+- Die offizielle EVCC2/3-Dokumentation wurde vollständig gegen das Template geprüft.
+- Der exakte Lesegruppen-Fix aus 0.5.142 ist bestätigt und bleibt unverändert aktiv.
+- 10 A werden jetzt exakt wie dokumentiert als 16,6 % PWM (`0x00A6`) geschrieben; 16 A als 26,6 % (`0x010A`).
+- Die Umrechnung wird auf 0,1 % abgerundet, damit der Sollstrom niemals überschritten wird; Werte unter 6 A führen sicher auf 100 % PWM/Warten statt auf erzwungene 6 A.
+- `ctrl.run` und `ctrl.chargeEnable` verwenden jetzt 100 % PWM zum Warten/Sperren und stellen beim Freigeben den letzten aktiv vorgegebenen EMS-Strom wieder her; eine temporär niedrigere Wallbox-Rückmeldung überschreibt diesen Sollwert nicht.
+- Der EVCC-Servicezustand `mODIFY_STATE` bleibt nur als Roh-/Expertenbefehl erhalten.
+- Ungültige IEC-PWM-Bereiche werden im stabilen Alias nicht mehr als scheinbarer Ladestrom interpretiert.
+- Die Live-Anfrage `0x002E..0x0032` ist als erforderlich markiert und wird nie adaptiv in ungültige Einzelabfragen zerlegt.
+
 ## 0.5.142 ABL eMH1 Modbus-ASCII-Lesegruppen korrigiert
 
 - Die Warnung `UID1 FC3 1-3 ... timeout waiting for response` wurde auf einen Fehler in unserer generischen Register-Gruppierung zurückgeführt.

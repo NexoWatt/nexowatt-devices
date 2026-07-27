@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.142",
+    "version": "0.5.143",
     "news": {
+      "0.5.143": {
+        "en": "ABL eMH1 EVCC2/3 document audit: reproduce the documented Icmax frames exactly (10 A = 16.6% / 0x00A6, 16 A = 26.6% / 0x010A), use 100% PWM for normal pause/resume instead of EVCC service-state jumps, map sub-6 A requests safely to pause, keep the last EMS setpoint separate from temporary charger-side derating, handle PWM special values correctly, protect exact R2/R1/R2/R5 reads from adaptive splitting, and make the live R5 block required.",
+        "de": "ABL-eMH1-EVCC2/3-Dokumentprüfung: dokumentierte Icmax-Telegramme werden jetzt exakt erzeugt (10 A = 16,6 % / 0x00A6, 16 A = 26,6 % / 0x010A), normales Sperren/Freigeben erfolgt mit 100 % PWM statt über EVCC-Servicezustands-Sprünge, Sollwerte unter 6 A führen sicher auf Warten, der letzte EMS-Sollwert bleibt von einer temporären Wallbox-Abregelung getrennt, PWM-Sonderwerte werden korrekt behandelt, exakte R2/R1/R2/R5-Leseanfragen werden nicht adaptiv zerlegt und der Live-R5-Block ist verpflichtend."
+      },
       "0.5.142": {
         "en": "ABL eMH1 Modbus-ASCII read-group fix: send device/firmware register 0x0001 as the required R2 request and Modbus settings register 0x0003 separately as R1. The adapter no longer combines them into the unsupported 0x0001/R3 request that makes EVCC2/3 remain silent and causes a 2-second timeout.",
         "de": "ABL-eMH1-Modbus-ASCII-Lesegruppen korrigiert: Geräte-/Firmware-Register 0x0001 wird jetzt als vorgeschriebene R2-Anfrage und das Modbus-Einstellregister 0x0003 separat als R1-Anfrage gelesen. Der Adapter kombiniert sie nicht mehr zur nicht unterstützten Anfrage 0x0001/R3, auf die EVCC2/3 nicht antwortet und dadurch einen 2-Sekunden-Timeout erzeugt."

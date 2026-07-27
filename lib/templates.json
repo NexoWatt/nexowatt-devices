@@ -46778,7 +46778,11 @@
           "connectTimeoutMs": 7000,
           "optionalReadErrorLogLevel": "warn",
           "reconnectBackoffMs": 1000,
-          "maxReconnectBackoffMs": 30000
+          "maxReconnectBackoffMs": 30000,
+          "adaptiveReadSplit": false,
+          "requiredReadDpIds": [
+            "eVSE_STATE"
+          ]
         }
       },
       "datapoints": [
@@ -47131,7 +47135,7 @@
         },
         {
           "id": "sET_ICMAX_DUTY_CYCLE_PCT",
-          "name": "Set Icmax duty cycle (%)",
+          "name": "Set Icmax PWM duty cycle (100% = no current)",
           "role": "level",
           "type": "number",
           "unit": "%",
@@ -47143,13 +47147,20 @@
               "address": 20,
               "length": 1,
               "dataType": "uint16",
-              "scaleFactor": -1
+              "scaleFactor": -1,
+              "finite": true,
+              "allowedRanges": [
+                [
+                  8,
+                  100
+                ]
+              ]
             }
           }
         },
         {
           "id": "mODIFY_STATE",
-          "name": "Modify state (jump A1/E0/E2)",
+          "name": "Modify EVCC service state (expert command)",
           "role": "value",
           "type": "number",
           "rw": "wo",
@@ -47159,7 +47170,16 @@
               "fc": 16,
               "address": 5,
               "length": 1,
-              "dataType": "uint16"
+              "dataType": "uint16",
+              "finite": true,
+              "allowedValues": [
+                "0x3838",
+                "0x5A5A",
+                "0xA1A1",
+                "0xE0E0",
+                "0xE2E2",
+                "0xF1F1"
+              ]
             }
           }
         }
