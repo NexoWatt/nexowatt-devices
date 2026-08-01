@@ -177,6 +177,126 @@ function verifyTemplateCopies() {
   }
 }
 
+function verifyAliasContractCopies() {
+  const adminContract = path.join(root, 'admin', 'alias-contract-v1.json');
+  const runtimeContract = path.join(root, 'lib', 'alias-contract-v1.json');
+
+  if (!fs.existsSync(adminContract) || !fs.existsSync(runtimeContract)) {
+    errors.push('admin/alias-contract-v1.json oder lib/alias-contract-v1.json fehlt');
+    return;
+  }
+
+  const adminHash = sha256(adminContract);
+  const runtimeHash = sha256(runtimeContract);
+  if (adminHash !== runtimeHash) {
+    errors.push(`Alias-Contract-Kopien unterscheiden sich: admin=${adminHash}, lib=${runtimeHash}`);
+  } else {
+    notices.push(`Alias Contract v1 identisch: ${adminHash.slice(0, 12)}…`);
+  }
+}
+
+function verifyAliasContract(parsed) {
+  const contract = requireParsedJson(parsed, 'lib/alias-contract-v1.json');
+  const templatesDoc = requireParsedJson(parsed, 'lib/templates.json');
+  if (!contract || !templatesDoc) return;
+
+  if (contract.contractId !== 'nexowatt-device-alias-contract') {
+    errors.push(`lib/alias-contract-v1.json: unerwartete contractId ${JSON.stringify(contract.contractId)}`);
+  }
+  if (contract.schemaVersion !== 1 || contract.namespace !== 'v1') {
+    errors.push('lib/alias-contract-v1.json: schemaVersion=1 und namespace="v1" sind erforderlich');
+  }
+  if (contract.status !== 'stable') {
+    errors.push('lib/alias-contract-v1.json: status muss "stable" sein');
+  }
+  if (contract.standardPath !== 'aliases.v1' || contract.metadataPath !== 'aliases.meta') {
+    errors.push('lib/alias-contract-v1.json: standardPath/metadataPath sind ungültig');
+  }
+  if (contract.legacyAliasesPreserved !== true) {
+    errors.push('lib/alias-contract-v1.json: legacyAliasesPreserved muss true sein');
+  }
+
+  const categoryMap = contract.categoryToDeviceClass || {};
+  const deviceClasses = contract.deviceClasses || {};
+  const templates = Array.isArray(templatesDoc.templates) ? templatesDoc.templates : [];
+  if (!templates.length) {
+    errors.push('lib/templates.json: templates fehlt oder ist leer');
+    return;
+  }
+
+  const ids = new Set();
+  const classCounts = new Map();
+  for (const template of templates) {
+    const id = String(template && template.id || '');
+    if (!id) {
+      errors.push('lib/templates.json: Template ohne id gefunden');
+      continue;
+    }
+    if (ids.has(id)) errors.push(`lib/templates.json: doppelte Template-ID ${id}`);
+    ids.add(id);
+
+    const category = String(template.category || '').toUpperCase();
+    const expectedClass = categoryMap[category] || 'generic';
+    const meta = template.aliasContract || {};
+    if (meta.schemaVersion !== 1 || meta.namespace !== 'v1' || meta.deviceClass !== expectedClass) {
+      errors.push(`${id}: aliasContract muss {schemaVersion:1, namespace:"v1", deviceClass:"${expectedClass}"} sein`);
+    }
+    if (!deviceClasses[expectedClass]) {
+      errors.push(`${id}: deviceClass ${expectedClass} ist im Alias Contract nicht definiert`);
+    }
+    classCounts.set(expectedClass, (classCounts.get(expectedClass) || 0) + 1);
+  }
+
+  const common = contract.common || {};
+  const lookupSpec = (deviceClass, aliasPath) => {
+    const required = common.required || {};
+    const optional = common.optional || {};
+    if (required[aliasPath] || optional[aliasPath]) return required[aliasPath] || optional[aliasPath];
+    const classDef = deviceClasses[deviceClass] || {};
+    return (classDef.required || {})[aliasPath] || (classDef.optional || {})[aliasPath] || null;
+  };
+
+  for (const [deviceClass, aliases] of Object.entries(contract.pathAliases || {})) {
+    if (!deviceClasses[deviceClass]) {
+      errors.push(`Alias Contract pathAliases: unbekannte deviceClass ${deviceClass}`);
+      continue;
+    }
+    for (const [sourcePath, targetPath] of Object.entries(aliases || {})) {
+      if (!sourcePath || !targetPath || !lookupSpec(deviceClass, targetPath)) {
+        errors.push(`Alias Contract pathAliases ${deviceClass}: ungültige Zuordnung ${sourcePath} -> ${targetPath}`);
+      }
+    }
+  }
+
+  const validateSpecMap = (scope, specMap) => {
+    for (const [aliasPath, spec] of Object.entries(specMap || {})) {
+      if (!spec || typeof spec !== 'object') {
+        errors.push(`Alias Contract ${scope}.${aliasPath}: Definition fehlt`);
+        continue;
+      }
+      for (const key of ['type', 'role', 'capability']) {
+        if (typeof spec[key] !== 'string' || !spec[key]) {
+          errors.push(`Alias Contract ${scope}.${aliasPath}: ${key} fehlt`);
+        }
+      }
+    }
+  };
+  validateSpecMap('common.required', common.required);
+  validateSpecMap('common.optional', common.optional);
+  for (const [deviceClass, classDef] of Object.entries(deviceClasses)) {
+    validateSpecMap(`${deviceClass}.required`, classDef.required);
+    validateSpecMap(`${deviceClass}.optional`, classDef.optional);
+    for (const pattern of classDef.patterns || []) {
+      try { new RegExp(pattern.pattern); } catch (error) {
+        errors.push(`Alias Contract ${deviceClass}: ungültiges Pattern ${JSON.stringify(pattern.pattern)} (${error.message})`);
+      }
+    }
+  }
+
+  const counts = Object.fromEntries([...classCounts.entries()].sort());
+  notices.push(`${templates.length} Templates mit Alias Contract v1 klassifiziert: ${JSON.stringify(counts)}`);
+}
+
 function verifyJavaScriptSyntax(files) {
   const javaScriptFiles = files.filter((filePath) => ['.js', '.cjs', '.mjs'].includes(path.extname(filePath).toLowerCase()));
 
@@ -202,7 +322,10 @@ function verifyRequiredFiles() {
     'main.js',
     'bootstrap.js',
     'admin/templates.json',
+    'admin/alias-contract-v1.json',
     'lib/templates.json',
+    'lib/alias-contract-v1.json',
+    'lib/aliasContract.js',
     'README.md',
     'LICENSE',
   ];
@@ -224,6 +347,8 @@ function main() {
   const parsedJson = parseJsonFiles(files);
   verifyVersions(parsedJson);
   verifyTemplateCopies();
+  verifyAliasContractCopies();
+  verifyAliasContract(parsedJson);
 
   const packageJsonPath = path.join(root, 'package.json');
   if (parsedJson.has(packageJsonPath)) {

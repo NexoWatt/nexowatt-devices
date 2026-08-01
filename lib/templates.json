@@ -569,6 +569,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "battery"
       }
     },
     {
@@ -4725,6 +4730,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "battery"
       }
     },
     {
@@ -5116,6 +5126,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "battery"
       }
     },
     {
@@ -5492,6 +5507,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "battery"
       }
     },
     {
@@ -6183,6 +6203,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "battery"
       }
     },
     {
@@ -6454,6 +6479,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "battery"
       }
     },
     {
@@ -6920,6 +6950,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "battery"
       }
     },
     {
@@ -7341,6 +7376,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "battery"
       }
     },
     {
@@ -12067,6 +12107,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "battery"
       }
     },
     {
@@ -15728,6 +15773,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "battery"
       }
     },
     {
@@ -16404,6 +16454,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "battery"
       }
     },
     {
@@ -17695,6 +17750,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "battery"
       }
     },
     {
@@ -18422,6 +18482,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "batteryInverter"
       }
     },
     {
@@ -23553,6 +23618,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "batteryInverter"
       }
     },
     {
@@ -24214,6 +24284,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "batteryInverter"
       }
     },
     {
@@ -24302,6 +24377,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "solarCharger"
       }
     },
     {
@@ -24933,6 +25013,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "solarCharger"
       }
     },
     {
@@ -25114,6 +25199,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
       }
     },
     {
@@ -25760,6 +25850,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
       }
     },
     {
@@ -25831,6 +25926,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
       }
     },
     {
@@ -30122,6 +30222,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
       }
     },
     {
@@ -30303,6 +30408,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
       }
     },
     {
@@ -31242,6 +31352,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
       }
     },
     {
@@ -32548,6 +32663,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
       }
     },
     {
@@ -33674,6 +33794,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
       }
     },
     {
@@ -34339,7 +34464,12 @@
             }
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      }
     },
     {
       "id": "ess.foxess.FoxESSH3ProEss",
@@ -35004,7 +35134,12 @@
             }
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      }
     },
     {
       "id": "ess.kaco.gridsave.sunspec.v1",
@@ -37504,7 +37639,12 @@
             "sunspecOffset": 9
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      }
     },
     {
       "id": "ess.kaco.hybrid10.sunspec.v1",
@@ -40004,7 +40144,12 @@
             "sunspecOffset": 9
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      }
     },
     {
       "id": "ess.kostal.KostalManagedEssBigEndianImpl",
@@ -40449,6 +40594,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
       }
     },
     {
@@ -40894,6 +41044,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
       }
     },
     {
@@ -41033,7 +41188,12 @@
             "path": "/R3EMSAPP_REAL.ems?file=ESSRealtimeStatus.json"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      }
     },
     {
       "id": "ess.sma.EssSmaSunnyIslandImpl",
@@ -41649,6 +41809,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
       }
     },
     {
@@ -42384,7 +42549,12 @@
           }
         }
       ],
-      "notes": "Power values are normalized to kW (2 decimals) and energy to kWh (2 decimals). For PV power limit / battery power target writes the adapter pre-writes system control=remote, control mode=8 and TargetSetType=update."
+      "notes": "Power values are normalized to kW (2 decimals) and energy to kWh (2 decimals). For PV power limit / battery power target writes the adapter pre-writes system control=remote, control mode=8 and TargetSetType=update.",
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      }
     },
     {
       "id": "ess.solax.SolaXHybridX1X3Ess",
@@ -43004,7 +43174,12 @@
             }
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      }
     },
     {
       "id": "ess.sunspec.generic.basic124.v1",
@@ -44399,7 +44574,12 @@
             "dataType": "int16"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      }
     },
     {
       "id": "ess.tesla.powerwall2.gateway.http.v1",
@@ -44605,7 +44785,12 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      }
     },
     {
       "id": "ess.tesvolt.TesvoltEnergyManagerVermarkter",
@@ -45157,7 +45342,12 @@
             }
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      }
     },
     {
       "id": "ess.victron.VictronEssImpl",
@@ -46598,6 +46788,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
       }
     },
     {
@@ -46743,6 +46938,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
       }
     },
     {
@@ -46778,11 +46978,7 @@
           "connectTimeoutMs": 7000,
           "optionalReadErrorLogLevel": "warn",
           "reconnectBackoffMs": 1000,
-          "maxReconnectBackoffMs": 30000,
-          "adaptiveReadSplit": false,
-          "requiredReadDpIds": [
-            "eVSE_STATE"
-          ]
+          "maxReconnectBackoffMs": 30000
         }
       },
       "datapoints": [
@@ -47135,7 +47331,7 @@
         },
         {
           "id": "sET_ICMAX_DUTY_CYCLE_PCT",
-          "name": "Set Icmax PWM duty cycle (100% = no current)",
+          "name": "Set Icmax PWM duty cycle (100% = waiting)",
           "role": "level",
           "type": "number",
           "unit": "%",
@@ -47156,11 +47352,15 @@
                 ]
               ]
             }
-          }
+          },
+          "description": "Native ABL EVCC2/3 control: PWM duty cycle in percent. NexoWatt aliases.ctrl.currentLimitA converts amperes automatically; 100% means no current available.",
+          "min": 8,
+          "max": 100,
+          "step": 0.1
         },
         {
           "id": "mODIFY_STATE",
-          "name": "Modify EVCC service state (expert command)",
+          "name": "Expert/service state command (A1/E0/E2)",
           "role": "value",
           "type": "number",
           "rw": "wo",
@@ -47170,20 +47370,17 @@
               "fc": 16,
               "address": 5,
               "length": 1,
-              "dataType": "uint16",
-              "finite": true,
-              "allowedValues": [
-                "0x3838",
-                "0x5A5A",
-                "0xA1A1",
-                "0xE0E0",
-                "0xE2E2",
-                "0xF1F1"
-              ]
+              "dataType": "uint16"
             }
-          }
+          },
+          "description": "Service state-transition register 0x0005. Not used for normal EMS pause/resume; use Icmax 100% to wait."
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
+      }
     },
     {
       "id": "evcs.alpitronic.hypercharger.connector1",
@@ -47694,6 +47891,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
       }
     },
     {
@@ -48205,6 +48407,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
       }
     },
     {
@@ -48716,6 +48923,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
       }
     },
     {
@@ -49227,6 +49439,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
       }
     },
     {
@@ -49450,6 +49667,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
       }
     },
     {
@@ -49601,6 +49823,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
       }
     },
     {
@@ -49841,7 +50068,12 @@
             "jsonPath": "fwv"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
+      }
     },
     {
       "id": "evcs.goe.gemini.http.v2",
@@ -50048,7 +50280,12 @@
             "jsonPath": "eto"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
+      }
     },
     {
       "id": "evcs.goe.gemini.http.v2.legacy",
@@ -50255,7 +50492,12 @@
             "jsonPath": "eto"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
+      }
     },
     {
       "id": "evcs.heidelberg.EvcsHeidelbergEnergyImpl",
@@ -50502,6 +50744,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
       }
     },
     {
@@ -51302,6 +51549,11 @@
           "hW_REVISION_DEVICE",
           "hW_REVISION_MS10"
         ]
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
       }
     },
     {
@@ -51633,6 +51885,11 @@
             "pHASE_SWITCH_STATE"
           ]
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
       }
     },
     {
@@ -51802,6 +52059,11 @@
           "maxReadRegs": 32,
           "optionalReadErrorLogLevel": "warn"
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
       }
     },
     {
@@ -53434,7 +53696,12 @@
           },
           "unit": "A"
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
+      }
     },
     {
       "id": "evcs.openwb.lp1.mqtt.v1",
@@ -53644,7 +53911,12 @@
             "format": "number"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
+      }
     },
     {
       "id": "evcs.openwb.lp2.mqtt.v1",
@@ -53854,7 +54126,12 @@
             "format": "number"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
+      }
     },
     {
       "id": "evcs.solax.SolaXHacG2",
@@ -54315,6 +54592,11 @@
         "polling": {
           "fastIntervalMs": 5000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
       }
     },
     {
@@ -54691,6 +54973,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
       }
     },
     {
@@ -55157,6 +55444,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
       }
     },
     {
@@ -55728,6 +56020,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
       }
     },
     {
@@ -55987,6 +56284,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
       }
     },
     {
@@ -56378,6 +56680,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
       }
     },
     {
@@ -56934,6 +57241,11 @@
             "fAILSAFE_TIMEOUT_SETTING"
           ]
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
       }
     },
     {
@@ -57029,7 +57341,12 @@
             }
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "generic"
+      }
     },
     {
       "id": "generic.http",
@@ -57057,7 +57374,12 @@
             "jsonPath": "status"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "generic"
+      }
     },
     {
       "id": "generic.modbus",
@@ -57133,6 +57455,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "generic"
       }
     },
     {
@@ -57172,7 +57499,12 @@
             "format": "number"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "generic"
+      }
     },
     {
       "id": "heat.askoma.HeatAskomaImpl",
@@ -57218,6 +57550,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "heat"
       }
     },
     {
@@ -58706,6 +59043,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "heat"
       }
     },
     {
@@ -58917,6 +59259,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "heat"
       }
     },
     {
@@ -59256,6 +59603,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "heat"
       }
     },
     {
@@ -60313,6 +60665,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "heat"
       }
     },
     {
@@ -60378,6 +60735,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "io"
       }
     },
     {
@@ -60529,6 +60891,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "io"
       }
     },
     {
@@ -60800,6 +61167,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "io"
       }
     },
     {
@@ -60827,7 +61199,12 @@
             "parser": "ds18b20"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "io"
+      }
     },
     {
       "id": "io.shelly.plug_gen1",
@@ -60918,7 +61295,12 @@
           },
           "unit": "Wh"
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "io"
+      }
     },
     {
       "id": "io.shelly.plugsg3",
@@ -61003,7 +61385,12 @@
             "jsonPath": "sys.available_updates.stable.version"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "io"
+      }
     },
     {
       "id": "io.shelly.plus1pm",
@@ -61088,7 +61475,12 @@
             "jsonPath": "sys.available_updates.stable.version"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "io"
+      }
     },
     {
       "id": "io.shelly.pro4pm",
@@ -61672,7 +62064,12 @@
             "jsonPath": "sys.available_updates.stable.version"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "io"
+      }
     },
     {
       "id": "io.shelly.shelly1",
@@ -61706,7 +62103,12 @@
             }
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "io"
+      }
     },
     {
       "id": "io.shelly.shelly25",
@@ -61817,7 +62219,12 @@
           },
           "unit": "Wh"
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "io"
+      }
     },
     {
       "id": "io.siemenslogo.SiemensLogoRelayImpl",
@@ -62094,6 +62501,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "io"
       }
     },
     {
@@ -62439,6 +62851,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "io"
       }
     },
     {
@@ -63516,6 +63933,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "io"
       }
     },
     {
@@ -64593,6 +65015,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "io"
       }
     },
     {
@@ -64654,7 +65081,12 @@
             "field": "telegramHex"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
+      }
     },
     {
       "id": "meter.artemes.MeterArtemesAM2Impl",
@@ -64880,6 +65312,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -65496,6 +65933,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -66592,6 +67034,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -66903,6 +67350,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -67072,6 +67524,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -67471,6 +67928,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -67649,7 +68111,12 @@
             "scaleFactor": 0
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
+      }
     },
     {
       "id": "meter.eastron.MeterEastronSdm120Impl",
@@ -67757,6 +68224,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -68066,6 +68538,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -68277,6 +68754,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -68353,6 +68835,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -68399,6 +68886,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -68445,6 +68937,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -68566,6 +69063,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -68950,6 +69452,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -69176,6 +69683,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -69372,6 +69884,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -69625,6 +70142,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -69878,6 +70400,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -69954,6 +70481,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -70150,6 +70682,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -70471,6 +71008,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -70682,6 +71224,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -71118,6 +71665,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -71457,6 +72009,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -71796,6 +72353,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -71990,7 +72552,12 @@
             "field": "temperatureC"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
+      }
     },
     {
       "id": "meter.phoenixcontact.PhoenixContactMeterImpl",
@@ -72301,6 +72868,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -72452,6 +73024,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -72588,6 +73165,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -72739,6 +73321,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -72790,7 +73377,12 @@
             "jsonPath": "ESSRealtimeStatus.GridStusCd"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
+      }
     },
     {
       "id": "meter.schneider.MeterSchneiderActi9SmartlinkImpl",
@@ -73114,6 +73706,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -73353,7 +73950,12 @@
             "jsonPath": "emeters[2].is_valid"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
+      }
     },
     {
       "id": "meter.shelly.pro3em",
@@ -73508,7 +74110,12 @@
           },
           "unit": "A"
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
+      }
     },
     {
       "id": "meter.siemens.MeterSiemensPac1600Impl",
@@ -74199,6 +74806,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -74395,6 +75007,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -74858,6 +75475,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -75294,6 +75916,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -75666,7 +76293,12 @@
             }
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
+      }
     },
     {
       "id": "meter.socomec.countis_e14_singlephase",
@@ -75810,6 +76442,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -76146,6 +76783,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -76450,6 +77092,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -76754,6 +77401,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -77058,6 +77710,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -77346,6 +78003,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -78675,7 +79337,12 @@
             "dataType": "bits32"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
+      }
     },
     {
       "id": "meter.sunspec.generic.model202.v1",
@@ -80004,7 +80671,12 @@
             "dataType": "bits32"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
+      }
     },
     {
       "id": "meter.sunspec.generic.model203.v1",
@@ -81333,7 +82005,12 @@
             "dataType": "bits32"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
+      }
     },
     {
       "id": "meter.victron.VictronAcInPowerMeterImpl",
@@ -81469,6 +82146,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -81650,6 +82332,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -81906,6 +82593,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -82762,6 +83454,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -83425,6 +84122,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "meter"
       }
     },
     {
@@ -83978,7 +84680,12 @@
             }
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
+      }
     },
     {
       "id": "pv_inverter.goodwe.AbstractGoodWe",
@@ -91854,6 +92561,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
       }
     },
     {
@@ -92065,6 +92777,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
       }
     },
     {
@@ -92156,6 +92873,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
       }
     },
     {
@@ -94168,7 +94890,12 @@
             "sunspecOffset": 26
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
+      }
     },
     {
       "id": "pv_inverter.kostal.KostalPvInverterBigEndianImpl",
@@ -94764,6 +95491,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
       }
     },
     {
@@ -95360,6 +96092,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
       }
     },
     {
@@ -105455,7 +106192,12 @@
             "nanToNull": true
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
+      }
     },
     {
       "id": "pv_inverter.sma.SmaStp12570SunSpecImpl",
@@ -106323,7 +107065,12 @@
             }
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
+      }
     },
     {
       "id": "pv_inverter.sma.SmaStp12570SunSpecMinimal",
@@ -106659,7 +107406,12 @@
             }
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
+      }
     },
     {
       "id": "pv_inverter.sma.SmaStpxx50Minimal",
@@ -106850,6 +107602,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
       }
     },
     {
@@ -107019,6 +107776,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
       }
     },
     {
@@ -107181,6 +107943,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
       }
     },
     {
@@ -107287,6 +108054,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
       }
     },
     {
@@ -107535,7 +108307,12 @@
             }
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
+      }
     },
     {
       "id": "pv_inverter.solarlog.SolarLogPmV2PowerManagement",
@@ -108483,7 +109260,12 @@
             "dataType": "uint16"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
+      }
     },
     {
       "id": "pv_inverter.solax.SolaXX3MegaForthMinimal",
@@ -109087,6 +109869,11 @@
           "optionalReadErrorLogLevel": "warn",
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
       }
     },
     {
@@ -110349,7 +111136,12 @@
             "dataType": "int16"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
+      }
     },
     {
       "id": "pv_inverter.sunspec.generic.model102.v1",
@@ -111611,7 +112403,12 @@
             "dataType": "int16"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
+      }
     },
     {
       "id": "pv_inverter.sunspec.generic.model103.v1",
@@ -112873,7 +113670,12 @@
             "dataType": "int16"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
+      }
     },
     {
       "id": "pv_inverter.victron.VictronPvInverterImpl",
@@ -113099,6 +113901,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
       }
     },
     {
@@ -113715,6 +114522,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
       }
     },
     {
@@ -114482,7 +115294,12 @@
         "0.5.129": "Alfen ACE control-stable template: reduce polling to essential registers, enforce Socket Unit-ID protocol writes, refresh Max Current every 5 s, and write phase mode only on explicit command plus one repeat."
       },
       "desc": "Control-only Socket-1 profile for reliable EMS control. Uses protocol addresses (document register - 1), Unit-ID 1, and only essential telemetry/control registers.",
-      "description": "Control-only Socket-1 profile for reliable EMS control. Uses protocol addresses (document register - 1), Unit-ID 1, and only essential telemetry/control registers."
+      "description": "Control-only Socket-1 profile for reliable EMS control. Uses protocol addresses (document register - 1), Unit-ID 1, and only essential telemetry/control registers.",
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
+      }
     },
     {
       "id": "evcs.alfen.ng9xx.ace.socket2.modbusTcp",
@@ -115249,7 +116066,12 @@
         "0.5.129": "Alfen ACE control-stable template: reduce polling to essential registers, enforce Socket Unit-ID protocol writes, refresh Max Current every 5 s, and write phase mode only on explicit command plus one repeat."
       },
       "desc": "Control-only Socket-2 profile for reliable EMS control. Uses protocol addresses (document register - 1), Unit-ID 2, and only essential telemetry/control registers.",
-      "description": "Control-only Socket-2 profile for reliable EMS control. Uses protocol addresses (document register - 1), Unit-ID 2, and only essential telemetry/control registers."
+      "description": "Control-only Socket-2 profile for reliable EMS control. Uses protocol addresses (document register - 1), Unit-ID 2, and only essential telemetry/control registers.",
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
+      }
     },
     {
       "id": "evcs.alfen.ng9xx.ace.station.modbusTcp",
@@ -117021,7 +117843,12 @@
       },
       "title": "Alfen NG9xx (ACE) Station + Socket 1 control stable (Modbus TCP)",
       "desc": "Control-only Station + Socket-1 profile for reliable EMS control. Reads only station identity/temperature and the Socket-1 EMS control/readback block.",
-      "description": "Control-only Station + Socket-1 profile for reliable EMS control. Reads only station identity/temperature and the Socket-1 EMS control/readback block."
+      "description": "Control-only Station + Socket-1 profile for reliable EMS control. Reads only station identity/temperature and the Socket-1 EMS control/readback block.",
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
+      }
     },
     {
       "id": "pv_inverter.kostal.PikoModbusSunSpecBigEndianImpl",
@@ -117642,6 +118469,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
       }
     },
     {
@@ -118263,6 +119095,11 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
       }
     },
     {
@@ -118625,7 +119462,12 @@
             "dataType": "float"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
+      }
     },
     {
       "id": "pv_inverter.kostal.Piko3pTcp",
@@ -119155,7 +119997,12 @@
             "dataType": "float"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
+      }
     },
     {
       "id": "pv_inverter.kostal.PikoBaTcp",
@@ -119754,7 +120601,12 @@
             "dataType": "float"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
+      }
     },
     {
       "id": "pv_inverter.kostal.Piko1pRs485",
@@ -120116,7 +120968,12 @@
             "dataType": "float"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
+      }
     },
     {
       "id": "pv_inverter.kostal.Piko3pRs485",
@@ -120646,7 +121503,12 @@
             "dataType": "float"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
+      }
     },
     {
       "id": "pv_inverter.kostal.PikoBaRs485",
@@ -121245,7 +122107,12 @@
             "dataType": "float"
           }
         }
-      ]
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
+      }
     },
     {
       "id": "pv_inverter.sungrow.GridConnectedCxRsRtModbus",
@@ -125786,6 +126653,11 @@
           ],
           "initialFastOnly": true
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "pvInverter"
       }
     },
     {
@@ -141990,6 +142862,11 @@
             "0.5.138": "Sungrow critical live values target a fixed 1 s start-to-start poll cadence. A cycle contains four Modbus TCP register groups."
           }
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
       }
     },
     {
@@ -144001,6 +144878,11 @@
           ],
           "initialFastOnly": true
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
       }
     },
     {
@@ -145199,6 +146081,11 @@
           ],
           "initialFastOnly": true
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
       }
     },
     {
@@ -145742,6 +146629,11 @@
             "gATEWAY"
           ]
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "evCharger"
       }
     },
     {
@@ -145862,6 +146754,11 @@
           "analogChannelsPerDirection": 64,
           "digitalChannelsPerDirection": 64
         }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "heat"
       }
     }
   ]

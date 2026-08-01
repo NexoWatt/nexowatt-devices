@@ -1,13 +1,23 @@
-## 0.5.143 ABL eMH1 EVCC2/3-Dokumentprüfung und PWM-Steuerung
+## 0.5.144 Alias Contract v1 – fester Standard für die NexoWatt-UI
 
-- Die offizielle EVCC2/3-Dokumentation wurde vollständig gegen das Template geprüft.
-- Der exakte Lesegruppen-Fix aus 0.5.142 ist bestätigt und bleibt unverändert aktiv.
-- 10 A werden jetzt exakt wie dokumentiert als 16,6 % PWM (`0x00A6`) geschrieben; 16 A als 26,6 % (`0x010A`).
-- Die Umrechnung wird auf 0,1 % abgerundet, damit der Sollstrom niemals überschritten wird; Werte unter 6 A führen sicher auf 100 % PWM/Warten statt auf erzwungene 6 A.
-- `ctrl.run` und `ctrl.chargeEnable` verwenden jetzt 100 % PWM zum Warten/Sperren und stellen beim Freigeben den letzten aktiv vorgegebenen EMS-Strom wieder her; eine temporär niedrigere Wallbox-Rückmeldung überschreibt diesen Sollwert nicht.
-- Der EVCC-Servicezustand `mODIFY_STATE` bleibt nur als Roh-/Expertenbefehl erhalten.
-- Ungültige IEC-PWM-Bereiche werden im stabilen Alias nicht mehr als scheinbarer Ladestrom interpretiert.
-- Die Live-Anfrage `0x002E..0x0032` ist als erforderlich markiert und wird nie adaptiv in ungültige Einzelabfragen zerlegt.
+- Alle 181 Templates besitzen jetzt eine explizite Geräteklasse und den stabilen Vertrag `aliasContract.schemaVersion = 1`.
+- Neue automatische Integrationen verwenden ausschließlich `devices.<id>.aliases.v1.*`; dort sind Pfade, Datentypen, Rollen und Einheiten verbindlich festgelegt.
+- Unter `devices.<id>.aliases.meta.manifest` stehen Geräteklasse, Template, Hersteller, Modell, Fähigkeiten und eventuell fehlende Pflichtaliase maschinenlesbar als JSON bereit.
+- Standardisierte Einheiten im v1-Namensraum: `W`, `Wh`, `A`, `V`, `°C`, `s`, `%`, `Hz` und Unix-Zeitstempel in `ms`.
+- Herstellerumrechnungen bleiben im Device-Adapter. Beispiel: EOS schreibt bei ABL weiterhin Ampere, während der Treiber intern auf den PWM-Tastgrad umrechnet; FENECON-/SolaX-kW-Werte werden für die UI automatisch in Watt umgesetzt.
+- `EVCS` und `EVSE` sind `evCharger`; `CHARGER` und `DC_CHARGER` sind dagegen `solarCharger` und können dadurch nicht mehr als Wallbox im UI erscheinen.
+- Bestehende `aliases.*` bleiben für installierte Anlagen vollständig erhalten. Dynamische TA-CMI-Zuordnungen werden zusätzlich auf kanonische Heizungsaliase gespiegelt.
+- Der Release-Guard und die Tests prüfen den Aliasvertrag gegen sämtliche Templates bei jedem Build.
+
+## 0.5.143 ABL eMH1 Ampere-Vorgabe korrekt auf PWM umgesetzt
+
+- NexoWatt EOS gibt den Ladestrom weiterhin über `aliases.ctrl.currentLimitA` in Ampere vor. Der Adapter rechnet intern auf den ABL-Datenpunkt `sET_ICMAX_DUTY_CYCLE_PCT` und Register `0x0014` um.
+- Die Umrechnung folgt der ABL-/IEC-61851-Tabelle und wird auf 0,1 % nach unten begrenzt: `6 A = 10 %`, `10 A = 16,6 %`, `16 A = 26,6 %`, `32 A = 53,3 %`, `51 A = 85 %`, `80 A = 96 %`.
+- `0 A` oder eine Vorgabe unter `6 A` wird als `100 %` geschrieben. Das ist bei ABL die normale Warte-/Pausevorgabe „kein Strom verfügbar“.
+- `aliases.ctrl.run` und `aliases.ctrl.chargeEnable` schreiben beim Sperren jetzt ebenfalls `100 %` und stellen beim Freigeben den letzten aktiven PWM-Wert wieder her.
+- Das Service-Register `mODIFY_STATE` (`0x0005`) wird nicht mehr für die normale Ladepause verwendet und ist eindeutig als Experten-/Servicebefehl gekennzeichnet.
+- Neue Rückmeldungen: `aliases.r.waitingForCurrent` und `aliases.r.chargingReleased`.
+- Die Hersteller-Beispieltelegramme wurden automatisiert geprüft: `10 A -> 16,6 % -> 0x00A6` sowie `Warten -> 100 % -> 0x03E8`.
 
 ## 0.5.142 ABL eMH1 Modbus-ASCII-Lesegruppen korrigiert
 
@@ -146,6 +156,50 @@ schreibt der Adapter über das passende Protokoll.
 
 ## 4a) Aliases (stabile Namen für andere Adapter)
 
+### Alias Contract v1 für neue automatische Integrationen
+
+Für den NexoWatt-UI-Adapter und alle neuen Module ist ab Version `0.5.144` der
+versionierte Namensraum verbindlich:
+
+```text
+devices.<id>.aliases.v1.*
+```
+
+Die automatische Erkennung beginnt beim Manifest:
+
+```text
+devices.<id>.aliases.meta.manifest
+```
+
+Das Manifest enthält mindestens:
+
+```json
+{
+  "schemaVersion": 1,
+  "namespace": "v1",
+  "deviceClass": "evCharger",
+  "capabilities": ["read.power", "write.currentLimitA"],
+  "missingRequired": []
+}
+```
+
+Der UI-Adapter ordnet Geräte über `deviceClass` zu und bindet nur die in
+`capabilities` aufgeführten Funktionen. Die möglichen Geräteklassen sind:
+
+```text
+evCharger, meter, pvInverter, storageSystem, battery,
+batteryInverter, heat, io, solarCharger, generic
+```
+
+Im v1-Namensraum sind die Einheiten verbindlich normiert: Leistung in `W`,
+Energie in `Wh`, Strom in `A`, Spannung in `V`, Temperatur in `°C`, Zeitdauer in
+`s`, Prozentwerte in `%` und Frequenz in `Hz`.
+
+Die vollständige Spezifikation steht in `ALIAS_CONTRACT_V1_0.5.144.md` sowie in
+`lib/alias-contract-v1.json`.
+
+### Rückwärtskompatible Aliase
+
 Damit nachgelagerte Adapter/Logiken (z.B. Steuer‑ oder Benachrichtigungsadapter) **nicht**
 für jeden Hersteller unterschiedliche Datenpunkt‑IDs kennen müssen, legt der Adapter
 pro Gerät eine Alias‑Struktur unter `devices.<id>.aliases` an.
@@ -198,7 +252,7 @@ Lesen (best‑effort, je nach Template verfügbar):
 - `aliases.r.currentL1/L2/L3` (A) – Strom je Phase (bei 1‑phasigen Zählern i.d.R. nur L1)
 - `aliases.r.frequency` (Hz) – Netzfrequenz
 
-### EVCS / EVSE / CHARGER (Ladestationen / Wallboxen)
+### EVCS / EVSE (Ladestationen / Wallboxen)
 
 Lesen (best‑effort, je nach Template verfügbar):
 
@@ -218,6 +272,18 @@ Steuern (falls Template/Ladestation unterstützt):
 Alarme/Benachrichtigungen (best‑effort):
 
 - `aliases.alarm.fault` (bool) – Fehler aktiv (z.B. `errorCode != 0`)
+
+### CHARGER / DC_CHARGER (Solar- und Batterie-Laderegler)
+
+Diese Kategorien sind ausdrücklich **keine EV-Ladepunkte**. Im Alias Contract v1
+werden sie als `solarCharger` klassifiziert. Typische Rückmeldungen sind:
+
+- `aliases.v1.r.power` (W)
+- `aliases.v1.r.energyTotal` (Wh)
+- `aliases.v1.r.voltage` (V)
+- `aliases.v1.r.current` (A)
+- `aliases.v1.r.temperature` (°C)
+- `aliases.v1.r.statusCode` und `aliases.v1.r.errorCode` (falls vorhanden)
 
 ### BATTERY / ESS / BATTERY_INVERTER (Batteriesysteme)
 

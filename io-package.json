@@ -1,11 +1,15 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.143",
+    "version": "0.5.144",
     "news": {
+      "0.5.144": {
+        "en": "Alias Contract v1 introduced as the stable interface for NexoWatt UI auto-discovery: all 181 templates now declare an explicit device class, canonical aliases are exposed under aliases.v1 with fixed paths/types/roles/SI units, and aliases.meta publishes the manifest and capabilities. Legacy aliases remain available. EV chargers are separated from solar/DC chargers, dynamic TA CMI mappings are mirrored into canonical heat aliases, and the release guard validates the contract on every build.",
+        "de": "Alias Contract v1 als feste Schnittstelle für die automatische Geräteerkennung im NexoWatt UI eingeführt: Alle 181 Templates besitzen jetzt eine eindeutige Geräteklasse; unter aliases.v1 stehen kanonische Pfade mit festen Typen, Rollen und SI-Einheiten bereit, während aliases.meta Manifest und Fähigkeiten veröffentlicht. Bestehende Aliase bleiben erhalten. EV-Ladepunkte sind von Solar-/DC-Ladereglern getrennt, dynamische TA-CMI-Zuordnungen werden auf standardisierte Heizungsaliase gespiegelt und der Release-Guard prüft den Vertrag bei jedem Build."
+      },
       "0.5.143": {
-        "en": "ABL eMH1 EVCC2/3 document audit: reproduce the documented Icmax frames exactly (10 A = 16.6% / 0x00A6, 16 A = 26.6% / 0x010A), use 100% PWM for normal pause/resume instead of EVCC service-state jumps, map sub-6 A requests safely to pause, keep the last EMS setpoint separate from temporary charger-side derating, handle PWM special values correctly, protect exact R2/R1/R2/R5 reads from adaptive splitting, and make the live R5 block required.",
-        "de": "ABL-eMH1-EVCC2/3-Dokumentprüfung: dokumentierte Icmax-Telegramme werden jetzt exakt erzeugt (10 A = 16,6 % / 0x00A6, 16 A = 26,6 % / 0x010A), normales Sperren/Freigeben erfolgt mit 100 % PWM statt über EVCC-Servicezustands-Sprünge, Sollwerte unter 6 A führen sicher auf Warten, der letzte EMS-Sollwert bleibt von einer temporären Wallbox-Abregelung getrennt, PWM-Sonderwerte werden korrekt behandelt, exakte R2/R1/R2/R5-Leseanfragen werden nicht adaptiv zerlegt und der Live-R5-Block ist verpflichtend."
+        "en": "ABL eMH1 PWM current control corrected: NexoWatt EOS continues to command amperes, which are converted to the documented IEC 61851 duty cycle before writing register 0x0014. Zero or sub-6-A commands and the run/charge-enable pause now write 100% (no current available); resume restores the last active duty cycle. Register 0x0005 remains an expert/service command only.",
+        "de": "ABL-eMH1-PWM-Stromsteuerung korrigiert: NexoWatt EOS gibt weiterhin Ampere vor; der Adapter rechnet vor dem Schreiben auf Register 0x0014 in den dokumentierten IEC-61851-Tastgrad um. 0 A beziehungsweise Werte unter 6 A sowie die Pause über Run/Ladefreigabe schreiben jetzt 100 % (kein Strom verfügbar); beim Fortsetzen wird der letzte aktive Tastgrad wiederhergestellt. Register 0x0005 bleibt ausschließlich ein Experten-/Servicebefehl."
       },
       "0.5.142": {
         "en": "ABL eMH1 Modbus-ASCII read-group fix: send device/firmware register 0x0001 as the required R2 request and Modbus settings register 0x0003 separately as R1. The adapter no longer combines them into the unsupported 0x0001/R3 request that makes EVCC2/3 remain silent and causes a 2-second timeout.",

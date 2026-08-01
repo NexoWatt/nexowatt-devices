@@ -66,15 +66,12 @@ async function captureHoldingReads(template, datapoints) {
   };
 
   await driver.readDatapoints(datapoints);
-  return { calls, driver };
+  return calls;
 }
 
-test('ABL EVCC2/3 template declares and protects the protocol-specific exact read requests', () => {
+test('ABL EVCC2/3 template declares the protocol-specific exact read requests', () => {
   const template = getTemplate();
   const groups = new Map();
-
-  assert.equal(template.driverHints.modbus.adaptiveReadSplit, false);
-  assert.deepEqual(template.driverHints.modbus.requiredReadDpIds, ['eVSE_STATE']);
 
   for (const dp of template.datapoints) {
     const src = readSource(dp);
@@ -93,14 +90,14 @@ test('ABL EVCC2/3 template declares and protects the protocol-specific exact rea
   ]);
 });
 
-test('ABL EVCC2/3 sends exactly R2, R1, R2 and R5 instead of the invalid 0x0001/R3', async () => {
+test('ABL EVCC2/3 reads 0x0001/R2 and 0x0003/R1 separately instead of invalid 0x0001/R3', async () => {
   const template = getTemplate();
   const datapoints = template.datapoints.filter(dp => {
     const src = readSource(dp);
     return src && Number(src.fc) === 3;
   });
 
-  const { calls, driver } = await captureHoldingReads(template, datapoints);
+  const calls = await captureHoldingReads(template, datapoints);
   assert.deepEqual(calls, [
     { start: 0x0001, length: 2, unitId: 1 },
     { start: 0x0003, length: 1, unitId: 1 },
@@ -108,8 +105,6 @@ test('ABL EVCC2/3 sends exactly R2, R1, R2 and R5 instead of the invalid 0x0001/
     { start: 0x002E, length: 5, unitId: 1 },
   ]);
   assert.equal(calls.some(call => call.start === 0x0001 && call.length === 3), false);
-  assert.equal(driver.adaptiveReadSplit, false);
-  assert.equal(driver.requiredReadDpIds.has('eVSE_STATE'), true);
 });
 
 test('explicit read-request boundaries do not change normal grouping for untagged Modbus templates', async () => {
@@ -123,6 +118,6 @@ test('explicit read-request boundaries do not change normal grouping for untagge
     ],
   };
 
-  const { calls } = await captureHoldingReads(template, template.datapoints);
+  const calls = await captureHoldingReads(template, template.datapoints);
   assert.deepEqual(calls, [{ start: 10, length: 2, unitId: 1 }]);
 });

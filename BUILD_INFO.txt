@@ -1,25 +1,24 @@
-NexoWatt Devices 0.5.143 - ABL eMH1 EVCC2/3 document audit and PWM control correction
+NexoWatt Devices 0.5.144 - Alias Contract v1
 
-Base: release-safe normal ZIP 0.5.142
+Base: 0.5.143 ABL eMH1 EVCC2/3 PWM current control
 
-Verified against ABL document 05 0015 20 Rev. B:
-- Modbus ASCII 38400 Bd, 8E1, device ID 1..16
-- exact R2/R1/R2/R5 read requests retained
-- invalid 0x0001/R3 request remains blocked
-- Icmax write at 0x0014 via FC16, 0.1 percent resolution
-- 10 A -> 16.6 percent -> 0x00A6 (exact document frame)
-- 16 A -> 26.6 percent -> 0x010A
-- 100 percent -> no current allowed
-- normal run/stop moved from EVCC state jumps to Icmax PWM pause/resume
-- Ampere requests below 6 A map to 100 percent pause (never force a higher current)
-- temporary charger-side PWM readback does not overwrite the last EMS setpoint
-- raw service-state writes restricted to documented command values
-- exact ABL read frames are protected from adaptive split recovery
-- live R5 frame is required; static diagnostics remain optional
+Stable integration contract:
+- all 181 templates declare aliasContract schemaVersion 1 and a canonical deviceClass
+- 2,230 canonical aliases are generated across the complete template catalogue
+- every currently published legacy alias path is covered by the v1 contract after canonical name mapping
+- automatic integrations use devices.<id>.aliases.v1.*
+- devices.<id>.aliases.meta.manifest publishes device class and capabilities
+- legacy devices.<id>.aliases.* paths remain available for backwards compatibility
+- canonical units: W, Wh, A, V, °C, s, %, Hz and unix ms timestamps
+- vendor-specific read/write conversions remain inside nexowatt-devices
+- EVCS/EVSE are classified as evCharger
+- CHARGER/DC_CHARGER are classified as solarCharger and cannot appear as EV wallboxes
+- dynamic TA CMI mappings are mirrored to canonical heat aliases
 
-Release requirements:
+Release checks:
+- Alias Contract validation across all templates
+- automated test suite: 46/46 tests passed
 - release guard
-- full automated tests
-- npm pack dry-run
-- npm publish dry-run
-- extracted ZIP/TGZ validation
+- JSON and JavaScript validation
+- npm pack dry run
+- normal ZIP unpack and validation
