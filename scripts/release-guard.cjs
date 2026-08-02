@@ -297,6 +297,92 @@ function verifyAliasContract(parsed) {
   notices.push(`${templates.length} Templates mit Alias Contract v1 klassifiziert: ${JSON.stringify(counts)}`);
 }
 
+
+function verifyTestManifest(parsed) {
+  const manifest = requireParsedJson(parsed, 'test/test-manifest.json');
+  const packageJson = requireParsedJson(parsed, 'package.json');
+  if (!manifest || !packageJson) return;
+
+  if (manifest.schemaVersion !== 1 || !Array.isArray(manifest.tests) || manifest.tests.length === 0) {
+    errors.push('test/test-manifest.json: schemaVersion=1 und eine nichtleere tests-Liste sind erforderlich');
+    return;
+  }
+  if (manifest.suiteVersion !== packageJson.version) {
+    errors.push(`test/test-manifest.json: suiteVersion=${manifest.suiteVersion ?? '<fehlt>'} passt nicht zu package.json=${packageJson.version}`);
+  }
+  if (packageJson.scripts?.test !== 'node scripts/run-tests.cjs') {
+    errors.push('package.json: npm test muss über scripts/run-tests.cjs ausgeführt werden');
+  }
+
+  const listed = [];
+  const seen = new Set();
+  for (const item of manifest.tests) {
+    const name = String(item || '');
+    if (!/^[A-Za-z0-9._-]+\.test\.js$/.test(name)) {
+      errors.push(`test/test-manifest.json: ungültiger Testdateiname ${JSON.stringify(item)}`);
+      continue;
+    }
+    if (seen.has(name)) errors.push(`test/test-manifest.json: doppelte Testdatei ${name}`);
+    seen.add(name);
+    listed.push(name);
+    if (!fs.existsSync(path.join(root, 'test', name))) {
+      errors.push(`test/${name}: im Testmanifest aufgeführt, Datei fehlt`);
+    }
+  }
+
+  const actual = fs.readdirSync(path.join(root, 'test'), { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.test.js'))
+    .map((entry) => entry.name)
+    .sort();
+  const expected = [...listed].sort();
+  if (JSON.stringify(actual) !== JSON.stringify(expected)) {
+    const extra = actual.filter((name) => !expected.includes(name));
+    const missing = expected.filter((name) => !actual.includes(name));
+    if (extra.length) {
+      errors.push(
+        `test/: alte oder fremde Testdateien gefunden: ${extra.join(', ')}. ` +
+        'Der Projektordner wurde wahrscheinlich über eine ältere Version kopiert. Ordner löschen und die ZIP sauber neu entpacken.'
+      );
+    }
+    if (missing.length) errors.push(`test/: Testdateien aus Manifest fehlen: ${missing.join(', ')}`);
+  } else {
+    notices.push(`${expected.length} freigegebene Testdateien; keine alten Mischdateien im test/-Ordner`);
+  }
+}
+
+function verifyCompatibilityFixture(parsed) {
+  const fixture = requireParsedJson(parsed, 'test/fixtures/legacy-compatibility-v0.5.143.json');
+  const templatesDoc = requireParsedJson(parsed, 'lib/templates.json');
+  if (!fixture || !templatesDoc) return;
+
+  const templates = Array.isArray(templatesDoc.templates) ? templatesDoc.templates : [];
+  if (fixture.baselineAdapterVersion !== '0.5.143') {
+    errors.push('test/fixtures/legacy-compatibility-v0.5.143.json: falsche baselineAdapterVersion');
+  }
+  if (fixture.templateCount !== templates.length) {
+    errors.push(`Legacy-Kompatibilitätsfixture: templateCount=${fixture.templateCount} statt ${templates.length}`);
+  }
+  const fixtureTemplates = fixture.templates || {};
+  for (const template of templates) {
+    const entry = fixtureTemplates[template.id];
+    if (!entry) {
+      errors.push(`${template.id}: fehlt im Legacy-Kompatibilitätsfixture`);
+      continue;
+    }
+    for (const key of ['templateHash', 'hash']) {
+      if (!/^[0-9a-f]{64}$/.test(String(entry[key] || ''))) {
+        errors.push(`${template.id}: ungültiger ${key} im Legacy-Kompatibilitätsfixture`);
+      }
+    }
+    if (!Number.isInteger(entry.datapointCount) || !Number.isInteger(entry.count)) {
+      errors.push(`${template.id}: ungültige Zähler im Legacy-Kompatibilitätsfixture`);
+    }
+  }
+  const unknown = Object.keys(fixtureTemplates).filter((id) => !templates.some((template) => template.id === id));
+  if (unknown.length) errors.push(`Legacy-Kompatibilitätsfixture enthält unbekannte Templates: ${unknown.join(', ')}`);
+  notices.push(`Legacy-Kompatibilitätsbaseline 0.5.143 für ${Object.keys(fixtureTemplates).length} Templates geladen`);
+}
+
 function verifyJavaScriptSyntax(files) {
   const javaScriptFiles = files.filter((filePath) => ['.js', '.cjs', '.mjs'].includes(path.extname(filePath).toLowerCase()));
 
@@ -326,6 +412,12 @@ function verifyRequiredFiles() {
     'lib/templates.json',
     'lib/alias-contract-v1.json',
     'lib/aliasContract.js',
+    'scripts/run-tests.cjs',
+    'test/test-manifest.json',
+    'test/fixtures/legacy-compatibility-v0.5.143.json',
+    'test/helpers/compatibilityHarness.cjs',
+    'test/legacyCompatibility.test.js',
+    'test/writeErrorHandling.test.js',
     'README.md',
     'LICENSE',
   ];
@@ -334,6 +426,65 @@ function verifyRequiredFiles() {
     if (!fs.existsSync(path.join(root, relativePath))) {
       errors.push(`${relativePath}: Pflichtdatei fehlt`);
     }
+  }
+}
+
+function verifyDocumentationLayout(parsed) {
+  const docsDirectory = path.join(root, 'docs');
+  if (!fs.existsSync(docsDirectory) || !fs.statSync(docsDirectory).isDirectory()) {
+    errors.push('docs/: Dokumentationsordner fehlt');
+    return;
+  }
+
+  const rootMarkdownFiles = fs.readdirSync(root, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && path.extname(entry.name).toLowerCase() === '.md')
+    .map((entry) => entry.name)
+    .sort();
+
+  const unexpectedRootMarkdown = rootMarkdownFiles.filter((name) => name !== 'README.md');
+  if (unexpectedRootMarkdown.length > 0) {
+    errors.push(`Markdown-Dateien gehören nach docs/: ${unexpectedRootMarkdown.join(', ')}`);
+  } else {
+    notices.push('Dokumentationslayout sauber: im Projektstamm liegt nur README.md');
+  }
+
+  const requiredDocumentation = [
+    'docs/README.md',
+    'docs/CHANGELOG.md',
+    'docs/ALIAS_CONTRACT_V1_0.5.144.md',
+    'docs/LEGACY_COMPATIBILITY_0.5.146.md',
+    'docs/RELEASE_SAFETY.md',
+    'docs/THIRD_PARTY_NOTICES.md',
+  ];
+  for (const relativePath of requiredDocumentation) {
+    if (!fs.existsSync(path.join(root, relativePath))) {
+      errors.push(`${relativePath}: Dokumentationsdatei fehlt`);
+    }
+  }
+
+  const readmePath = path.join(root, 'README.md');
+  if (fs.existsSync(readmePath)) {
+    const content = readUtf8(readmePath);
+    const firstContentLine = content === null
+      ? ''
+      : content.split(/\r?\n/).find((line) => line.trim().length > 0) || '';
+    if (!/^#\s+nexowatt-devices\b/i.test(firstContentLine.trim())) {
+      errors.push('README.md: Die Adapterübersicht muss direkt mit der Hauptüberschrift beginnen');
+    }
+  }
+
+  const packageJson = requireParsedJson(parsed, 'package.json');
+  if (!packageJson) return;
+  const packageFiles = Array.isArray(packageJson.files) ? packageJson.files : [];
+  if (!packageFiles.includes('docs/')) {
+    errors.push('package.json: files muss den Ordner docs/ enthalten');
+  }
+
+  const rootMarkdownEntries = packageFiles.filter((entry) =>
+    typeof entry === 'string' && entry.toLowerCase().endsWith('.md') && entry !== 'README.md'
+  );
+  if (rootMarkdownEntries.length > 0) {
+    errors.push(`package.json: technische Markdown-Dateien einzeln eingetragen: ${rootMarkdownEntries.join(', ')}`);
   }
 }
 
@@ -346,9 +497,12 @@ function main() {
   scanMergeConflictMarkers(files);
   const parsedJson = parseJsonFiles(files);
   verifyVersions(parsedJson);
+  verifyDocumentationLayout(parsedJson);
   verifyTemplateCopies();
   verifyAliasContractCopies();
   verifyAliasContract(parsedJson);
+  verifyTestManifest(parsedJson);
+  verifyCompatibilityFixture(parsedJson);
 
   const packageJsonPath = path.join(root, 'package.json');
   if (parsedJson.has(packageJsonPath)) {

@@ -162,3 +162,15 @@ A UI integration should:
   IDs, invalid JSON and unresolved merge conflicts.
 - Automated tests instantiate every template and verify canonical paths, types,
   roles, units, required aliases and device-class separation.
+
+## Compatibility lock added in adapter 0.5.146
+
+The standard namespace is strictly additive. The adapter does not create new
+compatibility states in the unversioned `aliases.*` namespace and does not
+change any existing legacy alias target, type, role, unit or conversion.
+Canonical-only fallbacks and solar-charger discovery paths are built directly
+under `aliases.v1.*`.
+
+A permanent automated baseline compares all 181 raw templates and legacy alias
+definitions with the pre-contract production release 0.5.143. Destructive
+object/state migrations are forbidden.

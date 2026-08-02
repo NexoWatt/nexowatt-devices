@@ -1,7 +1,0 @@
-NexoWatt Devices 0.5.136 – Sungrow Fast Feedback auf Basis 0.5.133
-
-WICHTIG:
-- Lade-/Entladerichtung stammt unverändert aus Version 0.5.133.
-- lib/templates.json, admin/templates.json, lib/drivers/modbus.js und lib/deviceRuntime.js sind bytegleich zu 0.5.133.
-- Ergänzt wurden ausschließlich eine schnellere, vom Vollpoll getrennte Schreibplanung und priorisierte bATTERY_POWER-Rückmeldung.
-- Keine 500-W-Rundung; 0 W bleibt Stop.

@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.144",
+    "version": "0.5.147",
     "news": {
+      "0.5.147": {
+        "en": "Alfen ACE adaptive write compatibility: keep the official document-register-minus-one/low-word-first layout as the canonical path, retry the direct table-address layout only after Modbus exception 2, detect the 32-bit word order from the configured safe current, cache the working variant per Unit-ID, shift only the corresponding control readbacks, and provide an actionable Advanced Settings diagnostic when both layouts are rejected. No template, alias or existing datapoint path is changed.",
+        "de": "Alfen-ACE-Schreibkompatibilität erweitert: Der offizielle Pfad mit Dokumentregister minus 1 und Low-Word-First bleibt unverändert der Standard. Nur nach Modbus Exception 2 wird zusätzlich die direkte Tabellenadresse geprüft; die 32-Bit-Wortreihenfolge wird anhand des konfigurierten Safe Current erkannt, die funktionierende Variante je Unit-ID gespeichert und nur die zugehörigen Steuer-Rückmeldungen angepasst. Werden beide Varianten abgelehnt, nennt die Diagnose die erforderlichen ACE-Advanced-Settings. Templates, Aliase und bestehende Datenpunktpfade bleiben unverändert."
+      },
+      "0.5.146": {
+        "en": "Alias Contract v1 is now strictly additive for existing installations. All 181 raw templates and every legacy aliases.* definition are locked against the 0.5.143 production baseline; canonical paths exist only below aliases.v1/meta. A fixed test manifest detects mixed source folders and invalid Modbus writes are verified through info.lastError.",
+        "de": "Alias Contract v1 ist für Bestandsanlagen jetzt strikt additiv abgesichert. Alle 181 Roh-Templates und sämtliche bisherigen aliases.*-Definitionen werden gegen den Produktionsstand 0.5.143 geprüft; kanonische Pfade liegen nur unter aliases.v1/meta. Ein festes Testmanifest erkennt vermischte Quellordner und ungültige Modbus-Schreibwerte werden über info.lastError geprüft."
+      },
+      "0.5.145": {
+        "en": "Documentation structure cleaned up: all technical Markdown files are now grouped under docs/, the root README once again starts with the actual adapter overview, and the release guard prevents future Markdown clutter in the project root.",
+        "de": "Dokumentationsstruktur bereinigt: Alle technischen Markdown-Dateien liegen jetzt gesammelt unter docs/, die Haupt-README beginnt wieder direkt mit der eigentlichen Adapterübersicht und der Release-Guard verhindert künftig neue Markdown-Dateien im Projektstamm."
+      },
       "0.5.144": {
         "en": "Alias Contract v1 introduced as the stable interface for NexoWatt UI auto-discovery: all 181 templates now declare an explicit device class, canonical aliases are exposed under aliases.v1 with fixed paths/types/roles/SI units, and aliases.meta publishes the manifest and capabilities. Legacy aliases remain available. EV chargers are separated from solar/DC chargers, dynamic TA CMI mappings are mirrored into canonical heat aliases, and the release guard validates the contract on every build.",
         "de": "Alias Contract v1 als feste Schnittstelle für die automatische Geräteerkennung im NexoWatt UI eingeführt: Alle 181 Templates besitzen jetzt eine eindeutige Geräteklasse; unter aliases.v1 stehen kanonische Pfade mit festen Typen, Rollen und SI-Einheiten bereit, während aliases.meta Manifest und Fähigkeiten veröffentlicht. Bestehende Aliase bleiben erhalten. EV-Ladepunkte sind von Solar-/DC-Ladereglern getrennt, dynamische TA-CMI-Zuordnungen werden auf standardisierte Heizungsaliase gespiegelt und der Release-Guard prüft den Vertrag bei jedem Build."
