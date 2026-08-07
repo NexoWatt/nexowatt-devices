@@ -1,35 +1,31 @@
-NexoWatt Devices 0.5.147 - Alfen ACE adaptive write compatibility
+NexoWatt Devices 0.5.148 - ABL eMH1 live current/power fail-safe
 
-Base: 0.5.146 Alias Contract compatibility lock
+Base: 0.5.147 Alfen ACE adaptive write compatibility
 
-Alfen field fix:
-- canonical ACE layout remains UID1/2 FC16@1209, document register minus 1
-- direct table-address compatibility layout UID1/2 FC16@1210 is tried only after Modbus exception 2
-- exception 3 never changes the address
-- 32-bit word order for the compatibility layout is detected from the configured safe current
-- selected variant is cached per datapoint and Unit-ID for the current adapter session
-- related control readbacks follow the selected address offset and multiword order
-- Socket phase command and Station/SCN current block use the same exception-2-only strategy
-- both rejected layouts produce an actionable ACE Advanced Settings diagnostic
+ABL eMH1 field fix:
+- raw EVCC2/3 current datapoints remain diagnostic and may be null
+- operational current/power aliases reset to zero in non-charging states A/B/E/F
+- null/NaN-only phase currents reset derived values to zero
+- a missing atomic R5 current group resets derived values to zero
+- Modbus disconnect and heartbeat timeout reset derived values to zero
+- adapter start without a fresh sample resets derived values to zero
+- only C2/C3/C4 permit positive derived charging current/power
 
 Compatibility guarantees:
-- all 181 raw template/register definitions still match the 0.5.143 production baseline
-- all legacy devices.<id>.aliases.* paths and semantics still match the 0.5.143 baseline
-- canonical aliases remain isolated below devices.<id>.aliases.v1.*
-- discovery metadata remains isolated below devices.<id>.aliases.meta.*
+- no raw template/register definition changed
+- no existing datapoint or alias path changed
+- no existing alias conversion definition changed
+- Alias Contract v1 remains additive below devices.<id>.aliases.v1.*
+- other manufacturers keep their existing last-value behaviour
 - no runtime object/state deletion migration exists
-- no template, alias or datapoint ID was changed for the Alfen fix
+- Windows publish script removed from the distributed ZIP and npm files list
 
 Release checks:
 - fixed test manifest
-- Legacy Compatibility baseline across all templates and legacy aliases
+- Legacy Compatibility baseline across all 181 templates and legacy aliases
 - Alias Contract validation across all templates
-- automated test suite: 59/59 tests passed before packaging
+- automated test suite: 60/60 tests passed before packaging
 - release guard
 - JSON and JavaScript validation
 - npm pack/publish dry run
 - normal ZIP unpack and validation
-
-Documentation layout:
-- root Markdown remains restricted to README.md
-- technical documentation is stored in docs/

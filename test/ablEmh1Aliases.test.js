@@ -42,10 +42,10 @@ function loadDeviceRuntime() {
   }
 }
 
-function createAliasDefinitions() {
+function createAliasDefinitions(adapterOverride) {
   const DeviceRuntime = loadDeviceRuntime();
   const template = getTemplate(runtimeTemplates);
-  const adapter = { log: { debug() {}, info() {}, warn() {}, error() {} } };
+  const adapter = adapterOverride || { log: { debug() {}, info() {}, warn() {}, error() {} } };
   const runtime = new DeviceRuntime(adapter, {
     id: 'evcs1',
     templateId,
@@ -150,6 +150,106 @@ test('ABL live-current aliases compare per-phase current instead of summing ampe
   assert.equal(alias(byPath, 'r.currentA').get(unbalanced), 5.8);
   assert.equal(alias(byPath, 'r.currentTotalA').get(unbalanced), 5.8);
   assert.equal(alias(byPath, 'r.currentPhaseSumA').get(unbalanced), 16.7);
+
+  const { runtime } = createAliasDefinitions();
+
+  // EVCC2/3 marks phase current as unavailable in state A. Runtime-level fail-safe
+  // handling must clear the operational aliases instead of keeping an old load value.
+  const unavailable = {
+    eVSE_STATE: 0xA1,
+    cURRENT_L1: null,
+    cURRENT_L2: null,
+    cURRENT_L3: null,
+  };
+  assert.equal(runtime._shouldResetAblEmh1LiveMeasurements(unavailable, { connected: true }), true);
+
+  // The EVSE state is authoritative. A waiting/non-charging state must clear stale
+  // currents even if an older sample is still present in the snapshot.
+  const waitingWithStaleCurrents = {
+    eVSE_STATE: 0xA1,
+    cURRENT_L1: 6.5,
+    cURRENT_L2: 6.3,
+    cURRENT_L3: 6.3,
+  };
+  assert.equal(runtime._shouldResetAblEmh1LiveMeasurements(waitingWithStaleCurrents, { connected: true }), true);
+
+  // C2/C3/C4 with at least one finite phase current remains a valid live snapshot.
+  assert.equal(runtime._shouldResetAblEmh1LiveMeasurements({
+    eVSE_STATE: 0xC2,
+    cURRENT_L1: 6.5,
+    cURRENT_L2: 6.3,
+    cURRENT_L3: 6.3,
+  }, { connected: true }), false);
+
+  // A missing atomic R5 group and a transport outage both fail safe to zero.
+  assert.equal(runtime._shouldResetAblEmh1LiveMeasurements({ mODBUS_SETTINGS_RAW: 807 }, { connected: true }), true);
+  assert.equal(runtime._shouldResetAblEmh1LiveMeasurements({}, { connected: false }), true);
+});
+
+test('ABL live measurement aliases are actively reset on null, missing and offline input', async () => {
+  const writes = new Map();
+  const adapter = {
+    log: { debug() {}, info() {}, warn() {}, error() {} },
+    async setStateAsync(id, state) {
+      writes.set(String(id), state && state.val);
+    },
+  };
+  const { runtime, definitions } = createAliasDefinitions(adapter);
+  runtime.aliasDefs = definitions;
+
+  await runtime._updateAliases({
+    eVSE_STATE: 0xC2,
+    cURRENT_L1: 6.5,
+    cURRENT_L2: 6.3,
+    cURRENT_L3: 6.3,
+    iCMAX_DUTY_CYCLE_PCT: 26.6,
+  }, { connected: true, lastError: '' });
+
+  assert.equal(writes.get('devices.evcs1.aliases.r.currentA'), 6.5);
+  assert.equal(writes.get('devices.evcs1.aliases.r.power'), 4393);
+  assert.equal(writes.get('devices.evcs1.aliases.v1.r.power'), 4393);
+
+  await runtime._updateAliases({
+    eVSE_STATE: 0xA1,
+    cURRENT_L1: null,
+    cURRENT_L2: null,
+    cURRENT_L3: null,
+    iCMAX_DUTY_CYCLE_PCT: 26.6,
+  }, { connected: true, lastError: '' });
+
+  assert.equal(writes.get('devices.evcs1.aliases.r.currentL1'), 0);
+  assert.equal(writes.get('devices.evcs1.aliases.r.currentA'), 0);
+  assert.equal(writes.get('devices.evcs1.aliases.r.currentPhaseSumA'), 0);
+  assert.equal(writes.get('devices.evcs1.aliases.r.power'), 0);
+  assert.equal(writes.get('devices.evcs1.aliases.r.powerEstimated'), 0);
+  assert.equal(writes.get('devices.evcs1.aliases.v1.r.power'), 0);
+
+  // A failed live-current read group in an otherwise connected poll also clears the
+  // aliases through the ABL live-snapshot fail-safe.
+  await runtime._updateAliases({ mODBUS_SETTINGS_RAW: 807 }, { connected: true, lastError: '' });
+  assert.equal(writes.get('devices.evcs1.aliases.r.currentL1'), 0);
+  assert.equal(writes.get('devices.evcs1.aliases.r.power'), 0);
+
+  // A transport failure passes an empty snapshot. The ABL live measurements reset
+  // without changing the generic last-value behaviour of any other template.
+  await runtime._updateAliases({}, { connected: false, lastError: 'timeout' });
+  assert.equal(writes.get('devices.evcs1.aliases.r.currentA'), 0);
+  assert.equal(writes.get('devices.evcs1.aliases.r.power'), 0);
+  assert.equal(writes.get('devices.evcs1.aliases.v1.r.power'), 0);
+
+  // The independent heartbeat timeout must clear the same values even when no poll
+  // callback is available to provide a new snapshot.
+  await runtime._updateAliases({
+    eVSE_STATE: 0xC2,
+    cURRENT_L1: 6.5,
+    cURRENT_L2: 6.3,
+    cURRENT_L3: 6.3,
+  }, { connected: true, lastError: '' });
+  runtime._hbOnline = true;
+  await runtime._setHeartbeatOnline(false);
+  assert.equal(writes.get('devices.evcs1.aliases.r.currentA'), 0);
+  assert.equal(writes.get('devices.evcs1.aliases.r.power'), 0);
+  assert.equal(writes.get('devices.evcs1.aliases.v1.r.power'), 0);
 });
 
 test('ABL current-limit command converts EOS amperes to exact vendor PWM values', () => {

@@ -1,22 +1,34 @@
 # NexoWatt Devices – sichere Release-Prüfung
 
-Die Freigabeprüfung ist absichtlich unabhängig von `npm`. Dadurch erkennt sie auch ein beschädigtes `package.json`, bevor `npm publish` gestartet wird.
+Die erste Freigabeprüfung wird direkt mit Node.js gestartet. Dadurch erkennt sie auch einen beschädigten Projektstand, bevor ein Paket veröffentlicht wird. Das frühere Windows-Skript `publish-safe.cmd` ist ab Version 0.5.148 nicht mehr Bestandteil der ZIP oder des npm-Pakets.
 
 ## Prüfung ohne Veröffentlichung
 
-Unter Windows im Projektordner:
+Im Projektordner:
 
 ```powershell
-.\publish-safe.cmd
+node .\scripts\release-guard.cjs
+npm test
+npm pack --dry-run
+```
+
+Unter Linux sind dieselben Befehle mit `/` statt `\\` verwendbar:
+
+```bash
+node ./scripts/release-guard.cjs
+npm test
+npm pack --dry-run
 ```
 
 ## Geprüft veröffentlichen
 
+Erst nachdem alle drei Prüfungen erfolgreich waren:
+
 ```powershell
-.\publish-safe.cmd --publish
+npm publish
 ```
 
-Der Ablauf bricht vor der Veröffentlichung ab, wenn mindestens einer dieser Punkte fehlschlägt:
+Der Ablauf muss vor der Veröffentlichung abgebrochen werden, wenn mindestens einer dieser Punkte fehlschlägt:
 
 - ungelöste Git-Merge-Konflikte
 - ungültige JSON-Dateien
@@ -25,12 +37,6 @@ Der Ablauf bricht vor der Veröffentlichung ab, wenn mindestens einer dieser Pun
 - JavaScript-Syntaxfehler
 - automatisierte Adaptertests
 - `npm pack --dry-run`
-
-Direkter Einzelaufruf der unabhängigen Prüfung:
-
-```powershell
-node .\scripts\release-guard.cjs
-```
 
 ## Schutz vor vermischten Versionen
 

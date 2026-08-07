@@ -13,6 +13,7 @@ Die technische Dokumentation ist gebündelt im Ordner [`docs/`](docs/README.md):
 - [Technische Versionshinweise](docs/CHANGELOG.md)
 - [Alias Contract v1](docs/ALIAS_CONTRACT_V1_0.5.144.md)
 - [Bestandsanlagen-Kompatibilität](docs/LEGACY_COMPATIBILITY_0.5.146.md)
+- [ABL eMH1 – Live-Strom- und Leistungs-Failsafe](docs/ABL_LIVE_POWER_FAILSAFE_0.5.148.md)
 - [Alfen ACE – adaptive Schreibadressierung](docs/ALFEN_ADDRESS_COMPATIBILITY_0.5.147.md)
 - [Release-Sicherheit](docs/RELEASE_SAFETY.md)
 - [Drittanbieterhinweise](docs/THIRD_PARTY_NOTICES.md)

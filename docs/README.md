@@ -12,6 +12,7 @@ Alle technischen Markdown-Dateien des Adapters liegen bewusst in diesem Ordner. 
 
 ## Wallboxen und Ladepunkte
 
+- [ABL eMH1 – Live-Strom- und Leistungs-Failsafe](ABL_LIVE_POWER_FAILSAFE_0.5.148.md)
 - [ABL eMH1 – PWM-Stromsteuerung](ABL_PWM_CURRENT_CONTROL_0.5.143.md)
 - [ABL eMH1 – exakte Modbus-ASCII-Lesegruppen](ABL_READ_GROUP_FIX_0.5.142.md)
 - [Alfen ACE – Control Fix](ALFEN_CONTROL_FIX_0.5.129.md)

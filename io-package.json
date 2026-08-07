@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.147",
+    "version": "0.5.148",
     "news": {
+      "0.5.148": {
+        "en": "ABL eMH1 live-power fail-safe: derived phase-current and charging-power aliases are reset to 0 when EVCC2/3 reports state A/B/E/F, returns the documented unavailable-current sentinel, omits the atomic R5 current block, loses communication, or exceeds the heartbeat timeout. Raw diagnostic datapoints and all existing alias paths/conversions remain unchanged.",
+        "de": "ABL-eMH1-Liveleistungs-Failsafe: Berechnete Phasenstrom- und Ladeleistungs-Aliase werden auf 0 gesetzt, sobald EVCC2/3 einen Zustand A/B/E/F meldet, den dokumentierten Strom-nicht-verfügbar-Sentinel liefert, der atomare R5-Stromblock fehlt, die Kommunikation ausfällt oder der Heartbeat-Timeout erreicht wird. Roh-Diagnosedatenpunkte sowie alle bestehenden Alias-Pfade und Umrechnungen bleiben unverändert."
+      },
       "0.5.147": {
         "en": "Alfen ACE adaptive write compatibility: keep the official document-register-minus-one/low-word-first layout as the canonical path, retry the direct table-address layout only after Modbus exception 2, detect the 32-bit word order from the configured safe current, cache the working variant per Unit-ID, shift only the corresponding control readbacks, and provide an actionable Advanced Settings diagnostic when both layouts are rejected. No template, alias or existing datapoint path is changed.",
         "de": "Alfen-ACE-Schreibkompatibilität erweitert: Der offizielle Pfad mit Dokumentregister minus 1 und Low-Word-First bleibt unverändert der Standard. Nur nach Modbus Exception 2 wird zusätzlich die direkte Tabellenadresse geprüft; die 32-Bit-Wortreihenfolge wird anhand des konfigurierten Safe Current erkannt, die funktionierende Variante je Unit-ID gespeichert und nur die zugehörigen Steuer-Rückmeldungen angepasst. Werden beide Varianten abgelehnt, nennt die Diagnose die erforderlichen ACE-Advanced-Settings. Templates, Aliase und bestehende Datenpunktpfade bleiben unverändert."

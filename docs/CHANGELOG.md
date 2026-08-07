@@ -1,5 +1,14 @@
 # Technische Versionshinweise
 
+## 0.5.148 – ABL eMH1: veraltete Ladeleistung sicher auf 0 setzen
+
+- Die ABL eMH1 liefert keinen direkten Leistungswert; `aliases.r.power` und `powerEstimated` werden weiterhin aus der Summe der drei Phasenströme mal 230 V berechnet.
+- Meldet EVCC2/3 einen Nicht-Ladezustand (`A/B/E/F`), `null`/NaN-Ströme oder fehlt der atomare R5-Stromblock, werden Strom- und Leistungsaliase sofort auf `0` gesetzt.
+- Dasselbe Failsafe greift bei Modbus-Kommunikationsfehlern, Heartbeat-Timeout und direkt nach dem Adapterstart ohne frische Messung.
+- Die Rohdatenpunkte `cURRENT_L1/L2/L3` bleiben unverändert und dürfen weiterhin `null` anzeigen; nur die operativen Legacy- und v1-Aliase werden sicher genullt.
+- Register, ABL-PWM-Steuerung, Alias-IDs und alle anderen Herstellerlogiken bleiben unverändert.
+- 60 automatisierte Tests prüfen unter anderem Laden, A1 mit Nullwerten, fehlenden R5-Block, Transportfehler, Heartbeat-Timeout und die vollständige Legacy-Kompatibilität.
+
 ## 0.5.147 – Alfen ACE adaptive Schreibadressierung
 
 - Der offizielle ACE-Pfad bleibt unverändert: Socket 1/2 schreibt zuerst per FC16 auf Protokolladresse `1209` (Dokumentregister `1210..1211`) mit Low-Word-First.
