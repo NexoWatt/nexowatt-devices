@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.148",
+    "version": "0.5.149",
     "news": {
       "0.5.148": {
         "en": "ABL eMH1 live-power fail-safe: derived phase-current and charging-power aliases are reset to 0 when EVCC2/3 reports state A/B/E/F, returns the documented unavailable-current sentinel, omits the atomic R5 current block, loses communication, or exceeds the heartbeat timeout. Raw diagnostic datapoints and all existing alias paths/conversions remain unchanged.",

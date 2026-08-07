@@ -1,5 +1,13 @@
 # Technische Versionshinweise
 
+## 0.5.149 – Windows-Publish-Test gegen lokale Altdatei gehärtet
+
+- Der Testfehler `actual: true, expected: false` entsteht, wenn im alten Windows-Arbeitsordner noch `publish-safe.cmd` aus einer früheren Version liegt.
+- Der Adapter- und ABL-Laufzeitcode ist davon nicht betroffen; fehlgeschlagen ist ausschließlich die Paket-/Dokumentationsprüfung.
+- Eine lokal verbliebene `publish-safe.cmd` blockiert `npm test` und `npm publish` jetzt nicht mehr. Sie bleibt über die `package.json`-`files`-Whitelist und zusätzlich über `.npmignore` sicher vom npm-Paket ausgeschlossen.
+- Der Release-Guard zeigt die lokale Altdatei nur als Hinweis an und prüft weiterhin, dass sie nicht zur Veröffentlichung freigegeben ist.
+- Der ABL-eMH1-Failsafe aus 0.5.148 bleibt unverändert: Nicht-Ladezustände, fehlende/ungültige Phasenströme und Kommunikationsausfälle setzen die abgeleiteten Strom- und Leistungsaliase auf `0`.
+
 ## 0.5.148 – ABL eMH1: veraltete Ladeleistung sicher auf 0 setzen
 
 - Die ABL eMH1 liefert keinen direkten Leistungswert; `aliases.r.power` und `powerEstimated` werden weiterhin aus der Summe der drei Phasenströme mal 230 V berechnet.

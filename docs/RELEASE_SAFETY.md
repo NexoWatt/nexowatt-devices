@@ -1,6 +1,6 @@
 # NexoWatt Devices – sichere Release-Prüfung
 
-Die erste Freigabeprüfung wird direkt mit Node.js gestartet. Dadurch erkennt sie auch einen beschädigten Projektstand, bevor ein Paket veröffentlicht wird. Das frühere Windows-Skript `publish-safe.cmd` ist ab Version 0.5.148 nicht mehr Bestandteil der ZIP oder des npm-Pakets.
+Die erste Freigabeprüfung wird direkt mit Node.js gestartet. Dadurch erkennt sie auch einen beschädigten Projektstand, bevor ein Paket veröffentlicht wird. Das frühere Windows-Skript `publish-safe.cmd` ist ab Version 0.5.148 nicht mehr Bestandteil der ZIP oder des npm-Pakets. Ab Version 0.5.149 darf eine alte lokale Kopie im Arbeitsordner verbleiben, ohne die Tests zu blockieren; `package.json` und `.npmignore` verhindern weiterhin die Veröffentlichung.
 
 ## Prüfung ohne Veröffentlichung
 

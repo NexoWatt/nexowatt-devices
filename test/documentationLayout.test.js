@@ -32,8 +32,13 @@ test('technical Markdown documentation is grouped under docs and the root overvi
 
   const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
   assert.ok(pkg.files.includes('docs/'));
-  assert.equal(fs.existsSync(path.join(root, 'publish-safe.cmd')), false);
   assert.equal(pkg.files.includes('publish-safe.cmd'), false);
+
+  const npmIgnore = fs.readFileSync(path.join(root, '.npmignore'), 'utf8')
+    .split(/\r?\n/)
+    .map(line => line.trim())
+    .filter(Boolean);
+  assert.ok(npmIgnore.includes('publish-safe.cmd'));
   assert.deepEqual(
     pkg.files.filter(entry => entry.toLowerCase().endsWith('.md')),
     ['README.md']

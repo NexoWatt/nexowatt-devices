@@ -480,6 +480,28 @@ function verifyDocumentationLayout(parsed) {
     errors.push('package.json: files muss den Ordner docs/ enthalten');
   }
 
+  if (packageFiles.includes('publish-safe.cmd')) {
+    errors.push('package.json: publish-safe.cmd darf nicht im npm-Paket enthalten sein');
+  }
+
+  const npmIgnorePath = path.join(root, '.npmignore');
+  if (!fs.existsSync(npmIgnorePath)) {
+    errors.push('.npmignore: Datei fehlt');
+  } else {
+    const npmIgnoreContent = readUtf8(npmIgnorePath) || '';
+    const npmIgnoreEntries = npmIgnoreContent
+      .split(/\r?\n/)
+      .map((line) => line.trim())
+      .filter(Boolean);
+    if (!npmIgnoreEntries.includes('publish-safe.cmd')) {
+      errors.push('.npmignore: publish-safe.cmd muss explizit ausgeschlossen sein');
+    }
+  }
+
+  if (fs.existsSync(path.join(root, 'publish-safe.cmd'))) {
+    notices.push('Lokale Altdatei publish-safe.cmd erkannt; sie bleibt durch files-Whitelist und .npmignore vom Paket ausgeschlossen');
+  }
+
   const rootMarkdownEntries = packageFiles.filter((entry) =>
     typeof entry === 'string' && entry.toLowerCase().endsWith('.md') && entry !== 'README.md'
   );

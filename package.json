@@ -1,6 +1,6 @@
 {
   "name": "iobroker.nexowatt-devices",
-  "version": "0.5.148",
+  "version": "0.5.149",
   "description": "NexoWatt Devices - Multi-protocol device adapter for ioBroker incl. Modbus, MQTT, HTTP, Speedwire and TA CMI JSON/Modbus bridge.",
   "main": "bootstrap.js",
   "author": "Nexowatt",

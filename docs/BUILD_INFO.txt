@@ -1,31 +1,22 @@
-NexoWatt Devices 0.5.148 - ABL eMH1 live current/power fail-safe
+NexoWatt Devices 0.5.149 - Windows publish/test compatibility fix
 
-Base: 0.5.147 Alfen ACE adaptive write compatibility
+Base: 0.5.148 ABL eMH1 live current/power fail-safe
 
-ABL eMH1 field fix:
-- raw EVCC2/3 current datapoints remain diagnostic and may be null
-- operational current/power aliases reset to zero in non-charging states A/B/E/F
-- null/NaN-only phase currents reset derived values to zero
-- a missing atomic R5 current group resets derived values to zero
-- Modbus disconnect and heartbeat timeout reset derived values to zero
-- adapter start without a fresh sample resets derived values to zero
+Fix:
+- stale local publish-safe.cmd from older releases no longer fails npm test
+- package.json files whitelist still excludes publish-safe.cmd
+- .npmignore explicitly excludes publish-safe.cmd
+- release guard reports the stale local file only as a notice
+- npm package content is verified without publish-safe.cmd
+
+ABL eMH1 behaviour retained unchanged:
+- derived current and power aliases reset to zero in non-charging states
+- null/NaN currents, missing R5 data, disconnect and heartbeat timeout reset derived values
 - only C2/C3/C4 permit positive derived charging current/power
 
-Compatibility guarantees:
-- no raw template/register definition changed
+Compatibility:
+- no runtime source file changed
+- no template/register definition changed
 - no existing datapoint or alias path changed
-- no existing alias conversion definition changed
-- Alias Contract v1 remains additive below devices.<id>.aliases.v1.*
-- other manufacturers keep their existing last-value behaviour
-- no runtime object/state deletion migration exists
-- Windows publish script removed from the distributed ZIP and npm files list
-
-Release checks:
-- fixed test manifest
-- Legacy Compatibility baseline across all 181 templates and legacy aliases
-- Alias Contract validation across all templates
-- automated test suite: 60/60 tests passed before packaging
-- release guard
-- JSON and JavaScript validation
-- npm pack/publish dry run
-- normal ZIP unpack and validation
+- Alias Contract v1 remains additive
+- other manufacturers remain unchanged

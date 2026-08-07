@@ -8,3 +8,4 @@ pnpm-debug.log*
 .DS_Store
 .git/
 .gitignore
+publish-safe.cmd
