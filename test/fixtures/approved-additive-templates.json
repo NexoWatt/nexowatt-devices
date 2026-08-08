@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "templates": [
+    "ess.tesvolt.iotGateway.mqttV2"
+  ]
+}

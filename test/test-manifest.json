@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "suiteVersion": "0.5.149",
+  "suiteVersion": "0.5.150",
   "tests": [
     "ablEmh1Aliases.test.js",
     "ablEmh1PwmWrite.test.js",
@@ -11,6 +11,7 @@
     "legacyCompatibility.test.js",
     "sungrowFastFeedbackPatch.test.js",
     "taCmi.test.js",
+    "tesvoltIotGatewayMqtt.test.js",
     "weidmuellerWallbox.test.js",
     "writeErrorHandling.test.js"
   ]

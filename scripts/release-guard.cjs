@@ -352,18 +352,50 @@ function verifyTestManifest(parsed) {
 
 function verifyCompatibilityFixture(parsed) {
   const fixture = requireParsedJson(parsed, 'test/fixtures/legacy-compatibility-v0.5.143.json');
+  const additionsDoc = requireParsedJson(parsed, 'test/fixtures/approved-additive-templates.json');
   const templatesDoc = requireParsedJson(parsed, 'lib/templates.json');
-  if (!fixture || !templatesDoc) return;
+  if (!fixture || !additionsDoc || !templatesDoc) return;
 
   const templates = Array.isArray(templatesDoc.templates) ? templatesDoc.templates : [];
+  const currentIds = new Set(templates.map((template) => String(template.id)));
+  const fixtureTemplates = fixture.templates || {};
+  const baselineIds = new Set(Object.keys(fixtureTemplates));
+  const approvedAdditions = new Set(
+    Array.isArray(additionsDoc.templates) ? additionsDoc.templates.map((id) => String(id)) : [],
+  );
+
   if (fixture.baselineAdapterVersion !== '0.5.143') {
     errors.push('test/fixtures/legacy-compatibility-v0.5.143.json: falsche baselineAdapterVersion');
   }
-  if (fixture.templateCount !== templates.length) {
-    errors.push(`Legacy-Kompatibilitätsfixture: templateCount=${fixture.templateCount} statt ${templates.length}`);
+  if (additionsDoc.schemaVersion !== 1) {
+    errors.push('test/fixtures/approved-additive-templates.json: schemaVersion muss 1 sein');
   }
-  const fixtureTemplates = fixture.templates || {};
+  if (fixture.templateCount !== baselineIds.size) {
+    errors.push(`Legacy-Kompatibilitätsfixture: templateCount=${fixture.templateCount} statt ${baselineIds.size}`);
+  }
+
+  const duplicateApproved = [...approvedAdditions].filter((id) => baselineIds.has(id));
+  if (duplicateApproved.length) {
+    errors.push(`Additive Template-Freigabe enthält bereits bestehende Baseline-Templates: ${duplicateApproved.join(', ')}`);
+  }
+
+  const missingBaseline = [...baselineIds].filter((id) => !currentIds.has(id));
+  if (missingBaseline.length) {
+    errors.push(`Produktions-Templates aus der Legacy-Baseline fehlen: ${missingBaseline.join(', ')}`);
+  }
+
+  const missingApproved = [...approvedAdditions].filter((id) => !currentIds.has(id));
+  if (missingApproved.length) {
+    errors.push(`Freigegebene additive Templates fehlen: ${missingApproved.join(', ')}`);
+  }
+
+  const unapprovedCurrent = [...currentIds].filter((id) => !baselineIds.has(id) && !approvedAdditions.has(id));
+  if (unapprovedCurrent.length) {
+    errors.push(`Nicht freigegebene additive Templates gefunden: ${unapprovedCurrent.join(', ')}`);
+  }
+
   for (const template of templates) {
+    if (approvedAdditions.has(String(template.id))) continue;
     const entry = fixtureTemplates[template.id];
     if (!entry) {
       errors.push(`${template.id}: fehlt im Legacy-Kompatibilitätsfixture`);
@@ -378,9 +410,16 @@ function verifyCompatibilityFixture(parsed) {
       errors.push(`${template.id}: ungültige Zähler im Legacy-Kompatibilitätsfixture`);
     }
   }
-  const unknown = Object.keys(fixtureTemplates).filter((id) => !templates.some((template) => template.id === id));
-  if (unknown.length) errors.push(`Legacy-Kompatibilitätsfixture enthält unbekannte Templates: ${unknown.join(', ')}`);
-  notices.push(`Legacy-Kompatibilitätsbaseline 0.5.143 für ${Object.keys(fixtureTemplates).length} Templates geladen`);
+
+  const unknownFixture = [...baselineIds].filter((id) => !currentIds.has(id));
+  if (unknownFixture.length) {
+    errors.push(`Legacy-Kompatibilitätsfixture enthält unbekannte Templates: ${unknownFixture.join(', ')}`);
+  }
+
+  notices.push(
+    `Legacy-Kompatibilitätsbaseline 0.5.143 für ${baselineIds.size} Templates geladen; ` +
+    `${approvedAdditions.size} additive Template(s) separat freigegeben`,
+  );
 }
 
 function verifyJavaScriptSyntax(files) {
@@ -415,6 +454,7 @@ function verifyRequiredFiles() {
     'scripts/run-tests.cjs',
     'test/test-manifest.json',
     'test/fixtures/legacy-compatibility-v0.5.143.json',
+    'test/fixtures/approved-additive-templates.json',
     'test/helpers/compatibilityHarness.cjs',
     'test/legacyCompatibility.test.js',
     'test/writeErrorHandling.test.js',

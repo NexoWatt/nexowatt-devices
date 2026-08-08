@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.149",
+    "version": "0.5.150",
     "news": {
+      "0.5.150": {
+        "en": "Additive first implementation of the TESVOLT IoT Gateway MQTT EMS Interface V2: read API/gateway/inverter/battery metadata, AC/DC measurements, SOC, energy, states, errors and dynamic limits; publish atomic inverter active-power commands with NexoWatt/TESVOLT sign conversion, capability/state/limit validation, stale-value fail-safe handling and canonical storage aliases. Existing TESVOLT Modbus templates and all production datapoints/legacy aliases remain unchanged.",
+        "de": "Additive Erstimplementierung des TESVOLT IoT Gateway MQTT EMS Interface V2: API-/Gateway-/Wechselrichter-/Batteriedaten, AC-/DC-Messwerte, SOC, Energie, Zustände, Fehler und dynamische Grenzen lesen; atomare Wirkleistungsvorgaben mit NexoWatt-/TESVOLT-Vorzeichenumkehr, Capability-/Zustands-/Grenzprüfung, Failsafe für veraltete Werte und standardisierten Speicher-Aliassen senden. Bestehende TESVOLT-Modbus-Templates sowie alle Produktionsdatenpunkte und Legacy-Aliase bleiben unverändert."
+      },
       "0.5.148": {
         "en": "ABL eMH1 live-power fail-safe: derived phase-current and charging-power aliases are reset to 0 when EVCC2/3 reports state A/B/E/F, returns the documented unavailable-current sentinel, omits the atomic R5 current block, loses communication, or exceeds the heartbeat timeout. Raw diagnostic datapoints and all existing alias paths/conversions remain unchanged.",
         "de": "ABL-eMH1-Liveleistungs-Failsafe: Berechnete Phasenstrom- und Ladeleistungs-Aliase werden auf 0 gesetzt, sobald EVCC2/3 einen Zustand A/B/E/F meldet, den dokumentierten Strom-nicht-verfügbar-Sentinel liefert, der atomare R5-Stromblock fehlt, die Kommunikation ausfällt oder der Heartbeat-Timeout erreicht wird. Roh-Diagnosedatenpunkte sowie alle bestehenden Alias-Pfade und Umrechnungen bleiben unverändert."

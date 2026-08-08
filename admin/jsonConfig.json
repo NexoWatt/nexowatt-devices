@@ -576,6 +576,10 @@
                   "label": "ESS | TESVOLT Energy Manager TESVOLT Energy Manager (Vermarkter-Schnittstelle Modbus TCP)"
                 },
                 {
+                  "value": "ess.tesvolt.iotGateway.mqttV2",
+                  "label": "ESS | TESVOLT IoT Gateway MQTT V2 TESVOLT IoT Gateway (MQTT EMS Interface V2)"
+                },
+                {
                   "value": "ess.victron.VictronEssImpl",
                   "label": "ESS | Victron ess Victron ess"
                 },

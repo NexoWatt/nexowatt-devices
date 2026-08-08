@@ -12,6 +12,10 @@ const baseline = JSON.parse(fs.readFileSync(
   path.join(root, 'test/fixtures/legacy-compatibility-v0.5.143.json'),
   'utf8',
 ));
+const approvedAdditionsDoc = JSON.parse(fs.readFileSync(
+  path.join(root, 'test/fixtures/approved-additive-templates.json'),
+  'utf8',
+));
 const DeviceRuntime = helper.loadDeviceRuntime(path.join(root, 'lib/deviceRuntime.js'));
 
 function templateById(id) {
@@ -20,33 +24,41 @@ function templateById(id) {
   return template;
 }
 
-test('Alias Contract v1 is additive: all 181 raw templates remain identical to the 0.5.143 production baseline', () => {
+test('Alias Contract v1 is additive: all 181 production templates remain unchanged and approved new templates are appended', () => {
   assert.equal(baseline.baselineAdapterVersion, '0.5.143');
-  assert.equal(templatesDoc.templates.length, baseline.templateCount);
 
+  assert.equal(approvedAdditionsDoc.schemaVersion, 1);
+  const approvedAdditions = approvedAdditionsDoc.templates;
+  assert.ok(Array.isArray(approvedAdditions));
   const currentIds = templatesDoc.templates.map((template) => template.id).sort();
   const baselineIds = Object.keys(baseline.templates).sort();
-  assert.deepEqual(currentIds, baselineIds, 'template catalogue changed during alias-only migration');
+  assert.deepEqual(
+    currentIds,
+    [...baselineIds, ...approvedAdditions].sort(),
+    'template catalogue contains an unapproved addition or lost production template',
+  );
 
-  for (const template of templatesDoc.templates) {
-    const expected = baseline.templates[template.id];
-    assert.ok(expected, `${template.id}: missing compatibility baseline`);
+  for (const templateId of baselineIds) {
+    const template = templateById(templateId);
+    const expected = baseline.templates[templateId];
+    assert.ok(expected, `${templateId}: missing compatibility baseline`);
     assert.equal(
       Array.isArray(template.datapoints) ? template.datapoints.length : 0,
       expected.datapointCount,
-      `${template.id}: datapoint count changed`,
+      `${templateId}: datapoint count changed`,
     );
     assert.equal(
       helper.templateCompatibilityHash(template),
       expected.templateHash,
-      `${template.id}: raw template/register definition changed; Alias Contract releases may only add aliasContract metadata`,
+      `${templateId}: raw template/register definition changed; existing production templates must remain unchanged`,
     );
   }
 });
 
 test('Alias Contract v1 does not rename, remove or alter any pre-existing aliases.* definition', () => {
-  for (const template of templatesDoc.templates) {
-    const expected = baseline.templates[template.id];
+  for (const templateId of Object.keys(baseline.templates)) {
+    const template = templateById(templateId);
+    const expected = baseline.templates[templateId];
     const actual = helper.legacyAliasCompatibility(DeviceRuntime, template);
     assert.equal(actual.count, expected.count, `${template.id}: legacy alias count changed`);
     assert.equal(

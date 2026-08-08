@@ -1,22 +1,37 @@
-NexoWatt Devices 0.5.149 - Windows publish/test compatibility fix
+NexoWatt Devices 0.5.150 - TESVOLT IoT Gateway MQTT EMS Interface V2
 
-Base: 0.5.148 ABL eMH1 live current/power fail-safe
+Base:
+- user supplied production source 0.5.149
+- all 181 existing production templates and legacy aliases remain locked to the established compatibility baseline
 
-Fix:
-- stale local publish-safe.cmd from older releases no longer fails npm test
-- package.json files whitelist still excludes publish-safe.cmd
-- .npmignore explicitly excludes publish-safe.cmd
-- release guard reports the stale local file only as a notice
-- npm package content is verified without publish-safe.cmd
+Additive template:
+- ess.tesvolt.iotGateway.mqttV2
+- category ESS / deviceClass storageSystem
+- separate from the existing TESVOLT Energy Manager Modbus/Vermarkter template
 
-ABL eMH1 behaviour retained unchanged:
-- derived current and power aliases reset to zero in non-charging states
-- null/NaN currents, missing R5 data, disconnect and heartbeat timeout reset derived values
-- only C2/C3/C4 permit positive derived charging current/power
+Read integration:
+- EMS/APIVersion and EMS/V2 retained metadata
+- inverter parameters, limits, measurements, energy, state and display-only errors
+- battery parameters, energy, electrical data, 1-second system state and display-only errors
+- multiple JSON fields per MQTT topic
+- ISO-8601 ts_create ordering guard
+- stale/offline AC and DC power reset to 0 W
 
-Compatibility:
-- no runtime source file changed
-- no template/register definition changed
-- no existing datapoint or alias path changed
-- Alias Contract v1 remains additive
-- other manufacturers remain unchanged
+Write integration:
+- EMS/V2/Inverter/Control, QoS 0, retain false
+- atomic JSON payload with Power, optional Reactive_Power and State
+- NexoWatt sign +discharge/-charge converted to TESVOLT -discharge/+charge
+- API V2, supported_control, fresh inverter/battery state and AC-limit safety gates
+- dynamic clamp to P_Max_Charge / P_Max_Discharge
+
+Intentionally deferred until TESVOLT confirms semantics:
+- EMS/V2/Battery/Control and DC_Connection_Request
+- retained contactor control
+- automatic command repetition/watchdog
+- automatic command restore after reconnect/restart
+- custom TLS certificate handling
+- command acknowledgement and multi-controller priority
+
+Packaging:
+- normal ZIP only
+- no publish-safe.cmd, TGZ, RAR, nested ZIP or node_modules

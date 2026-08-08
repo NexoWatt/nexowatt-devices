@@ -1,5 +1,16 @@
 # Technische Versionshinweise
 
+## 0.5.150 – TESVOLT IoT Gateway MQTT EMS Interface V2
+
+- Neues, separates Template `ess.tesvolt.iotGateway.mqttV2`; das bestehende TESVOLT-Modbus-/Vermarkter-Template bleibt unverändert.
+- MQTT-JSON-Treiber verarbeitet jetzt mehrere Datenpunkte aus demselben Topic und aktualisiert eventgetriebene Legacy-/v1-Aliase aus einem vollständigen Wertesnapshot.
+- API-, Gateway-, Wechselrichter- und Batteriedaten, SOC, AC-/DC-Leistung, Energie, Zustände, Fehlerlisten sowie dynamische Lade-/Entladegrenzen werden über die dokumentierten `EMS/V2/...`-Topics gelesen.
+- Wirkleistung wird atomar über `EMS/V2/Inverter/Control` publiziert. Die TESVOLT-Vorzeichenkonvention wird auf den NexoWatt-Standard `+ Entladen / - Laden` umgerechnet.
+- Nicht-null Sollwerte benötigen API V2, `Power` in `supported_control`, frischen Wechselrichterzustand, frischen Batteriezustand `normal` und frische AC-Grenzen; Sollwerte werden auf `P_Max_Charge`/`P_Max_Discharge` begrenzt.
+- Veraltete oder bei MQTT-Ausfall eingefrorene AC-/DC-Leistung wird aktiv auf `0 W` gesetzt. Ältere `ts_create`-Nachrichten überschreiben keine neueren Werte.
+- `Battery/Control`/DC-Schütz, retained Schützbefehle, Sollwert-Watchdog und TLS-Sonderkonfiguration bleiben bis zur TESVOLT-Rückmeldung bewusst deaktiviert.
+- Alle 181 bestehenden Produktionstemplates und Legacy-Aliase bleiben gegen die 0.5.143-Baseline unverändert; nur das neue 182. Template wird additiv ergänzt.
+
 ## 0.5.149 – Windows-Publish-Test gegen lokale Altdatei gehärtet
 
 - Der Testfehler `actual: true, expected: false` entsteht, wenn im alten Windows-Arbeitsordner noch `publish-safe.cmd` aus einer früheren Version liegt.

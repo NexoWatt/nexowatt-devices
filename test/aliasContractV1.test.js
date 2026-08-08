@@ -126,7 +126,7 @@ test('Alias Contract v1 files are synchronized and every template declares an ex
   assert.equal(contract.namespace, 'v1');
   assert.equal(contract.standardPath, 'aliases.v1');
   assert.equal(contract.legacyAliasesPreserved, true);
-  assert.equal(templatesDoc.templates.length, 181);
+  assert.equal(templatesDoc.templates.length, 182);
 
   for (const template of templatesDoc.templates) {
     const expectedClass = contract.categoryToDeviceClass[String(template.category || '').toUpperCase()] || 'generic';
@@ -139,7 +139,7 @@ test('Alias Contract v1 files are synchronized and every template declares an ex
   }
 });
 
-test('all 181 templates satisfy the canonical path, type, role and unit contract', () => {
+test('all 182 templates satisfy the canonical path, type, role and unit contract', () => {
   let standardAliasCount = 0;
   const classCounts = new Map();
 
@@ -168,7 +168,7 @@ test('all 181 templates satisfy the canonical path, type, role and unit contract
     }
   }
 
-  assert.equal(standardAliasCount, 2230);
+  assert.equal(standardAliasCount, 2248);
   assert.deepEqual(Object.fromEntries([...classCounts.entries()].sort()), {
     battery: 12,
     batteryInverter: 3,
@@ -179,7 +179,7 @@ test('all 181 templates satisfy the canonical path, type, role and unit contract
     meter: 55,
     pvInverter: 31,
     solarCharger: 2,
-    storageSystem: 25,
+    storageSystem: 26,
   });
 });
 

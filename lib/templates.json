@@ -45350,6 +45350,882 @@
       }
     },
     {
+      "id": "ess.tesvolt.iotGateway.mqttV2",
+      "source": {
+        "type": "builtin"
+      },
+      "category": "ESS",
+      "manufacturer": "TESVOLT",
+      "model": "IoT Gateway MQTT V2",
+      "name": "TESVOLT IoT Gateway (MQTT EMS Interface V2)",
+      "protocols": [
+        "mqtt"
+      ],
+      "driverHints": {
+        "heartbeatTimeoutMs": 5000,
+        "mqtt": {
+          "timestampField": "ts_create",
+          "defaultUrl": "mqtt://<TESVOLT-IOT-GATEWAY-IP>:1884",
+          "zeroOnOfflineDpIds": [
+            "aCTIVE_POWER",
+            "bATTERY_DC_POWER"
+          ],
+          "powerControl": {
+            "dpId": "sET_ACTIVE_POWER",
+            "apiVersionDpId": "aPI_VERSION",
+            "requiredApiVersion": "V2",
+            "supportedControlDpId": "iNVERTER_SUPPORTED_CONTROL",
+            "batteryStateDpId": "bATTERY_SYSTEM_STATE_TEXT",
+            "allowedBatteryStates": [
+              "normal"
+            ],
+            "stateFreshnessMs": 5000,
+            "inverterStateDpId": "iNVERTER_STATE_TEXT",
+            "blockedInverterStates": [
+              "fault",
+              "off",
+              "shutting_down"
+            ],
+            "inverterStateFreshnessMs": 30000,
+            "chargeLimitDpId": "aLLOWED_CHARGE_POWER",
+            "dischargeLimitDpId": "aLLOWED_DISCHARGE_POWER",
+            "limitsFreshnessMs": 60000
+          },
+          "writeGroups": {
+            "inverterControl": {
+              "topic": "EMS/V2/Inverter/Control",
+              "qos": 0,
+              "retain": false,
+              "fields": {
+                "Power": {
+                  "dpId": "sET_ACTIVE_POWER",
+                  "invert": true,
+                  "required": true
+                },
+                "Reactive_Power": {
+                  "value": 0,
+                  "includeIfSupported": "Reactive_Power",
+                  "includeIfUnknown": true
+                },
+                "State": {
+                  "value": "grid_connected",
+                  "includeIfSupported": "State",
+                  "includeIfUnknown": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "datapoints": [
+        {
+          "id": "aPI_VERSION",
+          "name": "EMS API version",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/APIVersion",
+            "jsonPath": "$.APIVersion",
+            "format": "json"
+          }
+        },
+        {
+          "id": "eMS_SERIAL_NUMBER",
+          "name": "EMS serial number",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Parameters",
+            "jsonPath": "$.SerialNumber",
+            "format": "json"
+          }
+        },
+        {
+          "id": "eMS_SOFTWARE_VERSION",
+          "name": "EMS software version",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Parameters",
+            "jsonPath": "$.SoftwareVersion",
+            "format": "json"
+          }
+        },
+        {
+          "id": "iOT_GATEWAY_SERIAL_NUMBER",
+          "name": "TESVOLT IoT Gateway serial number",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/TesvoltIoTGateway",
+            "jsonPath": "$.SerialNumber",
+            "format": "json"
+          }
+        },
+        {
+          "id": "iNVERTER_SERIAL_NUMBER",
+          "name": "Inverter serial number",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Parameters",
+            "jsonPath": "$.serial_number",
+            "format": "json"
+          }
+        },
+        {
+          "id": "iNVERTER_SUPPORTED_MEASUREMENTS",
+          "name": "Inverter supported measurements (JSON)",
+          "role": "json",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Parameters",
+            "jsonPath": "$.supported_measurements",
+            "format": "json"
+          }
+        },
+        {
+          "id": "iNVERTER_SUPPORTED_STATES",
+          "name": "Inverter supported states (JSON)",
+          "role": "json",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Parameters",
+            "jsonPath": "$.supported_states",
+            "format": "json"
+          }
+        },
+        {
+          "id": "iNVERTER_SUPPORTED_CONTROL",
+          "name": "Inverter supported control values (JSON)",
+          "role": "json",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Parameters",
+            "jsonPath": "$.supported_control",
+            "format": "json"
+          }
+        },
+        {
+          "id": "iNVERTER_POWER_LOSS_CURVE",
+          "name": "Inverter power loss curve (JSON)",
+          "role": "json",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Parameters",
+            "jsonPath": "$.power_loss_curve",
+            "format": "json"
+          }
+        },
+        {
+          "id": "nOMINAL_CHARGE_POWER",
+          "name": "Nominal inverter charge power (AC)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Parameters",
+            "jsonPath": "$.nominal_charge_power",
+            "format": "json"
+          }
+        },
+        {
+          "id": "nOMINAL_DISCHARGE_POWER",
+          "name": "Nominal inverter discharge power (AC)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Parameters",
+            "jsonPath": "$.nominal_discharge_power",
+            "format": "json"
+          }
+        },
+        {
+          "id": "nOMINAL_REACTIVE_POWER_Q1",
+          "name": "Nominal reactive power Q1",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "unit": "var",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Parameters",
+            "jsonPath": "$.nominal_reactive_powerQ1",
+            "format": "json"
+          }
+        },
+        {
+          "id": "nOMINAL_REACTIVE_POWER_Q2",
+          "name": "Nominal reactive power Q2",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "unit": "var",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Parameters",
+            "jsonPath": "$.nominal_reactive_powerQ2",
+            "format": "json"
+          }
+        },
+        {
+          "id": "nOMINAL_REACTIVE_POWER_Q3",
+          "name": "Nominal reactive power Q3",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "unit": "var",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Parameters",
+            "jsonPath": "$.nominal_reactive_powerQ3",
+            "format": "json"
+          }
+        },
+        {
+          "id": "nOMINAL_REACTIVE_POWER_Q4",
+          "name": "Nominal reactive power Q4",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "unit": "var",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Parameters",
+            "jsonPath": "$.nominal_reactive_powerQ4",
+            "format": "json"
+          }
+        },
+        {
+          "id": "nOMINAL_APPARENT_POWER_IN",
+          "name": "Nominal apparent power input",
+          "role": "value.power.apparent",
+          "type": "number",
+          "rw": "ro",
+          "unit": "VA",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Parameters",
+            "jsonPath": "$.nominal_apparent_power_in",
+            "format": "json"
+          }
+        },
+        {
+          "id": "nOMINAL_APPARENT_POWER_OUT",
+          "name": "Nominal apparent power output",
+          "role": "value.power.apparent",
+          "type": "number",
+          "rw": "ro",
+          "unit": "VA",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Parameters",
+            "jsonPath": "$.nominal_apparent_power_out",
+            "format": "json"
+          }
+        },
+        {
+          "id": "aLLOWED_CHARGE_POWER",
+          "name": "Current allowed charge power (AC)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Limits",
+            "jsonPath": "$.P_Max_Charge",
+            "format": "json"
+          }
+        },
+        {
+          "id": "aLLOWED_DISCHARGE_POWER",
+          "name": "Current allowed discharge power (AC)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Limits",
+            "jsonPath": "$.P_Max_Discharge",
+            "format": "json"
+          }
+        },
+        {
+          "id": "q_MAX_Q1",
+          "name": "Current reactive power limit Q1",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "unit": "var",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Limits",
+            "jsonPath": "$.Q_Max_Q1",
+            "format": "json"
+          }
+        },
+        {
+          "id": "q_MAX_Q2",
+          "name": "Current reactive power limit Q2",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "unit": "var",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Limits",
+            "jsonPath": "$.Q_Max_Q2",
+            "format": "json"
+          }
+        },
+        {
+          "id": "q_MAX_Q3",
+          "name": "Current reactive power limit Q3",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "unit": "var",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Limits",
+            "jsonPath": "$.Q_Max_Q3",
+            "format": "json"
+          }
+        },
+        {
+          "id": "q_MAX_Q4",
+          "name": "Current reactive power limit Q4",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "unit": "var",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Limits",
+            "jsonPath": "$.Q_Max_Q4",
+            "format": "json"
+          }
+        },
+        {
+          "id": "s_MAX_IN",
+          "name": "Current apparent power limit input",
+          "role": "value.power.apparent",
+          "type": "number",
+          "rw": "ro",
+          "unit": "VA",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Limits",
+            "jsonPath": "$.S_Max_In",
+            "format": "json"
+          }
+        },
+        {
+          "id": "s_MAX_OUT",
+          "name": "Current apparent power limit output",
+          "role": "value.power.apparent",
+          "type": "number",
+          "rw": "ro",
+          "unit": "VA",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Limits",
+            "jsonPath": "$.S_Max_Out",
+            "format": "json"
+          }
+        },
+        {
+          "id": "iNVERTER_DC_VOLTAGE",
+          "name": "Inverter DC voltage",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Measurements",
+            "jsonPath": "$.U_DC",
+            "format": "json"
+          }
+        },
+        {
+          "id": "aC_VOLTAGE_L1",
+          "name": "AC voltage L1-N",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Measurements",
+            "jsonPath": "$.U_L1",
+            "format": "json"
+          }
+        },
+        {
+          "id": "aC_VOLTAGE_L2",
+          "name": "AC voltage L2-N",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Measurements",
+            "jsonPath": "$.U_L2",
+            "format": "json"
+          }
+        },
+        {
+          "id": "aC_VOLTAGE_L3",
+          "name": "AC voltage L3-N",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Measurements",
+            "jsonPath": "$.U_L3",
+            "format": "json"
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Inverter active power (NexoWatt sign: + discharge / - charge)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Measurements",
+            "jsonPath": "$.Power",
+            "format": "json",
+            "invert": true,
+            "staleAfterMs": 5000,
+            "staleValue": 0,
+            "zeroOnOffline": true
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER",
+          "name": "Inverter reactive power",
+          "role": "value.power.reactive",
+          "type": "number",
+          "rw": "ro",
+          "unit": "var",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Measurements",
+            "jsonPath": "$.Reactive_Power",
+            "format": "json"
+          }
+        },
+        {
+          "id": "aCTIVE_CHARGE_ENERGY",
+          "name": "Total energy charged",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Energy",
+            "jsonPath": "$.energy_import",
+            "format": "json"
+          }
+        },
+        {
+          "id": "aCTIVE_DISCHARGE_ENERGY",
+          "name": "Total energy discharged",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Energy",
+            "jsonPath": "$.energy_export",
+            "format": "json"
+          }
+        },
+        {
+          "id": "iNVERTER_STATE_TEXT",
+          "name": "Inverter state",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/State",
+            "jsonPath": "$.State",
+            "format": "json"
+          }
+        },
+        {
+          "id": "iNVERTER_STATE_CODE",
+          "name": "Inverter state code",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/State",
+            "jsonPath": "$.State",
+            "format": "json",
+            "readValueMap": {
+              "standby": 0,
+              "grid_connected": 1,
+              "grid_pre_connected": 2,
+              "off": 3,
+              "sleeping": 4,
+              "starting": 5,
+              "throttled": 6,
+              "shutting_down": 7,
+              "fault": 8
+            },
+            "readValueMapDefault": -1
+          }
+        },
+        {
+          "id": "iNVERTER_ERRORS_JSON",
+          "name": "Active inverter errors (display only, JSON)",
+          "role": "json",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Errors",
+            "jsonPath": "$.Errors",
+            "format": "json"
+          }
+        },
+        {
+          "id": "bATTERY_SERIAL_NUMBER",
+          "name": "Battery serial number",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Battery/Parameters",
+            "jsonPath": "$.serial_number",
+            "format": "json"
+          }
+        },
+        {
+          "id": "bATTERY_SUPPORTED_ENERGY",
+          "name": "Battery supported energy values (JSON)",
+          "role": "json",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Battery/Parameters",
+            "jsonPath": "$.supported_energy",
+            "format": "json"
+          }
+        },
+        {
+          "id": "bATTERY_SUPPORTED_ELECTRICAL",
+          "name": "Battery supported electrical values (JSON)",
+          "role": "json",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Battery/Parameters",
+            "jsonPath": "$.supported_electrical",
+            "format": "json"
+          }
+        },
+        {
+          "id": "bATTERY_CAPACITY_WH",
+          "name": "Nominal battery capacity",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Battery/Parameters",
+            "jsonPath": "$.nominal_capacity",
+            "format": "json"
+          }
+        },
+        {
+          "id": "bATTERY_STACK_COUNT",
+          "name": "Number of battery stacks",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Battery/Parameters",
+            "jsonPath": "$.number_of_stacks",
+            "format": "json"
+          }
+        },
+        {
+          "id": "bATTERY_SOC",
+          "name": "Battery state of charge",
+          "role": "value.battery",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Battery/Energy",
+            "jsonPath": "$.SOC",
+            "format": "json"
+          }
+        },
+        {
+          "id": "bATTERY_ENERGY_CONTENT",
+          "name": "Battery energy content",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Battery/Energy",
+            "jsonPath": "$.W_System",
+            "format": "json"
+          }
+        },
+        {
+          "id": "bATTERY_AVAILABLE_CAPACITY",
+          "name": "Battery available capacity",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Ah",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Battery/Energy",
+            "jsonPath": "$.Capacity_Available",
+            "format": "json"
+          }
+        },
+        {
+          "id": "bATTERY_VOLTAGE",
+          "name": "Battery system voltage (DC)",
+          "role": "value.voltage",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Battery/Electrical",
+            "jsonPath": "$.U_Sys",
+            "format": "json"
+          }
+        },
+        {
+          "id": "bATTERY_DC_POWER",
+          "name": "Battery DC power (NexoWatt sign: + discharge / - charge)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Battery/Electrical",
+            "jsonPath": "$.Power",
+            "format": "json",
+            "invert": true,
+            "staleAfterMs": 5000,
+            "staleValue": 0,
+            "zeroOnOffline": true
+          }
+        },
+        {
+          "id": "bATTERY_DC_MAX_DISCHARGE_POWER",
+          "name": "Battery maximum discharge power (DC, information)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Battery/Electrical",
+            "jsonPath": "$.P_Max_Discharge",
+            "format": "json"
+          }
+        },
+        {
+          "id": "bATTERY_DC_MAX_CHARGE_POWER",
+          "name": "Battery maximum charge power (DC, information)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Battery/Electrical",
+            "jsonPath": "$.P_Max_Charge",
+            "format": "json"
+          }
+        },
+        {
+          "id": "bATTERY_SYSTEM_STATE_TEXT",
+          "name": "Battery system state",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Battery/SystemState",
+            "jsonPath": "$.System_State",
+            "format": "json"
+          }
+        },
+        {
+          "id": "bATTERY_STATE",
+          "name": "Battery system state code",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Battery/SystemState",
+            "jsonPath": "$.System_State",
+            "format": "json",
+            "readValueMap": {
+              "init": 0,
+              "normal": 1,
+              "restricted": 2,
+              "error": 3
+            },
+            "readValueMapDefault": -1
+          }
+        },
+        {
+          "id": "bATTERY_ERRORS_JSON",
+          "name": "Active battery errors (display only, JSON)",
+          "role": "json",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Battery/Errors",
+            "jsonPath": "$.Errors",
+            "format": "json"
+          }
+        },
+        {
+          "id": "sYSTEM_FAULT_COUNTERS",
+          "name": "System fault state (derived from inverter/battery state)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqttDerived",
+            "op": "anyEquals",
+            "inputs": [
+              {
+                "dpId": "iNVERTER_STATE_TEXT",
+                "equals": "fault"
+              },
+              {
+                "dpId": "bATTERY_SYSTEM_STATE_TEXT",
+                "equals": "error"
+              }
+            ]
+          }
+        },
+        {
+          "id": "aCTIVE_ERRORS_COUNT",
+          "name": "Active error messages count (display only)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqttDerived",
+            "op": "arrayLengthSum",
+            "inputs": [
+              {
+                "dpId": "iNVERTER_ERRORS_JSON"
+              },
+              {
+                "dpId": "bATTERY_ERRORS_JSON"
+              }
+            ]
+          }
+        },
+        {
+          "id": "sET_ACTIVE_POWER",
+          "name": "Active power setpoint (+ discharge / - charge)",
+          "role": "level.power",
+          "type": "number",
+          "rw": "wo",
+          "unit": "W",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Control",
+            "format": "json",
+            "writeGroup": "inverterControl",
+            "subscribe": false,
+            "qos": 0,
+            "retain": false
+          }
+        }
+      ],
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      }
+    },
+    {
       "id": "ess.victron.VictronEssImpl",
       "source": {
         "type": "builtin"
