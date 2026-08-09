@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.151",
+    "version": "0.5.152",
     "news": {
+      "0.5.152": {
+        "en": "Fix Alfen ACE Mode 3 status decoding when the numeric Modbus word order is configured as LE. Alfen ASCII strings now keep sequential register order and network byte order, so A/B1/B2/C1/C2/D1/D2/E/F are decoded correctly and the vehicle status no longer falls back to EVSE availability (Operative). No template, register, alias path or Alfen write/control logic is changed.",
+        "de": "Alfen-ACE-Mode-3-Status bei numerischer Modbus-Wortreihenfolge LE korrigiert. Alfen-ASCII-Strings behalten jetzt die fortlaufende Registerreihenfolge und Network Byte Order, sodass A/B1/B2/C1/C2/D1/D2/E/F korrekt erkannt werden und der Fahrzeugstatus nicht mehr auf die EVSE-Verfügbarkeit (Operative) zurückfällt. Templates, Register, Alias-Pfade sowie die Alfen-Schreib-/Steuerlogik bleiben unverändert."
+      },
       "0.5.151": {
         "en": "Extend the existing FENECON Home ESS Modbus template additively with the documented ctrlBalancing0 block (component/header metadata, controller state and SetGridActivePower). The new command shifts the grid-connection control target with documented sign semantics, is exposed only through canonical aliases.v1 grid/NAP setpoint paths, verifies the component ID before every first write, and keeps all existing raw datapoints and legacy aliases unchanged.",
         "de": "Bestehendes FENECON-Home-ESS-Modbus-Template additiv um den dokumentierten ctrlBalancing0-Block erweitert (Komponenten-/Headerdaten, Controllerstatus und SetGridActivePower). Die neue Vorgabe verschiebt den Ausregelpunkt am Netzanschluss mit dokumentierter Vorzeichenlogik, wird ausschließlich über die standardisierten aliases.v1-Grid-/NAP-Sollwertpfade bereitgestellt, prüft vor dem ersten Schreiben die Component-ID und lässt alle bestehenden Rohdatenpunkte sowie Legacy-Aliase unverändert."

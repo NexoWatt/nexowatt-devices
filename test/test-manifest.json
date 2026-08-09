@@ -1,10 +1,11 @@
 {
   "schemaVersion": 1,
-  "suiteVersion": "0.5.151",
+  "suiteVersion": "0.5.152",
   "tests": [
     "ablEmh1Aliases.test.js",
     "ablEmh1PwmWrite.test.js",
     "ablEmh1ReadGroups.test.js",
+    "alfenAceStatus.test.js",
     "alfenAceWrite.test.js",
     "aliasContractV1.test.js",
     "documentationLayout.test.js",

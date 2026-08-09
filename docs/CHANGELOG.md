@@ -1,5 +1,13 @@
 # Technische Versionshinweise
 
+## 0.5.152 – Alfen ACE Mode-3-Status korrekt dekodieren
+
+- Ursache des dauerhaft angezeigten Status `Operative` war nicht die Wallbox-Steuerung, sondern die Dekodierung des fünf Register langen Mode-3-Strings.
+- Bei der Alfen-Verbindung ist für 32-Bit-Zahlen `wordOrder=LE` erforderlich. Diese numerische Wortreihenfolge wurde bisher fälschlich auch auf ASCII-Strings angewendet und kehrte deren komplette Registerfolge um. Dadurch begann der dekodierte String mit einem Nullbyte und wurde als leer beziehungsweise `Unknown` gelesen.
+- Alfen-STRING-/ASCII-Werte werden jetzt unabhängig von der numerischen Wortreihenfolge in fortlaufender Registerreihenfolge und mit Network Byte Order dekodiert. Das gilt auch für die direkte Tabellenadress-Kompatibilitätsvariante.
+- Damit liefert `mODE3_STATE` wieder `A`, `B1`, `B2`, `C1`, `C2`, `D1`, `D2`, `E` oder `F`. Bei Zustand `A` zeigen `status/statusText` künftig `No vehicle (A)`, `vehicleConnected=false` und `charging=false`, während `available=true` weiterhin separat die Betriebsbereitschaft der EVSE beschreibt.
+- Keine Registeradresse, kein Template-Datenpunkt, kein Legacy-/v1-Alias und keine Alfen-Schreib-/Keepalive-Logik wurde verändert.
+
 ## 0.5.151 – FENECON ctrlBalancing0 / SetGridActivePower
 
 - Das bestehende Template `ess.fenecon.FeneconHomeEssImpl` wurde additiv um den in der FENECON-Dokumentation gezeigten `ctrlBalancing0`-Block erweitert.
