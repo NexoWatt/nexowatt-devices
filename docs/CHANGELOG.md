@@ -1,5 +1,15 @@
 # Technische Versionshinweise
 
+## 0.5.151 – FENECON ctrlBalancing0 / SetGridActivePower
+
+- Das bestehende Template `ess.fenecon.FeneconHomeEssImpl` wurde additiv um den in der FENECON-Dokumentation gezeigten `ctrlBalancing0`-Block erweitert.
+- Neue optionale Lesepunkte: Component-ID (`890`), Blocklänge (`906`), OpenEMS-Hash/-Blocklänge (`910/911`), Controllerstatus (`912`) sowie Hash/Blocklänge von `ControllerEssBalancingImpl` (`990/991`).
+- Neuer Schreibpunkt `sET_GRID_ACTIVE_POWER` auf Holding-Register `992`, FC16, `FLOAT32`, Big Endian. Die Rohansicht bleibt wie bei den übrigen FENECON-Leistungswerten in `kW`; das FEMS erhält Watt.
+- Vorzeichen: `0` = Ausregelung am Netzanschluss auf null, negativ = gewünschte Einspeisung, positiv = gewünschter Netzbezug.
+- Standardisierte Steuerpfade: `aliases.v1.ctrl.gridSetpointW` und `aliases.v1.ctrl.napSetpointW`. Bestehende `aliases.*` bleiben unverändert.
+- Weil FENECON nach App-Updates Registerblöcke verschieben kann, prüft der Treiber vor dem ersten Schreiben und nach jeder Neuverbindung, ob an Register `890` tatsächlich die Component-ID `ctrlBalancing0` liegt. Bei Abweichung wird der Schreibzugriff sicher blockiert.
+- Alle bisherigen FENECON-Rohdatenpunkte, Register, Einheiten, Schreiblogiken und Legacy-Aliase bleiben gegen die Produktionsbaseline unverändert; es werden ausschließlich acht neue Datenpunkte ergänzt.
+
 ## 0.5.150 – TESVOLT IoT Gateway MQTT EMS Interface V2
 
 - Neues, separates Template `ess.tesvolt.iotGateway.mqttV2`; das bestehende TESVOLT-Modbus-/Vermarkter-Template bleibt unverändert.

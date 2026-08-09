@@ -31336,6 +31336,191 @@
             },
             "scaleFactor": -3
           }
+        },
+        {
+          "id": "cTRL_BALANCING_COMPONENT_ID",
+          "name": "Component-ID (ctrlBalancing0)",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 890,
+              "length": 8,
+              "dataType": "string",
+              "wordOrder": "be",
+              "byteOrder": "be",
+              "optional": true,
+              "readRequestGroup": "fenecon-ctrlBalancing0-component-id"
+            }
+          },
+          "note": "FENECON example block header. Expected value: ctrlBalancing0. string16 contains 16 ASCII characters in 8 Modbus registers."
+        },
+        {
+          "id": "cTRL_BALANCING_BLOCK_LENGTH",
+          "name": "Block length (ctrlBalancing0)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 906,
+              "length": 1,
+              "dataType": "uint16",
+              "wordOrder": "be",
+              "byteOrder": "be",
+              "optional": true,
+              "readRequestGroup": "fenecon-ctrlBalancing0-block-length"
+            }
+          },
+          "note": "Length of the complete ctrlBalancing0 component block. FENECON example value: 180 registers."
+        },
+        {
+          "id": "cTRL_BALANCING_OPENEMS_COMPONENT_HASH",
+          "name": "Hash (OpenemsComponent)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 910,
+              "length": 1,
+              "dataType": "uint16",
+              "wordOrder": "be",
+              "byteOrder": "be",
+              "optional": true,
+              "readRequestGroup": "fenecon-ctrlBalancing0-openems-component"
+            }
+          },
+          "note": "Hash of OpenemsComponent. FENECON example value: 0xb3dc."
+        },
+        {
+          "id": "cTRL_BALANCING_OPENEMS_COMPONENT_LENGTH",
+          "name": "Block length (OpenemsComponent)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 911,
+              "length": 1,
+              "dataType": "uint16",
+              "wordOrder": "be",
+              "byteOrder": "be",
+              "optional": true,
+              "readRequestGroup": "fenecon-ctrlBalancing0-openems-component"
+            }
+          },
+          "note": "Length of the OpenemsComponent nature block. FENECON example value: 80 registers."
+        },
+        {
+          "id": "cTRL_BALANCING_STATE",
+          "name": "ctrlBalancing0 state",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "states": {
+            "0": "Ok",
+            "1": "Info",
+            "2": "Warning",
+            "3": "Fault"
+          },
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 912,
+              "length": 1,
+              "dataType": "uint16",
+              "wordOrder": "be",
+              "byteOrder": "be",
+              "optional": true,
+              "readRequestGroup": "fenecon-ctrlBalancing0-openems-component"
+            }
+          }
+        },
+        {
+          "id": "cTRL_BALANCING_IMPL_HASH",
+          "name": "Hash (ControllerEssBalancingImpl)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 990,
+              "length": 1,
+              "dataType": "uint16",
+              "wordOrder": "be",
+              "byteOrder": "be",
+              "optional": true,
+              "readRequestGroup": "fenecon-ctrlBalancing0-controller-impl"
+            }
+          },
+          "note": "Hash of ControllerEssBalancingImpl. FENECON example value: 0xb8b0."
+        },
+        {
+          "id": "cTRL_BALANCING_IMPL_LENGTH",
+          "name": "Block length (ControllerEssBalancingImpl)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 991,
+              "length": 1,
+              "dataType": "uint16",
+              "wordOrder": "be",
+              "byteOrder": "be",
+              "optional": true,
+              "readRequestGroup": "fenecon-ctrlBalancing0-controller-impl"
+            }
+          },
+          "note": "Length of the ControllerEssBalancingImpl nature block. FENECON example value: 100 registers."
+        },
+        {
+          "id": "sET_GRID_ACTIVE_POWER",
+          "name": "Ausregelpunkt Netzanschluss (ctrlBalancing0/SetGridActivePower)",
+          "role": "level.power",
+          "type": "number",
+          "rw": "wo",
+          "unit": "kW",
+          "decimals": 2,
+          "source": {
+            "kind": "modbus",
+            "write": {
+              "fc": 16,
+              "address": 992,
+              "length": 2,
+              "dataType": "float32",
+              "wordOrder": "be",
+              "byteOrder": "be",
+              "finite": true,
+              "requireComponentId": {
+                "fc": 3,
+                "address": 890,
+                "length": 8,
+                "dataType": "string",
+                "wordOrder": "be",
+                "byteOrder": "be",
+                "expected": "ctrlBalancing0",
+                "cacheMs": 60000
+              }
+            },
+            "scaleFactor": -3
+          },
+          "note": "Verschiebt den Ausregelpunkt der FEMS-Eigenverbrauchsoptimierung am Netzanschlusspunkt. 0 kW = Ausregelung auf null; negativer Wert = gewünschte Einspeisung; positiver Wert = gewünschter Netzbezug. Das zugrunde liegende FEMS-Register verwendet Watt. Benötigt FEMS App Schreibzugriff und die freigegebene Komponente ctrlBalancing0. Da FENECON Register nach App-Updates verschieben kann, wird vor dem ersten Schreiben die Component-ID am dokumentierten Beispielblock geprüft."
         }
       ],
       "driverHints": {

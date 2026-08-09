@@ -16,6 +16,10 @@ const approvedAdditionsDoc = JSON.parse(fs.readFileSync(
   path.join(root, 'test/fixtures/approved-additive-templates.json'),
   'utf8',
 ));
+const approvedDatapointsDoc = JSON.parse(fs.readFileSync(
+  path.join(root, 'test/fixtures/approved-additive-datapoints.json'),
+  'utf8',
+));
 const DeviceRuntime = helper.loadDeviceRuntime(path.join(root, 'lib/deviceRuntime.js'));
 
 function templateById(id) {
@@ -28,7 +32,9 @@ test('Alias Contract v1 is additive: all 181 production templates remain unchang
   assert.equal(baseline.baselineAdapterVersion, '0.5.143');
 
   assert.equal(approvedAdditionsDoc.schemaVersion, 1);
+  assert.equal(approvedDatapointsDoc.schemaVersion, 1);
   const approvedAdditions = approvedAdditionsDoc.templates;
+  const approvedDatapoints = approvedDatapointsDoc.templates || {};
   assert.ok(Array.isArray(approvedAdditions));
   const currentIds = templatesDoc.templates.map((template) => template.id).sort();
   const baselineIds = Object.keys(baseline.templates).sort();
@@ -41,16 +47,30 @@ test('Alias Contract v1 is additive: all 181 production templates remain unchang
   for (const templateId of baselineIds) {
     const template = templateById(templateId);
     const expected = baseline.templates[templateId];
+    const additiveIds = Array.isArray(approvedDatapoints[templateId])
+      ? approvedDatapoints[templateId].map(String)
+      : [];
     assert.ok(expected, `${templateId}: missing compatibility baseline`);
     assert.equal(
       Array.isArray(template.datapoints) ? template.datapoints.length : 0,
-      expected.datapointCount,
+      expected.datapointCount + additiveIds.length,
       `${templateId}: datapoint count changed`,
     );
+
+    const comparisonTemplate = structuredClone(template);
+    if (additiveIds.length) {
+      const approved = new Set(additiveIds);
+      const currentIds = comparisonTemplate.datapoints.map((dp) => String(dp && dp.id || ''));
+      for (const id of approved) {
+        assert.equal(currentIds.filter((candidate) => candidate === id).length, 1, `${templateId}: approved additive datapoint ${id} missing or duplicated`);
+      }
+      comparisonTemplate.datapoints = comparisonTemplate.datapoints.filter((dp) => !approved.has(String(dp && dp.id || '')));
+      assert.equal(comparisonTemplate.datapoints.length, expected.datapointCount, `${templateId}: an unapproved existing datapoint was added/removed`);
+    }
     assert.equal(
-      helper.templateCompatibilityHash(template),
+      helper.templateCompatibilityHash(comparisonTemplate),
       expected.templateHash,
-      `${templateId}: raw template/register definition changed; existing production templates must remain unchanged`,
+      `${templateId}: existing raw template/register definition changed; only explicitly approved additive datapoints are allowed`,
     );
   }
 });

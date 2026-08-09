@@ -168,7 +168,7 @@ test('all 182 templates satisfy the canonical path, type, role and unit contract
     }
   }
 
-  assert.equal(standardAliasCount, 2248);
+  assert.equal(standardAliasCount, 2250);
   assert.deepEqual(Object.fromEntries([...classCounts.entries()].sort()), {
     battery: 12,
     batteryInverter: 3,
@@ -195,6 +195,9 @@ test('the v1 namespace converts vendor units to W, Wh, A, V, °C, seconds, perce
   assert.equal(alias(byPath, 'v1.ctrl.powerSetpointW').toDevice(-2500), -2.5);
   assert.equal(alias(byPath, 'v1.ctrl.chargePowerW').toDevice(2500), -2.5);
   assert.equal(alias(byPath, 'v1.ctrl.dischargePowerW').toDevice(2500), 2.5);
+  assert.equal(alias(byPath, 'v1.ctrl.gridSetpointW').toDevice(5000), 5);
+  assert.equal(alias(byPath, 'v1.ctrl.gridSetpointW').toDevice(-5000), -5);
+  assert.equal(alias(byPath, 'v1.ctrl.napSetpointW').writeDpId, 'sET_GRID_ACTIVE_POWER');
 });
 
 test('manufacturer-specific EV control semantics remain intact behind canonical aliases', () => {

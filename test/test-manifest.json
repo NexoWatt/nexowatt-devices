@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "suiteVersion": "0.5.150",
+  "suiteVersion": "0.5.151",
   "tests": [
     "ablEmh1Aliases.test.js",
     "ablEmh1PwmWrite.test.js",
@@ -8,6 +8,7 @@
     "alfenAceWrite.test.js",
     "aliasContractV1.test.js",
     "documentationLayout.test.js",
+    "feneconCtrlBalancing.test.js",
     "legacyCompatibility.test.js",
     "sungrowFastFeedbackPatch.test.js",
     "taCmi.test.js",

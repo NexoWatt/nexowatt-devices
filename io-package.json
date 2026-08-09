@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.150",
+    "version": "0.5.151",
     "news": {
+      "0.5.151": {
+        "en": "Extend the existing FENECON Home ESS Modbus template additively with the documented ctrlBalancing0 block (component/header metadata, controller state and SetGridActivePower). The new command shifts the grid-connection control target with documented sign semantics, is exposed only through canonical aliases.v1 grid/NAP setpoint paths, verifies the component ID before every first write, and keeps all existing raw datapoints and legacy aliases unchanged.",
+        "de": "Bestehendes FENECON-Home-ESS-Modbus-Template additiv um den dokumentierten ctrlBalancing0-Block erweitert (Komponenten-/Headerdaten, Controllerstatus und SetGridActivePower). Die neue Vorgabe verschiebt den Ausregelpunkt am Netzanschluss mit dokumentierter Vorzeichenlogik, wird ausschließlich über die standardisierten aliases.v1-Grid-/NAP-Sollwertpfade bereitgestellt, prüft vor dem ersten Schreiben die Component-ID und lässt alle bestehenden Rohdatenpunkte sowie Legacy-Aliase unverändert."
+      },
       "0.5.150": {
         "en": "Additive first implementation of the TESVOLT IoT Gateway MQTT EMS Interface V2: read API/gateway/inverter/battery metadata, AC/DC measurements, SOC, energy, states, errors and dynamic limits; publish atomic inverter active-power commands with NexoWatt/TESVOLT sign conversion, capability/state/limit validation, stale-value fail-safe handling and canonical storage aliases. Existing TESVOLT Modbus templates and all production datapoints/legacy aliases remain unchanged.",
         "de": "Additive Erstimplementierung des TESVOLT IoT Gateway MQTT EMS Interface V2: API-/Gateway-/Wechselrichter-/Batteriedaten, AC-/DC-Messwerte, SOC, Energie, Zustände, Fehler und dynamische Grenzen lesen; atomare Wirkleistungsvorgaben mit NexoWatt-/TESVOLT-Vorzeichenumkehr, Capability-/Zustands-/Grenzprüfung, Failsafe für veraltete Werte und standardisierten Speicher-Aliassen senden. Bestehende TESVOLT-Modbus-Templates sowie alle Produktionsdatenpunkte und Legacy-Aliase bleiben unverändert."
