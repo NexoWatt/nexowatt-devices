@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.152",
+    "version": "0.5.153",
     "news": {
+      "0.5.153": {
+        "en": "Refine the TESVOLT IoT Gateway MQTT V2 integration from vendor feedback: TLS/MQTTS connection options, cyclic full Power + Reactive_Power setpoint refresh, configurable local command watchdog, safe 0 W on startup/reconnect/stale EOS command/controlled shutdown, no automatic non-zero resume after reconnect, tighter configurable telemetry freshness, and measurement-derived setpoint tracking. Battery contactor control remains deliberately disabled. Existing templates, datapoints and legacy aliases remain unchanged.",
+        "de": "TESVOLT-IoT-Gateway-MQTT-V2-Integration anhand der Herstellerantwort nachgebessert: TLS/MQTTS-Verbindungsoptionen, zyklische vollständige Wirk- und Blindleistungsvorgabe, konfigurierbarer lokaler Sollwert-Watchdog, sichere 0-W-Vorgabe bei Start/Wiederverbindung/veraltetem EOS-Befehl/kontrolliertem Stopp, keine automatische Wiederaufnahme eines alten Nicht-Null-Sollwerts, engere konfigurierbare Datenfrische und aus den Measurements abgeleitete Sollwertverfolgung. Die DC-Schützsteuerung bleibt bewusst deaktiviert. Bestehende Templates, Datenpunkte und Legacy-Aliase bleiben unverändert."
+      },
       "0.5.152": {
         "en": "Fix Alfen ACE Mode 3 status decoding when the numeric Modbus word order is configured as LE. Alfen ASCII strings now keep sequential register order and network byte order, so A/B1/B2/C1/C2/D1/D2/E/F are decoded correctly and the vehicle status no longer falls back to EVSE availability (Operative). No template, register, alias path or Alfen write/control logic is changed.",
         "de": "Alfen-ACE-Mode-3-Status bei numerischer Modbus-Wortreihenfolge LE korrigiert. Alfen-ASCII-Strings behalten jetzt die fortlaufende Registerreihenfolge und Network Byte Order, sodass A/B1/B2/C1/C2/D1/D2/E/F korrekt erkannt werden und der Fahrzeugstatus nicht mehr auf die EVSE-Verfügbarkeit (Operative) zurückfällt. Templates, Register, Alias-Pfade sowie die Alfen-Schreib-/Steuerlogik bleiben unverändert."

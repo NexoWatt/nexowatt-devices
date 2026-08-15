@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "suiteVersion": "0.5.152",
+  "suiteVersion": "0.5.153",
   "tests": [
     "ablEmh1Aliases.test.js",
     "ablEmh1PwmWrite.test.js",

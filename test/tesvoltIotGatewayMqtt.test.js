@@ -27,6 +27,21 @@ function loadMqttDriver() {
   }
 }
 
+function loadMqttDriverWithMock(mqttMock) {
+  const originalLoad = Module._load;
+  Module._load = function patchedLoad(request, parent, isMain) {
+    if (request === 'mqtt') return mqttMock;
+    return originalLoad.call(this, request, parent, isMain);
+  };
+  try {
+    const modulePath = require.resolve('../lib/drivers/mqtt');
+    delete require.cache[modulePath];
+    return require('../lib/drivers/mqtt').MqttDriver;
+  } finally {
+    Module._load = originalLoad;
+  }
+}
+
 const MqttDriver = loadMqttDriver();
 const DeviceRuntime = helper.loadDeviceRuntime(path.join(root, 'lib/deviceRuntime.js'));
 
@@ -53,6 +68,10 @@ function createHarness() {
       published.push({ topic, payload: String(payload), options });
       if (callback) callback(null);
     },
+    end(force, options, callback) {
+      if (typeof options === 'function') options();
+      else if (callback) callback();
+    },
   };
   const adapter = {
     log: {
@@ -70,10 +89,10 @@ function createHarness() {
   return { states, stateWrites, published, subscriptions, snapshots, connectionEvents, logs, client, adapter };
 }
 
-function createDriver(template, harness) {
+function createDriver(template, harness, connectionOverrides) {
   const driver = new MqttDriver(
     harness.adapter,
-    { id: 'tesvolt1', connection: { url: 'mqtt://127.0.0.1:1884' } },
+    { id: 'tesvolt1', connection: { url: 'mqtt://127.0.0.1:1884', ...(connectionOverrides || {}) } },
     template,
     {},
     (dp) => `devices.tesvolt1.${dp.id}`,
@@ -141,6 +160,7 @@ test('TESVOLT IoT Gateway MQTT V2 template is additive, synchronized and exposes
   assert.equal(template.category, 'ESS');
   assert.equal(template.aliasContract.deviceClass, 'storageSystem');
   assert.equal(template.driverHints.heartbeatTimeoutMs, 5000);
+  assert.equal(template.driverHints.mqtt.defaultUrl, 'mqtts://<TESVOLT-IOT-GATEWAY-IP>:1884');
 
   const byId = new Map(template.datapoints.map((dp) => [dp.id, dp]));
   assert.equal(byId.get('aPI_VERSION').source.topic, 'EMS/APIVersion');
@@ -155,9 +175,60 @@ test('TESVOLT IoT Gateway MQTT V2 template is additive, synchronized and exposes
   assert.equal(group.topic, 'EMS/V2/Inverter/Control');
   assert.equal(group.qos, 0);
   assert.equal(group.retain, false);
+  assert.equal(group.refreshIntervalMs, 5000);
+  assert.equal(group.commandFreshnessMs, 20000);
+  assert.equal(group.safeValue, 0);
+  assert.equal(group.safeOnInitialConnect, true);
+  assert.equal(group.safeOnDisconnect, true);
+  assert.equal(group.requireFreshCommandAfterReconnect, true);
   assert.equal(group.fields.Power.invert, true);
   assert.equal(group.fields.Reactive_Power.value, 0);
+  assert.equal(group.fields.Reactive_Power.includeIfSupported, undefined, 'reactive power must always be sent');
   assert.equal(group.fields.State.value, 'grid_connected');
+  assert.equal(byId.has('cOMMANDED_ACTIVE_POWER'), true);
+  assert.equal(byId.has('sETPOINT_TRACKING_STATUS'), true);
+  assert.equal(byId.has('sETPOINT_TRACKING_OK'), true);
+});
+
+
+test('MQTT TLS configuration supports mqtts, certificate verification, custom CA and SNI', async () => {
+  let captured;
+  const SecureMqttDriver = loadMqttDriverWithMock({
+    connect(url, options) {
+      captured = { url, options };
+      return {
+        on() {},
+        end(force, endOptions, callback) { if (callback) callback(); },
+      };
+    },
+  });
+  const harness = createHarness();
+  const template = templateById('ess.tesvolt.iotGateway.mqttV2');
+  const driver = new SecureMqttDriver(
+    harness.adapter,
+    {
+      id: 'tesvolt1',
+      connection: {
+        url: 'mqtts://tesvolt-gateway.local:1884',
+        username: 'ems-user',
+        password: 'secret',
+        rejectUnauthorized: true,
+        servername: 'tesvolt-gateway.local',
+        caCertificate: '-----BEGIN CERTIFICATE-----\\nTEST\\n-----END CERTIFICATE-----',
+      },
+    },
+    template,
+    {},
+    (dp) => `devices.tesvolt1.${dp.id}`,
+    () => null,
+  );
+  await driver.connect();
+  assert.equal(captured.url, 'mqtts://tesvolt-gateway.local:1884');
+  assert.equal(captured.options.username, 'ems-user');
+  assert.equal(captured.options.password, 'secret');
+  assert.equal(captured.options.rejectUnauthorized, true);
+  assert.equal(captured.options.servername, 'tesvolt-gateway.local');
+  assert.equal(captured.options.ca.includes('\nTEST\n'), true);
 });
 
 test('MQTT driver processes every JSON datapoint sharing one topic instead of only the last one', async () => {
@@ -387,6 +458,126 @@ test('TESVOLT runtime acknowledges the effective clamped value on direct and spl
   assert.deepEqual(writes.at(-1), { dpId: 'sET_ACTIVE_POWER', value: -50000 });
   assert.equal(states.get(chargeRel).val, 45000);
   assert.equal(states.get('devices.tesvolt1.sET_ACTIVE_POWER').val, -45000);
+});
+
+
+test('TESVOLT cyclic control refreshes the full command and switches to 0 W when EOS command updates stop', async () => {
+  const harness = createHarness();
+  const template = templateById('ess.tesvolt.iotGateway.mqttV2');
+  const driver = createDriver(template, harness, {
+    tesvoltSetpointIntervalMs: 5000,
+    tesvoltCommandSourceTimeoutMs: 20000,
+  });
+  const setpoint = template.datapoints.find((dp) => dp.id === 'sET_ACTIVE_POWER');
+
+  await feed(driver, 'EMS/APIVersion', { APIVersion: 'V2' });
+  await feed(driver, 'EMS/V2/Inverter/Parameters', {
+    supported_control: ['Power', 'Reactive_Power', 'State'],
+  });
+  await feed(driver, 'EMS/V2/Inverter/Limits', { P_Max_Charge: 50000, P_Max_Discharge: 50000 });
+  await feed(driver, 'EMS/V2/Inverter/State', { State: 'grid_connected' });
+  await feed(driver, 'EMS/V2/Battery/SystemState', { System_State: 'normal' });
+
+  harness.published.length = 0;
+  await driver.writeDatapoint(setpoint, 12000);
+  await driver._refreshWriteGroup('inverterControl', 'test_refresh');
+  assert.equal(harness.published.length, 2);
+  assert.deepEqual(JSON.parse(harness.published[0].payload), {
+    Power: -12000,
+    Reactive_Power: 0,
+    State: 'grid_connected',
+  });
+  assert.deepEqual(JSON.parse(harness.published[1].payload), JSON.parse(harness.published[0].payload));
+
+  const state = driver.writeGroupStates.get('inverterControl');
+  state.lastExternalWriteAt = Date.now() - 21000;
+  await driver._refreshWriteGroup('inverterControl', 'test_stale');
+  assert.deepEqual(JSON.parse(harness.published.at(-1).payload), {
+    Power: 0,
+    Reactive_Power: 0,
+    State: 'grid_connected',
+  });
+  assert.equal(stateValue(harness, 'sETPOINT_TRACKING_STATUS'), 'safe_stale');
+});
+
+test('TESVOLT reconnect never resumes a cached non-zero command without a fresh EOS write', async () => {
+  const harness = createHarness();
+  const template = templateById('ess.tesvolt.iotGateway.mqttV2');
+  const driver = createDriver(template, harness);
+  const setpoint = template.datapoints.find((dp) => dp.id === 'sET_ACTIVE_POWER');
+
+  await feed(driver, 'EMS/APIVersion', { APIVersion: 'V2' });
+  await feed(driver, 'EMS/V2/Inverter/Parameters', { supported_control: ['Power', 'Reactive_Power', 'State'] });
+  await feed(driver, 'EMS/V2/Inverter/Limits', { P_Max_Charge: 50000, P_Max_Discharge: 50000 });
+  await feed(driver, 'EMS/V2/Inverter/State', { State: 'grid_connected' });
+  await feed(driver, 'EMS/V2/Battery/SystemState', { System_State: 'normal' });
+  await driver.writeDatapoint(setpoint, 10000);
+
+  driver._markWriteGroupsDisconnected('test');
+  driver.connected = true;
+  driver._markWriteGroupsConnected();
+  harness.published.length = 0;
+  await driver._refreshWriteGroup('inverterControl', 'test_reconnect');
+  assert.equal(JSON.parse(harness.published.at(-1).payload).Power, 0);
+
+  await driver.writeDatapoint(setpoint, 5000);
+  assert.equal(JSON.parse(harness.published.at(-1).payload).Power, -5000);
+});
+
+test('TESVOLT setpoint feedback is derived from Measurements because the interface has no separate acknowledgement', async () => {
+  const harness = createHarness();
+  const template = templateById('ess.tesvolt.iotGateway.mqttV2');
+  const driver = createDriver(template, harness, { tesvoltTrackingDelayMs: 500 });
+  const setpoint = template.datapoints.find((dp) => dp.id === 'sET_ACTIVE_POWER');
+
+  await feed(driver, 'EMS/APIVersion', { APIVersion: 'V2' });
+  await feed(driver, 'EMS/V2/Inverter/Parameters', { supported_control: ['Power', 'Reactive_Power', 'State'] });
+  await feed(driver, 'EMS/V2/Inverter/Limits', { P_Max_Charge: 50000, P_Max_Discharge: 50000 });
+  await feed(driver, 'EMS/V2/Inverter/State', { State: 'grid_connected' });
+  await feed(driver, 'EMS/V2/Battery/SystemState', { System_State: 'normal' });
+  await driver.writeDatapoint(setpoint, 10000);
+  const groupState = driver.writeGroupStates.get('inverterControl');
+  groupState.lastCommandChangedAt = Date.now() - 1000;
+
+  await feed(driver, 'EMS/V2/Inverter/Measurements', {
+    ts_create: '2026-08-14T20:00:00.000+02:00',
+    Power: -10000,
+    Reactive_Power: 0,
+  });
+  assert.equal(stateValue(harness, 'cOMMANDED_ACTIVE_POWER'), 10000);
+  assert.equal(stateValue(harness, 'sETPOINT_TRACKING_ERROR'), 0);
+  assert.equal(stateValue(harness, 'sETPOINT_TRACKING_STATUS'), 'following');
+  assert.equal(stateValue(harness, 'sETPOINT_TRACKING_OK'), true);
+
+  await feed(driver, 'EMS/V2/Inverter/Measurements', {
+    ts_create: '2026-08-14T20:00:01.000+02:00',
+    Power: -4000,
+    Reactive_Power: 0,
+  });
+  assert.equal(stateValue(harness, 'sETPOINT_TRACKING_ERROR'), -6000);
+  assert.equal(stateValue(harness, 'sETPOINT_TRACKING_STATUS'), 'deviating');
+  assert.equal(stateValue(harness, 'sETPOINT_TRACKING_OK'), false);
+});
+
+test('TESVOLT controlled disconnect sends a final full 0 W command', async () => {
+  const harness = createHarness();
+  const template = templateById('ess.tesvolt.iotGateway.mqttV2');
+  const driver = createDriver(template, harness);
+  const setpoint = template.datapoints.find((dp) => dp.id === 'sET_ACTIVE_POWER');
+
+  await feed(driver, 'EMS/APIVersion', { APIVersion: 'V2' });
+  await feed(driver, 'EMS/V2/Inverter/Parameters', { supported_control: ['Power', 'Reactive_Power', 'State'] });
+  await feed(driver, 'EMS/V2/Inverter/Limits', { P_Max_Charge: 50000, P_Max_Discharge: 50000 });
+  await feed(driver, 'EMS/V2/Inverter/State', { State: 'grid_connected' });
+  await feed(driver, 'EMS/V2/Battery/SystemState', { System_State: 'normal' });
+  await driver.writeDatapoint(setpoint, 10000);
+  harness.published.length = 0;
+  await driver.disconnect();
+  assert.deepEqual(JSON.parse(harness.published.at(-1).payload), {
+    Power: 0,
+    Reactive_Power: 0,
+    State: 'grid_connected',
+  });
 });
 
 test('generic MQTT writes keep the established client queue behaviour while TESVOLT groups require a live connection', async () => {

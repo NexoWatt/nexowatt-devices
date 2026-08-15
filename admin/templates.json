@@ -45550,7 +45550,7 @@
         "heartbeatTimeoutMs": 5000,
         "mqtt": {
           "timestampField": "ts_create",
-          "defaultUrl": "mqtt://<TESVOLT-IOT-GATEWAY-IP>:1884",
+          "defaultUrl": "mqtts://<TESVOLT-IOT-GATEWAY-IP>:1884",
           "zeroOnOfflineDpIds": [
             "aCTIVE_POWER",
             "bATTERY_DC_POWER"
@@ -45571,10 +45571,20 @@
               "off",
               "shutting_down"
             ],
-            "inverterStateFreshnessMs": 30000,
+            "inverterStateFreshnessMs": 5000,
             "chargeLimitDpId": "aLLOWED_CHARGE_POWER",
             "dischargeLimitDpId": "aLLOWED_DISCHARGE_POWER",
-            "limitsFreshnessMs": 60000
+            "limitsFreshnessMs": 5000,
+            "measurementDpId": "aCTIVE_POWER",
+            "measurementFreshnessMs": 5000,
+            "commandedPowerDpId": "cOMMANDED_ACTIVE_POWER",
+            "trackingErrorDpId": "sETPOINT_TRACKING_ERROR",
+            "trackingStatusDpId": "sETPOINT_TRACKING_STATUS",
+            "trackingOkDpId": "sETPOINT_TRACKING_OK",
+            "lastSentMsDpId": "lAST_SETPOINT_SENT_MS",
+            "trackingDelayMs": 3000,
+            "trackingToleranceW": 500,
+            "trackingTolerancePct": 10
           },
           "writeGroups": {
             "inverterControl": {
@@ -45588,16 +45598,22 @@
                   "required": true
                 },
                 "Reactive_Power": {
-                  "value": 0,
-                  "includeIfSupported": "Reactive_Power",
-                  "includeIfUnknown": true
+                  "value": 0
                 },
                 "State": {
                   "value": "grid_connected",
                   "includeIfSupported": "State",
                   "includeIfUnknown": true
                 }
-              }
+              },
+              "profile": "tesvoltPower",
+              "refreshIntervalMs": 5000,
+              "commandFreshnessMs": 20000,
+              "safeValue": 0,
+              "safeOnInitialConnect": true,
+              "safeOnDisconnect": true,
+              "safeOnValidationFailure": true,
+              "requireFreshCommandAfterReconnect": true
             }
           }
         }
@@ -46384,6 +46400,61 @@
                 "dpId": "bATTERY_ERRORS_JSON"
               }
             ]
+          }
+        },
+        {
+          "id": "cOMMANDED_ACTIVE_POWER",
+          "name": "Last active power command sent (NexoWatt sign)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "mqttControlStatus"
+          }
+        },
+        {
+          "id": "sETPOINT_TRACKING_ERROR",
+          "name": "Measured minus commanded active power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "mqttControlStatus"
+          }
+        },
+        {
+          "id": "sETPOINT_TRACKING_STATUS",
+          "name": "Setpoint tracking status (derived from measurements)",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqttControlStatus"
+          }
+        },
+        {
+          "id": "sETPOINT_TRACKING_OK",
+          "name": "Measured active power follows command",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqttControlStatus"
+          }
+        },
+        {
+          "id": "lAST_SETPOINT_SENT_MS",
+          "name": "Last MQTT inverter control publish time",
+          "role": "value.time",
+          "type": "number",
+          "rw": "ro",
+          "unit": "ms",
+          "source": {
+            "kind": "mqttControlStatus"
           }
         },
         {

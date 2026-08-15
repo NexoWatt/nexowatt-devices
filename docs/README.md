@@ -22,7 +22,7 @@ Alle technischen Markdown-Dateien des Adapters liegen bewusst in diesem Ordner. 
 
 ## Speicher und Sungrow
 
-- [TESVOLT IoT Gateway – MQTT EMS Interface V2](TESVOLT_IOT_GATEWAY_MQTT_V2_0.5.150.md)
+- [TESVOLT IoT Gateway – MQTT EMS Interface V2](TESVOLT_IOT_GATEWAY_MQTT_V2_0.5.153.md)
 - [Sungrow – 1-Sekunden-Polling](SUNGROW_1S_POLL_0.5.138.md)
 - [Sungrow – Richtungs- und Timing-Fix](SUNGROW_DIRECTION_TIMING_FIX_0.5.133.md)
 - [Sungrow – Fast Feedback Fix](SUNGROW_FAST_FEEDBACK_FIX.md)

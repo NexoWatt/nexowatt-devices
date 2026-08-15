@@ -1,37 +1,41 @@
-NexoWatt Devices 0.5.150 - TESVOLT IoT Gateway MQTT EMS Interface V2
+NexoWatt Devices 0.5.153 - TESVOLT IoT Gateway MQTT V2 hardening
 
 Base:
-- user supplied production source 0.5.149
-- all 181 existing production templates and legacy aliases remain locked to the established compatibility baseline
+- release 0.5.152
+- all 181 established production templates and legacy aliases remain locked to the compatibility baseline
+- the additive TESVOLT IoT Gateway template remains separate from the existing TESVOLT Modbus/Vermarkter template
 
-Additive template:
-- ess.tesvolt.iotGateway.mqttV2
-- category ESS / deviceClass storageSystem
-- separate from the existing TESVOLT Energy Manager Modbus/Vermarkter template
+TESVOLT connection:
+- mqtts:// / TLS support on port 1884
+- username/password authentication
+- certificate verification enabled by default
+- optional private CA file and TLS server name / SNI
+- exact certificate chain and gateway provisioning still need to be confirmed during commissioning
 
-Read integration:
+TESVOLT read integration:
 - EMS/APIVersion and EMS/V2 retained metadata
 - inverter parameters, limits, measurements, energy, state and display-only errors
-- battery parameters, energy, electrical data, 1-second system state and display-only errors
+- battery parameters, energy, electrical data, system state and display-only errors
 - multiple JSON fields per MQTT topic
 - ISO-8601 ts_create ordering guard
-- stale/offline AC and DC power reset to 0 W
+- configurable telemetry freshness; stale/offline AC and DC power reset to 0 W
 
-Write integration:
-- EMS/V2/Inverter/Control, QoS 0, retain false
-- atomic JSON payload with Power, optional Reactive_Power and State
+TESVOLT control integration:
+- full EMS/V2/Inverter/Control JSON payload, QoS 0, retain false
+- Power plus Reactive_Power sent on every cycle; State=grid_connected included when supported
+- default cyclic refresh every 5 seconds (gateway offline timeout reported as 30 seconds, configurable on gateway)
 - NexoWatt sign +discharge/-charge converted to TESVOLT -discharge/+charge
 - API V2, supported_control, fresh inverter/battery state and AC-limit safety gates
 - dynamic clamp to P_Max_Charge / P_Max_Discharge
+- local 20-second command-source watchdog sends 0 W when EOS stops updating
+- startup/reconnect requires a fresh EOS command and never restores a cached non-zero setpoint
+- controlled shutdown sends a best-effort final 0 W command
+- no separate protocol acknowledgement; tracking is derived from Inverter/Measurements.Power
 
-Intentionally deferred until TESVOLT confirms semantics:
-- EMS/V2/Battery/Control and DC_Connection_Request
-- retained contactor control
-- automatic command repetition/watchdog
-- automatic command restore after reconnect/restart
-- custom TLS certificate handling
-- command acknowledgement and multi-controller priority
+Intentionally disabled:
+- EMS/V2/Battery/Control / DC_Connection_Request
+- false actively requests contactor opening; the reported current Bifi/Ampace implementation cannot yet execute it reliably
 
 Packaging:
-- normal ZIP only
+- normal source ZIP only
 - no publish-safe.cmd, TGZ, RAR, nested ZIP or node_modules

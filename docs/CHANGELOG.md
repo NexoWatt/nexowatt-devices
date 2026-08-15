@@ -1,5 +1,17 @@
 # Technische Versionshinweise
 
+## 0.5.153 – TESVOLT MQTT-V2 zyklisch, TLS-fähig und failsafe
+
+- TESVOLT hat bestätigt, dass Leistungssollwerte zyklisch erwartet werden und das externe EMS nach standardmäßig 30 Sekunden ohne Sollwert als offline gilt. Das IoT-Gateway beziehungsweise der Wechselrichter fällt dann abhängig vom Adapter auf `0 W` und/oder Standby zurück.
+- Das Template sendet den vollständigen `EMS/V2/Inverter/Control`-Payload jetzt standardmäßig alle 5 Sekunden. `Power` und `Reactive_Power` werden immer gemeinsam übertragen; `State=grid_connected` wird bei gemeldeter State-Capability ebenfalls zyklisch gesendet.
+- Ein lokaler EOS-Sollwert-Watchdog setzt nach standardmäßig 20 Sekunden ohne frische Vorgabe aktiv `0 W`. Refreshintervall, Sollwert-Frische, Telemetrie-Frische und Tracking-Verzögerung sind je Gerät konfigurierbar.
+- Nach Adapterstart oder MQTT-Wiederverbindung wird zunächst `0 W` gesendet. Ein vorheriger Nicht-Null-Sollwert wird niemals automatisch fortgesetzt; dafür ist ein neuer EOS-Befehl erforderlich. Beim kontrollierten Adapterstopp wird bestmöglich ein letzter `0-W`-Befehl gesendet.
+- Da TESVOLT keine separate Befehlsquittung liefert, werden neue Diagnose-Datenpunkte aus `Inverter/Measurements.Power` abgeleitet: gesendeter Sollwert, Abweichung, Trackingstatus, Tracking-OK und letzter Publish-Zeitpunkt.
+- MQTT/TLS wurde um `mqtts://`, Zertifikatsprüfung, optionale private CA-Datei und SNI/Servername erweitert. Benutzername und Kennwort dienen der Authentifizierung; die Transportverschlüsselung erfolgt über TLS.
+- Die standardmäßige TESVOLT-Publikation von etwa 500 ms wird mit einem konfigurierbaren 5-s-Stale-Timeout abgesichert. Wechselrichterzustand und AC-Grenzen dürfen nicht mehr bis zu 30/60 Sekunden alt sein.
+- `DC_Connection_Request=false` öffnet laut TESVOLT aktiv die DC-Schütze. Weil die Ampace-Batterie dies im aktuellen Bifi-Stand noch nicht umsetzt, bleibt `Battery/Control` im normalen NexoWatt-Steuerpfad bewusst deaktiviert.
+- Ausgangsbasis ist 0.5.152; FENECON ctrlBalancing0, Alfen-Status-/Schreibkorrekturen, ABL-Failsafes sowie alle bestehenden Datenpunkte und Legacy-Aliase bleiben unverändert.
+
 ## 0.5.152 – Alfen ACE Mode-3-Status korrekt dekodieren
 
 - Ursache des dauerhaft angezeigten Status `Operative` war nicht die Wallbox-Steuerung, sondern die Dekodierung des fünf Register langen Mode-3-Strings.

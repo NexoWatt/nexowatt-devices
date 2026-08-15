@@ -1555,7 +1555,7 @@
             {
               "type": "text",
               "attr": "connection.url",
-              "label": "Broker URL (mqtt://...)",
+              "label": "Broker URL (mqtt:// or mqtts://...)",
               "hidden": "data.protocol !== 'mqtt'",
               "sm": 12,
               "newLine": true
@@ -1583,6 +1583,106 @@
               "label": "Client-ID (optional)",
               "hidden": "data.protocol !== 'mqtt'",
               "sm": 12,
+              "newLine": true
+            },
+            {
+              "type": "staticText",
+              "text": "MQTT TLS / security",
+              "hidden": "data.protocol !== 'mqtt'",
+              "newLine": true
+            },
+            {
+              "type": "checkbox",
+              "attr": "connection.rejectUnauthorized",
+              "label": "Verify TLS certificate",
+              "hidden": "data.protocol !== 'mqtt'",
+              "default": true,
+              "sm": 6,
+              "md": 4,
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.caFile",
+              "label": "TLS CA certificate file (optional)",
+              "hidden": "data.protocol !== 'mqtt'",
+              "helperText": "Path on the NexoWatt controller; only needed for a private/self-signed CA.",
+              "sm": 12,
+              "newLine": true
+            },
+            {
+              "type": "text",
+              "attr": "connection.servername",
+              "label": "TLS server name / SNI (optional)",
+              "hidden": "data.protocol !== 'mqtt'",
+              "helperText": "Use when the certificate name differs from the gateway IP address.",
+              "sm": 12,
+              "newLine": true
+            },
+            {
+              "type": "divider",
+              "hidden": "data.protocol !== 'mqtt'",
+              "newLine": true
+            },
+            {
+              "type": "staticText",
+              "text": "TESVOLT IoT Gateway cyclic control",
+              "hidden": "data.protocol !== 'mqtt' || data.templateId !== 'ess.tesvolt.iotGateway.mqttV2'",
+              "newLine": true
+            },
+            {
+              "type": "number",
+              "attr": "connection.tesvoltSetpointIntervalMs",
+              "label": "TESVOLT setpoint refresh interval (ms)",
+              "hidden": "data.protocol !== 'mqtt' || data.templateId !== 'ess.tesvolt.iotGateway.mqttV2'",
+              "default": 5000,
+              "min": 1000,
+              "max": 20000,
+              "helperText": "Must remain clearly below the IoT Gateway EMS-offline timeout (default 30 s).",
+              "sm": 6,
+              "md": 4,
+              "newLine": true
+            },
+            {
+              "type": "number",
+              "attr": "connection.tesvoltCommandSourceTimeoutMs",
+              "label": "NexoWatt command freshness timeout (ms)",
+              "hidden": "data.protocol !== 'mqtt' || data.templateId !== 'ess.tesvolt.iotGateway.mqttV2'",
+              "default": 20000,
+              "min": 5000,
+              "max": 120000,
+              "helperText": "If EOS stops updating the command, the Device Adapter switches to 0 W before the gateway watchdog expires.",
+              "sm": 6,
+              "md": 4
+            },
+            {
+              "type": "number",
+              "attr": "connection.tesvoltTelemetryStaleMs",
+              "label": "TESVOLT telemetry stale timeout (ms)",
+              "hidden": "data.protocol !== 'mqtt' || data.templateId !== 'ess.tesvolt.iotGateway.mqttV2'",
+              "default": 5000,
+              "min": 1000,
+              "max": 120000,
+              "helperText": "Default TESVOLT publication is 500 ms; increase only if the gateway adapters publish more slowly.",
+              "sm": 6,
+              "md": 4,
+              "newLine": true
+            },
+            {
+              "type": "number",
+              "attr": "connection.tesvoltTrackingDelayMs",
+              "label": "Setpoint tracking delay (ms)",
+              "hidden": "data.protocol !== 'mqtt' || data.templateId !== 'ess.tesvolt.iotGateway.mqttV2'",
+              "default": 3000,
+              "min": 500,
+              "max": 30000,
+              "helperText": "Delay before measured active power is compared with the command.",
+              "sm": 6,
+              "md": 4
+            },
+            {
+              "type": "divider",
+              "hidden": "data.protocol !== 'mqtt'",
               "newLine": true
             },
             {
