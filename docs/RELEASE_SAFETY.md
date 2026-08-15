@@ -38,20 +38,23 @@ Der Ablauf muss vor der Veröffentlichung abgebrochen werden, wenn mindestens ei
 - automatisierte Adaptertests
 - `npm pack --dry-run`
 
-## Schutz vor vermischten Versionen
+## Schutz vor vermischten Versionen und lokalen Altdateien
 
-`npm test` verwendet ab Version 0.5.146 das feste Manifest
-`test/test-manifest.json`. Der Release-Guard vergleicht das Manifest mit den
-vorhandenen `test/*.test.js`-Dateien.
+`npm test` verwendet das feste Manifest `test/test-manifest.json`. Seit Version
+0.5.155 werden ausschließlich die dort freigegebenen Tests ausgeführt. Alte
+zusätzliche Dateien wie `test/core.test.js` bleiben lokal möglich, werden aber
+weder ausgeführt noch in das npm-Paket aufgenommen.
 
-Eine alte zusätzliche Testdatei führt dadurch nicht mehr erst zu einem
-unverständlichen `ERR_ASSERTION`, sondern zu dieser eindeutigen Freigabesperre:
+Dasselbe gilt für zusätzliche Markdown-Dateien im Projektstamm. Die produktive
+`package.json`-`files`-Whitelist erlaubt nur `README.md` und `docs/`; `.npmignore`
+schließt `test/` sowie weitere Stamm-Markdown-Dateien zusätzlich aus. Solche
+Altdateien erscheinen im Release-Guard nur noch als Hinweis.
 
-```text
-alte oder fremde Testdateien gefunden
-Der Projektordner wurde wahrscheinlich über eine ältere Version kopiert.
-Ordner löschen und die ZIP sauber neu entpacken.
-```
+Hart blockiert werden weiterhin alle Fehler in releaseverwalteten Dateien,
+insbesondere fehlende Manifesttests, ungültiges JSON, Merge-Konflikte,
+Syntaxfehler, abweichende Template-/Alias-Baselines und fehlgeschlagene Tests.
+Damit hängt die Freigabe nicht mehr davon ab, ob eine neue ZIP über einen
+langjährig genutzten Windows-Arbeitsordner entpackt wurde.
 
 ## Schutz bestehender Anlagen
 

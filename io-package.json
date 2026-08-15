@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.154",
+    "version": "0.5.155",
     "news": {
+      "0.5.155": {
+        "en": "Release validation is now independent of harmless files left in an existing Windows worktree. Extra root Markdown files and unlisted test files are reported as notices, but are neither executed nor published: npm test runs only test/test-manifest.json and the npm files whitelist excludes test/ and unapproved root files. Missing or modified managed files, invalid JSON, merge conflicts, syntax errors, template regressions and failing approved tests still block release. No runtime, device template, datapoint, alias or control behavior is changed.",
+        "de": "Die Release-Prüfung ist jetzt unabhängig von harmlosen Altdateien in einem bestehenden Windows-Arbeitsordner. Zusätzliche Markdown-Dateien im Projektstamm und nicht gelistete Testdateien werden nur noch als Hinweis gemeldet, aber weder ausgeführt noch veröffentlicht: npm test nutzt ausschließlich test/test-manifest.json und die npm-files-Whitelist schließt test/ sowie nicht freigegebene Stammdateien aus. Fehlende oder veränderte verwaltete Dateien, ungültiges JSON, Merge-Konflikte, Syntaxfehler, Template-Regressionen und fehlgeschlagene freigegebene Tests blockieren weiterhin. Laufzeit, Gerätetemplates, Datenpunkte, Aliase und Steuerlogiken bleiben unverändert."
+      },
       "0.5.154": {
         "en": "Keep safety-critical EV charger feedback fresh even when idle values do not change. After every successful charger snapshot, legacy and Alias Contract v1 status/power/current/vehicle aliases are periodically re-published at a bounded cadence (normally 5 s), while static metadata, energy counters and commands remain change-only. No timer fabricates freshness during communication loss; heartbeat online/lastSeen remain tied to real device data. The fix applies generically to all EVCS/EVSE templates and changes no register, datapoint ID, alias path or control logic.",
         "de": "Sicherheitsrelevante Ladepunkt-Rückmeldungen bleiben jetzt auch bei unveränderten Leerlaufwerten zeitlich frisch. Nach jedem erfolgreichen Gerätesnapshot werden Legacy- und Alias-Contract-v1-Status-, Leistungs-, Strom- und Fahrzeug-Aliase in begrenztem Takt (normalerweise 5 s) erneut bestätigt; statische Metadaten, Energiezähler und Befehlsaliase bleiben änderungsbasiert. Bei Kommunikationsausfall wird keine Frische künstlich erzeugt; Online/LastSeen bleiben an echte Gerätedaten gekoppelt. Die Korrektur gilt generisch für alle EVCS-/EVSE-Templates und ändert keine Register, Datenpunkt-IDs, Alias-Pfade oder Steuerlogiken."

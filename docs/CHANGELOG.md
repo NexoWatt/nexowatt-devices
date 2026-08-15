@@ -1,5 +1,14 @@
 # Technische Versionshinweise
 
+## 0.5.155 – Release-Prüfung von lokalen Altdateien entkoppelt
+
+- Die Freigabeprüfung bewertet jetzt ausschließlich releaseverwaltete Dateien. Harmlos verbliebene Dateien in einem bestehenden Windows-Arbeitsordner dürfen den Build nicht mehr blockieren.
+- Zusätzliche Markdown-Dateien im Projektstamm wie `CHANGELOG.md`, `NEXOWATT_REVIEW.md` oder `README.de.md` werden nur noch als Hinweis gemeldet. Veröffentlicht werden weiterhin ausschließlich `README.md` und der Ordner `docs/`.
+- Zusätzliche `test/*.test.js`-Dateien wie eine alte `core.test.js` werden weder syntaktisch als Releasequelle bewertet noch ausgeführt. `npm test` startet ausschließlich die im festen `test/test-manifest.json` freigegebenen Tests.
+- `package.json` darf den Ordner `test/` oder eine breite Wildcard nicht in die npm-`files`-Whitelist aufnehmen. `.npmignore` schließt `test/` und zusätzliche Markdown-Dateien im Projektstamm ergänzend aus.
+- Fehlende Manifesttests, ungültige verwaltete JSON-Dateien, Merge-Konflikte, JavaScript-Syntaxfehler, Template-/Alias-Regressionen und fehlschlagende freigegebene Tests bleiben harte Release-Blocker.
+- Laufzeit, Ladepunkt-Freshness aus 0.5.154, alle 182 Templates, Register, Datenpunkte, Aliase und Steuerlogiken bleiben unverändert.
+
 ## 0.5.154 – Ladepunkt-Messwerte bleiben auch im Leerlauf frisch
 
 - Ursache der `Messwert-Failsafe · safe-zero`-Meldung war kein MENNEKES-Registerfehler: Der generische State-Cache unterdrückte identische `setState()`-Aufrufe. Bei einem gesunden, aber inaktiven Ladepunkt blieben `0 W`, `false` und unveränderte Statuswerte daher mit einem alten ioBroker-Zeitstempel stehen.

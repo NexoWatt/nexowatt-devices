@@ -7,6 +7,7 @@ Alle technischen Markdown-Dateien des Adapters liegen bewusst in diesem Ordner. 
 - [Alias Contract v1](ALIAS_CONTRACT_V1_0.5.144.md)
 - [Bestandsanlagen-Kompatibilität 0.5.146](LEGACY_COMPATIBILITY_0.5.146.md)
 - [Release-Sicherheit](RELEASE_SAFETY.md)
+- [Release-Arbeitsordner-Isolation 0.5.155](RELEASE_WORKSPACE_ISOLATION_0.5.155.md)
 - [Technische Versionshinweise](CHANGELOG.md)
 - [Drittanbieterhinweise](THIRD_PARTY_NOTICES.md)
 

@@ -9,3 +9,7 @@ pnpm-debug.log*
 .git/
 .gitignore
 publish-safe.cmd
+/test/
+/*.md
+!/README.md
+/.nexowatt-release-local/

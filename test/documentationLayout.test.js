@@ -7,13 +7,13 @@ const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
 
-test('technical Markdown documentation is grouped under docs and the root overview stays visible', () => {
+test('technical Markdown documentation is publish-grouped under docs and local root notes cannot leak into the package', () => {
   const rootMarkdown = fs.readdirSync(root, { withFileTypes: true })
     .filter(entry => entry.isFile() && path.extname(entry.name).toLowerCase() === '.md')
     .map(entry => entry.name)
     .sort();
 
-  assert.deepEqual(rootMarkdown, ['README.md']);
+  assert.ok(rootMarkdown.includes('README.md'));
 
   for (const relativePath of [
     'docs/README.md',
@@ -38,9 +38,15 @@ test('technical Markdown documentation is grouped under docs and the root overvi
     .split(/\r?\n/)
     .map(line => line.trim())
     .filter(Boolean);
-  assert.ok(npmIgnore.includes('publish-safe.cmd'));
+  for (const requiredEntry of ['publish-safe.cmd', '/test/', '/*.md', '!/README.md', '/.nexowatt-release-local/']) {
+    assert.ok(npmIgnore.includes(requiredEntry), `missing npmignore entry ${requiredEntry}`);
+  }
   assert.deepEqual(
     pkg.files.filter(entry => entry.toLowerCase().endsWith('.md')),
     ['README.md']
   );
+  assert.equal(pkg.files.some(entry => /^test(?:\/|$)/i.test(entry)), false);
+  assert.match(pkg.scripts.prepack, /package-sanitize\.cjs prepare/);
+  assert.match(pkg.scripts.postpack, /package-sanitize\.cjs restore/);
+  assert.ok(fs.existsSync(path.join(root, 'scripts', 'package-sanitize.cjs')));
 });

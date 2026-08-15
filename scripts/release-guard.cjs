@@ -29,6 +29,20 @@ const textExtensions = new Set([
   '.ps1', '.sh', '.svg', '.ts', '.tsx', '.txt', '.xml', '.yaml', '.yml',
 ]);
 
+// Only release-managed files are validated. Harmless local files that may remain
+// in a long-lived Windows worktree are neither executed by npm test nor included
+// by the npm files whitelist, so they must not make a clean release impossible.
+const managedRootFiles = [
+  '.npmignore',
+  'package.json',
+  'io-package.json',
+  'main.js',
+  'bootstrap.js',
+  'README.md',
+  'LICENSE',
+];
+const managedDirectories = ['admin', 'lib', 'scripts', 'docs'];
+
 const errors = [];
 const notices = [];
 
@@ -54,6 +68,50 @@ function walk(directory) {
   }
 
   return files;
+}
+
+function collectManagedFiles() {
+  const files = [];
+
+  for (const relativePath of managedRootFiles) {
+    const fullPath = path.join(root, relativePath);
+    if (fs.existsSync(fullPath) && fs.statSync(fullPath).isFile()) files.push(fullPath);
+  }
+
+  for (const directoryName of managedDirectories) {
+    const directoryPath = path.join(root, directoryName);
+    if (fs.existsSync(directoryPath) && fs.statSync(directoryPath).isDirectory()) {
+      files.push(...walk(directoryPath));
+    }
+  }
+
+  const manifestPath = path.join(root, 'test', 'test-manifest.json');
+  if (fs.existsSync(manifestPath)) files.push(manifestPath);
+
+  for (const directoryName of ['fixtures', 'helpers']) {
+    const directoryPath = path.join(root, 'test', directoryName);
+    if (fs.existsSync(directoryPath) && fs.statSync(directoryPath).isDirectory()) {
+      files.push(...walk(directoryPath));
+    }
+  }
+
+  // Read the manifest defensively. Its formal JSON validation still happens
+  // later; this step only determines which test sources belong to the release.
+  try {
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    if (Array.isArray(manifest.tests)) {
+      for (const item of manifest.tests) {
+        const name = String(item || '');
+        if (!/^[A-Za-z0-9._-]+\.test\.js$/.test(name)) continue;
+        const filePath = path.join(root, 'test', name);
+        if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) files.push(filePath);
+      }
+    }
+  } catch {
+    // parseJsonFiles()/verifyTestManifest() will report the actual error.
+  }
+
+  return [...new Set(files.map((filePath) => path.resolve(filePath)))].sort();
 }
 
 function isTextFile(filePath) {
@@ -339,14 +397,14 @@ function verifyTestManifest(parsed) {
     const extra = actual.filter((name) => !expected.includes(name));
     const missing = expected.filter((name) => !actual.includes(name));
     if (extra.length) {
-      errors.push(
-        `test/: alte oder fremde Testdateien gefunden: ${extra.join(', ')}. ` +
-        'Der Projektordner wurde wahrscheinlich über eine ältere Version kopiert. Ordner löschen und die ZIP sauber neu entpacken.'
+      notices.push(
+        `Lokale zusätzliche Testdateien ignoriert: ${extra.join(', ')}. ` +
+        'npm test führt ausschließlich das feste Testmanifest aus; test/ ist nicht Teil des npm-Pakets.'
       );
     }
     if (missing.length) errors.push(`test/: Testdateien aus Manifest fehlen: ${missing.join(', ')}`);
   } else {
-    notices.push(`${expected.length} freigegebene Testdateien; keine alten Mischdateien im test/-Ordner`);
+    notices.push(`${expected.length} freigegebene Testdateien; Manifestausführung aktiv`);
   }
 }
 
@@ -452,6 +510,7 @@ function verifyRequiredFiles() {
     'lib/alias-contract-v1.json',
     'lib/aliasContract.js',
     'scripts/run-tests.cjs',
+    'scripts/package-sanitize.cjs',
     'test/test-manifest.json',
     'test/fixtures/legacy-compatibility-v0.5.143.json',
     'test/fixtures/approved-additive-templates.json',
@@ -483,7 +542,10 @@ function verifyDocumentationLayout(parsed) {
 
   const unexpectedRootMarkdown = rootMarkdownFiles.filter((name) => name !== 'README.md');
   if (unexpectedRootMarkdown.length > 0) {
-    errors.push(`Markdown-Dateien gehören nach docs/: ${unexpectedRootMarkdown.join(', ')}`);
+    notices.push(
+      `Lokale zusätzliche Markdown-Dateien ignoriert: ${unexpectedRootMarkdown.join(', ')}. ` +
+      'Für das npm-Paket sind nur README.md und docs/ freigegeben.'
+    );
   } else {
     notices.push('Dokumentationslayout sauber: im Projektstamm liegt nur README.md');
   }
@@ -520,8 +582,29 @@ function verifyDocumentationLayout(parsed) {
     errors.push('package.json: files muss den Ordner docs/ enthalten');
   }
 
+  const prepackScript = String(packageJson.scripts?.prepack || '');
+  const postpackScript = String(packageJson.scripts?.postpack || '');
+  for (const requiredPart of ['npm run verify:release', 'npm test', 'package-sanitize.cjs prepare']) {
+    if (!prepackScript.includes(requiredPart)) {
+      errors.push(`package.json: prepack muss ${JSON.stringify(requiredPart)} enthalten`);
+    }
+  }
+  if (!postpackScript.includes('package-sanitize.cjs restore')) {
+    errors.push('package.json: postpack muss lokale Markdown-Dateien wiederherstellen');
+  }
+
   if (packageFiles.includes('publish-safe.cmd')) {
     errors.push('package.json: publish-safe.cmd darf nicht im npm-Paket enthalten sein');
+  }
+
+  const normalizedPackageFiles = packageFiles
+    .filter((entry) => typeof entry === 'string')
+    .map((entry) => entry.replaceAll('\\', '/').replace(/^\.\//, ''));
+  if (normalizedPackageFiles.some((entry) => entry === 'test' || entry.startsWith('test/'))) {
+    errors.push('package.json: test/ darf nicht im produktiven npm-Paket enthalten sein');
+  }
+  if (normalizedPackageFiles.some((entry) => entry === '.' || entry === '*' || entry === '**/*')) {
+    errors.push('package.json: eine zu breite files-Whitelist würde lokale Altdateien veröffentlichen');
   }
 
   const npmIgnorePath = path.join(root, '.npmignore');
@@ -535,6 +618,11 @@ function verifyDocumentationLayout(parsed) {
       .filter(Boolean);
     if (!npmIgnoreEntries.includes('publish-safe.cmd')) {
       errors.push('.npmignore: publish-safe.cmd muss explizit ausgeschlossen sein');
+    }
+    for (const requiredEntry of ['/test/', '/*.md', '!/README.md', '/.nexowatt-release-local/']) {
+      if (!npmIgnoreEntries.includes(requiredEntry)) {
+        errors.push(`.npmignore: ${requiredEntry} fehlt als Schutz gegen lokale Altdateien`);
+      }
     }
   }
 
@@ -550,11 +638,39 @@ function verifyDocumentationLayout(parsed) {
   }
 }
 
+function recoverInterruptedPackageSanitizer() {
+  const manifestPath = path.join(root, '.nexowatt-release-local', 'manifest.json');
+  if (!fs.existsSync(manifestPath)) return;
+
+  const scriptPath = path.join(root, 'scripts', 'package-sanitize.cjs');
+  if (!fs.existsSync(scriptPath)) {
+    errors.push('Unterbrochene Paket-Quarantäne erkannt, aber scripts/package-sanitize.cjs fehlt');
+    return;
+  }
+
+  const result = spawnSync(process.execPath, [scriptPath, 'recover'], {
+    cwd: root,
+    encoding: 'utf8',
+    windowsHide: true,
+  });
+  if (result.status !== 0) {
+    errors.push(`Lokale Markdown-Dateien konnten nicht wiederhergestellt werden: ${(result.stderr || result.stdout || 'unbekannter Fehler').trim()}`);
+    return;
+  }
+  const output = (result.stdout || '').trim();
+  if (output) notices.push(output);
+}
+
 function main() {
   console.log('NexoWatt Release Guard');
   console.log(`Projekt: ${root}`);
 
-  const files = walk(root);
+  recoverInterruptedPackageSanitizer();
+  const allFiles = walk(root);
+  const files = collectManagedFiles();
+  const managedSet = new Set(files.map((filePath) => path.resolve(filePath)));
+  const unmanagedFiles = allFiles.filter((filePath) => !managedSet.has(path.resolve(filePath)));
+
   verifyRequiredFiles();
   scanMergeConflictMarkers(files);
   const parsedJson = parseJsonFiles(files);
@@ -573,6 +689,13 @@ function main() {
     notices.push('JavaScript-Syntaxprüfung übersprungen, weil package.json ungültig ist');
   }
 
+  if (unmanagedFiles.length > 0) {
+    notices.push(
+      `${unmanagedFiles.length} lokale, nicht releaseverwaltete Datei(en) ignoriert; ` +
+      'sie werden weder getestet noch über die npm-files-Whitelist veröffentlicht'
+    );
+  }
+
   for (const notice of notices) {
     console.log(`OK  ${notice}`);
   }
@@ -586,7 +709,7 @@ function main() {
     return;
   }
 
-  console.log(`\nFREIGABE: ${files.length} Projektdateien geprüft, keine Release-Blocker gefunden.`);
+  console.log(`\nFREIGABE: ${files.length} releaseverwaltete Projektdateien geprüft, keine Release-Blocker gefunden.`);
 }
 
 main();
