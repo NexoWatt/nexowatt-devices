@@ -1,1 +1,1 @@
-NexoWatt Devices 0.5.155 - release guard workspace isolation hardening
+NexoWatt Devices 0.5.156 - Windows npm lifecycle runner hardening

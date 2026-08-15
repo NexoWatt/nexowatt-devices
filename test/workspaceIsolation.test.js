@@ -18,6 +18,49 @@ function run(command, args, cwd) {
   });
 }
 
+function resolveNpmInvocation(args, options = {}) {
+  const platform = options.platform || process.platform;
+  const env = options.env || process.env;
+  const exists = options.exists || fs.existsSync;
+  const npmExecPath = String(env.npm_execpath || '').trim();
+
+  // npm exposes the JavaScript CLI path while lifecycle scripts are running.
+  // Calling that file through Node avoids the Windows .cmd/CreateProcess trap,
+  // where spawnSync('npm.cmd', ...) can return status=null before npm starts.
+  if (npmExecPath && exists(npmExecPath)) {
+    return {
+      command: String(env.npm_node_execpath || process.execPath),
+      args: [npmExecPath, ...args],
+      mode: 'npm-cli',
+    };
+  }
+
+  if (platform === 'win32') {
+    return {
+      command: String(env.ComSpec || env.COMSPEC || 'cmd.exe'),
+      args: ['/d', '/s', '/c', ['npm', ...args].join(' ')],
+      mode: 'cmd',
+    };
+  }
+
+  return { command: 'npm', args, mode: 'path' };
+}
+
+function runNpm(args, cwd) {
+  const invocation = resolveNpmInvocation(args);
+  return run(invocation.command, invocation.args, cwd);
+}
+
+function childResultDetails(result) {
+  return [
+    `status=${result.status}`,
+    `signal=${result.signal || '<none>'}`,
+    `error=${result.error ? `${result.error.code || result.error.name}: ${result.error.message}` : '<none>'}`,
+    String(result.stdout || ''),
+    String(result.stderr || ''),
+  ].join('\n');
+}
+
 function extractPackReport(output) {
   for (let start = output.indexOf('['); start >= 0; start = output.indexOf('[', start + 1)) {
     let depth = 0;
@@ -78,17 +121,42 @@ test('release checks tolerate harmless files from an older Windows worktree with
     fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
 
     const guard = run(process.execPath, ['scripts/release-guard.cjs'], project);
-    assert.equal(guard.status, 0, `${guard.stdout}\n${guard.stderr}`);
+    assert.equal(guard.status, 0, childResultDetails(guard));
     assert.match(guard.stdout, /Lokale zusätzliche Markdown-Dateien ignoriert/);
     assert.match(guard.stdout, /Lokale zusätzliche Testdateien ignoriert:[^\n]*core\.test\.js/);
 
     const approvedTests = run(process.execPath, ['scripts/run-tests.cjs'], project);
-    assert.equal(approvedTests.status, 0, `${approvedTests.stdout}\n${approvedTests.stderr}`);
+    assert.equal(approvedTests.status, 0, childResultDetails(approvedTests));
     assert.doesNotMatch(`${approvedTests.stdout}\n${approvedTests.stderr}`, /foreign test executed/);
 
-    const npmCommand = process.platform === 'win32' ? 'npm.cmd' : 'npm';
-    const packed = run(npmCommand, ['pack', '--dry-run', '--json'], project);
-    assert.equal(packed.status, 0, `${packed.stdout}\n${packed.stderr}`);
+    const windowsCliInvocation = resolveNpmInvocation(['pack', '--dry-run', '--json'], {
+      platform: 'win32',
+      env: { npm_execpath: 'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js' },
+      exists: () => true,
+    });
+    assert.equal(windowsCliInvocation.command, process.execPath);
+    assert.deepEqual(windowsCliInvocation.args, [
+      'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+      'pack',
+      '--dry-run',
+      '--json',
+    ]);
+
+    const windowsCmdFallback = resolveNpmInvocation(['pack', '--dry-run', '--json'], {
+      platform: 'win32',
+      env: { ComSpec: 'C:\\Windows\\System32\\cmd.exe' },
+      exists: () => false,
+    });
+    assert.equal(windowsCmdFallback.command, 'C:\\Windows\\System32\\cmd.exe');
+    assert.deepEqual(windowsCmdFallback.args, [
+      '/d',
+      '/s',
+      '/c',
+      'npm pack --dry-run --json',
+    ]);
+
+    const packed = runNpm(['pack', '--dry-run', '--json'], project);
+    assert.equal(packed.status, 0, childResultDetails(packed));
     const result = extractPackReport(packed.stdout);
     const files = (result[0]?.files || []).map((entry) => String(entry.path).replaceAll('\\', '/'));
 

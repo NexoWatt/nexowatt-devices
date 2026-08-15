@@ -1,5 +1,13 @@
 # Technische Versionshinweise
 
+## 0.5.156 – Windows-npm-Aufruf im Release-Isolationstest korrigiert
+
+- Der Fehler `actual: null, expected: 0` entstand im Test `workspaceIsolation.test.js`: Unter Windows kann `spawnSync("npm.cmd", ...)` enden, bevor npm gestartet wird; `status` ist dann `null`.
+- Der verschachtelte `npm pack --dry-run --json`-Test wird jetzt über `process.execPath` und die von npm bereitgestellte `npm_execpath`-JavaScript-CLI gestartet. Dadurch ist kein direkter `.cmd`-Start mehr nötig.
+- Falls `npm_execpath` außerhalb eines npm-Lifecycles nicht verfügbar ist, verwendet Windows einen expliziten `cmd.exe /d /s /c`-Fallback.
+- Eine simulierte Windows-Auflösung ist im freigegebenen Test enthalten, damit dieser Fehler künftig vor der Ausgabe erkannt wird.
+- Laufzeit, Ladepunkt-Freshness, alle 182 Templates, Register, Datenpunkte, Aliase und Steuerlogiken bleiben unverändert.
+
 ## 0.5.155 – Release-Prüfung von lokalen Altdateien entkoppelt
 
 - Die Freigabeprüfung bewertet jetzt ausschließlich releaseverwaltete Dateien. Harmlos verbliebene Dateien in einem bestehenden Windows-Arbeitsordner dürfen den Build nicht mehr blockieren.

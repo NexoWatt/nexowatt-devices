@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.155",
+    "version": "0.5.156",
     "news": {
+      "0.5.156": {
+        "en": "Fix the Windows-only release-test failure where the nested npm pack process returned status=null before npm started. The workspace-isolation test now invokes npm through the npm JavaScript CLI exposed by the lifecycle environment and falls back to cmd.exe only when necessary. The final package boundary and dirty-worktree checks remain active. No runtime, device template, datapoint, alias, freshness or control behavior is changed.",
+        "de": "Windows-spezifischen Release-Testfehler behoben, bei dem der verschachtelte npm-pack-Prozess bereits vor dem Start von npm mit status=null endete. Der Arbeitsordner-Isolationstest ruft npm jetzt über die vom Lifecycle bereitgestellte JavaScript-CLI auf und verwendet cmd.exe nur als sicheren Fallback. Paketgrenze und Altdatei-Prüfung bleiben aktiv. Laufzeit, Gerätetemplates, Datenpunkte, Aliase, Freshness- und Steuerlogik bleiben unverändert."
+      },
       "0.5.155": {
         "en": "Release validation is now independent of harmless files left in an existing Windows worktree. Extra root Markdown files and unlisted test files are reported as notices, but are neither executed nor published: npm test runs only test/test-manifest.json and the npm files whitelist excludes test/ and unapproved root files. Missing or modified managed files, invalid JSON, merge conflicts, syntax errors, template regressions and failing approved tests still block release. No runtime, device template, datapoint, alias or control behavior is changed.",
         "de": "Die Release-Prüfung ist jetzt unabhängig von harmlosen Altdateien in einem bestehenden Windows-Arbeitsordner. Zusätzliche Markdown-Dateien im Projektstamm und nicht gelistete Testdateien werden nur noch als Hinweis gemeldet, aber weder ausgeführt noch veröffentlicht: npm test nutzt ausschließlich test/test-manifest.json und die npm-files-Whitelist schließt test/ sowie nicht freigegebene Stammdateien aus. Fehlende oder veränderte verwaltete Dateien, ungültiges JSON, Merge-Konflikte, Syntaxfehler, Template-Regressionen und fehlgeschlagene freigegebene Tests blockieren weiterhin. Laufzeit, Gerätetemplates, Datenpunkte, Aliase und Steuerlogiken bleiben unverändert."

@@ -8,6 +8,7 @@ Alle technischen Markdown-Dateien des Adapters liegen bewusst in diesem Ordner. 
 - [Bestandsanlagen-Kompatibilität 0.5.146](LEGACY_COMPATIBILITY_0.5.146.md)
 - [Release-Sicherheit](RELEASE_SAFETY.md)
 - [Release-Arbeitsordner-Isolation 0.5.155](RELEASE_WORKSPACE_ISOLATION_0.5.155.md)
+- [Windows-npm-Runner im Release-Test 0.5.156](RELEASE_WINDOWS_NPM_RUNNER_0.5.156.md)
 - [Technische Versionshinweise](CHANGELOG.md)
 - [Drittanbieterhinweise](THIRD_PARTY_NOTICES.md)
 
