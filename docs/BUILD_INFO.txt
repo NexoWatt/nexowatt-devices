@@ -1,40 +1,22 @@
-NexoWatt Devices 0.5.153 - TESVOLT IoT Gateway MQTT V2 hardening
+NexoWatt Devices 0.5.154 - EV charger live-status freshness hardening
 
 Base:
-- release 0.5.152
-- all 181 established production templates and legacy aliases remain locked to the compatibility baseline
-- the additive TESVOLT IoT Gateway template remains separate from the existing TESVOLT Modbus/Vermarkter template
+- release 0.5.153
+- all 182 templates, existing raw datapoints and legacy aliases remain unchanged
+- TESVOLT MQTT V2, FENECON ctrlBalancing0, Alfen, ABL and all prior fixes remain intact
 
-TESVOLT connection:
-- mqtts:// / TLS support on port 1884
-- username/password authentication
-- certificate verification enabled by default
-- optional private CA file and TLS server name / SNI
-- exact certificate chain and gateway provisioning still need to be confirmed during commissioning
+Root cause:
+- the generic runtime state cache correctly suppressed unchanged values
+- idle chargers therefore kept old ioBroker timestamps for 0 W / false / unchanged status values
+- NexoWatt UI measurement freshness could interpret those old timestamps as stale although heartbeat communication remained healthy
 
-TESVOLT read integration:
-- EMS/APIVersion and EMS/V2 retained metadata
-- inverter parameters, limits, measurements, energy, state and display-only errors
-- battery parameters, energy, electrical data, system state and display-only errors
-- multiple JSON fields per MQTT topic
-- ISO-8601 ts_create ordering guard
-- configurable telemetry freshness; stale/offline AC and DC power reset to 0 W
-
-TESVOLT control integration:
-- full EMS/V2/Inverter/Control JSON payload, QoS 0, retain false
-- Power plus Reactive_Power sent on every cycle; State=grid_connected included when supported
-- default cyclic refresh every 5 seconds (gateway offline timeout reported as 30 seconds, configurable on gateway)
-- NexoWatt sign +discharge/-charge converted to TESVOLT -discharge/+charge
-- API V2, supported_control, fresh inverter/battery state and AC-limit safety gates
-- dynamic clamp to P_Max_Charge / P_Max_Discharge
-- local 20-second command-source watchdog sends 0 W when EOS stops updating
-- startup/reconnect requires a fresh EOS command and never restores a cached non-zero setpoint
-- controlled shutdown sends a best-effort final 0 W command
-- no separate protocol acknowledgement; tracking is derived from Inverter/Measurements.Power
-
-Intentionally disabled:
-- EMS/V2/Battery/Control / DC_Connection_Request
-- false actively requests contactor opening; the reported current Bifi/Ampace implementation cannot yet execute it reliably
+Implementation:
+- generic handling for Alias Contract deviceClass evCharger (all EVCS/EVSE templates)
+- safety-relevant legacy and aliases.v1 readbacks are periodically re-published after real successful snapshots
+- default bounded refresh cadence: 5 seconds, minimum 1 second, maximum 10 seconds
+- online timestamp also refreshes only on real incoming data
+- static metadata, energy counters and command aliases remain change-only
+- empty/disconnected/error snapshots never fabricate freshness
 
 Packaging:
 - normal source ZIP only

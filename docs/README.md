@@ -12,6 +12,7 @@ Alle technischen Markdown-Dateien des Adapters liegen bewusst in diesem Ordner. 
 
 ## Wallboxen und Ladepunkte
 
+- [Ladepunkte – regelmäßige Live-Status-/Messwertfrische](EV_CHARGER_LIVE_FRESHNESS_0.5.154.md)
 - [ABL eMH1 – Live-Strom- und Leistungs-Failsafe](ABL_LIVE_POWER_FAILSAFE_0.5.148.md)
 - [ABL eMH1 – PWM-Stromsteuerung](ABL_PWM_CURRENT_CONTROL_0.5.143.md)
 - [ABL eMH1 – exakte Modbus-ASCII-Lesegruppen](ABL_READ_GROUP_FIX_0.5.142.md)

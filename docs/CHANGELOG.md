@@ -1,5 +1,14 @@
 # Technische Versionshinweise
 
+## 0.5.154 – Ladepunkt-Messwerte bleiben auch im Leerlauf frisch
+
+- Ursache der `Messwert-Failsafe · safe-zero`-Meldung war kein MENNEKES-Registerfehler: Der generische State-Cache unterdrückte identische `setState()`-Aufrufe. Bei einem gesunden, aber inaktiven Ladepunkt blieben `0 W`, `false` und unveränderte Statuswerte daher mit einem alten ioBroker-Zeitstempel stehen.
+- Nach jedem tatsächlich erfolgreichen Ladepunkt-Snapshot werden sicherheitsrelevante Rückmeldungen jetzt in begrenztem Takt erneut bestätigt. Standard sind 5 Sekunden; bei abweichendem Polling gilt weiterhin der reale Empfangstakt des Geräts.
+- Erfasst werden Legacy- und Alias-Contract-v1-Pfade für Verbindung/Offline, Status, Verfügbarkeit, Fahrzeug verbunden, Laden, Leistung, Phasenströme und Iststrom.
+- Statische Metadaten, Firmwarewerte, Energiezähler und Sollwert-/Befehlsaliase bleiben änderungsbasiert, damit ioBroker und Historien nicht unnötig belastet werden.
+- Die Frische wird ausschließlich bei echten erfolgreichen Geräteantworten erneuert. Bei Timeout, Offlinezustand oder leerem Snapshot wird kein aktueller Messzeitpunkt vorgetäuscht; Heartbeat, `lastSeenMs` und `online` bleiben an reale Kommunikation gekoppelt.
+- Die Korrektur gilt zentral für alle Templates der Geräteklasse `evCharger` (`EVCS`/`EVSE`), einschließlich MENNEKES, ABL, Alfen, KEBA, Weidmüller, go-e, Webasto, Heidelberg, Spelsberg und Alpitronic. Register, Rohdatenpunkte, bestehende Alias-Pfade und sämtliche Schreiblogiken bleiben unverändert.
+
 ## 0.5.153 – TESVOLT MQTT-V2 zyklisch, TLS-fähig und failsafe
 
 - TESVOLT hat bestätigt, dass Leistungssollwerte zyklisch erwartet werden und das externe EMS nach standardmäßig 30 Sekunden ohne Sollwert als offline gilt. Das IoT-Gateway beziehungsweise der Wechselrichter fällt dann abhängig vom Adapter auf `0 W` und/oder Standby zurück.
