@@ -126,7 +126,7 @@ test('Alias Contract v1 files are synchronized and every template declares an ex
   assert.equal(contract.namespace, 'v1');
   assert.equal(contract.standardPath, 'aliases.v1');
   assert.equal(contract.legacyAliasesPreserved, true);
-  assert.equal(templatesDoc.templates.length, 182);
+  assert.equal(templatesDoc.templates.length, 184);
 
   for (const template of templatesDoc.templates) {
     const expectedClass = contract.categoryToDeviceClass[String(template.category || '').toUpperCase()] || 'generic';
@@ -139,7 +139,7 @@ test('Alias Contract v1 files are synchronized and every template declares an ex
   }
 });
 
-test('all 182 templates satisfy the canonical path, type, role and unit contract', () => {
+test('all 184 templates satisfy the canonical path, type, role and unit contract', () => {
   let standardAliasCount = 0;
   const classCounts = new Map();
 
@@ -168,11 +168,11 @@ test('all 182 templates satisfy the canonical path, type, role and unit contract
     }
   }
 
-  assert.equal(standardAliasCount, 2250);
+  assert.equal(standardAliasCount, 2306);
   assert.deepEqual(Object.fromEntries([...classCounts.entries()].sort()), {
     battery: 12,
     batteryInverter: 3,
-    evCharger: 29,
+    evCharger: 31,
     generic: 4,
     heat: 6,
     io: 14,

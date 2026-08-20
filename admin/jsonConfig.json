@@ -1555,8 +1555,9 @@
             {
               "type": "text",
               "attr": "connection.url",
-              "label": "Broker URL (mqtt:// or mqtts://...)",
+              "label": "Broker URL (mqtt://, mqtts://, ws:// or wss://)",
               "hidden": "data.protocol !== 'mqtt'",
+              "helperText": "TESVOLT IoT Gateway: normally mqtts://<gateway>:1884. Username/password authenticate; mqtts/wss provide transport encryption.",
               "sm": 12,
               "newLine": true
             },
@@ -1580,8 +1581,9 @@
             {
               "type": "text",
               "attr": "connection.clientId",
-              "label": "Client-ID (optional)",
+              "label": "Fixed MQTT Client-ID",
               "hidden": "data.protocol !== 'mqtt'",
+              "helperText": "Use a stable value. TESVOLT gateway ACLs may explicitly whitelist this Client-ID.",
               "sm": 12,
               "newLine": true
             },
@@ -1618,6 +1620,49 @@
               "helperText": "Use when the certificate name differs from the gateway IP address.",
               "sm": 12,
               "newLine": true
+            },
+            {
+              "type": "number",
+              "attr": "connection.connectTimeoutMs",
+              "label": "MQTT CONNACK/connect timeout (ms)",
+              "hidden": "data.protocol !== 'mqtt'",
+              "default": 10000,
+              "min": 1000,
+              "max": 120000,
+              "sm": 6,
+              "md": 3,
+              "newLine": true
+            },
+            {
+              "type": "number",
+              "attr": "connection.reconnectPeriodMs",
+              "label": "MQTT reconnect interval (ms)",
+              "hidden": "data.protocol !== 'mqtt'",
+              "default": 5000,
+              "min": 0,
+              "max": 120000,
+              "sm": 6,
+              "md": 3
+            },
+            {
+              "type": "number",
+              "attr": "connection.keepaliveSeconds",
+              "label": "MQTT keepalive (s)",
+              "hidden": "data.protocol !== 'mqtt'",
+              "default": 30,
+              "min": 5,
+              "max": 3600,
+              "sm": 6,
+              "md": 3
+            },
+            {
+              "type": "checkbox",
+              "attr": "connection.cleanSession",
+              "label": "MQTT clean session",
+              "hidden": "data.protocol !== 'mqtt'",
+              "default": true,
+              "sm": 6,
+              "md": 3
             },
             {
               "type": "divider",

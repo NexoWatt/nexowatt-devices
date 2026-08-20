@@ -432,9 +432,29 @@
       <div id="conn_mqtt" class="nexo-conn-block" style="display:none;">
         <h6 class="translate">MQTT Verbindung</h6>
         <div class="row">
+          <div class="col s12 m3 nexo-select-group">
+            <label for="mqtt_transport" class="translate">MQTT Transport</label>
+            <select id="mqtt_transport" class="browser-default">
+              <option value="mqtts">TLS-verschlüsselt (mqtts://)</option>
+              <option value="mqtt">Ohne TLS (mqtt://)</option>
+              <option value="wss">WebSocket TLS (wss://)</option>
+              <option value="ws">WebSocket ohne TLS (ws://)</option>
+            </select>
+          </div>
           <div class="input-field col s12 m6">
             <input id="mqtt_url" type="text" />
-            <label for="mqtt_url" class="translate">Broker URL (mqtt://host:1883)</label>
+            <label for="mqtt_url" class="translate">Broker URL oder Host/IP</label>
+          </div>
+          <div class="input-field col s12 m3">
+            <input id="mqtt_port" type="number" min="1" max="65535" />
+            <label for="mqtt_port" class="translate">MQTT Port</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12 m6">
+            <input id="mqtt_clientId" type="text" autocomplete="off" />
+            <label for="mqtt_clientId" class="translate">Feste MQTT Client-ID</label>
           </div>
           <div class="input-field col s12 m3">
             <input id="mqtt_user" type="text" />
@@ -443,6 +463,79 @@
           <div class="input-field col s12 m3">
             <input id="mqtt_pass" type="password" />
             <label for="mqtt_pass" class="translate">Password</label>
+          </div>
+        </div>
+
+        <div id="mqtt_tls_fields">
+          <div class="row">
+            <div class="input-field col s12 m4" style="margin-top: 12px;">
+              <label>
+                <input type="checkbox" id="mqtt_verifyTls" />
+                <span class="translate">TLS-Zertifikat prüfen</span>
+              </label>
+            </div>
+            <div class="input-field col s12 m4">
+              <input id="mqtt_servername" type="text" />
+              <label for="mqtt_servername" class="translate">TLS Servername / SNI (optional)</label>
+            </div>
+            <div class="input-field col s12 m4">
+              <input id="mqtt_caFile" type="text" />
+              <label for="mqtt_caFile" class="translate">TLS CA-Datei auf dem Controller (optional)</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12 m3">
+            <input id="mqtt_connectTimeout" type="number" min="1000" max="120000" />
+            <label for="mqtt_connectTimeout" class="translate">CONNACK Timeout (ms)</label>
+          </div>
+          <div class="input-field col s12 m3">
+            <input id="mqtt_reconnectPeriod" type="number" min="0" max="120000" />
+            <label for="mqtt_reconnectPeriod" class="translate">Reconnect Intervall (ms)</label>
+          </div>
+          <div class="input-field col s12 m3">
+            <input id="mqtt_keepalive" type="number" min="5" max="3600" />
+            <label for="mqtt_keepalive" class="translate">MQTT Keepalive (s)</label>
+          </div>
+          <div class="input-field col s12 m3" style="margin-top: 12px;">
+            <label>
+              <input type="checkbox" id="mqtt_cleanSession" />
+              <span class="translate">Clean Session</span>
+            </label>
+          </div>
+        </div>
+
+        <div id="mqtt_tesvolt_settings" style="display:none;">
+          <h6 class="translate">TESVOLT IoT Gateway Regelung</h6>
+          <div class="row">
+            <div class="input-field col s12 m3">
+              <input id="mqtt_tesvoltSetpointInterval" type="number" min="1000" max="20000" />
+              <label for="mqtt_tesvoltSetpointInterval" class="translate">Sollwert-Wiederholung (ms)</label>
+            </div>
+            <div class="input-field col s12 m3">
+              <input id="mqtt_tesvoltCommandTimeout" type="number" min="5000" max="120000" />
+              <label for="mqtt_tesvoltCommandTimeout" class="translate">EOS-Sollwert Timeout (ms)</label>
+            </div>
+            <div class="input-field col s12 m3">
+              <input id="mqtt_tesvoltTelemetryStale" type="number" min="1000" max="120000" />
+              <label for="mqtt_tesvoltTelemetryStale" class="translate">Telemetrie veraltet nach (ms)</label>
+            </div>
+            <div class="input-field col s12 m3">
+              <input id="mqtt_tesvoltTrackingDelay" type="number" min="500" max="30000" />
+              <label for="mqtt_tesvoltTrackingDelay" class="translate">Sollwert-Tracking Verzögerung (ms)</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12 nexo-muted" style="margin-top: 2px; font-size: 0.9em;">
+              <span class="translate">TESVOLT Hinweis</span>: <span class="translate">Port 1884 und eine feste, im Gateway freigegebene Client-ID verwenden. Die MQTT-ACL des Gateways kann auf Wendeware vorkonfiguriert sein.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12 nexo-muted" style="margin-top: 2px; font-size: 0.9em;">
+            <span class="translate">Hinweis</span>: <span class="translate">Benutzername und Passwort authentifizieren den Client; nur mqtts:// oder wss:// verschlüsseln den Transport.</span>
           </div>
         </div>
       </div>

@@ -1,6 +1,8 @@
 {
   "schemaVersion": 1,
   "templates": [
-    "ess.tesvolt.iotGateway.mqttV2"
+    "ess.tesvolt.iotGateway.mqttV2",
+    "evcs.oem.modbusV1003.connector1",
+    "evcs.oem.modbusV1003.connector2"
   ]
 }

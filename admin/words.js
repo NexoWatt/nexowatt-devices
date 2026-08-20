@@ -54,3 +54,30 @@ systemDictionary['http_insecureTls'] = {
   'en': 'Allow insecure TLS (self-signed certificates)',
   'de': 'Unsicheres TLS erlauben (self-signed Zertifikate)',
 };
+
+systemDictionary['MQTT Verbindung'] = { 'en': 'MQTT connection', 'de': 'MQTT Verbindung' };
+systemDictionary['MQTT Transport'] = { 'en': 'MQTT transport', 'de': 'MQTT Transport' };
+systemDictionary['Broker URL oder Host/IP'] = { 'en': 'Broker URL or host/IP', 'de': 'Broker URL oder Host/IP' };
+systemDictionary['MQTT Port'] = { 'en': 'MQTT port', 'de': 'MQTT Port' };
+systemDictionary['Feste MQTT Client-ID'] = { 'en': 'Fixed MQTT Client ID', 'de': 'Feste MQTT Client-ID' };
+systemDictionary['TLS-Zertifikat prüfen'] = { 'en': 'Verify TLS certificate', 'de': 'TLS-Zertifikat prüfen' };
+systemDictionary['TLS Servername / SNI (optional)'] = { 'en': 'TLS server name / SNI (optional)', 'de': 'TLS Servername / SNI (optional)' };
+systemDictionary['TLS CA-Datei auf dem Controller (optional)'] = { 'en': 'TLS CA file on the controller (optional)', 'de': 'TLS CA-Datei auf dem Controller (optional)' };
+systemDictionary['CONNACK Timeout (ms)'] = { 'en': 'CONNACK timeout (ms)', 'de': 'CONNACK Timeout (ms)' };
+systemDictionary['Reconnect Intervall (ms)'] = { 'en': 'Reconnect interval (ms)', 'de': 'Reconnect Intervall (ms)' };
+systemDictionary['MQTT Keepalive (s)'] = { 'en': 'MQTT keepalive (s)', 'de': 'MQTT Keepalive (s)' };
+systemDictionary['Clean Session'] = { 'en': 'Clean session', 'de': 'Clean Session' };
+systemDictionary['TESVOLT IoT Gateway Regelung'] = { 'en': 'TESVOLT IoT Gateway control', 'de': 'TESVOLT IoT Gateway Regelung' };
+systemDictionary['Sollwert-Wiederholung (ms)'] = { 'en': 'Setpoint refresh (ms)', 'de': 'Sollwert-Wiederholung (ms)' };
+systemDictionary['EOS-Sollwert Timeout (ms)'] = { 'en': 'EOS setpoint timeout (ms)', 'de': 'EOS-Sollwert Timeout (ms)' };
+systemDictionary['Telemetrie veraltet nach (ms)'] = { 'en': 'Telemetry stale after (ms)', 'de': 'Telemetrie veraltet nach (ms)' };
+systemDictionary['Sollwert-Tracking Verzögerung (ms)'] = { 'en': 'Setpoint tracking delay (ms)', 'de': 'Sollwert-Tracking Verzögerung (ms)' };
+systemDictionary['TESVOLT Hinweis'] = { 'en': 'TESVOLT note', 'de': 'TESVOLT Hinweis' };
+systemDictionary['Port 1884 und eine feste, im Gateway freigegebene Client-ID verwenden. Die MQTT-ACL des Gateways kann auf Wendeware vorkonfiguriert sein.'] = {
+  'en': 'Use port 1884 and a fixed Client ID that is allowed by the gateway. The gateway MQTT ACL may be preconfigured for Wendeware.',
+  'de': 'Port 1884 und eine feste, im Gateway freigegebene Client-ID verwenden. Die MQTT-ACL des Gateways kann auf Wendeware vorkonfiguriert sein.',
+};
+systemDictionary['Benutzername und Passwort authentifizieren den Client; nur mqtts:// oder wss:// verschlüsseln den Transport.'] = {
+  'en': 'Username and password authenticate the client; only mqtts:// or wss:// encrypt the transport.',
+  'de': 'Benutzername und Passwort authentifizieren den Client; nur mqtts:// oder wss:// verschlüsseln den Transport.',
+};

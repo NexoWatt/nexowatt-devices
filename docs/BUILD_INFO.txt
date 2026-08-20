@@ -1,1 +1,1 @@
-NexoWatt Devices 0.5.156 - Windows npm lifecycle runner hardening
+NexoWatt Devices 0.5.158 - TESVOLT MQTT Client-ID, TLS setup and CONNACK diagnostics

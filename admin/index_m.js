@@ -17,6 +17,7 @@ let onChangeGlobal = null;
 let uiInitialized = false;
 let lastSuggestedId = '';
 let lastSuggestedName = '';
+let lastSuggestedMqttClientId = '';
 
 // Serial port discovery (Admin UI)
 let serialPortsCache = [];
@@ -259,6 +260,220 @@ function applyTemplateModbusTcpDefaultsToForm(tpl, protocol, conn) {
   if (hints.byteOrderDefault !== undefined && shouldSet(c.byteOrder)) $('#mb_byteOrder').val(hints.byteOrderDefault);
   refreshSelect($('#mb_wordOrder'));
   refreshSelect($('#mb_byteOrder'));
+}
+
+function normalizeMqttTransport(value, fallback) {
+  const normalized = String(value || '').trim().toLowerCase().replace(/:$/, '');
+  if (['mqtt', 'mqtts', 'ws', 'wss'].includes(normalized)) return normalized;
+  return fallback || 'mqtt';
+}
+
+function defaultMqttPort(transport) {
+  const normalized = normalizeMqttTransport(transport, 'mqtt');
+  if (normalized === 'mqtts') return 8883;
+  if (normalized === 'wss') return 443;
+  if (normalized === 'ws') return 80;
+  return 1883;
+}
+
+function getTemplateMqttDefaults(tpl) {
+  const hints = tpl && tpl.driverHints && tpl.driverHints.mqtt ? tpl.driverHints.mqtt : {};
+  const defaultUrl = String(hints.defaultUrl || '').trim();
+  const schemeMatch = defaultUrl.match(/^([A-Za-z][A-Za-z0-9+.-]*):\/\//);
+  const portMatch = defaultUrl.match(/:(\d+)(?:\/|$)/);
+  const transport = normalizeMqttTransport(
+    hints.defaultTransport || (schemeMatch ? schemeMatch[1] : ''),
+    tpl && tpl.id === 'ess.tesvolt.iotGateway.mqttV2' ? 'mqtts' : 'mqtt',
+  );
+  const port = Number(hints.defaultPort || (portMatch ? portMatch[1] : 0)) ||
+    (tpl && tpl.id === 'ess.tesvolt.iotGateway.mqttV2' ? 1884 : defaultMqttPort(transport));
+  return {
+    transport,
+    port,
+    clientId: String(hints.defaultClientId || '').trim(),
+    connectTimeoutMs: Number(hints.connectTimeoutMs) || 10000,
+    reconnectPeriodMs: Number(hints.reconnectPeriodMs) || 5000,
+    keepaliveSeconds: Number(hints.keepaliveSeconds) || 30,
+    cleanSession: hints.cleanSession !== false,
+    tesvoltSetpointIntervalMs: 5000,
+    tesvoltCommandSourceTimeoutMs: 20000,
+    tesvoltTelemetryStaleMs: 5000,
+    tesvoltTrackingDelayMs: 3000,
+  };
+}
+
+function mqttClientIdFromTemplate(value, deviceId) {
+  const id = String(deviceId || 'device').trim().replace(/[^A-Za-z0-9_-]+/g, '-') || 'device';
+  const instance = '0';
+  const template = String(value || '').trim();
+  if (!template) return `nexowatt-${instance}-${id}`;
+  return template
+    .replace(/\{\{?deviceId\}?\}/g, id)
+    .replace(/\{\{?instance\}?\}/g, instance)
+    .replace(/\{\{?namespace\}?\}/g, 'nexowatt-devices-0');
+}
+
+function parseMqttUrlForForm(raw, fallbackTransport, fallbackPort) {
+  const original = String(raw || '').trim();
+  const fallbackScheme = normalizeMqttTransport(fallbackTransport, 'mqtt');
+  const fallback = Number(fallbackPort) || defaultMqttPort(fallbackScheme);
+  if (!original) return { url: '', transport: fallbackScheme, port: fallback };
+
+  const candidate = /^[A-Za-z][A-Za-z0-9+.-]*:\/\//.test(original)
+    ? original
+    : `${fallbackScheme}://${original}`;
+  try {
+    const parsed = new URL(candidate);
+    const transport = normalizeMqttTransport(parsed.protocol, fallbackScheme);
+    const port = Number(parsed.port) || (transport === fallbackScheme ? fallback : defaultMqttPort(transport));
+    // Never retain credentials inside the URL; the dialog has dedicated fields.
+    parsed.username = '';
+    parsed.password = '';
+    return {
+      url: parsed.toString().replace(/\/$/, parsed.pathname && parsed.pathname !== '/' ? '/' : ''),
+      transport,
+      port,
+    };
+  } catch (_) {
+    return { url: original, transport: fallbackScheme, port: fallback };
+  }
+}
+
+function buildMqttUrlFromForm(raw, transport, port) {
+  const text = String(raw || '').trim();
+  if (!text) return '';
+  const scheme = normalizeMqttTransport(transport, 'mqtt');
+  const selectedPort = Number(port) || defaultMqttPort(scheme);
+  const candidate = /^[A-Za-z][A-Za-z0-9+.-]*:\/\//.test(text) ? text : `${scheme}://${text}`;
+  try {
+    const parsed = new URL(candidate);
+    parsed.protocol = `${scheme}:`;
+    parsed.port = String(selectedPort);
+    parsed.username = '';
+    parsed.password = '';
+    return parsed.toString().replace(/\/$/, parsed.pathname && parsed.pathname !== '/' ? '/' : '');
+  } catch (_) {
+    // Keep a clear validation error for the user instead of silently saving a
+    // malformed URL that later only appears as a CONNACK timeout.
+    throw new Error('MQTT Broker-Adresse ist ungültig. Beispiel: 192.168.1.50 oder mqtts://192.168.1.50:1884');
+  }
+}
+
+function updateMqttFieldVisibility(tpl) {
+  const transport = normalizeMqttTransport($('#mqtt_transport').val(), 'mqtt');
+  const secure = transport === 'mqtts' || transport === 'wss';
+  $('#mqtt_tls_fields').toggle(secure);
+  $('#mqtt_tesvolt_settings').toggle(!!tpl && tpl.id === 'ess.tesvolt.iotGateway.mqttV2');
+}
+
+function applyTemplateMqttDefaultsToForm(tpl, protocol, conn) {
+  if ((protocol || '').toString() !== 'mqtt') return;
+  const c = conn || {};
+  const defaults = getTemplateMqttDefaults(tpl);
+  const parsed = parseMqttUrlForForm(c.url, defaults.transport, defaults.port);
+  const shouldSet = (value) => value === undefined || value === null || value === '';
+
+  $('#mqtt_transport').val(parsed.transport || defaults.transport);
+  $('#mqtt_port').val(parsed.port || defaults.port);
+  if (c.url) $('#mqtt_url').val(parsed.url || c.url);
+  else if (!($('#mqtt_url').val() || '').trim()) $('#mqtt_url').val('');
+
+  const currentDeviceId = ($('#dev_id').val() || '').trim();
+  const clientIdDefault = mqttClientIdFromTemplate(defaults.clientId, currentDeviceId);
+  const currentClientId = ($('#mqtt_clientId').val() || '').trim();
+  if (shouldSet(c.clientId) && (!currentClientId || currentClientId === lastSuggestedMqttClientId)) {
+    $('#mqtt_clientId').val(clientIdDefault);
+    lastSuggestedMqttClientId = clientIdDefault;
+  } else if (currentClientId) {
+    lastSuggestedMqttClientId = currentClientId;
+  }
+
+  $('#mqtt_verifyTls').prop('checked', c.rejectUnauthorized !== false);
+  $('#mqtt_servername').val(c.servername || '');
+  $('#mqtt_caFile').val(c.caFile || '');
+  $('#mqtt_connectTimeout').val(shouldSet(c.connectTimeoutMs) ? defaults.connectTimeoutMs : c.connectTimeoutMs);
+  $('#mqtt_reconnectPeriod').val(shouldSet(c.reconnectPeriodMs) ? defaults.reconnectPeriodMs : c.reconnectPeriodMs);
+  $('#mqtt_keepalive').val(shouldSet(c.keepaliveSeconds) ? defaults.keepaliveSeconds : c.keepaliveSeconds);
+  $('#mqtt_cleanSession').prop('checked', c.cleanSession !== false && defaults.cleanSession !== false);
+
+  $('#mqtt_tesvoltSetpointInterval').val(
+    shouldSet(c.tesvoltSetpointIntervalMs) ? defaults.tesvoltSetpointIntervalMs : c.tesvoltSetpointIntervalMs,
+  );
+  $('#mqtt_tesvoltCommandTimeout').val(
+    shouldSet(c.tesvoltCommandSourceTimeoutMs) ? defaults.tesvoltCommandSourceTimeoutMs : c.tesvoltCommandSourceTimeoutMs,
+  );
+  $('#mqtt_tesvoltTelemetryStale').val(
+    shouldSet(c.tesvoltTelemetryStaleMs) ? defaults.tesvoltTelemetryStaleMs : c.tesvoltTelemetryStaleMs,
+  );
+  $('#mqtt_tesvoltTrackingDelay').val(
+    shouldSet(c.tesvoltTrackingDelayMs) ? defaults.tesvoltTrackingDelayMs : c.tesvoltTrackingDelayMs,
+  );
+
+  refreshSelect($('#mqtt_transport'));
+  updateMqttFieldVisibility(tpl);
+}
+
+function getCurrentMqttFormValues() {
+  return {
+    url: ($('#mqtt_url').val() || '').trim(),
+    clientId: ($('#mqtt_clientId').val() || '').trim(),
+    username: $('#mqtt_user').val(),
+    password: $('#mqtt_pass').val(),
+    rejectUnauthorized: $('#mqtt_verifyTls').is(':checked'),
+    caFile: ($('#mqtt_caFile').val() || '').trim(),
+    servername: ($('#mqtt_servername').val() || '').trim(),
+    connectTimeoutMs: $('#mqtt_connectTimeout').val(),
+    reconnectPeriodMs: $('#mqtt_reconnectPeriod').val(),
+    keepaliveSeconds: $('#mqtt_keepalive').val(),
+    cleanSession: $('#mqtt_cleanSession').is(':checked'),
+    tesvoltSetpointIntervalMs: $('#mqtt_tesvoltSetpointInterval').val(),
+    tesvoltCommandSourceTimeoutMs: $('#mqtt_tesvoltCommandTimeout').val(),
+    tesvoltTelemetryStaleMs: $('#mqtt_tesvoltTelemetryStale').val(),
+    tesvoltTrackingDelayMs: $('#mqtt_tesvoltTrackingDelay').val(),
+  };
+}
+
+function getCurrentConnectionFormValues(protocol) {
+  const proto = String(protocol || '');
+  if (proto === 'modbusTcp') return getCurrentTcpFormValues();
+  if (proto === 'mqtt') return getCurrentMqttFormValues();
+  if (proto === 'modbusRtu' || proto === 'modbusAscii' || proto === 'kostalRs485' || proto === 'mbus') {
+    return getCurrentSerialFormValues();
+  }
+  return {};
+}
+
+function currentMqttTemplate() {
+  return templatesById[$('#dev_template').val()] || null;
+}
+
+function syncMqttUrlFromControls() {
+  const raw = ($('#mqtt_url').val() || '').trim();
+  if (!raw) {
+    updateMqttFieldVisibility(currentMqttTemplate());
+    return;
+  }
+  try {
+    const transport = normalizeMqttTransport($('#mqtt_transport').val(), 'mqtt');
+    const port = parseInt($('#mqtt_port').val(), 10) || defaultMqttPort(transport);
+    $('#mqtt_url').val(buildMqttUrlFromForm(raw, transport, port));
+  } catch (_) {
+    // Keep the incomplete user input while typing. collectDeviceFromModal()
+    // performs the strict validation on Save.
+  }
+  updateMqttFieldVisibility(currentMqttTemplate());
+  updateTextFields();
+}
+
+function syncMqttControlsFromUrl() {
+  const tpl = currentMqttTemplate();
+  const defaults = getTemplateMqttDefaults(tpl);
+  const parsed = parseMqttUrlForForm($('#mqtt_url').val(), defaults.transport, defaults.port);
+  $('#mqtt_transport').val(parsed.transport);
+  $('#mqtt_port').val(parsed.port);
+  refreshSelect($('#mqtt_transport'));
+  updateMqttFieldVisibility(tpl);
+  updateTextFields();
 }
 
 function getCurrentTcpFormValues() {
@@ -897,8 +1112,23 @@ function openDeviceModal(device, idx) {
 
   // MQTT
   $('#mqtt_url').val(c.url || '');
+  $('#mqtt_transport').val('mqtt');
+  $('#mqtt_port').val('');
+  $('#mqtt_clientId').val(c.clientId || '');
   $('#mqtt_user').val(c.username || '');
   $('#mqtt_pass').val(c.password || '');
+  $('#mqtt_verifyTls').prop('checked', c.rejectUnauthorized !== false);
+  $('#mqtt_servername').val(c.servername || '');
+  $('#mqtt_caFile').val(c.caFile || '');
+  $('#mqtt_connectTimeout').val(c.connectTimeoutMs ?? '');
+  $('#mqtt_reconnectPeriod').val(c.reconnectPeriodMs ?? '');
+  $('#mqtt_keepalive').val(c.keepaliveSeconds ?? '');
+  $('#mqtt_cleanSession').prop('checked', c.cleanSession !== false);
+  $('#mqtt_tesvoltSetpointInterval').val(c.tesvoltSetpointIntervalMs ?? '');
+  $('#mqtt_tesvoltCommandTimeout').val(c.tesvoltCommandSourceTimeoutMs ?? '');
+  $('#mqtt_tesvoltTelemetryStale').val(c.tesvoltTelemetryStaleMs ?? '');
+  $('#mqtt_tesvoltTrackingDelay').val(c.tesvoltTrackingDelayMs ?? '');
+  applyTemplateMqttDefaultsToForm(tpl, proto, c);
 
   // CANbus
   $('#can_iface').val(c.interface || c.iface || c.canInterface || 'can0');
@@ -1040,9 +1270,37 @@ function collectDeviceFromModal() {
 
     d.connection.sendNke = $('#mbus_sendNke').is(':checked');
   } else if (d.protocol === 'mqtt') {
-    d.connection.url = ($('#mqtt_url').val() || '').trim();
-    d.connection.username = ($('#mqtt_user').val() || '').trim() || undefined;
-    d.connection.password = ($('#mqtt_pass').val() || '').trim() || undefined;
+    const transport = normalizeMqttTransport($('#mqtt_transport').val(), 'mqtt');
+    const port = parseInt($('#mqtt_port').val(), 10) || defaultMqttPort(transport);
+    d.connection.url = buildMqttUrlFromForm($('#mqtt_url').val(), transport, port);
+
+    const username = String($('#mqtt_user').val() ?? '');
+    const password = String($('#mqtt_pass').val() ?? '');
+    d.connection.username = username.length ? username : undefined;
+    d.connection.password = password.length ? password : undefined;
+    d.connection.clientId = ($('#mqtt_clientId').val() || '').trim() || undefined;
+    d.connection.rejectUnauthorized = $('#mqtt_verifyTls').is(':checked');
+    d.connection.servername = ($('#mqtt_servername').val() || '').trim() || undefined;
+    d.connection.caFile = ($('#mqtt_caFile').val() || '').trim() || undefined;
+
+    const connectTimeoutMs = parseInt($('#mqtt_connectTimeout').val(), 10);
+    if (Number.isFinite(connectTimeoutMs) && connectTimeoutMs > 0) d.connection.connectTimeoutMs = connectTimeoutMs;
+    const reconnectPeriodMs = parseInt($('#mqtt_reconnectPeriod').val(), 10);
+    if (Number.isFinite(reconnectPeriodMs) && reconnectPeriodMs >= 0) d.connection.reconnectPeriodMs = reconnectPeriodMs;
+    const keepaliveSeconds = parseInt($('#mqtt_keepalive').val(), 10);
+    if (Number.isFinite(keepaliveSeconds) && keepaliveSeconds > 0) d.connection.keepaliveSeconds = keepaliveSeconds;
+    d.connection.cleanSession = $('#mqtt_cleanSession').is(':checked');
+
+    if (d.templateId === 'ess.tesvolt.iotGateway.mqttV2') {
+      const setpointInterval = parseInt($('#mqtt_tesvoltSetpointInterval').val(), 10);
+      const commandTimeout = parseInt($('#mqtt_tesvoltCommandTimeout').val(), 10);
+      const telemetryStale = parseInt($('#mqtt_tesvoltTelemetryStale').val(), 10);
+      const trackingDelay = parseInt($('#mqtt_tesvoltTrackingDelay').val(), 10);
+      d.connection.tesvoltSetpointIntervalMs = Number.isFinite(setpointInterval) ? setpointInterval : 5000;
+      d.connection.tesvoltCommandSourceTimeoutMs = Number.isFinite(commandTimeout) ? commandTimeout : 20000;
+      d.connection.tesvoltTelemetryStaleMs = Number.isFinite(telemetryStale) ? telemetryStale : 5000;
+      d.connection.tesvoltTrackingDelayMs = Number.isFinite(trackingDelay) ? trackingDelay : 3000;
+    }
   } else if (d.protocol === 'canbus') {
     d.connection.interface = ($('#can_iface').val() || '').trim() || 'can0';
     d.connection.candumpArgs = ($('#can_candumpArgs').val() || '').trim() || undefined;
@@ -1116,6 +1374,18 @@ function collectDeviceFromModal() {
   if (d.protocol === 'kostalRs485' && !d.connection.path) throw new Error('RS485 Serial-Port fehlt');
   if (d.protocol === 'mbus' && !d.connection.path) throw new Error('M-Bus Serial-Port fehlt');
   if (d.protocol === 'mqtt' && !d.connection.url) throw new Error('MQTT Broker-URL fehlt');
+  if (d.protocol === 'mqtt' && !/^mqtts?:\/\//i.test(d.connection.url) && !/^wss?:\/\//i.test(d.connection.url)) {
+    throw new Error('MQTT Broker-URL muss mqtt://, mqtts://, ws:// oder wss:// verwenden');
+  }
+  if (d.protocol === 'mqtt' && d.connection.clientId && d.connection.clientId.length > 128) {
+    throw new Error('MQTT Client-ID ist zu lang (maximal 128 Zeichen)');
+  }
+  if (d.templateId === 'ess.tesvolt.iotGateway.mqttV2' && !d.connection.clientId) {
+    throw new Error('Für das TESVOLT IoT Gateway ist eine feste MQTT Client-ID erforderlich');
+  }
+  if (d.templateId === 'ess.tesvolt.iotGateway.mqttV2' && d.connection.tesvoltSetpointIntervalMs >= d.connection.tesvoltCommandSourceTimeoutMs) {
+    throw new Error('TESVOLT: Die Sollwert-Wiederholung muss kürzer als das EOS-Sollwert-Timeout sein');
+  }
   if (d.protocol === 'canbus' && !d.connection.interface) throw new Error('CAN Interface fehlt (z.B. can0)');
   if (d.protocol === 'onewire' && !d.connection.sensorId) throw new Error('1-Wire Sensor-ID fehlt');
   if (d.protocol === 'http' && !d.connection.baseUrl) throw new Error('HTTP Base-URL fehlt');
@@ -1138,6 +1408,26 @@ function updateJsonPreview() {
 function initEventHandlers() {
   // Serial port refresh (hotplug)
   $(document).on('click', '.btnRefreshSerialPorts', () => refreshSerialPorts(true));
+
+  // MQTT transport helpers. The full connection URL remains the persisted
+  // value for backward compatibility, while transport and port are explicit
+  // controls in the dialog so TESVOLT port 1884/TLS cannot be confused with
+  // the generic MQTT 1883 default.
+  $('#mqtt_transport').on('change', () => syncMqttUrlFromControls());
+  $('#mqtt_port').on('change', () => syncMqttUrlFromControls());
+  $('#mqtt_url').on('change blur', () => syncMqttControlsFromUrl());
+
+  $('#dev_id').on('input', () => {
+    if ($('#dev_protocol').val() !== 'mqtt') return;
+    const tpl = currentMqttTemplate();
+    const defaults = getTemplateMqttDefaults(tpl);
+    const current = ($('#mqtt_clientId').val() || '').trim();
+    if (current && current !== lastSuggestedMqttClientId) return;
+    const suggested = mqttClientIdFromTemplate(defaults.clientId, ($('#dev_id').val() || '').trim());
+    $('#mqtt_clientId').val(suggested);
+    lastSuggestedMqttClientId = suggested;
+    updateTextFields();
+  });
 
   // Remember previous selection (for cancel on manual entry)
   $(document).on('focus', '#mb_path, #mbus_path', function () {
@@ -1239,9 +1529,10 @@ function initEventHandlers() {
     const tpl = templatesById[tplId] || null;
     showConnBlock(proto);
     renderDatapoints(tplId);
-    const currentConn = (editIndex >= 0) ? (proto === 'modbusTcp' ? getCurrentTcpFormValues() : getCurrentSerialFormValues()) : {};
+    const currentConn = (editIndex >= 0) ? getCurrentConnectionFormValues(proto) : {};
     applyTemplateModbusTcpDefaultsToForm(tpl, proto, currentConn);
     applyTemplateModbusSerialDefaultsToForm(tpl, proto, currentConn);
+    applyTemplateMqttDefaultsToForm(tpl, proto, currentConn);
     if (proto === 'modbusRtu' || proto === 'modbusAscii' || proto === 'kostalRs485' || proto === 'mbus') {
       refreshSerialPorts(true);
       startSerialPortsAutoRefresh();
@@ -1278,9 +1569,10 @@ function initEventHandlers() {
     const tpl = templatesById[tplId] || null;
     showConnBlock(proto);
     renderDatapoints(tplId);
-    const currentConn = (editIndex >= 0) ? (proto === 'modbusTcp' ? getCurrentTcpFormValues() : getCurrentSerialFormValues()) : {};
+    const currentConn = (editIndex >= 0) ? getCurrentConnectionFormValues(proto) : {};
     applyTemplateModbusTcpDefaultsToForm(tpl, proto, currentConn);
     applyTemplateModbusSerialDefaultsToForm(tpl, proto, currentConn);
+    applyTemplateMqttDefaultsToForm(tpl, proto, currentConn);
     if (proto === 'modbusRtu' || proto === 'modbusAscii' || proto === 'kostalRs485' || proto === 'mbus') {
       refreshSerialPorts(true);
       startSerialPortsAutoRefresh();
@@ -1307,9 +1599,10 @@ function initEventHandlers() {
     const tpl = templatesById[tplId] || null;
     showConnBlock(proto);
     renderDatapoints(tplId);
-    const currentConn = (editIndex >= 0) ? (proto === 'modbusTcp' ? getCurrentTcpFormValues() : getCurrentSerialFormValues()) : {};
+    const currentConn = (editIndex >= 0) ? getCurrentConnectionFormValues(proto) : {};
     applyTemplateModbusTcpDefaultsToForm(tpl, proto, currentConn);
     applyTemplateModbusSerialDefaultsToForm(tpl, proto, currentConn);
+    applyTemplateMqttDefaultsToForm(tpl, proto, currentConn);
 
     if (editIndex < 0) {
       const curName = ($('#dev_name').val() || '').trim();
@@ -1326,9 +1619,10 @@ function initEventHandlers() {
     const proto = $('#dev_protocol').val();
     showConnBlock(proto);
     const tpl = templatesById[$('#dev_template').val()] || null;
-    const currentConn = (editIndex >= 0) ? (proto === 'modbusTcp' ? getCurrentTcpFormValues() : getCurrentSerialFormValues()) : {};
+    const currentConn = (editIndex >= 0) ? getCurrentConnectionFormValues(proto) : {};
     applyTemplateModbusTcpDefaultsToForm(tpl, proto, currentConn);
     applyTemplateModbusSerialDefaultsToForm(tpl, proto, currentConn);
+    applyTemplateMqttDefaultsToForm(tpl, proto, currentConn);
 
     if (proto === 'modbusRtu' || proto === 'modbusAscii' || proto === 'kostalRs485' || proto === 'mbus') {
       refreshSerialPorts(true);

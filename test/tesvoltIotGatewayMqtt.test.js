@@ -9,6 +9,8 @@ const Module = require('node:module');
 const root = path.resolve(__dirname, '..');
 const runtimeTemplatesRaw = fs.readFileSync(path.join(root, 'lib/templates.json'), 'utf8');
 const adminTemplatesRaw = fs.readFileSync(path.join(root, 'admin/templates.json'), 'utf8');
+const adminHtmlRaw = fs.readFileSync(path.join(root, 'admin/index_m.html'), 'utf8');
+const adminJsRaw = fs.readFileSync(path.join(root, 'admin/index_m.js'), 'utf8');
 const templates = JSON.parse(runtimeTemplatesRaw).templates;
 const helper = require('./helpers/compatibilityHarness.cjs');
 
@@ -161,6 +163,9 @@ test('TESVOLT IoT Gateway MQTT V2 template is additive, synchronized and exposes
   assert.equal(template.aliasContract.deviceClass, 'storageSystem');
   assert.equal(template.driverHints.heartbeatTimeoutMs, 5000);
   assert.equal(template.driverHints.mqtt.defaultUrl, 'mqtts://<TESVOLT-IOT-GATEWAY-IP>:1884');
+  assert.equal(template.driverHints.mqtt.defaultTransport, 'mqtts');
+  assert.equal(template.driverHints.mqtt.defaultPort, 1884);
+  assert.equal(template.driverHints.mqtt.defaultClientId, 'nexowatt-tesvolt-{deviceId}');
 
   const byId = new Map(template.datapoints.map((dp) => [dp.id, dp]));
   assert.equal(byId.get('aPI_VERSION').source.topic, 'EMS/APIVersion');
@@ -188,6 +193,39 @@ test('TESVOLT IoT Gateway MQTT V2 template is additive, synchronized and exposes
   assert.equal(byId.has('cOMMANDED_ACTIVE_POWER'), true);
   assert.equal(byId.has('sETPOINT_TRACKING_STATUS'), true);
   assert.equal(byId.has('sETPOINT_TRACKING_OK'), true);
+});
+
+test('custom Admin device dialog exposes fixed Client-ID, explicit transport/port, TLS and TESVOLT timing fields', () => {
+  for (const id of [
+    'mqtt_transport',
+    'mqtt_url',
+    'mqtt_port',
+    'mqtt_clientId',
+    'mqtt_verifyTls',
+    'mqtt_servername',
+    'mqtt_caFile',
+    'mqtt_connectTimeout',
+    'mqtt_reconnectPeriod',
+    'mqtt_keepalive',
+    'mqtt_cleanSession',
+    'mqtt_tesvoltSetpointInterval',
+    'mqtt_tesvoltCommandTimeout',
+    'mqtt_tesvoltTelemetryStale',
+    'mqtt_tesvoltTrackingDelay',
+  ]) {
+    assert.match(adminHtmlRaw, new RegExp(`id=["']${id}["']`), `missing Admin field ${id}`);
+  }
+  assert.match(adminJsRaw, /defaultMqttPort/);
+  assert.match(adminJsRaw, /buildMqttUrlFromForm/);
+  assert.match(adminJsRaw, /d\.connection\.clientId/);
+  assert.match(adminJsRaw, /d\.connection\.rejectUnauthorized/);
+  const mqttBranch = adminJsRaw.match(/\}\s*else if \(d\.protocol === 'mqtt'\) \{([\s\S]*?)\}\s*else if \(d\.protocol === 'canbus'\)/);
+  assert.ok(mqttBranch, 'MQTT collection branch not found');
+  assert.doesNotMatch(
+    mqttBranch[1],
+    /mqtt_pass[^\n]+\.trim\(\)/,
+    'MQTT passwords must not be trimmed because whitespace may be part of the credential',
+  );
 });
 
 
@@ -226,9 +264,96 @@ test('MQTT TLS configuration supports mqtts, certificate verification, custom CA
   assert.equal(captured.url, 'mqtts://tesvolt-gateway.local:1884');
   assert.equal(captured.options.username, 'ems-user');
   assert.equal(captured.options.password, 'secret');
+  assert.equal(captured.options.clientId, 'nexowatt-tesvolt-tesvolt1');
   assert.equal(captured.options.rejectUnauthorized, true);
   assert.equal(captured.options.servername, 'tesvolt-gateway.local');
   assert.equal(captured.options.ca.includes('\nTEST\n'), true);
+});
+
+test('MQTT connection diagnostics preserve the primary authorization rejection across close and heartbeat events', async () => {
+  const handlers = new Map();
+  let captured;
+  const DiagnosticDriver = loadMqttDriverWithMock({
+    connect(url, options) {
+      captured = { url, options };
+      return {
+        on(event, callback) { handlers.set(event, callback); },
+        end(force, endOptions, callback) { if (callback) callback(); },
+      };
+    },
+  });
+  const harness = createHarness();
+  const template = templateById('ess.tesvolt.iotGateway.mqttV2');
+  const driver = new DiagnosticDriver(
+    harness.adapter,
+    {
+      id: 'tesvolt1',
+      connection: {
+        url: 'mqtts://192.168.1.50:1884',
+        username: 'ems-user',
+        password: 'secret',
+        clientId: 'nexowatt-fieldtest-1',
+      },
+    },
+    template,
+    {},
+    (dp) => `devices.tesvolt1.${dp.id}`,
+    () => null,
+    () => {},
+    async (values, meta) => { harness.snapshots.push({ values, meta }); },
+    async (connected, error) => { harness.connectionEvents.push({ connected, error }); },
+  );
+
+  await driver.connect();
+  assert.equal(captured.options.clientId, 'nexowatt-fieldtest-1');
+  assert.ok(harness.logs.some((entry) => entry.level === 'info' && entry.message.includes('clientId="nexowatt-fieldtest-1"')));
+
+  const authError = Object.assign(new Error('Connection refused: Not authorized'), { returnCode: 5 });
+  handlers.get('error')(authError);
+  handlers.get('close')();
+  await driver.handleOffline('MQTT heartbeat timeout');
+
+  const primary = harness.connectionEvents.find((entry) => entry.error && entry.error.includes('authorization rejected'));
+  assert.ok(primary, 'primary CONNACK authorization error must be exposed');
+  assert.match(primary.error, /CONNACK\/reason=5/);
+  assert.match(primary.error, /clientId="nexowatt-fieldtest-1"/);
+  assert.match(primary.error, /broker=mqtts:\/\/192\.168\.1\.50:1884/);
+  assert.equal(
+    harness.connectionEvents.at(-1).error.includes('authorization rejected'),
+    true,
+    'generic close must not replace the primary authorization diagnosis',
+  );
+  assert.equal(
+    harness.snapshots.at(-1).meta.error.includes('authorization rejected'),
+    true,
+    'heartbeat/offline processing must retain the primary authorization diagnosis',
+  );
+  assert.ok(harness.logs.some((entry) => entry.level === 'warn' && entry.message.includes('broker is reachable')));
+});
+
+test('MQTT fallback Client-ID is deterministic instead of changing randomly on every adapter restart', async () => {
+  const captures = [];
+  const StableDriver = loadMqttDriverWithMock({
+    connect(url, options) {
+      captures.push({ url, options });
+      return { on() {}, end(force, endOptions, callback) { if (callback) callback(); } };
+    },
+  });
+  const harness = createHarness();
+  const genericTemplate = templateById('generic.mqtt');
+  for (let index = 0; index < 2; index += 1) {
+    const driver = new StableDriver(
+      { ...harness.adapter, namespace: 'nexowatt-devices.0', instance: 0 },
+      { id: 'mqtt1', connection: { url: 'mqtt://127.0.0.1:1883' } },
+      genericTemplate,
+      {},
+      (dp) => `devices.mqtt1.${dp.id}`,
+      () => null,
+    );
+    await driver.connect();
+  }
+  assert.equal(captures[0].options.clientId, 'nexowatt-0-mqtt1');
+  assert.equal(captures[1].options.clientId, captures[0].options.clientId);
 });
 
 test('MQTT driver processes every JSON datapoint sharing one topic instead of only the last one', async () => {

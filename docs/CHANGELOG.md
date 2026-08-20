@@ -1,5 +1,27 @@
 # Technische Versionshinweise
 
+## 0.5.158 – TESVOLT MQTT Client-ID, TLS-Einrichtung und CONNACK-Diagnose
+
+- Der tatsächliche Gerätedialog zeigt jetzt MQTT-Transport (`mqtts`, `mqtt`, `wss`, `ws`), Port, feste Client-ID, TLS-Zertifikatsprüfung, CA-Datei, SNI, CONNACK-Timeout, Reconnect, Keepalive und Clean Session.
+- TESVOLT wird mit `mqtts`, Port `1884` und der stabilen Client-ID `nexowatt-tesvolt-<Geräte-ID>` vorbelegt. Die vier TESVOLT-Regel-/Freshness-Zeitwerte sind nun ebenfalls im benutzerdefinierten Dialog sichtbar.
+- Ohne explizite Client-ID verwendet der Runtime-Treiber einen deterministischen Fallback statt des bisherigen Zufallssuffixes. Broker-ACLs können dadurch dauerhaft auf dieselbe NexoWatt-ID freigeschaltet werden.
+- Die MQTT-Fehlerdiagnose unterscheidet Autorisierungs-/Zugangsdatenfehler, TLS-/Zertifikatsfehler, CONNACK-Timeout und TCP-Ablehnung. Log und `info.lastError` enthalten Broker und wirksame Client-ID, aber niemals das Passwort.
+- Ein primärer CONNACK-/Autorisierungsfehler wird nicht mehr durch nachfolgende generische `connection closed`- oder `heartbeat timeout`-Meldungen überschrieben.
+- Passwörter werden beim Speichern nicht mehr getrimmt, weil Leerzeichen Bestandteil eines gültigen Credentials sein können.
+- TESVOLT-Topics, Leistungssteuerung, Watchdogs, Datenpunkte und bestehende Aliase bleiben unverändert.
+
+## 0.5.157 – OEM Modbus V10.03 AC-/DC-Ladepunkte
+
+- Zwei neue additive Templates für Connector 1 und Connector 2 des bereitgestellten Modbus/TCP-Protokolls V10.03.
+- Ein Template deckt abhängig von `GUN_TYPE` AC-Wallboxen (ein- oder dreiphasig) und DC-Ladestationen ab.
+- Eingelesen werden Stations-/Connectorstatus, Steckerzustand, Fehler, AC-/DC-Spannung und -Strom, Phasen-/Gesamtleistung, Gesamt-/Sitzungsenergie, Ladedauer sowie zulässige Strom-/Leistungsgrenzen.
+- Start/Stop wird sicher auf `Charge command` 1/2 abgebildet; die Leistungsbegrenzung schreibt atomar per FC16 auf das jeweilige 32-Bit-`SET_POWER`-Register.
+- `FALLBACK_CURRENT` ist nur der Sicherheitsstrom nach Kommunikationsausfall und wird nicht als dynamischer NexoWatt-Stromsollwert missbraucht; die reguläre AC-/DC-Regelung erfolgt über `aliases.v1.ctrl.powerLimitW`.
+- Phasenströme und Phasenspannungen werden für AC-Geräte zusätzlich auf die einheitlichen v1-Aliase gespiegelt; bei DC-Geräten liefert `r.currentA` den dokumentierten DC-Strom.
+- Für NexoWatt UI stehen die standardisierten Alias-Contract-v1-Pfade für Status, Verfügbarkeit, Fahrzeug, Laden, Leistung, Iststrom, Energie, Run und Leistungsgrenze bereit.
+- Die Register beginnen laut Quelldatei direkt bei `0x0000`, `0x0100` und `0x0200`; deshalb erzwingt das Template Address-Offset 0. Unit-ID und 32-Bit-Wortreihenfolge bleiben in der Gerätekonfiguration prüfbar, da sie in der Quelldatei nicht festgelegt sind.
+- Kein bestehendes Template, kein Rohdatenpunkt und kein Legacy-Alias wurde geändert.
+
 ## 0.5.156 – Windows-npm-Aufruf im Release-Isolationstest korrigiert
 
 - Der Fehler `actual: null, expected: 0` entstand im Test `workspaceIsolation.test.js`: Unter Windows kann `spawnSync("npm.cmd", ...)` enden, bevor npm gestartet wird; `status` ist dann `null`.

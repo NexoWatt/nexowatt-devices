@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "suiteVersion": "0.5.156",
+  "suiteVersion": "0.5.158",
   "tests": [
     "ablEmh1Aliases.test.js",
     "ablEmh1PwmWrite.test.js",
@@ -16,6 +16,7 @@
     "taCmi.test.js",
     "tesvoltIotGatewayMqtt.test.js",
     "weidmuellerWallbox.test.js",
+    "oemModbusV1003.test.js",
     "workspaceIsolation.test.js",
     "writeErrorHandling.test.js"
   ]
