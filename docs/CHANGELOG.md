@@ -1,5 +1,15 @@
 # Technische Versionshinweise
 
+## 0.5.159 – DEPower Charging-SOC und SOC-Alias
+
+- Die neue DEPower-Registerdatei wurde vollständig gegen die bisherige V10.03/V6-Datei verglichen. Einzige Registeränderung ist `Charging SOC`: Connector 1 auf `0x0124`, Connector 2 auf `0x0224`, jeweils FC3, `UINT16`, Schrittweite `1 %`.
+- Die beiden bestehenden Template-IDs bleiben aus Rückwärtskompatibilität unverändert. Hersteller, Anzeigename und Quelldokument werden nun korrekt als DEPower geführt.
+- Neuer Rohdatenpunkt `cHARGING_SOC` je Connector; er wird als optionaler, isolierter 2-s-Leseblock abgefragt, damit ältere Firmware ohne dieses Register die bisherigen Mess- und Steuerregister nicht beeinträchtigt.
+- Neue Legacy-/Standardaliase `aliases.r.soc` und `aliases.v1.r.soc` mit Einheit `%` sowie Capability `read.soc`.
+- Der SOC-Alias akzeptiert nur Werte von 0 bis 100 %. Modbus-Sentinel `0xFFFF` und andere unplausible Werte bleiben im Rohdatenpunkt diagnostizierbar, werden im Alias jedoch als `null` ausgegeben.
+- Unveränderte SOC-Werte werden nach erfolgreichen Ladepunkt-Polls regelmäßig frisch bestätigt, ohne bei Kommunikationsausfall eine künstliche Datenfrische vorzutäuschen.
+- Alle bisherigen Register, Start-/Stop-Befehle, Leistungsbegrenzungen, Datenpunkt-IDs und bestehenden Alias-Pfade bleiben unverändert.
+
 ## 0.5.158 – TESVOLT MQTT Client-ID, TLS-Einrichtung und CONNACK-Diagnose
 
 - Der tatsächliche Gerätedialog zeigt jetzt MQTT-Transport (`mqtts`, `mqtt`, `wss`, `ws`), Port, feste Client-ID, TLS-Zertifikatsprüfung, CA-Datei, SNI, CONNACK-Timeout, Reconnect, Keepalive und Clean Session.

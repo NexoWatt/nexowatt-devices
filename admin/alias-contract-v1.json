@@ -144,6 +144,12 @@
           "unit": "Wh",
           "capability": "read.energyTotal"
         },
+        "r.soc": {
+          "type": "number",
+          "role": "value.battery",
+          "unit": "%",
+          "capability": "read.soc"
+        },
         "r.currentA": {
           "type": "number",
           "role": "value.current",

@@ -14,6 +14,7 @@ Alle technischen Markdown-Dateien des Adapters liegen bewusst in diesem Ordner. 
 
 ## Wallboxen und Ladepunkte
 
+- [DEPower Modbus V10.03 – Charging SOC](DEPOWER_MODBUS_V10.03_SOC_0.5.159.md)
 - [OEM Modbus V10.03 – AC-Wallboxen und DC-Ladestationen](OEM_MODBUS_V10.03_AC_DC_CHARGE_POINT_0.5.157.md)
 - [Ladepunkte – regelmäßige Live-Status-/Messwertfrische](EV_CHARGER_LIVE_FRESHNESS_0.5.154.md)
 - [ABL eMH1 – Live-Strom- und Leistungs-Failsafe](ABL_LIVE_POWER_FAILSAFE_0.5.148.md)

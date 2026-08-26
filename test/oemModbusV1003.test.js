@@ -147,11 +147,12 @@ test('runtime/admin catalogs are identical and contain both V10.03 connector tem
   for (const id of connectorIds) {
     const t = template(id);
     assert.equal(t.category, 'EVCS');
-    assert.equal(t.manufacturer, 'OEM / Modbus V10.03');
+    assert.equal(t.manufacturer, 'DEPower');
     assert.deepEqual(t.protocols, ['modbusTcp']);
     assert.equal(t.aliasContract.deviceClass, 'evCharger');
-    assert.equal(t.source.document, 'ModBus&TCP-protocol_V10.03-V6.xlsx');
-    assert.match(t.source.manufacturerNote, /no manufacturer/i);
+    assert.equal(t.source.document, 'ModBus&TCP-protocol_V10.03-V6(1)(1).xlsx');
+    assert.match(t.source.manufacturerNote, /DEPower/i);
+    assert.match(t.source.manufacturerNote, /legacy template ID/i);
   }
 });
 
@@ -206,6 +207,42 @@ test('connector-specific maps use the exact 0x01xx and 0x02xx register blocks', 
     assertWrite(t, 'cHARGE_COMMAND', { fc: 16, address: base + 0x21, length: 1, dataType: 'uint16', allowedValues: [1, 2] });
     assertRead(t, 'eV_SET_CHARGE_POWER_LIMIT', { fc: 3, address: base + 0x22, length: 2, dataType: 'uint32' });
     assertWrite(t, 'eV_SET_CHARGE_POWER_LIMIT', { fc: 16, address: base + 0x22, length: 2, dataType: 'uint32' });
+    assertRead(t, 'cHARGING_SOC', { fc: 3, address: base + 0x24, length: 1, dataType: 'uint16', optional: true, nanToNull: true });
+    assert.equal(
+      readSource(dp(t, 'cHARGING_SOC')).readRequestGroup,
+      `depower-v1003-connector${base === 0x0100 ? 1 : 2}-charging-soc`,
+    );
+    assert.ok(t.driverHints.polling.fastDpIds.includes('cHARGING_SOC'));
+  }
+});
+
+test('optional Charging SOC is isolated from SET_POWER so older firmware cannot suppress existing readback', async () => {
+  for (const [id, base] of [[connectorIds[0], 0x0100], [connectorIds[1], 0x0200]]) {
+    const t = template(id);
+    const driver = createDriver(t);
+    const calls = [];
+    driver._mbReadHoldingRegisters = async (address, length, unitId) => {
+      calls.push({ address, length, unitId });
+      if (address === base + 0x22) return { data: [0x0000, 0x3039] }; // 12,345 W
+      if (address === base + 0x24) {
+        const error = new Error('Modbus exception 2: Illegal data address');
+        error.modbusCode = 2;
+        throw error;
+      }
+      throw new Error(`unexpected read ${address}/${length}`);
+    };
+
+    const result = await driver.readDatapoints([
+      dp(t, 'eV_SET_CHARGE_POWER_LIMIT'),
+      dp(t, 'cHARGING_SOC'),
+    ]);
+
+    assert.equal(result.eV_SET_CHARGE_POWER_LIMIT, 12345);
+    assert.equal(Object.prototype.hasOwnProperty.call(result, 'cHARGING_SOC'), false);
+    assert.deepEqual(calls.map(({ address, length }) => ({ address, length })), [
+      { address: base + 0x22, length: 2 },
+      { address: base + 0x24, length: 1 },
+    ]);
   }
 });
 
@@ -344,6 +381,28 @@ test('AC/DC status, current and safety aliases use the protocol state and gun ty
   assert.equal(fault.get({ ...base, eRROR_CODE: 42 }), true);
   assert.equal(fault.get({ ...base, eVSE_STATE: 5 }), true);
   assert.equal(fault.get({ ...base, sTATION_STATUS: 2 }), true);
+});
+
+test('DEPower charging SOC is exposed as a validated legacy and Alias Contract v1 datapoint', () => {
+  for (const id of connectorIds) {
+    const { runtime, byPath } = buildAliases(template(id));
+    const legacySoc = alias(byPath, 'r.soc');
+    const canonicalSoc = alias(byPath, 'v1.r.soc');
+
+    for (const soc of [legacySoc, canonicalSoc]) {
+      assert.equal(soc.type, 'number');
+      assert.equal(soc.role, 'value.battery');
+      assert.equal(soc.unit, '%');
+      assert.equal(soc.get({ cHARGING_SOC: 0 }), 0);
+      assert.equal(soc.get({ cHARGING_SOC: 73 }), 73);
+      assert.equal(soc.get({ cHARGING_SOC: 100 }), 100);
+      assert.equal(soc.get({ cHARGING_SOC: 101 }), null);
+      assert.equal(soc.get({ cHARGING_SOC: 65535 }), null);
+      assert.equal(soc.get({ cHARGING_SOC: null }), null);
+    }
+
+    assert.ok(runtime.aliasContractInfo.capabilities.includes('read.soc'));
+  }
 });
 
 test('energy aliases normalize the workbook 0.1 kWh counters to the v1 Wh contract', () => {

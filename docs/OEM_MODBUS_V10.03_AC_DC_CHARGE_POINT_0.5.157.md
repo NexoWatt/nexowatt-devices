@@ -1,5 +1,7 @@
 # OEM Modbus V10.03 AC/DC Charge Point
 
+> **Herstellerzuordnung:** Ab Version 0.5.159 ist das Protokoll als DEPower bestätigt. Die internen `evcs.oem...`-IDs bleiben ausschließlich aus Kompatibilitätsgründen bestehen. Siehe [DEPower Charging SOC 0.5.159](DEPOWER_MODBUS_V10.03_SOC_0.5.159.md).
+
 ## Quelle
 
 Implementiert aus `ModBus&TCP-protocol_V10.03-V6.xlsx`. Die Quelldatei nennt keinen Hersteller und keine konkrete Produktfamilie. Die Templates werden deshalb neutral unter **OEM / Modbus V10.03** geführt.

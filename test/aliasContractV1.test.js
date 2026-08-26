@@ -168,7 +168,7 @@ test('all 184 templates satisfy the canonical path, type, role and unit contract
     }
   }
 
-  assert.equal(standardAliasCount, 2306);
+  assert.equal(standardAliasCount, 2308);
   assert.deepEqual(Object.fromEntries([...classCounts.entries()].sort()), {
     battery: 12,
     batteryInverter: 3,

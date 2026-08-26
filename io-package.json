@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.158",
+    "version": "0.5.159",
     "news": {
       "0.5.158": {
         "en": "Improve TESVOLT IoT Gateway MQTT commissioning and diagnostics: the custom device dialog now exposes an explicit mqtt/mqtts transport choice, port, fixed Client-ID, TLS certificate verification, CA/SNI, connection timing and TESVOLT watchdog settings. TESVOLT defaults to mqtts and port 1884 with a stable NexoWatt Client-ID. MQTT runtime fallback IDs are deterministic instead of random. CONNACK authorization, credential, TLS, timeout and TCP errors now include the effective broker and Client-ID without exposing secrets, and the primary authorization error is preserved instead of being overwritten by generic close or heartbeat timeout messages. Existing device datapoints, aliases and power-control behavior remain unchanged.",

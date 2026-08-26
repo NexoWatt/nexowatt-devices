@@ -1,1 +1,1 @@
-NexoWatt Devices 0.5.158 - TESVOLT MQTT Client-ID, TLS setup and CONNACK diagnostics
+NexoWatt Devices 0.5.159 - DEPower Modbus V10.03 Charging SOC and EV SOC aliases

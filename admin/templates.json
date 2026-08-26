@@ -147904,15 +147904,15 @@
       "id": "evcs.oem.modbusV1003.connector1",
       "source": {
         "type": "builtin",
-        "document": "ModBus&TCP-protocol_V10.03-V6.xlsx",
-        "documentVersion": "V10.03 / file revision V6",
-        "implementedFrom": "Supplied Modbus/TCP register workbook for AC wallboxes and DC charging stations",
-        "manufacturerNote": "The supplied protocol workbook contains no manufacturer or product-family name."
+        "document": "ModBus&TCP-protocol_V10.03-V6(1)(1).xlsx",
+        "documentVersion": "V10.03 / file revision V6 with Charging SOC extension",
+        "implementedFrom": "DEPower Modbus/TCP register workbook for AC wallboxes and DC charging stations",
+        "manufacturerNote": "Manufacturer confirmed as DEPower. The legacy template ID is retained to protect existing configured devices."
       },
       "category": "EVCS",
-      "manufacturer": "OEM / Modbus V10.03",
-      "model": "AC/DC Charge Point - Connector 1",
-      "name": "OEM AC/DC Charge Point V10.03 - Connector 1 (Modbus TCP)",
+      "manufacturer": "DEPower",
+      "model": "AC/DC Charge Point V10.03 - Connector 1",
+      "name": "DEPower AC/DC Charge Point V10.03 - Connector 1 (Modbus TCP)",
       "protocols": [
         "modbusTcp"
       ],
@@ -148667,6 +148667,30 @@
             }
           },
           "unit": "W"
+        },
+        {
+          "id": "cHARGING_SOC",
+          "name": "EV connector charging SOC",
+          "role": "value.battery",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 292,
+              "length": 1,
+              "dataType": "uint16",
+              "optional": true,
+              "readRequestGroup": "depower-v1003-connector1-charging-soc",
+              "nanToNull": true
+            }
+          },
+          "unit": "%",
+          "decimals": 0,
+          "min": 0,
+          "max": 100,
+          "description": "Charging SOC reported by the vehicle/connector. Register step size is 1%."
         }
       ],
       "driverHints": {
@@ -148743,7 +148767,8 @@
             "cP_STATE",
             "pLUG_STATE",
             "cHARGE_COMMAND",
-            "eV_SET_CHARGE_POWER_LIMIT"
+            "eV_SET_CHARGE_POWER_LIMIT",
+            "cHARGING_SOC"
           ],
           "slowDpIds": [
             "sERIAL_NUMBER",
@@ -148770,15 +148795,15 @@
       "id": "evcs.oem.modbusV1003.connector2",
       "source": {
         "type": "builtin",
-        "document": "ModBus&TCP-protocol_V10.03-V6.xlsx",
-        "documentVersion": "V10.03 / file revision V6",
-        "implementedFrom": "Supplied Modbus/TCP register workbook for AC wallboxes and DC charging stations",
-        "manufacturerNote": "The supplied protocol workbook contains no manufacturer or product-family name."
+        "document": "ModBus&TCP-protocol_V10.03-V6(1)(1).xlsx",
+        "documentVersion": "V10.03 / file revision V6 with Charging SOC extension",
+        "implementedFrom": "DEPower Modbus/TCP register workbook for AC wallboxes and DC charging stations",
+        "manufacturerNote": "Manufacturer confirmed as DEPower. The legacy template ID is retained to protect existing configured devices."
       },
       "category": "EVCS",
-      "manufacturer": "OEM / Modbus V10.03",
-      "model": "AC/DC Charge Point - Connector 2",
-      "name": "OEM AC/DC Charge Point V10.03 - Connector 2 (Modbus TCP)",
+      "manufacturer": "DEPower",
+      "model": "AC/DC Charge Point V10.03 - Connector 2",
+      "name": "DEPower AC/DC Charge Point V10.03 - Connector 2 (Modbus TCP)",
       "protocols": [
         "modbusTcp"
       ],
@@ -149533,6 +149558,30 @@
             }
           },
           "unit": "W"
+        },
+        {
+          "id": "cHARGING_SOC",
+          "name": "EV connector charging SOC",
+          "role": "value.battery",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 548,
+              "length": 1,
+              "dataType": "uint16",
+              "optional": true,
+              "readRequestGroup": "depower-v1003-connector2-charging-soc",
+              "nanToNull": true
+            }
+          },
+          "unit": "%",
+          "decimals": 0,
+          "min": 0,
+          "max": 100,
+          "description": "Charging SOC reported by the vehicle/connector. Register step size is 1%."
         }
       ],
       "driverHints": {
@@ -149609,7 +149658,8 @@
             "cP_STATE",
             "pLUG_STATE",
             "cHARGE_COMMAND",
-            "eV_SET_CHARGE_POWER_LIMIT"
+            "eV_SET_CHARGE_POWER_LIMIT",
+            "cHARGING_SOC"
           ],
           "slowDpIds": [
             "sERIAL_NUMBER",
