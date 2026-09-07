@@ -14,6 +14,7 @@ Alle technischen Markdown-Dateien des Adapters liegen bewusst in diesem Ordner. 
 
 ## Wallboxen und Ladepunkte
 
+- [DEPower Modbus V10.03 – stabile Steuersequenz und Prepare-Re-Arm](DEPOWER_CONTROL_SEQUENCE_0.5.161.md)
 - [DEPower Modbus V10.03 – Charging SOC](DEPOWER_MODBUS_V10.03_SOC_0.5.159.md)
 - [OEM Modbus V10.03 – AC-Wallboxen und DC-Ladestationen](OEM_MODBUS_V10.03_AC_DC_CHARGE_POINT_0.5.157.md)
 - [Ladepunkte – regelmäßige Live-Status-/Messwertfrische](EV_CHARGER_LIVE_FRESHNESS_0.5.154.md)
@@ -28,6 +29,7 @@ Alle technischen Markdown-Dateien des Adapters liegen bewusst in diesem Ordner. 
 ## Speicher und Sungrow
 
 - [TESVOLT IoT Gateway – MQTT EMS Interface V2](TESVOLT_IOT_GATEWAY_MQTT_V2_0.5.153.md)
+- [TESVOLT IoT Gateway – Datenempfang und EMS-V2-Bootstrap](TESVOLT_MQTT_DATA_BOOTSTRAP_0.5.160.md)
 - [TESVOLT IoT Gateway – MQTT-Verbindung und CONNACK-Diagnose](TESVOLT_MQTT_CONNECTION_DIAGNOSTICS_0.5.158.md)
 - [Sungrow – 1-Sekunden-Polling](SUNGROW_1S_POLL_0.5.138.md)
 - [Sungrow – Richtungs- und Timing-Fix](SUNGROW_DIRECTION_TIMING_FIX_0.5.133.md)

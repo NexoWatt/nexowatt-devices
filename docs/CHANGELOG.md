@@ -1,5 +1,25 @@
 # Technische Versionshinweise
 
+## 0.5.161 – DEPower-Steuersequenz und Prepare-Re-Arm
+
+- Die universellen DEPower-RW-Datenpunkte bleiben echte Geräte-Rückmeldungen und dürfen nach einem Poll wieder auf den vom Ladepunkt gemeldeten Wert zurückspringen. Sie werden nicht mehr als dauerhafter NexoWatt-Sollwert vorausgesetzt.
+- `aliases.v1.ctrl.powerLimitW` und `aliases.v1.ctrl.run` sind die verbindliche Befehlsoberfläche. Vor einer positiven Leistungs-/Startvorgabe koordiniert der Treiber `Charge mode=1`, optional die Stationsleistung einer bestätigten Ein-Connector-Station, das Connector-Leistungslimit und den Startbefehl.
+- Bleibt ein angeschlossenes Fahrzeug trotz positiver Vorgabe in `Prepare`, erzeugt der Treiber begrenzt eine neue Stop-zu-Start-Flanke (`2 -> 1`) nach gesetztem Modus und Leistungswert. Ein aktiver Ladevorgang wird dabei nicht unterbrochen.
+- Ein bestehendes positives Stationslimit bleibt unverändert; nur ein nicht gesetzter beziehungsweise mit `0 W` zurückgemeldeter Wert wird bei bestätigter Ein-Connector-Station initialisiert.
+- `Prepare` gilt nicht mehr als bestätigte Ladefreigabe. `chargingReleased=true` wird nur für `Charging` und `SuspendEV` ausgegeben; `SuspendEVSE` bleibt gesperrt.
+- Register, Template-IDs, Rohdatenpunkte, bestehende Alias-Pfade und alle anderen Herstellerlogiken bleiben unverändert.
+
+## 0.5.160 – TESVOLT MQTT-Datenempfang, SUBACK-Diagnose und EMS-V2-Bootstrap
+
+- TESVOLT verwendet nun standardmäßig `mqtt://` auf Port `1884`, passend zur bestätigten Gateway-Konfiguration ohne TLS. Bestehende Gerätekonfigurationen werden nicht überschrieben.
+- Der Adapter abonniert `EMS/APIVersion` und den V2-Filter `EMS/V2/#`. Lehnt eine manuelle ACL den Wildcard-Filter ab, werden die bekannten V2-Topics automatisch einzeln abonniert.
+- MQTT-SUBACK-Ergebnisse werden vollständig geprüft. Ein akzeptierter CONNACK bei verweigerten Leserechten wird nicht mehr fälschlich nur als „verbunden“ dargestellt.
+- Das laut V2-Spezifikation vom externen EMS zu veröffentlichende retained Objekt `EMS/V2/Parameters` wird mit NexoWatt-Seriennummer, Adapterversion und ISO-8601-Zeitstempel gesendet.
+- Neue Diagnosedatenpunkte zeigen Abonnementstatus, Bootstrap, letztes Topic, Nachrichten-/Telemetriezähler und entdeckte unbekannte V2-Topics.
+- Ein No-Data-Wächter meldet explizit, wenn Brokerverbindung und Abonnements bestehen, das IoT Gateway aber keine V2-Telemetrie veröffentlicht.
+- Lokale Echos von `EMS/V2/Parameters` oder `EMS/V2/Inverter/Control` gelten nicht als Gateway-Telemetrie und können den Heartbeat nicht künstlich frisch halten.
+- TESVOLT-Leistungsregelung, Vorzeichen, Sollwert-Watchdog, bestehende Aliase und alle anderen Templates bleiben unverändert.
+
 ## 0.5.159 – DEPower Charging-SOC und SOC-Alias
 
 - Die neue DEPower-Registerdatei wurde vollständig gegen die bisherige V10.03/V6-Datei verglichen. Einzige Registeränderung ist `Charging SOC`: Connector 1 auf `0x0124`, Connector 2 auf `0x0224`, jeweils FC3, `UINT16`, Schrittweite `1 %`.

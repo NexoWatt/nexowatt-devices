@@ -45550,7 +45550,7 @@
         "heartbeatTimeoutMs": 5000,
         "mqtt": {
           "timestampField": "ts_create",
-          "defaultUrl": "mqtts://<TESVOLT-IOT-GATEWAY-IP>:1884",
+          "defaultUrl": "mqtt://<TESVOLT-IOT-GATEWAY-IP>:1884",
           "zeroOnOfflineDpIds": [
             "aCTIVE_POWER",
             "bATTERY_DC_POWER"
@@ -45616,13 +45616,35 @@
               "requireFreshCommandAfterReconnect": true
             }
           },
-          "defaultTransport": "mqtts",
+          "defaultTransport": "mqtt",
           "defaultPort": 1884,
           "defaultClientId": "nexowatt-tesvolt-{deviceId}",
           "connectTimeoutMs": 10000,
           "reconnectPeriodMs": 5000,
           "keepaliveSeconds": 30,
-          "cleanSession": true
+          "cleanSession": true,
+          "subscriptionFilters": [
+            {
+              "topic": "EMS/APIVersion",
+              "qos": 0,
+              "required": true
+            },
+            {
+              "topic": "EMS/V2/#",
+              "qos": 0,
+              "required": true,
+              "fallbackExactPrefix": "EMS/V2/"
+            }
+          ],
+          "bootstrapPublishes": [
+            {
+              "topic": "EMS/V2/Parameters",
+              "qos": 0,
+              "retain": true,
+              "profile": "tesvoltEmsParameters"
+            }
+          ],
+          "noDataTimeoutMs": 10000
         }
       },
       "datapoints": [
@@ -46462,6 +46484,138 @@
           "unit": "ms",
           "source": {
             "kind": "mqttControlStatus"
+          }
+        },
+        {
+          "id": "mQTT_SUBSCRIPTION_OK",
+          "name": "MQTT required subscriptions granted",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqttDiagnostic"
+          }
+        },
+        {
+          "id": "mQTT_SUBSCRIPTION_STATUS",
+          "name": "MQTT subscription status",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqttDiagnostic"
+          }
+        },
+        {
+          "id": "mQTT_SUBSCRIPTION_COUNT",
+          "name": "MQTT granted subscription count",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqttDiagnostic"
+          }
+        },
+        {
+          "id": "mQTT_BOOTSTRAP_STATUS",
+          "name": "MQTT TESVOLT bootstrap status",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqttDiagnostic"
+          }
+        },
+        {
+          "id": "mQTT_EMS_PARAMETERS_PUBLISHED",
+          "name": "EMS V2 Parameters identity published",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqttDiagnostic"
+          }
+        },
+        {
+          "id": "mQTT_LAST_TOPIC",
+          "name": "Last received MQTT topic",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqttDiagnostic"
+          }
+        },
+        {
+          "id": "mQTT_LAST_MESSAGE_MS",
+          "name": "Last received MQTT message time",
+          "role": "value.time",
+          "type": "number",
+          "rw": "ro",
+          "unit": "ms",
+          "source": {
+            "kind": "mqttDiagnostic"
+          }
+        },
+        {
+          "id": "mQTT_MESSAGE_COUNT",
+          "name": "Total MQTT messages received",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqttDiagnostic"
+          }
+        },
+        {
+          "id": "mQTT_GATEWAY_MESSAGE_COUNT",
+          "name": "TESVOLT gateway messages received",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqttDiagnostic"
+          }
+        },
+        {
+          "id": "mQTT_TELEMETRY_MESSAGE_COUNT",
+          "name": "TESVOLT telemetry messages received",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqttDiagnostic"
+          }
+        },
+        {
+          "id": "mQTT_UNKNOWN_TOPIC_COUNT",
+          "name": "Unhandled TESVOLT MQTT messages received",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqttDiagnostic"
+          }
+        },
+        {
+          "id": "mQTT_DISCOVERED_TOPICS_JSON",
+          "name": "Discovered MQTT topics (JSON)",
+          "role": "json",
+          "type": "string",
+          "rw": "ro",
+          "unit": "",
+          "source": {
+            "kind": "mqttDiagnostic"
           }
         },
         {
@@ -148782,7 +148936,21 @@
         },
         "oemModbusV1003": {
           "connector": 1,
-          "statePowerThresholdW": 50
+          "statePowerThresholdW": 50,
+          "controlSequenceEnabled": true,
+          "chargeModeDpId": "cHARGE_MODE",
+          "chargeModeValue": 1,
+          "gunCountDpId": "gUN_COUNT",
+          "stationPowerDpId": "cHARGE_POINT_SET_POWER",
+          "connectorPowerDpId": "eV_SET_CHARGE_POWER_LIMIT",
+          "chargeCommandDpId": "cHARGE_COMMAND",
+          "connectorStateDpId": "eVSE_STATE",
+          "plugStateDpId": "pLUG_STATE",
+          "initializeStationPowerWhenZero": true,
+          "stationPowerSingleConnectorOnly": true,
+          "rearmPrepareWithStopStart": true,
+          "prepareRearmDelayMs": 500,
+          "prepareRearmCooldownMs": 5000
         }
       },
       "aliasContract": {
@@ -149673,7 +149841,21 @@
         },
         "oemModbusV1003": {
           "connector": 2,
-          "statePowerThresholdW": 50
+          "statePowerThresholdW": 50,
+          "controlSequenceEnabled": true,
+          "chargeModeDpId": "cHARGE_MODE",
+          "chargeModeValue": 1,
+          "gunCountDpId": "gUN_COUNT",
+          "stationPowerDpId": "cHARGE_POINT_SET_POWER",
+          "connectorPowerDpId": "eV_SET_CHARGE_POWER_LIMIT",
+          "chargeCommandDpId": "cHARGE_COMMAND",
+          "connectorStateDpId": "eVSE_STATE",
+          "plugStateDpId": "pLUG_STATE",
+          "initializeStationPowerWhenZero": true,
+          "stationPowerSingleConnectorOnly": true,
+          "rearmPrepareWithStopStart": true,
+          "prepareRearmDelayMs": 500,
+          "prepareRearmCooldownMs": 5000
         }
       },
       "aliasContract": {

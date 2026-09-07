@@ -283,7 +283,7 @@ function getTemplateMqttDefaults(tpl) {
   const portMatch = defaultUrl.match(/:(\d+)(?:\/|$)/);
   const transport = normalizeMqttTransport(
     hints.defaultTransport || (schemeMatch ? schemeMatch[1] : ''),
-    tpl && tpl.id === 'ess.tesvolt.iotGateway.mqttV2' ? 'mqtts' : 'mqtt',
+    tpl && tpl.id === 'ess.tesvolt.iotGateway.mqttV2' ? 'mqtt' : 'mqtt',
   );
   const port = Number(hints.defaultPort || (portMatch ? portMatch[1] : 0)) ||
     (tpl && tpl.id === 'ess.tesvolt.iotGateway.mqttV2' ? 1884 : defaultMqttPort(transport));
@@ -355,7 +355,7 @@ function buildMqttUrlFromForm(raw, transport, port) {
   } catch (_) {
     // Keep a clear validation error for the user instead of silently saving a
     // malformed URL that later only appears as a CONNACK timeout.
-    throw new Error('MQTT Broker-Adresse ist ungültig. Beispiel: 192.168.1.50 oder mqtts://192.168.1.50:1884');
+    throw new Error('MQTT Broker-Adresse ist ungültig. Beispiel: 192.168.1.50 oder mqtt://192.168.1.50:1884');
   }
 }
 

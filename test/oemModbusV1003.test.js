@@ -79,9 +79,23 @@ const ModbusDriver = loadModbusDriver();
 const DeviceRuntime = loadDeviceRuntime();
 const log = { debug() {}, info() {}, warn() {}, error() {} };
 
-function createDriver(t, connection = {}) {
-  const driver = new ModbusDriver({ log }, {
-    id: `test-${t.id}`,
+function createDriver(t, connection = {}, stateValues = {}) {
+  const deviceId = `test-${t.id}`;
+  const statePrefix = `nexowatt-devices.0.devices.${deviceId}.`;
+  const adapter = {
+    log,
+    namespace: 'nexowatt-devices.0',
+    async getStateAsync(id) {
+      const key = String(id || '').startsWith(statePrefix)
+        ? String(id).slice(statePrefix.length)
+        : String(id || '');
+      return Object.prototype.hasOwnProperty.call(stateValues, key)
+        ? { val: stateValues[key], ack: true }
+        : null;
+    },
+  };
+  const driver = new ModbusDriver(adapter, {
+    id: deviceId,
     protocol: 'modbusTcp',
     templateId: t.id,
     connection: {
@@ -260,6 +274,12 @@ test('driver hints force zero-based protocol addresses without forcing a site-sp
     assert.equal(hints.postWriteRepeat.enabled, false);
     assert.equal(hints.setpointKeepalive.enabled, false);
     assert.equal(t.driverHints.polling.fastIntervalMs, 2000);
+    const control = t.driverHints.oemModbusV1003;
+    assert.equal(control.controlSequenceEnabled, true);
+    assert.equal(control.chargeModeValue, 1);
+    assert.equal(control.initializeStationPowerWhenZero, true);
+    assert.equal(control.stationPowerSingleConnectorOnly, true);
+    assert.equal(control.rearmPrepareWithStopStart, true);
   }
 
   const driver = createDriver(template(connectorIds[0]));
@@ -271,6 +291,9 @@ test('FC16 start/stop and 32-bit power writes produce exact register blocks', as
   for (const [id, base] of [[connectorIds[0], 0x0100], [connectorIds[1], 0x0200]]) {
     const t = template(id);
     const driver = createDriver(t);
+    // Bypass the higher-level DEPower command coordinator here. This test verifies
+    // the exact low-level encoding of each documented register in isolation.
+    driver._depowerV1003 = { ...driver._depowerV1003, controlSequenceEnabled: false };
     const writes = [];
     driver._mbWriteRegisters = async (address, values, unitId) => {
       writes.push({ address, values: values.slice(), unitId });
@@ -288,6 +311,76 @@ test('FC16 start/stop and 32-bit power writes produce exact register blocks', as
       { address: 0x001B, values: [0x0001, 0x86A0], unitId: 7 },
     ]);
   }
+});
+
+test('DEPower control coordinator applies mode and power before re-arming a connector stuck in Prepare', async () => {
+  const t = structuredClone(template(connectorIds[0]));
+  t.driverHints.oemModbusV1003.prepareRearmDelayMs = 0;
+  t.driverHints.oemModbusV1003.prepareRearmCooldownMs = 0;
+  const states = {
+    gUN_COUNT: 1,
+    cHARGE_POINT_SET_POWER: 0,
+    cHARGE_COMMAND: 1,
+    eVSE_STATE: 1,
+    pLUG_STATE: 1,
+    'aliases.v1.ctrl.run': true,
+    'aliases.v1.ctrl.powerLimitW': 11000,
+  };
+  const driver = createDriver(t, {}, states);
+  const writes = [];
+  driver._mbWriteRegisters = async (address, values, unitId) => {
+    writes.push({ address, values: values.slice(), unitId });
+  };
+
+  await driver.writeDatapoint(dp(t, 'eV_SET_CHARGE_POWER_LIMIT'), 11000);
+
+  assert.deepEqual(writes, [
+    { address: 0x0013, values: [1], unitId: 7 },
+    { address: 0x001B, values: [0x0000, 0x2AF8], unitId: 7 },
+    { address: 0x0122, values: [0x0000, 0x2AF8], unitId: 7 },
+    { address: 0x0121, values: [2], unitId: 7 },
+    { address: 0x0121, values: [1], unitId: 7 },
+  ]);
+});
+
+test('DEPower control coordinator preserves an existing station cap and does not interrupt active charging', async () => {
+  const t = template(connectorIds[0]);
+  const states = {
+    gUN_COUNT: 1,
+    cHARGE_POINT_SET_POWER: 32000,
+    cHARGE_COMMAND: 1,
+    eVSE_STATE: 2,
+    pLUG_STATE: 1,
+    'aliases.v1.ctrl.run': true,
+    'aliases.v1.ctrl.powerLimitW': 12000,
+  };
+  const driver = createDriver(t, {}, states);
+  const writes = [];
+  driver._mbWriteRegisters = async (address, values, unitId) => {
+    writes.push({ address, values: values.slice(), unitId });
+  };
+
+  await driver.writeDatapoint(dp(t, 'eV_SET_CHARGE_POWER_LIMIT'), 12000);
+
+  assert.deepEqual(writes, [
+    { address: 0x0013, values: [1], unitId: 7 },
+    { address: 0x0122, values: [0x0000, 0x2EE0], unitId: 7 },
+  ]);
+});
+
+test('DEPower Stop remains a single explicit command without power or mode side effects', async () => {
+  const t = template(connectorIds[0]);
+  const driver = createDriver(t);
+  const writes = [];
+  driver._mbWriteRegisters = async (address, values, unitId) => {
+    writes.push({ address, values: values.slice(), unitId });
+  };
+
+  await driver.writeDatapoint(dp(t, 'cHARGE_COMMAND'), 2);
+
+  assert.deepEqual(writes, [
+    { address: 0x0121, values: [2], unitId: 7 },
+  ]);
 });
 
 test('unsafe or undocumented command values are rejected before Modbus transmission', async () => {
@@ -339,6 +432,7 @@ test('AC/DC status, current and safety aliases use the protocol state and gun ty
   const available = alias(byPath, 'v1.r.available');
   const vehicleConnected = alias(byPath, 'v1.r.vehicleConnected');
   const charging = alias(byPath, 'v1.r.charging');
+  const chargingReleased = alias(byPath, 'v1.r.chargingReleased');
   const fault = alias(byPath, 'v1.alarm.fault');
   const current = alias(byPath, 'v1.r.currentA');
   assert.equal(alias(byPath, 'v1.r.voltageL1').dpId, 'vOLTAGE_L1');
@@ -366,6 +460,7 @@ test('AC/DC status, current and safety aliases use the protocol state and gun ty
   assert.equal(available.get(base), true);
   assert.equal(vehicleConnected.get(base), false);
   assert.equal(charging.get(base), false);
+  assert.equal(chargingReleased.get({ ...base, eVSE_STATE: 1, pLUG_STATE: 1 }), false);
   assert.equal(fault.get(base), false);
   assert.equal(current.get(base), 7.3);
 
@@ -373,6 +468,9 @@ test('AC/DC status, current and safety aliases use the protocol state and gun ty
   assert.equal(statusText.get(acCharging), 'Charging');
   assert.equal(vehicleConnected.get(acCharging), true);
   assert.equal(charging.get(acCharging), true);
+  assert.equal(chargingReleased.get(acCharging), true);
+  assert.equal(chargingReleased.get({ ...base, eVSE_STATE: 3, pLUG_STATE: 1 }), true);
+  assert.equal(chargingReleased.get({ ...base, eVSE_STATE: 8, pLUG_STATE: 1 }), false);
 
   const dcCharging = { ...acCharging, gUN_TYPE: 3, dC_CURRENT: 118.6 };
   assert.equal(current.get(dcCharging), 118.6);

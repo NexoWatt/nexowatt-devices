@@ -1557,7 +1557,7 @@
               "attr": "connection.url",
               "label": "Broker URL (mqtt://, mqtts://, ws:// or wss://)",
               "hidden": "data.protocol !== 'mqtt'",
-              "helperText": "TESVOLT IoT Gateway: normally mqtts://<gateway>:1884. Username/password authenticate; mqtts/wss provide transport encryption.",
+              "helperText": "TESVOLT IoT Gateway: mqtt://<gateway>:1884 (no TLS). Username/password authenticate the client.",
               "sm": 12,
               "newLine": true
             },

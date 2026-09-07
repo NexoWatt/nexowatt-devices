@@ -162,10 +162,19 @@ test('TESVOLT IoT Gateway MQTT V2 template is additive, synchronized and exposes
   assert.equal(template.category, 'ESS');
   assert.equal(template.aliasContract.deviceClass, 'storageSystem');
   assert.equal(template.driverHints.heartbeatTimeoutMs, 5000);
-  assert.equal(template.driverHints.mqtt.defaultUrl, 'mqtts://<TESVOLT-IOT-GATEWAY-IP>:1884');
-  assert.equal(template.driverHints.mqtt.defaultTransport, 'mqtts');
+  assert.equal(template.driverHints.mqtt.defaultUrl, 'mqtt://<TESVOLT-IOT-GATEWAY-IP>:1884');
+  assert.equal(template.driverHints.mqtt.defaultTransport, 'mqtt');
   assert.equal(template.driverHints.mqtt.defaultPort, 1884);
   assert.equal(template.driverHints.mqtt.defaultClientId, 'nexowatt-tesvolt-{deviceId}');
+
+  assert.deepEqual(template.driverHints.mqtt.subscriptionFilters, [
+    { topic: 'EMS/APIVersion', qos: 0, required: true },
+    { topic: 'EMS/V2/#', qos: 0, required: true, fallbackExactPrefix: 'EMS/V2/' },
+  ]);
+  assert.deepEqual(template.driverHints.mqtt.bootstrapPublishes, [
+    { topic: 'EMS/V2/Parameters', qos: 0, retain: true, profile: 'tesvoltEmsParameters' },
+  ]);
+  assert.equal(template.driverHints.mqtt.noDataTimeoutMs, 10000);
 
   const byId = new Map(template.datapoints.map((dp) => [dp.id, dp]));
   assert.equal(byId.get('aPI_VERSION').source.topic, 'EMS/APIVersion');
@@ -193,6 +202,10 @@ test('TESVOLT IoT Gateway MQTT V2 template is additive, synchronized and exposes
   assert.equal(byId.has('cOMMANDED_ACTIVE_POWER'), true);
   assert.equal(byId.has('sETPOINT_TRACKING_STATUS'), true);
   assert.equal(byId.has('sETPOINT_TRACKING_OK'), true);
+  assert.equal(byId.has('mQTT_SUBSCRIPTION_OK'), true);
+  assert.equal(byId.has('mQTT_BOOTSTRAP_STATUS'), true);
+  assert.equal(byId.has('mQTT_LAST_TOPIC'), true);
+  assert.equal(byId.has('mQTT_TELEMETRY_MESSAGE_COUNT'), true);
 });
 
 test('custom Admin device dialog exposes fixed Client-ID, explicit transport/port, TLS and TESVOLT timing fields', () => {
@@ -723,3 +736,195 @@ test('generic MQTT writes keep the established client queue behaviour while TESV
   await assert.rejects(() => tesvoltDriver.writeDatapoint(tesvoltSetpoint, 0), /MQTT not connected/);
 });
 
+
+test('TESVOLT MQTT bootstrap subscribes the documented filters and publishes EMS identity retained', async () => {
+  const handlers = new Map();
+  const subscriptions = [];
+  const published = [];
+  const BootstrapDriver = loadMqttDriverWithMock({
+    connect() {
+      return {
+        on(event, callback) { handlers.set(event, callback); },
+        subscribe(topic, options, callback) {
+          subscriptions.push({ topic, options });
+          callback(null, [{ topic, qos: options.qos }]);
+        },
+        publish(topic, payload, options, callback) {
+          published.push({ topic, payload: String(payload), options });
+          callback(null);
+        },
+        end(force, options, callback) { if (callback) callback(); },
+      };
+    },
+  });
+  const harness = createHarness();
+  const template = templateById('ess.tesvolt.iotGateway.mqttV2');
+  const driver = new BootstrapDriver(
+    harness.adapter,
+    {
+      id: 'tesvolt1',
+      connection: {
+        url: 'mqtt://192.168.1.50:1884',
+        username: 'nexowatt',
+        password: 'secret',
+        clientId: 'nexowatt-tesvolt1',
+      },
+    },
+    template,
+    {},
+    (dp) => `devices.tesvolt1.${dp.id}`,
+    () => null,
+    () => {},
+    async (values, meta) => { harness.snapshots.push({ values, meta }); },
+    async (connected, error) => { harness.connectionEvents.push({ connected, error }); },
+  );
+
+  await driver.connect();
+  handlers.get('connect')({ sessionPresent: false });
+  await new Promise((resolve) => setImmediate(resolve));
+  await new Promise((resolve) => setImmediate(resolve));
+
+  assert.deepEqual(subscriptions.map((entry) => entry.topic).sort(), ['EMS/APIVersion', 'EMS/V2/#']);
+  const identity = published.find((entry) => entry.topic === 'EMS/V2/Parameters');
+  assert.ok(identity, 'EMS identity message must be published after successful subscribe');
+  assert.deepEqual(identity.options, { qos: 0, retain: true });
+  const payload = JSON.parse(identity.payload);
+  assert.equal(payload.SerialNumber, 'NEXOWATT-tesvolt1');
+  assert.equal(payload.SoftwareVersion, require('../package.json').version);
+  assert.equal(Number.isFinite(Date.parse(payload.ts_create)), true);
+  assert.equal(stateValue(harness, 'mQTT_SUBSCRIPTION_OK'), true);
+  assert.equal(stateValue(harness, 'mQTT_EMS_PARAMETERS_PUBLISHED'), true);
+  assert.match(stateValue(harness, 'mQTT_BOOTSTRAP_STATUS'), /EMS\/V2\/Parameters published retained/);
+
+  driver._stopNoDataWatch();
+  driver._stopWriteGroupTimers();
+});
+
+test('TESVOLT wildcard subscription falls back to concrete V2 topics when the broker ACL rejects wildcards', async () => {
+  const harness = createHarness();
+  const subscriptions = [];
+  harness.client.subscribe = (topic, options, callback) => {
+    subscriptions.push(topic);
+    if (topic === 'EMS/V2/#') callback(null, [{ topic, qos: 128 }]);
+    else callback(null, [{ topic, qos: options.qos }]);
+  };
+  const driver = new MqttDriver(
+    harness.adapter,
+    { id: 'tesvolt1', connection: { url: 'mqtt://127.0.0.1:1884' } },
+    templateById('ess.tesvolt.iotGateway.mqttV2'),
+    {},
+    (dp) => `devices.tesvolt1.${dp.id}`,
+    () => null,
+  );
+  driver.client = harness.client;
+  driver.connected = true;
+  const summary = await driver._subscribeAll();
+
+  assert.equal(summary.ok, true);
+  assert.equal(stateValue(harness, 'mQTT_SUBSCRIPTION_OK'), true);
+  assert.match(stateValue(harness, 'mQTT_SUBSCRIPTION_STATUS'), /exact-topic fallback/);
+  assert.ok(subscriptions.includes('EMS/V2/Inverter/Measurements'));
+  assert.ok(subscriptions.includes('EMS/V2/Battery/SystemState'));
+  driver._stopWriteGroupTimers();
+});
+
+test('TESVOLT subscription denial is visible even when MQTT CONNACK succeeded', async () => {
+  const harness = createHarness();
+  harness.client.subscribe = (topic, options, callback) => {
+    callback(null, [{ topic, qos: 128 }]);
+  };
+  const driver = new MqttDriver(
+    harness.adapter,
+    { id: 'tesvolt1', connection: { url: 'mqtt://127.0.0.1:1884' } },
+    templateById('ess.tesvolt.iotGateway.mqttV2'),
+    {},
+    (dp) => `devices.tesvolt1.${dp.id}`,
+    () => null,
+    () => {},
+    async (values, meta) => { harness.snapshots.push({ values, meta }); },
+  );
+  driver.client = harness.client;
+  driver.connected = true;
+  const summary = await driver._subscribeAll();
+
+  assert.equal(summary.ok, false);
+  assert.equal(stateValue(harness, 'mQTT_SUBSCRIPTION_OK'), false);
+  assert.match(stateValue(harness, 'mQTT_SUBSCRIPTION_STATUS'), /denied\/failed/);
+  assert.ok(harness.logs.some((entry) => entry.level === 'warn' && entry.message.includes('required subscriptions were not granted')));
+  assert.equal(harness.snapshots.at(-1).meta.subscriptionError, true);
+  driver._stopWriteGroupTimers();
+});
+
+test('TESVOLT precise subscription errors are not replaced by a secondary no-data warning', async () => {
+  const handlers = new Map();
+  const DeniedDriver = loadMqttDriverWithMock({
+    connect() {
+      return {
+        on(event, callback) { handlers.set(event, callback); },
+        subscribe(topic, options, callback) { callback(null, [{ topic, qos: 128 }]); },
+        publish(topic, payload, options, callback) { callback(null); },
+        end(force, options, callback) { if (callback) callback(); },
+      };
+    },
+  });
+  const harness = createHarness();
+  const driver = new DeniedDriver(
+    harness.adapter,
+    { id: 'tesvolt1', connection: { url: 'mqtt://127.0.0.1:1884' } },
+    templateById('ess.tesvolt.iotGateway.mqttV2'),
+    {},
+    (dp) => `devices.tesvolt1.${dp.id}`,
+    () => null,
+    () => {},
+    async (values, meta) => { harness.snapshots.push({ values, meta }); },
+  );
+  let noDataWatchStarted = false;
+  driver._startNoDataWatch = () => { noDataWatchStarted = true; };
+
+  await driver.connect();
+  handlers.get('connect')({ sessionPresent: false });
+  await new Promise((resolve) => setImmediate(resolve));
+  await new Promise((resolve) => setImmediate(resolve));
+
+  assert.equal(noDataWatchStarted, false);
+  assert.equal(stateValue(harness, 'mQTT_SUBSCRIPTION_OK'), false);
+  assert.ok(harness.snapshots.some((entry) => entry.meta && entry.meta.subscriptionError));
+  assert.equal(harness.snapshots.some((entry) => entry.meta && entry.meta.noData), false);
+  driver._stopWriteGroupTimers();
+});
+
+test('TESVOLT topic discovery records evolving V2 topics while local publish echoes do not prove gateway telemetry', async () => {
+  const harness = createHarness();
+  const driver = createDriver(templateById('ess.tesvolt.iotGateway.mqttV2'), harness);
+  await driver._subscribeAll();
+
+  await feed(driver, 'EMS/V2/Parameters', {
+    ts_create: '2026-09-07T10:00:00.000+02:00',
+    SerialNumber: 'NEXOWATT-tesvolt1',
+    SoftwareVersion: '0.5.160',
+  });
+  assert.equal(stateValue(harness, 'mQTT_MESSAGE_COUNT'), 1);
+  assert.equal(stateValue(harness, 'mQTT_GATEWAY_MESSAGE_COUNT'), 0);
+  assert.equal(stateValue(harness, 'mQTT_TELEMETRY_MESSAGE_COUNT'), 0);
+
+  await feed(driver, 'EMS/V2/Inverter/NewDiagnosticValue', { value: 1 });
+  assert.equal(stateValue(harness, 'mQTT_MESSAGE_COUNT'), 2);
+  assert.equal(stateValue(harness, 'mQTT_GATEWAY_MESSAGE_COUNT'), 1);
+  assert.equal(stateValue(harness, 'mQTT_TELEMETRY_MESSAGE_COUNT'), 1);
+  assert.equal(stateValue(harness, 'mQTT_UNKNOWN_TOPIC_COUNT'), 1);
+  assert.match(stateValue(harness, 'mQTT_DISCOVERED_TOPICS_JSON'), /NewDiagnosticValue/);
+  assert.equal(harness.snapshots.at(-1).meta.unknownTopic, true);
+  driver._stopWriteGroupTimers();
+});
+
+test('MQTT protocol errors remain visible while transport connection stays true', async () => {
+  const template = templateById('ess.tesvolt.iotGateway.mqttV2');
+  const { runtime, states } = createRuntimeHarness(template);
+  await runtime._handleMqttSnapshot({}, {
+    connected: true,
+    error: 'MQTT connected, but required subscriptions were not granted',
+    subscriptionError: true,
+  });
+  assert.equal(states.get('devices.tesvolt1.info.connection').val, true);
+  assert.match(states.get('devices.tesvolt1.info.lastError').val, /subscriptions were not granted/);
+});

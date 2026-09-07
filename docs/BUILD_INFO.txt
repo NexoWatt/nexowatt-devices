@@ -1,1 +1,1 @@
-NexoWatt Devices 0.5.159 - DEPower Modbus V10.03 Charging SOC and EV SOC aliases
+NexoWatt Devices 0.5.161 - DEPower coordinated control sequence, raw-readback handling and Prepare re-arm
