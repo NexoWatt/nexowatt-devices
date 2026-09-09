@@ -1,5 +1,18 @@
 # Technische Versionshinweise
 
+## 0.5.162 – VARTA Public 14, acht getrennte Gerätemodelle
+
+- Grundlage ist die bereitgestellte Hersteller-PDF: intern Version 14.0 public vom 12.03.2025, Tabellenstand 14. Der ältere Dateiname wird nicht als Registerstand verwendet.
+- Acht getrennte ESS-Templates unter VARTA: element, one L, one XL, element backup, pulse, pulse neo, link, flex storage. Registerumfang pro Modell nach den tatsächlichen Häkchen der PDF; kein gemeinsamer Vollumfang für alle Geräte.
+- FC3-Lesegruppen ausschließlich über unterstützte zusammenhängende Register. Ein Zeichen pro Register, 32-Bit-Werte mit Low Word zuerst, SINT16-Vorzeichen, 10-Wh-Kapazität und 0,01-Hz-Frequenz werden berücksichtigt. Bei neo/flex sind die neun dynamischen SFs Bestandteil der jeweiligen Messwertumrechnung.
+- Einzelanfragen werden mindestens 1 Sekunde, bei link 5 Sekunden auseinandergehalten. Ein vollständiger Messwertsatz ist deshalb nicht zwingend sekündlich verfügbar. Warteschlange je konfiguriertem Host/Port; Wiederverbindung nach Transportfehler bleibt möglich, vorher wartende SF-Befehle werden nicht wiederholt.
+- Nur neun ausdrücklich dokumentierte SF-Konfigurationsregister bei pulse neo/flex storage sind beschreibbar. Standardmäßig gesperrt; explizite Expertenfreigabe, Tabellen-/Seriennummernprüfung, Zielprobe, genau ein FC6 und passendes FC3-Rücklesen erforderlich. Kein FC16-Fallback und keine automatische Start-/Watchdog-/Restore-Schreibfolge.
+- Keine Lade-/Entlade-Sollwerte oder Freigaben erfunden. Das öffentliche Protokoll stellt diese nicht bereit; externe Speicherregelung ist mit diesen Profilen nicht verfügbar.
+- EOS-Speicheraliase verwenden positiv Entladen / negativ Laden, Netzleistung positiv Bezug / negativ Einspeisung. Reine Verfügbarkeitswerte bleiben lesbar, nicht steuerbar. Kein fingierter Entladezähler, Spannungswert oder Steuerungsalias. Geräteklasse storageSystem; bestehender Alias Contract v1 unverändert.
+- Unbekannte Tabelle oder fehlende SFs ergeben gesperrte Interpretation bzw. null statt geratenen Messwerten. Separate Diagnosen trennen Verbindung, Tabellenunterstützung und externe Steuerbarkeit.
+- Automatisierte Prüfung: 145 Tests, davon 34 neue VARTA-Tests; simulierter Geräteverkehr und echter Timerabstand, keine reale VARTA-Hardwareprüfung. Bestehende 184 Templates und Legacy-Aliase bleiben unverändert. Neu insgesamt 192 Templates und 2.415 v1-Aliasdefinitionen.
+- Frische Installation bestehender npm-Abhängigkeiten in dieser Umgebung mangels DNS-Auflösung nicht verifiziert; keine neuen externen Abhängigkeiten. Anleitung: `VARTA_MODBUS_PUBLIC14_0.5.162.md`.
+
 ## 0.5.161 – DEPower-Steuersequenz und Prepare-Re-Arm
 
 - Die universellen DEPower-RW-Datenpunkte bleiben echte Geräte-Rückmeldungen und dürfen nach einem Poll wieder auf den vom Ladepunkt gemeldeten Wert zurückspringen. Sie werden nicht mehr als dauerhafter NexoWatt-Sollwert vorausgesetzt.

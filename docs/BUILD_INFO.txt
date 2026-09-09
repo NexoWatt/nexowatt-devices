@@ -1,1 +1,5 @@
-NexoWatt Devices 0.5.161 - DEPower coordinated control sequence, raw-readback handling and Prepare re-arm
+NexoWatt Devices 0.5.162 - VARTA public table 14: eight model-specific monitoring profiles and opt-in FC6 scale-factor configuration; no dispatch controls
+Base: supplied complete repository 0.5.161
+Protocol source: supplied VARTA PDF, internal version 14.0 public / 2025-03-12, pages 1-2
+Validation: 145 automated tests (34 VARTA), release and package checks; no physical VARTA test
+Dependencies: unchanged; fresh npm dependency download unavailable in build environment (DNS)

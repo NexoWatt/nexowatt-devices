@@ -28,6 +28,8 @@ Alle technischen Markdown-Dateien des Adapters liegen bewusst in diesem Ordner. 
 
 ## Speicher und Sungrow
 
+- [VARTA Public 14 – acht Modelle, Monitoring und geschützte SF-Konfiguration](VARTA_MODBUS_PUBLIC14_0.5.162.md)
+
 - [TESVOLT IoT Gateway – MQTT EMS Interface V2](TESVOLT_IOT_GATEWAY_MQTT_V2_0.5.153.md)
 - [TESVOLT IoT Gateway – Datenempfang und EMS-V2-Bootstrap](TESVOLT_MQTT_DATA_BOOTSTRAP_0.5.160.md)
 - [TESVOLT IoT Gateway – MQTT-Verbindung und CONNACK-Diagnose](TESVOLT_MQTT_CONNECTION_DIAGNOSTICS_0.5.158.md)

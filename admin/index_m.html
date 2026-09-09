@@ -217,6 +217,18 @@
         </div>
       </div>
 
+      <div id="varta_settings" style="display:none;" class="card-panel">
+        <strong>VARTA – Modbus TCP, öffentliche Tabelle 14</strong>
+        <p>Messwerte je ausgewähltem Modell. Keine dokumentierten Lade-/Entlade-Sollwerte oder externe Ladefreigabe. Empfohlen: Port 502, Unit-ID 255, Offset 0. Zeichen und Wortreihenfolge werden pro Register korrekt ausgewertet.</p>
+        <p id="varta_pacing_note"></p>
+        <p id="varta_sf_option">
+          <label><input id="varta_allow_sf_writes" type="checkbox" />
+            <span>SF-Konfiguration ausdrücklich freigeben (Expertenoption, keine Leistungssteuerung)</span>
+          </label>
+          <br />Nur pulse neo / flex storage: Die neun SF-Register verändern die Messwertdarstellung. Standardmäßig gesperrt. Jeder Schreibzugriff wird geprüft und zurückgelesen; kein automatisches Schreiben beim Start.
+        </p>
+      </div>
+
       <!-- Connection blocks -->
       <div id="conn_modbusTcp" class="nexo-conn-block" style="display:none;">
         <h6 class="translate">Modbus TCP Verbindung</h6>
@@ -230,7 +242,7 @@
             <label for="mb_port" class="translate">Port</label>
           </div>
           <div class="input-field col s12 m2">
-            <input id="mb_unitId" type="number" min="1" max="247" />
+            <input id="mb_unitId" type="number" min="1" max="255" />
             <label for="mb_unitId" class="translate">Unit-ID</label>
           </div>
           <div class="input-field col s12 m2">

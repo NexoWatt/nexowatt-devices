@@ -409,6 +409,10 @@
                 {
                   "label": "ZIEHL",
                   "value": "ZIEHL"
+                },
+                {
+                  "label": "VARTA",
+                  "value": "VARTA"
                 }
               ],
               "freeSolo": false
@@ -1094,6 +1098,38 @@
                 {
                   "value": "pv_inverter.victron.VictronPvInverterViaDcChargerImpl",
                   "label": "PV_INVERTER | Victron pvinverterviadccharger Victron pvinverterviadccharger"
+                },
+                {
+                  "value": "ess.varta.element.modbusTcpV14",
+                  "label": "ESS | VARTA element – Modbus TCP V14, Messwerte (keine Leistungssteuerung)"
+                },
+                {
+                  "value": "ess.varta.oneL.modbusTcpV14",
+                  "label": "ESS | VARTA one L – Modbus TCP V14, Messwerte (keine Leistungssteuerung)"
+                },
+                {
+                  "value": "ess.varta.oneXL.modbusTcpV14",
+                  "label": "ESS | VARTA one XL – Modbus TCP V14, Messwerte (keine Leistungssteuerung)"
+                },
+                {
+                  "value": "ess.varta.elementBackup.modbusTcpV14",
+                  "label": "ESS | VARTA element backup – Modbus TCP V14, Messwerte (keine Leistungssteuerung)"
+                },
+                {
+                  "value": "ess.varta.pulse.modbusTcpV14",
+                  "label": "ESS | VARTA pulse – Modbus TCP V14, Messwerte (keine Leistungssteuerung)"
+                },
+                {
+                  "value": "ess.varta.pulseNeo.modbusTcpV14",
+                  "label": "ESS | VARTA pulse neo – Modbus TCP V14, Messwerte + SF-Konfiguration (keine Leistungssteuerung)"
+                },
+                {
+                  "value": "ess.varta.link.modbusTcpV14",
+                  "label": "ESS | VARTA link – Modbus TCP V14, Messwerte (keine Leistungssteuerung)"
+                },
+                {
+                  "value": "ess.varta.flexStorage.modbusTcpV14",
+                  "label": "ESS | VARTA flex storage – Modbus TCP V14, Messwerte + SF-Konfiguration (keine Leistungssteuerung)"
                 }
               ]
             },
@@ -1209,7 +1245,7 @@
               "hidden": "data.protocol !== 'modbusTcp'",
               "default": 1,
               "min": 0,
-              "max": 247,
+              "max": 255,
               "sm": 3,
               "md": 2
             },
@@ -2153,6 +2189,21 @@
               "default": true,
               "sm": 6,
               "md": 4
+            },
+            {
+              "type": "staticText",
+              "text": "VARTA public 14: TCP 502, Unit-ID 255 empfohlen, Offset 0. FC3-Messwerte; keine Leistungssteuerung. SF-Konfiguration nur bei pulse neo / flex storage. Max. eine Anfrage/s; link eine Anfrage/5 s. Mehrere Registergruppen verlängern den vollständigen Messzyklus.",
+              "hidden": "!String(data.templateId || '').startsWith('ess.varta.')",
+              "newLine": true
+            },
+            {
+              "type": "checkbox",
+              "attr": "vartaAllowScaleFactorWrites",
+              "label": "VARTA: SF-Konfiguration ausdrücklich freigeben (keine Leistungssteuerung)",
+              "default": false,
+              "hidden": "!['ess.varta.pulseNeo.modbusTcpV14','ess.varta.flexStorage.modbusTcpV14'].includes(data.templateId)",
+              "newLine": true,
+              "sm": 12
             }
           ]
         }

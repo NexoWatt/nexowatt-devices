@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.161",
+    "version": "0.5.162",
     "news": {
+      "0.5.162": {
+        "en": "Add eight separate VARTA models from public Modbus table 14: model-specific FC3 monitoring, one-character-per-register strings, low-word-first counters, live scale factors and normalised EOS power signs. FC6 scale-factor configuration only for pulse neo/flex storage, explicitly opt-in, identity-probed and readback-verified. No undocumented external power control. Shared per-endpoint request pacing, strict register gaps and no automatic writes. Existing templates remain unchanged.",
+        "de": "Acht separate VARTA-Modelle nach öffentlicher Modbus-Tabelle 14 ergänzt: modellspezifische FC3-Messwerte, ein Zeichen je Register, Low-Word-First-Zähler, aktuelle Skalierungsfaktoren und normalisierte EOS-Leistungsvorzeichen. FC6-SF-Konfiguration nur für pulse neo/flex storage, mit expliziter Freigabe, Identitätsprüfung und bestätigtem Rücklesen. Keine undokumentierte Leistungssteuerung. Gemeinsame Anfragebegrenzung je Endpunkt, strikte Registerlücken und keine automatischen Schreibzugriffe. Bestehende Templates unverändert."
+      },
       "0.5.161": {
         "en": "Fix DEPower AC/DC charging control when universal RW readbacks return to 0 and the connector remains in Prepare. NexoWatt now coordinates Charge mode=1, optional single-connector station-power initialization, connector power and Start in the documented order. A connector already stuck in Prepare receives a bounded Stop-to-Start re-arm edge, while active charging is never interrupted. Prepare no longer counts as a confirmed charging release. Raw RW datapoints remain true device readbacks; the stable ctrl.run and ctrl.powerLimitW aliases remain the command interface.",
         "de": "DEPower-AC/DC-Ladesteuerung korrigiert, wenn universelle RW-Rückmeldungen wieder auf 0 springen und der Connector in Prepare stehen bleibt. NexoWatt koordiniert jetzt Charge mode=1, bei bestätigter Ein-Connector-Station die Initialisierung der Stationsleistung, die Connector-Leistung und Start in der erforderlichen Reihenfolge. Ein bereits in Prepare hängender Connector erhält begrenzt eine Stop-zu-Start-Neubewaffnung, während ein aktiver Ladevorgang niemals unterbrochen wird. Prepare gilt nicht mehr als bestätigte Ladefreigabe. Die Roh-RW-Datenpunkte bleiben echte Geräte-Rückmeldungen; ctrl.run und ctrl.powerLimitW bleiben die stabile Befehlsoberfläche."

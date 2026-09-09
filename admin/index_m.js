@@ -969,8 +969,25 @@ function summarizeDatapoint(dp) {
   return kind;
 }
 
+// Keep the write opt-in tied to the selected VARTA product. Switching a
+// template must not silently carry a previous expert permission to another unit.
+function renderVartaOptions(tpl) {
+  const profile = tpl && tpl.driverHints && tpl.driverHints.vartaModbus;
+  const isVarta = !!profile;
+  const supportsSf = isVarta && ['pulseNeo', 'flexStorage'].includes(profile.product);
+  const previous = $('#varta_settings').data('templateId');
+  if (previous !== (tpl && tpl.id) || !supportsSf) $('#varta_allow_sf_writes').prop('checked', false);
+  $('#varta_settings').data('templateId', tpl && tpl.id).toggle(isVarta);
+  $('#varta_sf_option').toggle(supportsSf);
+  $('#varta_allow_sf_writes').prop('disabled', !supportsSf);
+  $('#varta_pacing_note').text(isVarta && profile.product === 'link'
+    ? 'VARTA link: höchstens eine Modbus-Anfrage je 5 Sekunden. Ein kompletter Messwertsatz benötigt mehrere Anfragen.'
+    : 'Höchstens eine Modbus-Anfrage pro Sekunde, einschließlich Schreiben und Rücklesen. Ein kompletter Messwertsatz dauert länger als eine Sekunde.');
+}
+
 function renderDatapoints(templateId) {
   const tpl = templatesById[templateId];
+  renderVartaOptions(tpl);
   const tbody = $('#dpBody');
   tbody.empty();
 
@@ -1068,6 +1085,8 @@ function openDeviceModal(device, idx) {
   refreshSelect($('#mb_wordOrder'));
   refreshSelect($('#mb_byteOrder'));
   applyTemplateModbusTcpDefaultsToForm(tpl, proto, c);
+  renderVartaOptions(tpl);
+  $('#varta_allow_sf_writes').prop('checked', device.vartaAllowScaleFactorWrites === true && !!(tpl && tpl.driverHints && tpl.driverHints.vartaModbus && ['pulseNeo', 'flexStorage'].includes(tpl.driverHints.vartaModbus.product)));
 
   // RTU
   // Leave empty for new devices; we auto-suggest a real detected port via refreshSerialPorts().
@@ -1202,6 +1221,11 @@ function collectDeviceFromModal() {
     heartbeatTimeoutMs: ($('#dev_hbTimeout').val() || '').trim() ? parseInt($('#dev_hbTimeout').val(), 10) : undefined,
     connection: {}
   };
+
+  if (tpl && tpl.driverHints && tpl.driverHints.vartaModbus) {
+    const sfProduct = ['pulseNeo', 'flexStorage'].includes(tpl.driverHints.vartaModbus.product);
+    d.vartaAllowScaleFactorWrites = sfProduct && $('#varta_allow_sf_writes').is(':checked');
+  }
 
   // Normalize heartbeat timeout (optional)
   if (!Number.isFinite(Number(d.heartbeatTimeoutMs)) || Number(d.heartbeatTimeoutMs) <= 0) {

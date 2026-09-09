@@ -3,6 +3,14 @@
   "templates": [
     "ess.tesvolt.iotGateway.mqttV2",
     "evcs.oem.modbusV1003.connector1",
-    "evcs.oem.modbusV1003.connector2"
+    "evcs.oem.modbusV1003.connector2",
+    "ess.varta.element.modbusTcpV14",
+    "ess.varta.oneL.modbusTcpV14",
+    "ess.varta.oneXL.modbusTcpV14",
+    "ess.varta.elementBackup.modbusTcpV14",
+    "ess.varta.pulse.modbusTcpV14",
+    "ess.varta.pulseNeo.modbusTcpV14",
+    "ess.varta.link.modbusTcpV14",
+    "ess.varta.flexStorage.modbusTcpV14"
   ]
 }

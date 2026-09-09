@@ -149863,6 +149863,4189 @@
         "namespace": "v1",
         "deviceClass": "evCharger"
       }
+    },
+    {
+      "id": "ess.varta.element.modbusTcpV14",
+      "source": {
+        "type": "builtin",
+        "protocol": "VARTA Modbus TCP documentation 14.0 public",
+        "protocolReleaseDate": "2025-03-12",
+        "tableVersion": 14,
+        "suppliedFilename": "VS-Modbus_V13.6_en_2022-09-01_freigegeben-public varta.pdf",
+        "implementedFrom": "User-supplied manufacturer PDF, pages 1-2; product support column: element"
+      },
+      "category": "ESS",
+      "manufacturer": "VARTA",
+      "model": "element",
+      "name": "VARTA element – Modbus TCP V14, Messwerte (keine Leistungssteuerung)",
+      "protocols": [
+        "modbusTcp"
+      ],
+      "notes": "Basis: bereitgestellte VARTA-PDF, intern 14.0 public vom 12.03.2025, Tabelle 14. Nur die für dieses Modell angekreuzten Register. TCP 502; empfohlene Unit-ID 255; direkte Tabellenadressen ohne Offset; FC3 lesen. Maximal eine Modbus-Anfrage je Sekunde, einschließlich Schreibzugriffen. Ein kompletter Messwertsatz dauert wegen mehrerer Lesegruppen länger. Keine dokumentierte externe Lade-/Entlade-Leistungsvorgabe, Ladefreigabe oder Watchdog. Dieses Modell hat im öffentlichen Protokoll keine Schreibregister. Details: docs/VARTA_MODBUS_PUBLIC14_0.5.162.md",
+      "driverHints": {
+        "pollIntervalMs": 1000,
+        "heartbeatTimeoutMs": 60000,
+        "vartaModbus": {
+          "product": "element",
+          "tableVersion": 14,
+          "externalPowerControlSupported": false,
+          "scaleFactorWritesRequireOptIn": true
+        },
+        "modbus": {
+          "unitIdDefault": 255,
+          "tcpUnitIdDefault": 255,
+          "forceAddressOffset": 0,
+          "disableAddressFallbackOffsets": true,
+          "wordOrderDefault": "be",
+          "byteOrderDefault": "be",
+          "minCommandIntervalMs": 1000,
+          "maxReadRegs": 40,
+          "strictContiguousReads": true,
+          "timeoutMs": 3000,
+          "reconnectBackoffMs": 2000,
+          "restoreSetpointsOnStart": {
+            "enabled": false
+          },
+          "setpointKeepalive": {
+            "enabled": false
+          }
+        },
+        "polling": {
+          "fastIntervalMs": 1000,
+          "slowIntervalMs": 300000,
+          "fastDpIds": [
+            "tABLE_VERSION",
+            "tIMESTAMP",
+            "sYSTEM_STATE",
+            "aCTIVE_POWER",
+            "aPPARENT_POWER",
+            "sOC",
+            "aCTIVE_CHARGE_ENERGY",
+            "gRID_POWER",
+            "iNSTALLED_CAPACITY"
+          ]
+        }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      },
+      "datapoints": [
+        {
+          "id": "sOFTWARE_VERSION_EMS",
+          "name": "Software version EMS",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1000,
+              "length": 17,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOFTWARE_VERSION_ENS",
+          "name": "Software version ENS",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1017,
+              "length": 17,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOFTWARE_VERSION_INVERTER",
+          "name": "Software version inverter",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1034,
+              "length": 17,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "tABLE_VERSION",
+          "name": "Modbus table version",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1051,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "tIMESTAMP",
+          "name": "Device Unix timestamp (lower word first)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "s",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1052,
+              "length": 2,
+              "dataType": "uint32",
+              "byteOrder": "be",
+              "wordOrder": "le"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sERIAL_NUMBER",
+          "name": "Serial number",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1054,
+              "length": 10,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "bATTERY_MODULES_INSTALLED",
+          "name": "Installed battery modules",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1064,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sYSTEM_STATE",
+          "name": "State (0 BUSY .. 7 ISLANDING)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1065,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active power (+ charge / - discharge)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1066,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aPPARENT_POWER",
+          "name": "Apparent power (+ charge / - discharge)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "VA",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1067,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOC",
+          "name": "Total state of charge",
+          "role": "value.battery",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1068,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aCTIVE_CHARGE_ENERGY",
+          "name": "AC to DC total charge energy (lower word first)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1069,
+              "length": 2,
+              "dataType": "uint32",
+              "byteOrder": "be",
+              "wordOrder": "le"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "iNSTALLED_CAPACITY",
+          "name": "Installed capacity (register unit 10 Wh)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1071,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "scaleFactor": 1
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "gRID_POWER",
+          "name": "Grid power (+ export / - import)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1078,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "diagnostics.tableSupported",
+          "name": "VARTA public Modbus table 14 verified",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.scalingValid",
+          "name": "Scale factors valid for current snapshot",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.externalControlSupported",
+          "name": "External power control documented (false for public table 14)",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.scaleFactorWritesEnabled",
+          "name": "Explicit expert permission for scale-factor configuration",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.note",
+          "name": "VARTA protocol scope and diagnostics",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ess.varta.oneL.modbusTcpV14",
+      "source": {
+        "type": "builtin",
+        "protocol": "VARTA Modbus TCP documentation 14.0 public",
+        "protocolReleaseDate": "2025-03-12",
+        "tableVersion": 14,
+        "suppliedFilename": "VS-Modbus_V13.6_en_2022-09-01_freigegeben-public varta.pdf",
+        "implementedFrom": "User-supplied manufacturer PDF, pages 1-2; product support column: element"
+      },
+      "category": "ESS",
+      "manufacturer": "VARTA",
+      "model": "one L",
+      "name": "VARTA one L – Modbus TCP V14, Messwerte (keine Leistungssteuerung)",
+      "protocols": [
+        "modbusTcp"
+      ],
+      "notes": "Basis: bereitgestellte VARTA-PDF, intern 14.0 public vom 12.03.2025, Tabelle 14. Nur die für dieses Modell angekreuzten Register. TCP 502; empfohlene Unit-ID 255; direkte Tabellenadressen ohne Offset; FC3 lesen. Maximal eine Modbus-Anfrage je Sekunde, einschließlich Schreibzugriffen. Ein kompletter Messwertsatz dauert wegen mehrerer Lesegruppen länger. Keine dokumentierte externe Lade-/Entlade-Leistungsvorgabe, Ladefreigabe oder Watchdog. Dieses Modell hat im öffentlichen Protokoll keine Schreibregister. Details: docs/VARTA_MODBUS_PUBLIC14_0.5.162.md",
+      "driverHints": {
+        "pollIntervalMs": 1000,
+        "heartbeatTimeoutMs": 60000,
+        "vartaModbus": {
+          "product": "oneL",
+          "tableVersion": 14,
+          "externalPowerControlSupported": false,
+          "scaleFactorWritesRequireOptIn": true
+        },
+        "modbus": {
+          "unitIdDefault": 255,
+          "tcpUnitIdDefault": 255,
+          "forceAddressOffset": 0,
+          "disableAddressFallbackOffsets": true,
+          "wordOrderDefault": "be",
+          "byteOrderDefault": "be",
+          "minCommandIntervalMs": 1000,
+          "maxReadRegs": 40,
+          "strictContiguousReads": true,
+          "timeoutMs": 3000,
+          "reconnectBackoffMs": 2000,
+          "restoreSetpointsOnStart": {
+            "enabled": false
+          },
+          "setpointKeepalive": {
+            "enabled": false
+          }
+        },
+        "polling": {
+          "fastIntervalMs": 1000,
+          "slowIntervalMs": 300000,
+          "fastDpIds": [
+            "tABLE_VERSION",
+            "tIMESTAMP",
+            "sYSTEM_STATE",
+            "aCTIVE_POWER",
+            "aPPARENT_POWER",
+            "sOC",
+            "aCTIVE_CHARGE_ENERGY",
+            "gRID_POWER",
+            "iNSTALLED_CAPACITY"
+          ]
+        }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      },
+      "datapoints": [
+        {
+          "id": "sOFTWARE_VERSION_EMS",
+          "name": "Software version EMS",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1000,
+              "length": 17,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOFTWARE_VERSION_ENS",
+          "name": "Software version ENS",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1017,
+              "length": 17,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOFTWARE_VERSION_INVERTER",
+          "name": "Software version inverter",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1034,
+              "length": 17,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "tABLE_VERSION",
+          "name": "Modbus table version",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1051,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "tIMESTAMP",
+          "name": "Device Unix timestamp (lower word first)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "s",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1052,
+              "length": 2,
+              "dataType": "uint32",
+              "byteOrder": "be",
+              "wordOrder": "le"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sERIAL_NUMBER",
+          "name": "Serial number",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1054,
+              "length": 10,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "bATTERY_MODULES_INSTALLED",
+          "name": "Installed battery modules",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1064,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sYSTEM_STATE",
+          "name": "State (0 BUSY .. 7 ISLANDING)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1065,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active power (+ charge / - discharge)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1066,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aPPARENT_POWER",
+          "name": "Apparent power (+ charge / - discharge)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "VA",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1067,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOC",
+          "name": "Total state of charge",
+          "role": "value.battery",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1068,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aCTIVE_CHARGE_ENERGY",
+          "name": "AC to DC total charge energy (lower word first)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1069,
+              "length": 2,
+              "dataType": "uint32",
+              "byteOrder": "be",
+              "wordOrder": "le"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "iNSTALLED_CAPACITY",
+          "name": "Installed capacity (register unit 10 Wh)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1071,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "scaleFactor": 1
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "gRID_POWER",
+          "name": "Grid power (+ export / - import)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1078,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "diagnostics.tableSupported",
+          "name": "VARTA public Modbus table 14 verified",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.scalingValid",
+          "name": "Scale factors valid for current snapshot",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.externalControlSupported",
+          "name": "External power control documented (false for public table 14)",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.scaleFactorWritesEnabled",
+          "name": "Explicit expert permission for scale-factor configuration",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.note",
+          "name": "VARTA protocol scope and diagnostics",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ess.varta.oneXL.modbusTcpV14",
+      "source": {
+        "type": "builtin",
+        "protocol": "VARTA Modbus TCP documentation 14.0 public",
+        "protocolReleaseDate": "2025-03-12",
+        "tableVersion": 14,
+        "suppliedFilename": "VS-Modbus_V13.6_en_2022-09-01_freigegeben-public varta.pdf",
+        "implementedFrom": "User-supplied manufacturer PDF, pages 1-2; product support column: element"
+      },
+      "category": "ESS",
+      "manufacturer": "VARTA",
+      "model": "one XL",
+      "name": "VARTA one XL – Modbus TCP V14, Messwerte (keine Leistungssteuerung)",
+      "protocols": [
+        "modbusTcp"
+      ],
+      "notes": "Basis: bereitgestellte VARTA-PDF, intern 14.0 public vom 12.03.2025, Tabelle 14. Nur die für dieses Modell angekreuzten Register. TCP 502; empfohlene Unit-ID 255; direkte Tabellenadressen ohne Offset; FC3 lesen. Maximal eine Modbus-Anfrage je Sekunde, einschließlich Schreibzugriffen. Ein kompletter Messwertsatz dauert wegen mehrerer Lesegruppen länger. Keine dokumentierte externe Lade-/Entlade-Leistungsvorgabe, Ladefreigabe oder Watchdog. Dieses Modell hat im öffentlichen Protokoll keine Schreibregister. Details: docs/VARTA_MODBUS_PUBLIC14_0.5.162.md",
+      "driverHints": {
+        "pollIntervalMs": 1000,
+        "heartbeatTimeoutMs": 60000,
+        "vartaModbus": {
+          "product": "oneXL",
+          "tableVersion": 14,
+          "externalPowerControlSupported": false,
+          "scaleFactorWritesRequireOptIn": true
+        },
+        "modbus": {
+          "unitIdDefault": 255,
+          "tcpUnitIdDefault": 255,
+          "forceAddressOffset": 0,
+          "disableAddressFallbackOffsets": true,
+          "wordOrderDefault": "be",
+          "byteOrderDefault": "be",
+          "minCommandIntervalMs": 1000,
+          "maxReadRegs": 40,
+          "strictContiguousReads": true,
+          "timeoutMs": 3000,
+          "reconnectBackoffMs": 2000,
+          "restoreSetpointsOnStart": {
+            "enabled": false
+          },
+          "setpointKeepalive": {
+            "enabled": false
+          }
+        },
+        "polling": {
+          "fastIntervalMs": 1000,
+          "slowIntervalMs": 300000,
+          "fastDpIds": [
+            "tABLE_VERSION",
+            "tIMESTAMP",
+            "sYSTEM_STATE",
+            "aCTIVE_POWER",
+            "aPPARENT_POWER",
+            "sOC",
+            "aCTIVE_CHARGE_ENERGY",
+            "gRID_POWER",
+            "iNSTALLED_CAPACITY"
+          ]
+        }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      },
+      "datapoints": [
+        {
+          "id": "sOFTWARE_VERSION_EMS",
+          "name": "Software version EMS",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1000,
+              "length": 17,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOFTWARE_VERSION_ENS",
+          "name": "Software version ENS",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1017,
+              "length": 17,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOFTWARE_VERSION_INVERTER",
+          "name": "Software version inverter",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1034,
+              "length": 17,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "tABLE_VERSION",
+          "name": "Modbus table version",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1051,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "tIMESTAMP",
+          "name": "Device Unix timestamp (lower word first)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "s",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1052,
+              "length": 2,
+              "dataType": "uint32",
+              "byteOrder": "be",
+              "wordOrder": "le"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sERIAL_NUMBER",
+          "name": "Serial number",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1054,
+              "length": 10,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "bATTERY_MODULES_INSTALLED",
+          "name": "Installed battery modules",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1064,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sYSTEM_STATE",
+          "name": "State (0 BUSY .. 7 ISLANDING)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1065,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active power (+ charge / - discharge)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1066,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aPPARENT_POWER",
+          "name": "Apparent power (+ charge / - discharge)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "VA",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1067,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOC",
+          "name": "Total state of charge",
+          "role": "value.battery",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1068,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aCTIVE_CHARGE_ENERGY",
+          "name": "AC to DC total charge energy (lower word first)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1069,
+              "length": 2,
+              "dataType": "uint32",
+              "byteOrder": "be",
+              "wordOrder": "le"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "iNSTALLED_CAPACITY",
+          "name": "Installed capacity (register unit 10 Wh)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1071,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "scaleFactor": 1
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "gRID_POWER",
+          "name": "Grid power (+ export / - import)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1078,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "diagnostics.tableSupported",
+          "name": "VARTA public Modbus table 14 verified",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.scalingValid",
+          "name": "Scale factors valid for current snapshot",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.externalControlSupported",
+          "name": "External power control documented (false for public table 14)",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.scaleFactorWritesEnabled",
+          "name": "Explicit expert permission for scale-factor configuration",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.note",
+          "name": "VARTA protocol scope and diagnostics",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ess.varta.elementBackup.modbusTcpV14",
+      "source": {
+        "type": "builtin",
+        "protocol": "VARTA Modbus TCP documentation 14.0 public",
+        "protocolReleaseDate": "2025-03-12",
+        "tableVersion": 14,
+        "suppliedFilename": "VS-Modbus_V13.6_en_2022-09-01_freigegeben-public varta.pdf",
+        "implementedFrom": "User-supplied manufacturer PDF, pages 1-2; product support column: backup"
+      },
+      "category": "ESS",
+      "manufacturer": "VARTA",
+      "model": "element backup",
+      "name": "VARTA element backup – Modbus TCP V14, Messwerte (keine Leistungssteuerung)",
+      "protocols": [
+        "modbusTcp"
+      ],
+      "notes": "Basis: bereitgestellte VARTA-PDF, intern 14.0 public vom 12.03.2025, Tabelle 14. Nur die für dieses Modell angekreuzten Register. TCP 502; empfohlene Unit-ID 255; direkte Tabellenadressen ohne Offset; FC3 lesen. Maximal eine Modbus-Anfrage je Sekunde, einschließlich Schreibzugriffen. Ein kompletter Messwertsatz dauert wegen mehrerer Lesegruppen länger. Keine dokumentierte externe Lade-/Entlade-Leistungsvorgabe, Ladefreigabe oder Watchdog. Dieses Modell hat im öffentlichen Protokoll keine Schreibregister. Details: docs/VARTA_MODBUS_PUBLIC14_0.5.162.md",
+      "driverHints": {
+        "pollIntervalMs": 1000,
+        "heartbeatTimeoutMs": 60000,
+        "vartaModbus": {
+          "product": "elementBackup",
+          "tableVersion": 14,
+          "externalPowerControlSupported": false,
+          "scaleFactorWritesRequireOptIn": true
+        },
+        "modbus": {
+          "unitIdDefault": 255,
+          "tcpUnitIdDefault": 255,
+          "forceAddressOffset": 0,
+          "disableAddressFallbackOffsets": true,
+          "wordOrderDefault": "be",
+          "byteOrderDefault": "be",
+          "minCommandIntervalMs": 1000,
+          "maxReadRegs": 40,
+          "strictContiguousReads": true,
+          "timeoutMs": 3000,
+          "reconnectBackoffMs": 2000,
+          "restoreSetpointsOnStart": {
+            "enabled": false
+          },
+          "setpointKeepalive": {
+            "enabled": false
+          }
+        },
+        "polling": {
+          "fastIntervalMs": 1000,
+          "slowIntervalMs": 300000,
+          "fastDpIds": [
+            "tABLE_VERSION",
+            "tIMESTAMP",
+            "sYSTEM_STATE",
+            "aCTIVE_POWER",
+            "aPPARENT_POWER",
+            "sOC",
+            "aCTIVE_CHARGE_ENERGY",
+            "gRID_POWER",
+            "gRID_FREQUENCY",
+            "aLLOWED_CHARGE_POWER",
+            "aLLOWED_DISCHARGE_POWER",
+            "uSABLE_CHARGE_ENERGY",
+            "uSABLE_DISCHARGE_ENERGY",
+            "rEACTIVE_POWER",
+            "pV_POWER",
+            "iNSTALLED_CAPACITY"
+          ]
+        }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      },
+      "datapoints": [
+        {
+          "id": "mANUFACTURER_TYPE",
+          "name": "Manufacturer / Type",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 975,
+              "length": 25,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOFTWARE_VERSION_EMS",
+          "name": "Software version EMS",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1000,
+              "length": 17,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOFTWARE_VERSION_ENS",
+          "name": "Software version ENS",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1017,
+              "length": 17,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOFTWARE_VERSION_INVERTER",
+          "name": "Software version inverter",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1034,
+              "length": 17,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "tABLE_VERSION",
+          "name": "Modbus table version",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1051,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "tIMESTAMP",
+          "name": "Device Unix timestamp (lower word first)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "s",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1052,
+              "length": 2,
+              "dataType": "uint32",
+              "byteOrder": "be",
+              "wordOrder": "le"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sERIAL_NUMBER",
+          "name": "Serial number",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1054,
+              "length": 10,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "bATTERY_MODULES_INSTALLED",
+          "name": "Installed battery modules",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1064,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sYSTEM_STATE",
+          "name": "State (0 BUSY .. 7 ISLANDING)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1065,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active power (+ charge / - discharge)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1066,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aPPARENT_POWER",
+          "name": "Apparent power (+ charge / - discharge)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "VA",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1067,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOC",
+          "name": "Total state of charge",
+          "role": "value.battery",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1068,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aCTIVE_CHARGE_ENERGY",
+          "name": "AC to DC total charge energy (lower word first)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1069,
+              "length": 2,
+              "dataType": "uint32",
+              "byteOrder": "be",
+              "wordOrder": "le"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "iNSTALLED_CAPACITY",
+          "name": "Installed capacity (register unit 10 Wh)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1071,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "scaleFactor": 1
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "gRID_POWER",
+          "name": "Grid power (+ export / - import)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1078,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "gRID_FREQUENCY",
+          "name": "Grid frequency",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Hz",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1082,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "scaleFactor": -2
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aLLOWED_CHARGE_POWER",
+          "name": "Available AC charging power (read only)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1083,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aLLOWED_DISCHARGE_POWER",
+          "name": "Available AC discharging power (read only)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1084,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "uSABLE_CHARGE_ENERGY",
+          "name": "Usable energy for charging",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1085,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "uSABLE_DISCHARGE_ENERGY",
+          "name": "Usable energy for discharging",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1086,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER",
+          "name": "Reactive power at internal inverter",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "var",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1087,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "pV_POWER",
+          "name": "AC PV production measured by VARTA PV sensor",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1102,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "diagnostics.tableSupported",
+          "name": "VARTA public Modbus table 14 verified",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.scalingValid",
+          "name": "Scale factors valid for current snapshot",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.externalControlSupported",
+          "name": "External power control documented (false for public table 14)",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.scaleFactorWritesEnabled",
+          "name": "Explicit expert permission for scale-factor configuration",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.note",
+          "name": "VARTA protocol scope and diagnostics",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ess.varta.pulse.modbusTcpV14",
+      "source": {
+        "type": "builtin",
+        "protocol": "VARTA Modbus TCP documentation 14.0 public",
+        "protocolReleaseDate": "2025-03-12",
+        "tableVersion": 14,
+        "suppliedFilename": "VS-Modbus_V13.6_en_2022-09-01_freigegeben-public varta.pdf",
+        "implementedFrom": "User-supplied manufacturer PDF, pages 1-2; product support column: pulse"
+      },
+      "category": "ESS",
+      "manufacturer": "VARTA",
+      "model": "pulse",
+      "name": "VARTA pulse – Modbus TCP V14, Messwerte (keine Leistungssteuerung)",
+      "protocols": [
+        "modbusTcp"
+      ],
+      "notes": "Basis: bereitgestellte VARTA-PDF, intern 14.0 public vom 12.03.2025, Tabelle 14. Nur die für dieses Modell angekreuzten Register. TCP 502; empfohlene Unit-ID 255; direkte Tabellenadressen ohne Offset; FC3 lesen. Maximal eine Modbus-Anfrage je Sekunde, einschließlich Schreibzugriffen. Ein kompletter Messwertsatz dauert wegen mehrerer Lesegruppen länger. Keine dokumentierte externe Lade-/Entlade-Leistungsvorgabe, Ladefreigabe oder Watchdog. Dieses Modell hat im öffentlichen Protokoll keine Schreibregister. Details: docs/VARTA_MODBUS_PUBLIC14_0.5.162.md",
+      "driverHints": {
+        "pollIntervalMs": 1000,
+        "heartbeatTimeoutMs": 60000,
+        "vartaModbus": {
+          "product": "pulse",
+          "tableVersion": 14,
+          "externalPowerControlSupported": false,
+          "scaleFactorWritesRequireOptIn": true
+        },
+        "modbus": {
+          "unitIdDefault": 255,
+          "tcpUnitIdDefault": 255,
+          "forceAddressOffset": 0,
+          "disableAddressFallbackOffsets": true,
+          "wordOrderDefault": "be",
+          "byteOrderDefault": "be",
+          "minCommandIntervalMs": 1000,
+          "maxReadRegs": 40,
+          "strictContiguousReads": true,
+          "timeoutMs": 3000,
+          "reconnectBackoffMs": 2000,
+          "restoreSetpointsOnStart": {
+            "enabled": false
+          },
+          "setpointKeepalive": {
+            "enabled": false
+          }
+        },
+        "polling": {
+          "fastIntervalMs": 1000,
+          "slowIntervalMs": 300000,
+          "fastDpIds": [
+            "tABLE_VERSION",
+            "tIMESTAMP",
+            "sYSTEM_STATE",
+            "aCTIVE_POWER",
+            "aPPARENT_POWER",
+            "sOC",
+            "aCTIVE_CHARGE_ENERGY",
+            "gRID_POWER",
+            "gRID_FREQUENCY",
+            "aLLOWED_CHARGE_POWER",
+            "aLLOWED_DISCHARGE_POWER",
+            "uSABLE_CHARGE_ENERGY",
+            "uSABLE_DISCHARGE_ENERGY",
+            "rEACTIVE_POWER",
+            "pV_POWER",
+            "iNSTALLED_CAPACITY"
+          ]
+        }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      },
+      "datapoints": [
+        {
+          "id": "sOFTWARE_VERSION_EMS",
+          "name": "Software version EMS",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1000,
+              "length": 17,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOFTWARE_VERSION_ENS",
+          "name": "Software version ENS",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1017,
+              "length": 17,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOFTWARE_VERSION_INVERTER",
+          "name": "Software version inverter",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1034,
+              "length": 17,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "tABLE_VERSION",
+          "name": "Modbus table version",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1051,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "tIMESTAMP",
+          "name": "Device Unix timestamp (lower word first)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "s",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1052,
+              "length": 2,
+              "dataType": "uint32",
+              "byteOrder": "be",
+              "wordOrder": "le"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sERIAL_NUMBER",
+          "name": "Serial number",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1054,
+              "length": 10,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "bATTERY_MODULES_INSTALLED",
+          "name": "Installed battery modules",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1064,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sYSTEM_STATE",
+          "name": "State (0 BUSY .. 7 ISLANDING)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1065,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active power (+ charge / - discharge)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1066,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aPPARENT_POWER",
+          "name": "Apparent power (+ charge / - discharge)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "VA",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1067,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOC",
+          "name": "Total state of charge",
+          "role": "value.battery",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1068,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aCTIVE_CHARGE_ENERGY",
+          "name": "AC to DC total charge energy (lower word first)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1069,
+              "length": 2,
+              "dataType": "uint32",
+              "byteOrder": "be",
+              "wordOrder": "le"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "iNSTALLED_CAPACITY",
+          "name": "Installed capacity (register unit 10 Wh)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1071,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "scaleFactor": 1
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "gRID_POWER",
+          "name": "Grid power (+ export / - import)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1078,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "gRID_FREQUENCY",
+          "name": "Grid frequency",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Hz",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1082,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "scaleFactor": -2
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aLLOWED_CHARGE_POWER",
+          "name": "Available AC charging power (read only)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1083,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aLLOWED_DISCHARGE_POWER",
+          "name": "Available AC discharging power (read only)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1084,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "uSABLE_CHARGE_ENERGY",
+          "name": "Usable energy for charging",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1085,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "uSABLE_DISCHARGE_ENERGY",
+          "name": "Usable energy for discharging",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1086,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER",
+          "name": "Reactive power at internal inverter",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "var",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1087,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "pV_POWER",
+          "name": "AC PV production measured by VARTA PV sensor",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1102,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "diagnostics.tableSupported",
+          "name": "VARTA public Modbus table 14 verified",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.scalingValid",
+          "name": "Scale factors valid for current snapshot",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.externalControlSupported",
+          "name": "External power control documented (false for public table 14)",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.scaleFactorWritesEnabled",
+          "name": "Explicit expert permission for scale-factor configuration",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.note",
+          "name": "VARTA protocol scope and diagnostics",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ess.varta.pulseNeo.modbusTcpV14",
+      "source": {
+        "type": "builtin",
+        "protocol": "VARTA Modbus TCP documentation 14.0 public",
+        "protocolReleaseDate": "2025-03-12",
+        "tableVersion": 14,
+        "suppliedFilename": "VS-Modbus_V13.6_en_2022-09-01_freigegeben-public varta.pdf",
+        "implementedFrom": "User-supplied manufacturer PDF, pages 1-2; product support column: neo"
+      },
+      "category": "ESS",
+      "manufacturer": "VARTA",
+      "model": "pulse neo",
+      "name": "VARTA pulse neo – Modbus TCP V14, Messwerte + SF-Konfiguration (keine Leistungssteuerung)",
+      "protocols": [
+        "modbusTcp"
+      ],
+      "notes": "Basis: bereitgestellte VARTA-PDF, intern 14.0 public vom 12.03.2025, Tabelle 14. Nur die für dieses Modell angekreuzten Register. TCP 502; empfohlene Unit-ID 255; direkte Tabellenadressen ohne Offset; FC3 lesen. Maximal eine Modbus-Anfrage je Sekunde, einschließlich Schreibzugriffen. Ein kompletter Messwertsatz dauert wegen mehrerer Lesegruppen länger. Keine dokumentierte externe Lade-/Entlade-Leistungsvorgabe, Ladefreigabe oder Watchdog. Nur die neun SF-Exponenten sind mit FC6 konfigurierbar; keine Leistungssteuerung. Standardmäßig gesperrt, explizite Expertenfreigabe vartaAllowScaleFactorWrites=true erforderlich. Version/Seriennummer, Zielregister und Rücklesen werden geprüft. Details: docs/VARTA_MODBUS_PUBLIC14_0.5.162.md",
+      "driverHints": {
+        "pollIntervalMs": 1000,
+        "heartbeatTimeoutMs": 60000,
+        "vartaModbus": {
+          "product": "pulseNeo",
+          "tableVersion": 14,
+          "externalPowerControlSupported": false,
+          "scaleFactorWritesRequireOptIn": true
+        },
+        "modbus": {
+          "unitIdDefault": 255,
+          "tcpUnitIdDefault": 255,
+          "forceAddressOffset": 0,
+          "disableAddressFallbackOffsets": true,
+          "wordOrderDefault": "be",
+          "byteOrderDefault": "be",
+          "minCommandIntervalMs": 1000,
+          "maxReadRegs": 40,
+          "strictContiguousReads": true,
+          "timeoutMs": 3000,
+          "reconnectBackoffMs": 2000,
+          "restoreSetpointsOnStart": {
+            "enabled": false
+          },
+          "setpointKeepalive": {
+            "enabled": false
+          }
+        },
+        "polling": {
+          "fastIntervalMs": 1000,
+          "slowIntervalMs": 300000,
+          "fastDpIds": [
+            "tABLE_VERSION",
+            "tIMESTAMP",
+            "sYSTEM_STATE",
+            "aCTIVE_POWER",
+            "aPPARENT_POWER",
+            "sOC",
+            "aCTIVE_CHARGE_ENERGY",
+            "gRID_POWER",
+            "gRID_FREQUENCY",
+            "aLLOWED_CHARGE_POWER",
+            "aLLOWED_DISCHARGE_POWER",
+            "uSABLE_CHARGE_ENERGY",
+            "uSABLE_DISCHARGE_ENERGY",
+            "rEACTIVE_POWER",
+            "pV_POWER",
+            "sF_ACTIVE_POWER",
+            "sF_APPARENT_POWER",
+            "sF_CHARGE_ENERGY",
+            "sF_CAPACITY",
+            "sF_GRID_POWER",
+            "sF_AVAILABLE_CHARGE_POWER",
+            "sF_AVAILABLE_DISCHARGE_POWER",
+            "sF_USABLE_CHARGE_ENERGY",
+            "sF_USABLE_DISCHARGE_ENERGY",
+            "iNSTALLED_CAPACITY"
+          ]
+        }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      },
+      "datapoints": [
+        {
+          "id": "sOFTWARE_VERSION_EMS",
+          "name": "Software version EMS",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1000,
+              "length": 17,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOFTWARE_VERSION_ENS",
+          "name": "Software version ENS",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1017,
+              "length": 17,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOFTWARE_VERSION_INVERTER",
+          "name": "Software version inverter",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1034,
+              "length": 17,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "tABLE_VERSION",
+          "name": "Modbus table version",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1051,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "tIMESTAMP",
+          "name": "Device Unix timestamp (lower word first)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "s",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1052,
+              "length": 2,
+              "dataType": "uint32",
+              "byteOrder": "be",
+              "wordOrder": "le"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sERIAL_NUMBER",
+          "name": "Serial number",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1054,
+              "length": 10,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "bATTERY_MODULES_INSTALLED",
+          "name": "Installed battery modules",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1064,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sYSTEM_STATE",
+          "name": "State (0 BUSY .. 7 ISLANDING)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1065,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active power (+ charge / - discharge)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1066,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "vartaScaleFactorDpId": "sF_ACTIVE_POWER"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aPPARENT_POWER",
+          "name": "Apparent power (+ charge / - discharge)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "VA",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1067,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "vartaScaleFactorDpId": "sF_APPARENT_POWER"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOC",
+          "name": "Total state of charge",
+          "role": "value.battery",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1068,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aCTIVE_CHARGE_ENERGY",
+          "name": "AC to DC total charge energy (lower word first)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1069,
+              "length": 2,
+              "dataType": "uint32",
+              "byteOrder": "be",
+              "wordOrder": "le",
+              "vartaScaleFactorDpId": "sF_CHARGE_ENERGY"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "iNSTALLED_CAPACITY",
+          "name": "Installed capacity (register unit 10 Wh)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1071,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "scaleFactor": 1,
+              "vartaScaleFactorDpId": "sF_CAPACITY"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "gRID_POWER",
+          "name": "Grid power (+ export / - import)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1078,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "vartaScaleFactorDpId": "sF_GRID_POWER"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "gRID_FREQUENCY",
+          "name": "Grid frequency",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Hz",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1082,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "scaleFactor": -2
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aLLOWED_CHARGE_POWER",
+          "name": "Available AC charging power (read only)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1083,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "vartaScaleFactorDpId": "sF_AVAILABLE_CHARGE_POWER"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aLLOWED_DISCHARGE_POWER",
+          "name": "Available AC discharging power (read only)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1084,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "vartaScaleFactorDpId": "sF_AVAILABLE_DISCHARGE_POWER"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "uSABLE_CHARGE_ENERGY",
+          "name": "Usable energy for charging",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1085,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "vartaScaleFactorDpId": "sF_USABLE_CHARGE_ENERGY"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "uSABLE_DISCHARGE_ENERGY",
+          "name": "Usable energy for discharging",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1086,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "vartaScaleFactorDpId": "sF_USABLE_DISCHARGE_ENERGY"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "rEACTIVE_POWER",
+          "name": "Reactive power at internal inverter",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "var",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1087,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "pV_POWER",
+          "name": "AC PV production measured by VARTA PV sensor",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1102,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sF_ACTIVE_POWER",
+          "name": "Active power scale exponent (NOT a power setpoint)",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2066,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 6,
+              "address": 2066,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            }
+          },
+          "min": -32768,
+          "max": 32767,
+          "decimals": 0
+        },
+        {
+          "id": "sF_APPARENT_POWER",
+          "name": "Apparent power scale exponent",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2067,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 6,
+              "address": 2067,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            }
+          },
+          "min": -32768,
+          "max": 32767,
+          "decimals": 0
+        },
+        {
+          "id": "sF_CHARGE_ENERGY",
+          "name": "Charge energy scale exponent",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2069,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 6,
+              "address": 2069,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            }
+          },
+          "min": -32768,
+          "max": 32767,
+          "decimals": 0
+        },
+        {
+          "id": "sF_CAPACITY",
+          "name": "Capacity scale exponent",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2071,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 6,
+              "address": 2071,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            }
+          },
+          "min": -32768,
+          "max": 32767,
+          "decimals": 0
+        },
+        {
+          "id": "sF_GRID_POWER",
+          "name": "Grid power scale exponent (NOT grid power)",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2078,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 6,
+              "address": 2078,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            }
+          },
+          "min": -32768,
+          "max": 32767,
+          "decimals": 0
+        },
+        {
+          "id": "sF_AVAILABLE_CHARGE_POWER",
+          "name": "Available charging power scale exponent",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2083,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 6,
+              "address": 2083,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            }
+          },
+          "min": -32768,
+          "max": 32767,
+          "decimals": 0
+        },
+        {
+          "id": "sF_AVAILABLE_DISCHARGE_POWER",
+          "name": "Available discharging power scale exponent",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2084,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 6,
+              "address": 2084,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            }
+          },
+          "min": -32768,
+          "max": 32767,
+          "decimals": 0
+        },
+        {
+          "id": "sF_USABLE_CHARGE_ENERGY",
+          "name": "Usable charging energy scale exponent",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2085,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 6,
+              "address": 2085,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            }
+          },
+          "min": -32768,
+          "max": 32767,
+          "decimals": 0
+        },
+        {
+          "id": "sF_USABLE_DISCHARGE_ENERGY",
+          "name": "Usable discharging energy scale exponent",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2086,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 6,
+              "address": 2086,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            }
+          },
+          "min": -32768,
+          "max": 32767,
+          "decimals": 0
+        },
+        {
+          "id": "diagnostics.tableSupported",
+          "name": "VARTA public Modbus table 14 verified",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.scalingValid",
+          "name": "Scale factors valid for current snapshot",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.externalControlSupported",
+          "name": "External power control documented (false for public table 14)",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.scaleFactorWritesEnabled",
+          "name": "Explicit expert permission for scale-factor configuration",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.note",
+          "name": "VARTA protocol scope and diagnostics",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ess.varta.link.modbusTcpV14",
+      "source": {
+        "type": "builtin",
+        "protocol": "VARTA Modbus TCP documentation 14.0 public",
+        "protocolReleaseDate": "2025-03-12",
+        "tableVersion": 14,
+        "suppliedFilename": "VS-Modbus_V13.6_en_2022-09-01_freigegeben-public varta.pdf",
+        "implementedFrom": "User-supplied manufacturer PDF, pages 1-2; product support column: link"
+      },
+      "category": "ESS",
+      "manufacturer": "VARTA",
+      "model": "link",
+      "name": "VARTA link – Modbus TCP V14, Messwerte (keine Leistungssteuerung)",
+      "protocols": [
+        "modbusTcp"
+      ],
+      "notes": "Basis: bereitgestellte VARTA-PDF, intern 14.0 public vom 12.03.2025, Tabelle 14. Nur die für dieses Modell angekreuzten Register. TCP 502; empfohlene Unit-ID 255; direkte Tabellenadressen ohne Offset; FC3 lesen. Maximal eine Modbus-Anfrage je 5 Sekunden, einschließlich Schreibzugriffen. Ein kompletter Messwertsatz dauert wegen mehrerer Lesegruppen länger. Keine dokumentierte externe Lade-/Entlade-Leistungsvorgabe, Ladefreigabe oder Watchdog. Dieses Modell hat im öffentlichen Protokoll keine Schreibregister. Details: docs/VARTA_MODBUS_PUBLIC14_0.5.162.md",
+      "driverHints": {
+        "pollIntervalMs": 5000,
+        "heartbeatTimeoutMs": 120000,
+        "vartaModbus": {
+          "product": "link",
+          "tableVersion": 14,
+          "externalPowerControlSupported": false,
+          "scaleFactorWritesRequireOptIn": true
+        },
+        "modbus": {
+          "unitIdDefault": 255,
+          "tcpUnitIdDefault": 255,
+          "forceAddressOffset": 0,
+          "disableAddressFallbackOffsets": true,
+          "wordOrderDefault": "be",
+          "byteOrderDefault": "be",
+          "minCommandIntervalMs": 5000,
+          "maxReadRegs": 40,
+          "strictContiguousReads": true,
+          "timeoutMs": 3000,
+          "reconnectBackoffMs": 2000,
+          "restoreSetpointsOnStart": {
+            "enabled": false
+          },
+          "setpointKeepalive": {
+            "enabled": false
+          }
+        },
+        "polling": {
+          "fastIntervalMs": 5000,
+          "slowIntervalMs": 300000,
+          "fastDpIds": [
+            "tABLE_VERSION",
+            "tIMESTAMP",
+            "sYSTEM_STATE",
+            "aCTIVE_POWER",
+            "aPPARENT_POWER",
+            "sOC",
+            "aCTIVE_CHARGE_ENERGY",
+            "gRID_POWER",
+            "iNSTALLED_CAPACITY"
+          ]
+        }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      },
+      "datapoints": [
+        {
+          "id": "tABLE_VERSION",
+          "name": "Modbus table version",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1051,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "tIMESTAMP",
+          "name": "Device Unix timestamp (lower word first)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "s",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1052,
+              "length": 2,
+              "dataType": "uint32",
+              "byteOrder": "be",
+              "wordOrder": "le"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sERIAL_NUMBER",
+          "name": "Serial number",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1054,
+              "length": 10,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "bATTERY_MODULES_INSTALLED",
+          "name": "Installed battery modules",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1064,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sYSTEM_STATE",
+          "name": "State (0 BUSY .. 7 ISLANDING)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1065,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active power (+ charge / - discharge)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1066,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aPPARENT_POWER",
+          "name": "Apparent power (+ charge / - discharge)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "VA",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1067,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOC",
+          "name": "Total state of charge",
+          "role": "value.battery",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1068,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aCTIVE_CHARGE_ENERGY",
+          "name": "AC to DC total charge energy (lower word first)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1069,
+              "length": 2,
+              "dataType": "uint32",
+              "byteOrder": "be",
+              "wordOrder": "le"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "iNSTALLED_CAPACITY",
+          "name": "Installed capacity (register unit 10 Wh)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1071,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "scaleFactor": 1
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "gRID_POWER",
+          "name": "Grid power (+ export / - import)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1078,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "diagnostics.tableSupported",
+          "name": "VARTA public Modbus table 14 verified",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.scalingValid",
+          "name": "Scale factors valid for current snapshot",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.externalControlSupported",
+          "name": "External power control documented (false for public table 14)",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.scaleFactorWritesEnabled",
+          "name": "Explicit expert permission for scale-factor configuration",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.note",
+          "name": "VARTA protocol scope and diagnostics",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ess.varta.flexStorage.modbusTcpV14",
+      "source": {
+        "type": "builtin",
+        "protocol": "VARTA Modbus TCP documentation 14.0 public",
+        "protocolReleaseDate": "2025-03-12",
+        "tableVersion": 14,
+        "suppliedFilename": "VS-Modbus_V13.6_en_2022-09-01_freigegeben-public varta.pdf",
+        "implementedFrom": "User-supplied manufacturer PDF, pages 1-2; product support column: flex"
+      },
+      "category": "ESS",
+      "manufacturer": "VARTA",
+      "model": "flex storage",
+      "name": "VARTA flex storage – Modbus TCP V14, Messwerte + SF-Konfiguration (keine Leistungssteuerung)",
+      "protocols": [
+        "modbusTcp"
+      ],
+      "notes": "Basis: bereitgestellte VARTA-PDF, intern 14.0 public vom 12.03.2025, Tabelle 14. Nur die für dieses Modell angekreuzten Register. TCP 502; empfohlene Unit-ID 255; direkte Tabellenadressen ohne Offset; FC3 lesen. Maximal eine Modbus-Anfrage je Sekunde, einschließlich Schreibzugriffen. Ein kompletter Messwertsatz dauert wegen mehrerer Lesegruppen länger. Keine dokumentierte externe Lade-/Entlade-Leistungsvorgabe, Ladefreigabe oder Watchdog. Nur die neun SF-Exponenten sind mit FC6 konfigurierbar; keine Leistungssteuerung. Standardmäßig gesperrt, explizite Expertenfreigabe vartaAllowScaleFactorWrites=true erforderlich. Version/Seriennummer, Zielregister und Rücklesen werden geprüft. Details: docs/VARTA_MODBUS_PUBLIC14_0.5.162.md",
+      "driverHints": {
+        "pollIntervalMs": 1000,
+        "heartbeatTimeoutMs": 60000,
+        "vartaModbus": {
+          "product": "flexStorage",
+          "tableVersion": 14,
+          "externalPowerControlSupported": false,
+          "scaleFactorWritesRequireOptIn": true
+        },
+        "modbus": {
+          "unitIdDefault": 255,
+          "tcpUnitIdDefault": 255,
+          "forceAddressOffset": 0,
+          "disableAddressFallbackOffsets": true,
+          "wordOrderDefault": "be",
+          "byteOrderDefault": "be",
+          "minCommandIntervalMs": 1000,
+          "maxReadRegs": 40,
+          "strictContiguousReads": true,
+          "timeoutMs": 3000,
+          "reconnectBackoffMs": 2000,
+          "restoreSetpointsOnStart": {
+            "enabled": false
+          },
+          "setpointKeepalive": {
+            "enabled": false
+          }
+        },
+        "polling": {
+          "fastIntervalMs": 1000,
+          "slowIntervalMs": 300000,
+          "fastDpIds": [
+            "tABLE_VERSION",
+            "tIMESTAMP",
+            "sYSTEM_STATE",
+            "aCTIVE_POWER",
+            "aPPARENT_POWER",
+            "sOC",
+            "aCTIVE_CHARGE_ENERGY",
+            "gRID_POWER",
+            "gRID_FREQUENCY",
+            "aLLOWED_CHARGE_POWER",
+            "aLLOWED_DISCHARGE_POWER",
+            "uSABLE_CHARGE_ENERGY",
+            "uSABLE_DISCHARGE_ENERGY",
+            "sF_ACTIVE_POWER",
+            "sF_APPARENT_POWER",
+            "sF_CHARGE_ENERGY",
+            "sF_CAPACITY",
+            "sF_GRID_POWER",
+            "sF_AVAILABLE_CHARGE_POWER",
+            "sF_AVAILABLE_DISCHARGE_POWER",
+            "sF_USABLE_CHARGE_ENERGY",
+            "sF_USABLE_DISCHARGE_ENERGY",
+            "iNSTALLED_CAPACITY"
+          ]
+        }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      },
+      "datapoints": [
+        {
+          "id": "sOFTWARE_VERSION_EMS",
+          "name": "Software version EMS",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1000,
+              "length": 17,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "tABLE_VERSION",
+          "name": "Modbus table version",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1051,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "tIMESTAMP",
+          "name": "Device Unix timestamp (lower word first)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "s",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1052,
+              "length": 2,
+              "dataType": "uint32",
+              "byteOrder": "be",
+              "wordOrder": "le"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sERIAL_NUMBER",
+          "name": "Serial number",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1054,
+              "length": 10,
+              "dataType": "string16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sYSTEM_STATE",
+          "name": "State (0 BUSY .. 7 ISLANDING)",
+          "role": "indicator.status",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1065,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aCTIVE_POWER",
+          "name": "Active power (+ charge / - discharge)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1066,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "vartaScaleFactorDpId": "sF_ACTIVE_POWER"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aPPARENT_POWER",
+          "name": "Apparent power (+ charge / - discharge)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "VA",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1067,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "vartaScaleFactorDpId": "sF_APPARENT_POWER"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sOC",
+          "name": "Total state of charge",
+          "role": "value.battery",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1068,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aCTIVE_CHARGE_ENERGY",
+          "name": "AC to DC total charge energy (lower word first)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1069,
+              "length": 2,
+              "dataType": "uint32",
+              "byteOrder": "be",
+              "wordOrder": "le",
+              "vartaScaleFactorDpId": "sF_CHARGE_ENERGY"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "iNSTALLED_CAPACITY",
+          "name": "Installed capacity (register unit 10 Wh)",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1071,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "scaleFactor": 1,
+              "vartaScaleFactorDpId": "sF_CAPACITY"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "gRID_POWER",
+          "name": "Grid power (+ export / - import)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1078,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "vartaScaleFactorDpId": "sF_GRID_POWER"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "gRID_FREQUENCY",
+          "name": "Grid frequency",
+          "role": "value.frequency",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Hz",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1082,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "scaleFactor": -2
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aLLOWED_CHARGE_POWER",
+          "name": "Available AC charging power (read only)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1083,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "vartaScaleFactorDpId": "sF_AVAILABLE_CHARGE_POWER"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "aLLOWED_DISCHARGE_POWER",
+          "name": "Available AC discharging power (read only)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1084,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "vartaScaleFactorDpId": "sF_AVAILABLE_DISCHARGE_POWER"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "uSABLE_CHARGE_ENERGY",
+          "name": "Usable energy for charging",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1085,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "vartaScaleFactorDpId": "sF_USABLE_CHARGE_ENERGY"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "uSABLE_DISCHARGE_ENERGY",
+          "name": "Usable energy for discharging",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 1086,
+              "length": 1,
+              "dataType": "uint16",
+              "byteOrder": "be",
+              "wordOrder": "be",
+              "vartaScaleFactorDpId": "sF_USABLE_DISCHARGE_ENERGY"
+            },
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "sF_ACTIVE_POWER",
+          "name": "Active power scale exponent (NOT a power setpoint)",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2066,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 6,
+              "address": 2066,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            }
+          },
+          "min": -32768,
+          "max": 32767,
+          "decimals": 0
+        },
+        {
+          "id": "sF_APPARENT_POWER",
+          "name": "Apparent power scale exponent",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2067,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 6,
+              "address": 2067,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            }
+          },
+          "min": -32768,
+          "max": 32767,
+          "decimals": 0
+        },
+        {
+          "id": "sF_CHARGE_ENERGY",
+          "name": "Charge energy scale exponent",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2069,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 6,
+              "address": 2069,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            }
+          },
+          "min": -32768,
+          "max": 32767,
+          "decimals": 0
+        },
+        {
+          "id": "sF_CAPACITY",
+          "name": "Capacity scale exponent",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2071,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 6,
+              "address": 2071,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            }
+          },
+          "min": -32768,
+          "max": 32767,
+          "decimals": 0
+        },
+        {
+          "id": "sF_GRID_POWER",
+          "name": "Grid power scale exponent (NOT grid power)",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2078,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 6,
+              "address": 2078,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            }
+          },
+          "min": -32768,
+          "max": 32767,
+          "decimals": 0
+        },
+        {
+          "id": "sF_AVAILABLE_CHARGE_POWER",
+          "name": "Available charging power scale exponent",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2083,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 6,
+              "address": 2083,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            }
+          },
+          "min": -32768,
+          "max": 32767,
+          "decimals": 0
+        },
+        {
+          "id": "sF_AVAILABLE_DISCHARGE_POWER",
+          "name": "Available discharging power scale exponent",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2084,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 6,
+              "address": 2084,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            }
+          },
+          "min": -32768,
+          "max": 32767,
+          "decimals": 0
+        },
+        {
+          "id": "sF_USABLE_CHARGE_ENERGY",
+          "name": "Usable charging energy scale exponent",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2085,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 6,
+              "address": 2085,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            }
+          },
+          "min": -32768,
+          "max": 32767,
+          "decimals": 0
+        },
+        {
+          "id": "sF_USABLE_DISCHARGE_ENERGY",
+          "name": "Usable discharging energy scale exponent",
+          "role": "level",
+          "type": "number",
+          "rw": "rw",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 2086,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            },
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 6,
+              "address": 2086,
+              "length": 1,
+              "dataType": "int16",
+              "byteOrder": "be",
+              "wordOrder": "be"
+            }
+          },
+          "min": -32768,
+          "max": 32767,
+          "decimals": 0
+        },
+        {
+          "id": "diagnostics.tableSupported",
+          "name": "VARTA public Modbus table 14 verified",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.scalingValid",
+          "name": "Scale factors valid for current snapshot",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.externalControlSupported",
+          "name": "External power control documented (false for public table 14)",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.scaleFactorWritesEnabled",
+          "name": "Explicit expert permission for scale-factor configuration",
+          "role": "indicator",
+          "type": "boolean",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.note",
+          "name": "VARTA protocol scope and diagnostics",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "vartaDiagnostic"
+          }
+        }
+      ]
     }
   ]
 }
