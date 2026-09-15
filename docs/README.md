@@ -14,6 +14,7 @@ Alle technischen Markdown-Dateien des Adapters liegen bewusst in diesem Ordner. 
 
 ## Wallboxen und Ladepunkte
 
+- [DEPower – Sollwerte, Rücklesen und Energieauflösung](DEPOWER_POWER_ENERGY_0.5.164.md)
 - [DEPower Modbus V10.03 – stabile Steuersequenz und Prepare-Re-Arm](DEPOWER_CONTROL_SEQUENCE_0.5.161.md)
 - [DEPower Modbus V10.03 – Charging SOC](DEPOWER_MODBUS_V10.03_SOC_0.5.159.md)
 - [OEM Modbus V10.03 – AC-Wallboxen und DC-Ladestationen](OEM_MODBUS_V10.03_AC_DC_CHARGE_POINT_0.5.157.md)

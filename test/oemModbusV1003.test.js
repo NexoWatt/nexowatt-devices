@@ -512,3 +512,152 @@ test('energy aliases normalize the workbook 0.1 kWh counters to the v1 Wh contra
   assert.equal(total.fromDevice(12.3), 12300);
   assert.equal(session.fromDevice(1.2), 1200);
 });
+
+function queuedRuntime() {
+  const { runtime, byPath } = buildAliases(template(connectorIds[0]), 'dc');
+  const states = new Map();
+  runtime.adapter = {
+    namespace: 'nexowatt-devices.0', log,
+    async setStateAsync(id, state) { states.set(id, state); },
+    async getStateAsync() { return null; },
+  };
+  runtime.aliasDefs = [...byPath.values()];
+  runtime.aliasByStateRelId = new Map(runtime.aliasDefs.map(d => [d.relId, d]));
+  runtime._startWriteLoop = () => {};
+  runtime._writeQueueEnabled = true;
+  runtime._writeThrottleMs = 250;
+  runtime._persistSetpointValueIfNeeded = async () => {};
+  return { runtime, states };
+}
+
+test('a 4200 W command arriving during an in-flight 11000 W write remains queued and is not falsely acknowledged', async () => {
+  const { runtime, states } = queuedRuntime();
+  const target = dp(template(connectorIds[0]), 'eV_SET_CHARGE_POWER_LIMIT');
+  const aliasId = 'devices.dc.aliases.v1.ctrl.powerLimitW';
+  let release;
+  const calls = [];
+  runtime.driver = { async writeDatapoint(item, value) {
+    calls.push(value);
+    if (calls.length === 1) await new Promise(resolve => { release = resolve; });
+  } };
+  runtime._enqueueWrite(aliasId, target, 11000, 11000, { isUserCommand: true });
+  const first = runtime._flushWriteQueueOnce();
+  await new Promise(resolve => setImmediate(resolve));
+  runtime._enqueueWrite(aliasId, target, 4200, 4200, { isUserCommand: true });
+  release();
+  await first;
+  assert.equal(runtime._writeQueue.get(target.id)?.deviceValue, 4200, 'new reduction must not be deleted');
+  assert.notEqual(states.get(aliasId)?.val, 4200, 'unsent reduction must not be acknowledged');
+  await runtime._flushWriteQueueOnce();
+  assert.deepEqual(calls, [11000, 4200]);
+  assert.equal(states.get(aliasId).val, 4200);
+  assert.equal(states.get(aliasId).ack, true);
+});
+
+test('failed in-flight writes do not consume the retry budget or discard a newer power command', async () => {
+  const { runtime } = queuedRuntime();
+  runtime._setError = async () => {};
+  const target = dp(template(connectorIds[0]), 'eV_SET_CHARGE_POWER_LIMIT');
+  let reject;
+  runtime.driver = { async writeDatapoint() { await new Promise((_, r) => { reject = r; }); } };
+  runtime._enqueueWrite('', target, 11000, 11000, { isUserCommand: true });
+  const first = runtime._flushWriteQueueOnce();
+  await new Promise(resolve => setImmediate(resolve));
+  runtime._enqueueWrite('', target, 4200, 4200, { isUserCommand: true });
+  reject(new Error('Modbus exception 3: illegal data value'));
+  await first;
+  assert.equal(runtime._writeQueue.get(target.id)?.deviceValue, 4200);
+  assert.equal(runtime._writeQueue.get(target.id)?.attempts, 0);
+});
+
+test('DEPower polling does not acknowledge queued commands or fabricate an applied power limit', async () => {
+  const { runtime, states } = queuedRuntime();
+  const target = dp(template(connectorIds[0]), 'eV_SET_CHARGE_POWER_LIMIT');
+  const ctrl = 'devices.dc.aliases.v1.ctrl.powerLimitW';
+  const readback = 'devices.dc.aliases.v1.r.powerLimitW';
+  runtime.driver = { async writeDatapoint() {} };
+  runtime._enqueueWrite(ctrl, target, 4200, 4200, { isUserCommand: true });
+  await runtime._updateAliases({ [target.id]: 11000 });
+  assert.equal(states.get(ctrl), undefined);
+  assert.equal(states.get(readback).val, 11000);
+  assert.equal(JSON.parse(states.get('devices.dc.info.depowerControl').val).status, 'pending');
+  await runtime._flushWriteQueueOnce();
+  assert.equal(states.get(ctrl).val, 4200);
+  assert.equal(states.get('devices.dc.aliases.ctrl.powerLimitW').val, 4200);
+  assert.equal(states.get(readback).val, 11000, 'FC16 response is not a readback');
+  await runtime._updateAliases({ [target.id]: 11000 });
+  assert.equal(JSON.parse(states.get('devices.dc.info.depowerControl').val).status, 'readback_differs');
+  await runtime._updateAliases({ [target.id]: 4200 });
+  assert.equal(states.get(readback).val, 4200);
+  assert.equal(JSON.parse(states.get('devices.dc.info.depowerControl').val).status, 'readback_matches');
+});
+
+test('DEPower diagnostics distinguish a missing EMS command from a station readback', async () => {
+  const { runtime, states } = queuedRuntime();
+  await runtime._updateAliases({ eV_SET_CHARGE_POWER_LIMIT: 11000 });
+  const before = states.get('devices.dc.info.depowerControl').val;
+  const diagnostic = JSON.parse(before);
+  assert.equal(diagnostic.status, 'no_command');
+  assert.equal(diagnostic.requestedW, null);
+  assert.equal(diagnostic.readbackW, 11000);
+  await runtime._updateAliases({}, { connected: false });
+  assert.equal(states.get('devices.dc.info.depowerControl').val, before, 'offline polls must not invent readback');
+});
+
+test('write queue acknowledges driver-adjusted values in both control alias namespaces', async () => {
+  const { runtime, states } = queuedRuntime();
+  const target = dp(template(connectorIds[0]), 'eV_SET_CHARGE_POWER_LIMIT');
+  const ctrl = 'devices.dc.aliases.v1.ctrl.powerLimitW';
+  runtime.driver = { async writeDatapoint() { return { effectiveValue: 4200 }; } };
+  runtime._enqueueWrite(ctrl, target, 4300, 4300, { isUserCommand: true });
+  await runtime._flushWriteQueueOnce();
+  assert.equal(states.get(ctrl).val, 4200);
+  assert.equal(states.get('devices.dc.aliases.ctrl.powerLimitW').val, 4200);
+});
+
+test('concurrent DEPower power and stop commands keep complete control sequences in order', async () => {
+  const t = template(connectorIds[0]);
+  const driver = createDriver(t, {}, { gUN_COUNT: 1, cHARGE_POINT_SET_POWER: 32000, eVSE_STATE: 2 });
+  const writes = [];
+  let release;
+  driver._mbWriteRegisters = async (address, values) => {
+    writes.push([address, ...values]);
+    if (writes.length === 1) await new Promise(resolve => { release = resolve; });
+  };
+  const power = driver.writeDatapoint(dp(t, 'eV_SET_CHARGE_POWER_LIMIT'), 4200);
+  await new Promise(resolve => setImmediate(resolve));
+  const stop = driver.writeDatapoint(dp(t, 'cHARGE_COMMAND'), 2);
+  await new Promise(resolve => setImmediate(resolve));
+  assert.deepEqual(writes, [[0x13, 1]], 'stop must not bypass a running sequence');
+  release();
+  await Promise.all([power, stop]);
+  assert.deepEqual(writes, [[0x13, 1], [0x122, 0, 4200], [0x121, 2]]);
+});
+
+test('DEPower counter resolutions are independent, validated and preserve sub-10 Wh precision', () => {
+  const t = template(connectorIds[0]);
+  const driver = createDriver(t, { depowerSessionEnergyWhPerTick: 10, depowerTotalEnergyWhPerTick: 1 });
+  const session = dp(t, 'eNERGY_SESSION');
+  const total = dp(t, 'aCTIVE_PRODUCTION_ENERGY');
+  const { runtime, byPath } = buildAliases(t);
+  assert.equal(driver._applyTransforms(311, readSource(session)), 3.11);
+  assert.equal(alias(byPath, 'v1.r.energySession').fromDevice(3.11), 3110);
+  assert.equal(driver._applyTransforms(1810, readSource(total)), 1.81);
+  assert.equal(alias(byPath, 'v1.r.energyTotal').fromDevice(1.81), 1810);
+  assert.ok(runtime._getRoundingDecimals(total) >= 3);
+  assert.equal(driver._applyTransforms(10927, readSource(dp(t, 'aCTIVE_POWER'))), 10927);
+  for (const value of [0, -1, 12, 'auto', Infinity]) {
+    assert.throws(() => createDriver(t, { depowerSessionEnergyWhPerTick: value }), /Invalid depowerSessionEnergy/);
+  }
+  assert.equal(createDriver(t)._applyTransforms(1810, readSource(total)), 181);
+});
+
+test('DEPower returns the actual integer-W command for alias acknowledgement', async () => {
+  const t = template(connectorIds[0]);
+  const driver = createDriver(t, {}, { cHARGE_POINT_SET_POWER: 32000, eVSE_STATE: 2 });
+  const writes = [];
+  driver._mbWriteRegisters = async (address, values) => writes.push([address, ...values]);
+  const result = await driver.writeDatapoint(dp(t, 'eV_SET_CHARGE_POWER_LIMIT'), 4200.4);
+  assert.deepEqual(result, { effectiveValue: 4200 });
+  assert.deepEqual(writes, [[0x13, 1], [0x122, 0, 4200]]);
+});

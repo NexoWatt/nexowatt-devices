@@ -148695,10 +148695,11 @@
               "length": 2,
               "dataType": "uint32"
             },
-            "scaleFactor": -1
+            "scaleFactor": -1,
+            "depowerEnergyCounter": "total"
           },
           "unit": "kWh",
-          "description": "Protocol resolution 0.1 kWh."
+          "description": "Default: 0.1 kWh (100 Wh) per register tick per V10.03 workbook. Firmware-specific resolution is configurable independently per counter in connection settings."
         },
         {
           "id": "eNERGY_SESSION",
@@ -148714,10 +148715,11 @@
               "length": 2,
               "dataType": "uint32"
             },
-            "scaleFactor": -1
+            "scaleFactor": -1,
+            "depowerEnergyCounter": "session"
           },
           "unit": "kWh",
-          "description": "Protocol resolution 0.1 kWh."
+          "description": "Default: 0.1 kWh (100 Wh) per register tick per V10.03 workbook. Firmware-specific resolution is configurable independently per counter in connection settings."
         },
         {
           "id": "cHARGING_DURATION",
@@ -148955,6 +148957,42 @@
           "min": 0,
           "max": 100,
           "description": "Charging SOC reported by the vehicle/connector. Register step size is 1%."
+        },
+        {
+          "id": "eNERGY_SESSION_RAW",
+          "name": "Session energy raw counter",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "ticks",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 277,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          },
+          "description": "Unscaled UInt32 counter from the same register pair. Compare a simultaneous charger reading/delta before selecting Wh per tick."
+        },
+        {
+          "id": "mETER_ENERGY_TOTAL_RAW",
+          "name": "Total meter energy raw counter",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "ticks",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 275,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          },
+          "description": "Unscaled UInt32 counter from the same register pair. Compare a simultaneous charger reading/delta before selecting Wh per tick."
         }
       ],
       "driverHints": {
@@ -149032,7 +149070,8 @@
             "pLUG_STATE",
             "cHARGE_COMMAND",
             "eV_SET_CHARGE_POWER_LIMIT",
-            "cHARGING_SOC"
+            "cHARGING_SOC",
+            "eNERGY_SESSION_RAW"
           ],
           "slowDpIds": [
             "sERIAL_NUMBER",
@@ -149041,7 +149080,8 @@
             "fALLBACK_CURRENT",
             "cHARGE_MODE",
             "cHARGE_POINT_SET_POWER",
-            "aCTIVE_PRODUCTION_ENERGY"
+            "aCTIVE_PRODUCTION_ENERGY",
+            "mETER_ENERGY_TOTAL_RAW"
           ]
         },
         "oemModbusV1003": {
@@ -149600,10 +149640,11 @@
               "length": 2,
               "dataType": "uint32"
             },
-            "scaleFactor": -1
+            "scaleFactor": -1,
+            "depowerEnergyCounter": "total"
           },
           "unit": "kWh",
-          "description": "Protocol resolution 0.1 kWh."
+          "description": "Default: 0.1 kWh (100 Wh) per register tick per V10.03 workbook. Firmware-specific resolution is configurable independently per counter in connection settings."
         },
         {
           "id": "eNERGY_SESSION",
@@ -149619,10 +149660,11 @@
               "length": 2,
               "dataType": "uint32"
             },
-            "scaleFactor": -1
+            "scaleFactor": -1,
+            "depowerEnergyCounter": "session"
           },
           "unit": "kWh",
-          "description": "Protocol resolution 0.1 kWh."
+          "description": "Default: 0.1 kWh (100 Wh) per register tick per V10.03 workbook. Firmware-specific resolution is configurable independently per counter in connection settings."
         },
         {
           "id": "cHARGING_DURATION",
@@ -149860,6 +149902,42 @@
           "min": 0,
           "max": 100,
           "description": "Charging SOC reported by the vehicle/connector. Register step size is 1%."
+        },
+        {
+          "id": "eNERGY_SESSION_RAW",
+          "name": "Session energy raw counter",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "ticks",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 533,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          },
+          "description": "Unscaled UInt32 counter from the same register pair. Compare a simultaneous charger reading/delta before selecting Wh per tick."
+        },
+        {
+          "id": "mETER_ENERGY_TOTAL_RAW",
+          "name": "Total meter energy raw counter",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "ticks",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 531,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          },
+          "description": "Unscaled UInt32 counter from the same register pair. Compare a simultaneous charger reading/delta before selecting Wh per tick."
         }
       ],
       "driverHints": {
@@ -149937,7 +150015,8 @@
             "pLUG_STATE",
             "cHARGE_COMMAND",
             "eV_SET_CHARGE_POWER_LIMIT",
-            "cHARGING_SOC"
+            "cHARGING_SOC",
+            "eNERGY_SESSION_RAW"
           ],
           "slowDpIds": [
             "sERIAL_NUMBER",
@@ -149946,7 +150025,8 @@
             "fALLBACK_CURRENT",
             "cHARGE_MODE",
             "cHARGE_POINT_SET_POWER",
-            "aCTIVE_PRODUCTION_ENERGY"
+            "aCTIVE_PRODUCTION_ENERGY",
+            "mETER_ENERGY_TOTAL_RAW"
           ]
         },
         "oemModbusV1003": {

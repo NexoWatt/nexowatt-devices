@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "suiteVersion": "0.5.163",
+  "suiteVersion": "0.5.164",
   "tests": [
     "ablEmh1Aliases.test.js",
     "ablEmh1PwmWrite.test.js",
@@ -20,6 +20,7 @@
     "workspaceIsolation.test.js",
     "writeErrorHandling.test.js",
     "vartaModbus.test.js",
-    "tesvoltMqttTransport.test.js"
+    "tesvoltMqttTransport.test.js",
+    "depowerModbusTransport.test.js"
   ]
 }

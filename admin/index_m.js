@@ -993,6 +993,7 @@ function renderVartaOptions(tpl) {
 function renderDatapoints(templateId) {
   const tpl = templatesById[templateId];
   renderVartaOptions(tpl);
+  $('#depower_settings').toggle(!!(tpl && tpl.driverHints && tpl.driverHints.oemModbusV1003));
   const tbody = $('#dpBody');
   tbody.empty();
 
@@ -1092,6 +1093,9 @@ function openDeviceModal(device, idx) {
   applyTemplateModbusTcpDefaultsToForm(tpl, proto, c);
   renderVartaOptions(tpl);
   $('#varta_allow_sf_writes').prop('checked', device.vartaAllowScaleFactorWrites === true && !!(tpl && tpl.driverHints && tpl.driverHints.vartaModbus && ['pulseNeo', 'flexStorage'].includes(tpl.driverHints.vartaModbus.product)));
+  $('#depower_settings').toggle(!!(tpl && tpl.driverHints && tpl.driverHints.oemModbusV1003));
+  $('#depower_session_wh').val(c.depowerSessionEnergyWhPerTick ?? 100);
+  $('#depower_total_wh').val(c.depowerTotalEnergyWhPerTick ?? 100);
 
   // RTU
   // Leave empty for new devices; we auto-suggest a real detected port via refreshSerialPorts().
@@ -1260,6 +1264,16 @@ function collectDeviceFromModal() {
     d.connection.wordOrder = $('#mb_wordOrder').val() || 'be';
     d.connection.byteOrder = $('#mb_byteOrder').val() || 'be';
     d.connection.writePassword = ($('#mb_writePass').val() || '').trim() || undefined;
+    if (tpl && tpl.driverHints && tpl.driverHints.oemModbusV1003) {
+      for (const [key, selector] of [
+        ['depowerSessionEnergyWhPerTick', '#depower_session_wh'],
+        ['depowerTotalEnergyWhPerTick', '#depower_total_wh'],
+      ]) {
+        const resolution = Number($(selector).val());
+        if (![0.1, 1, 10, 100, 1000].includes(resolution)) throw new Error('Ungültige DEPower-Zählerauflösung');
+        d.connection[key] = resolution;
+      }
+    }
   } else if (d.protocol === 'kostalTcp') {
     d.connection.host = ($('#ko_host').val() || '').trim();
     d.connection.port = parseInt($('#ko_port').val(), 10) || 81;

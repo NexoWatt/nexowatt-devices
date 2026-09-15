@@ -1,5 +1,14 @@
 # Technische Versionshinweise
 
+## 0.5.164 – DEPower-Sollwertwarteschlange, Rücklesen und Energieauflösung
+
+- Neue Leistungsbefehle bleiben erhalten, wenn sie während eines laufenden Schreibvorgangs eintreffen. Alte Erfolge und Fehler können den neuen Auftrag weder bestätigen noch löschen. Die Warteschlange bestätigt den tatsächlich vom Treiber verwendeten Wert.
+- DEPower-Steuerfolgen werden vollständig serialisiert. Polling bestätigt keine ungesendeten Steueraliase; das gelesene Leistungslimit bleibt von der Schreibbestätigung getrennt.
+- Sitzungs- und Gesamtzähler besitzen getrennte konfigurierbare Wh-Auflösungen sowie unskalierte Rohzähler. Der dokumentierte Standard von 100 Wh je Zählschritt bleibt erhalten. Keine pauschal geratene Faktoränderung für Bestandsanlagen.
+- `info.depowerControl` unterscheidet fehlende EOS-Vorgaben, wartende Aufträge und passende/abweichende Modbus-Rückmeldungen. 4,2 kW werden als 4200 W geschrieben.
+- Register, vorhandene Alias-Pfade und die TESVOLT-Korrekturen aus 0.5.163 bleiben erhalten. Echte lokale Modbus-TCP-Tests für beide Connectoren ergänzen die Gesamtsuite.
+- Einrichtung, Energiekalibrierung und Prüfgrenzen: [DEPower ab 0.5.164](DEPOWER_POWER_ENERGY_0.5.164.md).
+
 ## 0.5.163 – TESVOLT EMS-Topics und paralleler Lesebetrieb
 
 - Tatsächliche `EMS/Inverter/...`- und `EMS/Battery/...`-Topics werden zusätzlich zu `EMS/V2/...` empfangen. Auswahl automatisch beim Lesen oder fest auf EMS/EMS-V2; keine Vermischung der erkannten Gerätewerte.

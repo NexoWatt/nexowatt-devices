@@ -229,6 +229,34 @@
         </p>
       </div>
 
+      <div id="depower_settings" style="display:none;" class="card-panel">
+        <strong>DEPower – Energiezähler</strong>
+        <p>Die Protokolltabelle nennt 100 Wh je Zählschritt. Bei abweichender Firmware Sitzungs- und Gesamtzähler getrennt mit der Stationsanzeige abgleichen. Leistung und Sollwert bleiben in W.</p>
+        <div class="row">
+          <div class="col s12 m6 nexo-select-group">
+            <label for="depower_session_wh">Sitzungsenergie: Wh je Zählschritt</label>
+            <select id="depower_session_wh" class="browser-default">
+              <option value="100">100 Wh – Protokollstandard (0,1 kWh)</option>
+              <option value="10">10 Wh (0,01 kWh)</option>
+              <option value="1">1 Wh (0,001 kWh)</option>
+              <option value="0.1">0,1 Wh</option>
+              <option value="1000">1000 Wh (1 kWh)</option>
+            </select>
+          </div>
+          <div class="col s12 m6 nexo-select-group">
+            <label for="depower_total_wh">Gesamtenergie: Wh je Zählschritt</label>
+            <select id="depower_total_wh" class="browser-default">
+              <option value="100">100 Wh – Protokollstandard (0,1 kWh)</option>
+              <option value="10">10 Wh (0,01 kWh)</option>
+              <option value="1">1 Wh (0,001 kWh)</option>
+              <option value="0.1">0,1 Wh</option>
+              <option value="1000">1000 Wh (1 kWh)</option>
+            </select>
+          </div>
+        </div>
+        <p>Rohzähler: eNERGY_SESSION_RAW und mETER_ENERGY_TOTAL_RAW. Nach einer Änderung müssen Tagesbasis und historische Auswertungen in EOS zum neuen Maßstab passen.</p>
+      </div>
+
       <!-- Connection blocks -->
       <div id="conn_modbusTcp" class="nexo-conn-block" style="display:none;">
         <h6 class="translate">Modbus TCP Verbindung</h6>
