@@ -1,5 +1,9 @@
-NexoWatt Devices 0.5.162 - VARTA public table 14: eight model-specific monitoring profiles and opt-in FC6 scale-factor configuration; no dispatch controls
-Base: supplied complete repository 0.5.161
-Protocol source: supplied VARTA PDF, internal version 14.0 public / 2025-03-12, pages 1-2
-Validation: 145 automated tests (34 VARTA), release and package checks; no physical VARTA test
-Dependencies: unchanged; fresh npm dependency download unavailable in build environment (DNS)
+NexoWatt Devices 0.5.163 - TESVOLT unversioned EMS topics, parallel read-only mode and explicit EMS/V2 control routing
+Base: supplied complete repository 0.5.162 VARTA
+Evidence: TESVOLT reply and MQTT Explorer screenshot dated 2026-09-15; existing V2 implementation/documentation
+Validation: 154 automated tests passed, zero skipped; includes 3 actual MQTT.js/TCP transport tests with a local test broker
+Validation gates: release guard and npm pack --dry-run; existing 181-template baseline preserved
+Existing TESVOLT datapoint IDs/definitions and all other manufacturer templates preserved
+Dependencies: unchanged; npm dependencies installed for local transport validation
+Hardware: no connection to the customer's TESVOLT gateway, no live power-control test
+Control: defaults to read only after upgrade; active control requires explicit namespace, enablement, capabilities and allowed fresh state

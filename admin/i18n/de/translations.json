@@ -68,5 +68,9 @@
   "Soft-stale (keep last values)": "Soft-stale (letzte Werte behalten)",
   "Advanced": "Erweitert",
   "Legacy settings: devicesJson was used by the old Materialize UI. The adapter will auto-migrate it into the new devices array when possible.": "Legacy-Einstellungen: devicesJson wurde von der alten Materialize-UI genutzt. Der Adapter migriert es automatisch in das neue devices-Array, sofern möglich.",
-  "devicesJson (legacy)": "devicesJson (legacy)"
+  "devicesJson (legacy)": "devicesJson (legacy)",
+  "Automatisch erkennen (nur Lesen)": "Automatisch erkennen (nur Lesen)",
+  "TESVOLT Topic-Format": "TESVOLT Topic-Format",
+  "Leistungssteuerung durch NexoWatt EOS aktivieren": "Leistungssteuerung durch NexoWatt EOS aktivieren",
+  "Port 1884 ohne TLS (mqtt://), Zugangsdaten und eine eigene eindeutige Client-ID verwenden. Für paralleles Lesen mit TEM bleibt die Leistungssteuerung aus. Lesen benötigt EMS/# oder die passenden Einzel-Topics. Steuerung benötigt ein festes Topic-Format, Schreibrechte und eine abgestimmte Übergabe vom TEM; Batterie- und Gerätefreigaben bleiben erforderlich.": "Port 1884 ohne TLS (mqtt://), Zugangsdaten und eine eigene eindeutige Client-ID verwenden. Für paralleles Lesen mit TEM bleibt die Leistungssteuerung aus. Lesen benötigt EMS/# oder die passenden Einzel-Topics. Steuerung benötigt ein festes Topic-Format, Schreibrechte und eine abgestimmte Übergabe vom TEM; Batterie- und Gerätefreigaben bleiben erforderlich."
 }

@@ -521,6 +521,21 @@
         <div id="mqtt_tesvolt_settings" style="display:none;">
           <h6 class="translate">TESVOLT IoT Gateway Regelung</h6>
           <div class="row">
+            <div class="input-field col s12 m6">
+              <select id="mqtt_tesvoltTopicMode">
+                <option value="auto" class="translate">Automatisch erkennen (nur Lesen)</option>
+                <option value="ems">EMS/... (ohne V2)</option>
+                <option value="v2">EMS/V2/...</option>
+              </select>
+              <label for="mqtt_tesvoltTopicMode" class="translate">TESVOLT Topic-Format</label>
+            </div>
+            <div class="col s12 m6" style="padding-top: 24px;">
+              <label><input id="mqtt_tesvoltControlEnabled" type="checkbox" />
+                <span class="translate">Leistungssteuerung durch NexoWatt EOS aktivieren</span>
+              </label>
+            </div>
+          </div>
+          <div class="row">
             <div class="input-field col s12 m3">
               <input id="mqtt_tesvoltSetpointInterval" type="number" min="1000" max="20000" />
               <label for="mqtt_tesvoltSetpointInterval" class="translate">Sollwert-Wiederholung (ms)</label>
@@ -540,7 +555,7 @@
           </div>
           <div class="row">
             <div class="col s12 nexo-muted" style="margin-top: 2px; font-size: 0.9em;">
-              <span class="translate">TESVOLT Hinweis</span>: <span class="translate">Port 1884 ohne TLS (mqtt://) und eine feste, im Gateway freigegebene Client-ID verwenden. Die MQTT-ACL muss Leserechte für EMS/APIVersion und EMS/V2/# sowie Schreibrechte für EMS/V2/Parameters und EMS/V2/Inverter/Control enthalten.</span>
+              <span class="translate">TESVOLT Hinweis</span>: <span class="translate">Port 1884 ohne TLS (mqtt://), Zugangsdaten und eine eigene eindeutige Client-ID verwenden. Für paralleles Lesen mit TEM bleibt die Leistungssteuerung aus. Lesen benötigt EMS/# oder die passenden Einzel-Topics. Steuerung benötigt ein festes Topic-Format, Schreibrechte und eine abgestimmte Übergabe vom TEM; Batterie- und Gerätefreigaben bleiben erforderlich.</span>
             </div>
           </div>
         </div>

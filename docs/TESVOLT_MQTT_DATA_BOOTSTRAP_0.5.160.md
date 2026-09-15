@@ -1,5 +1,7 @@
 # TESVOLT IoT Gateway – MQTT-Datenempfang und EMS-V2-Bootstrap (0.5.160)
 
+> Historischer Versionsstand. Für die Einrichtung ab 0.5.163 gilt [TESVOLT EMS / V2](TESVOLT_EMS_TOPICS_0.5.163.md), insbesondere Port 1884 ohne TLS, unversionierte Topics und der standardmäßige Lesebetrieb.
+
 ## Ausgangslage
 
 Der MQTT-Broker des TESVOLT IoT Gateways akzeptierte den NexoWatt-Client auf Port 1884, es kamen jedoch keine Mess- oder Statusdaten im Adapter an. Ein erfolgreicher MQTT-CONNACK bestätigt nur die Anmeldung; Leserechte für Topics und die aktive Veröffentlichung der EMS-V2-Daten sind damit noch nicht nachgewiesen.

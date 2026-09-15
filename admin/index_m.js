@@ -395,6 +395,9 @@ function applyTemplateMqttDefaultsToForm(tpl, protocol, conn) {
   $('#mqtt_reconnectPeriod').val(shouldSet(c.reconnectPeriodMs) ? defaults.reconnectPeriodMs : c.reconnectPeriodMs);
   $('#mqtt_keepalive').val(shouldSet(c.keepaliveSeconds) ? defaults.keepaliveSeconds : c.keepaliveSeconds);
   $('#mqtt_cleanSession').prop('checked', c.cleanSession !== false && defaults.cleanSession !== false);
+  $('#mqtt_tesvoltTopicMode').val(c.tesvoltTopicMode || 'auto');
+  $('#mqtt_tesvoltControlEnabled').prop('checked', c.tesvoltControlEnabled === true);
+  refreshSelect($('#mqtt_tesvoltTopicMode'));
 
   $('#mqtt_tesvoltSetpointInterval').val(
     shouldSet(c.tesvoltSetpointIntervalMs) ? defaults.tesvoltSetpointIntervalMs : c.tesvoltSetpointIntervalMs,
@@ -430,6 +433,8 @@ function getCurrentMqttFormValues() {
     tesvoltCommandSourceTimeoutMs: $('#mqtt_tesvoltCommandTimeout').val(),
     tesvoltTelemetryStaleMs: $('#mqtt_tesvoltTelemetryStale').val(),
     tesvoltTrackingDelayMs: $('#mqtt_tesvoltTrackingDelay').val(),
+    tesvoltTopicMode: $('#mqtt_tesvoltTopicMode').val() || 'auto',
+    tesvoltControlEnabled: $('#mqtt_tesvoltControlEnabled').is(':checked'),
   };
 }
 
@@ -1147,6 +1152,8 @@ function openDeviceModal(device, idx) {
   $('#mqtt_tesvoltCommandTimeout').val(c.tesvoltCommandSourceTimeoutMs ?? '');
   $('#mqtt_tesvoltTelemetryStale').val(c.tesvoltTelemetryStaleMs ?? '');
   $('#mqtt_tesvoltTrackingDelay').val(c.tesvoltTrackingDelayMs ?? '');
+  $('#mqtt_tesvoltTopicMode').val(c.tesvoltTopicMode || 'auto');
+  $('#mqtt_tesvoltControlEnabled').prop('checked', c.tesvoltControlEnabled === true);
   applyTemplateMqttDefaultsToForm(tpl, proto, c);
 
   // CANbus
@@ -1316,6 +1323,14 @@ function collectDeviceFromModal() {
     d.connection.cleanSession = $('#mqtt_cleanSession').is(':checked');
 
     if (d.templateId === 'ess.tesvolt.iotGateway.mqttV2') {
+      d.connection.tesvoltTopicMode = $('#mqtt_tesvoltTopicMode').val() || 'auto';
+      d.connection.tesvoltControlEnabled = $('#mqtt_tesvoltControlEnabled').is(':checked');
+      if (!['auto', 'ems', 'v2'].includes(d.connection.tesvoltTopicMode)) {
+        throw new Error('TESVOLT: Ungültiges Topic-Format');
+      }
+      if (d.connection.tesvoltControlEnabled && d.connection.tesvoltTopicMode === 'auto') {
+        throw new Error('TESVOLT: Für die Leistungssteuerung EMS/... oder EMS/V2/... fest auswählen');
+      }
       const setpointInterval = parseInt($('#mqtt_tesvoltSetpointInterval').val(), 10);
       const commandTimeout = parseInt($('#mqtt_tesvoltCommandTimeout').val(), 10);
       const telemetryStale = parseInt($('#mqtt_tesvoltTelemetryStale').val(), 10);

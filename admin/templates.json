@@ -45541,8 +45541,8 @@
       },
       "category": "ESS",
       "manufacturer": "TESVOLT",
-      "model": "IoT Gateway MQTT V2",
-      "name": "TESVOLT IoT Gateway (MQTT EMS Interface V2)",
+      "model": "IoT Gateway MQTT (EMS / V2)",
+      "name": "TESVOLT IoT Gateway (MQTT EMS / V2)",
       "protocols": [
         "mqtt"
       ],
@@ -46633,6 +46633,116 @@
             "subscribe": false,
             "qos": 0,
             "retain": false
+          }
+        },
+        {
+          "id": "bIFI_SERIAL_NUMBER",
+          "name": "Bifi serial number",
+          "type": "string",
+          "rw": "ro",
+          "role": "text",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/Bifi",
+            "jsonPath": "$.SerialNumber",
+            "format": "json",
+            "tesvoltUnversionedOnly": true
+          }
+        },
+        {
+          "id": "nOMINAL_POWER",
+          "name": "Inverter nominal power",
+          "type": "number",
+          "rw": "ro",
+          "role": "value",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Parameters",
+            "jsonPath": "$.nominal_power",
+            "format": "json"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "iNVERTER_PARAMETERS_JSON",
+          "name": "Inverter parameters (complete received object)",
+          "type": "string",
+          "rw": "ro",
+          "role": "text",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Parameters",
+            "jsonPath": "$",
+            "format": "json"
+          }
+        },
+        {
+          "id": "bATTERY_PARAMETERS_JSON",
+          "name": "Battery parameters (complete received object)",
+          "type": "string",
+          "rw": "ro",
+          "role": "text",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Battery/Parameters",
+            "jsonPath": "$",
+            "format": "json"
+          }
+        },
+        {
+          "id": "iNVERTER_CONTROL_JSON",
+          "name": "Observed inverter control (not an acknowledgement)",
+          "type": "string",
+          "rw": "ro",
+          "role": "text",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Control",
+            "jsonPath": "$",
+            "format": "json"
+          }
+        },
+        {
+          "id": "bATTERY_CONTROL_JSON",
+          "name": "Observed battery control (read only)",
+          "type": "string",
+          "rw": "ro",
+          "role": "text",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Battery/Control",
+            "jsonPath": "$",
+            "format": "json"
+          }
+        },
+        {
+          "id": "mQTT_ACTIVE_TOPIC_PREFIX",
+          "name": "TESVOLT active topic prefix",
+          "type": "string",
+          "rw": "ro",
+          "role": "text",
+          "source": {
+            "kind": "mqttDiagnostic"
+          }
+        },
+        {
+          "id": "mQTT_CONTROL_ENABLED",
+          "name": "TESVOLT control configured",
+          "type": "boolean",
+          "rw": "ro",
+          "role": "indicator",
+          "source": {
+            "kind": "mqttDiagnostic"
+          }
+        },
+        {
+          "id": "mQTT_CONTROL_STATUS",
+          "name": "TESVOLT control readiness / blocking reason",
+          "type": "string",
+          "rw": "ro",
+          "role": "text",
+          "source": {
+            "kind": "mqttDiagnostic"
           }
         }
       ],

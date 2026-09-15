@@ -1,5 +1,7 @@
 # TESVOLT IoT Gateway – MQTT-Verbindung und Diagnose (0.5.158)
 
+> Historischer Versionsstand. Für die Einrichtung ab 0.5.163 gilt [TESVOLT EMS / V2](TESVOLT_EMS_TOPICS_0.5.163.md), insbesondere Port 1884 ohne TLS, unversionierte Topics und der standardmäßige Lesebetrieb.
+
 ## Anlass
 
 Beim ersten Feldtest antwortete der Broker auf Port `1884` mit

@@ -1,5 +1,14 @@
 # Technische Versionshinweise
 
+## 0.5.163 – TESVOLT EMS-Topics und paralleler Lesebetrieb
+
+- Tatsächliche `EMS/Inverter/...`- und `EMS/Battery/...`-Topics werden zusätzlich zu `EMS/V2/...` empfangen. Auswahl automatisch beim Lesen oder fest auf EMS/EMS-V2; keine Vermischung der erkannten Gerätewerte.
+- Standardmäßig reiner Lesebetrieb, auch nach einem Update ohne neue Steuerfreigabe: keine Identitäts-Publishes, keine Null-Sollwerte, keine zyklischen Steuerbefehle.
+- Explizite Steuerfreigabe und festes Topic-Format leiten den bestehenden Control-Payload auf den korrekten Pfad. Keine API-Version und keine Steuerfähigkeiten werden aus dem Topic-Namen erfunden. Im unversionierten Profil entfällt ausschließlich die dort nicht belegte APIVersion-V2-Anforderung; `supported_control`, Zustände, Limits und Watchdogs bleiben erforderlich.
+- `EMS/Parameters` bleibt die vorhandene TEM-Identität und wird im unversionierten Profil niemals überschrieben. `EMS/Bifi` wird als separate Bifi-Identität gelesen.
+- Alte retained Telemetrie, doppelte und zukünftige Zeitstempel sowie lokale Control-Echos halten den Heartbeat nicht künstlich frisch.
+- Anleitung und verbleibende Steuergrenzen: [TESVOLT EMS / V2](TESVOLT_EMS_TOPICS_0.5.163.md).
+
 ## 0.5.162 – VARTA Public 14, acht getrennte Gerätemodelle
 
 - Grundlage ist die bereitgestellte Hersteller-PDF: intern Version 14.0 public vom 12.03.2025, Tabellenstand 14. Der ältere Dateiname wird nicht als Registerstand verwendet.
