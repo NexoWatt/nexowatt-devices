@@ -4,6 +4,7 @@ Alle technischen Markdown-Dateien des Adapters liegen bewusst in diesem Ordner. 
 
 ## DEYE
 
+- [DEYE-Teststart in frischen Arbeitskopien – Korrektur 0.5.166](DEYE_TEST_STARTUP_0.5.166.md)
 - [Drei vorläufige Hybrid-RTU-Profile, Vorgaben und Funktionsgrenzen](DEYE_MODBUS_RTU_0.5.165.md)
 - [Versandfertige Herstelleranfrage auf Englisch und Deutsch](DEYE_MANUFACTURER_INQUIRY_EN_DE.md)
 

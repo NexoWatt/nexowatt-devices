@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "suiteVersion": "0.5.165",
+  "suiteVersion": "0.5.166",
   "tests": [
     "ablEmh1Aliases.test.js",
     "ablEmh1PwmWrite.test.js",
@@ -22,6 +22,7 @@
     "vartaModbus.test.js",
     "tesvoltMqttTransport.test.js",
     "depowerModbusTransport.test.js",
-    "deyeModbus.test.js"
+    "deyeModbus.test.js",
+    "deyeTestIsolation.test.js"
   ]
 }

@@ -1,5 +1,12 @@
 # Technische Versionshinweise
 
+## 0.5.166 – DEYE-Testinitialisierung ohne echte serielle Transportmodule
+
+- DEYE-Protokolltests importieren den Treiber erst nach Einrichtung ihrer Transport-Testdoubles. Ein frischer Quellordner ohne `modbus-serial` führt dadurch nicht mehr zum dateiweiten Ladeabbruch vor der ersten Prüfung. Der Ladehook wird zuverlässig zurückgesetzt.
+- Neuer Regressionstest führt alle 22 DEYE-Prüfungen in einer isolierten Kopie mit blockierten Transportmodulen aus. Pfade mit Leerzeichen, vollständige Ausführung und null übersprungene DEYE-Prüfungen werden berücksichtigt.
+- Vollständige Suite mit Abhängigkeiten: 187 bestanden, keine übersprungenen Tests. Ohne Abhängigkeiten: 182 bestanden und fünf vorhandene Transporttests ausdrücklich übersprungen. Release-Guard und Paketprüfung erfolgreich.
+- Produktive Treiber, sämtliche 195 Templates, Aliase, TESVOLT-/DEPower-/VARTA-Korrekturen und die vorläufige DEYE-Steuerungsgrenze unverändert. Kein direkter Windows- oder Hardwaretest; nachgestellter Testimportfehler behoben.
+
 ## 0.5.165 – DEYE Hybrid: drei vorläufige RTU-Familienprofile
 
 - Neu unter ESS → DEYE: einphasiger Hybrid, dreiphasiger LV-Hybrid und dreiphasiger HV-Hybrid. Dedizierter Treiber nach den bereitgestellten V118-/V105.4-Unterlagen, Identitäts-/Phasenprüfung; keine pauschale Modell-/Firmwarefreigabe.

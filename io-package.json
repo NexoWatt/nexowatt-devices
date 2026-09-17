@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.165",
+    "version": "0.5.166",
     "news": {
+      "0.5.166": {
+        "en": "Fix DEYE unit-test startup without installed serial transport modules; add an isolated fresh-checkout regression. Device behavior unchanged.",
+        "de": "DEYE-Teststart ohne installierte serielle Transportmodule korrigiert; isolierter Regressionstest für frische Arbeitskopien. Geräteverhalten unverändert."
+      },
       "0.5.165": {
         "en": "Prepare three DEYE hybrid RTU profiles, serial defaults, verified configuration-limit writes and explicit remote-control restrictions.",
         "de": "Drei vorläufige DEYE-Hybrid-RTU-Profile, serielle Vorgaben, geprüftes Schreiben von Konfigurationsgrenzen und klare Remote-Steuerungsgrenzen."

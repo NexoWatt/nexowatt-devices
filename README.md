@@ -10,6 +10,7 @@ zugehörigen Datenpunkte automatisch in ioBroker.
 Die technische Dokumentation ist gebündelt im Ordner [`docs/`](docs/README.md):
 
 - [Dokumentationsübersicht](docs/README.md)
+- [DEYE-Teststart und Veröffentlichung – Korrektur 0.5.166](docs/DEYE_TEST_STARTUP_0.5.166.md)
 - [DEYE Hybrid – drei vorläufige RTU-Profile und Einrichtung](docs/DEYE_MODBUS_RTU_0.5.165.md)
 - [DEYE-Herstelleranfrage – Englisch und Deutsch](docs/DEYE_MANUFACTURER_INQUIRY_EN_DE.md)
 - [Technische Versionshinweise](docs/CHANGELOG.md)
@@ -778,4 +779,3 @@ Helper registers such as `eMS_MODE_SELECTION`, `cHARGE_DISCHARGE_COMMAND`, `cHAR
 - Added exact accepted-write diagnostics with Unit-ID, function code, address, register words and data bytes; charger-side accounted/enabled and valid-time readbacks remain authoritative.
 - Removed the duplicate current post-write repeat; only the 5-second validity watchdog refreshes the last explicit current command.
 - Added packet-level regression tests for Socket 1, Socket 2 and SCN writes.
-

@@ -5,7 +5,7 @@ Der gemeldete Fehler vom 17.09.2026 enthält `<<<<<<< HEAD` in Zeile 3 der
 Die Datei enthält noch nicht aufgelöste Alternativen eines Merge-Konflikts.
 Der gemeldete Versuch ist bereits beim Einlesen der Paketmetadaten gescheitert.
 
-Die bereitgestellte vollständige Repository-ZIP 0.5.165 wurde erneut geprüft:
+Die aktuelle vollständige Repository-ZIP 0.5.166 wurde geprüft:
 gültige `package.json`, konsistente Versionen, keine Konfliktmarkierungen.
 Die konkrete Windows-Arbeitskopie aus der Fehlermeldung lag nicht vor; ihre
 Konfliktseiten und andere lokale Änderungen wurden daher nicht zusammengeführt.
@@ -15,10 +15,10 @@ Konfliktseiten und andere lokale Änderungen wurden daher nicht zusammengeführt
 1. Den bisherigen Ordner `C:\Users\User\Desktop\ioBroker\nexowatt-devices`
    unverändert behalten. Er enthält eventuell lokale Änderungen und Git-Zustand.
 2. Die vollständige ZIP
-   `iobroker.nexowatt-devices-0.5.165-DEYE_PROFILES_REPOSITORY.zip` herunterladen.
+   `iobroker.nexowatt-devices-0.5.166-DEYE_TEST_FIX_REPOSITORY.zip` herunterladen.
 3. Die ZIP nach `C:\Users\User\Desktop\ioBroker` in einen **neuen, leeren**
    Ordner entpacken. Sie enthält den Projektordner
-   `iobroker.nexowatt-devices-0.5.165`. Kein erneuter Git-Pull/Merge ist nötig,
+   `iobroker.nexowatt-devices-0.5.166`. Kein erneuter Git-Pull/Merge ist nötig,
    um diesen geprüften Stand zu bauen.
 4. PowerShell im entpackten Projektordner öffnen. Dort müssen `package.json`,
    `io-package.json`, `lib`, `admin`, `scripts` und `test` nebeneinander liegen.
@@ -33,7 +33,7 @@ Die Fehlerprüfungen sind auch für Windows PowerShell 5.1 ausgeschrieben.
 Ein fehlgeschlagener externer Befehl muss den Ablauf vor dem Publish stoppen.
 
 ```powershell
-Set-Location "$env:USERPROFILE\Desktop\ioBroker\iobroker.nexowatt-devices-0.5.165" -ErrorAction Stop
+Set-Location "$env:USERPROFILE\Desktop\ioBroker\iobroker.nexowatt-devices-0.5.166" -ErrorAction Stop
 
 node .\scripts\release-guard.cjs
 if ($LASTEXITCODE -ne 0) { throw "Projektprüfung fehlgeschlagen. Nicht veröffentlichen." }
@@ -76,5 +76,7 @@ Reset-/Checkout-/Stash-Befehle sind zur Wiederherstellung des ZIP-Stands nötig.
 Der konkrete Fehler wurde in einer separaten temporären Kopie mit
 Windows-Zeilenenden nachgestellt. Der direkt über Node gestartete Release-Guard
 meldet die Konfliktzeilen und das ungültige JSON und beendet sich mit Code 1.
-Der vollständige, konfliktfreie Stand besteht Release-Guard, 186 Tests und
-`npm pack --dry-run`. Adaptercode und Paketversion bleiben 0.5.165.
+Der aktuelle, konfliktfreie Stand besteht Release-Guard, 187 Tests und
+`npm pack --dry-run`. Gerätecode und Templates entsprechen 0.5.165;
+Paketversion 0.5.166 korrigiert zusätzlich die DEYE-Testinitialisierung.
+Details: [DEYE-Teststart](DEYE_TEST_STARTUP_0.5.166.md).

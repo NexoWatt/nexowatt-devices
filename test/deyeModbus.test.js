@@ -4,7 +4,25 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
-const { DeyeModbusDriver } = require('../lib/drivers/deyeModbus');
+const Module = require('node:module');
+
+// These are protocol/runtime unit tests with a simulated RTU bus. Loading the
+// real serial packages before installing the test doubles makes the entire
+// file fail during startup in a fresh checkout (or with unavailable native
+// Windows serial bindings), before any register assertions can run.
+// Keep the production driver and real transport tests unchanged.
+const originalLoad = Module._load;
+Module._load = function(request, parent, isMain) {
+  if (request === 'modbus-serial') return class ModbusRTU {};
+  if (request === 'serialport') return { SerialPort: class SerialPort {} };
+  return originalLoad.call(this, request, parent, isMain);
+};
+let DeyeModbusDriver;
+try {
+  ({ DeyeModbusDriver } = require('../lib/drivers/deyeModbus'));
+} finally {
+  Module._load = originalLoad;
+}
 const protocol = require('../lib/deyeProtocol');
 const helper = require('./helpers/compatibilityHarness.cjs');
 const DeviceRuntime = helper.loadDeviceRuntime(path.resolve(__dirname, '../lib/deviceRuntime.js'));

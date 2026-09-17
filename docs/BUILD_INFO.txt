@@ -1,13 +1,13 @@
-NexoWatt Devices 0.5.165 - Preliminary DEYE hybrid Modbus RTU profiles
-Base: complete 0.5.164 repository, including TESVOLT, DEPower and VARTA fixes
-Profiles: single-phase hybrid (0300), three-phase LV (0500), three-phase HV (0600/0601); phase/topology checks
-Sources: supplied single-phase V118 PDF and three-phase V105.4 DOC; exact model/firmware coverage pending DEYE confirmation
-Defaults: RTU 9600 baud, 8N1, editable suggested unit ID 1, address offset 0; per-register endian decoding
-Control: four opt-in configuration limits via FC16 with FC3 readback; active remote power control remains blocked
-Validation: 186 automated tests, zero skipped, including 22 new DEYE tests using simulated RTU bus responses
-Existing transport validation: local MQTT.js/TCP and DEPower Modbus TCP tests retained
-Release gates: release guard, full test suite and npm pack --dry-run
-Compatibility: 192 existing templates preserved; 195 templates and 2454 v1 aliases in total; 181-template legacy baseline retained
-Dependencies: unchanged, freshly installed for local validation
-Hardware: no real DEYE inverter, battery or RS485 hardware tested; no customer-system deployment
-Documentation: docs/DEYE_MODBUS_RTU_0.5.165.md and docs/DEYE_MANUFACTURER_INQUIRY_EN_DE.md (draft, not sent)
+NexoWatt Devices 0.5.166 - DEYE test startup isolation fix
+Base: complete 0.5.165 repository with Windows merge-conflict recovery instructions
+Change: install simulated serial transport dependencies before importing the DEYE driver in unit tests
+Regression: separate child process in a fresh directory with spaces and real transport-module loading explicitly blocked; all 22 DEYE tests must run and pass
+Validation with dependencies: 187 automated tests passed; zero failures or skips; release guard and npm pack --dry-run passed
+Validation without dependencies: 182 passed; five existing real transport integration tests explicitly skipped; no failures
+Production compatibility: all lib/, admin/, main.js and bootstrap.js files unchanged from 0.5.165; 195 templates and 2454 v1 aliases retained
+Dependencies: unchanged, freshly installed for complete release validation
+Platform: Linux, Node 24.19.0; no direct Windows execution and no hardware verification
+Reported Windows log: final test-file summary only; actual preceding exception not provided
+Reproduced failure before fix: MODULE_NOT_FOUND modbus-serial during test file initialization in a clean checkout
+Publishing: not performed; full repository ZIP provided
+Documentation: docs/DEYE_TEST_STARTUP_0.5.166.md
