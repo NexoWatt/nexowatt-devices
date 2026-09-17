@@ -1,24 +1,9 @@
-
-## 0.5.108 KEBA KeContact P40/P40 Pro Modbus TCP V1.02
-
-- KEBA-P40-Template gegen den Programmers Guide V1.02 umgesetzt: Unit-ID 255, Port 502, FC3 Lesen, FC6 Schreiben, keine Mehrfachregister-Leseblöcke über mehrere Registerwerte.
-- Alle KEBA-Stromwerte werden im Adapter als Ampere geführt; intern werden mA-Register der Wallbox beim Lesen nach A und beim Schreiben von A nach mA umgerechnet.
-- Native Schreib-Datenpunkte wie `sET_CHARGING_CURRENT` und `sET_FAILSAFE_CURRENT` erwarten jetzt A (`0` oder `6..32`) und schreiben daraus automatisch `0` bzw. `6000..32000` mA per FC6.
-- KEBA-Aliase für `aliases.ctrl.currentLimitA`, `aliases.ctrl.run`, `aliases.ctrl.chargeEnable`, `aliases.ctrl.failsafeCurrentA`, Status, Leistung und Energie ergänzt/stabilisiert.
-
-## 0.5.107 Modbus-Stabilität
-
-- Globale Modbus-Härtung: Templates lesen standardmäßig lückensicherer, mit kleineren Registerblöcken und temporärem Skip optional fehlerhafter Read-Gruppen.
-- KEBA KeContact P40: Modbus/TCP nutzt jetzt den KEBA-Default Unit-ID 255, Address-Offset 0, isoliertes Polling nach OpenEMS-/KEBA-Registerlayout und stabile Aliase für Status, Stromlimit und Ladefreigabe.
-- Optionales KEBA-Register `idTag` wird nicht mehr automatisch gepollt, weil es je nach Firmware nicht zuverlässig lesbar ist.
-
 # nexowatt-devices (ioBroker Adapter)
 
 **nexowatt-devices** ist ein eigenständiger Multi‑Protokoll‑Geräteadapter für ioBroker.
 Er bietet eine **Kategorien → Hersteller → Treiber/Template**‑Konfiguration und erzeugt die
 zugehörigen Datenpunkte automatisch in ioBroker.
 
-<<<<<<< HEAD
 
 ## Dokumentation
 
@@ -40,8 +25,6 @@ Die technische Dokumentation ist gebündelt im Ordner [`docs/`](docs/README.md):
 - [Release-Sicherheit](docs/RELEASE_SAFETY.md)
 - [Drittanbieterhinweise](docs/THIRD_PARTY_NOTICES.md)
 
-=======
->>>>>>> 1f9a832732d7b1fb12670dfe54a2d84597f3f0e5
 Unterstützte Protokolle:
 
 - **Modbus TCP**
@@ -56,7 +39,7 @@ Unterstützte Protokolle:
 
 Dieses Projekt ist **proprietär** lizenziert und darf nur gemäß der Datei `LICENSE`
 verwendet werden. Drittanbieter-Komponenten unterliegen ihren jeweiligen Lizenzen
-(siehe `THIRD_PARTY_NOTICES.md`).
+(siehe `docs/THIRD_PARTY_NOTICES.md`).
 
 ---
 
@@ -134,6 +117,55 @@ schreibt der Adapter über das passende Protokoll.
 
 ## 4a) Aliases (stabile Namen für andere Adapter)
 
+### Alias Contract v1 für neue automatische Integrationen
+
+Für den NexoWatt-UI-Adapter und alle neuen Module ist ab Version `0.5.144` der
+versionierte Namensraum verbindlich:
+
+```text
+devices.<id>.aliases.v1.*
+```
+
+Die automatische Erkennung beginnt beim Manifest:
+
+```text
+devices.<id>.aliases.meta.manifest
+```
+
+Das Manifest enthält mindestens:
+
+```json
+{
+  "schemaVersion": 1,
+  "namespace": "v1",
+  "deviceClass": "evCharger",
+  "capabilities": ["read.power", "write.currentLimitA"],
+  "missingRequired": []
+}
+```
+
+Der UI-Adapter ordnet Geräte über `deviceClass` zu und bindet nur die in
+`capabilities` aufgeführten Funktionen. Die möglichen Geräteklassen sind:
+
+```text
+evCharger, meter, pvInverter, storageSystem, battery,
+batteryInverter, heat, io, solarCharger, generic
+```
+
+Im v1-Namensraum sind die Einheiten verbindlich normiert: Leistung in `W`,
+Energie in `Wh`, Strom in `A`, Spannung in `V`, Temperatur in `°C`, Zeitdauer in
+`s`, Prozentwerte in `%` und Frequenz in `Hz`.
+
+Die vollständige Spezifikation steht in `docs/ALIAS_CONTRACT_V1_0.5.144.md` sowie in
+`lib/alias-contract-v1.json`.
+
+Seit Version `0.5.146` ist diese Standardisierung technisch strikt additiv:
+Bestehende Rohdatenpunkte und `aliases.*`-Pfade bleiben gegen den Produktionsstand
+`0.5.143` geprüft identisch. Neue Standardobjekte entstehen ausschließlich unter
+`aliases.v1.*` und `aliases.meta.*`.
+
+### Rückwärtskompatible Aliase
+
 Damit nachgelagerte Adapter/Logiken (z.B. Steuer‑ oder Benachrichtigungsadapter) **nicht**
 für jeden Hersteller unterschiedliche Datenpunkt‑IDs kennen müssen, legt der Adapter
 pro Gerät eine Alias‑Struktur unter `devices.<id>.aliases` an.
@@ -186,7 +218,7 @@ Lesen (best‑effort, je nach Template verfügbar):
 - `aliases.r.currentL1/L2/L3` (A) – Strom je Phase (bei 1‑phasigen Zählern i.d.R. nur L1)
 - `aliases.r.frequency` (Hz) – Netzfrequenz
 
-### EVCS / EVSE / CHARGER (Ladestationen / Wallboxen)
+### EVCS / EVSE (Ladestationen / Wallboxen)
 
 Lesen (best‑effort, je nach Template verfügbar):
 
@@ -206,6 +238,18 @@ Steuern (falls Template/Ladestation unterstützt):
 Alarme/Benachrichtigungen (best‑effort):
 
 - `aliases.alarm.fault` (bool) – Fehler aktiv (z.B. `errorCode != 0`)
+
+### CHARGER / DC_CHARGER (Solar- und Batterie-Laderegler)
+
+Diese Kategorien sind ausdrücklich **keine EV-Ladepunkte**. Im Alias Contract v1
+werden sie als `solarCharger` klassifiziert. Typische Rückmeldungen sind:
+
+- `aliases.v1.r.power` (W)
+- `aliases.v1.r.energyTotal` (Wh)
+- `aliases.v1.r.voltage` (V)
+- `aliases.v1.r.current` (A)
+- `aliases.v1.r.temperature` (°C)
+- `aliases.v1.r.statusCode` und `aliases.v1.r.errorCode` (falls vorhanden)
 
 ### BATTERY / ESS / BATTERY_INVERTER (Batteriesysteme)
 
@@ -237,6 +281,23 @@ Alarme/Benachrichtigungen (best‑effort, konservativ):
 
 - `aliases.alarm.fault` (bool) – Fehler aktiv (z.B. Error-Codes oder Alarm/Protect-Flag-Register ≠ 0)
 - `aliases.alarm.warning` (bool) – Warnung aktiv (falls passende Warn-Register vorhanden)
+
+### TESVOLT IoT Gateway (MQTT EMS Interface V2)
+
+Das separate Template `ess.tesvolt.iotGateway.mqttV2` verbindet NexoWatt als
+Third-Party-EMS mit dem MQTT-Broker des TESVOLT IoT Gateways. Konfiguration:
+
+```text
+URL:      mqtt://<Gateway-IP>:1884
+Login:    TESVOLT-Zugang
+Passwort: TESVOLT-Zugang
+```
+
+Die Steuerung erfolgt über `aliases.v1.ctrl.powerSetpointW` mit der festen
+NexoWatt-Konvention `+ Entladen / - Laden`. Der Treiber invertiert den Wert für
+TESVOLT, prüft API-Version, Capabilities, Batteriezustand und dynamische
+AC-Grenzen und setzt stale Leistungswerte auf `0 W`. Details und Feldtest stehen
+in `docs/TESVOLT_IOT_GATEWAY_MQTT_V2_0.5.153.md`.
 
 ---
 
@@ -370,40 +431,72 @@ Wichtige Datenpunkte und Aliases:
 
 ## 4f) Alfen NG9xx / ACE Modbus TCP
 
-Für Alfen NG9xx / ACE sind drei getrennte Modbus-TCP-Templates enthalten, weil Alfen je Registergruppe feste Modbus-Serveradressen/Unit-IDs verwendet:
+Die ACE-Register sind auf mehrere feste Modbus-Serveradressen/Unit-IDs verteilt. Deshalb gibt es bewusst getrennte Profile:
 
-- `evcs.alfen.ng9xx.ace.socket1.modbusTcp` – Socket 1, Unit-ID `1`
-- `evcs.alfen.ng9xx.ace.socket2.modbusTcp` – Socket 2, Unit-ID `2`
-- `evcs.alfen.ng9xx.ace.station.modbusTcp` – Safe-Default-Mischtemplate: Socket-1-Livewerte über Unit-ID `1`; Station/SCN-Datenpunkte bleiben vorhanden, werden aber nicht mehr automatisch gepollt/beschrieben, wenn SCN nicht aktiv ist
+- `evcs.alfen.ng9xx.ace.socket1.modbusTcp` – **Socket-Modus**, Socket 1 / linke Dose, Unit-ID `1`
+- `evcs.alfen.ng9xx.ace.socket2.modbusTcp` – **Socket-Modus**, Socket 2 / rechte Dose, Unit-ID `2`
+- `evcs.alfen.ng9xx.ace.station.modbusTcp` – **SCN-Modus**, Station/Smart Charging Network auf Unit-ID `200`; Socket-1-Werte bleiben zusätzlich als Diagnose sichtbar
 
-Wichtige Lese-Datenpunkte:
+### Verbindungs- und Adressierungsregeln
 
-- Socket: Messwerte `vOLTAGE_*`, `cURRENT_*`, `aCTIVE_POWER`, Energiezähler, `eVSE_STATE`, `mODE3_STATE`, `aCTUAL_APPLIED_MAX_CURRENT`, `mODBUS_MAX_CURRENT_VALID_TIME`
-- Station/SCN: Produktdaten, Firmware, aktive Maximalströme, Temperatur, Anzahl Sockets, SCN-Verbrauch, SCN-Maximalströme und Valid-Time; diese Blöcke sind optional und bei vielen Einzel-Wallboxen im Socket-Modus nicht freigeschaltet
+- Modbus TCP, Port `502`
+- Dokumentregister sind 1-basiert; im Telegramm wird immer `Dokumentregister - 1` verwendet. Ein manueller `addressOffset` wird für die Alfen-Profile deshalb ignoriert.
+- 16-Bit-Register werden in Network Byte Order übertragen. Bei 32-Bit-Werten ist die Wortreihenfolge Low-Word-First; im Template entspricht das `wordOrder: le`, `byteOrder: be`.
+- Mehrregisterwerte werden vollständig in **einer** FC16-Anfrage geschrieben. Es gibt keinen `+1`-Fallback und kein Aufteilen eines FLOAT32 auf zwei Einzelzugriffe.
 
-Wichtige Schreib-Datenpunkte:
+### Socket-Steuerung
 
-- Socket: `sET_CHARGING_CURRENT` schreibt den Socket-Maximalstrom als kompletten 32-bit-Float per FC16.
-- Socket: `cHARGE_USING_PHASES` akzeptiert nur `1` oder `3`.
-- Station/SCN: `sCN_MAX_CURRENT_L1`, `sCN_MAX_CURRENT_L2`, `sCN_MAX_CURRENT_L3` schreiben die SCN-Phasenlimits als komplette 32-bit-Floats per FC16.
+`aliases.ctrl.currentLimitA` beziehungsweise `sET_CHARGING_CURRENT` schreibt:
 
-Fix ab `0.5.95`: Die Alfen-Templates verwenden jetzt direkt die tatsächlich zu sendenden Modbus-Protokolladressen (`Register - 1`). Zusätzlich erzwingt der Adapter die korrekte Unit-ID je Template und ignoriert alte manuelle Address-Offset-Werte für diese Alfen-Templates. Dadurch werden Schreibzugriffe nicht mehr um ein Register verschoben, was vorher bei Setpoint-Keepalive zu `Modbus exception 3: Illegal data value` führen konnte. Nicht-transportbedingte Write-Fehler markieren das Gerät außerdem nicht mehr fälschlich als offline.
+- Socket 1: Unit-ID `1`
+- Socket 2: Unit-ID `2`
+- FC16, Protokolladresse `1209`, Länge `2`
+- Beispiel `16 A`: Register `[0x0000, 0x4180]`; Unit-ID + PDU für Socket 1: `01 10 04 B9 00 02 04 00 00 41 80`
 
-Stabilitäts-/Kompatibilitätsfix ab `0.5.96`: Der Modbus-Treiber kann jetzt pro Datenpunkt/Registergruppe eine eigene Unit-ID verwenden. Das ist für Alfen wichtig, weil Socket-Werte auf Unit-ID `1`/`2` und Station/SCN-Werte auf Unit-ID `200` liegen. Das Station/SCN-Template enthält zusätzlich Socket-1-Livewerte als Fallback, damit Anlagen, die in ACE auf `TCP/IP EMS Control Mode = Socket` stehen und Unit-ID `200` ablehnen, trotzdem Leistung, Status, Energie und Socket-Stromlimit liefern. Alfen-Station/SCN-Blöcke werden nur noch langsam und optional gelesen; nicht unterstützte Blöcke erzeugen keinen Totalausfall der Socket-Werte.
+`0 A` ist Stop. Positive Werte unter `6 A` werden auf `6 A` normalisiert. `cHARGE_USING_PHASES` schreibt ausschließlich `1` oder `3` auf Protokolladresse `1214`.
 
-Kompatibilitäts-/Watchdog-Fix ab `0.5.97`: Alfen-Socket-Reads werden je Datenpunkt isoliert, damit optionale oder vom eingebauten Zählertyp nicht gelieferte Register keine wichtigen Nachbarwerte wie Leistung, Mode-3-Status oder Stromlimit mitreißen. Zusätzlich gibt es stabile Aliase: `aliases.ctrl.run` / `aliases.ctrl.chargeEnable` geben die Ladung über `sET_CHARGING_CURRENT` frei (`true` = Standardstrom, `false` = `0 A`), `aliases.r.statusText`, `aliases.r.mode3State`, `aliases.r.vehicleConnected`, `aliases.r.charging`, `aliases.r.appliedCurrentLimitA`, `aliases.r.currentLimitValidTimeS`, `aliases.r.setpointAccountedFor` und `aliases.ctrl.phaseMode`. Alfen-Schreibwerte werden nach dem ersten Adapter-Schreibzugriff alle `10 s` erneuert, damit der Alfen-Watchdog/Validity-Timer nicht ausläuft.
+### Station-/SCN-Steuerung
 
-Diagnose-Fix ab `0.5.98`: Wenn die Wallbox `sET_CHARGING_CURRENT` / Registerblock `1200..1215` mit `Illegal Data Address` ablehnt, weist der Adapter jetzt gezielt auf die Alfen-ACE-Einstellungen hin: Active Load Balancing/EMS aktivieren, TCP/IP EMS Control Mode auf Socket stellen, Sockets aktivieren und Schreiben der Maximalströme erlauben. Nicht unterstützte U64-Sentinelwerte werden als `null` behandelt, damit keine ioBroker-Typwarnungen bei `uPTIME_MS` entstehen.
+Im SCN-Profil schreibt `aliases.ctrl.currentLimitA` auf den kombinierten Datenpunkt `sCN_MAX_CURRENT`. Derselbe FLOAT32-Stromwert wird für L1, L2 und L3 in **einem** Telegramm übertragen:
 
-Fix ab `0.5.99`: Die Alfen-Templates sind jetzt auf einen sicheren Socket-Default gehärtet. Standardmäßig werden nur stabile Socket-Livewerte über Unit-ID `1` beziehungsweise `2` schnell gepollt. Station-/SCN-Blöcke auf Unit-ID `200` und der optionale Socket-Control-/Statusblock `1200..1215` werden nicht mehr automatisch als Pflichtwerte behandelt, weil viele Einzel-Wallboxen diese Bereiche erst nach passender ACE-/EMS-Konfiguration freigeben. Das gemischte Station-Template verwendet deshalb ebenfalls Socket-1-Livewerte und Socket-1-Steuerung als Safe Default. SCN-Datenpunkte bleiben im Template vorhanden, sind aber optional und werden nicht mehr per Default im Keepalive beschrieben. Der Alfen-Watchdog erneuert Socket-Schreibwerte alle `10 s`, aber erst nachdem dieser Datenpunkt tatsächlich erfolgreich geschrieben wurde. Bei `Illegal Data Address` / `Illegal Data Value` wird der betroffene Schreibpunkt für eine Stunde abgekühlt, damit die Wallbox nicht dauerhaft mit nicht freigegebenen Registern belastet wird.
+- Unit-ID `200`
+- FC16, Protokolladresse `1416`, Länge `6`
+- Beispiel `16 A`: `[0x0000,0x4180, 0x0000,0x4180, 0x0000,0x4180]`
 
-Hinweis: Für Schreibzugriffe muss in ACE/Service Installer die Modbus-/EMS-Konfiguration passend aktiviert sein: Lesen erlauben, Schreiben der Maximalströme erlauben, Active Load Balancing/EMS-Modus aktivieren und die Validity-Time größer als das Poll-/Keepalive-Intervall setzen. Für normale Einzel-Wallboxen ist meistens das Socket-1-Template bzw. der Socket-Modus richtig; Station/SCN ist nur für die SCN-/Stationssteuerung gedacht.
+Die Einzel-Datenpunkte `sCN_MAX_CURRENT_L1`, `sCN_MAX_CURRENT_L2` und `sCN_MAX_CURRENT_L3` bleiben für gezielte Tests verfügbar; der stabile EMS-Alias verwendet jedoch die atomare Drei-Phasen-Anfrage. Entsprechend der dokumentierten Schrittweite werden SCN-Stromwerte auf volle Ampere gerundet; `0 A` bleibt Stop und positive Werte unter `6 A` werden auf `6 A` normalisiert.
+
+### Erforderliche ACE-Konfiguration
+
+Der Alfen-Leitfaden v1.0 gilt für ACE Service Installer `3.4.10-130` und Firmware `4.10`. Für Schreibzugriffe müssen Active Load Balancing und die EMS-Schnittstelle freigeschaltet und passend konfiguriert sein:
+
+- **Allow reading** aktiv
+- **Allow writing maximum currents** aktiv
+- **Active Load Balancing** aktiv und lizenziert
+- Data Source = **Energy Management System**
+- Protocol Selection = **Modbus TCP/IP**
+- Safe Current gesetzt
+- TCP/IP EMS Control Mode = **Socket** für die Socket-Profile oder **SCN** für das Station/SCN-Profil
+- im Socket-Modus zusätzlich **Enable sockets** aktiv
+- Validity Time größer als das 5-s-Refreshintervall
+
+### Diagnose nach einem Schreibtest
+
+Ein normaler FC16-Response bedeutet nur, dass der Modbus-Server das Telegramm angenommen hat. Ob ACE den Sollwert tatsächlich verwendet, zeigen die Rückmeldungen:
+
+- `aliases.r.currentLimitValidTimeS` muss nach einem Strombefehl auf einen hohen Wert springen und anschließend herunterzählen.
+- `aliases.r.setpointAccountedFor` muss im aktiven Modus `true` werden. Im Socket-Profil entspricht das Register 1214; im SCN-Profil dem SCN-Max-Current-Enable-Register 1431.
+- `aliases.r.appliedCurrentLimitA` zeigt den tatsächlich angewendeten Grenzwert; Fahrzeugreaktion und andere interne Limits können die Änderung verzögern oder weiter begrenzen.
+- Bei Modbus Exception 2/3 wird der manuelle Fehler ab `0.5.140` in `info.lastError` sichtbar, statt still verworfen zu werden.
+
+Der letzte Strombefehl wird nach dem ersten expliziten Schreibzugriff alle `5 s` erneuert. Die Phasenwahl wird nur auf Kommando und einmal zur Bestätigung wiederholt.
 
 ### Hinweis zu Register‑Offsets
 Viele Herstellerdokumentationen verwenden 1‑basierte Registeradressen (z.B. `40001`).
 Wenn dein Gerät mit den im Template hinterlegten Adressen „um 1 daneben“ liegt, setze im Gerät:
 
 - `addressOffset: -1`
+
+**Ausnahme Alfen ACE:** Die Alfen-Templates enthalten bereits die Protokolladressen und erzwingen Offset `0`; dort keinen manuellen Offset setzen.
 
 ### SunSpec Auto-Discovery (ab v0.5.6)
 
@@ -650,3 +743,39 @@ Available EMS write points:
 - `sET_DISCHARGE_POWER`: positive W discharge command, `0` = stop.
 
 Helper registers such as `eMS_MODE_SELECTION`, `cHARGE_DISCHARGE_COMMAND`, `cHARGE_DISCHARGE_POWER`, and `ExternalEMSHeartbeat` do not have to be assigned by EMS logic.  They remain visible for diagnostics/manual tests, but the adapter writes them automatically from the public power setpoint.
+
+
+### 0.5.137 - Weidmüller Charge Wallbox Business
+
+- Neues Modbus-TCP-Template für CH-W-B-A3.7/11 und CH-W-B-A7.4/22.
+- Unit-ID 255, direkte Herstelleradressen, Low-Word-First-Dekodierung.
+- Ladefreigabe über Coil 400, echte Freigaberückmeldung über Coil 436 und Stromvorgabe über Holding 528 (`A x 10`).
+- Stabile EVCS-Aliase für Status, Fahrzeug/Laden, Leistung, Sitzungsenergie, Stromlimit und Ladefreigabe.
+
+### 0.5.138 - Sungrow Residential Hybrid 1-second control telemetry
+
+- Critical Sungrow live datapoints use an enforced fixed `1000 ms` start-to-start polling target.
+- The four Modbus TCP fast-read groups use a `200 ms` minimum command gap so a healthy LAN/WiNet path can complete the full control snapshot inside approximately one second.
+- A battery-power readback is triggered once immediately after each EMS power command; continuous duplicate priority polling is disabled because the normal fast cycle now runs every second.
+- Per-device or global poll settings slower than one second no longer override this Sungrow control profile.
+- Charge/discharge direction remains exactly as in `0.5.133`: positive `aliases.ctrl.powerSetpointW` discharges, negative values charge, and `0 W` stops.
+
+### 0.5.139 - Technische Alternative CMI / CMI-S
+
+- Neues Template `heat.ta.cmi` mit Protokoll `taCmi`.
+- Dynamisches Lesen aller unterstützten Werte der konfigurierten CAN-Knoten über die offizielle CMI JSON API v8, einschließlich TA-Bezeichnungen, Einheiten, Analog-/Digitaltyp, Ausgangsstatus und RAS-Zustand.
+- Automatischer Scan von CAN-Knoten 1…62 oder gezielte Knotenliste für schnellere Aktualisierung.
+- Bidirektionale Heizungssteuerung über einen integrierten Modbus-TCP-Server, da das CMI als Modbus-Master arbeitet.
+- Je Richtung bis zu 64 analoge und 64 digitale Kanäle. Standardkarte: Holding/Coils 0…63 NexoWatt→CMI und 100…163 CMI→NexoWatt.
+- Frei definierbare Kanalnamen, Einheiten, Faktoren, Grenzwerte und stabile Aliase über `bridgeMap`.
+- Die offizielle JSON API bleibt read-only und auf eine Anfrage pro Minute begrenzt; schnelle Regelwerte laufen unabhängig davon über die Modbus-Brücke.
+
+### 0.5.140 - Alfen ACE write-logic audit
+
+- Revalidated the Socket control frame against Alfen Modbus for ACE v1.0: UID1/2, FC16 at protocol address 1209, complete FLOAT32, low word first and network byte order.
+- Replaced the misleading Station+Socket fallback with an actual UID200 Station/SCN profile. `sCN_MAX_CURRENT` writes all three phase limits atomically via FC16 at protocol address 1416, length 6.
+- Manual Alfen Modbus exception 2/3 write failures now populate `info.lastError` instead of being silently consumed.
+- Added exact accepted-write diagnostics with Unit-ID, function code, address, register words and data bytes; charger-side accounted/enabled and valid-time readbacks remain authoritative.
+- Removed the duplicate current post-write repeat; only the 5-second validity watchdog refreshes the last explicit current command.
+- Added packet-level regression tests for Socket 1, Socket 2 and SCN writes.
+

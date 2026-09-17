@@ -12,6 +12,7 @@ Alle technischen Markdown-Dateien des Adapters liegen bewusst in diesem Ordner. 
 - [Alias Contract v1](ALIAS_CONTRACT_V1_0.5.144.md)
 - [Bestandsanlagen-Kompatibilität 0.5.146](LEGACY_COMPATIBILITY_0.5.146.md)
 - [Release-Sicherheit](RELEASE_SAFETY.md)
+- [npm publish: Git-Merge-Konflikt und EJSONPARSE unter Windows beheben](NPM_PUBLISH_MERGE_CONFLICT.md)
 - [Release-Arbeitsordner-Isolation 0.5.155](RELEASE_WORKSPACE_ISOLATION_0.5.155.md)
 - [Windows-npm-Runner im Release-Test 0.5.156](RELEASE_WINDOWS_NPM_RUNNER_0.5.156.md)
 - [Technische Versionshinweise](CHANGELOG.md)

@@ -4,6 +4,11 @@ Die erste Freigabeprüfung wird direkt mit Node.js gestartet. Dadurch erkennt si
 
 ## Prüfung ohne Veröffentlichung
 
+Bei `EJSONPARSE` und einem Hinweis auf `<<<<<<< HEAD` zuerst die
+[Wiederherstellung nach einem Git-Merge-Konflikt](NPM_PUBLISH_MERGE_CONFLICT.md)
+verwenden. Ein npm-Skript kann eine kaputte `package.json` nicht vorab reparieren,
+weil npm die Datei bereits vor dem Ausführen der Skripte einliest.
+
 Im Projektordner:
 
 ```powershell
