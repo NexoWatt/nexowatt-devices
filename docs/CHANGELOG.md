@@ -1,5 +1,6 @@
 # Technische Versionshinweise
 
+<<<<<<< HEAD
 ## 0.5.165 – DEYE Hybrid: drei vorläufige RTU-Familienprofile
 
 - Neu unter ESS → DEYE: einphasiger Hybrid, dreiphasiger LV-Hybrid und dreiphasiger HV-Hybrid. Dedizierter Treiber nach den bereitgestellten V118-/V105.4-Unterlagen, Identitäts-/Phasenprüfung; keine pauschale Modell-/Firmwarefreigabe.
@@ -10,6 +11,8 @@
 - 186 automatisierte Tests bestanden, davon 22 neue DEYE-Tests mit simulierten RTU-Busantworten. Bestehende 192 Templates unverändert, nun 195 Templates und 2454 v1-Aliasdefinitionen. Legacy-Baseline erhalten. Keine reale DEYE-Hardwareprüfung.
 - Alle TESVOLT-, DEPower- und VARTA-Änderungen aus 0.5.164 erhalten; keine neuen Abhängigkeiten.
 
+=======
+>>>>>>> 1f9a832732d7b1fb12670dfe54a2d84597f3f0e5
 ## 0.5.164 – DEPower-Sollwertwarteschlange, Rücklesen und Energieauflösung
 
 - Neue Leistungsbefehle bleiben erhalten, wenn sie während eines laufenden Schreibvorgangs eintreffen. Alte Erfolge und Fehler können den neuen Auftrag weder bestätigen noch löschen. Die Warteschlange bestätigt den tatsächlich vom Treiber verwendeten Wert.

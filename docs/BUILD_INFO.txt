@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 NexoWatt Devices 0.5.165 - Preliminary DEYE hybrid Modbus RTU profiles
 Base: complete 0.5.164 repository, including TESVOLT, DEPower and VARTA fixes
 Profiles: single-phase hybrid (0300), three-phase LV (0500), three-phase HV (0600/0601); phase/topology checks
@@ -11,3 +12,16 @@ Compatibility: 192 existing templates preserved; 195 templates and 2454 v1 alias
 Dependencies: unchanged, freshly installed for local validation
 Hardware: no real DEYE inverter, battery or RS485 hardware tested; no customer-system deployment
 Documentation: docs/DEYE_MODBUS_RTU_0.5.165.md and docs/DEYE_MANUFACTURER_INQUIRY_EN_DE.md (draft, not sent)
+=======
+NexoWatt Devices 0.5.164 - DEPower queued power commands, genuine readback and independent energy-counter resolution
+Base: complete 0.5.163 repository including TESVOLT EMS/MQTT fixes and VARTA profiles
+Evidence: supplied DEPower ModBus&TCP-protocol_V10.03-V6 workbook and customer screenshots
+Validation: 164 automated tests passed, zero skipped; 2 real local Modbus TCP tests and 3 real local MQTT.js/TCP tests
+Regression: overlapping 11000 -> 4200 W commands; old write failure; command/readback separation; rejected and ignored FC16 writes; both connectors; energy scaling
+Release gates: release guard, full tests and npm pack --dry-run
+Compatibility: 181-template legacy baseline preserved; existing DEPower IDs retained; TESVOLT changes from 0.5.163 preserved
+Dependencies: unchanged; installed for local transport validation
+Hardware: no customer-gateway connection and no live DEPower charging test
+Energy: 100 Wh/tick workbook default retained; independently configurable resolutions require simultaneous raw/reference readings for the customer's firmware
+EOS: DC powerW control and 4200 W Min+PV minimum must be mapped/configured in the installed EOS instance; adapter does not calculate Min+PV
+>>>>>>> 1f9a832732d7b1fb12670dfe54a2d84597f3f0e5

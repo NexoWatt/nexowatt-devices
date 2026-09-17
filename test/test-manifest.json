@@ -1,6 +1,10 @@
 {
   "schemaVersion": 1,
+<<<<<<< HEAD
   "suiteVersion": "0.5.165",
+=======
+  "suiteVersion": "0.5.164",
+>>>>>>> 1f9a832732d7b1fb12670dfe54a2d84597f3f0e5
   "tests": [
     "ablEmh1Aliases.test.js",
     "ablEmh1PwmWrite.test.js",
@@ -21,7 +25,11 @@
     "writeErrorHandling.test.js",
     "vartaModbus.test.js",
     "tesvoltMqttTransport.test.js",
+<<<<<<< HEAD
     "depowerModbusTransport.test.js",
     "deyeModbus.test.js"
+=======
+    "depowerModbusTransport.test.js"
+>>>>>>> 1f9a832732d7b1fb12670dfe54a2d84597f3f0e5
   ]
 }

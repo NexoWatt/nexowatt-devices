@@ -569,11 +569,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "battery"
       }
     },
     {
@@ -4730,11 +4725,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "battery"
       }
     },
     {
@@ -5126,11 +5116,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "battery"
       }
     },
     {
@@ -5507,11 +5492,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "battery"
       }
     },
     {
@@ -6203,11 +6183,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "battery"
       }
     },
     {
@@ -6479,11 +6454,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "battery"
       }
     },
     {
@@ -6950,11 +6920,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "battery"
       }
     },
     {
@@ -7376,11 +7341,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "battery"
       }
     },
     {
@@ -12107,11 +12067,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "battery"
       }
     },
     {
@@ -15773,11 +15728,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "battery"
       }
     },
     {
@@ -16454,11 +16404,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "battery"
       }
     },
     {
@@ -17750,11 +17695,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "battery"
       }
     },
     {
@@ -18482,11 +18422,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "batteryInverter"
       }
     },
     {
@@ -23618,11 +23553,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "batteryInverter"
       }
     },
     {
@@ -24284,11 +24214,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "batteryInverter"
       }
     },
     {
@@ -24377,11 +24302,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "solarCharger"
       }
     },
     {
@@ -25013,11 +24933,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "solarCharger"
       }
     },
     {
@@ -25199,11 +25114,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
       }
     },
     {
@@ -25850,11 +25760,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
       }
     },
     {
@@ -25926,11 +25831,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
       }
     },
     {
@@ -30222,11 +30122,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
       }
     },
     {
@@ -30408,11 +30303,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
       }
     },
     {
@@ -31336,191 +31226,6 @@
             },
             "scaleFactor": -3
           }
-        },
-        {
-          "id": "cTRL_BALANCING_COMPONENT_ID",
-          "name": "Component-ID (ctrlBalancing0)",
-          "role": "text",
-          "type": "string",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 890,
-              "length": 8,
-              "dataType": "string",
-              "wordOrder": "be",
-              "byteOrder": "be",
-              "optional": true,
-              "readRequestGroup": "fenecon-ctrlBalancing0-component-id"
-            }
-          },
-          "note": "FENECON example block header. Expected value: ctrlBalancing0. string16 contains 16 ASCII characters in 8 Modbus registers."
-        },
-        {
-          "id": "cTRL_BALANCING_BLOCK_LENGTH",
-          "name": "Block length (ctrlBalancing0)",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 906,
-              "length": 1,
-              "dataType": "uint16",
-              "wordOrder": "be",
-              "byteOrder": "be",
-              "optional": true,
-              "readRequestGroup": "fenecon-ctrlBalancing0-block-length"
-            }
-          },
-          "note": "Length of the complete ctrlBalancing0 component block. FENECON example value: 180 registers."
-        },
-        {
-          "id": "cTRL_BALANCING_OPENEMS_COMPONENT_HASH",
-          "name": "Hash (OpenemsComponent)",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 910,
-              "length": 1,
-              "dataType": "uint16",
-              "wordOrder": "be",
-              "byteOrder": "be",
-              "optional": true,
-              "readRequestGroup": "fenecon-ctrlBalancing0-openems-component"
-            }
-          },
-          "note": "Hash of OpenemsComponent. FENECON example value: 0xb3dc."
-        },
-        {
-          "id": "cTRL_BALANCING_OPENEMS_COMPONENT_LENGTH",
-          "name": "Block length (OpenemsComponent)",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 911,
-              "length": 1,
-              "dataType": "uint16",
-              "wordOrder": "be",
-              "byteOrder": "be",
-              "optional": true,
-              "readRequestGroup": "fenecon-ctrlBalancing0-openems-component"
-            }
-          },
-          "note": "Length of the OpenemsComponent nature block. FENECON example value: 80 registers."
-        },
-        {
-          "id": "cTRL_BALANCING_STATE",
-          "name": "ctrlBalancing0 state",
-          "role": "indicator.status",
-          "type": "number",
-          "rw": "ro",
-          "states": {
-            "0": "Ok",
-            "1": "Info",
-            "2": "Warning",
-            "3": "Fault"
-          },
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 912,
-              "length": 1,
-              "dataType": "uint16",
-              "wordOrder": "be",
-              "byteOrder": "be",
-              "optional": true,
-              "readRequestGroup": "fenecon-ctrlBalancing0-openems-component"
-            }
-          }
-        },
-        {
-          "id": "cTRL_BALANCING_IMPL_HASH",
-          "name": "Hash (ControllerEssBalancingImpl)",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 990,
-              "length": 1,
-              "dataType": "uint16",
-              "wordOrder": "be",
-              "byteOrder": "be",
-              "optional": true,
-              "readRequestGroup": "fenecon-ctrlBalancing0-controller-impl"
-            }
-          },
-          "note": "Hash of ControllerEssBalancingImpl. FENECON example value: 0xb8b0."
-        },
-        {
-          "id": "cTRL_BALANCING_IMPL_LENGTH",
-          "name": "Block length (ControllerEssBalancingImpl)",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 991,
-              "length": 1,
-              "dataType": "uint16",
-              "wordOrder": "be",
-              "byteOrder": "be",
-              "optional": true,
-              "readRequestGroup": "fenecon-ctrlBalancing0-controller-impl"
-            }
-          },
-          "note": "Length of the ControllerEssBalancingImpl nature block. FENECON example value: 100 registers."
-        },
-        {
-          "id": "sET_GRID_ACTIVE_POWER",
-          "name": "Ausregelpunkt Netzanschluss (ctrlBalancing0/SetGridActivePower)",
-          "role": "level.power",
-          "type": "number",
-          "rw": "wo",
-          "unit": "kW",
-          "decimals": 2,
-          "source": {
-            "kind": "modbus",
-            "write": {
-              "fc": 16,
-              "address": 992,
-              "length": 2,
-              "dataType": "float32",
-              "wordOrder": "be",
-              "byteOrder": "be",
-              "finite": true,
-              "requireComponentId": {
-                "fc": 3,
-                "address": 890,
-                "length": 8,
-                "dataType": "string",
-                "wordOrder": "be",
-                "byteOrder": "be",
-                "expected": "ctrlBalancing0",
-                "cacheMs": 60000
-              }
-            },
-            "scaleFactor": -3
-          },
-          "note": "Verschiebt den Ausregelpunkt der FEMS-Eigenverbrauchsoptimierung am Netzanschlusspunkt. 0 kW = Ausregelung auf null; negativer Wert = gewünschte Einspeisung; positiver Wert = gewünschter Netzbezug. Das zugrunde liegende FEMS-Register verwendet Watt. Benötigt FEMS App Schreibzugriff und die freigegebene Komponente ctrlBalancing0. Da FENECON Register nach App-Updates verschieben kann, wird vor dem ersten Schreiben die Component-ID am dokumentierten Beispielblock geprüft."
         }
       ],
       "driverHints": {
@@ -31537,11 +31242,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
       }
     },
     {
@@ -32848,11 +32548,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
       }
     },
     {
@@ -33979,11 +33674,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
       }
     },
     {
@@ -34649,12 +34339,7 @@
             }
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
-      }
+      ]
     },
     {
       "id": "ess.foxess.FoxESSH3ProEss",
@@ -35319,12 +35004,7 @@
             }
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
-      }
+      ]
     },
     {
       "id": "ess.kaco.gridsave.sunspec.v1",
@@ -37824,12 +37504,7 @@
             "sunspecOffset": 9
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
-      }
+      ]
     },
     {
       "id": "ess.kaco.hybrid10.sunspec.v1",
@@ -40329,12 +40004,7 @@
             "sunspecOffset": 9
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
-      }
+      ]
     },
     {
       "id": "ess.kostal.KostalManagedEssBigEndianImpl",
@@ -40779,11 +40449,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
       }
     },
     {
@@ -41229,11 +40894,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
       }
     },
     {
@@ -41373,12 +41033,7 @@
             "path": "/R3EMSAPP_REAL.ems?file=ESSRealtimeStatus.json"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
-      }
+      ]
     },
     {
       "id": "ess.sma.EssSmaSunnyIslandImpl",
@@ -41994,11 +41649,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
       }
     },
     {
@@ -42734,12 +42384,7 @@
           }
         }
       ],
-      "notes": "Power values are normalized to kW (2 decimals) and energy to kWh (2 decimals). For PV power limit / battery power target writes the adapter pre-writes system control=remote, control mode=8 and TargetSetType=update.",
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
-      }
+      "notes": "Power values are normalized to kW (2 decimals) and energy to kWh (2 decimals). For PV power limit / battery power target writes the adapter pre-writes system control=remote, control mode=8 and TargetSetType=update."
     },
     {
       "id": "ess.solax.SolaXHybridX1X3Ess",
@@ -43359,12 +43004,7 @@
             }
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
-      }
+      ]
     },
     {
       "id": "ess.sunspec.generic.basic124.v1",
@@ -44759,12 +44399,7 @@
             "dataType": "int16"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
-      }
+      ]
     },
     {
       "id": "ess.tesla.powerwall2.gateway.http.v1",
@@ -44970,12 +44605,7 @@
             "scaleFactor": 0
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
-      }
+      ]
     },
     {
       "id": "ess.tesvolt.TesvoltEnergyManagerVermarkter",
@@ -45527,6 +45157,7 @@
             }
           }
         }
+<<<<<<< HEAD
       ],
       "aliasContract": {
         "schemaVersion": 1,
@@ -46751,6 +46382,9 @@
         "namespace": "v1",
         "deviceClass": "storageSystem"
       }
+=======
+      ]
+>>>>>>> 1f9a832732d7b1fb12670dfe54a2d84597f3f0e5
     },
     {
       "id": "ess.victron.VictronEssImpl",
@@ -48191,11 +47825,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
       }
     },
     {
@@ -48341,11 +47970,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
       }
     },
     {
@@ -48398,8 +48022,7 @@
             "length": 2,
             "dataType": "uint32",
             "bitShift": 16,
-            "bitMask": 63,
-            "readRequestGroup": "abl-0x0001-r2"
+            "bitMask": 63
           }
         },
         {
@@ -48415,8 +48038,7 @@
             "length": 2,
             "dataType": "uint32",
             "bitShift": 12,
-            "bitMask": 15,
-            "readRequestGroup": "abl-0x0001-r2"
+            "bitMask": 15
           }
         },
         {
@@ -48432,8 +48054,7 @@
             "length": 2,
             "dataType": "uint32",
             "bitShift": 8,
-            "bitMask": 15,
-            "readRequestGroup": "abl-0x0001-r2"
+            "bitMask": 15
           }
         },
         {
@@ -48449,8 +48070,7 @@
             "length": 2,
             "dataType": "uint32",
             "bitShift": 22,
-            "bitMask": 3,
-            "readRequestGroup": "abl-0x0001-r2"
+            "bitMask": 3
           }
         },
         {
@@ -48464,8 +48084,7 @@
             "fc": 3,
             "address": 3,
             "length": 1,
-            "dataType": "uint16",
-            "readRequestGroup": "abl-0x0003-r1"
+            "dataType": "uint16"
           }
         },
         {
@@ -48481,8 +48100,7 @@
             "length": 1,
             "dataType": "uint16",
             "bitShift": 6,
-            "bitMask": 3,
-            "readRequestGroup": "abl-0x0003-r1"
+            "bitMask": 3
           }
         },
         {
@@ -48498,8 +48116,7 @@
             "length": 1,
             "dataType": "uint16",
             "bitShift": 4,
-            "bitMask": 3,
-            "readRequestGroup": "abl-0x0003-r1"
+            "bitMask": 3
           }
         },
         {
@@ -48514,8 +48131,7 @@
             "address": 3,
             "length": 1,
             "dataType": "uint16",
-            "bitMask": 15,
-            "readRequestGroup": "abl-0x0003-r1"
+            "bitMask": 15
           }
         },
         {
@@ -48531,8 +48147,7 @@
             "length": 2,
             "dataType": "uint32",
             "bitShift": 16,
-            "bitMask": 255,
-            "readRequestGroup": "abl-0x0006-r2"
+            "bitMask": 255
           }
         },
         {
@@ -48550,8 +48165,7 @@
             "bitShift": 9,
             "bitMask": 1,
             "toBoolean": true,
-            "trueWhenZero": true,
-            "readRequestGroup": "abl-0x0006-r2"
+            "trueWhenZero": true
           }
         },
         {
@@ -48568,8 +48182,7 @@
             "dataType": "uint32",
             "bitShift": 8,
             "bitMask": 1,
-            "toBoolean": true,
-            "readRequestGroup": "abl-0x0006-r2"
+            "toBoolean": true
           }
         },
         {
@@ -48584,8 +48197,7 @@
             "address": 46,
             "length": 1,
             "dataType": "uint16",
-            "bitMask": 255,
-            "readRequestGroup": "abl-0x002e-r5"
+            "bitMask": 255
           }
         },
         {
@@ -48602,8 +48214,7 @@
             "dataType": "uint16",
             "bitShift": 15,
             "bitMask": 1,
-            "toBoolean": true,
-            "readRequestGroup": "abl-0x002e-r5"
+            "toBoolean": true
           }
         },
         {
@@ -48620,8 +48231,7 @@
             "dataType": "uint16",
             "bitShift": 14,
             "bitMask": 1,
-            "toBoolean": true,
-            "readRequestGroup": "abl-0x002e-r5"
+            "toBoolean": true
           }
         },
         {
@@ -48638,8 +48248,7 @@
             "dataType": "uint16",
             "bitShift": 12,
             "bitMask": 1,
-            "toBoolean": true,
-            "readRequestGroup": "abl-0x002e-r5"
+            "toBoolean": true
           }
         },
         {
@@ -48656,13 +48265,12 @@
             "dataType": "uint16",
             "bitShift": 13,
             "bitMask": 1,
-            "toBoolean": true,
-            "readRequestGroup": "abl-0x002e-r5"
+            "toBoolean": true
           }
         },
         {
           "id": "iCMAX_DUTY_CYCLE_PCT",
-          "name": "Applied Ic duty cycle (%)",
+          "name": "Icmax duty cycle (%)",
           "role": "value",
           "type": "number",
           "unit": "%",
@@ -48674,8 +48282,7 @@
             "length": 1,
             "dataType": "uint16",
             "bitMask": 4095,
-            "scaleFactor": -1,
-            "readRequestGroup": "abl-0x002e-r5"
+            "scaleFactor": -1
           }
         },
         {
@@ -48692,8 +48299,7 @@
             "length": 1,
             "dataType": "uint16",
             "scaleFactor": -1,
-            "nanValue": 1000,
-            "readRequestGroup": "abl-0x002e-r5"
+            "nanValue": 1000
           }
         },
         {
@@ -48710,8 +48316,7 @@
             "length": 1,
             "dataType": "uint16",
             "scaleFactor": -1,
-            "nanValue": 1000,
-            "readRequestGroup": "abl-0x002e-r5"
+            "nanValue": 1000
           }
         },
         {
@@ -48728,13 +48333,12 @@
             "length": 1,
             "dataType": "uint16",
             "scaleFactor": -1,
-            "nanValue": 1000,
-            "readRequestGroup": "abl-0x002e-r5"
+            "nanValue": 1000
           }
         },
         {
           "id": "sET_ICMAX_DUTY_CYCLE_PCT",
-          "name": "Set Icmax PWM duty cycle (100% = waiting)",
+          "name": "Set Icmax duty cycle (%)",
           "role": "level",
           "type": "number",
           "unit": "%",
@@ -48746,24 +48350,13 @@
               "address": 20,
               "length": 1,
               "dataType": "uint16",
-              "scaleFactor": -1,
-              "finite": true,
-              "allowedRanges": [
-                [
-                  8,
-                  100
-                ]
-              ]
+              "scaleFactor": -1
             }
-          },
-          "description": "Native ABL EVCC2/3 control: PWM duty cycle in percent. NexoWatt aliases.ctrl.currentLimitA converts amperes automatically; 100% means no current available.",
-          "min": 8,
-          "max": 100,
-          "step": 0.1
+          }
         },
         {
           "id": "mODIFY_STATE",
-          "name": "Expert/service state command (A1/E0/E2)",
+          "name": "Modify state (jump A1/E0/E2)",
           "role": "value",
           "type": "number",
           "rw": "wo",
@@ -48775,15 +48368,9 @@
               "length": 1,
               "dataType": "uint16"
             }
-          },
-          "description": "Service state-transition register 0x0005. Not used for normal EMS pause/resume; use Icmax 100% to wait."
+          }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
-      }
+      ]
     },
     {
       "id": "evcs.alpitronic.hypercharger.connector1",
@@ -49294,11 +48881,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
       }
     },
     {
@@ -49810,11 +49392,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
       }
     },
     {
@@ -50326,11 +49903,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
       }
     },
     {
@@ -50842,11 +50414,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
       }
     },
     {
@@ -51070,11 +50637,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
       }
     },
     {
@@ -51226,11 +50788,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
       }
     },
     {
@@ -51471,12 +51028,7 @@
             "jsonPath": "fwv"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
-      }
+      ]
     },
     {
       "id": "evcs.goe.gemini.http.v2",
@@ -51683,12 +51235,7 @@
             "jsonPath": "eto"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
-      }
+      ]
     },
     {
       "id": "evcs.goe.gemini.http.v2.legacy",
@@ -51895,12 +51442,7 @@
             "jsonPath": "eto"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
-      }
+      ]
     },
     {
       "id": "evcs.heidelberg.EvcsHeidelbergEnergyImpl",
@@ -52147,11 +51689,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
       }
     },
     {
@@ -52952,11 +52489,6 @@
           "hW_REVISION_DEVICE",
           "hW_REVISION_MS10"
         ]
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
       }
     },
     {
@@ -53288,11 +52820,6 @@
             "pHASE_SWITCH_STATE"
           ]
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
       }
     },
     {
@@ -53462,11 +52989,6 @@
           "maxReadRegs": 32,
           "optionalReadErrorLogLevel": "warn"
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
       }
     },
     {
@@ -55099,12 +54621,7 @@
           },
           "unit": "A"
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
-      }
+      ]
     },
     {
       "id": "evcs.openwb.lp1.mqtt.v1",
@@ -55314,12 +54831,7 @@
             "format": "number"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
-      }
+      ]
     },
     {
       "id": "evcs.openwb.lp2.mqtt.v1",
@@ -55529,12 +55041,7 @@
             "format": "number"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
-      }
+      ]
     },
     {
       "id": "evcs.solax.SolaXHacG2",
@@ -55995,11 +55502,6 @@
         "polling": {
           "fastIntervalMs": 5000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
       }
     },
     {
@@ -56376,11 +55878,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
       }
     },
     {
@@ -56847,11 +56344,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
       }
     },
     {
@@ -57423,11 +56915,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
       }
     },
     {
@@ -57687,11 +57174,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
       }
     },
     {
@@ -58083,11 +57565,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
       }
     },
     {
@@ -58644,11 +58121,6 @@
             "fAILSAFE_TIMEOUT_SETTING"
           ]
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
       }
     },
     {
@@ -58744,12 +58216,7 @@
             }
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "generic"
-      }
+      ]
     },
     {
       "id": "generic.http",
@@ -58777,12 +58244,7 @@
             "jsonPath": "status"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "generic"
-      }
+      ]
     },
     {
       "id": "generic.modbus",
@@ -58858,11 +58320,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "generic"
       }
     },
     {
@@ -58902,12 +58359,7 @@
             "format": "number"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "generic"
-      }
+      ]
     },
     {
       "id": "heat.askoma.HeatAskomaImpl",
@@ -58953,11 +58405,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "heat"
       }
     },
     {
@@ -60446,11 +59893,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "heat"
       }
     },
     {
@@ -60662,11 +60104,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "heat"
       }
     },
     {
@@ -61006,11 +60443,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "heat"
       }
     },
     {
@@ -62068,11 +61500,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "heat"
       }
     },
     {
@@ -62138,11 +61565,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "io"
       }
     },
     {
@@ -62294,11 +61716,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "io"
       }
     },
     {
@@ -62570,11 +61987,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "io"
       }
     },
     {
@@ -62602,12 +62014,7 @@
             "parser": "ds18b20"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "io"
-      }
+      ]
     },
     {
       "id": "io.shelly.plug_gen1",
@@ -62698,12 +62105,7 @@
           },
           "unit": "Wh"
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "io"
-      }
+      ]
     },
     {
       "id": "io.shelly.plugsg3",
@@ -62788,12 +62190,7 @@
             "jsonPath": "sys.available_updates.stable.version"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "io"
-      }
+      ]
     },
     {
       "id": "io.shelly.plus1pm",
@@ -62878,12 +62275,7 @@
             "jsonPath": "sys.available_updates.stable.version"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "io"
-      }
+      ]
     },
     {
       "id": "io.shelly.pro4pm",
@@ -63467,12 +62859,7 @@
             "jsonPath": "sys.available_updates.stable.version"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "io"
-      }
+      ]
     },
     {
       "id": "io.shelly.shelly1",
@@ -63506,12 +62893,7 @@
             }
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "io"
-      }
+      ]
     },
     {
       "id": "io.shelly.shelly25",
@@ -63622,12 +63004,7 @@
           },
           "unit": "Wh"
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "io"
-      }
+      ]
     },
     {
       "id": "io.siemenslogo.SiemensLogoRelayImpl",
@@ -63904,11 +63281,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "io"
       }
     },
     {
@@ -64254,11 +63626,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "io"
       }
     },
     {
@@ -65336,11 +64703,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "io"
       }
     },
     {
@@ -66418,11 +65780,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "io"
       }
     },
     {
@@ -66484,12 +65841,7 @@
             "field": "telegramHex"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
-      }
+      ]
     },
     {
       "id": "meter.artemes.MeterArtemesAM2Impl",
@@ -66715,11 +66067,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -67336,11 +66683,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -68437,11 +67779,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -68753,11 +68090,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -68927,11 +68259,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -69331,11 +68658,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -69514,12 +68836,7 @@
             "scaleFactor": 0
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
-      }
+      ]
     },
     {
       "id": "meter.eastron.MeterEastronSdm120Impl",
@@ -69627,11 +68944,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -69941,11 +69253,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -70157,11 +69464,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -70238,11 +69540,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -70289,11 +69586,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -70340,11 +69632,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -70466,11 +69753,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -70855,11 +70137,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -71086,11 +70363,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -71287,11 +70559,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -71545,11 +70812,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -71803,11 +71065,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -71884,11 +71141,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -72085,11 +71337,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -72411,11 +71658,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -72627,11 +71869,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -73068,11 +72305,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -73412,11 +72644,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -73756,11 +72983,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -73955,12 +73177,7 @@
             "field": "temperatureC"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
-      }
+      ]
     },
     {
       "id": "meter.phoenixcontact.PhoenixContactMeterImpl",
@@ -74271,11 +73488,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -74427,11 +73639,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -74568,11 +73775,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -74724,11 +73926,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -74780,12 +73977,7 @@
             "jsonPath": "ESSRealtimeStatus.GridStusCd"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
-      }
+      ]
     },
     {
       "id": "meter.schneider.MeterSchneiderActi9SmartlinkImpl",
@@ -75109,11 +74301,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -75353,12 +74540,7 @@
             "jsonPath": "emeters[2].is_valid"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
-      }
+      ]
     },
     {
       "id": "meter.shelly.pro3em",
@@ -75513,12 +74695,7 @@
           },
           "unit": "A"
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
-      }
+      ]
     },
     {
       "id": "meter.siemens.MeterSiemensPac1600Impl",
@@ -76209,11 +75386,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -76410,11 +75582,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -76878,11 +76045,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -77319,11 +76481,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -77696,12 +76853,7 @@
             }
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
-      }
+      ]
     },
     {
       "id": "meter.socomec.countis_e14_singlephase",
@@ -77845,11 +76997,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -78186,11 +77333,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -78495,11 +77637,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -78804,11 +77941,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -79113,11 +78245,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -79406,11 +78533,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -80740,12 +79862,7 @@
             "dataType": "bits32"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
-      }
+      ]
     },
     {
       "id": "meter.sunspec.generic.model202.v1",
@@ -82074,12 +81191,7 @@
             "dataType": "bits32"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
-      }
+      ]
     },
     {
       "id": "meter.sunspec.generic.model203.v1",
@@ -83408,12 +82520,7 @@
             "dataType": "bits32"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
-      }
+      ]
     },
     {
       "id": "meter.victron.VictronAcInPowerMeterImpl",
@@ -83549,11 +82656,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -83735,11 +82837,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -83996,11 +83093,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -84857,11 +83949,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -85525,11 +84612,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "meter"
       }
     },
     {
@@ -86083,12 +85165,7 @@
             }
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
-      }
+      ]
     },
     {
       "id": "pv_inverter.goodwe.AbstractGoodWe",
@@ -93964,11 +93041,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
       }
     },
     {
@@ -94180,11 +93252,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
       }
     },
     {
@@ -94276,11 +93343,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
       }
     },
     {
@@ -96293,12 +95355,7 @@
             "sunspecOffset": 26
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
-      }
+      ]
     },
     {
       "id": "pv_inverter.kostal.KostalPvInverterBigEndianImpl",
@@ -96894,11 +95951,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
       }
     },
     {
@@ -97495,11 +96547,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
       }
     },
     {
@@ -107595,12 +106642,7 @@
             "nanToNull": true
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
-      }
+      ]
     },
     {
       "id": "pv_inverter.sma.SmaStp12570SunSpecImpl",
@@ -108468,12 +107510,7 @@
             }
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
-      }
+      ]
     },
     {
       "id": "pv_inverter.sma.SmaStp12570SunSpecMinimal",
@@ -108809,12 +107846,7 @@
             }
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
-      }
+      ]
     },
     {
       "id": "pv_inverter.sma.SmaStpxx50Minimal",
@@ -109005,11 +108037,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
       }
     },
     {
@@ -109179,11 +108206,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
       }
     },
     {
@@ -109346,11 +108368,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
       }
     },
     {
@@ -109457,11 +108474,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
       }
     },
     {
@@ -109710,12 +108722,7 @@
             }
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
-      }
+      ]
     },
     {
       "id": "pv_inverter.solarlog.SolarLogPmV2PowerManagement",
@@ -110663,12 +109670,7 @@
             "dataType": "uint16"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
-      }
+      ]
     },
     {
       "id": "pv_inverter.solax.SolaXX3MegaForthMinimal",
@@ -111272,11 +110274,6 @@
           "optionalReadErrorLogLevel": "warn",
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
       }
     },
     {
@@ -112539,12 +111536,7 @@
             "dataType": "int16"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
-      }
+      ]
     },
     {
       "id": "pv_inverter.sunspec.generic.model102.v1",
@@ -113806,12 +112798,7 @@
             "dataType": "int16"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
-      }
+      ]
     },
     {
       "id": "pv_inverter.sunspec.generic.model103.v1",
@@ -115073,12 +114060,7 @@
             "dataType": "int16"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
-      }
+      ]
     },
     {
       "id": "pv_inverter.victron.VictronPvInverterImpl",
@@ -115304,11 +114286,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
       }
     },
     {
@@ -115925,11 +114902,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
       }
     },
     {
@@ -116059,12 +115031,17 @@
             "logLevel": "debug",
             "targets": [
               {
+                "dpId": "sET_CHARGING_CURRENT",
+                "delayMs": 5000,
+                "useLastCommandValue": true
+              },
+              {
                 "dpId": "cHARGE_USING_PHASES",
                 "delayMs": 5000,
                 "useLastCommandValue": true
               }
             ],
-            "reason": "The current command is refreshed only by the 5 s validity watchdog. Phase mode is repeated once after an explicit command."
+            "reason": "Repeat a changed Alfen EMS command once after 5 s idle; the cyclic watchdog is reserved for Max Current."
           },
           "addressing": {
             "documentRegisterOffset": -1,
@@ -116106,15 +115083,13 @@
             "defaultPhaseMode": 3,
             "allowSeedOnePhaseFromAlias": false,
             "controlMode": "socket",
-            "addressAuditVersion": "0.5.140",
+            "addressAuditVersion": "0.5.129",
             "addressAuditSource": "Filtered Alfen ACE register list supplied by user; protocol addresses use document register - 1.",
             "registerGuide": "Alfen ACE Modbus register table",
             "safeDefaultMode": "socket",
             "minRunCurrentA": 6,
             "positiveCurrentMinA": 6,
-            "controlOnlyVersion": "0.5.129",
-            "writeAuditVersion": "0.5.140",
-            "acceptedWriteTrace": true
+            "controlOnlyVersion": "0.5.129"
           },
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 5000,
@@ -116122,7 +115097,7 @@
           "allowKeepaliveWhileReadBusy": true,
           "seedSetpointKeepaliveFromAliases": true,
           "manualAliasWriteBypassesCooldown": true,
-          "addressAuditVersion": "0.5.140-alfen-write-audit",
+          "addressAuditVersion": "0.5.129-control-only",
           "softIllegalAddressReads": true,
           "adaptiveReadSplit": true,
           "splitFailedReadGroupsMs": 60000
@@ -116656,7 +115631,7 @@
         "socketUnitId": 1,
         "stationUnitId": 200,
         "controlMode": "socket",
-        "controlStableVersion": "0.5.140",
+        "controlStableVersion": "0.5.129",
         "defaultEnableCurrentA": 6,
         "runCurrentA": 6,
         "stopCurrentA": 0,
@@ -116675,8 +115650,7 @@
         "allIdsWriteMirrors": false,
         "autoMirrorWrites": "disabled",
         "controlOnlyVersion": "0.5.129",
-        "diagnosis": "Use aliases.r.setpointAccountedFor: true means the charger is accounting the written Socket Max Current. If false, enable EMS Socket mode / Allow writing maximum currents in ACE Service Installer.",
-        "writeAuditVersion": "0.5.140"
+        "diagnosis": "Use aliases.r.setpointAccountedFor: true means the charger is accounting the written Socket Max Current. If false, enable EMS Socket mode / Allow writing maximum currents in ACE Service Installer."
       },
       "version": "0.5.129",
       "meta": {
@@ -116697,12 +115671,7 @@
         "0.5.129": "Alfen ACE control-stable template: reduce polling to essential registers, enforce Socket Unit-ID protocol writes, refresh Max Current every 5 s, and write phase mode only on explicit command plus one repeat."
       },
       "desc": "Control-only Socket-1 profile for reliable EMS control. Uses protocol addresses (document register - 1), Unit-ID 1, and only essential telemetry/control registers.",
-      "description": "Control-only Socket-1 profile for reliable EMS control. Uses protocol addresses (document register - 1), Unit-ID 1, and only essential telemetry/control registers.",
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
-      }
+      "description": "Control-only Socket-1 profile for reliable EMS control. Uses protocol addresses (document register - 1), Unit-ID 1, and only essential telemetry/control registers."
     },
     {
       "id": "evcs.alfen.ng9xx.ace.socket2.modbusTcp",
@@ -116831,12 +115800,17 @@
             "logLevel": "debug",
             "targets": [
               {
+                "dpId": "sET_CHARGING_CURRENT",
+                "delayMs": 5000,
+                "useLastCommandValue": true
+              },
+              {
                 "dpId": "cHARGE_USING_PHASES",
                 "delayMs": 5000,
                 "useLastCommandValue": true
               }
             ],
-            "reason": "The current command is refreshed only by the 5 s validity watchdog. Phase mode is repeated once after an explicit command."
+            "reason": "Repeat a changed Alfen EMS command once after 5 s idle; the cyclic watchdog is reserved for Max Current."
           },
           "addressing": {
             "documentRegisterOffset": -1,
@@ -116878,15 +115852,13 @@
             "defaultPhaseMode": 3,
             "allowSeedOnePhaseFromAlias": false,
             "controlMode": "socket",
-            "addressAuditVersion": "0.5.140",
+            "addressAuditVersion": "0.5.129",
             "addressAuditSource": "Filtered Alfen ACE register list supplied by user; protocol addresses use document register - 1.",
             "registerGuide": "Alfen ACE Modbus register table",
             "safeDefaultMode": "socket",
             "minRunCurrentA": 6,
             "positiveCurrentMinA": 6,
-            "controlOnlyVersion": "0.5.129",
-            "writeAuditVersion": "0.5.140",
-            "acceptedWriteTrace": true
+            "controlOnlyVersion": "0.5.129"
           },
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 5000,
@@ -116894,7 +115866,7 @@
           "allowKeepaliveWhileReadBusy": true,
           "seedSetpointKeepaliveFromAliases": true,
           "manualAliasWriteBypassesCooldown": true,
-          "addressAuditVersion": "0.5.140-alfen-write-audit",
+          "addressAuditVersion": "0.5.129-control-only",
           "softIllegalAddressReads": true,
           "adaptiveReadSplit": true,
           "splitFailedReadGroupsMs": 60000
@@ -117428,7 +116400,7 @@
         "socketUnitId": 2,
         "stationUnitId": 200,
         "controlMode": "socket",
-        "controlStableVersion": "0.5.140",
+        "controlStableVersion": "0.5.129",
         "defaultEnableCurrentA": 6,
         "runCurrentA": 6,
         "stopCurrentA": 0,
@@ -117447,8 +116419,7 @@
         "allIdsWriteMirrors": false,
         "autoMirrorWrites": "disabled",
         "controlOnlyVersion": "0.5.129",
-        "diagnosis": "Use aliases.r.setpointAccountedFor: true means the charger is accounting the written Socket Max Current. If false, enable EMS Socket mode / Allow writing maximum currents in ACE Service Installer.",
-        "writeAuditVersion": "0.5.140"
+        "diagnosis": "Use aliases.r.setpointAccountedFor: true means the charger is accounting the written Socket Max Current. If false, enable EMS Socket mode / Allow writing maximum currents in ACE Service Installer."
       },
       "version": "0.5.129",
       "meta": {
@@ -117469,12 +116440,7 @@
         "0.5.129": "Alfen ACE control-stable template: reduce polling to essential registers, enforce Socket Unit-ID protocol writes, refresh Max Current every 5 s, and write phase mode only on explicit command plus one repeat."
       },
       "desc": "Control-only Socket-2 profile for reliable EMS control. Uses protocol addresses (document register - 1), Unit-ID 2, and only essential telemetry/control registers.",
-      "description": "Control-only Socket-2 profile for reliable EMS control. Uses protocol addresses (document register - 1), Unit-ID 2, and only essential telemetry/control registers.",
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
-      }
+      "description": "Control-only Socket-2 profile for reliable EMS control. Uses protocol addresses (document register - 1), Unit-ID 2, and only essential telemetry/control registers."
     },
     {
       "id": "evcs.alfen.ng9xx.ace.station.modbusTcp",
@@ -117483,8 +116449,8 @@
       },
       "category": "EVCS",
       "manufacturer": "Alfen",
-      "model": "NG9xx (ACE Modbus) Station/SCN + Socket 1 diagnostics",
-      "name": "Alfen NG9xx (ACE) Station/SCN (Unit-ID 200) + Socket 1 diagnostics",
+      "model": "NG9xx ACE Station + Socket 1 Control Only",
+      "name": "Alfen NG9xx (ACE) Station + Socket 1 / CONTROL ONLY (Modbus TCP)",
       "protocols": [
         "modbusTcp"
       ],
@@ -117494,20 +116460,6 @@
           "slowIntervalMs": 60000,
           "initialFastOnly": true,
           "fastDpIds": [
-            "sCN_TOTAL_CONSUMPTION_L1",
-            "sCN_TOTAL_CONSUMPTION_L2",
-            "sCN_TOTAL_CONSUMPTION_L3",
-            "sCN_ACTUAL_MAX_CURRENT_L1",
-            "sCN_ACTUAL_MAX_CURRENT_L2",
-            "sCN_ACTUAL_MAX_CURRENT_L3",
-            "sCN_MAX_CURRENT_L1",
-            "sCN_MAX_CURRENT_L2",
-            "sCN_MAX_CURRENT_L3",
-            "sCN_REMAINING_VALID_TIME_L1",
-            "sCN_REMAINING_VALID_TIME_L2",
-            "sCN_REMAINING_VALID_TIME_L3",
-            "sCN_SAFE_CURRENT",
-            "sCN_MAX_CURRENT_ENABLE",
             "aCTIVE_POWER",
             "tOTAL_CHARGED_ENERGY",
             "cURRENT_L1",
@@ -117523,39 +116475,9 @@
           ],
           "slowDpIds": [
             "sTATION_NAME",
-            "mANUFACTURER",
-            "mODBUS_TABLE_VERSION",
             "fIRMWARE_VERSION",
-            "pLATFORM_TYPE",
-            "sERIAL_NUMBER",
-            "dATE_YEAR",
-            "dATE_MONTH",
-            "dATE_DAY",
-            "tIME_HOUR",
-            "tIME_MINUTE",
-            "tIME_SECOND",
             "uPTIME_MS",
-            "tIMEZONE_OFFSET_MIN",
-            "sTATION_ACTIVE_MAX_CURRENT",
             "tEMPERATURE",
-            "oCPP_STATE",
-            "nUMBER_OF_SOCKETS",
-            "sCN_NAME",
-            "sCN_SOCKETS",
-            "sCN_TOTAL_CONSUMPTION_L1",
-            "sCN_TOTAL_CONSUMPTION_L2",
-            "sCN_TOTAL_CONSUMPTION_L3",
-            "sCN_ACTUAL_MAX_CURRENT_L1",
-            "sCN_ACTUAL_MAX_CURRENT_L2",
-            "sCN_ACTUAL_MAX_CURRENT_L3",
-            "sCN_MAX_CURRENT_L1",
-            "sCN_MAX_CURRENT_L2",
-            "sCN_MAX_CURRENT_L3",
-            "sCN_REMAINING_VALID_TIME_L1",
-            "sCN_REMAINING_VALID_TIME_L2",
-            "sCN_REMAINING_VALID_TIME_L3",
-            "sCN_SAFE_CURRENT",
-            "sCN_MAX_CURRENT_ENABLE",
             "vOLTAGE_L1",
             "vOLTAGE_L2",
             "vOLTAGE_L3",
@@ -117591,7 +116513,7 @@
             "allowWhilePolling": true,
             "targets": [
               {
-                "setpointDpId": "sCN_MAX_CURRENT",
+                "setpointDpId": "sET_CHARGING_CURRENT",
                 "intervalMs": 5000,
                 "minWriteIntervalMs": 4500,
                 "requireEverWritten": true,
@@ -117599,12 +116521,12 @@
                 "unsupportedBackoffMs": 1000,
                 "writeRejectBackoffMs": 1000,
                 "useLastCommandValue": true,
-                "reason": "Refresh all three SCN phase-current values in one FC16 request before the ACE validity timer expires."
+                "reason": "Alfen ACE validity timer must be refreshed before it expires. Current command is repeated every 5 s from the last commanded value."
               }
             ],
-            "reason": "SCN profile: refresh the combined Unit-ID 200 setpoint only after it was explicitly commanded."
+            "reason": "0.5.129 control-only: watchdog refreshes Max Current only. Phase mode is written on command plus one post-write repeat, not every watchdog tick."
           },
-          "unitIdDefault": 200,
+          "unitIdDefault": 1,
           "enforceUnitIdDefault": true,
           "forceAddressOffset": 0,
           "addressOffsetDefault": 0,
@@ -117630,7 +116552,7 @@
           "restoreSetpointsOnStart": {
             "enabled": true,
             "dpIds": [
-              "sCN_MAX_CURRENT"
+              "sET_CHARGING_CURRENT"
             ],
             "delayMs": 1500,
             "maxRetries": 6,
@@ -117638,7 +116560,7 @@
             "storeOnWrite": true,
             "useFallbackFromDpState": false,
             "logLevel": "debug",
-            "reason": "Restore only the combined SCN current command. Socket current and phase mode remain explicit diagnostic controls."
+            "reason": "Restore only the current command. Do not restore a stale phase command."
           },
           "postWriteRepeat": {
             "enabled": true,
@@ -117647,12 +116569,17 @@
             "logLevel": "debug",
             "targets": [
               {
+                "dpId": "sET_CHARGING_CURRENT",
+                "delayMs": 5000,
+                "useLastCommandValue": true
+              },
+              {
                 "dpId": "cHARGE_USING_PHASES",
                 "delayMs": 5000,
                 "useLastCommandValue": true
               }
             ],
-            "reason": "The SCN current is handled by the cyclic 5 s validity watchdog; only an explicit phase command is repeated once."
+            "reason": "Repeat a changed Alfen EMS command once after 5 s idle; the cyclic watchdog is reserved for Max Current."
           },
           "addressing": {
             "documentRegisterOffset": -1,
@@ -117666,7 +116593,7 @@
             "alwaysTryControlWrites": true,
             "controlUnsupportedBackoffMs": 30000,
             "controlProbeOkCacheMs": 60000,
-            "socketControlMustBeExposed": false,
+            "socketControlMustBeExposed": true,
             "cleanMeterOnlyFallback": true,
             "adaptiveControlAddress": false,
             "controlAddressOffsets": [
@@ -117693,20 +116620,14 @@
             "stopCurrentA": 0,
             "defaultPhaseMode": 3,
             "allowSeedOnePhaseFromAlias": false,
-            "controlMode": "scn",
-            "addressAuditVersion": "0.5.140",
-            "addressAuditSource": "Alfen Modbus for ACE Configuration Guide v1.0 EN 05/2025; protocol addresses are document register minus 1.",
+            "controlMode": "socket",
+            "addressAuditVersion": "0.5.129",
+            "addressAuditSource": "Filtered Alfen ACE register list supplied by user; protocol addresses use document register - 1.",
             "registerGuide": "Alfen ACE Modbus register table",
-            "safeDefaultMode": "scn",
+            "safeDefaultMode": "socket",
             "minRunCurrentA": 6,
             "positiveCurrentMinA": 6,
-            "controlOnlyVersion": "0.5.129",
-            "scnPrimaryControl": true,
-            "scnMaxCurrentWriteProtocolAddress": 1416,
-            "scnMaxCurrentWriteLength": 6,
-            "scnUnitId": 200,
-            "writeAuditVersion": "0.5.140",
-            "acceptedWriteTrace": true
+            "controlOnlyVersion": "0.5.129"
           },
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 5000,
@@ -117714,15 +116635,14 @@
           "allowKeepaliveWhileReadBusy": true,
           "seedSetpointKeepaliveFromAliases": true,
           "manualAliasWriteBypassesCooldown": true,
-          "addressAuditVersion": "0.5.140-alfen-write-audit",
+          "addressAuditVersion": "0.5.129-control-only",
           "softIllegalAddressReads": true,
           "adaptiveReadSplit": true,
           "splitFailedReadGroupsMs": 60000
         },
         "alfen": {
-          "addressesAuditedAgainst": "Alfen Modbus for ACE Configuration Guide v1.0 EN 05/2025; all addresses are protocol addresses (document register - 1).",
-          "controlMode": "scn",
-          "scnPrimaryControl": true
+          "addressesAuditedAgainst": "Filtered Alfen ACE control profile. All addresses are protocol addresses: document register - 1.",
+          "controlMode": "socketPrimary"
         },
         "pollIntervalMs": 5000
       },
@@ -117740,52 +116660,6 @@
               "address": 99,
               "length": 17,
               "dataType": "string",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          }
-        },
-        {
-          "id": "mANUFACTURER",
-          "name": "Manufacturer",
-          "role": "text",
-          "type": "string",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 116,
-              "length": 5,
-              "dataType": "string",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          }
-        },
-        {
-          "id": "mODBUS_TABLE_VERSION",
-          "name": "Modbus table version",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 121,
-              "length": 1,
-              "dataType": "int16",
               "unitId": 200,
               "disableAddressFallbackOffsets": true,
               "noAddressFallback": true,
@@ -117820,196 +116694,6 @@
           }
         },
         {
-          "id": "pLATFORM_TYPE",
-          "name": "Platform type",
-          "role": "text",
-          "type": "string",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 139,
-              "length": 17,
-              "dataType": "string",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          }
-        },
-        {
-          "id": "sERIAL_NUMBER",
-          "name": "Station serial number",
-          "role": "text",
-          "type": "string",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 156,
-              "length": 11,
-              "dataType": "string",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          }
-        },
-        {
-          "id": "dATE_YEAR",
-          "name": "Date year",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 167,
-              "length": 1,
-              "dataType": "int16",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "yr"
-        },
-        {
-          "id": "dATE_MONTH",
-          "name": "Date month",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 168,
-              "length": 1,
-              "dataType": "int16",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "month"
-        },
-        {
-          "id": "dATE_DAY",
-          "name": "Date day",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 169,
-              "length": 1,
-              "dataType": "int16",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "day"
-        },
-        {
-          "id": "tIME_HOUR",
-          "name": "Time hour",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 170,
-              "length": 1,
-              "dataType": "int16",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "h"
-        },
-        {
-          "id": "tIME_MINUTE",
-          "name": "Time minute",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 171,
-              "length": 1,
-              "dataType": "int16",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "min"
-        },
-        {
-          "id": "tIME_SECOND",
-          "name": "Time second",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 172,
-              "length": 1,
-              "dataType": "int16",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "s"
-        },
-        {
           "id": "uPTIME_MS",
           "name": "Uptime",
           "role": "value",
@@ -118025,68 +116709,18 @@
               "unitId": 200,
               "disableAddressFallbackOffsets": true,
               "noAddressFallback": true,
-              "optional": true,
               "wordOrder": "le",
-              "byteOrder": "be",
               "nanToNull": true,
-              "unsigned64SentinelToNull": true
+              "optional": true,
+              "bigIntToNullOnOverflow": true,
+              "uint64OverflowToNull": true,
+              "byteOrder": "be"
             },
             "unitId": 200,
             "disableAddressFallbackOffsets": true,
             "noAddressFallback": true
           },
           "unit": "ms"
-        },
-        {
-          "id": "tIMEZONE_OFFSET_MIN",
-          "name": "Time-zone offset from UTC",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 177,
-              "length": 1,
-              "dataType": "int16",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "min"
-        },
-        {
-          "id": "sTATION_ACTIVE_MAX_CURRENT",
-          "name": "Station active max current",
-          "role": "value.current",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 1099,
-              "length": 2,
-              "dataType": "float32",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true,
-              "wordOrder": "le",
-              "byteOrder": "be",
-              "nanToNull": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "A"
         },
         {
           "id": "tEMPERATURE",
@@ -118104,580 +116738,16 @@
               "unitId": 200,
               "disableAddressFallbackOffsets": true,
               "noAddressFallback": true,
-              "optional": true,
               "wordOrder": "le",
-              "byteOrder": "be",
-              "nanToNull": true
+              "nanToNull": true,
+              "optional": true,
+              "byteOrder": "be"
             },
             "unitId": 200,
             "disableAddressFallbackOffsets": true,
             "noAddressFallback": true
           },
           "unit": "°C"
-        },
-        {
-          "id": "oCPP_STATE",
-          "name": "OCPP state",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 1103,
-              "length": 1,
-              "dataType": "uint16",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          }
-        },
-        {
-          "id": "nUMBER_OF_SOCKETS",
-          "name": "Number of sockets",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 1104,
-              "length": 1,
-              "dataType": "uint16",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          }
-        },
-        {
-          "id": "sCN_NAME",
-          "name": "Smart Charging Network name",
-          "role": "text",
-          "type": "string",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 1399,
-              "length": 4,
-              "dataType": "string",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          }
-        },
-        {
-          "id": "sCN_SOCKETS",
-          "name": "SCN connected sockets",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 1403,
-              "length": 1,
-              "dataType": "uint16",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          }
-        },
-        {
-          "id": "sCN_TOTAL_CONSUMPTION_L1",
-          "name": "SCN total consumption L1",
-          "role": "value.current",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 1404,
-              "length": 2,
-              "dataType": "float32",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true,
-              "wordOrder": "le",
-              "byteOrder": "be",
-              "nanToNull": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "A"
-        },
-        {
-          "id": "sCN_TOTAL_CONSUMPTION_L2",
-          "name": "SCN total consumption L2",
-          "role": "value.current",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 1406,
-              "length": 2,
-              "dataType": "float32",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true,
-              "wordOrder": "le",
-              "byteOrder": "be",
-              "nanToNull": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "A"
-        },
-        {
-          "id": "sCN_TOTAL_CONSUMPTION_L3",
-          "name": "SCN total consumption L3",
-          "role": "value.current",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 1408,
-              "length": 2,
-              "dataType": "float32",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true,
-              "wordOrder": "le",
-              "byteOrder": "be",
-              "nanToNull": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "A"
-        },
-        {
-          "id": "sCN_ACTUAL_MAX_CURRENT_L1",
-          "name": "SCN actual max current L1",
-          "role": "value.current",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 1410,
-              "length": 2,
-              "dataType": "float32",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true,
-              "wordOrder": "le",
-              "byteOrder": "be",
-              "nanToNull": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "A"
-        },
-        {
-          "id": "sCN_ACTUAL_MAX_CURRENT_L2",
-          "name": "SCN actual max current L2",
-          "role": "value.current",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 1412,
-              "length": 2,
-              "dataType": "float32",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true,
-              "wordOrder": "le",
-              "byteOrder": "be",
-              "nanToNull": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "A"
-        },
-        {
-          "id": "sCN_ACTUAL_MAX_CURRENT_L3",
-          "name": "SCN actual max current L3",
-          "role": "value.current",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 1414,
-              "length": 2,
-              "dataType": "float32",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true,
-              "wordOrder": "le",
-              "byteOrder": "be",
-              "nanToNull": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "A"
-        },
-        {
-          "id": "sCN_MAX_CURRENT",
-          "name": "SCN max current all phases / EMS setpoint",
-          "role": "level.current",
-          "type": "number",
-          "rw": "wo",
-          "source": {
-            "kind": "modbus",
-            "write": {
-              "fc": 16,
-              "address": 1416,
-              "length": 6,
-              "dataType": "float32",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "finite": true,
-              "wordOrder": "le",
-              "byteOrder": "be",
-              "repeatEncodedValue": true,
-              "repeatValueWords": 2,
-              "minValue": 0,
-              "maxValue": 80,
-              "zeroOrMinValue": 6,
-              "nonZeroMinValue": 6,
-              "positiveMinValue": 6,
-              "minPositiveValue": 6,
-              "round": true,
-              "integer": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "A",
-          "desc": "Writes one FLOAT32 value to all three contiguous SCN phase setpoints in a single FC16 request: document registers 1417..1422, protocol address 1416, Unit-ID 200."
-        },
-        {
-          "id": "sCN_MAX_CURRENT_L1",
-          "name": "SCN max current L1",
-          "role": "level.current",
-          "type": "number",
-          "rw": "rw",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 1416,
-              "length": 2,
-              "dataType": "float32",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true,
-              "wordOrder": "le",
-              "byteOrder": "be",
-              "nanToNull": true
-            },
-            "write": {
-              "fc": 16,
-              "address": 1416,
-              "length": 2,
-              "dataType": "float32",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "finite": true,
-              "wordOrder": "le",
-              "byteOrder": "be",
-              "minValue": 0,
-              "maxValue": 80,
-              "round": true,
-              "integer": true,
-              "zeroOrMinValue": 6,
-              "nonZeroMinValue": 6,
-              "positiveMinValue": 6,
-              "minPositiveValue": 6
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "A"
-        },
-        {
-          "id": "sCN_MAX_CURRENT_L2",
-          "name": "SCN max current L2",
-          "role": "level.current",
-          "type": "number",
-          "rw": "rw",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 1418,
-              "length": 2,
-              "dataType": "float32",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true,
-              "wordOrder": "le",
-              "byteOrder": "be",
-              "nanToNull": true
-            },
-            "write": {
-              "fc": 16,
-              "address": 1418,
-              "length": 2,
-              "dataType": "float32",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "finite": true,
-              "wordOrder": "le",
-              "byteOrder": "be",
-              "minValue": 0,
-              "maxValue": 80,
-              "round": true,
-              "integer": true,
-              "zeroOrMinValue": 6,
-              "nonZeroMinValue": 6,
-              "positiveMinValue": 6,
-              "minPositiveValue": 6
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "A"
-        },
-        {
-          "id": "sCN_MAX_CURRENT_L3",
-          "name": "SCN max current L3",
-          "role": "level.current",
-          "type": "number",
-          "rw": "rw",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 1420,
-              "length": 2,
-              "dataType": "float32",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true,
-              "wordOrder": "le",
-              "byteOrder": "be",
-              "nanToNull": true
-            },
-            "write": {
-              "fc": 16,
-              "address": 1420,
-              "length": 2,
-              "dataType": "float32",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "finite": true,
-              "wordOrder": "le",
-              "byteOrder": "be",
-              "minValue": 0,
-              "maxValue": 80,
-              "round": true,
-              "integer": true,
-              "zeroOrMinValue": 6,
-              "nonZeroMinValue": 6,
-              "positiveMinValue": 6,
-              "minPositiveValue": 6
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "A"
-        },
-        {
-          "id": "sCN_REMAINING_VALID_TIME_L1",
-          "name": "SCN remaining valid time L1",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 1422,
-              "length": 2,
-              "dataType": "uint32",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true,
-              "wordOrder": "le",
-              "byteOrder": "be",
-              "nanToNull": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "s"
-        },
-        {
-          "id": "sCN_REMAINING_VALID_TIME_L2",
-          "name": "SCN remaining valid time L2",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 1424,
-              "length": 2,
-              "dataType": "uint32",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true,
-              "wordOrder": "le",
-              "byteOrder": "be",
-              "nanToNull": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "s"
-        },
-        {
-          "id": "sCN_REMAINING_VALID_TIME_L3",
-          "name": "SCN remaining valid time L3",
-          "role": "value",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 1426,
-              "length": 2,
-              "dataType": "uint32",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true,
-              "wordOrder": "le",
-              "byteOrder": "be",
-              "nanToNull": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "s"
-        },
-        {
-          "id": "sCN_SAFE_CURRENT",
-          "name": "SCN safe current",
-          "role": "value.current",
-          "type": "number",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 1428,
-              "length": 2,
-              "dataType": "float32",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true,
-              "wordOrder": "le",
-              "byteOrder": "be",
-              "nanToNull": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          },
-          "unit": "A"
-        },
-        {
-          "id": "sCN_MAX_CURRENT_ENABLE",
-          "name": "SCN Modbus server max current enabled",
-          "role": "indicator",
-          "type": "boolean",
-          "rw": "ro",
-          "source": {
-            "kind": "modbus",
-            "read": {
-              "fc": 3,
-              "address": 1430,
-              "length": 1,
-              "dataType": "uint16",
-              "unitId": 200,
-              "disableAddressFallbackOffsets": true,
-              "noAddressFallback": true,
-              "optional": true,
-              "toBoolean": true
-            },
-            "unitId": 200,
-            "disableAddressFallbackOffsets": true,
-            "noAddressFallback": true
-          }
         },
         {
           "id": "vOLTAGE_L1",
@@ -119195,19 +117265,19 @@
       "addressOffsetDefault": 0,
       "disableAddressFallbackOffsets": true,
       "alfen": {
-        "addressesAuditedAgainst": "Alfen Modbus for ACE Configuration Guide v1.0 EN 05/2025; all template addresses are protocol addresses (document register - 1).",
+        "addressesAuditedAgainst": "Filtered Alfen ACE control profile. All template addresses are protocol addresses: document register - 1.",
         "maxCurrentProtocolAddress": 1209,
         "chargeUsingPhasesProtocolAddress": 1214,
         "socketUnitId": 1,
         "stationUnitId": 200,
-        "controlMode": "scn",
-        "controlStableVersion": "0.5.140",
+        "controlMode": "socket",
+        "controlStableVersion": "0.5.129",
         "defaultEnableCurrentA": 6,
         "runCurrentA": 6,
         "stopCurrentA": 0,
         "minRunCurrentA": 6,
         "positiveCurrentMinA": 6,
-        "safeDefaultMode": "scn",
+        "safeDefaultMode": "socket",
         "setpointWatchdogRefreshMs": 5000,
         "phaseModeKeepalive": false,
         "commandAliasesHoldLastCommand": true,
@@ -119215,16 +117285,12 @@
         "maxCurrentWriteProtocolAddress": 1209,
         "defaultPhaseMode": 3,
         "manualAliasWriteBypassesCooldown": true,
-        "scnPrimaryControl": true,
+        "scnPrimaryControl": false,
         "scnMirrorOnly": false,
         "allIdsWriteMirrors": false,
         "autoMirrorWrites": "disabled",
         "controlOnlyVersion": "0.5.129",
-        "diagnosis": "aliases.r.setpointAccountedFor maps to SCN_MAX_CURRENT_ENABLE in this profile. The combined command writes L1/L2/L3 atomically at UID200 FC16@1416 len=6.",
-        "scnUnitId": 200,
-        "scnMaxCurrentProtocolAddress": 1416,
-        "scnMaxCurrentLength": 6,
-        "writeAuditVersion": "0.5.140"
+        "diagnosis": "Use aliases.r.setpointAccountedFor: true means the charger is accounting the written Socket Max Current. If false, enable EMS Socket mode / Allow writing maximum currents in ACE Service Installer."
       },
       "version": "0.5.129",
       "meta": {
@@ -119246,12 +117312,7 @@
       },
       "title": "Alfen NG9xx (ACE) Station + Socket 1 control stable (Modbus TCP)",
       "desc": "Control-only Station + Socket-1 profile for reliable EMS control. Reads only station identity/temperature and the Socket-1 EMS control/readback block.",
-      "description": "Control-only Station + Socket-1 profile for reliable EMS control. Reads only station identity/temperature and the Socket-1 EMS control/readback block.",
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "evCharger"
-      }
+      "description": "Control-only Station + Socket-1 profile for reliable EMS control. Reads only station identity/temperature and the Socket-1 EMS control/readback block."
     },
     {
       "id": "pv_inverter.kostal.PikoModbusSunSpecBigEndianImpl",
@@ -119872,11 +117933,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
       }
     },
     {
@@ -120498,11 +118554,6 @@
           "reconnectBackoffMs": 1000,
           "maxReconnectBackoffMs": 30000
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
       }
     },
     {
@@ -120865,12 +118916,7 @@
             "dataType": "float"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
-      }
+      ]
     },
     {
       "id": "pv_inverter.kostal.Piko3pTcp",
@@ -121400,12 +119446,7 @@
             "dataType": "float"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
-      }
+      ]
     },
     {
       "id": "pv_inverter.kostal.PikoBaTcp",
@@ -122004,12 +120045,7 @@
             "dataType": "float"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
-      }
+      ]
     },
     {
       "id": "pv_inverter.kostal.Piko1pRs485",
@@ -122371,12 +120407,7 @@
             "dataType": "float"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
-      }
+      ]
     },
     {
       "id": "pv_inverter.kostal.Piko3pRs485",
@@ -122906,12 +120937,7 @@
             "dataType": "float"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
-      }
+      ]
     },
     {
       "id": "pv_inverter.kostal.PikoBaRs485",
@@ -123510,12 +121536,7 @@
             "dataType": "float"
           }
         }
-      ],
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
-      }
+      ]
     },
     {
       "id": "pv_inverter.sungrow.GridConnectedCxRsRtModbus",
@@ -128056,11 +126077,6 @@
           ],
           "initialFastOnly": true
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "pvInverter"
       }
     },
     {
@@ -128074,7 +126090,7 @@
       "category": "ESS",
       "manufacturer": "Sungrow",
       "model": "Residential Hybrid Inverter SH/RS/RT/T/MG V1.1.11",
-      "name": "Sungrow Residential Hybrid Inverter (SHxxRS/RT/T, MG RL) Modbus V1.1.11 – 1 s EMS feedback",
+      "name": "Sungrow Residential Hybrid Inverter (SHxxRS/RT/T, MG RL) Modbus V1.1.11 – Fast EMS no watchdog",
       "protocols": [
         "modbusTcp",
         "modbusRtu"
@@ -128163,33 +126179,29 @@
             }
           },
           "states": {
+            "3351": "SH3.0RS (0xD17)",
             "3341": "SH3.6RS (0xD0D)",
+            "3352": "SH4.0RS (0xD18)",
             "3343": "SH5.0RS (0xD0F)",
             "3344": "SH6.0RS (0xD10)",
-            "3351": "SH3.0RS (0xD17)",
-            "3352": "SH4.0RS (0xD18)",
             "3354": "SH8.0RS (0xD1A)",
             "3355": "SH10RS (0xD1B)",
-            "3367": "MG5RL (0xD27)",
-            "3368": "MG6RL (0xD28)",
-            "3369": "MG8RL (0xD29)",
-            "3370": "MG10RL (0xD2A)",
             "3584": "SH5.0RT (0xE00)",
             "3585": "SH6.0RT (0xE01)",
             "3586": "SH8.0RT (0xE02)",
             "3587": "SH10RT (0xE03)",
-            "3592": "SH5.0RT-V122 (0xE08)",
-            "3593": "SH6.0RT-V122 (0xE09)",
-            "3594": "SH8.0RT-V122 (0xE0A)",
-            "3595": "SH10RT-V122 (0xE0B)",
-            "3596": "SH5.0RT-V112 (0xE0C)",
-            "3597": "SH6.0RT-V112 (0xE0D)",
-            "3598": "SH8.0RT-V112 (0xE0E)",
-            "3599": "SH10RT-V112 (0xE0F)",
             "3600": "SH5.0RT-20 (0xE10)",
             "3601": "SH6.0RT-20 (0xE11)",
             "3602": "SH8.0RT-20 (0xE12)",
             "3603": "SH10RT-20 (0xE13)",
+            "3596": "SH5.0RT-V112 (0xE0C)",
+            "3597": "SH6.0RT-V112 (0xE0D)",
+            "3598": "SH8.0RT-V112 (0xE0E)",
+            "3599": "SH10RT-V112 (0xE0F)",
+            "3592": "SH5.0RT-V122 (0xE08)",
+            "3593": "SH6.0RT-V122 (0xE09)",
+            "3594": "SH8.0RT-V122 (0xE0A)",
+            "3595": "SH10RT-V122 (0xE0B)",
             "3616": "SH5T (0xE20)",
             "3617": "SH6T (0xE21)",
             "3618": "SH8T (0xE22)",
@@ -128197,7 +126209,11 @@
             "3620": "SH12T (0xE24)",
             "3621": "SH15T (0xE25)",
             "3622": "SH20T (0xE26)",
-            "3624": "SH25T (0xE28)"
+            "3624": "SH25T (0xE28)",
+            "3367": "MG5RL (0xD27)",
+            "3368": "MG6RL (0xD28)",
+            "3369": "MG8RL (0xD29)",
+            "3370": "MG10RL (0xD2A)"
           }
         },
         {
@@ -141125,40 +139141,40 @@
           },
           "states": {
             "0": "Running (On-grid)",
-            "1": "Stop",
-            "2": "Key stop",
-            "4": "Emergency Stop",
-            "8": "Standby",
-            "16": "Initial standby",
-            "20": "Microgrid Operation",
-            "32": "Starting",
             "64": "Running (On-grid)",
-            "65": "Off-grid Charge",
-            "128": "Derating Running",
-            "256": "Fault",
-            "512": "Update Failed",
+            "20": "Microgrid Operation",
             "1024": "Running in maintain mode",
             "2048": "Running in compulsory mode",
             "4096": "Running (off-grid)",
-            "4369": "Uninitialized",
-            "4608": "Initial standby",
-            "4864": "Key stop",
-            "5120": "Standby",
-            "5376": "Emergency Stop",
-            "5632": "Starting",
-            "5888": "AFCI self-test shutdown",
-            "6144": "Intelligent Station Building Status",
-            "6400": "Safe Mode",
             "8192": "Open loop",
-            "9472": "Communicate fault",
-            "9473": "Restarting",
             "16384": "Running in External EMS mode",
             "16385": "Emergency Charging Operation",
-            "21760": "Fault",
+            "4369": "Uninitialized",
             "32768": "Stop",
+            "1": "Stop",
+            "4864": "Key stop",
+            "2": "Key stop",
+            "5376": "Emergency Stop",
+            "4": "Emergency Stop",
+            "5120": "Standby",
+            "8": "Standby",
+            "4608": "Initial standby",
+            "16": "Initial standby",
+            "5632": "Starting",
+            "32": "Starting",
+            "6144": "Intelligent Station Building Status",
+            "37120": "Warn Running",
             "33024": "Derating Running",
+            "128": "Derating Running",
             "33280": "Dispatch Running",
-            "37120": "Warn Running"
+            "21760": "Fault",
+            "256": "Fault",
+            "5888": "AFCI self-test shutdown",
+            "6400": "Safe Mode",
+            "65": "Off-grid Charge",
+            "512": "Update Failed",
+            "9472": "Communicate fault",
+            "9473": "Restarting"
           }
         },
         {
@@ -143790,13 +141806,13 @@
           "decimals": 2
         }
       ],
-      "notes": "Sungrow residential hybrid inverter template implemented against protocol V1.1.11 (2025-11-17). Register addresses are zero-based (documentation register - 1). U32/S32 use low-word-first word order and big-endian bytes. EMS writes only power setpoints; the adapter writes EMS mode + charge/discharge command + power as one FC16 block over 13050..13052, keeps External EMS heartbeat 13080 at fixed 20 s, and treats charge/discharge helper datapoints as mutually exclusive so an older delayed charge command cannot overwrite a new discharge command. RW helper registers are not fast-polled; request cadence is kept at >=1000 ms per Sungrow requirements. One-second control telemetry: the critical fast datapoints are scheduled with a fixed 1000 ms start-to-start target; Modbus TCP operations use a 200 ms gap so the four fast register groups can complete inside the target cycle. Exact 0 W and the 0.5.133 charge/discharge direction mapping remain unchanged.",
+      "notes": "Sungrow residential hybrid inverter template implemented against protocol V1.1.11 (2025-11-17). Register addresses are zero-based (documentation register - 1). U32/S32 use low-word-first word order and big-endian bytes. EMS writes only power setpoints; the adapter writes EMS mode + charge/discharge command + power as one FC16 block over 13050..13052. For fast EMS operation the cyclic power-setpoint watchdog, delayed post-write repeats and restore-on-start writes are disabled; only the Sungrow External EMS heartbeat 13080 is refreshed separately with fixed value 20 about every 10 s. RW helper registers are excluded from fast polling and Modbus command spacing remains >=1000 ms per Sungrow WiNet/Logger requirement.",
       "driverHints": {
         "modbus": {
           "unitIdDefault": 1,
-          "minCommandIntervalMs": 200,
-          "writeThrottleMs": 1000,
-          "commandCadenceMs": 1000,
+          "minCommandIntervalMs": 1000,
+          "writeThrottleMs": 250,
+          "commandCadenceMs": 250,
           "writeMaxPerTick": 1,
           "reconnectBackoffMs": 1000,
           "timeoutMs": 2500,
@@ -144114,15 +142130,9 @@
               "sET_DISCHARGE_POWER"
             ]
           ],
-          "sungrowFastFeedback": {
-            "enabled": true,
-            "intervalMs": 1000,
-            "retryBusyMs": 200,
-            "firstReadDelayMs": 150,
-            "activeWindowMs": 30000,
-            "idleCheckMs": 5000,
-            "afterWriteOnly": true,
-            "description": "Normal fast polling runs every second; additionally read battery power once immediately after each EMS setpoint write."
+          "autoWatchdog": {
+            "enabled": false,
+            "disabledReason": "Sungrow storage power is driven by EMS change writes; no cyclic power watchdog."
           }
         },
         "polling": {
@@ -144258,18 +142268,10 @@
             "CommunicationModuleFirmwareVersion",
             "BatteryFirmwareVersion"
           ],
-          "forceFastIntervalMs": 1000,
-          "fixedFastCadence": true,
-          "fixedCadence": true,
           "notes": {
-            "0.5.138": "Sungrow critical live values target a fixed 1 s start-to-start poll cadence. A cycle contains four Modbus TCP register groups."
+            "0.5.134": "Fast EMS: fast poll contains only live feedback values. RW helper registers are not fast-polled; EMS writes are prioritized over reads."
           }
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
       }
     },
     {
@@ -146281,11 +144283,6 @@
           ],
           "initialFastOnly": true
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
       }
     },
     {
@@ -147484,12 +145481,8 @@
           ],
           "initialFastOnly": true
         }
-      },
-      "aliasContract": {
-        "schemaVersion": 1,
-        "namespace": "v1",
-        "deviceClass": "storageSystem"
       }
+<<<<<<< HEAD
     },
     {
       "id": "evcs.weidmueller.chargeWallboxBusiness.modbusTcp",
@@ -158831,6 +156824,8 @@
           }
         }
       ]
+=======
+>>>>>>> 1f9a832732d7b1fb12670dfe54a2d84597f3f0e5
     }
   ]
 }

@@ -1018,7 +1018,10 @@ function renderDeyeOptions(tpl) {
 function renderDatapoints(templateId) {
   const tpl = templatesById[templateId];
   renderVartaOptions(tpl);
+<<<<<<< HEAD
   renderDeyeOptions(tpl);
+=======
+>>>>>>> 1f9a832732d7b1fb12670dfe54a2d84597f3f0e5
   $('#depower_settings').toggle(!!(tpl && tpl.driverHints && tpl.driverHints.oemModbusV1003));
   const tbody = $('#dpBody');
   tbody.empty();
@@ -1119,12 +1122,15 @@ function openDeviceModal(device, idx) {
   applyTemplateModbusTcpDefaultsToForm(tpl, proto, c);
   renderVartaOptions(tpl);
   $('#varta_allow_sf_writes').prop('checked', device.vartaAllowScaleFactorWrites === true && !!(tpl && tpl.driverHints && tpl.driverHints.vartaModbus && ['pulseNeo', 'flexStorage'].includes(tpl.driverHints.vartaModbus.product)));
+<<<<<<< HEAD
   renderDeyeOptions(tpl);
   $('#deye_allow_config_writes').prop('checked', device.deyeAllowConfigurationWrites === true);
   $('#deye_read_remote').prop('checked', device.deyeReadRemoteRegisters === true);
   $('#deye_battery_sign').val(device.deyeBatteryPowerSign || 'unconfirmed');
   $('#deye_battery_scale').val(String(device.deyeBatteryPowerScale || 'unconfirmed'));
   $('#deye_grid_sign').val(device.deyeGridPowerSign || 'unconfirmed');
+=======
+>>>>>>> 1f9a832732d7b1fb12670dfe54a2d84597f3f0e5
   $('#depower_settings').toggle(!!(tpl && tpl.driverHints && tpl.driverHints.oemModbusV1003));
   $('#depower_session_wh').val(c.depowerSessionEnergyWhPerTick ?? 100);
   $('#depower_total_wh').val(c.depowerTotalEnergyWhPerTick ?? 100);
