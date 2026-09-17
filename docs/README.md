@@ -2,6 +2,11 @@
 
 Alle technischen Markdown-Dateien des Adapters liegen bewusst in diesem Ordner. Der Projektstamm bleibt dadurch übersichtlich; nur die zentrale `README.md` verbleibt dort, damit GitHub und npm die Adapterübersicht korrekt anzeigen.
 
+## DEYE
+
+- [Drei vorläufige Hybrid-RTU-Profile, Vorgaben und Funktionsgrenzen](DEYE_MODBUS_RTU_0.5.165.md)
+- [Versandfertige Herstelleranfrage auf Englisch und Deutsch](DEYE_MANUFACTURER_INQUIRY_EN_DE.md)
+
 ## Standard und Freigabe
 
 - [Alias Contract v1](ALIAS_CONTRACT_V1_0.5.144.md)
@@ -14,6 +19,7 @@ Alle technischen Markdown-Dateien des Adapters liegen bewusst in diesem Ordner. 
 
 ## Wallboxen und Ladepunkte
 
+- [DEPower – Sollwerte, Rücklesen und Energieauflösung](DEPOWER_POWER_ENERGY_0.5.164.md)
 - [DEPower Modbus V10.03 – stabile Steuersequenz und Prepare-Re-Arm](DEPOWER_CONTROL_SEQUENCE_0.5.161.md)
 - [DEPower Modbus V10.03 – Charging SOC](DEPOWER_MODBUS_V10.03_SOC_0.5.159.md)
 - [OEM Modbus V10.03 – AC-Wallboxen und DC-Ladestationen](OEM_MODBUS_V10.03_AC_DC_CHARGE_POINT_0.5.157.md)
@@ -30,6 +36,7 @@ Alle technischen Markdown-Dateien des Adapters liegen bewusst in diesem Ordner. 
 
 - [VARTA Public 14 – acht Modelle, Monitoring und geschützte SF-Konfiguration](VARTA_MODBUS_PUBLIC14_0.5.162.md)
 
+- [TESVOLT IoT Gateway – aktuelle Einrichtung, EMS / V2 und paralleles Lesen](TESVOLT_EMS_TOPICS_0.5.163.md)
 - [TESVOLT IoT Gateway – MQTT EMS Interface V2](TESVOLT_IOT_GATEWAY_MQTT_V2_0.5.153.md)
 - [TESVOLT IoT Gateway – Datenempfang und EMS-V2-Bootstrap](TESVOLT_MQTT_DATA_BOOTSTRAP_0.5.160.md)
 - [TESVOLT IoT Gateway – MQTT-Verbindung und CONNACK-Diagnose](TESVOLT_MQTT_CONNECTION_DIAGNOSTICS_0.5.158.md)

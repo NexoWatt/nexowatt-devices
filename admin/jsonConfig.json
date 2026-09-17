@@ -413,6 +413,10 @@
                 {
                   "label": "VARTA",
                   "value": "VARTA"
+                },
+                {
+                  "label": "DEYE",
+                  "value": "DEYE"
                 }
               ],
               "freeSolo": false
@@ -1130,6 +1134,18 @@
                 {
                   "value": "ess.varta.flexStorage.modbusTcpV14",
                   "label": "ESS | VARTA flex storage – Modbus TCP V14, Messwerte + SF-Konfiguration (keine Leistungssteuerung)"
+                },
+                {
+                  "label": "DEYE Hybrid einphasig – Modbus RTU (vorläufig)",
+                  "value": "ess.deye.singlePhase.modbusRtu"
+                },
+                {
+                  "label": "DEYE Hybrid dreiphasig LV – Modbus RTU (vorläufig)",
+                  "value": "ess.deye.threePhaseLv.modbusRtu"
+                },
+                {
+                  "label": "DEYE Hybrid dreiphasig HV – Modbus RTU (vorläufig)",
+                  "value": "ess.deye.threePhaseHv.modbusRtu"
                 }
               ]
             },
@@ -2202,6 +2218,99 @@
               "label": "VARTA: SF-Konfiguration ausdrücklich freigeben (keine Leistungssteuerung)",
               "default": false,
               "hidden": "!['ess.varta.pulseNeo.modbusTcpV14','ess.varta.flexStorage.modbusTcpV14'].includes(data.templateId)",
+              "newLine": true,
+              "sm": 12
+            },
+            {
+              "type": "staticText",
+              "text": "DEYE vorläufig: 9600 Baud, 8N1, Offset 0. Unit-ID 1 ist ein Vorschlag. Konfigurationsgrenzen sind keine Lade-/Entladebefehle; Remote-Steuerung bleibt gesperrt. Einheiten/Vorzeichen bei Inbetriebnahme bestätigen.",
+              "hidden": "!String(data.templateId || '').startsWith('ess.deye.')",
+              "newLine": true
+            },
+            {
+              "type": "checkbox",
+              "attr": "deyeAllowConfigurationWrites",
+              "label": "DEYE: vier Konfigurationsgrenzen ausdrücklich zum Schreiben freigeben",
+              "default": false,
+              "hidden": "!String(data.templateId || '').startsWith('ess.deye.')",
+              "newLine": true,
+              "sm": 12
+            },
+            {
+              "type": "checkbox",
+              "attr": "deyeReadRemoteRegisters",
+              "label": "DEYE dreiphasig: Remote-Register zusätzlich lesen (keine Steuerung)",
+              "default": false,
+              "hidden": "!String(data.templateId || '').startsWith('ess.deye.')",
+              "newLine": true,
+              "sm": 12
+            },
+            {
+              "type": "select",
+              "attr": "deyeBatteryPowerSign",
+              "label": "DEYE: bestätigte Batterie-Leistungsrichtung",
+              "default": "unconfirmed",
+              "options": [
+                {
+                  "value": "unconfirmed",
+                  "label": "Unbestätigt – Alias bleibt unbekannt"
+                },
+                {
+                  "value": "positiveDischarge",
+                  "label": "Positiv = Entladen"
+                },
+                {
+                  "value": "positiveCharge",
+                  "label": "Positiv = Laden"
+                }
+              ],
+              "hidden": "!String(data.templateId || '').startsWith('ess.deye.')",
+              "newLine": true,
+              "sm": 12
+            },
+            {
+              "type": "select",
+              "attr": "deyeBatteryPowerScale",
+              "label": "DEYE dreiphasig: bestätigte W je Register-590-Schritt",
+              "default": "unconfirmed",
+              "options": [
+                {
+                  "value": "unconfirmed",
+                  "label": "Unbestätigt"
+                },
+                {
+                  "value": "1",
+                  "label": "1 W"
+                },
+                {
+                  "value": "10",
+                  "label": "10 W"
+                }
+              ],
+              "hidden": "!String(data.templateId || '').startsWith('ess.deye.')",
+              "newLine": true,
+              "sm": 12
+            },
+            {
+              "type": "select",
+              "attr": "deyeGridPowerSign",
+              "label": "DEYE dreiphasig: bestätigte Netz-Leistungsrichtung",
+              "default": "unconfirmed",
+              "options": [
+                {
+                  "value": "unconfirmed",
+                  "label": "Unbestätigt – Alias bleibt unbekannt"
+                },
+                {
+                  "value": "positiveImport",
+                  "label": "Positiv = Bezug"
+                },
+                {
+                  "value": "positiveExport",
+                  "label": "Positiv = Einspeisung"
+                }
+              ],
+              "hidden": "!String(data.templateId || '').startsWith('ess.deye.')",
               "newLine": true,
               "sm": 12
             }

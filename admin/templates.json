@@ -45541,8 +45541,8 @@
       },
       "category": "ESS",
       "manufacturer": "TESVOLT",
-      "model": "IoT Gateway MQTT V2",
-      "name": "TESVOLT IoT Gateway (MQTT EMS Interface V2)",
+      "model": "IoT Gateway MQTT (EMS / V2)",
+      "name": "TESVOLT IoT Gateway (MQTT EMS / V2)",
       "protocols": [
         "mqtt"
       ],
@@ -46633,6 +46633,116 @@
             "subscribe": false,
             "qos": 0,
             "retain": false
+          }
+        },
+        {
+          "id": "bIFI_SERIAL_NUMBER",
+          "name": "Bifi serial number",
+          "type": "string",
+          "rw": "ro",
+          "role": "text",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/Bifi",
+            "jsonPath": "$.SerialNumber",
+            "format": "json",
+            "tesvoltUnversionedOnly": true
+          }
+        },
+        {
+          "id": "nOMINAL_POWER",
+          "name": "Inverter nominal power",
+          "type": "number",
+          "rw": "ro",
+          "role": "value",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Parameters",
+            "jsonPath": "$.nominal_power",
+            "format": "json"
+          },
+          "unit": "W"
+        },
+        {
+          "id": "iNVERTER_PARAMETERS_JSON",
+          "name": "Inverter parameters (complete received object)",
+          "type": "string",
+          "rw": "ro",
+          "role": "text",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Parameters",
+            "jsonPath": "$",
+            "format": "json"
+          }
+        },
+        {
+          "id": "bATTERY_PARAMETERS_JSON",
+          "name": "Battery parameters (complete received object)",
+          "type": "string",
+          "rw": "ro",
+          "role": "text",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Battery/Parameters",
+            "jsonPath": "$",
+            "format": "json"
+          }
+        },
+        {
+          "id": "iNVERTER_CONTROL_JSON",
+          "name": "Observed inverter control (not an acknowledgement)",
+          "type": "string",
+          "rw": "ro",
+          "role": "text",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Inverter/Control",
+            "jsonPath": "$",
+            "format": "json"
+          }
+        },
+        {
+          "id": "bATTERY_CONTROL_JSON",
+          "name": "Observed battery control (read only)",
+          "type": "string",
+          "rw": "ro",
+          "role": "text",
+          "source": {
+            "kind": "mqtt",
+            "topic": "EMS/V2/Battery/Control",
+            "jsonPath": "$",
+            "format": "json"
+          }
+        },
+        {
+          "id": "mQTT_ACTIVE_TOPIC_PREFIX",
+          "name": "TESVOLT active topic prefix",
+          "type": "string",
+          "rw": "ro",
+          "role": "text",
+          "source": {
+            "kind": "mqttDiagnostic"
+          }
+        },
+        {
+          "id": "mQTT_CONTROL_ENABLED",
+          "name": "TESVOLT control configured",
+          "type": "boolean",
+          "rw": "ro",
+          "role": "indicator",
+          "source": {
+            "kind": "mqttDiagnostic"
+          }
+        },
+        {
+          "id": "mQTT_CONTROL_STATUS",
+          "name": "TESVOLT control readiness / blocking reason",
+          "type": "string",
+          "rw": "ro",
+          "role": "text",
+          "source": {
+            "kind": "mqttDiagnostic"
           }
         }
       ],
@@ -148585,10 +148695,11 @@
               "length": 2,
               "dataType": "uint32"
             },
-            "scaleFactor": -1
+            "scaleFactor": -1,
+            "depowerEnergyCounter": "total"
           },
           "unit": "kWh",
-          "description": "Protocol resolution 0.1 kWh."
+          "description": "Default: 0.1 kWh (100 Wh) per register tick per V10.03 workbook. Firmware-specific resolution is configurable independently per counter in connection settings."
         },
         {
           "id": "eNERGY_SESSION",
@@ -148604,10 +148715,11 @@
               "length": 2,
               "dataType": "uint32"
             },
-            "scaleFactor": -1
+            "scaleFactor": -1,
+            "depowerEnergyCounter": "session"
           },
           "unit": "kWh",
-          "description": "Protocol resolution 0.1 kWh."
+          "description": "Default: 0.1 kWh (100 Wh) per register tick per V10.03 workbook. Firmware-specific resolution is configurable independently per counter in connection settings."
         },
         {
           "id": "cHARGING_DURATION",
@@ -148845,6 +148957,42 @@
           "min": 0,
           "max": 100,
           "description": "Charging SOC reported by the vehicle/connector. Register step size is 1%."
+        },
+        {
+          "id": "eNERGY_SESSION_RAW",
+          "name": "Session energy raw counter",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "ticks",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 277,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          },
+          "description": "Unscaled UInt32 counter from the same register pair. Compare a simultaneous charger reading/delta before selecting Wh per tick."
+        },
+        {
+          "id": "mETER_ENERGY_TOTAL_RAW",
+          "name": "Total meter energy raw counter",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "ticks",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 275,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          },
+          "description": "Unscaled UInt32 counter from the same register pair. Compare a simultaneous charger reading/delta before selecting Wh per tick."
         }
       ],
       "driverHints": {
@@ -148922,7 +149070,8 @@
             "pLUG_STATE",
             "cHARGE_COMMAND",
             "eV_SET_CHARGE_POWER_LIMIT",
-            "cHARGING_SOC"
+            "cHARGING_SOC",
+            "eNERGY_SESSION_RAW"
           ],
           "slowDpIds": [
             "sERIAL_NUMBER",
@@ -148931,7 +149080,8 @@
             "fALLBACK_CURRENT",
             "cHARGE_MODE",
             "cHARGE_POINT_SET_POWER",
-            "aCTIVE_PRODUCTION_ENERGY"
+            "aCTIVE_PRODUCTION_ENERGY",
+            "mETER_ENERGY_TOTAL_RAW"
           ]
         },
         "oemModbusV1003": {
@@ -149490,10 +149640,11 @@
               "length": 2,
               "dataType": "uint32"
             },
-            "scaleFactor": -1
+            "scaleFactor": -1,
+            "depowerEnergyCounter": "total"
           },
           "unit": "kWh",
-          "description": "Protocol resolution 0.1 kWh."
+          "description": "Default: 0.1 kWh (100 Wh) per register tick per V10.03 workbook. Firmware-specific resolution is configurable independently per counter in connection settings."
         },
         {
           "id": "eNERGY_SESSION",
@@ -149509,10 +149660,11 @@
               "length": 2,
               "dataType": "uint32"
             },
-            "scaleFactor": -1
+            "scaleFactor": -1,
+            "depowerEnergyCounter": "session"
           },
           "unit": "kWh",
-          "description": "Protocol resolution 0.1 kWh."
+          "description": "Default: 0.1 kWh (100 Wh) per register tick per V10.03 workbook. Firmware-specific resolution is configurable independently per counter in connection settings."
         },
         {
           "id": "cHARGING_DURATION",
@@ -149750,6 +149902,42 @@
           "min": 0,
           "max": 100,
           "description": "Charging SOC reported by the vehicle/connector. Register step size is 1%."
+        },
+        {
+          "id": "eNERGY_SESSION_RAW",
+          "name": "Session energy raw counter",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "ticks",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 533,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          },
+          "description": "Unscaled UInt32 counter from the same register pair. Compare a simultaneous charger reading/delta before selecting Wh per tick."
+        },
+        {
+          "id": "mETER_ENERGY_TOTAL_RAW",
+          "name": "Total meter energy raw counter",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "ticks",
+          "source": {
+            "kind": "modbus",
+            "read": {
+              "fc": 3,
+              "address": 531,
+              "length": 2,
+              "dataType": "uint32"
+            }
+          },
+          "description": "Unscaled UInt32 counter from the same register pair. Compare a simultaneous charger reading/delta before selecting Wh per tick."
         }
       ],
       "driverHints": {
@@ -149827,7 +150015,8 @@
             "pLUG_STATE",
             "cHARGE_COMMAND",
             "eV_SET_CHARGE_POWER_LIMIT",
-            "cHARGING_SOC"
+            "cHARGING_SOC",
+            "eNERGY_SESSION_RAW"
           ],
           "slowDpIds": [
             "sERIAL_NUMBER",
@@ -149836,7 +150025,8 @@
             "fALLBACK_CURRENT",
             "cHARGE_MODE",
             "cHARGE_POINT_SET_POWER",
-            "aCTIVE_PRODUCTION_ENERGY"
+            "aCTIVE_PRODUCTION_ENERGY",
+            "mETER_ENERGY_TOTAL_RAW"
           ]
         },
         "oemModbusV1003": {
@@ -154043,6 +154233,4601 @@
           "rw": "ro",
           "source": {
             "kind": "vartaDiagnostic"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ess.deye.singlePhase.modbusRtu",
+      "category": "ESS",
+      "manufacturer": "DEYE",
+      "model": "Hybrid einphasig",
+      "name": "DEYE Hybrid einphasig – Modbus RTU (vorläufig)",
+      "protocols": [
+        "modbusRtu"
+      ],
+      "source": {
+        "type": "builtin",
+        "protocol": "DEYE single-phase V118 supplied PDF",
+        "status": "preliminary; model/firmware confirmation pending"
+      },
+      "notes": "Vorläufiges Familienprofil. 9600 Baud, 8N1, Offset 0; Unit-ID 1 nur als änderbarer Vorschlag, tatsächliche Adresse und RS485-Port wählen. Messwerte und vier optionale Konfigurationsgrenzen; keine aktive Remote-Leistungssteuerung. Batterie-Vorzeichen und bei 3-phasig Register-590-Skalierung sowie Netz-Vorzeichen müssen am Gerät bestätigt werden. Zwei Batterieeingänge werden nicht zu einem geratenen SOC/Leistungswert zusammengefasst. Kein eigenständiges BMS-/Speicherprotokoll. Siehe docs/DEYE_MODBUS_RTU_0.5.165.md.",
+      "driverHints": {
+        "pollIntervalMs": 5000,
+        "heartbeatTimeoutMs": 60000,
+        "deyeModbus": {
+          "profile": "singlePhase",
+          "status": "preliminary",
+          "externalPowerControlSupported": false
+        },
+        "modbus": {
+          "unitIdDefault": 1,
+          "forceAddressOffset": 0,
+          "disableAddressFallbackOffsets": true,
+          "wordOrderDefault": "le",
+          "byteOrderDefault": "be",
+          "serialDefaults": {
+            "baudRate": 9600,
+            "parity": "none",
+            "dataBits": 8,
+            "stopBits": 1,
+            "enforce": false
+          },
+          "timeoutMs": 2000,
+          "minCommandIntervalMs": 50,
+          "maxReadRegs": 24,
+          "strictContiguousReads": true,
+          "writeThrottleMs": 0,
+          "restoreSetpointsOnStart": {
+            "enabled": false
+          },
+          "setpointKeepalive": {
+            "enabled": false
+          }
+        }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      },
+      "datapoints": [
+        {
+          "id": "identity.deviceType",
+          "name": "identity.deviceType",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 0,
+              "length": 1,
+              "addresses": [
+                0
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.unitId",
+          "name": "identity.unitId",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 1,
+              "length": 1,
+              "addresses": [
+                1
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.protocolVersion",
+          "name": "identity.protocolVersion",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 2,
+              "length": 1,
+              "addresses": [
+                2
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.serial",
+          "name": "identity.serial",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 3,
+              "length": 5,
+              "addresses": [
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              "dataType": "ascii",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.controlFirmware",
+          "name": "identity.controlFirmware",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 13,
+              "length": 1,
+              "addresses": [
+                13
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.communicationFirmware",
+          "name": "identity.communicationFirmware",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 14,
+              "length": 1,
+              "addresses": [
+                14
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.ratedPower",
+          "name": "identity.ratedPower",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 16,
+              "length": 2,
+              "addresses": [
+                16,
+                17
+              ],
+              "dataType": "uint32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.mpptAndPhases",
+          "name": "identity.mpptAndPhases",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 18,
+              "length": 1,
+              "addresses": [
+                18
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "status",
+          "name": "status",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 59,
+              "length": 1,
+              "addresses": [
+                59
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          },
+          "min": 0,
+          "max": 4
+        },
+        {
+          "id": "battery1.soc",
+          "name": "battery1.soc",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "min": 0,
+          "max": 100,
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 184,
+              "length": 1,
+              "addresses": [
+                184
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery1.voltage",
+          "name": "battery1.voltage",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 183,
+              "length": 1,
+              "addresses": [
+                183
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery1.current",
+          "name": "battery1.current",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 191,
+              "length": 1,
+              "addresses": [
+                191
+              ],
+              "dataType": "int16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery.powerRaw",
+          "name": "battery.powerRaw",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 190,
+              "length": 1,
+              "addresses": [
+                190
+              ],
+              "dataType": "int16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery1.temperature",
+          "name": "battery1.temperature",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "°C",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 182,
+              "length": 1,
+              "addresses": [
+                182
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery.chargeToday",
+          "name": "battery.chargeToday",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 70,
+              "length": 1,
+              "addresses": [
+                70
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery.dischargeToday",
+          "name": "battery.dischargeToday",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 71,
+              "length": 1,
+              "addresses": [
+                71
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.importToday",
+          "name": "grid.importToday",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 76,
+              "length": 1,
+              "addresses": [
+                76
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.exportToday",
+          "name": "grid.exportToday",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 77,
+              "length": 1,
+              "addresses": [
+                77
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "load.energyToday",
+          "name": "load.energyToday",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 84,
+              "length": 1,
+              "addresses": [
+                84
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "pv.energyToday",
+          "name": "pv.energyToday",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 108,
+              "length": 1,
+              "addresses": [
+                108
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery.chargeTotal",
+          "name": "battery.chargeTotal",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 72,
+              "length": 2,
+              "addresses": [
+                72,
+                73
+              ],
+              "dataType": "uint32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery.dischargeTotal",
+          "name": "battery.dischargeTotal",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 74,
+              "length": 2,
+              "addresses": [
+                74,
+                75
+              ],
+              "dataType": "uint32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.importTotal",
+          "name": "grid.importTotal",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 78,
+              "length": 2,
+              "addresses": [
+                78,
+                79
+              ],
+              "dataType": "uint32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.exportTotal",
+          "name": "grid.exportTotal",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 80,
+              "length": 2,
+              "addresses": [
+                80,
+                81
+              ],
+              "dataType": "uint32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "load.energyTotal",
+          "name": "load.energyTotal",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 85,
+              "length": 2,
+              "addresses": [
+                85,
+                86
+              ],
+              "dataType": "uint32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "pv.energyTotal",
+          "name": "pv.energyTotal",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 96,
+              "length": 2,
+              "addresses": [
+                96,
+                97
+              ],
+              "dataType": "uint32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.power",
+          "name": "grid.power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 169,
+              "length": 1,
+              "addresses": [
+                169
+              ],
+              "dataType": "int16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "inverter.power",
+          "name": "inverter.power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 175,
+              "length": 1,
+              "addresses": [
+                175
+              ],
+              "dataType": "int16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "load.power",
+          "name": "load.power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 178,
+              "length": 1,
+              "addresses": [
+                178
+              ],
+              "dataType": "int16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "inverter.frequency",
+          "name": "inverter.frequency",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Hz",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 193,
+              "length": 1,
+              "addresses": [
+                193
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "pv.power1",
+          "name": "pv.power1",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 186,
+              "length": 1,
+              "addresses": [
+                186
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "pv.power2",
+          "name": "pv.power2",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 187,
+              "length": 1,
+              "addresses": [
+                187
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "pv.power3",
+          "name": "pv.power3",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 188,
+              "length": 1,
+              "addresses": [
+                188
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "pv.power4",
+          "name": "pv.power4",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 189,
+              "length": 1,
+              "addresses": [
+                189
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "warning.word1",
+          "name": "warning.word1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 101,
+              "length": 1,
+              "addresses": [
+                101
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "warning.word2",
+          "name": "warning.word2",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 102,
+              "length": 1,
+              "addresses": [
+                102
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "fault.word1",
+          "name": "fault.word1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 103,
+              "length": 1,
+              "addresses": [
+                103
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "fault.word2",
+          "name": "fault.word2",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 104,
+              "length": 1,
+              "addresses": [
+                104
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "fault.word3",
+          "name": "fault.word3",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 105,
+              "length": 1,
+              "addresses": [
+                105
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "fault.word4",
+          "name": "fault.word4",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 106,
+              "length": 1,
+              "addresses": [
+                106
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "settings.maxChargeCurrent",
+          "name": "settings.maxChargeCurrent (configuration limit; opt-in required)",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "unit": "A",
+          "min": 0,
+          "max": 185,
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 210,
+              "length": 1,
+              "addresses": [
+                210
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 16,
+              "address": 210,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "settings.maxDischargeCurrent",
+          "name": "settings.maxDischargeCurrent (configuration limit; opt-in required)",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "unit": "A",
+          "min": 0,
+          "max": 185,
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 211,
+              "length": 1,
+              "addresses": [
+                211
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 16,
+              "address": 211,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "settings.gridChargeCurrent",
+          "name": "settings.gridChargeCurrent (configuration limit; opt-in required)",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "unit": "A",
+          "min": 0,
+          "max": 185,
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 230,
+              "length": 1,
+              "addresses": [
+                230
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 16,
+              "address": 230,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "settings.maxExportPower",
+          "name": "settings.maxExportPower (configuration limit; opt-in required)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "rw",
+          "unit": "W",
+          "min": 0,
+          "max": 8000,
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 245,
+              "length": 1,
+              "addresses": [
+                245
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 16,
+              "address": 245,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "diagnostics.familyMatched",
+          "name": "diagnostics.familyMatched",
+          "type": "boolean",
+          "role": "indicator",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.externalControlSupported",
+          "name": "diagnostics.externalControlSupported",
+          "type": "boolean",
+          "role": "indicator",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.configurationWritesEnabled",
+          "name": "diagnostics.configurationWritesEnabled",
+          "type": "boolean",
+          "role": "indicator",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.note",
+          "name": "diagnostics.note",
+          "type": "string",
+          "role": "text",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "canonical.soc",
+          "name": "canonical.soc",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "unit": "%",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "canonical.batteryPower",
+          "name": "canonical.batteryPower",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "canonical.gridPower",
+          "name": "canonical.gridPower",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "canonical.pvPower",
+          "name": "canonical.pvPower",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ess.deye.threePhaseLv.modbusRtu",
+      "category": "ESS",
+      "manufacturer": "DEYE",
+      "model": "Hybrid dreiphasig LV",
+      "name": "DEYE Hybrid dreiphasig LV – Modbus RTU (vorläufig)",
+      "protocols": [
+        "modbusRtu"
+      ],
+      "source": {
+        "type": "builtin",
+        "protocol": "DEYE three-phase V105.4 supplied DOC",
+        "status": "preliminary; model/firmware confirmation pending"
+      },
+      "notes": "Vorläufiges Familienprofil. 9600 Baud, 8N1, Offset 0; Unit-ID 1 nur als änderbarer Vorschlag, tatsächliche Adresse und RS485-Port wählen. Messwerte und vier optionale Konfigurationsgrenzen; keine aktive Remote-Leistungssteuerung. Batterie-Vorzeichen und bei 3-phasig Register-590-Skalierung sowie Netz-Vorzeichen müssen am Gerät bestätigt werden. Zwei Batterieeingänge werden nicht zu einem geratenen SOC/Leistungswert zusammengefasst. Kein eigenständiges BMS-/Speicherprotokoll. Siehe docs/DEYE_MODBUS_RTU_0.5.165.md.",
+      "driverHints": {
+        "pollIntervalMs": 5000,
+        "heartbeatTimeoutMs": 60000,
+        "deyeModbus": {
+          "profile": "threePhaseLv",
+          "status": "preliminary",
+          "externalPowerControlSupported": false
+        },
+        "modbus": {
+          "unitIdDefault": 1,
+          "forceAddressOffset": 0,
+          "disableAddressFallbackOffsets": true,
+          "wordOrderDefault": "le",
+          "byteOrderDefault": "be",
+          "serialDefaults": {
+            "baudRate": 9600,
+            "parity": "none",
+            "dataBits": 8,
+            "stopBits": 1,
+            "enforce": false
+          },
+          "timeoutMs": 2000,
+          "minCommandIntervalMs": 50,
+          "maxReadRegs": 24,
+          "strictContiguousReads": true,
+          "writeThrottleMs": 0,
+          "restoreSetpointsOnStart": {
+            "enabled": false
+          },
+          "setpointKeepalive": {
+            "enabled": false
+          }
+        }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      },
+      "datapoints": [
+        {
+          "id": "identity.deviceType",
+          "name": "identity.deviceType",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 0,
+              "length": 1,
+              "addresses": [
+                0
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.unitId",
+          "name": "identity.unitId",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 1,
+              "length": 1,
+              "addresses": [
+                1
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.protocolVersion",
+          "name": "identity.protocolVersion",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 2,
+              "length": 1,
+              "addresses": [
+                2
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.serial",
+          "name": "identity.serial",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 3,
+              "length": 5,
+              "addresses": [
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              "dataType": "ascii",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.controlFirmware",
+          "name": "identity.controlFirmware",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 15,
+              "length": 1,
+              "addresses": [
+                15
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.communicationFirmware",
+          "name": "identity.communicationFirmware",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 18,
+              "length": 1,
+              "addresses": [
+                18
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.ratedPower",
+          "name": "identity.ratedPower",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 20,
+              "length": 2,
+              "addresses": [
+                20,
+                21
+              ],
+              "dataType": "uint32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.mpptAndPhases",
+          "name": "identity.mpptAndPhases",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 22,
+              "length": 1,
+              "addresses": [
+                22
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.batteryInputs",
+          "name": "identity.batteryInputs",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 24,
+              "length": 1,
+              "addresses": [
+                24
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.outputTopology",
+          "name": "identity.outputTopology",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 25,
+              "length": 1,
+              "addresses": [
+                25
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "status",
+          "name": "status",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 500,
+              "length": 1,
+              "addresses": [
+                500
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          },
+          "min": 0,
+          "max": 5
+        },
+        {
+          "id": "battery1.soc",
+          "name": "battery1.soc",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "min": 0,
+          "max": 100,
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 588,
+              "length": 1,
+              "addresses": [
+                588
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery1.voltage",
+          "name": "battery1.voltage",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 587,
+              "length": 1,
+              "addresses": [
+                587
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery1.current",
+          "name": "battery1.current",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 591,
+              "length": 1,
+              "addresses": [
+                591
+              ],
+              "dataType": "int16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery.powerRaw",
+          "name": "battery.powerRaw",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 590,
+              "length": 1,
+              "addresses": [
+                590
+              ],
+              "dataType": "int16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery1.temperatureRaw",
+          "name": "battery1.temperatureRaw",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 586,
+              "length": 1,
+              "addresses": [
+                586
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery2.soc",
+          "name": "battery2.soc",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "min": 0,
+          "max": 100,
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 589,
+              "length": 1,
+              "addresses": [
+                589
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery2.voltage",
+          "name": "battery2.voltage",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 593,
+              "length": 1,
+              "addresses": [
+                593
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery2.currentRaw",
+          "name": "battery2.currentRaw",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 594,
+              "length": 1,
+              "addresses": [
+                594
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery2.powerRaw",
+          "name": "battery2.powerRaw",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 595,
+              "length": 1,
+              "addresses": [
+                595
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery2.temperatureRaw",
+          "name": "battery2.temperatureRaw",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 596,
+              "length": 1,
+              "addresses": [
+                596
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery.chargeToday",
+          "name": "battery.chargeToday",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 514,
+              "length": 1,
+              "addresses": [
+                514
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery.dischargeToday",
+          "name": "battery.dischargeToday",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 515,
+              "length": 1,
+              "addresses": [
+                515
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.importToday",
+          "name": "grid.importToday",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 520,
+              "length": 1,
+              "addresses": [
+                520
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.exportToday",
+          "name": "grid.exportToday",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 521,
+              "length": 1,
+              "addresses": [
+                521
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "load.energyToday",
+          "name": "load.energyToday",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 526,
+              "length": 1,
+              "addresses": [
+                526
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "pv.energyToday",
+          "name": "pv.energyToday",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 529,
+              "length": 1,
+              "addresses": [
+                529
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery.chargeTotal",
+          "name": "battery.chargeTotal",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 516,
+              "length": 2,
+              "addresses": [
+                516,
+                517
+              ],
+              "dataType": "uint32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery.dischargeTotal",
+          "name": "battery.dischargeTotal",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 518,
+              "length": 2,
+              "addresses": [
+                518,
+                519
+              ],
+              "dataType": "uint32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.importTotal",
+          "name": "grid.importTotal",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 522,
+              "length": 2,
+              "addresses": [
+                522,
+                523
+              ],
+              "dataType": "uint32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.exportTotal",
+          "name": "grid.exportTotal",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 524,
+              "length": 2,
+              "addresses": [
+                524,
+                525
+              ],
+              "dataType": "uint32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "load.energyTotal",
+          "name": "load.energyTotal",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 527,
+              "length": 2,
+              "addresses": [
+                527,
+                528
+              ],
+              "dataType": "uint32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.power",
+          "name": "grid.power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 625,
+              "length": 1,
+              "addresses": [
+                625,
+                690
+              ],
+              "dataType": "int32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "inverter.power",
+          "name": "inverter.power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 636,
+              "length": 1,
+              "addresses": [
+                636,
+                694
+              ],
+              "dataType": "int32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "load.power",
+          "name": "load.power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 653,
+              "length": 1,
+              "addresses": [
+                653,
+                659
+              ],
+              "dataType": "int32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.phase1Power",
+          "name": "grid.phase1Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 622,
+              "length": 1,
+              "addresses": [
+                622,
+                687
+              ],
+              "dataType": "int32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.phase1Voltage",
+          "name": "grid.phase1Voltage",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 598,
+              "length": 1,
+              "addresses": [
+                598
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.phase2Power",
+          "name": "grid.phase2Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 623,
+              "length": 1,
+              "addresses": [
+                623,
+                688
+              ],
+              "dataType": "int32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.phase2Voltage",
+          "name": "grid.phase2Voltage",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 599,
+              "length": 1,
+              "addresses": [
+                599
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.phase3Power",
+          "name": "grid.phase3Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 624,
+              "length": 1,
+              "addresses": [
+                624,
+                689
+              ],
+              "dataType": "int32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.phase3Voltage",
+          "name": "grid.phase3Voltage",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 600,
+              "length": 1,
+              "addresses": [
+                600
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "inverter.frequency",
+          "name": "inverter.frequency",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Hz",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 638,
+              "length": 1,
+              "addresses": [
+                638
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "pv.power1",
+          "name": "pv.power1",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 672,
+              "length": 1,
+              "addresses": [
+                672
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "pv.power2",
+          "name": "pv.power2",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 673,
+              "length": 1,
+              "addresses": [
+                673
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "pv.power3",
+          "name": "pv.power3",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 674,
+              "length": 1,
+              "addresses": [
+                674
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "pv.power4",
+          "name": "pv.power4",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 675,
+              "length": 1,
+              "addresses": [
+                675
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "warning.word1",
+          "name": "warning.word1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 553,
+              "length": 1,
+              "addresses": [
+                553
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "warning.word2",
+          "name": "warning.word2",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 554,
+              "length": 1,
+              "addresses": [
+                554
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "fault.word1",
+          "name": "fault.word1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 555,
+              "length": 1,
+              "addresses": [
+                555
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "fault.word2",
+          "name": "fault.word2",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 556,
+              "length": 1,
+              "addresses": [
+                556
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "fault.word3",
+          "name": "fault.word3",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 557,
+              "length": 1,
+              "addresses": [
+                557
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "fault.word4",
+          "name": "fault.word4",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 558,
+              "length": 1,
+              "addresses": [
+                558
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "settings.maxChargeCurrent",
+          "name": "settings.maxChargeCurrent (configuration limit; opt-in required)",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "unit": "A",
+          "min": 0,
+          "max": 185,
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 108,
+              "length": 1,
+              "addresses": [
+                108
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 16,
+              "address": 108,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "settings.maxDischargeCurrent",
+          "name": "settings.maxDischargeCurrent (configuration limit; opt-in required)",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "unit": "A",
+          "min": 0,
+          "max": 185,
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 109,
+              "length": 1,
+              "addresses": [
+                109
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 16,
+              "address": 109,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "settings.gridChargeCurrent",
+          "name": "settings.gridChargeCurrent (configuration limit; opt-in required)",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "unit": "A",
+          "min": 0,
+          "max": 185,
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 128,
+              "length": 1,
+              "addresses": [
+                128
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 16,
+              "address": 128,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "settings.maxExportPower",
+          "name": "settings.maxExportPower (configuration limit; opt-in required)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "rw",
+          "unit": "W",
+          "min": 0,
+          "max": 8000,
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 143,
+              "length": 1,
+              "addresses": [
+                143
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 16,
+              "address": 143,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "remote.mode",
+          "name": "remote.mode (read only; optional)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 1100,
+              "length": 1,
+              "addresses": [
+                1100
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "remote.watchdogSeconds",
+          "name": "remote.watchdogSeconds (read only; optional)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "s",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 1101,
+              "length": 1,
+              "addresses": [
+                1101
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "remote.outputControlMode",
+          "name": "remote.outputControlMode (read only; optional)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 1104,
+              "length": 1,
+              "addresses": [
+                1104
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "remote.batteryControlMode",
+          "name": "remote.batteryControlMode (read only; optional)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 1105,
+              "length": 1,
+              "addresses": [
+                1105
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "remote.batteryPowerPercent",
+          "name": "remote.batteryPowerPercent (read only; optional)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 1109,
+              "length": 1,
+              "addresses": [
+                1109
+              ],
+              "dataType": "int16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "remote.targetSoc",
+          "name": "remote.targetSoc (read only; optional)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 1110,
+              "length": 1,
+              "addresses": [
+                1110
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "remote.inverterPowerPercent",
+          "name": "remote.inverterPowerPercent (read only; optional)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 1111,
+              "length": 1,
+              "addresses": [
+                1111
+              ],
+              "dataType": "int16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "diagnostics.familyMatched",
+          "name": "diagnostics.familyMatched",
+          "type": "boolean",
+          "role": "indicator",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.externalControlSupported",
+          "name": "diagnostics.externalControlSupported",
+          "type": "boolean",
+          "role": "indicator",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.configurationWritesEnabled",
+          "name": "diagnostics.configurationWritesEnabled",
+          "type": "boolean",
+          "role": "indicator",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.note",
+          "name": "diagnostics.note",
+          "type": "string",
+          "role": "text",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "canonical.soc",
+          "name": "canonical.soc",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "unit": "%",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "canonical.batteryPower",
+          "name": "canonical.batteryPower",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "canonical.gridPower",
+          "name": "canonical.gridPower",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "canonical.pvPower",
+          "name": "canonical.pvPower",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ess.deye.threePhaseHv.modbusRtu",
+      "category": "ESS",
+      "manufacturer": "DEYE",
+      "model": "Hybrid dreiphasig HV",
+      "name": "DEYE Hybrid dreiphasig HV – Modbus RTU (vorläufig)",
+      "protocols": [
+        "modbusRtu"
+      ],
+      "source": {
+        "type": "builtin",
+        "protocol": "DEYE three-phase V105.4 supplied DOC",
+        "status": "preliminary; model/firmware confirmation pending"
+      },
+      "notes": "Vorläufiges Familienprofil. 9600 Baud, 8N1, Offset 0; Unit-ID 1 nur als änderbarer Vorschlag, tatsächliche Adresse und RS485-Port wählen. Messwerte und vier optionale Konfigurationsgrenzen; keine aktive Remote-Leistungssteuerung. Batterie-Vorzeichen und bei 3-phasig Register-590-Skalierung sowie Netz-Vorzeichen müssen am Gerät bestätigt werden. Zwei Batterieeingänge werden nicht zu einem geratenen SOC/Leistungswert zusammengefasst. Kein eigenständiges BMS-/Speicherprotokoll. Siehe docs/DEYE_MODBUS_RTU_0.5.165.md.",
+      "driverHints": {
+        "pollIntervalMs": 5000,
+        "heartbeatTimeoutMs": 60000,
+        "deyeModbus": {
+          "profile": "threePhaseHv",
+          "status": "preliminary",
+          "externalPowerControlSupported": false
+        },
+        "modbus": {
+          "unitIdDefault": 1,
+          "forceAddressOffset": 0,
+          "disableAddressFallbackOffsets": true,
+          "wordOrderDefault": "le",
+          "byteOrderDefault": "be",
+          "serialDefaults": {
+            "baudRate": 9600,
+            "parity": "none",
+            "dataBits": 8,
+            "stopBits": 1,
+            "enforce": false
+          },
+          "timeoutMs": 2000,
+          "minCommandIntervalMs": 50,
+          "maxReadRegs": 24,
+          "strictContiguousReads": true,
+          "writeThrottleMs": 0,
+          "restoreSetpointsOnStart": {
+            "enabled": false
+          },
+          "setpointKeepalive": {
+            "enabled": false
+          }
+        }
+      },
+      "aliasContract": {
+        "schemaVersion": 1,
+        "namespace": "v1",
+        "deviceClass": "storageSystem"
+      },
+      "datapoints": [
+        {
+          "id": "identity.deviceType",
+          "name": "identity.deviceType",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 0,
+              "length": 1,
+              "addresses": [
+                0
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.unitId",
+          "name": "identity.unitId",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 1,
+              "length": 1,
+              "addresses": [
+                1
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.protocolVersion",
+          "name": "identity.protocolVersion",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 2,
+              "length": 1,
+              "addresses": [
+                2
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.serial",
+          "name": "identity.serial",
+          "role": "text",
+          "type": "string",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 3,
+              "length": 5,
+              "addresses": [
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              "dataType": "ascii",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.controlFirmware",
+          "name": "identity.controlFirmware",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 15,
+              "length": 1,
+              "addresses": [
+                15
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.communicationFirmware",
+          "name": "identity.communicationFirmware",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 18,
+              "length": 1,
+              "addresses": [
+                18
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.ratedPower",
+          "name": "identity.ratedPower",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 20,
+              "length": 2,
+              "addresses": [
+                20,
+                21
+              ],
+              "dataType": "uint32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.mpptAndPhases",
+          "name": "identity.mpptAndPhases",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 22,
+              "length": 1,
+              "addresses": [
+                22
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.batteryInputs",
+          "name": "identity.batteryInputs",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 24,
+              "length": 1,
+              "addresses": [
+                24
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "identity.outputTopology",
+          "name": "identity.outputTopology",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 25,
+              "length": 1,
+              "addresses": [
+                25
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "status",
+          "name": "status",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 500,
+              "length": 1,
+              "addresses": [
+                500
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          },
+          "min": 0,
+          "max": 5
+        },
+        {
+          "id": "battery1.soc",
+          "name": "battery1.soc",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "min": 0,
+          "max": 100,
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 588,
+              "length": 1,
+              "addresses": [
+                588
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery1.voltage",
+          "name": "battery1.voltage",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 587,
+              "length": 1,
+              "addresses": [
+                587
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery1.current",
+          "name": "battery1.current",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "A",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 591,
+              "length": 1,
+              "addresses": [
+                591
+              ],
+              "dataType": "int16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery.powerRaw",
+          "name": "battery.powerRaw",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 590,
+              "length": 1,
+              "addresses": [
+                590
+              ],
+              "dataType": "int16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery1.temperatureRaw",
+          "name": "battery1.temperatureRaw",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 586,
+              "length": 1,
+              "addresses": [
+                586
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery2.soc",
+          "name": "battery2.soc",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "min": 0,
+          "max": 100,
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 589,
+              "length": 1,
+              "addresses": [
+                589
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery2.voltage",
+          "name": "battery2.voltage",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 593,
+              "length": 1,
+              "addresses": [
+                593
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery2.currentRaw",
+          "name": "battery2.currentRaw",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 594,
+              "length": 1,
+              "addresses": [
+                594
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery2.powerRaw",
+          "name": "battery2.powerRaw",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 595,
+              "length": 1,
+              "addresses": [
+                595
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery2.temperatureRaw",
+          "name": "battery2.temperatureRaw",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 596,
+              "length": 1,
+              "addresses": [
+                596
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery.chargeToday",
+          "name": "battery.chargeToday",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 514,
+              "length": 1,
+              "addresses": [
+                514
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery.dischargeToday",
+          "name": "battery.dischargeToday",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 515,
+              "length": 1,
+              "addresses": [
+                515
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.importToday",
+          "name": "grid.importToday",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 520,
+              "length": 1,
+              "addresses": [
+                520
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.exportToday",
+          "name": "grid.exportToday",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 521,
+              "length": 1,
+              "addresses": [
+                521
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "load.energyToday",
+          "name": "load.energyToday",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 526,
+              "length": 1,
+              "addresses": [
+                526
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "pv.energyToday",
+          "name": "pv.energyToday",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 529,
+              "length": 1,
+              "addresses": [
+                529
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery.chargeTotal",
+          "name": "battery.chargeTotal",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 516,
+              "length": 2,
+              "addresses": [
+                516,
+                517
+              ],
+              "dataType": "uint32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "battery.dischargeTotal",
+          "name": "battery.dischargeTotal",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 518,
+              "length": 2,
+              "addresses": [
+                518,
+                519
+              ],
+              "dataType": "uint32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.importTotal",
+          "name": "grid.importTotal",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 522,
+              "length": 2,
+              "addresses": [
+                522,
+                523
+              ],
+              "dataType": "uint32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.exportTotal",
+          "name": "grid.exportTotal",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 524,
+              "length": 2,
+              "addresses": [
+                524,
+                525
+              ],
+              "dataType": "uint32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "load.energyTotal",
+          "name": "load.energyTotal",
+          "role": "value.energy",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Wh",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 527,
+              "length": 2,
+              "addresses": [
+                527,
+                528
+              ],
+              "dataType": "uint32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.power",
+          "name": "grid.power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 625,
+              "length": 1,
+              "addresses": [
+                625,
+                690
+              ],
+              "dataType": "int32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "inverter.power",
+          "name": "inverter.power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 636,
+              "length": 1,
+              "addresses": [
+                636,
+                694
+              ],
+              "dataType": "int32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "load.power",
+          "name": "load.power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 653,
+              "length": 1,
+              "addresses": [
+                653,
+                659
+              ],
+              "dataType": "int32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.phase1Power",
+          "name": "grid.phase1Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 622,
+              "length": 1,
+              "addresses": [
+                622,
+                687
+              ],
+              "dataType": "int32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.phase1Voltage",
+          "name": "grid.phase1Voltage",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 598,
+              "length": 1,
+              "addresses": [
+                598
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.phase2Power",
+          "name": "grid.phase2Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 623,
+              "length": 1,
+              "addresses": [
+                623,
+                688
+              ],
+              "dataType": "int32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.phase2Voltage",
+          "name": "grid.phase2Voltage",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 599,
+              "length": 1,
+              "addresses": [
+                599
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.phase3Power",
+          "name": "grid.phase3Power",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 624,
+              "length": 1,
+              "addresses": [
+                624,
+                689
+              ],
+              "dataType": "int32",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "grid.phase3Voltage",
+          "name": "grid.phase3Voltage",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "V",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 600,
+              "length": 1,
+              "addresses": [
+                600
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "inverter.frequency",
+          "name": "inverter.frequency",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "Hz",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 638,
+              "length": 1,
+              "addresses": [
+                638
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -2,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "pv.power1",
+          "name": "pv.power1",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 672,
+              "length": 1,
+              "addresses": [
+                672
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "pv.power2",
+          "name": "pv.power2",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 673,
+              "length": 1,
+              "addresses": [
+                673
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "pv.power3",
+          "name": "pv.power3",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 674,
+              "length": 1,
+              "addresses": [
+                674
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "pv.power4",
+          "name": "pv.power4",
+          "role": "value.power",
+          "type": "number",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 675,
+              "length": 1,
+              "addresses": [
+                675
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "warning.word1",
+          "name": "warning.word1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 553,
+              "length": 1,
+              "addresses": [
+                553
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "warning.word2",
+          "name": "warning.word2",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 554,
+              "length": 1,
+              "addresses": [
+                554
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "fault.word1",
+          "name": "fault.word1",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 555,
+              "length": 1,
+              "addresses": [
+                555
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "fault.word2",
+          "name": "fault.word2",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 556,
+              "length": 1,
+              "addresses": [
+                556
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "fault.word3",
+          "name": "fault.word3",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 557,
+              "length": 1,
+              "addresses": [
+                557
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "fault.word4",
+          "name": "fault.word4",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 558,
+              "length": 1,
+              "addresses": [
+                558
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "settings.maxChargeCurrent",
+          "name": "settings.maxChargeCurrent (configuration limit; opt-in required)",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "unit": "A",
+          "min": 0,
+          "max": 185,
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 108,
+              "length": 1,
+              "addresses": [
+                108
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 16,
+              "address": 108,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "settings.maxDischargeCurrent",
+          "name": "settings.maxDischargeCurrent (configuration limit; opt-in required)",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "unit": "A",
+          "min": 0,
+          "max": 185,
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 109,
+              "length": 1,
+              "addresses": [
+                109
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 16,
+              "address": 109,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "settings.gridChargeCurrent",
+          "name": "settings.gridChargeCurrent (configuration limit; opt-in required)",
+          "role": "value",
+          "type": "number",
+          "rw": "rw",
+          "unit": "A",
+          "min": 0,
+          "max": 185,
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 128,
+              "length": 1,
+              "addresses": [
+                128
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 16,
+              "address": 128,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "settings.maxExportPower",
+          "name": "settings.maxExportPower (configuration limit; opt-in required)",
+          "role": "value.power",
+          "type": "number",
+          "rw": "rw",
+          "unit": "W",
+          "min": 0,
+          "max": 80000,
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 143,
+              "length": 1,
+              "addresses": [
+                143
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 1,
+            "disableAddressFallbackOffsets": true,
+            "write": {
+              "fc": 16,
+              "address": 143,
+              "length": 1,
+              "dataType": "uint16"
+            }
+          }
+        },
+        {
+          "id": "remote.mode",
+          "name": "remote.mode (read only; optional)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 1100,
+              "length": 1,
+              "addresses": [
+                1100
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "remote.watchdogSeconds",
+          "name": "remote.watchdogSeconds (read only; optional)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "s",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 1101,
+              "length": 1,
+              "addresses": [
+                1101
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "remote.outputControlMode",
+          "name": "remote.outputControlMode (read only; optional)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 1104,
+              "length": 1,
+              "addresses": [
+                1104
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "remote.batteryControlMode",
+          "name": "remote.batteryControlMode (read only; optional)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 1105,
+              "length": 1,
+              "addresses": [
+                1105
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": 0,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "remote.batteryPowerPercent",
+          "name": "remote.batteryPowerPercent (read only; optional)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 1109,
+              "length": 1,
+              "addresses": [
+                1109
+              ],
+              "dataType": "int16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "remote.targetSoc",
+          "name": "remote.targetSoc (read only; optional)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 1110,
+              "length": 1,
+              "addresses": [
+                1110
+              ],
+              "dataType": "uint16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "remote.inverterPowerPercent",
+          "name": "remote.inverterPowerPercent (read only; optional)",
+          "role": "value",
+          "type": "number",
+          "rw": "ro",
+          "unit": "%",
+          "source": {
+            "kind": "deyeModbus",
+            "read": {
+              "fc": 3,
+              "address": 1111,
+              "length": 1,
+              "addresses": [
+                1111
+              ],
+              "dataType": "int16",
+              "wordOrder": "le",
+              "byteOrder": "be"
+            },
+            "engineeringExponent": -1,
+            "disableAddressFallbackOffsets": true
+          }
+        },
+        {
+          "id": "diagnostics.familyMatched",
+          "name": "diagnostics.familyMatched",
+          "type": "boolean",
+          "role": "indicator",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.externalControlSupported",
+          "name": "diagnostics.externalControlSupported",
+          "type": "boolean",
+          "role": "indicator",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.configurationWritesEnabled",
+          "name": "diagnostics.configurationWritesEnabled",
+          "type": "boolean",
+          "role": "indicator",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "diagnostics.note",
+          "name": "diagnostics.note",
+          "type": "string",
+          "role": "text",
+          "rw": "ro",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "canonical.soc",
+          "name": "canonical.soc",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "unit": "%",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "canonical.batteryPower",
+          "name": "canonical.batteryPower",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "canonical.gridPower",
+          "name": "canonical.gridPower",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeDiagnostic"
+          }
+        },
+        {
+          "id": "canonical.pvPower",
+          "name": "canonical.pvPower",
+          "type": "number",
+          "role": "value",
+          "rw": "ro",
+          "unit": "W",
+          "source": {
+            "kind": "deyeDiagnostic"
           }
         }
       ]

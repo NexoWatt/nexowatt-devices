@@ -81,3 +81,11 @@ systemDictionary['Benutzername und Passwort authentifizieren den Client; nur mqt
   'en': 'Username and password authenticate the client; only mqtts:// or wss:// encrypt the transport.',
   'de': 'Benutzername und Passwort authentifizieren den Client; nur mqtts:// oder wss:// verschlüsseln den Transport.',
 };
+
+systemDictionary["Automatisch erkennen (nur Lesen)"] = {"en": "Detect automatically (read only)", "de": "Automatisch erkennen (nur Lesen)"};
+
+systemDictionary["TESVOLT Topic-Format"] = {"en": "TESVOLT topic format", "de": "TESVOLT Topic-Format"};
+
+systemDictionary["Leistungssteuerung durch NexoWatt EOS aktivieren"] = {"en": "Enable power control by NexoWatt EOS", "de": "Leistungssteuerung durch NexoWatt EOS aktivieren"};
+
+systemDictionary["Port 1884 ohne TLS (mqtt://), Zugangsdaten und eine eigene eindeutige Client-ID verwenden. Für paralleles Lesen mit TEM bleibt die Leistungssteuerung aus. Lesen benötigt EMS/# oder die passenden Einzel-Topics. Steuerung benötigt ein festes Topic-Format, Schreibrechte und eine abgestimmte Übergabe vom TEM; Batterie- und Gerätefreigaben bleiben erforderlich."] = {"en": "Use port 1884 without TLS (mqtt://), credentials and a unique Client-ID. Leave power control disabled for parallel TEM monitoring. Reading requires EMS/# or the matching exact topics. Control requires a fixed topic format, write permission and a coordinated handover from TEM; battery and device readiness checks still apply.", "de": "Port 1884 ohne TLS (mqtt://), Zugangsdaten und eine eigene eindeutige Client-ID verwenden. Für paralleles Lesen mit TEM bleibt die Leistungssteuerung aus. Lesen benötigt EMS/# oder die passenden Einzel-Topics. Steuerung benötigt ein festes Topic-Format, Schreibrechte und eine abgestimmte Übergabe vom TEM; Batterie- und Gerätefreigaben bleiben erforderlich."};

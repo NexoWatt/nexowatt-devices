@@ -11,6 +11,9 @@
     "ess.varta.pulse.modbusTcpV14",
     "ess.varta.pulseNeo.modbusTcpV14",
     "ess.varta.link.modbusTcpV14",
-    "ess.varta.flexStorage.modbusTcpV14"
+    "ess.varta.flexStorage.modbusTcpV14",
+    "ess.deye.singlePhase.modbusRtu",
+    "ess.deye.threePhaseLv.modbusRtu",
+    "ess.deye.threePhaseHv.modbusRtu"
   ]
 }

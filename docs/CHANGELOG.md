@@ -1,5 +1,33 @@
 # Technische Versionshinweise
 
+## 0.5.165 – DEYE Hybrid: drei vorläufige RTU-Familienprofile
+
+- Neu unter ESS → DEYE: einphasiger Hybrid, dreiphasiger LV-Hybrid und dreiphasiger HV-Hybrid. Dedizierter Treiber nach den bereitgestellten V118-/V105.4-Unterlagen, Identitäts-/Phasenprüfung; keine pauschale Modell-/Firmwarefreigabe.
+- RTU-Auswahl mit 9600 Baud, 8N1, Vorschlag Unit-ID 1, Timeout 2000 ms und Offset 0. Gespeicherte serielle Einstellungen bleiben erhalten. Keine automatische Offset-Suche.
+- 32-Bit-Leistung aus getrennten Low-/High-Registern, vorzeichenrichtige Dekodierung, Wh-Energiezähler und unterschiedliche LV-/HV-Einheiten. Unklare Batterie-Skalierung und Richtungen bleiben bis zur Bestätigung unbekannt. Mehrere Batterieeingänge werden nicht ungeprüft aggregiert.
+- Vier dokumentierte Konfigurationsgrenzen optional freigebbar: Identität, Wertebereich/Schritt, FC16 und tatsächliches FC3-Rücklesen; keine automatischen Schreibwiederholungen. Grenzen werden nicht als aktive Lade-/Entlade-Sollwerte angeboten.
+- Remote-Register bei Dreiphasen-Profilen optional lesbar; aktive Fernsteuerung mangels vollständig definierter Modi, Watchdog- und Prozentbezüge gesperrt. Herstelleranfrage auf Englisch und Deutsch im Repository.
+- 186 automatisierte Tests bestanden, davon 22 neue DEYE-Tests mit simulierten RTU-Busantworten. Bestehende 192 Templates unverändert, nun 195 Templates und 2454 v1-Aliasdefinitionen. Legacy-Baseline erhalten. Keine reale DEYE-Hardwareprüfung.
+- Alle TESVOLT-, DEPower- und VARTA-Änderungen aus 0.5.164 erhalten; keine neuen Abhängigkeiten.
+
+## 0.5.164 – DEPower-Sollwertwarteschlange, Rücklesen und Energieauflösung
+
+- Neue Leistungsbefehle bleiben erhalten, wenn sie während eines laufenden Schreibvorgangs eintreffen. Alte Erfolge und Fehler können den neuen Auftrag weder bestätigen noch löschen. Die Warteschlange bestätigt den tatsächlich vom Treiber verwendeten Wert.
+- DEPower-Steuerfolgen werden vollständig serialisiert. Polling bestätigt keine ungesendeten Steueraliase; das gelesene Leistungslimit bleibt von der Schreibbestätigung getrennt.
+- Sitzungs- und Gesamtzähler besitzen getrennte konfigurierbare Wh-Auflösungen sowie unskalierte Rohzähler. Der dokumentierte Standard von 100 Wh je Zählschritt bleibt erhalten. Keine pauschal geratene Faktoränderung für Bestandsanlagen.
+- `info.depowerControl` unterscheidet fehlende EOS-Vorgaben, wartende Aufträge und passende/abweichende Modbus-Rückmeldungen. 4,2 kW werden als 4200 W geschrieben.
+- Register, vorhandene Alias-Pfade und die TESVOLT-Korrekturen aus 0.5.163 bleiben erhalten. Echte lokale Modbus-TCP-Tests für beide Connectoren ergänzen die Gesamtsuite.
+- Einrichtung, Energiekalibrierung und Prüfgrenzen: [DEPower ab 0.5.164](DEPOWER_POWER_ENERGY_0.5.164.md).
+
+## 0.5.163 – TESVOLT EMS-Topics und paralleler Lesebetrieb
+
+- Tatsächliche `EMS/Inverter/...`- und `EMS/Battery/...`-Topics werden zusätzlich zu `EMS/V2/...` empfangen. Auswahl automatisch beim Lesen oder fest auf EMS/EMS-V2; keine Vermischung der erkannten Gerätewerte.
+- Standardmäßig reiner Lesebetrieb, auch nach einem Update ohne neue Steuerfreigabe: keine Identitäts-Publishes, keine Null-Sollwerte, keine zyklischen Steuerbefehle.
+- Explizite Steuerfreigabe und festes Topic-Format leiten den bestehenden Control-Payload auf den korrekten Pfad. Keine API-Version und keine Steuerfähigkeiten werden aus dem Topic-Namen erfunden. Im unversionierten Profil entfällt ausschließlich die dort nicht belegte APIVersion-V2-Anforderung; `supported_control`, Zustände, Limits und Watchdogs bleiben erforderlich.
+- `EMS/Parameters` bleibt die vorhandene TEM-Identität und wird im unversionierten Profil niemals überschrieben. `EMS/Bifi` wird als separate Bifi-Identität gelesen.
+- Alte retained Telemetrie, doppelte und zukünftige Zeitstempel sowie lokale Control-Echos halten den Heartbeat nicht künstlich frisch.
+- Anleitung und verbleibende Steuergrenzen: [TESVOLT EMS / V2](TESVOLT_EMS_TOPICS_0.5.163.md).
+
 ## 0.5.162 – VARTA Public 14, acht getrennte Gerätemodelle
 
 - Grundlage ist die bereitgestellte Hersteller-PDF: intern Version 14.0 public vom 12.03.2025, Tabellenstand 14. Der ältere Dateiname wird nicht als Registerstand verwendet.

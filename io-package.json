@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "nexowatt-devices",
-    "version": "0.5.162",
+    "version": "0.5.165",
     "news": {
+      "0.5.165": {
+        "en": "Prepare three DEYE hybrid RTU profiles, serial defaults, verified configuration-limit writes and explicit remote-control restrictions.",
+        "de": "Drei vorläufige DEYE-Hybrid-RTU-Profile, serielle Vorgaben, geprüftes Schreiben von Konfigurationsgrenzen und klare Remote-Steuerungsgrenzen."
+      },
+      "0.5.164": {
+        "en": "Fix queued DEPower power commands lost during active writes; separate command acknowledgements from device readback. Add independent energy-counter resolution settings and raw counters. Preserve TESVOLT EMS/MQTT fixes.",
+        "de": "Verlorene DEPower-Sollwerte in der Schreibwarteschlange behoben; Befehlsbestätigung und Geräte-Rückmeldung getrennt. Getrennte Zählerauflösung und Energie-Rohwerte ergänzt. TESVOLT-EMS/MQTT-Korrekturen enthalten."
+      },
+      "0.5.163": {
+        "en": "Fix TESVOLT IoT Gateway reception for the observed unversioned EMS topics as well as EMS/V2. Add explicit topic selection, monitoring-only default with zero publishes, readback diagnostics, exact-topic ACL fallback and timestamp-aware telemetry freshness. Explicit control routes to the selected namespace, preserving capabilities, battery-state checks, dynamic limits and watchdogs. Existing datapoint IDs and other manufacturers remain unchanged.",
+        "de": "TESVOLT-IoT-Gateway-Datenempfang für die beobachteten unversionierten EMS-Topics und EMS/V2 korrigiert. Topic-Auswahl, standardmäßig reiner Lesebetrieb ohne Publishes, Rücklesediagnosen, Einzel-Topic-ACL-Fallback und Prüfung der Telemetrie-Zeitstempel ergänzt. Explizit aktivierte Steuerung nutzt den gewählten Topic-Pfad; Capability-, Batteriezustands-, Grenzwert- und Watchdogprüfungen bleiben erhalten. Bestehende Datenpunkt-IDs und andere Hersteller unverändert."
+      },
       "0.5.162": {
         "en": "Add eight separate VARTA models from public Modbus table 14: model-specific FC3 monitoring, one-character-per-register strings, low-word-first counters, live scale factors and normalised EOS power signs. FC6 scale-factor configuration only for pulse neo/flex storage, explicitly opt-in, identity-probed and readback-verified. No undocumented external power control. Shared per-endpoint request pacing, strict register gaps and no automatic writes. Existing templates remain unchanged.",
         "de": "Acht separate VARTA-Modelle nach öffentlicher Modbus-Tabelle 14 ergänzt: modellspezifische FC3-Messwerte, ein Zeichen je Register, Low-Word-First-Zähler, aktuelle Skalierungsfaktoren und normalisierte EOS-Leistungsvorzeichen. FC6-SF-Konfiguration nur für pulse neo/flex storage, mit expliziter Freigabe, Identitätsprüfung und bestätigtem Rücklesen. Keine undokumentierte Leistungssteuerung. Gemeinsame Anfragebegrenzung je Endpunkt, strikte Registerlücken und keine automatischen Schreibzugriffe. Bestehende Templates unverändert."

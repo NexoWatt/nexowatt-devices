@@ -45,6 +45,7 @@ function loadMqttDriverWithMock(mqttMock) {
 }
 
 const MqttDriver = loadMqttDriver();
+const screenshotMessages = require('./fixtures/tesvolt-ems-screenshot.json').messages;
 const DeviceRuntime = helper.loadDeviceRuntime(path.join(root, 'lib/deviceRuntime.js'));
 
 function templateById(id) {
@@ -94,7 +95,7 @@ function createHarness() {
 function createDriver(template, harness, connectionOverrides) {
   const driver = new MqttDriver(
     harness.adapter,
-    { id: 'tesvolt1', connection: { url: 'mqtt://127.0.0.1:1884', ...(connectionOverrides || {}) } },
+    { id: 'tesvolt1', connection: { url: 'mqtt://127.0.0.1:1884', tesvoltTopicMode: 'v2', tesvoltControlEnabled: true, ...(connectionOverrides || {}) } },
     template,
     {},
     (dp) => `devices.tesvolt1.${dp.id}`,
@@ -393,7 +394,7 @@ test('TESVOLT MQTT JSON topics update all fields, invert power sign and ignore o
   const driver = createDriver(templateById('ess.tesvolt.iotGateway.mqttV2'), harness);
 
   await feed(driver, 'EMS/V2/Inverter/Measurements', {
-    ts_create: '2026-08-08T08:00:00.000+02:00',
+    ts_create: new Date(Date.now() - 1000).toISOString(),
     U_DC: 992.1,
     U_L1: 242.3,
     U_L2: 243.2,
@@ -410,7 +411,7 @@ test('TESVOLT MQTT JSON topics update all fields, invert power sign and ignore o
   assert.equal(stateValue(harness, 'rEACTIVE_POWER'), 360);
 
   await feed(driver, 'EMS/V2/Inverter/Measurements', {
-    ts_create: '2026-08-08T07:59:59.000+02:00',
+    ts_create: new Date(Date.now() - 2000).toISOString(),
     U_DC: 100,
     U_L1: 100,
     U_L2: 100,
@@ -448,7 +449,7 @@ test('TESVOLT active-power control publishes documented JSON with sign conversio
 
   await feed(driver, 'EMS/APIVersion', { APIVersion: 'V2' });
   await feed(driver, 'EMS/V2/Inverter/Parameters', {
-    ts_create: '2026-08-08T08:00:00.000+02:00',
+    ts_create: new Date(Date.now() - 1000).toISOString(),
     serial_number: 'INV-1',
     supported_measurements: ['Power'],
     supported_states: ['standby', 'grid_connected', 'fault'],
@@ -457,7 +458,7 @@ test('TESVOLT active-power control publishes documented JSON with sign conversio
     nominal_discharge_power: 92000,
   });
   await feed(driver, 'EMS/V2/Inverter/Limits', {
-    ts_create: '2026-08-08T08:00:01.000+02:00',
+    ts_create: new Date(Date.now() - 500).toISOString(),
     P_Max_Charge: 45000,
     P_Max_Discharge: 45000,
     Q_Max_Q1: 45000,
@@ -468,11 +469,11 @@ test('TESVOLT active-power control publishes documented JSON with sign conversio
     S_Max_Out: 45000,
   });
   await feed(driver, 'EMS/V2/Inverter/State', {
-    ts_create: '2026-08-08T08:00:02.000+02:00',
+    ts_create: new Date(Date.now() - 200).toISOString(),
     State: 'grid_connected',
   });
   await feed(driver, 'EMS/V2/Battery/SystemState', {
-    ts_create: '2026-08-08T08:00:02.000+02:00',
+    ts_create: new Date(Date.now() - 200).toISOString(),
     System_State: 'normal',
   });
 
@@ -528,7 +529,7 @@ test('TESVOLT power values fail safe to zero on stale data and MQTT heartbeat/of
   const driver = createDriver(templateById('ess.tesvolt.iotGateway.mqttV2'), harness);
 
   await feed(driver, 'EMS/V2/Inverter/Measurements', {
-    ts_create: '2026-08-08T08:00:00.000+02:00',
+    ts_create: new Date(Date.now() - 1000).toISOString(),
     Power: -12000,
     U_DC: 900,
     U_L1: 230,
@@ -678,7 +679,7 @@ test('TESVOLT setpoint feedback is derived from Measurements because the interfa
   groupState.lastCommandChangedAt = Date.now() - 1000;
 
   await feed(driver, 'EMS/V2/Inverter/Measurements', {
-    ts_create: '2026-08-14T20:00:00.000+02:00',
+    ts_create: new Date(Date.now() - 1000).toISOString(),
     Power: -10000,
     Reactive_Power: 0,
   });
@@ -688,7 +689,7 @@ test('TESVOLT setpoint feedback is derived from Measurements because the interfa
   assert.equal(stateValue(harness, 'sETPOINT_TRACKING_OK'), true);
 
   await feed(driver, 'EMS/V2/Inverter/Measurements', {
-    ts_create: '2026-08-14T20:00:01.000+02:00',
+    ts_create: new Date(Date.now() - 0).toISOString(),
     Power: -4000,
     Reactive_Power: 0,
   });
@@ -768,6 +769,8 @@ test('TESVOLT MQTT bootstrap subscribes the documented filters and publishes EMS
         username: 'nexowatt',
         password: 'secret',
         clientId: 'nexowatt-tesvolt1',
+        tesvoltTopicMode: 'v2',
+        tesvoltControlEnabled: true,
       },
     },
     template,
@@ -810,7 +813,7 @@ test('TESVOLT wildcard subscription falls back to concrete V2 topics when the br
   };
   const driver = new MqttDriver(
     harness.adapter,
-    { id: 'tesvolt1', connection: { url: 'mqtt://127.0.0.1:1884' } },
+    { id: 'tesvolt1', connection: { url: 'mqtt://127.0.0.1:1884', tesvoltTopicMode: 'v2' } },
     templateById('ess.tesvolt.iotGateway.mqttV2'),
     {},
     (dp) => `devices.tesvolt1.${dp.id}`,
@@ -927,4 +930,140 @@ test('MQTT protocol errors remain visible while transport connection stays true'
   });
   assert.equal(states.get('devices.tesvolt1.info.connection').val, true);
   assert.match(states.get('devices.tesvolt1.info.lastError').val, /subscriptions were not granted/);
+});
+
+function monitorDriver(harness, overrides = {}) {
+  return createDriver(templateById('ess.tesvolt.iotGateway.mqttV2'), harness, {
+    tesvoltTopicMode: 'auto', tesvoltControlEnabled: false, ...overrides,
+  });
+}
+
+async function replayScreenshot(driver, live = true) {
+  for (const [topic, original] of Object.entries(screenshotMessages)) {
+    const object = { ...original };
+    if (live && object.ts_create) object.ts_create = new Date().toISOString();
+    await feed(driver, topic, object);
+  }
+}
+
+test('TESVOLT screenshot EMS topics populate raw values and existing EOS aliases without API V2', async () => {
+  const h = createHarness();
+  const d = monitorDriver(h);
+  await d._subscribeAll();
+  await replayScreenshot(d);
+  for (const [id, value] of Object.entries({
+    bATTERY_SOC: 34.5, aCTIVE_POWER: -20, bATTERY_DC_POWER: 0,
+    aC_VOLTAGE_L1: 230.70000000000002, aC_VOLTAGE_L2: 231.4,
+    aC_VOLTAGE_L3: 230.9, iNVERTER_DC_VOLTAGE: 949.2, bATTERY_VOLTAGE: 947.7,
+    bATTERY_CAPACITY_WH: 388546.56, bATTERY_ENERGY_CONTENT: 63129.601562,
+    aCTIVE_CHARGE_ENERGY: 20808930, aCTIVE_DISCHARGE_ENERGY: 19692690,
+    aLLOWED_CHARGE_POWER: 92000, aLLOWED_DISCHARGE_POWER: 92000,
+    bATTERY_DC_MAX_CHARGE_POWER: 92100, bATTERY_SYSTEM_STATE_TEXT: 'restricted',
+    bATTERY_STATE: 2, iNVERTER_STATE_TEXT: 'grid_connected',
+    bIFI_SERIAL_NUMBER: 'TEST-BIFI', eMS_SERIAL_NUMBER: 'TEST-TEM',
+    eMS_SOFTWARE_VERSION: '3.3.1', mQTT_ACTIVE_TOPIC_PREFIX: 'EMS/',
+    mQTT_CONTROL_STATUS: 'monitoring_only', nOMINAL_POWER: 92000,
+  })) assert.equal(stateValue(h, id), value, id);
+  assert.equal(stateValue(h, 'aPI_VERSION'), undefined, 'never invent a V2 version');
+  assert.equal(stateValue(h, 'iNVERTER_SUPPORTED_CONTROL'), undefined, 'never invent capabilities');
+  assert.equal(stateValue(h, 'iOT_GATEWAY_SERIAL_NUMBER'), undefined, 'Bifi is not the gateway identity');
+  assert.equal(JSON.parse(stateValue(h, 'bATTERY_CONTROL_JSON')).DC_Connection_Request, true);
+  assert.equal(JSON.parse(stateValue(h, 'iNVERTER_CONTROL_JSON')).Power, 0);
+  const { runtime, states } = createRuntimeHarness(d.template);
+  await runtime._handleMqttSnapshot({ ...d.valueCache }, { connected: true });
+  assert.equal(states.get('devices.tesvolt1.aliases.v1.r.soc').val, 34.5);
+  assert.equal(states.get('devices.tesvolt1.aliases.v1.r.power').val, -20);
+  assert.ok(h.subscriptions.some(s => s.topic === 'EMS/#'));
+  assert.equal(h.published.length, 0);
+});
+
+test('TESVOLT default and explicit monitoring modes never publish on bootstrap, zero, command, refresh or disconnect', async () => {
+  for (const mode of ['auto', 'ems', 'v2']) {
+    const h = createHarness();
+    const d = monitorDriver(h, { tesvoltTopicMode: mode, tesvoltControlEnabled: undefined });
+    await d._subscribeAll();
+    d._markWriteGroupsConnected();
+    await feed(d, 'EMS/APIVersion', { APIVersion: 'V2' });
+    await d._publishBootstrapMessages();
+    const dp = d.dpById.get('sET_ACTIVE_POWER');
+    await assert.rejects(d.writeDatapoint(dp, 0), /monitoring only/);
+    await assert.rejects(d.writeDatapoint(dp, 5000), /monitoring only/);
+    await d._refreshWriteGroup('inverterControl', 'test');
+    await d.disconnect();
+    assert.equal(d.writeGroupTimers.size, 0);
+    assert.equal(h.published.length, 0, mode);
+  }
+});
+
+test('TESVOLT auto detection stays on one namespace and cannot activate control', async () => {
+  const h = createHarness();
+  const d = monitorDriver(h, { tesvoltControlEnabled: true });
+  await feed(d, 'EMS/Inverter/Measurements', { Power: 20 });
+  await feed(d, 'EMS/V2/Inverter/Measurements', { Power: 90000 });
+  await feed(d, 'EMS/V2/Battery/Energy', { SOC: 99 });
+  assert.equal(stateValue(h, 'aCTIVE_POWER'), -20);
+  assert.equal(stateValue(h, 'bATTERY_SOC'), undefined);
+  await assert.rejects(d.writeDatapoint(d.dpById.get('sET_ACTIVE_POWER'), 0), /explicit topic format/);
+  assert.equal(h.published.length, 0);
+  assert.equal(d.writeGroupTimers.size, 0);
+});
+
+test('TESVOLT EMS command route preserves capability, restricted-state and dynamic-limit checks', async () => {
+  const h = createHarness();
+  const d = monitorDriver(h, { tesvoltTopicMode: 'ems', tesvoltControlEnabled: true });
+  await replayScreenshot(d);
+  const dp = d.dpById.get('sET_ACTIVE_POWER');
+  await assert.rejects(d.writeDatapoint(dp, 5000), /supported_control/);
+  await feed(d, 'EMS/Inverter/Parameters', { supported_control: ['Power', 'Reactive_Power', 'State'] });
+  await assert.rejects(d.writeDatapoint(dp, 5000), /restricted/);
+  await feed(d, 'EMS/Battery/SystemState', { System_State: 'normal' });
+  const result = await d.writeDatapoint(dp, 100000);
+  assert.equal(result.topic, 'EMS/Inverter/Control');
+  assert.equal(result.effectiveValue, 92000);
+  assert.deepEqual(result.payload, { Power: -92000, Reactive_Power: 0, State: 'grid_connected' });
+  const charge = await d.writeDatapoint(dp, -100000);
+  assert.equal(charge.payload.Power, 92000);
+  await d._publishBootstrapMessages();
+  await assert.rejects(d._publish('EMS/Battery/Control', '{}', {}, true), /not enabled/);
+  await d.disconnect();
+  assert.ok(h.published.every(p => p.topic === 'EMS/Inverter/Control' && !p.options.retain));
+  assert.equal(JSON.parse(h.published.at(-1).payload).Power, 0);
+});
+
+test('TESVOLT retained old telemetry, repeated timestamps, unknown topics and control echoes do not refresh liveness', async () => {
+  const h = createHarness();
+  const d = monitorDriver(h);
+  let alive = 0;
+  d.onAlive = () => { alive += 1; };
+  await replayScreenshot(d, false);
+  assert.equal(alive, 0);
+  assert.equal(stateValue(h, 'aCTIVE_POWER'), 0);
+  const ts = new Date().toISOString();
+  await feed(d, 'EMS/Inverter/Measurements', { Power: -5000, ts_create: ts });
+  assert.equal(alive, 1);
+  await feed(d, 'EMS/Inverter/Measurements', { Power: -9999, ts_create: ts });
+  await feed(d, 'EMS/Inverter/Control', { Power: -9999 });
+  await feed(d, 'EMS/Battery/Control', { DC_Connection_Request: true });
+  await feed(d, 'EMS/Inverter/Unknown', { value: 1 });
+  await feed(d, 'EMS/Inverter/Measurements', { Power: -9999, ts_create: new Date(Date.now() + 60000).toISOString() });
+  assert.equal(alive, 1);
+  assert.equal(stateValue(h, 'aCTIVE_POWER'), 5000);
+  await d._handleMessage('EMS/Inverter/Measurements', Buffer.from('{"Power":123}'), { retain: true });
+  assert.equal(alive, 1);
+  assert.equal(stateValue(h, 'aCTIVE_POWER'), 0);
+});
+
+test('TESVOLT exact-topic fallback accepts readable EMS telemetry without requiring inaccessible V2 or optional metadata', async () => {
+  const h = createHarness();
+  h.client.subscribe = (topic, options, callback) => {
+    const allowed = topic === 'EMS/Battery/Energy' || topic === 'EMS/Inverter/Measurements';
+    callback(null, [{ topic, qos: allowed ? 0 : 128 }]);
+  };
+  const d = monitorDriver(h);
+  const summary = await d._subscribeAll();
+  assert.equal(summary.ok, true);
+  assert.equal(stateValue(h, 'mQTT_SUBSCRIPTION_OK'), true);
+  await feed(d, 'EMS/Battery/Energy', { SOC: 34.5 });
+  assert.equal(stateValue(h, 'bATTERY_SOC'), 34.5);
+  assert.equal(h.published.length, 0);
 });

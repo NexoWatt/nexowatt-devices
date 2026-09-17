@@ -10,11 +10,15 @@ zugehörigen Datenpunkte automatisch in ioBroker.
 Die technische Dokumentation ist gebündelt im Ordner [`docs/`](docs/README.md):
 
 - [Dokumentationsübersicht](docs/README.md)
+- [DEYE Hybrid – drei vorläufige RTU-Profile und Einrichtung](docs/DEYE_MODBUS_RTU_0.5.165.md)
+- [DEYE-Herstelleranfrage – Englisch und Deutsch](docs/DEYE_MANUFACTURER_INQUIRY_EN_DE.md)
 - [Technische Versionshinweise](docs/CHANGELOG.md)
 - [Alias Contract v1](docs/ALIAS_CONTRACT_V1_0.5.144.md)
 - [Bestandsanlagen-Kompatibilität](docs/LEGACY_COMPATIBILITY_0.5.146.md)
 - [Ladepunkte – regelmäßige Live-Status-/Messwertfrische](docs/EV_CHARGER_LIVE_FRESHNESS_0.5.154.md)
 - [VARTA Public 14 – acht Modelle und Funktionsgrenzen](docs/VARTA_MODBUS_PUBLIC14_0.5.162.md)
+- [DEPower – Sollwerte, Rücklesen und Energieauflösung](docs/DEPOWER_POWER_ENERGY_0.5.164.md)
+- [TESVOLT IoT Gateway – aktuelle Einrichtung, EMS / V2 und paralleles Lesen](docs/TESVOLT_EMS_TOPICS_0.5.163.md)
 - [TESVOLT IoT Gateway – MQTT EMS Interface V2](docs/TESVOLT_IOT_GATEWAY_MQTT_V2_0.5.153.md)
 - [ABL eMH1 – Live-Strom- und Leistungs-Failsafe](docs/ABL_LIVE_POWER_FAILSAFE_0.5.148.md)
 - [Alfen ACE – adaptive Schreibadressierung](docs/ALFEN_ADDRESS_COMPATIBILITY_0.5.147.md)

@@ -226,6 +226,9 @@ function getTemplateModbusSerialDefaults(tpl, protocol) {
     stopBits: defs.stopBits,
     unitIdDefault: hints.unitIdDefault,
     timeoutMs: hints.timeoutMs,
+    forceAddressOffset: hints.forceAddressOffset,
+    wordOrderDefault: hints.wordOrderDefault,
+    byteOrderDefault: hints.byteOrderDefault,
   };
 }
 
@@ -241,7 +244,12 @@ function applyTemplateModbusSerialDefaultsToForm(tpl, protocol, conn) {
   if (defs.stopBits !== undefined && shouldSet(c.stopBits)) $('#mb_stopbits').val(defs.stopBits);
   if (defs.unitIdDefault !== undefined && shouldSet(c.unitId)) $('#mb_unitId_rtu').val(defs.unitIdDefault);
   if (defs.timeoutMs !== undefined && shouldSet(c.timeoutMs)) $('#mb_timeout_rtu').val(defs.timeoutMs);
+  if (defs.forceAddressOffset !== undefined) $('#mb_addrOffset_rtu').val(defs.forceAddressOffset);
+  if (defs.wordOrderDefault !== undefined && shouldSet(c.wordOrder)) $('#mb_wordOrder_rtu').val(defs.wordOrderDefault);
+  if (defs.byteOrderDefault !== undefined && shouldSet(c.byteOrder)) $('#mb_byteOrder_rtu').val(defs.byteOrderDefault);
   refreshSelect($('#mb_parity'));
+  refreshSelect($('#mb_wordOrder_rtu'));
+  refreshSelect($('#mb_byteOrder_rtu'));
 }
 
 function applyTemplateModbusTcpDefaultsToForm(tpl, protocol, conn) {
@@ -395,6 +403,9 @@ function applyTemplateMqttDefaultsToForm(tpl, protocol, conn) {
   $('#mqtt_reconnectPeriod').val(shouldSet(c.reconnectPeriodMs) ? defaults.reconnectPeriodMs : c.reconnectPeriodMs);
   $('#mqtt_keepalive').val(shouldSet(c.keepaliveSeconds) ? defaults.keepaliveSeconds : c.keepaliveSeconds);
   $('#mqtt_cleanSession').prop('checked', c.cleanSession !== false && defaults.cleanSession !== false);
+  $('#mqtt_tesvoltTopicMode').val(c.tesvoltTopicMode || 'auto');
+  $('#mqtt_tesvoltControlEnabled').prop('checked', c.tesvoltControlEnabled === true);
+  refreshSelect($('#mqtt_tesvoltTopicMode'));
 
   $('#mqtt_tesvoltSetpointInterval').val(
     shouldSet(c.tesvoltSetpointIntervalMs) ? defaults.tesvoltSetpointIntervalMs : c.tesvoltSetpointIntervalMs,
@@ -430,6 +441,8 @@ function getCurrentMqttFormValues() {
     tesvoltCommandSourceTimeoutMs: $('#mqtt_tesvoltCommandTimeout').val(),
     tesvoltTelemetryStaleMs: $('#mqtt_tesvoltTelemetryStale').val(),
     tesvoltTrackingDelayMs: $('#mqtt_tesvoltTrackingDelay').val(),
+    tesvoltTopicMode: $('#mqtt_tesvoltTopicMode').val() || 'auto',
+    tesvoltControlEnabled: $('#mqtt_tesvoltControlEnabled').is(':checked'),
   };
 }
 
@@ -913,6 +926,12 @@ function showConnBlock(protocol) {
 function summarizeDatapoint(dp) {
   const src = dp.source || {};
   const kind = src.kind || '';
+  if (kind === 'deyeModbus') {
+    const r = src.read || {};
+    const w = src.write;
+    const addresses = Array.isArray(r.addresses) ? r.addresses.join(', ') : r.address;
+    return `R:FC3@${addresses}${w ? ` W:FC16@${w.address}` : ''} ${r.dataType || ''} ×10^${src.engineeringExponent || 0}`;
+  }
   if (kind === 'modbus') {
     const r = src.read || {};
     const w = src.write || {};
@@ -985,9 +1004,22 @@ function renderVartaOptions(tpl) {
     : 'Höchstens eine Modbus-Anfrage pro Sekunde, einschließlich Schreiben und Rücklesen. Ein kompletter Messwertsatz dauert länger als eine Sekunde.');
 }
 
+function renderDeyeOptions(tpl) {
+  const profile = tpl && tpl.driverHints && tpl.driverHints.deyeModbus;
+  const previous = $('#deye_settings').data('templateId');
+  if (previous !== (tpl && tpl.id) || !profile) {
+    $('#deye_allow_config_writes, #deye_read_remote').prop('checked', false);
+    $('#deye_battery_sign, #deye_battery_scale, #deye_grid_sign').val('unconfirmed');
+  }
+  $('#deye_settings').data('templateId', tpl && tpl.id).toggle(!!profile);
+  $('.deye_three_phase').toggle(!!profile && profile.profile !== 'singlePhase');
+}
+
 function renderDatapoints(templateId) {
   const tpl = templatesById[templateId];
   renderVartaOptions(tpl);
+  renderDeyeOptions(tpl);
+  $('#depower_settings').toggle(!!(tpl && tpl.driverHints && tpl.driverHints.oemModbusV1003));
   const tbody = $('#dpBody');
   tbody.empty();
 
@@ -1087,6 +1119,15 @@ function openDeviceModal(device, idx) {
   applyTemplateModbusTcpDefaultsToForm(tpl, proto, c);
   renderVartaOptions(tpl);
   $('#varta_allow_sf_writes').prop('checked', device.vartaAllowScaleFactorWrites === true && !!(tpl && tpl.driverHints && tpl.driverHints.vartaModbus && ['pulseNeo', 'flexStorage'].includes(tpl.driverHints.vartaModbus.product)));
+  renderDeyeOptions(tpl);
+  $('#deye_allow_config_writes').prop('checked', device.deyeAllowConfigurationWrites === true);
+  $('#deye_read_remote').prop('checked', device.deyeReadRemoteRegisters === true);
+  $('#deye_battery_sign').val(device.deyeBatteryPowerSign || 'unconfirmed');
+  $('#deye_battery_scale').val(String(device.deyeBatteryPowerScale || 'unconfirmed'));
+  $('#deye_grid_sign').val(device.deyeGridPowerSign || 'unconfirmed');
+  $('#depower_settings').toggle(!!(tpl && tpl.driverHints && tpl.driverHints.oemModbusV1003));
+  $('#depower_session_wh').val(c.depowerSessionEnergyWhPerTick ?? 100);
+  $('#depower_total_wh').val(c.depowerTotalEnergyWhPerTick ?? 100);
 
   // RTU
   // Leave empty for new devices; we auto-suggest a real detected port via refreshSerialPorts().
@@ -1147,6 +1188,8 @@ function openDeviceModal(device, idx) {
   $('#mqtt_tesvoltCommandTimeout').val(c.tesvoltCommandSourceTimeoutMs ?? '');
   $('#mqtt_tesvoltTelemetryStale').val(c.tesvoltTelemetryStaleMs ?? '');
   $('#mqtt_tesvoltTrackingDelay').val(c.tesvoltTrackingDelayMs ?? '');
+  $('#mqtt_tesvoltTopicMode').val(c.tesvoltTopicMode || 'auto');
+  $('#mqtt_tesvoltControlEnabled').prop('checked', c.tesvoltControlEnabled === true);
   applyTemplateMqttDefaultsToForm(tpl, proto, c);
 
   // CANbus
@@ -1226,6 +1269,13 @@ function collectDeviceFromModal() {
     const sfProduct = ['pulseNeo', 'flexStorage'].includes(tpl.driverHints.vartaModbus.product);
     d.vartaAllowScaleFactorWrites = sfProduct && $('#varta_allow_sf_writes').is(':checked');
   }
+  if (tpl && tpl.driverHints && tpl.driverHints.deyeModbus) {
+    d.deyeAllowConfigurationWrites = $('#deye_allow_config_writes').is(':checked');
+    d.deyeReadRemoteRegisters = $('#deye_read_remote').is(':checked');
+    d.deyeBatteryPowerSign = $('#deye_battery_sign').val() || 'unconfirmed';
+    d.deyeBatteryPowerScale = $('#deye_battery_scale').val() || 'unconfirmed';
+    d.deyeGridPowerSign = $('#deye_grid_sign').val() || 'unconfirmed';
+  }
 
   // Normalize heartbeat timeout (optional)
   if (!Number.isFinite(Number(d.heartbeatTimeoutMs)) || Number(d.heartbeatTimeoutMs) <= 0) {
@@ -1253,6 +1303,16 @@ function collectDeviceFromModal() {
     d.connection.wordOrder = $('#mb_wordOrder').val() || 'be';
     d.connection.byteOrder = $('#mb_byteOrder').val() || 'be';
     d.connection.writePassword = ($('#mb_writePass').val() || '').trim() || undefined;
+    if (tpl && tpl.driverHints && tpl.driverHints.oemModbusV1003) {
+      for (const [key, selector] of [
+        ['depowerSessionEnergyWhPerTick', '#depower_session_wh'],
+        ['depowerTotalEnergyWhPerTick', '#depower_total_wh'],
+      ]) {
+        const resolution = Number($(selector).val());
+        if (![0.1, 1, 10, 100, 1000].includes(resolution)) throw new Error('Ungültige DEPower-Zählerauflösung');
+        d.connection[key] = resolution;
+      }
+    }
   } else if (d.protocol === 'kostalTcp') {
     d.connection.host = ($('#ko_host').val() || '').trim();
     d.connection.port = parseInt($('#ko_port').val(), 10) || 81;
@@ -1316,6 +1376,14 @@ function collectDeviceFromModal() {
     d.connection.cleanSession = $('#mqtt_cleanSession').is(':checked');
 
     if (d.templateId === 'ess.tesvolt.iotGateway.mqttV2') {
+      d.connection.tesvoltTopicMode = $('#mqtt_tesvoltTopicMode').val() || 'auto';
+      d.connection.tesvoltControlEnabled = $('#mqtt_tesvoltControlEnabled').is(':checked');
+      if (!['auto', 'ems', 'v2'].includes(d.connection.tesvoltTopicMode)) {
+        throw new Error('TESVOLT: Ungültiges Topic-Format');
+      }
+      if (d.connection.tesvoltControlEnabled && d.connection.tesvoltTopicMode === 'auto') {
+        throw new Error('TESVOLT: Für die Leistungssteuerung EMS/... oder EMS/V2/... fest auswählen');
+      }
       const setpointInterval = parseInt($('#mqtt_tesvoltSetpointInterval').val(), 10);
       const commandTimeout = parseInt($('#mqtt_tesvoltCommandTimeout').val(), 10);
       const telemetryStale = parseInt($('#mqtt_tesvoltTelemetryStale').val(), 10);
